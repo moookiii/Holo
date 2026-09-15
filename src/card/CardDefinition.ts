@@ -1,0 +1,181 @@
+import type { CardProfileOverrides } from '../materials/HolographicProfile';
+
+export type Franchise = 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
+export interface CardLayout {
+  /** Normalized rectangles in the front image, measured from its top left. */
+  artwork: [number, number, number, number];
+  innerFrame: [number, number, number, number];
+}
+export const DEFAULT_FOIL_LAYOUT: CardLayout = { artwork: [.12, .18, .88, .70], innerFrame: [.035, .023, .965, .977] };
+
+export interface CardMapPaths {
+  /** Packed RGBA: primary foil, secondary foil, metallic ink, laminate. */
+  coverage?: string;
+  /** Packed RGB: height, roughness, sparkle. Alpha is reserved. */
+  surface?: string;
+  /** Individual grayscale maps override the corresponding packed channel. */
+  foil?: string;
+  /** Additional foil areas for full-card/parallel treatments, with print exclusions authored into the mask. */
+  extendedFoil?: string;
+  secondaryFoil?: string;
+  metallic?: string;
+  laminate?: string;
+  height?: string;
+  roughness?: string;
+  sparkle?: string;
+  stamp?: string;
+  /** Pattern visibility does not remove the underlying metal substrate. */
+  pattern?: string;
+  secondaryPattern?: string;
+  stampPattern?: string;
+  /** White protects print from all foil/metal/stamp coverage; black retains it. */
+  protection?: string;
+  /** RG: double-angle grating axis, B: relative spacing, A: patterned regions. */
+  direction?: string;
+  secondaryDirection?: string;
+  stampDirection?: string;
+  /** OpenGL tangent-space normal map, +Y up. */
+  normal?: string;
+  /** Image hologram data: R virtual depth, G image window, B angular offset. NoColorSpace. */
+  hologram?: string;
+}
+
+export interface CardDimensions {
+  /** Centimetres; all scene geometry uses the same units. */
+  width: number;
+  height: number;
+  thickness: number;
+  cornerRadius: number;
+  bevel: number;
+}
+
+export const DIMENSIONS = {
+  standard: { width: 6.3, height: 8.8, thickness: 0.032, cornerRadius: 0.3, bevel: 0.007 },
+  yugioh: { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.28, bevel: 0.006 },
+} satisfies Record<string, CardDimensions>;
+
+export interface CardDefinition {
+  id: string;
+  title: string;
+  franchise: Franchise;
+  set: string;
+  number: string;
+  dimensions: CardDimensions;
+  front: string;
+  back: string;
+  /** Normalized image rectangle [left, top, right, bottom], before UV Y inversion. */
+  backCrop?: [number, number, number, number];
+  profile: string;
+  seed: number;
+  profileOverrides?: CardProfileOverrides;
+  mapSettings?: { roughnessMode?: 'profile' | 'absolute' | 'offset'; embossStrength?: number; normalScale?: number; };
+  /** Local file imports are retained only for the current browser session. */
+  imported?: boolean;
+  /** Optional reconstruction of unprinted foil beneath a scan with baked highlights. Linear RGB. */
+  substrate?: { color: [number, number, number]; printRetention: number; };
+  /** Linear RGB correction for a photographed front margin outside layout.innerFrame. */
+  frontBorderColor?: [number, number, number];
+  source?: { image: string; metadata: string; notes: string; };
+  maps?: CardMapPaths;
+  layout?: CardLayout;
+}
+
+export const cards: CardDefinition[] = [{
+  id: 'nocturne', title: 'Nocturne', franchise: 'Original',
+  set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
+  front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
+  maps: { coverage: '/cards/nocturne/coverage.svg', surface: '/cards/nocturne/surface.svg', extendedFoil: '/cards/nocturne/extended-foil.svg', hologram: '/cards/nocturne/hologram.svg' },
+  profile: 'master-prism', seed: 1741,
+}, {
+  id: 'lugia-neo-genesis', title: 'Lugia', franchise: 'Pokémon',
+  set: 'Neo Genesis · First Edition', number: '9/111', dimensions: DIMENSIONS.standard,
+  front: '/cards/lugia-neo-genesis/front.png', back: '/cards/pokemon/back.jpg',
+  maps: { coverage: '/cards/lugia-neo-genesis/coverage.svg', hologram: '/cards/lugia-neo-genesis/hologram.svg' },
+  profile: 'pokemon-cosmos', seed: 2000,
+  substrate: { color: [.012, .018, .032], printRetention: .035 },
+  source: {
+    image: 'https://images.pokemontcg.io/neo1/9_hires.png',
+    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/neo1.json',
+    notes: '600 × 825 first-edition scan. Subject and printed layout retained; the masked background foil is reconstructed to remove baked illumination. Optical reconstruction awaits moving-reference comparison.',
+  },
+}, {
+  id: 'charizard-base-set', title: 'Charizard', franchise: 'Pokémon',
+  set: 'Base Set · First Edition', number: '4/102', dimensions: DIMENSIONS.standard,
+  front: '/cards/charizard-base-set/front.png', back: '/cards/pokemon/back.jpg',
+  maps: { coverage: '/cards/charizard-base-set/coverage.svg', hologram: '/cards/charizard-base-set/hologram.svg', laminate: '/cards/charizard-base-set/laminate.svg' },
+  profile: 'pokemon-galaxy-star', seed: 1999,
+  substrate: { color: [.040, .008, .016], printRetention: .025 },
+  source: {
+    image: 'https://images.pokemontcg.io/base1/4_hires.png',
+    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base1.json',
+    notes: '600 × 825 first-edition scan. Printed Charizard, wings, flame, frame and text remain unchanged; background foil is reconstructed using a traced subject mask. Moving-reference validation remains pending.',
+  },
+}, {
+  id: 'effect-veiler-ra01', title: 'Effect Veiler', franchise: 'Yu-Gi-Oh!',
+  layout: { artwork: [57/500, 130/730, 444/500, 516/730], innerFrame: [.035, .023, .965, .977] },
+  set: 'User supplied · Structure Deck print', number: 'SDWD-EN018', dimensions: DIMENSIONS.yugioh,
+  front: '/cards/effect-veiler-ra01/front.png', back: '/cards/yugioh/back-en.png',
+  maps: { coverage: '/cards/effect-veiler-ra01/coverage.svg', height: '/cards/effect-veiler-ra01/height.svg', metallic: '/cards/effect-veiler-ra01/name.png', secondaryFoil: '/cards/effect-veiler-ra01/name.png', extendedFoil: '/cards/effect-veiler-ra01/extended-foil.svg', stamp: '/cards/effect-veiler-ra01/stamp.svg', hologram: '/cards/effect-veiler-ra01/hologram.svg', laminate: '/cards/effect-veiler-ra01/laminate.svg' },
+  profile: 'ygo-prismatic-ultimate', seed: 2023,
+  mapSettings: { embossStrength: .24 },
+  profileOverrides: { stampProfile: 'ygo-prismatic-secret', stamp: { diffraction: { strength: .9 }, glints: { strength: 3 } } },
+  source: {
+    image: 'User supplied: codex-clipboard-0b495e64-fb13-418f-b0d9-6b8cfdb43ac5.png',
+    metadata: 'Printed identifier in the supplied image: SDWD-EN018',
+    notes: 'Exact user-selected 2000 × 2920 PNG, retained byte-for-byte. The supplied front supersedes the earlier RA01 scan; authored optical maps are registered to its revised artwork window and title panel. TCG reverse: user-supplied Back-EN.png, used byte-for-byte.',
+  },
+}, {
+  id: 'ip-masquerena', title: 'I:P Masquerena', franchise: 'Yu-Gi-Oh!',
+  layout: { artwork: [.12, 136/733, .884, 518/733], innerFrame: [.05, .037, .952, .959] },
+  set: 'User supplied · Starlight treatment', number: 'LAVD-EN033', dimensions: DIMENSIONS.yugioh,
+  front: '/cards/ip-masquerena/front.png', back: '/cards/yugioh/back-en.png',
+  maps: { coverage: '/cards/ip-masquerena/coverage.svg', extendedFoil: '/cards/ip-masquerena/extended-foil.svg', metallic: '/cards/ip-masquerena/name.png', secondaryFoil: '/cards/ip-masquerena/name.png', height: '/cards/ip-masquerena/height.svg', hologram: '/cards/ip-masquerena/hologram.svg', laminate: '/cards/ip-masquerena/laminate.svg', stamp: '/cards/ip-masquerena/stamp.svg' },
+  profile: 'ygo-starlight', seed: 2019,
+  source: {
+    image: 'User supplied: codex-clipboard-ab4d5092-52a1-46f9-bb3b-2181f2e3d6e9.png',
+    metadata: 'Printed identifier in the supplied image: LAVD-EN033',
+    notes: 'Exact user-selected 500 × 733 PNG, retained byte-for-byte. Authored optical maps preserve the character and rules, with independent name and security stamp. Starlight is the selected viewer treatment, not an assertion of the source printing rarity.',
+  },
+}, {
+  id: 'blue-eyes', title: 'Blue-Eyes White Dragon', franchise: 'Yu-Gi-Oh!',
+  layout: { artwork: [167/1312, 352/1911, 1161/1312, 1344/1911], innerFrame: [.04, .024, .97, .976] },
+  set: 'User supplied · SDK-style Ultra', number: 'LDK2-ENK0L', dimensions: DIMENSIONS.yugioh,
+  front: '/cards/blue-eyes/front.png', back: '/cards/yugioh/back-en.png',
+  maps: { coverage: '/cards/blue-eyes/coverage.png', extendedFoil: '/cards/blue-eyes/extended-foil.svg', metallic: '/cards/blue-eyes/name.png', secondaryFoil: '/cards/blue-eyes/name.png', laminate: '/cards/blue-eyes/laminate.svg', stamp: '/cards/blue-eyes/stamp.svg', hologram: '/cards/blue-eyes/hologram.svg' },
+  profile: 'ygo-ultra', seed: 2018,
+  profileOverrides: {
+    diffraction: { period: 1.08, bandwidth: .07, strength: .46, direction: -.2, crossWidth: .42, facetCoupling: 1 },
+    structure: { field: 'satin', scale: 840, engraving: .20, facetTilt: .4, normalVariance: .45 },
+    surface: { metalness: .38, roughness: .34, foilReflectance: .035, laminate: .12, laminateRoughness: .4, substrateDarkening: .48 },
+  },
+  source: {
+    image: 'User supplied: codex-clipboard-465e6b33-4f12-4ad7-9331-0cb6326a40d8.png', metadata: 'User-supplied front; SDK-001 photograph as foil reference',
+    notes: 'Exact selected 1854 × 2700 PNG retained byte-for-byte. Separate SDK-001 reference guides fine-grained artwork foil, reflective eye/teeth/claws and gold name. Printed identifiers are preserved from the supplied artwork. Optical coverage remains an estimate from the photograph.',
+  },
+}, {
+  id: 'angel-of-serenity', title: 'Angel of Serenity', franchise: 'Magic: The Gathering',
+  set: 'Commander 2021 · Foil study', number: '083', dimensions: DIMENSIONS.standard,
+  layout: { artwork: [50/672, 105/936, 622/672, 518/936], innerFrame: [27/672, 27/936, 646/672, 869/936] },
+  front: '/cards/angel-of-serenity/front.png', back: '/cards/magic/back.png',
+  maps: { foil: '/cards/angel-of-serenity/foil.png', extendedFoil: '/cards/angel-of-serenity/foil.png',
+    laminate: '/cards/angel-of-serenity/laminate.svg', stamp: '/cards/angel-of-serenity/stamp.svg',
+    protection: '/cards/angel-of-serenity/protection.png', hologram: '/cards/angel-of-serenity/hologram.svg' },
+  profile: 'mtg-halo', seed: 2021083,
+  source: { image: 'User supplied: codex-clipboard-a4a0f53f-a3e9-439e-90f7-4308d197d311.png',
+    metadata: 'Commander 2021, card 083; illustration by Aleksi Briclot',
+    notes: 'Exact supplied front and Magic reverse retained byte-for-byte. Optical masks are authored estimates; applying a foil finish is a viewer study, not a claim that this set printing has that treatment.' },
+}, {
+  id: 'black-lotus', title: 'Black Lotus', franchise: 'Magic: The Gathering',
+  set: 'User supplied · Foil study', number: '', dimensions: DIMENSIONS.standard,
+  layout: { artwork: [79/672, 95/936, 591/672, 505/936], innerFrame: [36/672, 39/936, 635/672, 889/936] },
+  front: '/cards/black-lotus/front.png', back: '/cards/black-lotus/back.png',
+  maps: { foil: '/cards/black-lotus/foil.png', extendedFoil: '/cards/black-lotus/foil.png',
+    protection: '/cards/black-lotus/protection.png', laminate: '/cards/black-lotus/laminate.svg',
+    hologram: '/cards/black-lotus/hologram.svg' },
+  profile: 'mtg-surge', seed: 1993,
+  // Match the charcoal scan margin to the darker inner black keyline.
+  frontBorderColor: [0.009721, 0.008568, 0.010330],
+  source: { image: 'User supplied: codex-clipboard-59ec0743-3a2c-4003-80cf-b7db8313699a.png',
+    metadata: 'Black Lotus; illustration credited to Christopher Rush in the supplied print',
+    notes: 'Exact 672 × 936 supplied front and user-selected gold-bordered Collector’s Edition back retained. Petals and text have separate optical protection. Specialty foil is an experimental viewer treatment, not a historical foil-printing claim.' },
+}];

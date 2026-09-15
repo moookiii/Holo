@@ -1,0 +1,24 @@
+import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, NeutralToneMapping, SRGBColorSpace } from 'three/webgpu';
+import { pass } from 'three/tsl';
+
+export async function createRenderer(container: HTMLElement) {
+  const renderer = new WebGPURenderer({ antialias: true, alpha: false, forceWebGL: new URLSearchParams(location.search).get('backend') === 'webgl' });
+  renderer.outputColorSpace = SRGBColorSpace;
+  renderer.toneMapping = NeutralToneMapping;
+  renderer.toneMappingExposure = 1;
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  container.appendChild(renderer.domElement);
+  await renderer.init();
+  const scene = new Scene(); scene.background = new Color('#050505');
+  const camera = new PerspectiveCamera(30, container.clientWidth / container.clientHeight, 0.2, 100);
+  const pipeline = new RenderPipeline(renderer);
+  const scenePass = pass(scene, camera);
+  scenePass.setMRT(null);
+  // Match PassNode.setup before the first render so precompiled card pipelines
+  // use the same HDR attachment format and sample count as presentation.
+  scenePass.renderTarget.samples = renderer.samples;
+  scenePass.renderTarget.texture.type = renderer.getOutputBufferType();
+  pipeline.outputNode = scenePass;
+  return { renderer, scene, camera, pipeline, scenePass };
+}

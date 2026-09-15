@@ -1,0 +1,80 @@
+import type { PatternKind } from './patterns/ManufacturingField';
+
+/** One optical material, independent of which printed region receives it. */
+export interface FoilLayer {
+  diffraction: {
+    /** Grating period in micrometres; wavelength bands use the same unit. */
+    period: number;
+    bandwidth: number;
+    strength: number;
+    secondaryOrder: number;
+    direction: number;
+    crossWidth: number;
+    /** Relative energy in a second orthogonal grating at the same surface point. */
+    crossing?: number;
+    /** How closely the grating follows the manufactured facet's tilted surface. */
+    facetCoupling?: number;
+  };
+  structure: { field: 'radial' | PatternKind; engraving: number; scale: number; relief: number; facetTilt?: number; patternRelief?: number; normalVariance?: number;
+    /** Angular selection of crossed groups of fixed microcuts. */
+    gridStrength?: number; gridScale?: number; gridTravel?: number; gridWidth?: number;
+  };
+  glints: { density: number; scale: number; sharpness: number; strength: number; spread: number; ordered?: boolean; };
+  surface: { metalness: number; roughness: number; laminate: number; laminateRoughness: number; anisotropy?: number; foilReflectance?: number;
+    /** Soft neutral reflection from a pearlescent/nacre layer, separate from spectral diffraction. */
+    sheen?: number;
+    /** Thin-film interference, independent of the etched diffraction grating. Thickness is nm. */
+    iridescence?: number; filmIOR?: number; filmMin?: number; filmMax?: number; pearlBody?: number;
+    /** Absorbing finish on the foil substrate; printed regions keep their color. */
+    substrateDarkening?: number;
+    /** Authored raised varnish changes the clearcoat normal independently of the foil below. */
+    varnishRelief?: number;
+    /** Extra clear varnish confined to the colored frame, excluding artwork and rules. */
+    frameVarnish?: number;
+    /** Opaque silver image reconstruction; depth is virtual centimetres behind the foil window. */
+    imageHologram?: number; imageDepth?: number; imageContrast?: number; imageWidth?: number;
+  };
+}
+
+export interface HolographicProfile extends FoilLayer {
+  id: string;
+  name: string;
+  family: 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
+  description: string;
+  status: 'development' | 'curated' | 'reference-pending';
+  /** Keep visually unaccepted candidates out of the normal treatment picker. */
+  labOnly?: boolean;
+  /** Use the card's optional extended foil mask for parallel/full-card treatments. */
+  extendedCoverage?: boolean;
+  /** A separately reflected anniversary mark in the rules panel. */
+  watermark?: 'quarter-century';
+  /** Coverage G: independent foil, e.g. Secret Rare lettering. */
+  secondary?: FoilLayer;
+  /** A separately masked security mark or rarity stamp. */
+  stamp?: FoilLayer;
+  /** Coverage B: non-diffractive metallic ink. Color is linear RGB. */
+  metallicInk?: { color?: [number, number, number]; roughness: number; metalness: number; };
+}
+
+export interface FoilOverrides {
+  diffraction?: Partial<FoilLayer['diffraction']>;
+  structure?: Partial<FoilLayer['structure']>;
+  glints?: Partial<FoilLayer['glints']>;
+  surface?: Partial<FoilLayer['surface']>;
+}
+export interface CardProfileOverrides extends FoilOverrides {
+  secondaryProfile?: string;
+  secondary?: FoilOverrides;
+  stampProfile?: string;
+  stamp?: FoilOverrides;
+  metallicInk?: HolographicProfile['metallicInk'];
+}
+
+export const masterPrism: HolographicProfile = {
+  id: 'master-prism', name: 'Master prism', family: 'Original', status: 'development',
+  description: 'Radial security engraving with selective spectral fans, silver relief and sparse microfacet flashes.',
+  diffraction: { period: 1.35, bandwidth: 0.035, strength: 0.95, secondaryOrder: 0.1, direction: 0, crossWidth: 0.23 },
+  structure: { field: 'radial', engraving: 0.35, scale: 240, relief: 0.12 },
+  glints: { density: 0.1, scale: 310, sharpness: 280, strength: 16, spread: 0.56 },
+  surface: { metalness: 0.7, roughness: 0.29, laminate: 0.62, laminateRoughness: 0.16 },
+};
