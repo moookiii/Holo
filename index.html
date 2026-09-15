@@ -11,6 +11,10 @@
   <body>
     <main id="studio" aria-label="Holographic card viewer"></main>
     <div id="ui"></div>
+    <div id="loading" class="loading-screen" role="status" aria-live="polite" aria-label="Loading card studio">
+      <div class="loading-wheel" aria-hidden="true"></div>
+      <span class="loading-label">Loading studio…</span>
+    </div>
     <div id="error" role="alert" hidden></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

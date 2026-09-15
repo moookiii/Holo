@@ -21,6 +21,14 @@ import type { createImportDialog } from './ui/ImportDialog';
 
 async function start() {
   const container = document.querySelector<HTMLElement>('#studio')!;
+  const loading = document.querySelector<HTMLElement>('#loading')!;
+  const loadingLabel = loading.querySelector<HTMLElement>('.loading-label')!;
+  const setLoading = (visible: boolean, label = 'Loading studio…') => {
+    loadingLabel.textContent = label;
+    loading.hidden = !visible;
+    loading.setAttribute('aria-hidden', String(!visible));
+  };
+  setLoading(true);
   const { renderer, scene, camera, pipeline, scenePass } = await createRenderer(container);
   const assets = new AssetManager(8);
   const mapLoader = new CardMapLoader(assets);
@@ -89,6 +97,7 @@ async function start() {
     const generation = ++loadGeneration;
     requestedCardId = id;
     pendingLoads.set(id, (pendingLoads.get(id) ?? 0) + 1);
+    setLoading(true, definition.id === id ? 'Loading card…' : 'Loading next card…');
     try {
     ++profileGeneration;
     const profile = resolveCardProfile(next);
@@ -128,7 +137,10 @@ async function start() {
     } finally {
       const remaining = pendingLoads.get(id)! - 1;
       if (remaining) pendingLoads.set(id, remaining); else pendingLoads.delete(id);
-      if (generation === loadGeneration) requestedCardId = definition.id;
+      if (generation === loadGeneration) {
+        requestedCardId = definition.id;
+        setLoading(false);
+      }
       releaseRetiredImports();
     }
   };
@@ -215,6 +227,8 @@ async function start() {
 }
 function showError(error: unknown) {
   console.error(error);
+  const loading = document.querySelector<HTMLElement>('#loading');
+  if (loading) loading.hidden = true;
   const element = document.querySelector<HTMLElement>('#error')!;
   element.textContent = `The card studio could not start. ${error instanceof Error ? error.message : 'A browser with WebGPU or WebGL 2 is required.'}`;
   element.hidden = false;

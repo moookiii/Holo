@@ -10,6 +10,11 @@ button:hover { color: #d5b676; }
 #studio[data-mode="rotate"].dragging { cursor: grabbing; }
 #studio canvas { display: block; width: 100%; height: 100%; outline: none; }
 #ui { position: fixed; inset: 0; pointer-events: none; }
+.loading-screen { position: fixed; z-index: 20; inset: 0; display: grid; place-content: center; justify-items: center; gap: 18px; color: #bca979; background: rgba(5, 5, 5, .82); backdrop-filter: blur(3px); transition: opacity 220ms ease, visibility 220ms ease; }
+.loading-screen[hidden] { display: grid; opacity: 0; visibility: hidden; pointer-events: none; }
+.loading-wheel { width: 34px; height: 34px; border: 2px solid #393329; border-top-color: #d0ad63; border-right-color: #8e713c; border-radius: 50%; animation: loading-spin 760ms linear infinite; }
+.loading-label { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+@keyframes loading-spin { to { transform: rotate(360deg); } }
 .controls { position: absolute; left: 50%; bottom: max(24px, env(safe-area-inset-bottom)); transform: translateX(-50%); display: flex; align-items: center; gap: 3px; padding: 5px 10px; background: #0c0c0c; border: 1px solid #1b1b1b; border-radius: 10px; pointer-events: auto; transition: opacity 240ms; }
 .controls button, .select-wrap { height: 38px; }
 .text-control { display: flex; align-items: center; gap: 15px; padding: 0 10px; font-size: 12px; }
@@ -45,7 +50,7 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 #error[hidden] { display: none; }
 @media (max-width: 600px) { .controls { padding: 3px 5px; bottom: max(14px, env(safe-area-inset-bottom)); } .icon-control { width: 34px; } .text-control { gap: 4px; padding: 0 7px; } select { max-width: 150px; padding-left: 9px; font-size: 11px; } .divider { margin: 0 2px; } #fullscreen { display: none; } .popover { bottom: 76px; } }
 @media (max-width: 440px) { .controls { gap: 1px; } #holo-select { max-width: calc(100vw - 228px); } }
-@media (prefers-reduced-motion: reduce) { .controls { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .controls { transition: none; } .loading-wheel { animation-duration: 1500ms; } }
 .material-lab { position: fixed; top: 16px; right: 16px; width: 270px; max-height: calc(100vh - 105px); overflow-y: auto; padding: 18px; background: #0c0c0c; border: 1px solid #272727; border-radius: 8px; font-size: 11px; scrollbar-width: thin; }
 .material-lab h1 { margin: 0 0 16px; font-size: 13px; font-weight: 500; color: #d4c099; }
 .lab-tools { display: grid; gap: 12px; margin-bottom: 22px; }
