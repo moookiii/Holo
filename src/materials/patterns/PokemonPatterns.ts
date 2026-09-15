@@ -1,6 +1,6 @@
 import { encodeGratingAxis } from './Orientation.ts';
 
-export type PokemonPatternKind = 'fireworks' | 'crosshatch' | 'ace-spec';
+export type PokemonPatternKind = 'legendary-fireworks' | 'fireworks' | 'crosshatch' | 'ace-spec';
 const TAU = Math.PI * 2;
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
 const smooth = (a: number, b: number, n: number) => { const t = clamp((n - a) / (b - a)); return t * t * (3 - 2 * t); };
@@ -15,16 +15,17 @@ function random(x: number, y: number, seed: number) {
  */
 export function generatePokemonField(kind: PokemonPatternKind, seed: number, aspect: number, scale: number, height: number) {
   const width = Math.round(height * aspect);
+  const legendary = kind === 'legendary-fireworks', fireworks = legendary || kind === 'fireworks';
   const direction = new Uint8Array(width * height * 4), relief = new Uint8Array(width * height * 4);
   type Burst = { x: number; y: number; phase: number; rays: number; radius: number; cell: number };
   const centers = new Map<string, Burst>();
   const neighborhoods: Burst[][] = [], columns = Math.ceil(scale * aspect) + 1;
-  if (kind === 'fireworks') {
+  if (fireworks) {
     for (let gy = -1; gy <= Math.ceil(scale); gy++) for (let gx = -1; gx <= Math.ceil(scale * aspect); gx++) {
       const phase = random(gx, gy, seed + 601);
       centers.set(`${gx},${gy}`, { x: gx + .2 + random(gx, gy, seed + 607) * .6,
         y: gy + .2 + random(gx, gy, seed + 613) * .6, phase,
-        rays: 38 + Math.floor(phase * 25), radius: .52 + random(gx, gy, seed + 617) * .31, cell: gx + gy * 71 });
+        rays: legendary ? 110 + Math.floor(phase * 55) : 38 + Math.floor(phase * 25), radius: .52 + random(gx, gy, seed + 617) * .31, cell: gx + gy * 71 });
     }
     for (let gy = 0; gy <= Math.floor(scale); gy++) for (let gx = 0; gx < columns; gx++) {
       const neighbors: Burst[] = [];
@@ -35,7 +36,7 @@ export function generatePokemonField(kind: PokemonPatternKind, seed: number, asp
   for (let iy = 0; iy < height; iy++) for (let ix = 0; ix < width; ix++) {
     const x = (ix + .5) / height, y = (iy + .5) / height;
     let angle = 0, spacing = 1, amplitude = .02, nx = 0, ny = 0, grain = .5;
-    if (kind === 'fireworks') {
+    if (fireworks) {
       const u = x * scale, v = y * scale, gx = Math.floor(u), gy = Math.floor(v), aa = scale / height;
       // Whole neighboring bursts overlap; a cell boundary must never clip a ray.
       for (const c of neighborhoods[gy * columns + gx]) {
@@ -47,9 +48,9 @@ export function generatePokemonField(kind: PokemonPatternKind, seed: number, asp
         const polar = ((theta / TAU + c.phase + 2 + radius * .045) % 1) * c.rays;
         const ray = Math.floor(polar), across = (polar - ray - .5) * radius * TAU / c.rays;
         const r = random(ray, c.cell, seed + 631);
-        const along = radius * (14 + r * 17) + r * 9, segment = Math.floor(along);
+        const along = radius * (legendary ? 38 + r * 37 : 14 + r * 17) + r * 9, segment = Math.floor(along);
         const chip = random(ray * 53 + segment, c.cell, seed + 641);
-        const halfWidth = (.004 + radius * .013) * (.55 + r * .8);
+        const halfWidth = (legendary ? .0017 + radius * .005 : .004 + radius * .013) * (.55 + r * .8);
         const stroke = 1 - smooth(halfWidth - aa * .55, halfWidth + aa * .55, Math.abs(across));
         const broken = smooth(.08, .19, along - segment) * (1 - smooth(.50 + chip * .31, .93, along - segment));
         const start = .05 + r * .17, end = c.radius * (.65 + r * .35);
@@ -60,7 +61,7 @@ export function generatePokemonField(kind: PokemonPatternKind, seed: number, asp
           const sector = (ray + .5) / c.rays * TAU - c.phase * TAU;
           angle = sector + Math.PI / 2;
           spacing = .90 + c.phase * .22 + (chip - .5) * .055;
-          const slope = .10 + radius * .22 + (chip - .5) * .21;
+          const slope = legendary ? .07 + radius * .28 + (chip - .5) * .30 : .10 + radius * .22 + (chip - .5) * .21;
           nx = Math.cos(sector) * slope; ny = Math.sin(sector) * slope;
           grain = .48 + chip * .46;
         }

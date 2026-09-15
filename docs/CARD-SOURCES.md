@@ -1,5 +1,13 @@
 # Card assets and optical reconstruction
 
+## Tyranitar · Paldea Evolved 135/193
+
+The unmodified 734 × 1021 front comes from [Pokémon TCG API's image service](https://images.pokemontcg.io/sv2/135_hires.png), with the [publisher's card entry](https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/sv02/135/) confirming the identity. The official site's 245 × 342 image was inspected but replaced by the higher-resolution source. The existing official Pokémon reverse is reused.
+
+This definition targets ordinary pack Mirage holo, not the reverse-holo or promotional Cosmos versions. The [physical Tyranitar photograph](https://www.pokecardex.com/uploads/news/Article/Collek2024/Holo/Mirage.jpg) informed the coverage. `foil.svg` exposes the artwork background, excluding the body, mouth, hand, crests and rules. `extended-foil.svg` adds the silver border for Mirage. `protection.png` follows copyright lettering instead of excluding a rectangular footer. Separate maps preserve the original front bytes. `create-tyranitar-maps.mjs` and `create-tyranitar-protection.py` reproduce the authored maps.
+
+Masks and optical calibration remain estimates from static evidence. Exact physical-sheet geometry and moving multi-light agreement remain unverified. Choosing another available finish is a viewer material experiment.
+
 ## Lugia · Neo Genesis 9/111
 
 The unmodified 600 × 825 first-edition scan is supplied by the [Pokémon TCG API image service](https://images.pokemontcg.io/neo1/9_hires.png). Metadata is cached from the API's [maintained data repository](https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/neo1.json); the live API returned HTTP 500 during import. The [card entry](https://bulbapedia.bulbagarden.net/wiki/Lugia_(Neo_Genesis_9)) identifies the printing. Illustration by Hironobu Yoshida.
@@ -66,3 +74,10 @@ The Quarter Century geometry uses Konami's original transparent [25th logo asset
 
 Next parallel-family references: [Konami Battle Pack 3](https://www.yugioh-card.com/en/products/past_products/bp03/) explicitly distinguishes Epic Dawn Starfoil, War of the Giants Mosaic and Monster League Shatterfoil; it identifies Shatterfoil as the shattered-glass technology used in later Duel Terminal sets. [Konami's glossary](https://www.yugioh-card.com/en/about/glossary-of-yu-gi-oh-terms/) defines Parallel as foiling across the entire front. These layers need their own full-front print-protected coverage rather than reusing the artwork/frame-only mask. They are not implemented yet.
 
+
+## Historical reverse showcases — 2026-09-15
+
+- **Eevee, Legendary Collection 74/110 reverse**: unchanged 600 × 825 [PokemonTCG print image](https://images.pokemontcg.io/base6/74_hires.png), identity from [set metadata](https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base6.json). The source image is the nonfoil printing; its silver outer border, body substrate and fireworks finish are reconstructed separately. The image is not represented as a reverse-holo scan. Artwork frame and gold caption remain printed. Black text, energy medallions, HP and the outlined set mark use independent coverage. `scripts/create-reverse-maps.py` regenerates the maps without modifying the source.
+- **Charizard, Expedition 40/165 reverse**: unchanged 600 × 825 [PokemonTCG print image](https://images.pokemontcg.io/ecard1/40_hires.png), identity from [set metadata](https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/ecard1.json). This also uses a nonfoil print as its artwork basis. Explicit reverse masks select the red body/name areas while preserving the yellow e-reader rails, picture, evolution badge, ribbons and symbols. Coverage is estimated from physical photographs; angular matching remains pending.
+
+Physical specimen evidence is recorded in REFERENCES.md. Both additions remain reference-pending. Cross-applying other available profiles is a treatment experiment, not a claim of additional physical printings.

@@ -4,11 +4,12 @@ import { parseCardImportManifest } from '../assets/CardImportManifest';
 import { importCardBundle, prepareImportedCard, type ImportedCard } from '../assets/CardImporter';
 
 const mapLabels: Record<keyof CardMapPaths, string> = {
-  foil: 'Foil coverage', secondaryFoil: 'Secondary foil', metallic: 'Metallic text', height: 'Emboss / height', roughness: 'Roughness', normal: 'Normal',
+  foil: 'Foil coverage', reverseFoil: 'Reverse body coverage', secondaryFoil: 'Secondary foil', metallic: 'Metallic text', height: 'Emboss / height', roughness: 'Roughness', normal: 'Normal',
   direction: 'Diffraction direction', pattern: 'Pattern visibility', stamp: 'Stamp', protection: 'Print protection', laminate: 'Laminate', sparkle: 'Sparkle coverage',
   coverage: 'Packed coverage · RGBA', surface: 'Packed surface · RGB', secondaryDirection: 'Secondary direction', stampDirection: 'Stamp direction',
   secondaryPattern: 'Secondary pattern', stampPattern: 'Stamp pattern', extendedFoil: 'Extended foil coverage',
   hologram: 'Image hologram · depth / window / angle',
+  motif: 'Primary symbol shape', secondaryMotif: 'Secondary symbol shape', stampMotif: 'Stamp symbol shape',
 };
 const imageTypes = '.png,.jpg,.jpeg,.webp,.svg,.avif';
 
@@ -26,6 +27,7 @@ export function createImportDialog(profiles: readonly HolographicProfile[], onIm
       <label>Card name<input id="import-name" name="title" maxlength="120" required autocomplete="off"></label>
       <div class="import-columns"><label>Franchise<select id="import-franchise" name="franchise"><option>Original</option><option>Pokémon</option><option>Yu-Gi-Oh!</option><option>Magic: The Gathering</option></select></label><label>Foil treatment<select id="import-profile" name="profile"></select></label></div>
       <p class="import-foil-note" hidden>Foil covers the whole front. Add coverage maps below to limit it to specific areas.</p>
+      <label>Foil placement<select name="coverageMode" id="import-coverage-mode"><option value="artwork">Standard</option><option value="reverse">Reverse holo · body mask required</option></select></label>
       <div class="import-columns"><label>Set / edition<input name="set" maxlength="160" autocomplete="off"></label><label>Card number<input name="number" maxlength="60" autocomplete="off"></label></div>
       <details class="import-maps"><summary>Optional material maps</summary><div class="import-columns"><label>Secondary treatment<select id="import-secondary"><option value="">Treatment default</option></select></label><label>Stamp treatment<select id="import-stamp"><option value="">Metallic ink</option></select></label></div><div class="import-map-grid"></div></details>
     </fieldset>
@@ -43,8 +45,14 @@ export function createImportDialog(profiles: readonly HolographicProfile[], onIm
   const imageFields = dialog.querySelector<HTMLFieldSetElement>('#images-import')!, bundleFields = dialog.querySelector<HTMLFieldSetElement>('#bundle-import')!;
   const franchise = dialog.querySelector<HTMLSelectElement>('#import-franchise')!;
   const profile = dialog.querySelector<HTMLSelectElement>('#import-profile')!;
+  const coverageMode = dialog.querySelector<HTMLSelectElement>('#import-coverage-mode')!;
   const foilNote = dialog.querySelector<HTMLElement>('.import-foil-note')!;
-  profile.onchange = () => { foilNote.hidden = profile.value === 'print-only'; };
+  const updateFoilNote = () => {
+    foilNote.hidden = profile.value === 'print-only';
+    foilNote.textContent = coverageMode.value === 'reverse' ? 'Add a reverse body coverage map below. The picture, borders and text can have separate coverage.'
+      : 'Foil covers the whole front. Add coverage maps below to limit it to specific areas.';
+  };
+  profile.onchange = coverageMode.onchange = updateFoilNote;
   const secondary = dialog.querySelector<HTMLSelectElement>('#import-secondary')!, stamp = dialog.querySelector<HTMLSelectElement>('#import-stamp')!;
   const folder = dialog.querySelector<HTMLInputElement>('#import-folder')!, bundle = dialog.querySelector<HTMLInputElement>('#import-bundle-files')!;
   const error = dialog.querySelector<HTMLElement>('.import-error')!, status = dialog.querySelector<HTMLElement>('.import-status')!;
@@ -123,7 +131,7 @@ export function createImportDialog(profiles: readonly HolographicProfile[], onIm
         if (!front || !back) throw new Error('Choose both a front and a back image.');
         const paths: CardMapPaths = {};
         for (const [key, input] of maps) { const path = take(input, key); if (path) paths[key] = path; }
-        const spec = parseCardImportManifest({ title: data.get('title'), franchise: franchise.value as Franchise, set: data.get('set'), number: data.get('number'), front, back, profile: profile.value, maps: paths,
+        const spec = parseCardImportManifest({ title: data.get('title'), franchise: franchise.value as Franchise, set: data.get('set'), number: data.get('number'), front, back, profile: profile.value, coverageMode: coverageMode.value, maps: paths,
           profileOverrides: { ...(secondary.value ? { secondaryProfile: secondary.value } : {}), ...(stamp.value ? { stampProfile: stamp.value } : {}) } }, profiles);
         imported = await prepareImportedCard(spec, files);
       }

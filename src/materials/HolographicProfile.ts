@@ -1,4 +1,5 @@
 import type { PatternKind } from './patterns/ManufacturingField';
+import type { MotifSpec } from './patterns/MotifField';
 
 /** One optical material, independent of which printed region receives it. */
 export interface FoilLayer {
@@ -15,12 +16,18 @@ export interface FoilLayer {
     /** How closely the grating follows the manufactured facet's tilted surface. */
     facetCoupling?: number;
   };
-  structure: { field: 'radial' | PatternKind; engraving: number; scale: number; relief: number; facetTilt?: number; patternRelief?: number; normalVariance?: number;
+  structure: { field: 'radial' | 'symbol-foil' | PatternKind; engraving: number; scale: number; relief: number; facetTilt?: number; patternRelief?: number; normalVariance?: number;
+    motif?: MotifSpec;
+    /** Fraction of the facet inclination used for aggregate specular; defaults to 1. Smooth optical films
+     * can redirect diffraction without looking like deeply corrugated metal. */
+    reflectionCoupling?: number;
     /** Angular selection of crossed groups of fixed microcuts. */
     gridStrength?: number; gridScale?: number; gridTravel?: number; gridWidth?: number;
   };
   glints: { density: number; scale: number; sharpness: number; strength: number; spread: number; ordered?: boolean; };
   surface: { metalness: number; roughness: number; laminate: number; laminateRoughness: number; anisotropy?: number; foilReflectance?: number;
+    /** Pattern amplitude modulates roughness independently of its color response. */
+    patternRoughness?: number;
     /** Soft neutral reflection from a pearlescent/nacre layer, separate from spectral diffraction. */
     sheen?: number;
     /** Thin-film interference, independent of the etched diffraction grating. Thickness is nm. */

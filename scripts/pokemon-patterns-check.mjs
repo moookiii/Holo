@@ -16,6 +16,8 @@ const out = join(process.cwd(), 'artifacts', process.env.POKEMON_OUT || '101-pok
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const report = [];
+const cardId = process.env.POKEMON_CARD || 'charizard-base-set';
+const profileIds = (process.env.POKEMON_IDS || 'pokemon-fireworks,pokemon-crosshatch,pokemon-ace-spec').split(',');
 async function difference(page, a, b, bounds) {
   return page.evaluate(async ([aa, bb, bounds]) => {
     const decode = async data => {
@@ -46,10 +48,10 @@ try {
     page.on('requestfailed', request => errors.push(`${request.url()}: ${request.failure()?.errorText}`));
     await page.goto(`http://127.0.0.1:5173/?backend=${backend}`);
     await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
-    await page.evaluate(async () => { await window.__holo.setCard('charizard-base-set'); window.__holo.hideUI(); window.__holo.pose(0, 0); });
+    await page.evaluate(async id => { await window.__holo.setCard(id); window.__holo.hideUI(); window.__holo.pose(0, 0); }, cardId);
     assert.equal((await page.evaluate(() => window.__holo.stats())).backend, backend === 'webgpu' ? 'WebGPUBackend' : 'WebGLBackend');
     const entries = [], fronts = [];
-    for (const id of ['pokemon-fireworks', 'pokemon-crosshatch', 'pokemon-ace-spec']) {
+    for (const id of profileIds) {
       assert.equal(await page.locator(`#holo-select option[value="${id}"]:not([hidden]):not([disabled])`).count(), 1);
       await page.evaluate(id => window.__holo.setProfile(id), id);
       await page.evaluate(() => { window.__holo.pose(0, 0); window.__holo.lighting.setPreset('Studio'); });
@@ -61,7 +63,7 @@ try {
       const stationary = await difference(page, front, await page.screenshot());
       assert.equal(stationary.over1, 0, `${id} must not flicker while stationary`);
       const bounds = await page.evaluate(() => {
-        const h = window.__holo, d = h.cards.find(c => c.id === 'charizard-base-set').dimensions;
+        const h = window.__holo, d = h.cards.find(c => c.id === h.stats().card).dimensions;
         const project = (u, v) => { const p = h.camera.position.clone().set((u - .5) * d.width, (.5 - v) * d.height, d.thickness * .5).project(h.camera); return [(p.x + 1) * innerWidth / 2, (1 - p.y) * innerHeight / 2]; };
         return [...project(.16, .61), ...project(.85, .85)];
       });

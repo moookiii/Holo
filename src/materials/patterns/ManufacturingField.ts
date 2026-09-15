@@ -1,9 +1,12 @@
 import { encodeGratingAxis } from './Orientation';
 import { generatePokemonField, type PokemonPatternKind } from './PokemonPatterns';
+import { generatePokemonDirectionalField, type PokemonDirectionalKind } from './PokemonDirectionalPatterns';
+import { generatePokemonFacetField, type PokemonFacetKind } from './PokemonFacetPatterns';
+import { generateMotifField, type MotifSpec } from './MotifField';
 import { DEFAULT_FOIL_LAYOUT, type CardLayout } from '../../card/CardDefinition';
 
-export type PatternKind = PokemonPatternKind | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
-export interface PatternSpec { kind: PatternKind; seed: number; aspect: number; scale: number; layout?: CardLayout; }
+export type PatternKind = PokemonFacetKind | PokemonDirectionalKind | PokemonPatternKind | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
+export interface PatternSpec { kind: PatternKind | 'symbol-foil'; seed: number; aspect: number; scale: number; layout?: CardLayout; motif?: MotifSpec; }
 export interface FieldData { width: number; height: number; direction: Uint8Array; relief: Uint8Array; }
 const TAU = Math.PI * 2;
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
@@ -20,8 +23,14 @@ function smoothNoise(x: number, y: number, seed: number) {
 }
 
 /** Encodes manufacturing geometry only. Neither texture contains spectral colors or lighting. */
-export function generateField(spec: PatternSpec, height = ['fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'starlight', 'galaxy-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
-  if (spec.kind === 'fireworks' || spec.kind === 'crosshatch' || spec.kind === 'ace-spec') return generatePokemonField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
+export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'starlight', 'galaxy-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
+  if (spec.kind === 'symbol-foil') {
+    if (!spec.motif) throw new Error('Symbol foil requires a motif specification.');
+    return generateMotifField(spec.seed, spec.aspect, spec.scale, height, spec.motif);
+  }
+  if (spec.kind === 'cracked-ice' || spec.kind === 'sequin' || spec.kind === 'confetti' || spec.kind === 'speckle') return generatePokemonFacetField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
+  if (spec.kind === 'e-reader' || spec.kind === 'sheen' || spec.kind === 'water-web' || spec.kind === 'vertical-line' || spec.kind === 'mirage') return generatePokemonDirectionalField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
+  if (spec.kind === 'legendary-fireworks' || spec.kind === 'fireworks' || spec.kind === 'crosshatch' || spec.kind === 'ace-spec') return generatePokemonField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
   const width = Math.round(height * spec.aspect);
   const direction = new Uint8Array(width * height * 4), relief = new Uint8Array(width * height * 4);
   const seed = spec.seed;
@@ -315,7 +324,7 @@ export function generateField(spec: PatternSpec, height = ['fireworks', 'crossha
       amplitude = .62 + random(gx, gy, seed) * .38;
       grain = .75;
     } else if (spec.kind === 'galaxy-star') {
-      // Early Pokémon sheet: sparse unequal four/eight-point stars, coherent
+      // Early PokÃ©mon sheet: sparse unequal four/eight-point stars, coherent
       // facets in each motif, and pinpoints over a quieter continuous foil.
       const sx = x * spec.scale, sy = y * spec.scale;
       const gx = Math.floor(sx), gy = Math.floor(sy);

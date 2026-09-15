@@ -15,6 +15,12 @@ export interface CardMapPaths {
   surface?: string;
   /** Individual grayscale maps override the corresponding packed channel. */
   foil?: string;
+  /** Authored body/border coverage for a reverse printing; never inferred from artwork. */
+  reverseFoil?: string;
+  /** Grayscale repeated symbol for CPU manufacturing; adds no GPU sampler. */
+  motif?: string;
+  secondaryMotif?: string;
+  stampMotif?: string;
   /** Additional foil areas for full-card/parallel treatments, with print exclusions authored into the mask. */
   extendedFoil?: string;
   secondaryFoil?: string;
@@ -67,12 +73,16 @@ export interface CardDefinition {
   backCrop?: [number, number, number, number];
   profile: string;
   seed: number;
+  /** Selects the authored primary mask before packing; other optical regions stay independent. */
+  coverageMode?: 'artwork' | 'reverse';
   profileOverrides?: CardProfileOverrides;
   mapSettings?: { roughnessMode?: 'profile' | 'absolute' | 'offset'; embossStrength?: number; normalScale?: number; };
   /** Local file imports are retained only for the current browser session. */
   imported?: boolean;
   /** Optional reconstruction of unprinted foil beneath a scan with baked highlights. Linear RGB. */
-  substrate?: { color: [number, number, number]; printRetention: number; };
+  substrate?: { color: [number, number, number]; printRetention: number;
+    /** Original paper reflectance, for removing its contribution without washing out printed ink. */
+    backgroundColor?: [number, number, number]; };
   /** Linear RGB correction for a photographed front margin outside layout.innerFrame. */
   frontBorderColor?: [number, number, number];
   source?: { image: string; metadata: string; notes: string; };
@@ -109,6 +119,60 @@ export const cards: CardDefinition[] = [{
     image: 'https://images.pokemontcg.io/base1/4_hires.png',
     metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base1.json',
     notes: '600 × 825 first-edition scan. Printed Charizard, wings, flame, frame and text remain unchanged; background foil is reconstructed using a traced subject mask. Moving-reference validation remains pending.',
+  },
+}, {
+  id: 'tyranitar-paldea-evolved', title: 'Tyranitar', franchise: 'Pokémon',
+  set: 'Paldea Evolved', number: '135/193', dimensions: DIMENSIONS.standard,
+  layout: { artwork: [59/734, 102/1021, 675/734, 482/1021], innerFrame: [29/734, 28/1021, 703/734, 994/1021] },
+  front: '/cards/tyranitar-paldea-evolved/front.png', back: '/cards/pokemon/back.jpg',
+  maps: { foil: '/cards/tyranitar-paldea-evolved/foil.svg', extendedFoil: '/cards/tyranitar-paldea-evolved/extended-foil.svg', laminate: '/cards/tyranitar-paldea-evolved/laminate.svg', protection: '/cards/tyranitar-paldea-evolved/protection.png' },
+  profile: 'pokemon-mirage', seed: 2023135,
+  source: {
+    image: 'https://images.pokemontcg.io/sv2/135_hires.png',
+    metadata: 'https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/sv02/135/',
+    notes: 'Unmodified 734 × 1021 source. Regular Paldea Evolved Mirage printing, distinct from reverse-holo and promotional Cosmos variants. Authored artwork/subject and silver-border masks are estimates; multi-angle physical matching remains pending.',
+  },
+}, {
+  id: 'eevee-legendary-reverse', title: 'Eevee', franchise: 'Pokémon',
+  set: 'Legendary Collection · Reverse holo', number: '74/110', dimensions: DIMENSIONS.standard,
+  layout: { artwork: [55/600, 86/825, 546/600, 436/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
+  front: '/cards/eevee-legendary-reverse/front.png', back: '/cards/pokemon/back.jpg',
+  coverageMode: 'reverse',
+  maps: { reverseFoil: '/cards/eevee-legendary-reverse/reverse-foil.svg', protection: '/cards/eevee-legendary-reverse/protection.png', laminate: '/cards/eevee-legendary-reverse/laminate.svg' },
+  frontBorderColor: [.579, .579, .579],
+  substrate: { color: [.32, .33, .34], backgroundColor: [.672, .672, .672], printRetention: 0 },
+  profile: 'pokemon-legendary-reverse', seed: 2002074,
+  source: {
+    image: 'https://images.pokemontcg.io/base6/74_hires.png',
+    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base6.json',
+    notes: 'Unmodified 600 × 825 nonfoil print image supplies artwork and lettering. The Legendary Collection reverse finish and silver outer border are reconstructed separately from physical-card photographs. Estimated coverage and optics await moving-reference matching.',
+  },
+}, {
+  id: 'charizard-expedition-reverse', title: 'Charizard', franchise: 'Pokémon',
+  set: 'Expedition · Reverse holo', number: '40/165', dimensions: DIMENSIONS.standard,
+  layout: { artwork: [54/600, 93/825, 580/600, 400/825], innerFrame: [52/600, 18/825, 582/600, 777/825] },
+  front: '/cards/charizard-expedition-reverse/front.png', back: '/cards/pokemon/back.jpg',
+  coverageMode: 'reverse',
+  maps: { reverseFoil: '/cards/charizard-expedition-reverse/reverse-foil.svg', protection: '/cards/charizard-expedition-reverse/protection.png', laminate: '/cards/charizard-expedition-reverse/laminate.svg' },
+  profile: 'pokemon-e-reader', seed: 2002040,
+  source: {
+    image: 'https://images.pokemontcg.io/ecard1/40_hires.png',
+    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/ecard1.json',
+    notes: 'Unmodified 600 × 825 nonfoil print supplies the artwork. Reverse foil is reconstructed under the red body ink, with authored protection for lettering, yellow e-reader rails, picture, evolution badge and energy symbols. Static physical photographs guide coverage; empirical angular matching remains pending.',
+  },
+}, {
+  id: 'squirtle-frlg-reverse', title: 'Squirtle', franchise: 'Pokémon',
+  set: 'EX FireRed & LeafGreen · Reverse holo', number: '83/112', dimensions: DIMENSIONS.standard,
+  layout: { artwork: [65/734, 107/1024, 669/734, 477/1024], innerFrame: [31/734, 30/1024, 703/734, 994/1024] },
+  front: '/cards/squirtle-frlg-reverse/front.png', back: '/cards/pokemon/back.jpg',
+  coverageMode: 'reverse',
+  maps: { reverseFoil: '/cards/squirtle-frlg-reverse/reverse-foil.svg', laminate: '/cards/squirtle-frlg-reverse/laminate.svg', protection: '/cards/squirtle-frlg-reverse/protection.png' },
+  substrate: { color: [.022, .065, .085], printRetention: .25 },
+  profile: 'pokemon-ex-energy', seed: 2004083,
+  source: {
+    image: 'https://images.pokemontcg.io/ex6/83_hires.png',
+    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/ex6.json',
+    notes: 'Unmodified 734 × 1024 nonfoil print supplies artwork and lettering. The reverse printing uses mixed energy-symbol foil in the picture, with a traced opaque subject and selective protection of white water. This common has no rare-card Poké Ball stamp. Optical and subject-mask reconstruction remain estimates pending moving-reference matching.',
   },
 }, {
   id: 'effect-veiler-ra01', title: 'Effect Veiler', franchise: 'Yu-Gi-Oh!',

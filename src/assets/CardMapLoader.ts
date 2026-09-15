@@ -1,6 +1,7 @@
 import { DataTexture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, type Texture } from 'three/webgpu';
 import type { CardDefinition, CardLayout } from '../card/CardDefinition';
 import { AssetManager } from './AssetManager';
+import { resolveCoverageMaps } from './CardCoverage';
 import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from './MapPacking';
 
 export interface CardMaterialMaps {
@@ -32,7 +33,7 @@ export class CardMapLoader {
     this.worker.onerror = event => { for (const request of this.pending.values()) request.reject(new Error(event.message)); this.pending.clear(); };
   }
   load(card: CardDefinition, aspect: number): Promise<CardMaterialMaps> {
-    const key = JSON.stringify([card.id, card.maps, card.mapSettings, card.layout, aspect]);
+    const key = JSON.stringify([card.id, card.coverageMode, card.maps, card.mapSettings, card.layout, aspect]);
     this.released.delete(card.id);
     if (!this.keys.has(card.id)) this.keys.set(card.id, new Set());
     this.keys.get(card.id)!.add(key);
@@ -40,7 +41,7 @@ export class CardMapLoader {
     return this.cache.get(key)!;
   }
   private async prepare(card: CardDefinition, aspect: number): Promise<CardMaterialMaps> {
-    const paths = card.maps ?? {};
+    const paths = resolveCoverageMaps(card);
     const wholeFront = card.imported
       && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
     // Authored paths are required when present: an invalid mask must not silently change a printing.

@@ -1,15 +1,17 @@
 import { DIMENSIONS, type CardDefinition, type CardDimensions, type CardMapPaths, type Franchise } from '../card/CardDefinition.ts';
 import type { CardProfileOverrides, FoilOverrides, HolographicProfile } from '../materials/HolographicProfile';
+import { resolveCoverageMaps } from './CardCoverage.ts';
+import { MOTIF_SYMBOLS, type MotifSpec } from '../materials/patterns/MotifField.ts';
 
 export type CardImportSpec = Omit<CardDefinition, 'id' | 'imported'>;
-export const CARD_MAP_KEYS = ['coverage', 'surface', 'foil', 'extendedFoil', 'secondaryFoil', 'metallic', 'laminate', 'height', 'roughness', 'sparkle', 'stamp', 'pattern', 'secondaryPattern', 'stampPattern', 'protection', 'direction', 'secondaryDirection', 'stampDirection', 'normal', 'hologram'] as const satisfies ReadonlyArray<keyof CardMapPaths>;
-const fields = new Set(['radial', 'silk', 'crystal', 'diamond', 'starfield', 'galaxy-star', 'cosmos', 'cosmos-hd', 'tinsel', 'contour', 'liquid', 'fresnel', 'plain', 'satin', 'secret', 'prismatic-secret', 'platinum-secret', 'quarter-century', 'opal', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'starlight', 'collector', 'collector-prismatic']);
+export const CARD_MAP_KEYS = ['coverage', 'surface', 'foil', 'reverseFoil', 'motif', 'secondaryMotif', 'stampMotif', 'extendedFoil', 'secondaryFoil', 'metallic', 'laminate', 'height', 'roughness', 'sparkle', 'stamp', 'pattern', 'secondaryPattern', 'stampPattern', 'protection', 'direction', 'secondaryDirection', 'stampDirection', 'normal', 'hologram'] as const satisfies ReadonlyArray<keyof CardMapPaths>;
+const fields = new Set(['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'mtg-halo', 'mtg-surge', 'mtg-fracture', 'radial', 'silk', 'crystal', 'diamond', 'starfield', 'galaxy-star', 'cosmos', 'cosmos-hd', 'tinsel', 'contour', 'liquid', 'fresnel', 'plain', 'satin', 'secret', 'prismatic-secret', 'platinum-secret', 'quarter-century', 'opal', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'starlight', 'collector', 'collector-prismatic']);
 type Range = readonly [number, number];
 const opticalRanges: Record<string, Record<string, Range>> = {
   diffraction: { period: [.3, 5], bandwidth: [.002, .3], strength: [0, 6], secondaryOrder: [0, 1], direction: [-Math.PI * 2, Math.PI * 2], crossWidth: [.04, 2], crossing: [0, 1], facetCoupling: [0, 1] },
-  structure: { engraving: [0, 1], scale: [1, 800], relief: [0, 2], facetTilt: [0, 2], patternRelief: [0, 2], normalVariance: [0, 1], gridStrength: [0, 1], gridScale: [1, 40], gridTravel: [-40, 40], gridWidth: [.1, 2] },
+  structure: { engraving: [0, 1], scale: [1, 1200], relief: [0, 2], facetTilt: [0, 2], reflectionCoupling: [0, 1], patternRelief: [0, 2], normalVariance: [0, 1], gridStrength: [0, 1], gridScale: [1, 40], gridTravel: [-40, 40], gridWidth: [.1, 2] },
   glints: { density: [0, 1], scale: [1, 1200], sharpness: [1, 1500], strength: [0, 60], spread: [0, 2] },
-  surface: { metalness: [0, 1], roughness: [.045, 1], laminate: [0, 1], laminateRoughness: [.045, 1], anisotropy: [0, 1], foilReflectance: [0, 1], sheen: [0, 2], iridescence: [0, 1], filmIOR: [1, 2.5], filmMin: [0, 2000], filmMax: [0, 2000], pearlBody: [0, 1], substrateDarkening: [0, 1], varnishRelief: [0, 2], frameVarnish: [0, 1], imageHologram: [0, 1], imageDepth: [0, .5], imageContrast: [.1, 4], imageWidth: [.04, 1] },
+  surface: { patternRoughness: [-.3, .3], metalness: [0, 1], roughness: [.045, 1], laminate: [0, 1], laminateRoughness: [.045, 1], anisotropy: [0, 1], foilReflectance: [0, 1], sheen: [0, 2], iridescence: [0, 1], filmIOR: [1, 2.5], filmMin: [0, 2000], filmMax: [0, 2000], pearlBody: [0, 1], substrateDarkening: [0, 1], varnishRelief: [0, 2], frameVarnish: [0, 1], imageHologram: [0, 1], imageDepth: [0, .5], imageContrast: [.1, 4], imageWidth: [.04, 1] },
 };
 function record(value: unknown, name: string): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`${name} must be an object.`);
@@ -40,6 +42,14 @@ function foilOverrides(value: unknown, name: string): FoilOverrides {
       if (group === 'structure' && key === 'field') {
         if (typeof value !== 'string' || !fields.has(value)) throw new Error(`${name}.structure.field is not a supported manufacturing pattern.`);
         parsed[key] = value;
+      } else if (group === 'structure' && key === 'motif') {
+        const m = record(value, `${name}.structure.motif`);
+        onlyKeys(m, ['symbols', 'arrangement', 'size', 'smallScale', 'rotation', 'curvature'], 'motif');
+        if (!Array.isArray(m.symbols) || !m.symbols.length || m.symbols.length > 12 || !m.symbols.every(s => MOTIF_SYMBOLS.includes(s))) throw new Error('motif.symbols requires 1–12 supported symbols.');
+        if (m.arrangement !== 'scattered' && m.arrangement !== 'staggered') throw new Error('motif.arrangement must be scattered or staggered.');
+        parsed[key] = { symbols: [...m.symbols], arrangement: m.arrangement,
+          size: number(m.size, 'motif.size', .08, .4), smallScale: number(m.smallScale, 'motif.smallScale', .2, 1),
+          rotation: number(m.rotation, 'motif.rotation', -Math.PI*2, Math.PI*2), curvature: number(m.curvature, 'motif.curvature', 0, 1) } satisfies MotifSpec;
       } else if (group === 'glints' && key === 'ordered') {
         if (typeof value !== 'boolean') throw new Error(`${name}.glints.ordered must be true or false.`);
         parsed[key] = value;
@@ -93,7 +103,7 @@ function dimensions(value: unknown, franchise: Franchise): CardDimensions {
 /** Parses data only; every asset must be resolved from files explicitly selected by the user. */
 export function parseCardImportManifest(value: unknown, profiles: readonly HolographicProfile[]): CardImportSpec {
   const source = record(value, 'Card manifest');
-  onlyKeys(source, ['version', 'id', 'title', 'franchise', 'set', 'number', 'dimensions', 'front', 'back', 'backCrop', 'profile', 'seed', 'maps', 'mapSettings', 'profileOverrides', 'substrate', 'layout'], 'card manifest');
+  onlyKeys(source, ['version', 'id', 'title', 'franchise', 'set', 'number', 'dimensions', 'front', 'back', 'backCrop', 'profile', 'seed', 'coverageMode', 'maps', 'mapSettings', 'profileOverrides', 'substrate', 'layout'], 'card manifest');
   if (source.version !== undefined && source.version !== 1) throw new Error('This card manifest version is not supported.');
   const franchise = string(source.franchise, 'franchise', 'Original') as Franchise;
   if (!['Original', 'Pokémon', 'Yu-Gi-Oh!', 'Magic: The Gathering'].includes(franchise)) throw new Error('Choose Original, Pokémon, Yu-Gi-Oh!, or Magic: The Gathering as the franchise.');
@@ -115,6 +125,11 @@ export function parseCardImportManifest(value: unknown, profiles: readonly Holog
     const maps = record(source.maps, 'maps'); onlyKeys(maps, CARD_MAP_KEYS, 'maps'); result.maps = {};
     for (const key of CARD_MAP_KEYS) if (maps[key] !== undefined) result.maps[key] = relativeAssetPath(maps[key], `maps.${key}`);
   }
+  if (source.coverageMode !== undefined) {
+    if (source.coverageMode !== 'artwork' && source.coverageMode !== 'reverse') throw new Error('coverageMode must be artwork or reverse.');
+    result.coverageMode = source.coverageMode;
+  }
+  resolveCoverageMaps(result);
   if (source.layout !== undefined) {
     const layout = record(source.layout, 'layout'); onlyKeys(layout, ['artwork', 'innerFrame'], 'layout');
     const rectangle = (key: string): [number, number, number, number] => {
@@ -140,9 +155,13 @@ export function parseCardImportManifest(value: unknown, profiles: readonly Holog
     if (settings.normalScale !== undefined) result.mapSettings.normalScale = number(settings.normalScale, 'normalScale', 0, 2);
   }
   if (source.substrate !== undefined) {
-    const substrate = record(source.substrate, 'substrate'); onlyKeys(substrate, ['color', 'printRetention'], 'substrate');
+    const substrate = record(source.substrate, 'substrate'); onlyKeys(substrate, ['color', 'printRetention', 'backgroundColor'], 'substrate');
     if (!Array.isArray(substrate.color) || substrate.color.length !== 3) throw new Error('substrate.color needs three linear RGB components.');
     result.substrate = { color: substrate.color.map((n, i) => number(n, `substrate.color[${i}]`, 0, 1)) as [number, number, number], printRetention: number(substrate.printRetention, 'printRetention', 0, 1) };
+    if (substrate.backgroundColor !== undefined) {
+      if (!Array.isArray(substrate.backgroundColor) || substrate.backgroundColor.length !== 3) throw new Error('substrate.backgroundColor needs three linear RGB components.');
+      result.substrate.backgroundColor = substrate.backgroundColor.map((n, i) => number(n, `substrate.backgroundColor[${i}]`, 0, 1)) as [number, number, number];
+    }
   }
   return result;
 }

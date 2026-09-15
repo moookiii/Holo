@@ -61,14 +61,16 @@ async function start() {
   };
   const prepareProfile = async (p: HolographicProfile, definition: CardDefinition): Promise<ProfileFields> => {
     const aspect = definition.dimensions.width / definition.dimensions.height;
-    const prepareLayer = async (layer: FoilLayer | undefined, seed: number) => {
+    const prepareLayer = async (layer: FoilLayer | undefined, seed: number, motifPath?: string) => {
       if (!layer || layer.structure.field === 'radial') return undefined;
+      const motifTexture = layer.structure.field === 'symbol-foil' && motifPath ? await assets.load(motifPath, false) : undefined;
       const field = await patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
-        ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) });
+        ...(layer.structure.motif ? { motif: layer.structure.motif } : {}),
+        ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motifTexture);
       renderer.initTexture(field.direction); renderer.initTexture(field.relief);
       return field;
     };
-    const [primary, secondary, stamp] = await Promise.all([prepareLayer(p, definition.seed), prepareLayer(p.secondary, definition.seed + 8191), prepareLayer(p.stamp, definition.seed + 16381)]);
+    const [primary, secondary, stamp] = await Promise.all([prepareLayer(p, definition.seed, definition.maps?.motif), prepareLayer(p.secondary, definition.seed + 8191, definition.maps?.secondaryMotif), prepareLayer(p.stamp, definition.seed + 16381, definition.maps?.stampMotif)]);
     return { primary, secondary, stamp };
   };
   const setProfile = async (id: string) => {

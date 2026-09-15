@@ -12,9 +12,11 @@ export class OpticalUniforms {
   glintStrength = uniform(13); spread = uniform(0.56);
   orderedGlints = uniform(0); patternRelief = uniform(0); normalVariance = uniform(0);
   metalness = uniform(0.68); roughness = uniform(0.29);
+  patternRoughness = uniform(0);
   laminate = uniform(0.72); laminateRoughness = uniform(0.2);
   fieldBlend = uniform(0); facetTilt = uniform(0); anisotropy = uniform(0); aspect = uniform(6.3 / 8.8);
   patternedSilver = uniform(1);
+  reflectionCoupling = uniform(1);
   foilReflectance = uniform(0);
   substrateDarkening = uniform(0);
   varnishRelief = uniform(0);
@@ -39,10 +41,12 @@ export class OpticalUniforms {
     this.gridStrength.value = p.structure.gridStrength ?? 0; this.gridScale.value = p.structure.gridScale ?? 6.4;
     this.gridTravel.value = p.structure.gridTravel ?? 14; this.gridWidth.value = p.structure.gridWidth ?? .55;
     this.metalness.value = p.surface.metalness; this.roughness.value = p.surface.roughness;
+    this.patternRoughness.value = p.surface.patternRoughness ?? 0;
     this.laminate.value = p.surface.laminate; this.laminateRoughness.value = p.surface.laminateRoughness;
     this.fieldBlend.value = p.structure.field === 'radial' ? 0 : 1;
-    this.patternedSilver.value = ['plain', 'satin'].includes(p.structure.field) ? 0 : 1;
+    this.patternedSilver.value = ['plain', 'satin', 'e-reader', 'sheen', 'water-web', 'mirage'].includes(p.structure.field) ? 0 : 1;
     this.facetTilt.value = p.structure.facetTilt ?? 0;
+    this.reflectionCoupling.value = p.structure.reflectionCoupling ?? 1;
     this.anisotropy.value = p.surface.anisotropy ?? 0;
     this.foilReflectance.value = p.surface.foilReflectance ?? 0;
     this.sheen.value = p.surface.sheen ?? 0;

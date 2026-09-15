@@ -2,7 +2,7 @@ import { chromium } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 
-const out = 'artifacts/81-ygo-grain-collector-check';
+const out = process.env.YGO_GRAIN_OUT || 'artifacts/81-ygo-grain-collector-check';
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ executablePath: 'C:/Users/jpall/AppData/Local/ms-playwright/chromium-1234/chrome-win64/chrome.exe', headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const report = [];

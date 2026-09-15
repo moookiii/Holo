@@ -1,12 +1,71 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { packMapChannels } from '../src/assets/MapPacking.ts';
+import { resolveCoverageMaps } from '../src/assets/CardCoverage.ts';
 import { parseCardImportManifest, relativeAssetPath } from '../src/assets/CardImportManifest.ts';
 import { masterPrism } from '../src/materials/HolographicProfile.ts';
 
 const pixel = (r: number, g = r, b = r, a = 255) => [r, g, b, a];
 const profiles = [masterPrism, { ...masterPrism, id: 'print-only' }, { ...masterPrism, id: 'pokemon-test', family: 'Pokémon' as const }];
 const minimal = { title: 'Local original', front: 'front.png', back: 'back.jpg' };
+
+test('motif imports retain separate CPU symbols and reject invalid manufacturing settings', () => {
+  const motif = { symbols: ['ball', 'star'], arrangement: 'scattered', size: .3, smallScale: .5, rotation: 0, curvature: .2 };
+  const input = { ...minimal, profile: 'master-prism', maps: { motif: 'ball.png', secondaryMotif: 'glyph.png', stampMotif: 'seal.png' },
+    profileOverrides: { structure: { field: 'symbol-foil', motif }, surface: { patternRoughness: -.08 } } };
+  const parsed = parseCardImportManifest(input, profiles);
+  assert.deepEqual(parsed.profileOverrides?.structure?.motif, motif);
+  assert.deepEqual(parsed.maps, input.maps);
+  for (const bad of [{ ...motif, symbols: ['unknown'] }, { ...motif, size: 2 }, { ...motif, arrangement: 'screen-space' }]) {
+    assert.throws(() => parseCardImportManifest({ ...input, profileOverrides: { structure: { field: 'symbol-foil', motif: bad } } }, profiles), /motif/);
+  }
+});
+
+test('reverse printing selects explicit body coverage without altering artwork, motifs or stamps', () => {
+  const maps = { foil: 'art.png', reverseFoil: 'body.png', secondaryFoil: 'alternate-art.png',
+    extendedFoil: 'border.png', stamp: 'set-mark.png', pattern: 'body-motif.png', protection: 'ink.png' };
+  const normal = resolveCoverageMaps({ maps }), reverse = resolveCoverageMaps({ maps, coverageMode: 'reverse' });
+  assert.equal(normal.foil, 'art.png');
+  assert.equal(reverse.foil, 'body.png');
+  for (const key of ['secondaryFoil', 'extendedFoil', 'stamp', 'pattern', 'protection'] as const) assert.equal(reverse[key], maps[key]);
+  assert.equal(maps.foil, 'art.png', 'switching coverage cannot mutate the source printing');
+  assert.throws(() => resolveCoverageMaps({ maps: { foil: 'art.png' }, coverageMode: 'reverse' }), /requires maps.reverseFoil/);
+});
+
+test('reverse import requires authored coverage and preserves region independence through packing', () => {
+  const spec = parseCardImportManifest({ ...minimal, coverageMode: 'reverse', maps: { reverseFoil: 'body.png', secondaryFoil: 'art.png', stamp: 'stamp.png' } }, profiles);
+  assert.equal(spec.coverageMode, 'reverse');
+  assert.equal(resolveCoverageMaps(spec).foil, 'body.png');
+  assert.throws(() => parseCardImportManifest({ ...minimal, coverageMode: 'reverse' }, profiles), /requires maps.reverseFoil/);
+  assert.throws(() => parseCardImportManifest({ ...minimal, coverageMode: 'inverse' }, profiles), /artwork or reverse/);
+  // Body, independent artwork and stamp locations, with printed letters protected.
+  const packed = packMapChannels(4, 1, {
+    foil: [...pixel(255), ...pixel(0), ...pixel(0), ...pixel(255)],
+    secondaryFoil: [...pixel(0), ...pixel(180), ...pixel(0), ...pixel(0)],
+    stamp: [...pixel(0), ...pixel(0), ...pixel(255), ...pixel(0)],
+    protection: [...pixel(0), ...pixel(0), ...pixel(0), ...pixel(255)],
+  });
+  assert.deepEqual([packed.coverage[0], packed.coverage[4], packed.coverage[8], packed.coverage[12]], [255, 0, 0, 0]);
+  assert.equal(packed.coverage[5], 180);
+  assert.equal(packed.surface[11], 255);
+});
+
+test('paper reconstruction imports a bounded linear reflectance without altering source artwork', () => {
+  const substrate = { color: [.32, .33, .34], backgroundColor: [.672, .672, .672], printRetention: 0 };
+  const spec = parseCardImportManifest({ ...minimal, substrate }, profiles);
+  assert.deepEqual(spec.substrate, substrate);
+  assert.throws(() => parseCardImportManifest({ ...minimal, substrate: { ...substrate, backgroundColor: [2, .5, .5] } }, profiles), /must be between/);
+  assert.throws(() => parseCardImportManifest({ ...minimal, substrate: { ...substrate, backgroundColor: [.5] } }, profiles), /three linear RGB/);
+});
+
+test('imported smooth films retain independent reflection coupling and fine sheet resolution', () => {
+  const spec = parseCardImportManifest({ ...minimal, profile: 'master-prism',
+    profileOverrides: { structure: { field: 'mirage', scale: 940, reflectionCoupling: .1 } } }, profiles);
+  assert.equal(spec.profileOverrides?.structure?.reflectionCoupling, .1);
+  assert.equal(spec.profileOverrides?.structure?.scale, 940);
+  assert.throws(() => parseCardImportManifest({ ...minimal,
+    profileOverrides: { structure: { reflectionCoupling: 1.1 } } }, profiles), /must be between/);
+});
 
 test('individual maps override packed channels without losing independent masks', () => {
   const packed = packMapChannels(1, 1, {

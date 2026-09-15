@@ -16,10 +16,20 @@ export class PatternCache {
     };
     this.worker.onerror = e => { for (const r of this.requests.values()) r.reject(new Error(e.message)); this.requests.clear(); };
   }
-  get(spec: PatternSpec): Promise<PatternTextures> {
-    const key = JSON.stringify(spec);
+  get(spec: PatternSpec, motifTexture?: Texture): Promise<PatternTextures> {
+    const key = JSON.stringify([spec, motifTexture?.uuid]);
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
-      const id = ++this.sequence; this.requests.set(id, { resolve, reject }); this.worker.postMessage({ id, spec });
+      let motifImage;
+      if (motifTexture) {
+        const canvas = document.createElement('canvas'); canvas.width = canvas.height = 512;
+        const context = canvas.getContext('2d', { willReadFrequently: true })!;
+        context.drawImage(motifTexture.image as HTMLImageElement, 0, 0, 512, 512);
+        const rgba = context.getImageData(0, 0, 512, 512).data, data = new Uint8Array(512 * 512);
+        for (let i = 0; i < data.length; i++) data[i] = rgba[i * 4];
+        motifImage = { width: 512, height: 512, data };
+      }
+      const id = ++this.sequence; this.requests.set(id, { resolve, reject });
+      this.worker.postMessage({ id, spec, motifImage }, motifImage ? [motifImage.data.buffer] : []);
     }).then(data => {
       const make = (values: Uint8Array) => {
         const t = new DataTexture(values, data.width, data.height, RGBAFormat, UnsignedByteType);

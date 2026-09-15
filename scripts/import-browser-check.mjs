@@ -12,6 +12,8 @@ const files = {
   'front.svg': svg('<text x="315" y="85" text-anchor="middle" fill="#eee" font-size="35">REGISTRATION / TOP</text><path d="M210 140v610m210-610v610" stroke="#aaa" stroke-width="2"/>', '#606060'),
   'back.svg': svg('<circle cx="315" cy="440" r="160" fill="#303030"/>', '#181818'),
   'foil.svg': svg(rect(0, 0, 210, 880)),
+  'unused-art.svg': svg(''),
+  'motif.svg': svg(rect(230, 180, 170, 520)),
   'secondary.svg': svg(rect(210, 0, 210, 880)),
   'stamp.svg': svg(rect(420, 0, 210, 620)),
   'metal.svg': svg(rect(420, 620, 210, 260)),
@@ -32,10 +34,13 @@ const files = {
 const manifest = {
   version: 1, title: 'Imported registration', franchise: 'Original', set: 'Material QA', number: '01',
   front: 'front.svg', back: 'back.svg', profile: 'master-prism',
-  maps: { foil: 'foil.svg', secondaryFoil: 'secondary.svg', stamp: 'stamp.svg', metallic: 'metal.svg', laminate: 'laminate.svg', protection: 'protection.svg',
+  coverageMode: 'reverse',
+  maps: { foil: 'unused-art.svg', reverseFoil: 'foil.svg', motif: 'motif.svg', secondaryFoil: 'secondary.svg', stamp: 'stamp.svg', metallic: 'metal.svg', laminate: 'laminate.svg', protection: 'protection.svg',
     height: 'height.svg', roughness: 'roughness.svg', sparkle: 'sparkle.svg', normal: 'normal.svg', direction: 'direction.svg', secondaryDirection: 'secondary-direction.svg', stampDirection: 'stamp-direction.svg',
     pattern: 'pattern.svg', secondaryPattern: 'secondary-pattern.svg', stampPattern: 'stamp-pattern.svg', hologram: 'hologram.svg' },
-  profileOverrides: { diffraction: { strength: 1.3 }, secondaryProfile: 'aurora-silk', stampProfile: 'crystal-shard',
+  profileOverrides: { diffraction: { strength: 1.3 },
+    structure: { field: 'symbol-foil', scale: 18, motif: { symbols: ['ball'], arrangement: 'scattered', size: .35, smallScale: .6, rotation: 0, curvature: .2 } },
+    secondaryProfile: 'aurora-silk', stampProfile: 'crystal-shard',
     secondary: { diffraction: { strength: 1.1 } }, stamp: { diffraction: { strength: 1.8 }, surface: { foilReflectance: .4 } },
     metallicInk: { color: [.83, .5, .1], roughness: .2, metalness: .9 } },
   mapSettings: { normalScale: .8, roughnessMode: 'absolute', embossStrength: .4 },
@@ -138,6 +143,19 @@ try {
         sharedStrength: h.profiles.find(p => p.id === 'master-prism').diffraction.strength };
     });
     assert.equal(imported.definition.title, manifest.title); assert.equal(imported.sharedStrength, .95);
+    assert.equal(imported.definition.coverageMode, 'reverse');
+    const motifData = await page.evaluate(async () => {
+      const h = window.__holo, m = h.material(), c = h.cards.find(c => c.id === h.stats().card);
+      const { generateMotifField } = await import('/src/materials/patterns/MotifField.ts');
+      const plain = generateMotifField(c.seed, c.dimensions.width / c.dimensions.height, 18, 2048, c.profileOverrides.structure.motif);
+      const actual = m.reliefTextureNode.value.image.data;
+      const hash = data => data.reduce((n, v) => Math.imul(n ^ v, 16777619), 2166136261);
+      const map = m.coverageTextureNode.value.image;
+      return { actual: hash(actual), builtin: hash(plain.relief),
+        body: map.data[(Math.floor(map.height * .5) * map.width + Math.floor(map.width * .15)) * 4] };
+    });
+    assert.notEqual(motifData.actual, motifData.builtin, 'selected local motif changes the worker-generated field');
+    assert.equal(motifData.body, 255, 'explicit reverse coverage replaces the empty ordinary artwork mask');
     assert.equal(imported.controls.hasNormal, 1); assert.equal(imported.controls.hasStamp, 1); assert.equal(imported.controls.roughnessAbsolute, 1);
     assert.deepEqual(imported.layers.map(u => u.strength), [1.3, 1.1, 1.8]); assert.ok(imported.layers.every(u => u.enabled === 1 && u.fieldBlend === 1));
     await page.evaluate(() => { window.__holo.pose(0, 0); document.querySelector('#ui').style.display = 'none'; }); await page.waitForTimeout(400);

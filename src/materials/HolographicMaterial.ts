@@ -215,8 +215,13 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       region.image = hologramImage(this.printTextureNode, this.hologramTextureNode, region.optics);
       region.imageDepth = this.hologramTextureNode.b;
     }
-    const base = substrate ? mix(correctedPrint, vec3(...substrate.color), primary.mul(1 - substrate.printRetention))
-      : mix(correctedPrint, vec3(0.27, 0.31, 0.30), primary.mul(0.1));
+    // A nonfoil reference contains paper light beneath antialiased printed ink.
+    // Remove that transmitted paper contribution before inserting the metal;
+    // a simple gray mix would leave bright fringes around dark lettering.
+    const base = substrate?.backgroundColor
+      ? correctedPrint.add(vec3(...substrate.color).sub(vec3(...substrate.backgroundColor)).mul(primary, 1 - substrate.printRetention)).max(0)
+      : substrate ? mix(correctedPrint, vec3(...substrate.color), primary.mul(1 - substrate.printRetention))
+        : mix(correctedPrint, vec3(0.27, 0.31, 0.30), primary.mul(0.1));
     this.colorNode = mix(base, this.inkTint, metal.mul(this.inkTintStrength));
     this.colorNode = mix(this.colorNode, vec3(.42, .44, .43), watermark.mul(.36));
     const absorption = primary.mul(this.optics.substrateDarkening).add(secondary.mul(this.secondaryOptics.substrateDarkening)).add(stamp.mul(this.stampOptics.substrateDarkening));
@@ -230,7 +235,10 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       .add(this.stampReliefTextureNode.rg.fwidth().length().mul(this.stampOptics.normalVariance, stamp)).min(.16);
     const inkRoughness = mix(foilRoughness, this.inkRoughness, metal.mul(this.inkEnabled));
     this.roughnessNode = mix(inkRoughness, this.surfaceTextureNode.g, controls.roughnessAbsolute)
-      .add(this.surfaceTextureNode.g.sub(128 / 255).mul(.35, controls.roughnessOffset)).add(normalVariance).clamp(.045, 1);
+      .add(this.surfaceTextureNode.g.sub(128 / 255).mul(.35, controls.roughnessOffset)).add(normalVariance)
+      .add(this.fieldTextureNode.a.mul(this.optics.patternRoughness, primary))
+      .add(this.secondaryFieldTextureNode.a.mul(this.secondaryOptics.patternRoughness, secondary))
+      .add(this.stampFieldTextureNode.a.mul(this.stampOptics.patternRoughness, stamp)).clamp(.045, 1);
     this.clearcoatNode = mix(mix(this.optics.laminate, this.secondaryOptics.laminate, secondary), this.stampOptics.laminate, stamp).mul(mask.a);
     this.clearcoatRoughnessNode = mix(mix(this.optics.laminateRoughness, this.secondaryOptics.laminateRoughness, secondary), this.stampOptics.laminateRoughness, stamp);
     const frame = inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus(), primary, this.optics.frameVarnish);
@@ -240,9 +248,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const baseNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
     const varnishStrength = this.optics.varnishRelief.mul(primary).add(this.secondaryOptics.varnishRelief.mul(secondary)).add(this.stampOptics.varnishRelief.mul(stamp));
     this.clearcoatNormalNode = reliefNormal(this.surfaceTextureNode.r, varnishStrength.mul(.008));
-    const slope = this.reliefTextureNode.rg.sub(.5).mul(this.optics.facetTilt, this.optics.fieldBlend, primary)
-      .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.fieldBlend, secondary))
-      .add(this.stampReliefTextureNode.rg.sub(.5).mul(this.stampOptics.facetTilt, this.stampOptics.fieldBlend, stamp));
+    const slope = this.reliefTextureNode.rg.sub(.5).mul(this.optics.facetTilt, this.optics.reflectionCoupling, this.optics.fieldBlend, primary)
+      .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.reflectionCoupling, this.secondaryOptics.fieldBlend, secondary))
+      .add(this.stampReliefTextureNode.rg.sub(.5).mul(this.stampOptics.facetTilt, this.stampOptics.reflectionCoupling, this.stampOptics.fieldBlend, stamp));
     this.normalNode = Fn(() => {
       const normal = baseNormal.toVar();
       const geometryNormal = normalViewGeometry as unknown as Node<'vec3'>;
