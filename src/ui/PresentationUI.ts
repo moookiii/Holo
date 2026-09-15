@@ -83,7 +83,18 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     cards.filter(c => category === 'All' || c.franchise === category).forEach(card => {
       const button = document.createElement('button'); button.className = 'card-option';
       button.setAttribute('aria-pressed', String(card.id === selectedCard));
-      const image = document.createElement('img'); image.src = card.front; image.alt = ''; image.loading = 'lazy';
+      const image = document.createElement('img');
+
+image.src =
+  card.front.startsWith('blob:') ||
+  card.front.startsWith('data:') ||
+  card.front.startsWith('http://') ||
+  card.front.startsWith('https://')
+    ? card.front
+    : `${import.meta.env.BASE_URL}${card.front.replace(/^\/+/, '')}`;
+
+image.alt = '';
+image.loading = 'lazy';
       const name = document.createElement('span'); name.textContent = card.title;
       button.title = `${card.title} · ${card.set} · ${card.number}`;
       button.append(image, name); button.onclick = () => { actions.card(card.id); close(); };
