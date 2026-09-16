@@ -14,14 +14,19 @@ export class PackScene {
   readonly root = new Group();
   private variations: { x: number; y: number; yaw: number; pitch: number }[];
   private inspectStart?: { position: Vector3; quaternion: ReturnType<typeof orientation> };
+  private initialized = false;
   constructor(readonly cards: CardInstance[], readonly wrapper: PackWrapper, scene: Scene, seed: number) {
-    this.root.name = 'Pack opening'; this.root.add(wrapper.root, ...cards.map(card => card.mesh)); scene.add(this.root);
     const random = randomSequence(seed);
     this.variations = cards.map(() => ({ x: (random() - .5) * .023, y: (random() - .5) * .023, yaw: (random() - .5) * .002, pitch: (random() - .5) * .001 }));
+    // The loaded card meshes begin at their factory origin. Keep the opening
+    // hidden until update establishes the sealed in-pack pose, avoiding a frame
+    // where the full card faces appear over the wrapper during handoff.
+    this.root.name = 'Pack opening'; this.root.visible = false;
+    this.root.add(wrapper.root, ...cards.map(card => card.mesh)); scene.add(this.root);
   }
   beginInspect(index: number) { const mesh = this.cards[index].mesh; this.inspectStart = { position: mesh.position.clone(), quaternion: mesh.quaternion.clone() }; }
   update(p: PackPose, dt: number, portrait: boolean, reduced: boolean, snap = false) {
-    const smoothing = snap ? 1 : 1 - Math.exp(-dt * (reduced ? 26 : 14));
+    const smoothing = snap || !this.initialized ? 1 : 1 - Math.exp(-dt * (reduced ? 26 : 14));
     const preview = ['RevealCard', 'HitReveal', 'PackSummary', 'Inspect'].includes(p.state);
     const extracted = preview ? 1 : p.settle;
     const packQ = orientation();
@@ -80,6 +85,7 @@ export class PackScene {
       mesh.visible = true;
     });
     this.root.updateMatrixWorld(true);
+    this.initialized = true; this.root.visible = true;
   }
   take(index: number) { const card = this.cards[index]; card.mesh.removeFromParent(); return card; }
   dispose(except?: CardInstance) { this.root.removeFromParent(); this.wrapper.dispose(); this.cards.forEach(card => { if (card !== except) card.dispose(); }); }
