@@ -1,12 +1,13 @@
-import { BufferGeometry, Float32BufferAttribute, Group, Mesh, type Material, type Raycaster } from 'three/webgpu';
+import { BufferGeometry, Float32BufferAttribute, Group, Mesh, Quaternion, Vector3, type Material, type Object3D, type Raycaster } from 'three/webgpu';
 import type { AssetManager } from '../../assets/AssetManager';
 import type { PackDefinition } from '../PackDefinition';
-import { clamp, ease, orientation } from '../PackMath';
+import { ease } from '../PackMath';
 import { WrapperDeformation } from './WrapperDeformation';
 import { WrapperPicking } from './WrapperPicking';
+import { WrapperTearPath } from './WrapperTearPath';
 import { createLiningMaterial, createWrapperMaterial } from './PackWrapperMaterial';
 
-export interface WrapperPose { tear: number; mouth: number; grip: number; collapse: number; tension: number; release: number; }
+export interface WrapperPose { tear: number; mouth: number; grip: number; collapse: number; tension: number; pullX: number; pullY: number; }
 interface Film { mesh: Mesh; side: number; inner: boolean; strip: boolean; nx: number; ny: number; }
 interface CutRim { mesh: Mesh; count: number; torn: boolean; }
 /** Two film skins with folded sides, metalized inner faces and welded end seals.
@@ -17,17 +18,21 @@ export class PackWrapper {
   readonly body = new Group();
   readonly strip = new Group();
   readonly tearHeight: number;
+  readonly tearPath: WrapperTearPath;
   private films: Film[] = [];
   private rims: CutRim[] = [];
   private materials: Material[] = [];
   private deformation: WrapperDeformation;
   private picking: WrapperPicking;
-  private currentPose: WrapperPose = { tear: 0, mouth: 0, grip: 0, collapse: 0, tension: 0, release: 0 };
+  private currentPose: WrapperPose = { tear: 0, mouth: 0, grip: 0, collapse: 0, tension: 0, pullX: 0, pullY: 0 };
+  private detached = false;
+  private detachedOrigin?: { position: Vector3; quaternion: Quaternion };
   private constructor(readonly dimensions: PackDefinition['wrapper']) {
     this.tearHeight = dimensions.height / 2 - .92;
-    this.deformation = new WrapperDeformation(this.tearHeight);
-    this.picking = new WrapperPicking(this.tearHeight);
-    this.root.name = 'Metalized foil wrapper'; this.root.add(this.body, this.strip);
+    this.tearPath = new WrapperTearPath(dimensions.width, this.tearHeight);
+    this.deformation = new WrapperDeformation(this.tearHeight, dimensions.height / 2, this.tearPath);
+    this.picking = new WrapperPicking(this.tearHeight, dimensions.height / 2, this.tearPath);
+    this.root.name = 'Metalized foil wrapper'; this.strip.name = 'Detached tear strip'; this.root.add(this.body, this.strip);
   }
   static async create(definition: PackDefinition, assets: AssetManager) {
     const wrapper = new PackWrapper(definition.wrapper);
@@ -44,7 +49,7 @@ export class PackWrapper {
       wrapper.addFilm(strip, side, inner, inner ? inside : side === 1 ? frontMaterial : backMaterial);
     }
     wrapper.addCutRims(inside);
-    wrapper.deform({ tear: 0, mouth: 0, grip: 0, collapse: 0, tension: 0, release: 0 });
+    wrapper.deform(wrapper.currentPose);
     return wrapper;
   }
   private jagged(u: number) {
@@ -73,7 +78,7 @@ export class PackWrapper {
     geometry.setAttribute('position', new Float32BufferAttribute(new Float32Array(count * 6), 3));
     for (let i = 0; i < count - 1; i++) indices.push(i * 2, i * 2 + 1, i * 2 + 2, i * 2 + 1, i * 2 + 3, i * 2 + 2);
     geometry.setIndex(indices);
-    for (const name of ['uv', 'filmCoordinates', 'filmTangentU', 'filmTangentV', 'filmType']) {
+    for (const name of ['uv', 'filmCoordinates', 'filmSeam', 'filmTangentU', 'filmTangentV', 'filmType']) {
       const source = outer.mesh.geometry.getAttribute(name), values: number[] = [];
       for (let i = 0; i < count; i++) for (const film of [outer, inner]) {
         const attr = film.mesh.geometry.getAttribute(name);
@@ -95,6 +100,7 @@ export class PackWrapper {
   private addFilm(strip: boolean, side: number, inner: boolean, material: Material) {
     const nx = 144, ny = strip ? 10 : 80;
     const positions: number[] = [], uvs: number[] = [], indices: number[] = [], coordinates: number[] = [], tangentU: number[] = [], tangentV: number[] = [], types: number[] = [];
+    const seams: number[] = [];
     for (let iy = 0; iy <= ny; iy++) for (let ix = 0; ix <= nx; ix++) {
       const u = ix / nx * 2 - 1, v = iy / ny;
       const tear = this.tearHeight + this.jagged(u);
@@ -103,7 +109,7 @@ export class PackWrapper {
       const bodyV = v - .11 * Math.sin(v * Math.PI * 2);
       const y = strip ? tear + (this.dimensions.height / 2 - tear) * v : -this.dimensions.height / 2 + (tear + this.dimensions.height / 2) * bodyV;
       const point = this.manufacturedPoint(u, y, side, inner, strip);
-      positions.push(...point); coordinates.push(u, y, side, inner ? 1 : 0); types.push(strip ? 1 : 0, 0);
+      positions.push(...point); coordinates.push(u, y, side, inner ? 1 : 0); types.push(strip ? 1 : 0, 0); seams.push(tear);
       const step = .0005;
       const a = this.manufacturedPoint(u + step, y, side, inner, strip), b = this.manufacturedPoint(u - step, y, side, inner, strip);
       const c = this.manufacturedPoint(u, y + step, side, inner, strip), d = this.manufacturedPoint(u, y - step, side, inner, strip);
@@ -117,6 +123,7 @@ export class PackWrapper {
     const geometry = new BufferGeometry();
     geometry.setAttribute('position', new Float32BufferAttribute(positions, 3)); geometry.setAttribute('uv', new Float32BufferAttribute(uvs, 2)); geometry.setIndex(indices);
     geometry.setAttribute('filmCoordinates', new Float32BufferAttribute(coordinates, 4));
+    geometry.setAttribute('filmSeam', new Float32BufferAttribute(seams, 1));
     geometry.setAttribute('filmTangentU', new Float32BufferAttribute(tangentU, 3));
     geometry.setAttribute('filmTangentV', new Float32BufferAttribute(tangentV, 3));
     geometry.setAttribute('filmType', new Float32BufferAttribute(types, 2));
@@ -148,17 +155,39 @@ export class PackWrapper {
     const z = side * (sideDepth * cavity * ease(end / .065) + fin + (inner ? 0 : .007));
     return [x, strip ? y - this.tearHeight : y, z];
   }
-  deform(p: WrapperPose) {
+  deform(p: WrapperPose, detachedParent?: Object3D) {
+    if (this.tearPath.progress < 1 && this.detached) {
+      this.root.add(this.strip); this.detached = false; this.deformation.resetStrip();
+    }
     this.currentPose = p;
     this.deformation.update(p);
     for (const rim of this.rims) {
-      rim.mesh.visible = !rim.torn || p.tear > 0;
-      if (rim.torn) rim.mesh.geometry.setDrawRange(0, Math.max(6, Math.ceil(clamp(p.tear * 1.1) * (rim.count - 1)) * 6));
+      // Cut walls follow the sampled boundary, including interior and reverse
+      // tears. Intact walls coincide inside the welded laminate.
+      rim.mesh.visible = !rim.torn || this.tearPath.progress > 0;
     }
-    const r = clamp(p.release);
-    this.strip.position.set(r * 6.6, this.tearHeight + r * .65 - r * r * 2.8, -r * .4);
-    this.strip.quaternion.copy(orientation(r * .32, r * -.25, r * -.42));
+    if (!this.detached) {
+      this.strip.position.set(0, this.tearHeight, 0); this.strip.quaternion.identity();
+      if (this.tearPath.progress === 1 && detachedParent) {
+        // Preserve the strip's world pose at release, but keep it alive as a
+        // loose piece: it continues curling and drifting while the pack opens.
+        this.root.updateWorldMatrix(true, true); detachedParent.attach(this.strip);
+        this.detachedOrigin = { position: this.strip.position.clone(), quaternion: this.strip.quaternion.clone() };
+        this.detached = true;
+      }
+    }
+    if (this.detached && this.detachedOrigin) {
+      const drift = p.mouth * .35 + p.collapse * 1.9;
+      this.strip.position.copy(this.detachedOrigin.position).add(new Vector3(-p.mouth * .5 - p.collapse * .7, -drift, -p.mouth * .16));
+      this.strip.quaternion.copy(this.detachedOrigin.quaternion).multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), p.mouth * .24 + p.collapse * .38));
+    }
+    this.strip.visible = this.root.visible;
   }
-  raycast(ray: Raycaster) { return this.root.visible ? this.picking.raycast(ray, this.currentPose) : undefined; }
-  dispose() { this.root.removeFromParent(); this.picking.dispose(); this.films.forEach(f => f.mesh.geometry.dispose()); this.rims.forEach(rim => rim.mesh.geometry.dispose()); this.materials.forEach(m => m.dispose()); }
+  resetTear() {
+    this.tearPath.reset(); this.root.add(this.strip); this.detached = false; this.detachedOrigin = undefined;
+    this.strip.position.set(0, this.tearHeight, 0); this.strip.quaternion.identity(); this.strip.scale.setScalar(1);
+    this.deformation.resetStrip();
+  }
+  raycast(ray: Raycaster) { return this.root.visible ? this.picking.raycast(ray, this.currentPose, this.detached) : undefined; }
+  dispose() { this.strip.removeFromParent(); this.root.removeFromParent(); this.picking.dispose(); this.deformation.dispose(); this.films.forEach(f => f.mesh.geometry.dispose()); this.rims.forEach(rim => rim.mesh.geometry.dispose()); this.materials.forEach(m => m.dispose()); }
 }
