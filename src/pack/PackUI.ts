@@ -26,8 +26,8 @@ export class PackUI {
     const messages: Record<PackState, [string, string]> = {
       PackIntro: ['STUDIO SELECTION', 'Preparing your collection'],
       PackReady: [`SEALED · ${count} CARDS`, 'Grip the top seam →'],
-      Grip: [`SEALED · ${count} CARDS`, 'Drag right to tear →'],
-      Tear: ['OPENING THE SEAL', 'Continue tearing →'],
+      Grip: [`SEALED · ${count} CARDS`, 'Pull across the seam ↔'],
+      Tear: ['OPENING THE SEAL', 'Follow the seam to tear ↔'],
       OpenWrapper: ['SEAL RELEASED', 'Pull the foil down ↓'],
       ExtractStack: ['YOUR COLLECTION', 'Slide the cards out ↑'],
       RevealCard: [revealed ? title : `${String(active + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`, revealed ? active === count - 1 ? 'View collection →' : 'Next card ↑' : 'Turn the card ↑'],

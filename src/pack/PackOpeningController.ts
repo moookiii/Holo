@@ -230,7 +230,7 @@ export class PackOpeningController {
   }
   setStage(stage: DebugPackStage, progress = 0) {
     this.frozen = true; this.start = undefined; this.handling = false; this.autoTear = false;
-    this.presentation.wrapper.resetTear();
+    this.presentation.wrapper.tearPath.reset();
     this.packMotion.setPose(0, 0); this.packMotion.dragging = false;
     this.tear.snap(0); this.mouth.snap(0); this.extract.snap(0); this.reveal.snap(0); this.grip.snap(0); this.release.snap(0); this.pointerX.snap(0); this.pointerY.snap(0);
     this.active = 0; this.revealed = false; this.settle = 0; this.hover = -1;
