@@ -7,7 +7,7 @@ import { WrapperPicking } from './WrapperPicking';
 import { WrapperTearPath } from './WrapperTearPath';
 import { createLiningMaterial, createWrapperMaterial } from './PackWrapperMaterial';
 
-export interface WrapperPose { tear: number; mouth: number; grip: number; collapse: number; tension: number; pullX: number; pullY: number; }
+export interface WrapperPose { tear: number; mouth: number; grip: number; extract: number; collapse: number; tension: number; pullX: number; pullY: number; }
 interface Film { mesh: Mesh; side: number; inner: boolean; strip: boolean; nx: number; ny: number; }
 interface CutRim { mesh: Mesh; count: number; torn: boolean; }
 /** Two film skins with folded sides, metalized inner faces and welded end seals.
@@ -24,7 +24,7 @@ export class PackWrapper {
   private materials: Material[] = [];
   private deformation: WrapperDeformation;
   private picking: WrapperPicking;
-  private currentPose: WrapperPose = { tear: 0, mouth: 0, grip: 0, collapse: 0, tension: 0, pullX: 0, pullY: 0 };
+  private currentPose: WrapperPose = { tear: 0, mouth: 0, grip: 0, extract: 0, collapse: 0, tension: 0, pullX: 0, pullY: 0 };
   private detached = false;
   private detachedOrigin?: { position: Vector3; quaternion: Quaternion };
   private constructor(readonly dimensions: PackDefinition['wrapper']) {
@@ -178,7 +178,10 @@ export class PackWrapper {
     }
     if (this.detached && this.detachedOrigin) {
       const drift = p.mouth * .35 + p.collapse * 1.9;
-      this.strip.position.copy(this.detachedOrigin.position).add(new Vector3(p.mouth * .5 + p.collapse * .7, -drift, -p.mouth * .16));
+      // The wrapper travels left as the cards extract; send the loose tear
+      // strip decisively to the opposite side so it clears the reveal.
+      const right = p.mouth * 1.2 + p.extract * 7 + p.collapse * 1.2;
+      this.strip.position.copy(this.detachedOrigin.position).add(new Vector3(right, -drift, -p.mouth * .16));
       this.strip.quaternion.copy(this.detachedOrigin.quaternion).multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), p.mouth * .24 + p.collapse * .38));
     }
     this.strip.visible = this.root.visible;
