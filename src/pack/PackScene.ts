@@ -8,7 +8,7 @@ import { randomSequence } from './PackDefinition';
 export interface PackPose {
   state: PackState; intro: number; tear: number; mouth: number; extract: number; settle: number;
   reveal: number; active: number; hit: number; hover: number; selected: number; inspect: number;
-  grip: number; tension: number; pointerX: number; pointerY: number;
+  grip: number; tension: number; release: number; pointerX: number; pointerY: number;
 }
 export class PackScene {
   readonly root = new Group();
@@ -30,7 +30,7 @@ export class PackScene {
     wrapperPosition.x -= 7 * extracted; wrapperPosition.y += -extracted * 11 + (1 - ease(p.intro)) * 2;
     this.wrapper.root.position.lerp(wrapperPosition, smoothing);
     this.wrapper.root.visible = extracted < .995;
-    this.wrapper.deform({ tear: p.tear, mouth: p.mouth, grip: p.grip, extract: p.extract, tension: reduced ? 0 : p.tension,
+    this.wrapper.deform({ tear: p.tear, mouth: p.mouth, grip: p.grip, extract: p.extract, release: p.release, tension: reduced ? 0 : p.tension,
       collapse: ease((p.extract - .8) / .2), pullX: p.pointerX, pullY: p.pointerY }, this.scene);
     const mid = (this.cards.length - 1) / 2;
     this.cards.forEach((card, i) => {

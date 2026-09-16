@@ -35,8 +35,8 @@ export class PackOpeningController {
   private extract = new Spring(0, 0, 18);
   private reveal = new Spring(0, 0, 16);
   private grip = new Spring(0, 0, 22);
+  private release = new Spring(0, 0, 10);
   private settle = 0;
-  private release = 0;
   private active = 0;
   private revealed = false;
   private hover = -1;
@@ -49,6 +49,7 @@ export class PackOpeningController {
   private dragDistance = 0;
   private pointerX = new Spring();
   private pointerY = new Spring();
+  private autoTear = false;
   private frozen = false;
   private disposed = false;
   private media = matchMedia('(prefers-reduced-motion: reduce)');
@@ -95,10 +96,11 @@ export class PackOpeningController {
   private down(p: PackPointer) {
     this.frozen = false; void this.audio.unlock(); this.start = this.previousPointer = p; this.dragDistance = 0;
     if (this.state.value === 'PackReady' || this.state.value === 'Grip' || this.state.value === 'Tear') {
-      if (p.local && p.local.y > this.presentation.wrapper.tearHeight - .55) {
+      if (p.materialLocal && p.materialLocal.y > this.presentation.wrapper.tearHeight - .55) {
         if (this.state.value === 'PackReady') this.state.transition('Grip');
-        this.packMotion.reset();
-        this.grip.target = 1; this.dragBase = this.tear.target; this.audio.play('tension', .6);
+        this.packMotion.halt(); this.autoTear = false;
+        this.presentation.wrapper.tearPath.begin(p.materialLocal.x, p.materialLocal.y);
+        this.grip.target = 1; this.audio.play('tension', .6);
       } else if (p.local) { this.handling = true; this.packMotion.halt(); this.packMotion.dragging = true; this.audio.play('handle', .3); }
       else this.start = undefined;
     } else if (this.state.value === 'OpenWrapper') { if (p.local) this.dragBase = this.mouth.target; else this.start = undefined; }
@@ -126,10 +128,16 @@ export class PackOpeningController {
       this.previousPointer = p;
       this.audio.play('handle', (Math.abs(dx) + Math.abs(dy)) * .15); return;
     }
-    if (this.state.value === 'Grip' && dx > .1) { this.state.transition('Tear'); this.audio.play('tear-start', .8, -.5); }
-    if (this.state.value === 'Tear') {
-      const old = this.tear.target; this.tear.target = Math.max(old, clamp(this.dragBase + dx / 6.3));
-      this.audio.play('tear', (this.tear.target - old) * 24, this.tear.target * 1.4 - .7);
+    if ((this.state.value === 'Grip' || this.state.value === 'Tear') && p.dragLocal && this.start.dragLocal) {
+      const pullX = p.dragLocal.x - this.start.dragLocal.x, pullY = p.dragLocal.y - this.start.dragLocal.y;
+      this.pointerX.target = clamp(pullX, -6, 6); this.pointerY.target = clamp(pullY, -1.8, 2.2);
+      if (this.state.value === 'Grip' && Math.hypot(pullX, pullY) > .09) { this.state.transition('Tear'); this.audio.play('tear-start', .8); }
+      if (this.state.value === 'Tear') {
+        const path = this.presentation.wrapper.tearPath, old = path.progress;
+        const origin = this.start.materialLocal!;
+        path.move(origin.x + pullX, origin.y + pullY); this.tear.target = path.progress;
+        this.audio.play('tear', (path.progress - old) * 24, path.tipU * .7);
+      }
     } else if (this.state.value === 'OpenWrapper') {
       this.mouth.target = clamp(this.dragBase - dy / 2); this.audio.play('wrinkle', Math.abs(dy) * .4);
     } else if (this.state.value === 'ExtractStack') {
@@ -140,6 +148,7 @@ export class PackOpeningController {
     }
   }
   private up(cancel: boolean) {
+    this.presentation.wrapper.tearPath.end();
     if (this.state.value === 'Grip') this.state.transition('PackReady');
     if (this.state.value === 'RevealCard' && !this.revealed) this.reveal.target = !cancel && this.start && (this.dragDistance < .10 || this.reveal.target > .52) ? 1 : 0;
     this.packMotion.dragging = false; if (cancel || this.media.matches) this.packMotion.velocity.set(0, 0, 0);
@@ -152,7 +161,7 @@ export class PackOpeningController {
       case 'PackReady': this.packMotion.reset(); this.state.transition('Grip');
       // Accessible equivalent follows the same springs and state boundaries.
       case 'Grip': this.state.transition('Tear'); this.audio.play('tear-start');
-      case 'Tear': this.tear.target = 1; break;
+      case 'Tear': this.autoTear = true; this.tear.target = 1; break;
       case 'OpenWrapper': this.mouth.target = 1; this.audio.play('open'); break;
       case 'ExtractStack': this.extract.target = 1; this.audio.play('slide'); break;
       case 'RevealCard': if (this.revealed) this.next(); else this.reveal.target = 1; break;
@@ -174,11 +183,15 @@ export class PackOpeningController {
     const duration = reduced ? .35 : 1.25;
     this.state.elapsed += dt;
     this.packMotion.update(dt); this.presentation.root.quaternion.copy(this.packMotion.orientation);
-    [this.tear, this.mouth, this.extract, this.reveal, this.grip, this.pointerX, this.pointerY].forEach(spring => spring.step(dt));
+    [this.tear, this.mouth, this.extract, this.reveal, this.grip, this.release, this.pointerX, this.pointerY].forEach(spring => spring.step(dt));
+    if (this.autoTear && !this.frozen) this.presentation.wrapper.tearPath.fill(this.tear.value);
     if (!this.frozen) {
       if (this.state.value === 'PackIntro' && this.state.elapsed > duration) this.state.transition('PackReady');
-      if (this.state.value === 'Tear' && this.tear.value > .998) { this.tear.snap(1); this.grip.target = 0; this.state.transition('OpenWrapper'); this.audio.play('strip'); this.start = undefined; }
-      if (this.tear.value === 1) this.release = clamp(this.release + dt / (reduced ? .3 : 1.1));
+      if (this.state.value === 'Tear' && this.tear.value > .998 && this.presentation.wrapper.tearPath.progress === 1) {
+        this.tear.snap(1); this.release.target = 1; this.grip.target = 0; this.pointerX.target = this.pointerY.target = 0;
+        this.autoTear = false; this.presentation.wrapper.tearPath.end();
+        this.state.transition('OpenWrapper'); this.audio.play('strip'); this.start = undefined;
+      }
       if (this.state.value === 'OpenWrapper' && this.mouth.value > .998) { this.mouth.snap(1); this.state.transition('ExtractStack'); this.start = undefined; }
       if (this.state.value === 'ExtractStack' && this.extract.value > .998) {
         this.extract.snap(1); this.settle = clamp(this.settle + dt / duration);
@@ -196,7 +209,7 @@ export class PackOpeningController {
     const pose: PackPose = { state, intro: state === 'PackIntro' ? this.state.elapsed / duration : 1,
       tear: this.tear.value, mouth: this.mouth.value, extract: this.extract.value, settle: ease(this.settle), reveal: this.reveal.value,
       active: this.active, hit, hover: this.hover, selected: this.selected, inspect, grip: this.grip.value,
-      tension: this.tear.velocity, release: ease(this.release), pointerX: this.pointerX.value, pointerY: this.pointerY.value };
+      tension: this.tear.velocity, release: this.release.value, pointerX: this.pointerX.value, pointerY: this.pointerY.value };
     this.presentation.update(pose, dt, portrait, reduced, force);
     if (state === 'PackSummary') this.camera.frame(portrait ? 10.5 : this.contents.length * 3.35 + 5, portrait ? 18 : 11, -.4, 0, 3.5);
     else if (state === 'Inspect') {
@@ -216,19 +229,20 @@ export class PackOpeningController {
     }
   }
   setStage(stage: DebugPackStage, progress = 0) {
-    this.frozen = true; this.start = undefined; this.handling = false;
+    this.frozen = true; this.start = undefined; this.handling = false; this.autoTear = false;
+    this.presentation.wrapper.resetTear();
     this.packMotion.setPose(0, 0); this.packMotion.dragging = false;
-    this.tear.snap(0); this.mouth.snap(0); this.extract.snap(0); this.reveal.snap(0); this.grip.snap(0); this.pointerX.snap(0); this.pointerY.snap(0);
-    this.active = 0; this.revealed = false; this.settle = 0; this.release = 0; this.hover = -1;
+    this.tear.snap(0); this.mouth.snap(0); this.extract.snap(0); this.reveal.snap(0); this.grip.snap(0); this.release.snap(0); this.pointerX.snap(0); this.pointerY.snap(0);
+    this.active = 0; this.revealed = false; this.settle = 0; this.hover = -1;
     const afterTear = ['open', 'extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage);
-    if (afterTear) { this.tear.snap(1); this.release = 1; }
+    if (afterTear) { this.tear.snap(1); this.release.snap(1); }
     if (['extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage)) this.mouth.snap(1);
     if (['stack', 'reveal', 'hit', 'summary'].includes(stage)) { this.extract.snap(1); this.settle = 1; }
     switch (stage) {
       case 'intro': this.state.set('PackIntro'); this.state.elapsed = clamp(progress) * (this.media.matches ? .35 : 1.25); break;
       case 'sealed': this.state.set('PackReady'); break;
       case 'gripped': this.state.set('Grip'); this.grip.snap(1); break;
-      case 'tear': this.state.set('Tear'); this.tear.snap(clamp(progress)); this.grip.snap(progress < 1 ? 1 : 0); this.release = progress === 1 ? .18 : 0; break;
+      case 'tear': this.state.set('Tear'); this.tear.snap(clamp(progress)); this.release.snap(clamp(progress)); this.grip.snap(progress < 1 ? 1 : 0); break;
       case 'open': this.state.set('OpenWrapper'); this.mouth.snap(clamp(progress)); break;
       case 'extract': this.state.set('ExtractStack'); this.extract.snap(clamp(progress)); break;
       case 'stack': this.state.set('RevealCard'); break;
@@ -236,13 +250,16 @@ export class PackOpeningController {
       case 'hit': this.state.set('HitReveal'); this.active = Math.max(0, this.contents.findIndex(c => c.reveal === 'studio-sweep')); this.reveal.snap(1); this.revealed = true; this.state.elapsed = clamp(progress) * (this.media.matches ? .45 : 2.4); break;
       case 'summary': this.state.set('PackSummary'); this.active = this.contents.length - 1; this.reveal.snap(1); this.revealed = true; break;
     }
+    this.presentation.wrapper.tearPath.fill(this.tear.value);
     this.update(0, true);
   }
   select(index: number) { this.hover = clamp(index, 0, this.contents.length - 1); this.update(0, true); }
   setRevealProgress(progress: number) { this.state.set('RevealCard'); this.frozen = true; this.revealed = false; this.reveal.snap(clamp(progress)); this.update(0, true); }
   pose(yaw: number, pitch = 0, roll = 0) { this.packMotion.setPose(yaw * Math.PI / 180, pitch * Math.PI / 180, roll * Math.PI / 180); this.update(0, true); }
   stats() { return { state: this.state.value, elapsed: this.state.elapsed, frozen: this.frozen, cardCount: this.contents.length, active: this.active, revealed: this.revealed,
-    tear: this.tear.value, mouth: this.mouth.value, extract: this.extract.value, reveal: this.reveal.value, reducedMotion: this.media.matches,
+    tearPath: { progress: this.presentation.wrapper.tearPath.progress, grip: this.presentation.wrapper.tearPath.gripU, tip: this.presentation.wrapper.tearPath.tipU,
+      samples: Array.from(this.presentation.wrapper.tearPath.field) },
+    tear: this.tear.value, release: this.release.value, mouth: this.mouth.value, extract: this.extract.value, reveal: this.reveal.value, reducedMotion: this.media.matches,
     history: [...this.state.history], orientation: this.packMotion.orientation.toArray(), cardIds: this.presentation.cards.map(card => card.definition.id), meshIds: this.presentation.cards.map(card => card.mesh.uuid) }; }
   dispose(except?: CardInstance) {
     if (this.disposed) return; this.disposed = true;
