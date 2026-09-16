@@ -31,6 +31,8 @@ test('pack contents are deterministic, bounded and do not mutate the authored de
   assert.equal(newNonHoloCards.filter(card => card.franchise === 'Pokémon').length, 34);
   assert.equal(newNonHoloCards.filter(card => card.franchise === 'Yu-Gi-Oh!').length, 33);
   assert.equal(newNonHoloCards.filter(card => card.franchise === 'Magic: The Gathering').length, 33);
+  const staticPokemon = ['Alakazam', 'Blastoise', 'Chansey', 'Clefairy', 'Gyarados', 'Hitmonchan', 'Magneton', 'Mewtwo', 'Nidoking', 'Ninetales', 'Poliwrath', 'Raichu', 'Venusaur', 'Zapdos'];
+  assert.ok(newNonHoloCards.every(card => !staticPokemon.includes(card.title)));
   assert.deepEqual(resolvePackContents(showcasePack, 42), resolvePackContents(showcasePack, 42));
   assert.notDeepEqual(resolvePackContents(showcasePack, 42), resolvePackContents(showcasePack, 43));
   assert.equal(JSON.stringify(showcasePack), copy);

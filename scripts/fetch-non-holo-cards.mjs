@@ -4,15 +4,15 @@ import path from 'node:path';
 const root = path.resolve('public/cards/non-holo');
 const headers = { 'User-Agent': 'HoloArchive/1.0 (local interactive card viewer)', Accept: 'application/json' };
 const pokemon = [
-  ['alakazam', 'Alakazam', 1], ['blastoise', 'Blastoise', 2], ['chansey', 'Chansey', 3], ['clefairy', 'Clefairy', 5],
-  ['computer-search', 'Computer Search', 6], ['electabuzz', 'Electabuzz', 7], ['electrode', 'Electrode', 8], ['pidgeotto', 'Pidgeotto', 9],
-  ['devolution-spray', 'Devolution Spray', 10], ['dratini', 'Dratini', 11], ['farfetchd', "Farfetch'd", 12], ['gust-of-wind', 'Gust of Wind', 13],
-  ['gyarados', 'Gyarados', 14], ['here-comes-team-rocket', 'Here Comes Team Rocket!', 15], ['item-finder', 'Item Finder', 16], ['lass', 'Lass', 17],
-  ['machamp', 'Machamp', 18], ['bill', 'Bill', 19], ['magikarp', 'Magikarp', 20], ['maintenance', 'Maintenance', 21],
-  ['mewtwo', 'Mewtwo', 22], ['nidoking', 'Nidoking', 23], ['ninetales', 'Ninetales', 24], ['pokemon-breeder', 'Pokémon Breeder', 25],
-  ['pokemon-trader', 'Pokémon Trader', 26], ['raichu', 'Raichu', 27], ['rare-candy', 'Rare Candy', 28], ['scoop-up', 'Scoop Up', 29],
-  ['super-energy-removal', 'Super Energy Removal', 30], ['defender', 'Defender', 31], ['energy-retrieval', 'Energy Retrieval', 32],
-  ['full-heal', 'Full Heal', 33], ['pokemon-center', 'Pokémon Center', 34], ['pokemon-flute', 'Pokémon Flute', 35],
+  ['beedrill', 'Beedrill', 17], ['dragonair', 'Dragonair', 18], ['dugtrio', 'Dugtrio', 19], ['electabuzz', 'Electabuzz', 20],
+  ['electrode', 'Electrode', 21], ['pidgeotto', 'Pidgeotto', 22], ['arcanine', 'Arcanine', 23], ['charmeleon', 'Charmeleon', 24],
+  ['dewgong', 'Dewgong', 25], ['dratini', 'Dratini', 26], ['farfetchd', "Farfetch'd", 27], ['growlithe', 'Growlithe', 28],
+  ['haunter', 'Haunter', 29], ['ivysaur', 'Ivysaur', 30], ['jynx', 'Jynx', 31], ['kadabra', 'Kadabra', 32],
+  ['kakuna', 'Kakuna', 33], ['machoke', 'Machoke', 34], ['magikarp', 'Magikarp', 35], ['magmar', 'Magmar', 36],
+  ['nidorino', 'Nidorino', 37], ['poliwhirl', 'Poliwhirl', 38], ['porygon', 'Porygon', 39], ['raticate', 'Raticate', 40],
+  ['seel', 'Seel', 41], ['wartortle', 'Wartortle', 42], ['abra', 'Abra', 43], ['caterpie', 'Caterpie', 45],
+  ['doduo', 'Doduo', 48], ['magnemite', 'Magnemite', 53], ['paras', 'Paras', 57], ['rattata', 'Rattata', 61],
+  ['starmie', 'Starmie', 64], ['tangela', 'Tangela', 66],
 ];
 const yugioh = [
   ['dark-magician', 'Dark Magician'], ['red-eyes-b-black-dragon', 'Red-Eyes B. Dragon'], ['gaia-the-fierce-knight', 'Gaia The Fierce Knight'],
