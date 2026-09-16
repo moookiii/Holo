@@ -11,7 +11,7 @@ export class WrapperDeformation {
   readonly collapse = uniform(0);
   readonly tension = uniform(0);
   private position;
-  private normal;
+  readonly normal: Node<'vec3'>;
   constructor(tearHeight: number) {
     const eased = (value: Node<'float'>) => { const t = value.clamp(0, 1); return t.pow3().mul(t.mul(t.mul(6).sub(15)).add(10)); };
     const deform = Fn(([point, coordinates]: [Node<'vec3'>, Node<'vec4'>]) => {
@@ -47,8 +47,9 @@ export class WrapperDeformation {
   }
   apply(material: MeshPhysicalNodeMaterial) {
     material.positionNode = this.position;
-    material.normalNode = this.normal;
-    material.clearcoatNormalNode = this.normal;
+    // Preserve microscopic finishes composed over the shared film normal.
+    material.normalNode ??= this.normal;
+    material.clearcoatNormalNode ??= this.normal;
   }
   update(pose: WrapperPose) {
     this.tear.value = pose.tear; this.mouth.value = pose.mouth; this.grip.value = pose.grip;

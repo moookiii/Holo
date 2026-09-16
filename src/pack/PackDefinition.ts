@@ -11,9 +11,9 @@ export interface PackDefinition {
   seed: number;
   contents: PackCard[];
   order: 'fixed' | 'seeded';
-  wrapper: { front: string; back: string; ink: string; width: number; height: number; depth: number };
+  wrapper: { front: string; back: string; ink: string; backInk?: string; width: number; height: number; depth: number };
 }
-const archiveWrapper = { front: '/packs/archive/front.svg', back: '/packs/archive/back.svg', ink: '/packs/archive/ink.svg', width: 7.55, height: 11.8, depth: .66 };
+const archiveWrapper = { front: '/packs/archive/front.svg', back: '/packs/archive/back.svg', ink: '/packs/archive/ink.svg', backInk: '/packs/archive/back-ink.svg', width: 7.55, height: 11.8, depth: .66 };
 
 export const showcasePack: PackDefinition = {
   id: 'archive-01', name: 'Archive / 01', category: 'Studio selection', cardCount: 5, seed: 1741,
@@ -23,6 +23,32 @@ export const showcasePack: PackDefinition = {
     { cardId: 'squirtle-frlg-reverse', rarity: 'foil' },
     { cardId: 'blue-eyes', rarity: 'foil' },
     { cardId: 'lugia-neo-genesis', rarity: 'foil' },
+    { cardId: 'dark-magician-girl', rarity: 'signature', reveal: 'studio-sweep' },
+  ],
+  wrapper: archiveWrapper,
+};
+
+export const archivePack02: PackDefinition = {
+  id: 'archive-02', name: 'Archive / 02', category: 'Studio selection', cardCount: 5, seed: 2819,
+  order: 'fixed',
+  contents: [
+    { cardId: 'charizard-base-set', rarity: 'foil' },
+    { cardId: 'eevee-legendary-reverse', rarity: 'standard' },
+    { cardId: 'angel-of-serenity', rarity: 'foil' },
+    { cardId: 'ip-masquerena', rarity: 'foil' },
+    { cardId: 'effect-veiler-ra01', rarity: 'signature', reveal: 'studio-sweep' },
+  ],
+  wrapper: archiveWrapper,
+};
+
+export const archivePack03: PackDefinition = {
+  id: 'archive-03', name: 'Archive / 03', category: 'Studio selection', cardCount: 5, seed: 3947,
+  order: 'fixed',
+  contents: [
+    { cardId: 'black-lotus', rarity: 'signature' },
+    { cardId: 'charizard-expedition-reverse', rarity: 'standard' },
+    { cardId: 'nocturne', rarity: 'foil' },
+    { cardId: 'blue-eyes', rarity: 'foil' },
     { cardId: 'dark-magician-girl', rarity: 'signature', reveal: 'studio-sweep' },
   ],
   wrapper: archiveWrapper,
@@ -42,7 +68,7 @@ export const testPack: PackDefinition = {
   wrapper: archiveWrapper,
 };
 
-export const packRegistry = [showcasePack, testPack] as const;
+export const packRegistry = [showcasePack, archivePack02, archivePack03, testPack] as const;
 export function getPack(id: string) {
   const pack = packRegistry.find(candidate => candidate.id === id);
   if (!pack) throw new Error(`Unknown pack: ${id}`);

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PackOpeningState } from '../src/pack/PackOpeningState.ts';
-import { getPack, resolvePackContents, showcasePack, testPack } from '../src/pack/PackDefinition.ts';
+import { archivePack02, archivePack03, getPack, packRegistry, resolvePackContents, showcasePack, testPack } from '../src/pack/PackDefinition.ts';
 import { Spring } from '../src/pack/PackMath.ts';
 
 test('pack state machine rejects skipping physical stages and permits repeated card reveals', () => {
@@ -14,7 +14,10 @@ test('pack state machine rejects skipping physical stages and permits repeated c
 
 test('the registry resolves distinct showcase and test packs', () => {
   assert.equal(getPack('archive-01'), showcasePack);
+  assert.equal(getPack('archive-02'), archivePack02);
+  assert.equal(getPack('archive-03'), archivePack03);
   assert.equal(getPack('test-pack'), testPack);
+  assert.equal(packRegistry.length, 4);
   assert.notEqual(testPack.cardCount, showcasePack.cardCount);
   assert.notDeepEqual(testPack.contents, showcasePack.contents);
   assert.throws(() => getPack('missing-pack'), /Unknown pack/);

@@ -31,8 +31,13 @@ export class PackWrapper {
   }
   static async create(definition: PackDefinition, assets: AssetManager) {
     const wrapper = new PackWrapper(definition.wrapper);
-    const [front, back, ink] = await Promise.all([assets.load(definition.wrapper.front, true), assets.load(definition.wrapper.back, true), assets.load(definition.wrapper.ink, false)]);
-    const frontMaterial = createWrapperMaterial(front, ink), backMaterial = createWrapperMaterial(back, ink), inside = createLiningMaterial();
+    const [front, back, ink, backInk] = await Promise.all([
+      assets.load(definition.wrapper.front, true), assets.load(definition.wrapper.back, true),
+      assets.load(definition.wrapper.ink, false),
+      definition.wrapper.backInk ? assets.load(definition.wrapper.backInk, false) : assets.white,
+    ]);
+    const surface = { width: definition.wrapper.width, height: definition.wrapper.height, normal: wrapper.deformation.normal };
+    const frontMaterial = createWrapperMaterial(front, ink, surface), backMaterial = createWrapperMaterial(back, backInk, surface), inside = createLiningMaterial(surface);
     wrapper.materials = [frontMaterial, backMaterial, inside];
     [frontMaterial, backMaterial, inside].forEach(material => wrapper.deformation.apply(material));
     for (const strip of [false, true]) for (const side of [1, -1]) for (const inner of [false, true]) {
@@ -51,7 +56,7 @@ export class PackWrapper {
       geometry.setAttribute('position', new Float32BufferAttribute(new Float32Array(count * 6), 3));
       for (let i = 0; i < count - 1; i++) indices.push(i * 2, i * 2 + 1, i * 2 + 2, i * 2 + 1, i * 2 + 3, i * 2 + 2);
       geometry.setIndex(indices);
-      for (const name of ['filmCoordinates', 'filmTangentU', 'filmTangentV', 'filmType']) {
+      for (const name of ['uv', 'filmCoordinates', 'filmTangentU', 'filmTangentV', 'filmType']) {
         const source = outer.mesh.geometry.getAttribute(name), values: number[] = [];
         for (let i = 0; i < count; i++) for (const film of [outer, inner]) {
           const attr = film.mesh.geometry.getAttribute(name);
