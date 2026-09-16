@@ -2,7 +2,7 @@ import { Group, Vector3, type Scene } from 'three/webgpu';
 import type { CardInstance } from '../card/CardInstance';
 import type { PackWrapper } from './wrapper/PackWrapper';
 import type { PackState } from './PackOpeningState';
-import { clamp, ease, mix, orientation } from './PackMath';
+import { ease, mix, orientation } from './PackMath';
 import { randomSequence } from './PackDefinition';
 
 export interface PackPose {
@@ -17,16 +17,17 @@ export class PackScene {
   constructor(readonly cards: CardInstance[], readonly wrapper: PackWrapper, scene: Scene, seed: number) {
     this.root.name = 'Pack opening'; this.root.add(wrapper.root, ...cards.map(card => card.mesh)); scene.add(this.root);
     const random = randomSequence(seed);
-    this.variations = cards.map(() => ({ x: (random() - .5) * .023, y: (random() - .5) * .023, yaw: (random() - .5) * .004, pitch: (random() - .5) * .002 }));
+    this.variations = cards.map(() => ({ x: (random() - .5) * .023, y: (random() - .5) * .023, yaw: (random() - .5) * .002, pitch: (random() - .5) * .001 }));
   }
   beginInspect(index: number) { const mesh = this.cards[index].mesh; this.inspectStart = { position: mesh.position.clone(), quaternion: mesh.quaternion.clone() }; }
   update(p: PackPose, dt: number, portrait: boolean, reduced: boolean, snap = false) {
     const smoothing = snap ? 1 : 1 - Math.exp(-dt * (reduced ? 26 : 14));
     const preview = ['RevealCard', 'HitReveal', 'PackSummary', 'Inspect'].includes(p.state);
     const extracted = preview ? 1 : p.settle;
-    const packQ = orientation(-.15 + (reduced ? 0 : p.pointerX * .10), .035 + (reduced ? 0 : p.pointerY * .05), -.035 + (reduced ? 0 : p.pointerX * -.02));
+    const packQ = orientation();
     this.wrapper.root.quaternion.slerp(packQ, smoothing);
-    const wrapperPosition = new Vector3(mix(0, -7, extracted), -p.extract * 4.8 - extracted * 11 + (1 - ease(p.intro)) * 2, 0);
+    const wrapperPosition = new Vector3(0, -p.extract * 4.8, 0).applyQuaternion(packQ);
+    wrapperPosition.x -= 7 * extracted; wrapperPosition.y += -extracted * 11 + (1 - ease(p.intro)) * 2;
     this.wrapper.root.position.lerp(wrapperPosition, smoothing);
     this.wrapper.root.visible = extracted < .995;
     this.wrapper.deform({ tear: p.tear, mouth: p.mouth, grip: p.grip, tension: reduced ? 0 : p.tension,
@@ -34,12 +35,15 @@ export class PackScene {
     const mid = (this.cards.length - 1) / 2;
     this.cards.forEach((card, i) => {
       const mesh = card.mesh, variation = this.variations[i];
-      const position = new Vector3(variation.x, -.12 + variation.y, (mid - i) * .042);
+      const position = new Vector3(variation.x + i * .006 * extracted, -.12 + variation.y - i * .006 * extracted, (mid - i) * .046);
       let q = packQ.clone().multiply(orientation(Math.PI + variation.yaw, variation.pitch));
-      position.applyQuaternion(packQ); position.y += p.extract * 7.4 * (1 - extracted);
+      position.applyQuaternion(packQ);
+      position.applyQuaternion(orientation().slerp(orientation(-.42, -.12, -.025), extracted));
+      position.add(new Vector3(0, p.extract * 7.4 * (1 - extracted), 0).applyQuaternion(packQ));
+      position.y += (1 - ease(p.intro)) * 2;
+      position.z -= extracted * 2.4;
       if (extracted > 0) {
-        q.slerp(orientation(Math.PI - .25 + variation.yaw, .10 + variation.pitch, -.025), extracted);
-        position.x += i * .028 * extracted; position.y -= i * .025 * extracted;
+        q.slerp(orientation(Math.PI - .42 + variation.yaw, .12 + variation.pitch, -.025), extracted);
       }
       if (preview) {
         if (i < p.active) {
@@ -49,8 +53,8 @@ export class PackScene {
           position.y += r * .28 + Math.sin(r * Math.PI) * .65;
           // Lift toward the lens before turning: the far edge clears every
           // lower card throughout the 180-degree reveal, including edge-on.
-          position.z += r * 1.15 + Math.sin(r * Math.PI) * 3.6;
-          q = orientation(mix(Math.PI - .25, -.15, r), mix(.10, .035, r), mix(-.025, 0, r));
+          position.z += r * 3.55 + Math.sin(r * Math.PI) * 3.6;
+          q = orientation(mix(Math.PI - .42, -.15, r), mix(.12, .035, r), mix(-.025, 0, r));
           if (p.state === 'HitReveal') {
             q = orientation(reduced ? -.12 : mix(-.24, .035, ease(p.hit)), .025, 0);
             position.set(0, .14, 1.15);
@@ -60,7 +64,9 @@ export class PackScene {
       if (p.state === 'PackSummary' || p.state === 'Inspect') {
         const d = i - mid;
         position.set(d * (portrait ? .78 : 3.35), portrait ? -d * 1.7 : -.28 * d * d, i * .45);
-        q = orientation(d * .035, .045, -d * (portrait ? .055 : .085));
+        // Give the spread a subtle backward lean so the cards read as a
+        // physical fan rather than five flat panels facing the camera.
+        q = orientation(d * .035, .16, -d * (portrait ? .055 : .085));
         if (p.hover === i) { position.y += portrait ? .35 : .85; position.z += 3; q = orientation(-.1, .02); }
         if (p.state === 'Inspect') {
           if (i === p.selected && this.inspectStart) {
