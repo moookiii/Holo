@@ -66,7 +66,7 @@ export class PackScene {
         position.set(d * (portrait ? .78 : 3.35), portrait ? -d * 1.7 : -.28 * d * d, i * .45);
         // Give the spread a subtle backward lean so the cards read as a
         // physical fan rather than five flat panels facing the camera.
-        q = orientation(d * .035, .16, -d * (portrait ? .055 : .085));
+        q = orientation(d * .035, -.16, -d * (portrait ? .055 : .085));
         if (p.hover === i) { position.y += portrait ? .35 : .85; position.z += 3; q = orientation(-.1, .02); }
         if (p.state === 'Inspect') {
           if (i === p.selected && this.inspectStart) {
