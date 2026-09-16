@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { PackOpeningState } from '../src/pack/PackOpeningState.ts';
 import { archivePack02, archivePack03, getPack, packRegistry, resolvePackContents, showcasePack, testPack } from '../src/pack/PackDefinition.ts';
 import { Spring } from '../src/pack/PackMath.ts';
-import { nonHoloCardIds, nonHoloCards } from '../src/card/NonHoloCards.ts';
+import { newNonHoloCards, nonHoloCardIds, nonHoloCards } from '../src/card/NonHoloCards.ts';
 
 test('pack state machine rejects skipping physical stages and permits repeated card reveals', () => {
   const machine = new PackOpeningState();
@@ -26,7 +26,11 @@ test('the registry resolves distinct showcase and test packs', () => {
 
 test('pack contents are deterministic, bounded and do not mutate the authored definition', () => {
   const copy = JSON.stringify(showcasePack);
-  assert.equal(nonHoloCards.length, 50);
+  assert.equal(nonHoloCards.length, 150);
+  assert.equal(newNonHoloCards.length, 100);
+  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Pokémon').length, 34);
+  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Yu-Gi-Oh!').length, 33);
+  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Magic: The Gathering').length, 33);
   assert.deepEqual(resolvePackContents(showcasePack, 42), resolvePackContents(showcasePack, 42));
   assert.notDeepEqual(resolvePackContents(showcasePack, 42), resolvePackContents(showcasePack, 43));
   assert.equal(JSON.stringify(showcasePack), copy);

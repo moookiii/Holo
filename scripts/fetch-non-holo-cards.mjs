@@ -4,24 +4,40 @@ import path from 'node:path';
 const root = path.resolve('public/cards/non-holo');
 const headers = { 'User-Agent': 'HoloArchive/1.0 (local interactive card viewer)', Accept: 'application/json' };
 const pokemon = [
-  ['bulbasaur',44],['charmander',46],['diglett',47],['drowzee',49],['gastly',50],['koffing',51],
-  ['machop',52],['metapod',54],['nidoran-m',55],['onix',56],['pikachu',58],['poliwag',59],
-  ['ponyta',60],['sandshrew',62],['squirtle',63],['staryu',65],['voltorb',67],['weedle',69],
+  ['alakazam', 'Alakazam', 1], ['blastoise', 'Blastoise', 2], ['chansey', 'Chansey', 3], ['clefairy', 'Clefairy', 5],
+  ['computer-search', 'Computer Search', 6], ['electabuzz', 'Electabuzz', 7], ['electrode', 'Electrode', 8], ['pidgeotto', 'Pidgeotto', 9],
+  ['devolution-spray', 'Devolution Spray', 10], ['dratini', 'Dratini', 11], ['farfetchd', "Farfetch'd", 12], ['gust-of-wind', 'Gust of Wind', 13],
+  ['gyarados', 'Gyarados', 14], ['here-comes-team-rocket', 'Here Comes Team Rocket!', 15], ['item-finder', 'Item Finder', 16], ['lass', 'Lass', 17],
+  ['machamp', 'Machamp', 18], ['bill', 'Bill', 19], ['magikarp', 'Magikarp', 20], ['maintenance', 'Maintenance', 21],
+  ['mewtwo', 'Mewtwo', 22], ['nidoking', 'Nidoking', 23], ['ninetales', 'Ninetales', 24], ['pokemon-breeder', 'Pokémon Breeder', 25],
+  ['pokemon-trader', 'Pokémon Trader', 26], ['raichu', 'Raichu', 27], ['rare-candy', 'Rare Candy', 28], ['scoop-up', 'Scoop Up', 29],
+  ['super-energy-removal', 'Super Energy Removal', 30], ['defender', 'Defender', 31], ['energy-retrieval', 'Energy Retrieval', 32],
+  ['full-heal', 'Full Heal', 33], ['pokemon-center', 'Pokémon Center', 34], ['pokemon-flute', 'Pokémon Flute', 35],
 ];
 const yugioh = [
-  ['kuriboh','Kuriboh'],['mystical-elf','Mystical Elf'],['celtic-guardian','Celtic Guardian'],
-  ['giant-soldier-of-stone','Giant Soldier of Stone'],['battle-ox','Battle Ox'],['skull-servant','Skull Servant'],
-  ['feral-imp','Feral Imp'],['beaver-warrior','Beaver Warrior'],['mystic-horseman','Mystic Horseman'],
-  ['silver-fang','Silver Fang'],['winged-dragon-guardian-of-the-fortress-1','Winged Dragon, Guardian of the Fortress #1'],
-  ['la-jinn-the-mystical-genie-of-the-lamp','La Jinn the Mystical Genie of the Lamp'],
-  ['summoned-skull','Summoned Skull'],['sangan','Sangan'],['man-eater-bug','Man-Eater Bug'],['trap-hole','Trap Hole'],
+  ['dark-magician', 'Dark Magician'], ['red-eyes-b-black-dragon', 'Red-Eyes B. Dragon'], ['gaia-the-fierce-knight', 'Gaia The Fierce Knight'],
+  ['curse-of-dragon', 'Curse of Dragon'], ['baby-dragon', 'Baby Dragon'], ['time-wizard', 'Time Wizard'], ['flame-swordsman', 'Flame Swordsman'],
+  ['polymerization', 'Polymerization'], ['monster-reborn', 'Monster Reborn'], ['raigeki', 'Raigeki'], ['harpie-lady', 'Harpie Lady'],
+  ['jinzo', 'Jinzo'], ['buster-blader', 'Buster Blader'], ['thousand-eyes-restrict', 'Thousand-Eyes Restrict'],
+  ['black-luster-soldier', 'Black Luster Soldier'], ['exodia-the-forbidden-one', 'Exodia the Forbidden One'],
+  ['left-arm-of-the-forbidden-one', 'Left Arm of the Forbidden One'], ['right-arm-of-the-forbidden-one', 'Right Arm of the Forbidden One'],
+  ['left-leg-of-the-forbidden-one', 'Left Leg of the Forbidden One'], ['right-leg-of-the-forbidden-one', 'Right Leg of the Forbidden One'],
+  ['mirror-force', 'Mirror Force'], ['magic-cylinder', 'Magic Cylinder'], ['torrential-tribute', 'Torrential Tribute'],
+  ['mystical-space-typhoon', 'Mystical Space Typhoon'], ['book-of-moon', 'Book of Moon'], ['premature-burial', 'Premature Burial'],
+  ['call-of-the-haunted', 'Call of the Haunted'], ['pot-of-greed', 'Pot of Greed'], ['graceful-charity', 'Graceful Charity'],
+  ['snatch-steal', 'Snatch Steal'], ['change-of-heart', 'Change of Heart'], ['the-winged-dragon-of-ra', 'The Winged Dragon of Ra'],
+  ['slifer-the-sky-dragon', 'Slifer the Sky Dragon'],
 ];
 const magic = [
-  ['llanowar-elves','Llanowar Elves'],['lightning-bolt','Lightning Bolt'],['counterspell','Counterspell'],
-  ['dark-ritual','Dark Ritual'],['giant-growth','Giant Growth'],['disenchant','Disenchant'],
-  ['grizzly-bears','Grizzly Bears'],['serra-angel','Serra Angel'],['shivan-dragon','Shivan Dragon'],
-  ['air-elemental','Air Elemental'],['terror','Terror'],['unsummon','Unsummon'],['stone-rain','Stone Rain'],
-  ['raise-dead','Raise Dead'],['pacifism','Pacifism'],['birds-of-paradise','Birds of Paradise'],
+  ['ancestral-recall', 'Ancestral Recall'], ['armageddon', 'Armageddon'], ['balance', 'Balance'], ['basalt-monolith', 'Basalt Monolith'],
+  ['black-knight', 'Black Knight'], ['boomerang', 'Boomerang'], ['circle-of-protection-red', 'Circle of Protection: Red'], ['clone', 'Clone'],
+  ['disrupting-scepter', 'Disrupting Scepter'], ['earthquake', 'Earthquake'], ['elvish-archers', 'Elvish Archers'], ['fireball', 'Fireball'],
+  ['force-spike', 'Force Spike'], ['frozen-shade', 'Frozen Shade'], ['goblin-king', 'Goblin King'], ['howling-mine', 'Howling Mine'],
+  ['icy-manipulator', 'Icy Manipulator'], ['island', 'Island'], ['jade-statue', 'Jade Statue'], ['jayemdae-tome', 'Jayemdae Tome'],
+  ['meekstone', 'Meekstone'], ['mox-emerald', 'Mox Emerald'], ['mox-jet', 'Mox Jet'], ['mox-pearl', 'Mox Pearl'],
+  ['mox-ruby', 'Mox Ruby'], ['mox-sapphire', 'Mox Sapphire'], ['nevinyrrals-disk', "Nevinyrral's Disk"], ['royal-assassin', 'Royal Assassin'],
+  ['sengir-vampire', 'Sengir Vampire'], ['savannah-lions', 'Savannah Lions'], ['sol-ring', 'Sol Ring'], ['stasis', 'Stasis'],
+  ['white-knight', 'White Knight'],
 ];
 
 async function json(url) {
@@ -37,24 +53,24 @@ async function image(url, destination) {
 
 const provenance = [];
 for (const family of ['pokemon', 'yugioh', 'magic']) await mkdir(path.join(root, family), { recursive: true });
-for (const [slug, number] of pokemon) {
+for (const [slug, title, number] of pokemon) {
   const url = `https://images.pokemontcg.io/base1/${number}_hires.png`;
   await image(url, path.join(root, 'pokemon', `${slug}.png`));
-  provenance.push({ franchise: 'Pokémon', slug, source: url, card: `base1/${number}` });
+  provenance.push({ franchise: 'Pokémon', slug, title, source: url, card: `base1/${number}` });
 }
 for (const [slug, name] of yugioh) {
   const result = await json(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${encodeURIComponent(name)}`);
   const card = result.data[0], url = card.card_images[0].image_url;
   await image(url, path.join(root, 'yugioh', `${slug}.jpg`));
-  provenance.push({ franchise: 'Yu-Gi-Oh!', slug, source: url, card: String(card.id) });
+  provenance.push({ franchise: 'Yu-Gi-Oh!', slug, title: name, source: url, card: String(card.id) });
 }
 for (const [slug, name] of magic) {
   const card = await json(`https://api.scryfall.com/cards/named?exact=${encodeURIComponent(name)}`);
   const url = card.image_uris?.large;
   if (!url) throw new Error(`No single-face image for ${name}`);
   await image(url, path.join(root, 'magic', `${slug}.jpg`));
-  provenance.push({ franchise: 'Magic: The Gathering', slug, source: url, card: card.id, set: card.set_name });
-  await new Promise(resolve => setTimeout(resolve, 80));
+  provenance.push({ franchise: 'Magic: The Gathering', slug, title: name, source: url, card: card.id, set: card.set_name });
+  await new Promise(resolve => setTimeout(resolve, 500));
 }
 await writeFile(path.join(root, 'sources.json'), `${JSON.stringify(provenance, null, 2)}\n`);
-console.log(`Downloaded ${provenance.length} non-holo cards.`);
+console.log(`Downloaded ${provenance.length} additional non-holo cards.`);
