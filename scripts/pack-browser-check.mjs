@@ -26,6 +26,25 @@ try {
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
   await page.getByRole('button', { name: 'Open a pack' }).click(); await waitState('PackReady');
   assert.equal(await page.evaluate(() => document.querySelector('#ui').inert), true);
+  assert.deepEqual((await state()).orientation, [0, 0, 0, 1], 'pack starts upright');
+  const containment = await page.evaluate(() => {
+    const h = window.__holo;
+    return [0, .25, .5, .75, 1].map(progress => {
+      h.pack.setStage('intro', progress);
+      const wrapperY = h.scene.getObjectByName('Metalized foil wrapper').position.y;
+      return h.pack.stats().meshIds.map(id => {
+        const card = h.scene.getObjectByProperty('uuid', id); return card.position.y - wrapperY;
+      });
+    });
+  });
+  for (const frame of containment) for (const y of frame) assert.ok(y > -.2 && y < 0, 'intro keeps all cards inside the moving wrapper');
+  await page.evaluate(() => window.__holo.pack.setStage('sealed'));
+  await drag(await point(-1.8, 0), await point(5, 0));
+  assert.ok(Math.abs((await state()).orientation[1]) > .35, 'body drag rotates the pack freely');
+  await page.evaluate(() => window.__holo.pack.pose(180));
+  assert.ok(Math.abs((await state()).orientation[1]) > .999, 'pack rotates through its real back');
+  await page.evaluate(() => window.__holo.pack.pose(360));
+  assert.ok(Math.abs((await state()).orientation[3]) > .999, 'full revolution returns to the front');
   const meshes = (await state()).meshIds;
   assert.equal(new Set(meshes).size, 5);
   await page.evaluate(() => window.__holo.pack.setStage('sealed'));
@@ -41,9 +60,28 @@ try {
   await page.screenshot({ path: join(out, 'pointer-stack.png') });
   await drag(await point(0, 0), await point(0, 1));
   await page.waitForTimeout(550); assert.ok((await state()).reveal < .01, 'short reveal drag springs back');
-  await drag(await point(0, 0), await point(0, 4));
+  await page.mouse.click(...await point(0, 0));
   await page.waitForFunction(() => window.__holo.pack.stats().revealed, null, { timeout: 6000 });
   await page.screenshot({ path: join(out, 'pointer-first-reveal.png') });
+  const clearances = await page.evaluate(() => {
+    const h = window.__holo, gaps = [];
+    const project = (mesh, axis) => {
+      const d = mesh.userData.cardInstance.definition.dimensions, values = [];
+      for (const x of [-1, 1]) for (const y of [-1, 1]) for (const z of [-1, 1]) {
+        const p = h.camera.position.clone().set(x*d.width/2, y*d.height/2, z*d.thickness/2).applyQuaternion(mesh.quaternion).add(mesh.position);
+        values.push(p.dot(axis));
+      }
+      return [Math.min(...values), Math.max(...values)];
+    };
+    for (let i = 0; i <= 40; i++) {
+      h.pack.setStage('stack'); h.pack.setRevealProgress(i/40);
+      const ids = h.pack.stats().meshIds, upper = h.scene.getObjectByProperty('uuid', ids[0]), lower = h.scene.getObjectByProperty('uuid', ids[1]);
+      const axis = h.camera.position.clone().set(0, 0, -1).applyQuaternion(lower.quaternion);
+      gaps.push(project(upper, axis)[0] - project(lower, axis)[1]);
+    }
+    h.pack.setStage('reveal', 0); return gaps;
+  });
+  assert.ok(Math.min(...clearances) > 0, `card solids stay separated throughout a turn: ${Math.min(...clearances)}`);
   for (let i = 1; i < 5; i++) {
     await page.evaluate(() => window.__holo.pack.advance());
     assert.equal((await state()).active, i);
@@ -62,6 +100,15 @@ try {
   assert.equal(await page.evaluate(() => window.__holo.factory.stats().instances), 1);
   assert.equal(await page.evaluate(() => document.querySelector('#ui').inert), false);
   await page.screenshot({ path: join(out, 'transferred-viewer-card.png') });
+  await page.waitForTimeout(400);
+  await page.mouse.move(720, 450); await page.waitForTimeout(300);
+  await page.evaluate(() => window.__holo.setMode('rotate'));
+  const originalPose = await page.evaluate(() => window.__holo.stats().quaternion);
+  await page.mouse.click(720, 450); await page.waitForTimeout(750);
+  const flippedPose = await page.evaluate(() => window.__holo.stats().quaternion);
+  assert.ok(Math.abs(originalPose.reduce((sum, n, i) => sum + n*flippedPose[i], 0)) < .01, 'viewer click flips the actual card');
+  await page.mouse.click(40, 450); await page.waitForTimeout(650);
+  assert.deepEqual(await page.evaluate(() => window.__holo.stats().quaternion), flippedPose, 'clicking empty studio does not flip');
   // Race two preload requests, then close; cancelled instances must be released.
   await page.evaluate(async () => { await Promise.all([window.__holo.pack.open(), window.__holo.pack.open()]); });
   assert.equal(await page.evaluate(() => window.__holo.factory.stats().instances), 6);
@@ -75,7 +122,7 @@ try {
   await page.screenshot({ path: join(out, 'reduced-motion-portrait.png') });
   await page.evaluate(() => window.__holo.pack.close());
   assert.equal(await page.evaluate(() => window.__holo.factory.stats().instances), 1);
-  report.push('Direct tear/mouth/extract/reveal drags, spring-back, five separate meshes, keyboard selection, same-mesh viewer transfer, preload races, cleanup and reduced-motion portrait passed.');
+  report.push('Direct tear/mouth/extract/reveal drags, spring-back, five separate meshes, keyboard selection, same-mesh viewer transfer, preload races, cleanup, reduced-motion portrait, 360-degree rotation, click flips, intro containment and 41-point solid clearance check passed.');
   assert.equal(errors.length, 0, errors.join('\n'));
   console.log(JSON.stringify({ report, errors }, null, 2));
 } catch (error) { await page.screenshot({ path: join(out, 'failure.png') }); console.error(error); console.log(JSON.stringify({ state: await state(), errors }, null, 2)); process.exitCode = 1; }

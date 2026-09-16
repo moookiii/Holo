@@ -25,8 +25,8 @@ export class PackUI {
   update(state: PackState, active: number, count: number, revealed: boolean, title: string, busy: boolean) {
     const messages: Record<PackState, [string, string]> = {
       PackIntro: ['STUDIO SELECTION', 'Preparing your collection'],
-      PackReady: ['SEALED · FIVE CARDS', 'Grip the top seam →'],
-      Grip: ['SEALED · FIVE CARDS', 'Drag right to tear →'],
+      PackReady: [`SEALED · ${count} CARDS`, 'Grip the top seam →'],
+      Grip: [`SEALED · ${count} CARDS`, 'Drag right to tear →'],
       Tear: ['OPENING THE SEAL', 'Continue tearing →'],
       OpenWrapper: ['SEAL RELEASED', 'Pull the foil down ↓'],
       ExtractStack: ['YOUR COLLECTION', 'Slide the cards out ↑'],

@@ -11,8 +11,10 @@ export class PointerController {
   private to = new Vector3();
   private turn = new Quaternion();
   private identity = new Quaternion();
+  private clickStart = new Vector2();
+  private clickDistance = 0;
   private disposeHandlers: (() => void)[] = [];
-  constructor(private element: HTMLElement, private motion: CardMotion) {
+  constructor(private element: HTMLElement, private motion: CardMotion, private onClick?: (x: number, y: number) => void) {
     const on = <K extends keyof HTMLElementEventMap>(name: K, handler: (e: HTMLElementEventMap[K]) => void, options?: AddEventListenerOptions) => {
       element.addEventListener(name, handler, options);
       this.disposeHandlers.push(() => element.removeEventListener(name, handler));
@@ -24,6 +26,7 @@ export class PointerController {
       this.pointers.set(e.pointerId, new Vector2(e.clientX, e.clientY));
       this.motion.dragging = true; this.motion.halt();
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
+      this.clickStart.copy(this.previous); this.clickDistance = this.pointers.size > 1 ? 100 : 0;
       if (this.pointers.size === 2) this.pinchDistance = this.distance();
       if (this.motion.mode === 'rotate') element.classList.add('dragging');
       else this.follow(e.clientX, e.clientY);
@@ -37,6 +40,7 @@ export class PointerController {
         return;
       }
       this.pointers.get(e.pointerId)!.set(e.clientX, e.clientY);
+      this.clickDistance = Math.max(this.clickDistance, this.clickStart.distanceTo(new Vector2(e.clientX, e.clientY)));
       if (this.pointers.size >= 2) {
         const d = this.distance();
         if (this.pinchDistance > 0) this.motion.targetZoom = Math.max(0.58, Math.min(1.9, this.motion.targetZoom * this.pinchDistance / d));
@@ -51,6 +55,7 @@ export class PointerController {
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
     });
     const release = (e: PointerEvent) => {
+      const click = this.enabled && e.type === 'pointerup' && this.pointers.size === 1 && this.pointers.has(e.pointerId) && this.clickDistance < 5;
       this.pointers.delete(e.pointerId);
       if (this.pointers.size === 1) {
         const p = this.pointers.values().next().value!;
@@ -60,6 +65,7 @@ export class PointerController {
         this.motion.dragging = false; element.classList.remove('dragging');
         if (e.timeStamp - this.lastTime > 80 || e.type === 'pointercancel') this.motion.velocity.set(0, 0, 0);
         if (e.pointerType === 'touch' || e.type === 'pointercancel') this.motion.setHover(0, 0);
+        if (click) this.onClick?.(e.clientX, e.clientY);
       }
     };
     on('pointerup', release); on('pointercancel', release); on('lostpointercapture', release);
