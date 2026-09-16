@@ -1,4 +1,4 @@
-import { Quaternion, type PerspectiveCamera, type Scene } from 'three/webgpu';
+import { Group, Quaternion, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import { CardMotion } from '../input/Motion';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
@@ -65,11 +65,12 @@ export class PackOpeningController {
   static async create(definition: PackDefinition, seed: number, deps: PackDependencies) {
     const contents = resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
-    const total = definitions.length * 2 + 2;
+    const total = definitions.length + 2;
     let ready = 0; deps.progress?.(0, total);
-    // Prepare card assets concurrently, but defer GPU compilation until the shared
-    // renderer has one card at a time. Parallel compileAsync calls contend for the
-    // same shader compiler and are slower on WebGPU and fallback backends.
+    // Prepare card assets concurrently, then compile the complete opening in one
+    // renderer traversal. Separate compileAsync calls repeat renderer setup and
+    // pipeline-cache waits for every card; one group pass prepares the same set of
+    // materials without that serial barrier.
     const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets).then(wrapper => {
       deps.progress?.(++ready, total); return wrapper;
     }), ...definitions.map(async card => {
@@ -84,12 +85,10 @@ export class PackOpeningController {
     const wrapper = (results[0] as PromiseFulfilledResult<PackWrapper>).value;
     const cards = results.slice(1).map(result => (result as PromiseFulfilledResult<CardInstance>).value);
     try {
-      for (const card of cards) {
-        deps.signal.throwIfAborted();
-        await deps.factory.compile(card.mesh);
-        deps.progress?.(++ready, total);
-      }
-      await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); deps.progress?.(++ready, total);
+      const opening = new Group();
+      opening.add(wrapper.root, ...cards.map(card => card.mesh));
+      await deps.factory.compile(opening);
+      deps.signal.throwIfAborted(); deps.progress?.(++ready, total);
     } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); throw error; }
     return new PackOpeningController(definition, contents, cards, wrapper, deps, seed);
   }
