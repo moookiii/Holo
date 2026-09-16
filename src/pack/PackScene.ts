@@ -37,14 +37,20 @@ export class PackScene {
       const position = new Vector3(variation.x, -.12 + variation.y, (this.cards.length - 1 - i) * .042 - .09);
       let q = packQ.clone().multiply(orientation(Math.PI + variation.yaw, variation.pitch));
       position.applyQuaternion(packQ); position.y += p.extract * 7.4 * (1 - extracted);
-      if (extracted > 0) q.slerp(orientation(Math.PI + variation.yaw, variation.pitch, -.025), extracted);
+      if (extracted > 0) {
+        q.slerp(orientation(Math.PI - .25 + variation.yaw, .10 + variation.pitch, -.025), extracted);
+        position.x += i * .028 * extracted; position.y -= i * .025 * extracted;
+      }
       if (preview) {
         if (i < p.active) {
-          position.set(-8.3 + i * .13, -.8 + i * .07, -2 - i * .042); q = orientation(-.25, .03, .12 - i * .02);
+          position.set(-14 + i * .06, -1.8 + i * .035, -2.4 - i * .042); q = orientation(-.25, .03, .12 - i * .02);
         } else if (i === p.active) {
           const r = ease(p.reveal);
-          position.y += r * .28; position.z += r * 1.15;
-          q = orientation(mix(Math.PI, -.15, r), mix(0, .035, r), mix(-.025, 0, r));
+          position.y += r * .28 + Math.sin(r * Math.PI) * .65;
+          // Lift toward the lens before turning: the far edge clears every
+          // lower card throughout the 180-degree reveal, including edge-on.
+          position.z += r * 1.15 + Math.sin(r * Math.PI) * 3.6;
+          q = orientation(mix(Math.PI - .25, -.15, r), mix(.10, .035, r), mix(-.025, 0, r));
           if (p.state === 'HitReveal') {
             q = orientation(reduced ? -.12 : mix(-.24, .035, ease(p.hit)), .025, 0);
             position.set(0, .14, 1.15);
@@ -53,9 +59,9 @@ export class PackScene {
       }
       if (p.state === 'PackSummary' || p.state === 'Inspect') {
         const d = i - mid;
-        position.set(d * (portrait ? .78 : 3.35), portrait ? -d * 1.7 : -.28 * d * d, i * .095);
+        position.set(d * (portrait ? .78 : 3.35), portrait ? -d * 1.7 : -.28 * d * d, i * .45);
         q = orientation(d * .035, .045, -d * (portrait ? .055 : .085));
-        if (p.hover === i) { position.y += portrait ? .35 : .85; position.z += 1.6; q = orientation(-.1, .02); }
+        if (p.hover === i) { position.y += portrait ? .35 : .85; position.z += 3; q = orientation(-.1, .02); }
         if (p.state === 'Inspect') {
           if (i === p.selected && this.inspectStart) {
             position.copy(this.inspectStart.position).lerp(new Vector3(), ease(p.inspect));

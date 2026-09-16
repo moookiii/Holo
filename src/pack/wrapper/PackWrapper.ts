@@ -70,8 +70,9 @@ export class PackWrapper {
         const crease = Math.sin(u * 33 + y0 * 2.1) * .013 * Math.pow(Math.abs(u), 5)
           + Math.sin(u * 64 - y0 * 3.6) * .026 * Math.exp(-endDistance * 1.8)
           + Math.sin(u * 14 + y0 * 1.8) * .008 * edge;
-        const crimp = seal * (.01 + .01 * Math.cos(x0 * 105));
-        let z = film.side * (sideDepth * (depth / 2 * (1 - seal) + .014 + crimp) + crease - innerOffset * sideDepth);
+        const crimp = seal * (.008 + .006 * Math.cos(x0 * 70));
+        const weld = ease(endDistance / .055);
+        let z = film.side * (sideDepth * (depth / 2 * (1 - seal) + .014 + crimp) + crease - innerOffset * sideDepth) * weld;
         let y = y0, x = x0;
         const top = ease((y0 - 2.4) / (this.tearHeight - 2.4));
         const free = ease((p.tear * 2 - 1 - u) / .2) * (p.tear > 0 ? 1 : 0);
@@ -90,15 +91,15 @@ export class PackWrapper {
           y -= p.collapse * .2 * edge * Math.sin(y0 * 2);
           z += p.collapse * .07 * edge * Math.sin(y0 * 3 + u * 6);
         }
-        positions.setXYZ(i, x, y, z);
+        positions.setXYZ(i, x, film.strip ? y - this.tearHeight : y, z);
       }
       positions.needsUpdate = true;
       film.mesh.geometry.computeVertexNormals();
       film.mesh.geometry.computeBoundingSphere();
     }
     const r = clamp(p.release);
-    this.strip.position.set(r * 2.3, r * .75 - r * r * 1.5, r * .9);
-    this.strip.quaternion.copy(orientation(r * .45, r * -.25, r * -.34));
+    this.strip.position.set(r * 6.6, this.tearHeight + r * .65 - r * r * 2.8, -r * .4);
+    this.strip.quaternion.copy(orientation(r * .32, r * -.25, r * -.42));
   }
   dispose() { this.root.removeFromParent(); this.films.forEach(f => f.mesh.geometry.dispose()); this.materials.forEach(m => m.dispose()); }
 }

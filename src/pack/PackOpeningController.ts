@@ -53,7 +53,9 @@ export class PackOpeningController {
     this.camera = new PackCameraRig(deps.camera); this.camera.begin();
     this.lights = new PackLighting(deps.lighting, deps.scene);
     this.interaction = new PackInteraction(deps.element, deps.camera, this.presentation, { down: p => this.down(p), move: (p, held) => this.move(p, held), up: cancel => this.up(cancel) });
-    this.ui = new PackUI(definition.name, deps.close, () => this.advance(), () => { void this.audio.unlock(); this.audio.setMuted(!this.audio.muted); return this.audio.muted; });
+    this.ui = new PackUI(definition.name, deps.close, () => this.advance(), () => { void this.audio.unlock(); this.audio.setMuted(!this.audio.muted); return this.audio.muted; }, direction => {
+      if (this.state.value === 'PackSummary') { this.hover = (Math.max(0, this.hover) + direction + this.contents.length) % this.contents.length; }
+    });
   }
   static async create(definition: PackDefinition, seed: number, deps: PackDependencies) {
     const contents = resolvePackContents(definition, seed);
@@ -172,12 +174,12 @@ export class PackOpeningController {
       active: this.active, hit, hover: this.hover, selected: this.selected, inspect, grip: this.grip.value,
       tension: this.tear.velocity, release: ease(this.release), pointerX: this.pointerX.value, pointerY: this.pointerY.value };
     this.presentation.update(pose, dt, portrait, reduced, force);
-    if (state === 'PackSummary') this.camera.frame(portrait ? 10 : this.contents.length * 3.35 + 5, portrait ? 18 : 11, portrait ? -.4 : -.4, 0, 2);
+    if (state === 'PackSummary') this.camera.frame(portrait ? 10.5 : this.contents.length * 3.35 + 5, portrait ? 18 : 11, -.4, 0, 3.5);
     else if (state === 'Inspect') {
       const card = this.presentation.cards[this.selected];
       this.camera.viewer(framingDistance(card.definition.dimensions, orientation(-.10, .025), this.deps.camera.aspect, this.deps.camera.fov, innerHeight));
     } else if (state === 'RevealCard' || state === 'HitReveal') this.camera.frame(8, state === 'HitReveal' ? 9.7 : 10.3, .1, 0, 1.6);
-    else this.camera.frame(9.8, 13 + Math.sin(this.extract.value * Math.PI) * 3.2, this.extract.value * 1.35 * (1 - ease(this.settle)), 0, 1);
+    else this.camera.frame(9.8, 13 + 10.9 * this.extract.value * (1 - ease(this.settle)), this.extract.value * (this.extract.value - .45) * .9 * (1 - ease(this.settle)), 0, 1);
     this.camera.update(dt, force);
     this.lights.update(state === 'HitReveal' ? ease(clamp(this.state.elapsed / .5)) : 0, hit, inspect);
     const titleIndex = state === 'PackSummary' ? this.hover : state === 'Inspect' ? this.selected : this.revealed ? this.active : -1;
