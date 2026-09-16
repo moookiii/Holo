@@ -3,31 +3,41 @@ import type { FieldData, PatternSpec } from './ManufacturingField';
 
 export interface PatternTextures { direction: Texture; relief: Texture; }
 export class PatternCache {
-  private worker = new Worker(new URL('./pattern.worker.ts', import.meta.url), { type: 'module' });
+  private workers: Worker[];
+  private busy = new Set<Worker>();
   private sequence = 0;
   private requests = new Map<number, { resolve: (f: FieldData) => void; reject: (e: Error) => void }>();
   private cache = new Map<string, Promise<PatternTextures>>();
   private textures = new Set<DataTexture>();
   private queue: { id: number; key: string; priority: number; message: unknown; transfers: Transferable[] }[] = [];
-  private busy = false;
   private backgroundPaused = false;
-  constructor() {
-    this.worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string }>) => {
-      this.busy = false;
-      const task = this.requests.get(event.data.id); if (!task) { this.dispatch(); return; }
-      this.requests.delete(event.data.id);
-      if (event.data.error) task.reject(new Error(event.data.error)); else task.resolve(event.data.field);
-      this.dispatch();
-    };
-    this.worker.onerror = e => { for (const r of this.requests.values()) r.reject(new Error(e.message)); this.requests.clear(); this.queue = []; this.busy = false; };
+  constructor(workerCount = 1) {
+    this.workers = Array.from({ length: workerCount }, () => new Worker(new URL('./pattern.worker.ts', import.meta.url), { type: 'module' }));
+    for (const worker of this.workers) {
+      worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string }>) => {
+        this.busy.delete(worker);
+        const task = this.requests.get(event.data.id); if (!task) { this.dispatch(); return; }
+        this.requests.delete(event.data.id);
+        if (event.data.error) task.reject(new Error(event.data.error)); else task.resolve(event.data.field);
+        this.dispatch();
+      };
+      worker.onerror = e => {
+        this.busy.delete(worker);
+        for (const r of this.requests.values()) r.reject(new Error(e.message));
+        this.requests.clear(); this.queue = [];
+      };
+    }
   }
   setBackgroundPaused(paused: boolean) { this.backgroundPaused = paused; this.dispatch(); }
   private dispatch() {
-    if (this.busy) return;
     this.queue.sort((a, b) => b.priority - a.priority || a.id - b.id);
-    if (!this.queue.length || (this.backgroundPaused && this.queue[0].priority < 0)) return;
-    const task = this.queue.shift()!; this.busy = true;
-    this.worker.postMessage(task.message, task.transfers);
+    for (const [index, worker] of this.workers.entries()) {
+      if (this.busy.has(worker) || !this.queue.length) continue;
+      const task = this.queue[0];
+      if (task.priority < 0 && (this.backgroundPaused || index > 0)) continue;
+      this.queue.shift(); this.busy.add(worker);
+      worker.postMessage(task.message, task.transfers);
+    }
   }
   get(spec: PatternSpec, motifTexture?: Texture, priority = 0): Promise<PatternTextures> {
     const key = JSON.stringify([spec, motifTexture?.uuid]);
@@ -56,8 +66,8 @@ export class PatternCache {
     return this.cache.get(key)!;
   }
   dispose() {
-    this.worker.terminate(); for (const r of this.requests.values()) r.reject(new Error('Pattern generation disposed'));
-    this.queue = []; this.busy = false;
+    this.workers.forEach(worker => worker.terminate()); for (const r of this.requests.values()) r.reject(new Error('Pattern generation disposed'));
+    this.queue = []; this.busy.clear();
     for (const t of this.textures) t.dispose(); this.cache.clear(); this.textures.clear(); this.requests.clear();
   }
 }

@@ -15,7 +15,10 @@ import { CardInstance } from './CardInstance';
 export class CardFactory {
   readonly assets = new AssetManager(8);
   readonly maps = new CardMapLoader(this.assets);
-  private patterns = new PatternCache();
+  // Primary and stamp manufacturing fields are independent. Two workers cut
+  // foreground pack preparation latency without allowing idle warmups to fill
+  // both slots (PatternCache reserves the second worker for foreground work).
+  private patterns = new PatternCache(2);
   private geometries = new Map<string, BufferGeometry>();
   private instances = new Set<CardInstance>();
   private disposed = false;
