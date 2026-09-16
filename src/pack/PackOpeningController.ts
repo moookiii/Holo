@@ -1,4 +1,5 @@
-import type { PerspectiveCamera, Scene } from 'three/webgpu';
+import { Quaternion, type PerspectiveCamera, type Scene } from 'three/webgpu';
+import { CardMotion } from '../input/Motion';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
 import type { CardInstance } from '../card/CardInstance';
@@ -15,7 +16,7 @@ import { PackLighting } from './PackLighting';
 import { PackUI } from './PackUI';
 import { clamp, ease, orientation, Spring } from './PackMath';
 
-export type DebugPackStage = 'sealed' | 'gripped' | 'tear' | 'open' | 'extract' | 'stack' | 'reveal' | 'hit' | 'summary';
+export type DebugPackStage = 'intro' | 'sealed' | 'gripped' | 'tear' | 'open' | 'extract' | 'stack' | 'reveal' | 'hit' | 'summary';
 interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
   element: HTMLElement; signal: AbortSignal; close: () => void; inspect: (card: CardInstance) => void;
@@ -43,6 +44,9 @@ export class PackOpeningController {
   private start?: PackPointer;
   private dragBase = 0;
   private handling = false;
+  private packMotion = new CardMotion('rotate');
+  private previousPointer?: PackPointer;
+  private dragDistance = 0;
   private pointerX = new Spring();
   private pointerY = new Spring();
   private frozen = false;
@@ -62,8 +66,11 @@ export class PackOpeningController {
     const contents = resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
     let ready = 0; deps.progress?.(0, definitions.length + 1);
+    // Prepare card assets concurrently, but defer GPU compilation until the shared
+    // renderer has one card at a time. Parallel compileAsync calls contend for the
+    // same shader compiler and are slower on WebGPU and fallback backends.
     const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets), ...definitions.map(async card => {
-      const instance = await deps.factory.create(card, deps.signal); deps.progress?.(++ready, definitions.length + 1); return instance;
+      const instance = await deps.factory.create(card, deps.signal, false); deps.progress?.(++ready, definitions.length + 1); return instance;
     })]);
     const failure = results.find(result => result.status === 'rejected');
     if (failure || deps.signal.aborted) {
@@ -73,17 +80,24 @@ export class PackOpeningController {
     }
     const wrapper = (results[0] as PromiseFulfilledResult<PackWrapper>).value;
     const cards = results.slice(1).map(result => (result as PromiseFulfilledResult<CardInstance>).value);
-    try { await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); deps.progress?.(++ready, definitions.length + 1); }
-    catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); throw error; }
+    try {
+      for (const card of cards) {
+        deps.signal.throwIfAborted();
+        await deps.factory.compile(card.mesh);
+        deps.progress?.(++ready, definitions.length + 1);
+      }
+      await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); deps.progress?.(++ready, definitions.length + 1);
+    } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); throw error; }
     return new PackOpeningController(definition, contents, cards, wrapper, deps, seed);
   }
   private down(p: PackPointer) {
-    this.frozen = false; void this.audio.unlock(); this.start = p;
+    this.frozen = false; void this.audio.unlock(); this.start = this.previousPointer = p; this.dragDistance = 0;
     if (this.state.value === 'PackReady' || this.state.value === 'Grip' || this.state.value === 'Tear') {
       if (p.local && p.local.y > this.presentation.wrapper.tearHeight - .55) {
         if (this.state.value === 'PackReady') this.state.transition('Grip');
+        this.packMotion.reset();
         this.grip.target = 1; this.dragBase = this.tear.target; this.audio.play('tension', .6);
-      } else if (p.local) { this.handling = true; this.audio.play('handle', .3); }
+      } else if (p.local) { this.handling = true; this.packMotion.halt(); this.packMotion.dragging = true; this.audio.play('handle', .3); }
       else this.start = undefined;
     } else if (this.state.value === 'OpenWrapper') { if (p.local) this.dragBase = this.mouth.target; else this.start = undefined; }
     else if (this.state.value === 'ExtractStack') { if (p.card >= 0 || p.local) this.dragBase = this.extract.target; else this.start = undefined; }
@@ -104,8 +118,10 @@ export class PackOpeningController {
     if (!this.start) return;
     this.deps.element.style.cursor = 'grabbing';
     const dx = p.x - this.start.x, dy = p.y - this.start.y;
+    this.dragDistance = Math.max(this.dragDistance, Math.hypot(dx, dy));
     if (this.handling) {
-      this.pointerX.target = clamp(dx / 3, -1, 1); this.pointerY.target = clamp(dy / 3, -1, 1);
+      if (this.previousPointer) this.packMotion.applyRotation(new Quaternion().setFromUnitVectors(this.previousPointer.ball, p.ball), clamp((p.time - this.previousPointer.time) / 1000, .001, .05));
+      this.previousPointer = p;
       this.audio.play('handle', (Math.abs(dx) + Math.abs(dy)) * .15); return;
     }
     if (this.state.value === 'Grip' && dx > .1) { this.state.transition('Tear'); this.audio.play('tear-start', .8, -.5); }
@@ -123,14 +139,15 @@ export class PackOpeningController {
   }
   private up(cancel: boolean) {
     if (this.state.value === 'Grip') this.state.transition('PackReady');
-    if (this.state.value === 'RevealCard' && !this.revealed) this.reveal.target = !cancel && this.reveal.target > .52 ? 1 : 0;
+    if (this.state.value === 'RevealCard' && !this.revealed) this.reveal.target = !cancel && this.start && (this.dragDistance < .10 || this.reveal.target > .52) ? 1 : 0;
+    this.packMotion.dragging = false; if (cancel || this.media.matches) this.packMotion.velocity.set(0, 0, 0);
     this.grip.target = 0; this.pointerX.target = 0; this.pointerY.target = 0; this.handling = false; this.start = undefined;
   }
   advance() {
     if (this.disposed) return;
     void this.audio.unlock(); this.frozen = false;
     switch (this.state.value) {
-      case 'PackReady': this.state.transition('Grip');
+      case 'PackReady': this.packMotion.reset(); this.state.transition('Grip');
       // Accessible equivalent follows the same springs and state boundaries.
       case 'Grip': this.state.transition('Tear'); this.audio.play('tear-start');
       case 'Tear': this.tear.target = 1; break;
@@ -154,6 +171,7 @@ export class PackOpeningController {
     const dt = this.frozen ? 0 : clamp(delta, 0, .06), reduced = this.media.matches;
     const duration = reduced ? .35 : 1.25;
     this.state.elapsed += dt;
+    this.packMotion.update(dt); this.presentation.root.quaternion.copy(this.packMotion.orientation);
     [this.tear, this.mouth, this.extract, this.reveal, this.grip, this.pointerX, this.pointerY].forEach(spring => spring.step(dt));
     if (!this.frozen) {
       if (this.state.value === 'PackIntro' && this.state.elapsed > duration) this.state.transition('PackReady');
@@ -197,6 +215,7 @@ export class PackOpeningController {
   }
   setStage(stage: DebugPackStage, progress = 0) {
     this.frozen = true; this.start = undefined; this.handling = false;
+    this.packMotion.setPose(0, 0); this.packMotion.dragging = false;
     this.tear.snap(0); this.mouth.snap(0); this.extract.snap(0); this.reveal.snap(0); this.grip.snap(0); this.pointerX.snap(0); this.pointerY.snap(0);
     this.active = 0; this.revealed = false; this.settle = 0; this.release = 0; this.hover = -1;
     const afterTear = ['open', 'extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage);
@@ -204,6 +223,7 @@ export class PackOpeningController {
     if (['extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage)) this.mouth.snap(1);
     if (['stack', 'reveal', 'hit', 'summary'].includes(stage)) { this.extract.snap(1); this.settle = 1; }
     switch (stage) {
+      case 'intro': this.state.set('PackIntro'); this.state.elapsed = clamp(progress) * (this.media.matches ? .35 : 1.25); break;
       case 'sealed': this.state.set('PackReady'); break;
       case 'gripped': this.state.set('Grip'); this.grip.snap(1); break;
       case 'tear': this.state.set('Tear'); this.tear.snap(clamp(progress)); this.grip.snap(progress < 1 ? 1 : 0); this.release = progress === 1 ? .18 : 0; break;
@@ -217,9 +237,11 @@ export class PackOpeningController {
     this.update(0, true);
   }
   select(index: number) { this.hover = clamp(index, 0, this.contents.length - 1); this.update(0, true); }
+  setRevealProgress(progress: number) { this.state.set('RevealCard'); this.frozen = true; this.revealed = false; this.reveal.snap(clamp(progress)); this.update(0, true); }
+  pose(yaw: number, pitch = 0, roll = 0) { this.packMotion.setPose(yaw * Math.PI / 180, pitch * Math.PI / 180, roll * Math.PI / 180); this.update(0, true); }
   stats() { return { state: this.state.value, elapsed: this.state.elapsed, frozen: this.frozen, cardCount: this.contents.length, active: this.active, revealed: this.revealed,
     tear: this.tear.value, mouth: this.mouth.value, extract: this.extract.value, reveal: this.reveal.value, reducedMotion: this.media.matches,
-    history: [...this.state.history], cardIds: this.presentation.cards.map(card => card.definition.id), meshIds: this.presentation.cards.map(card => card.mesh.uuid) }; }
+    history: [...this.state.history], orientation: this.packMotion.orientation.toArray(), cardIds: this.presentation.cards.map(card => card.definition.id), meshIds: this.presentation.cards.map(card => card.mesh.uuid) }; }
   dispose(except?: CardInstance) {
     if (this.disposed) return; this.disposed = true;
     this.interaction.dispose(); this.ui.dispose(); this.audio.dispose(); this.lights.restore();

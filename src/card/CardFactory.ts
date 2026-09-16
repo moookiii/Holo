@@ -55,7 +55,7 @@ export class CardFactory {
     await compilation;
   }
 
-  async create(definition: CardDefinition, signal?: AbortSignal): Promise<CardInstance> {
+  async create(definition: CardDefinition, signal?: AbortSignal, compile = true): Promise<CardInstance> {
     const check = () => {
       signal?.throwIfAborted();
       if (this.disposed) throw new Error('Card factory disposed');
@@ -82,7 +82,7 @@ export class CardFactory {
     this.instances.add(instance);
     try {
       instance.mesh.frustumCulled = false;
-      await this.compile(instance.mesh);
+      if (compile) await this.compile(instance.mesh);
       check();
       instance.mesh.frustumCulled = true;
       return instance;
