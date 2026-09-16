@@ -8,10 +8,29 @@ coverage = Image.new('RGB', front.size)
 details = Image.new('L', front.size)
 draw = ImageDraw.Draw(details)
 sx, sy = front.width/1312, front.height/1911
+# A curved, antialiased eye aperture registered to the original 1854 x 2700
+# print. The old six-sided approximation cut across the lid and missed the iris.
+# Supersample only its small bounding region, not the entire card.
+eye_box = (730, 820, 830, 905)
+eye_scale = 8
+eye_tile = Image.new('L', ((eye_box[2]-eye_box[0])*eye_scale, (eye_box[3]-eye_box[1])*eye_scale))
+eye_points = [(739, 894)]
+for c1, c2, end in [
+    ((739, 875), (751, 849), (766, 837)),
+    ((779, 828), (796, 831), (809, 840)),
+    ((819, 849), (812, 872), (801, 881)),
+    ((788, 890), (759, 893), (739, 894)),
+]:
+    start = eye_points[-1]
+    for step in range(1, 49):
+        t = step/48; s = 1-t
+        eye_points.append(tuple(s*s*s*start[i] + 3*s*s*t*c1[i] + 3*s*t*t*c2[i] + t*t*t*end[i] for i in (0, 1)))
+ImageDraw.Draw(eye_tile).polygon([((x-eye_box[0])*eye_scale, (y-eye_box[1])*eye_scale) for x, y in eye_points], fill=255)
+eye = Image.new('L', front.size)
+eye.paste(eye_tile.resize((eye_box[2]-eye_box[0], eye_box[3]-eye_box[1]), Image.Resampling.LANCZOS), eye_box[:2])
 # SDK reference: eye, teeth and claws expose foil as well as the background.
 # Polygons are bounded to each printed detail; brightness preserves their edges.
 for vertices in [
-    [(520,640),(524,605),(547,588),(576,591),(584,611),(567,636)],
     [(347,777),(601,687),(614,713),(525,743),(420,805)],
     [(504,847),(533,810),(546,774),(548,733),(625,705),(631,727),(530,872)],
     [(452,1046),(468,1004),(489,979),(523,975),(496,1020),(457,1084)],
@@ -46,9 +65,11 @@ for y in range(front.height):
             foil = .62 * (1-opacity) + .008
             if details.getpixel((x,y)):
                 detail_ink = smooth(110,195,min(r,g,b))
-                if 520 <= px < 585 and 585 <= py < 641:
-                    detail_ink = .8
                 foil = max(foil,detail_ink*.97)
+            if eye.getpixel((x, y)):
+                # Preserve the printed white catchlights within the blue iris.
+                catchlight = smooth(150, 235, min(r, g, b))
+                foil = max(foil, .776 * eye.getpixel((x, y))/255 * (1-.95*catchlight))
             coverage.putpixel((x, y), (round(foil*255), 0, 0))
 name.save(root / 'name.png')
 coverage.save(root / 'coverage.png')

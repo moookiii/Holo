@@ -1,5 +1,7 @@
 # ASTRA WORKING BEHAVIOR
 
+Always commit after each change and say the commit name in the message.
+
 Treat this as a long-running goal rather than a one-shot coding task.
 
 Work autonomously through the phases.

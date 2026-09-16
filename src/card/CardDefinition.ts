@@ -57,7 +57,7 @@ export interface CardDimensions {
 
 export const DIMENSIONS = {
   standard: { width: 6.3, height: 8.8, thickness: 0.032, cornerRadius: 0.3, bevel: 0.007 },
-  yugioh: { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.28, bevel: 0.006 },
+  yugioh: { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.1, bevel: 0.006 },
 } satisfies Record<string, CardDimensions>;
 
 export interface CardDefinition {
@@ -189,16 +189,36 @@ export const cards: CardDefinition[] = [{
     notes: 'Exact user-selected 2000 × 2920 PNG, retained byte-for-byte. The supplied front supersedes the earlier RA01 scan; authored optical maps are registered to its revised artwork window and title panel. TCG reverse: user-supplied Back-EN.png, used byte-for-byte.',
   },
 }, {
+  id: 'dark-magician-girl', title: 'Dark Magician Girl', franchise: 'Yu-Gi-Oh!',
+  layout: { artwork: [67/549, 147/800, 483/549, 564/800], innerFrame: [.04, .024, .96, .976] },
+  set: 'User supplied · Starlight treatment', number: 'LED6-EN000', dimensions: DIMENSIONS.yugioh,
+  front: '/cards/dark-magician-girl/front.jpg', back: '/cards/yugioh/back-en.png',
+  maps: {
+    coverage: '/cards/dark-magician-girl/coverage.png?v=4', surface: '/cards/dark-magician-girl/surface.png?v=4',
+    metallic: '/cards/dark-magician-girl/name.png?v=4', secondaryFoil: '/cards/dark-magician-girl/name.png?v=4',
+    height: '/cards/dark-magician-girl/height.png?v=4', roughness: '/cards/dark-magician-girl/roughness.png?v=4', sparkle: '/cards/dark-magician-girl/sparkle.png?v=4',
+    laminate: '/cards/dark-magician-girl/laminate.png?v=4', stamp: '/cards/dark-magician-girl/stamp.svg?v=4',
+    extendedFoil: '/cards/dark-magician-girl/extended-foil.png?v=4', pattern: '/cards/dark-magician-girl/pattern.png?v=4',
+    hologram: '/cards/dark-magician-girl/hologram.png?v=4',
+  },
+  mapSettings: { roughnessMode: 'offset', embossStrength: .18 },
+  profile: 'ygo-starlight', seed: 200006,
+  source: {
+    image: 'User supplied: dark_magician_girl_by_masaki2709_ddozokf-fullview.jpg',
+    metadata: 'Printed identifier in the supplied front: LED6-EN000; second supplied image shows LDS3-EN082 as the foil reference.',
+    notes: 'The supplied LDS3-EN082 photograph guides a broad spectral background, fine satin silver reflections, protected character ink and white motes, independent gold title and security stamp. The supplied print and hand-authored coverage are retained unchanged. Registered height, roughness, sparkle and laminate layers separate the character, foil and rules. Secret treatments use independent title foil; parallel treatments use a protected frame mask; Ghost uses a separate artwork depth/window map. These alternate finishes and relief are viewer studies, not claims about the LED6 printing. Angular matching remains unverified.',
+  },
+}, {
   id: 'ip-masquerena', title: 'I:P Masquerena', franchise: 'Yu-Gi-Oh!',
   layout: { artwork: [.12, 136/733, .884, 518/733], innerFrame: [.05, .037, .952, .959] },
-  set: 'User supplied · Starlight treatment', number: 'LAVD-EN033', dimensions: DIMENSIONS.yugioh,
+  set: 'User supplied · Prismatic Collector treatment', number: 'LAVD-EN033', dimensions: DIMENSIONS.yugioh,
   front: '/cards/ip-masquerena/front.png', back: '/cards/yugioh/back-en.png',
   maps: { coverage: '/cards/ip-masquerena/coverage.svg', extendedFoil: '/cards/ip-masquerena/extended-foil.svg', metallic: '/cards/ip-masquerena/name.png', secondaryFoil: '/cards/ip-masquerena/name.png', height: '/cards/ip-masquerena/height.svg', hologram: '/cards/ip-masquerena/hologram.svg', laminate: '/cards/ip-masquerena/laminate.svg', stamp: '/cards/ip-masquerena/stamp.svg' },
-  profile: 'ygo-starlight', seed: 2019,
+  profile: 'ygo-prismatic-collector', seed: 2019,
   source: {
     image: 'User supplied: codex-clipboard-ab4d5092-52a1-46f9-bb3b-2181f2e3d6e9.png',
     metadata: 'Printed identifier in the supplied image: LAVD-EN033',
-    notes: 'Exact user-selected 500 × 733 PNG, retained byte-for-byte. Authored optical maps preserve the character and rules, with independent name and security stamp. Starlight is the selected viewer treatment, not an assertion of the source printing rarity.',
+    notes: 'Exact user-selected 500 × 733 PNG, retained byte-for-byte. Authored optical maps preserve the character and rules, with independent name and security stamp. Prismatic Collector is the selected viewer treatment, not an assertion of the source printing rarity.',
   },
 }, {
   id: 'blue-eyes', title: 'Blue-Eyes White Dragon', franchise: 'Yu-Gi-Oh!',
