@@ -52,7 +52,12 @@ export class CardMapLoader {
       needsAnniversary ? this.assets.load('/materials/ygo-25th.webp', false) : Promise.resolve(undefined),
     ]);
     let result: Pick<CardMaterialMaps, 'coverage' | 'surface' | 'pattern' | 'hologram'> = { coverage: coverage!, surface: surface!, pattern: this.assets.white };
-    {
+    const packedInputs = PACKED_MAP_KEYS.some(name => !!paths[name]);
+    // Plain print cards have no channels to combine. Reuse the shared 1 x 1
+    // defaults instead of sending an empty 1024px job through the bitmap and
+    // packing pipeline, then allocating three redundant GPU textures. This is
+    // the common pack-opening path (four commons plus one foil).
+    if (packedInputs || anniversary || wholeFront) {
       const images: Partial<Record<PackedMapKey, ImageBitmap>> = {};
       let anniversaryImage: ImageBitmap | undefined;
       try {
