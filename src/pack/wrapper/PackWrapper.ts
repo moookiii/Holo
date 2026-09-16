@@ -178,7 +178,7 @@ export class PackWrapper {
     }
     if (this.detached && this.detachedOrigin) {
       const drift = p.mouth * .35 + p.collapse * 1.9;
-      this.strip.position.copy(this.detachedOrigin.position).add(new Vector3(-p.mouth * .5 - p.collapse * .7, -drift, -p.mouth * .16));
+      this.strip.position.copy(this.detachedOrigin.position).add(new Vector3(p.mouth * .5 + p.collapse * .7, -drift, -p.mouth * .16));
       this.strip.quaternion.copy(this.detachedOrigin.quaternion).multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), p.mouth * .24 + p.collapse * .38));
     }
     this.strip.visible = this.root.visible;
