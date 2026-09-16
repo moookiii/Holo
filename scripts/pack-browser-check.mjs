@@ -8,11 +8,15 @@ let executablePath = process.env.BROWSER_EXECUTABLE || chromium.executablePath()
 if (!existsSync(executablePath)) for (const version of (await readdir(base)).filter(v => /^chromium-\d+$/.test(v)).sort().reverse()) {
   const candidate = join(base, version, 'chrome-win64', 'chrome.exe'); if (existsSync(candidate)) { executablePath = candidate; break; }
 }
-const out = join(process.cwd(), 'artifacts', 'pack-interaction'); await mkdir(out, { recursive: true });
+const backend = process.env.PACK_BACKEND || 'webgpu';
+const out = join(process.cwd(), 'artifacts', process.env.PACK_CHECK || 'pack-interaction'); await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 1 });
-const errors = [], report = [];
-page.on('pageerror', error => errors.push(error.stack)); page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
+const errors = [], warnings = [], report = [];
+page.on('pageerror', error => errors.push(error.stack)); page.on('console', message => {
+  if (message.type() === 'error') errors.push(message.text());
+  if (message.type() === 'warning') warnings.push(message.text());
+});
 const state = () => page.evaluate(() => window.__holo.pack.stats());
 const waitState = async name => { await page.waitForFunction(name => window.__holo.pack.stats().state === name, name, { timeout: 90000 }); };
 const point = async (x, y, wrapper = false) => page.evaluate(([x, y, wrapper]) => {
@@ -22,8 +26,9 @@ const point = async (x, y, wrapper = false) => page.evaluate(([x, y, wrapper]) =
 }, [x, y, wrapper]);
 const drag = async (from, to, steps = 35) => { await page.mouse.move(...from); await page.mouse.down(); await page.mouse.move(...to, { steps }); await page.mouse.up(); await page.waitForTimeout(180); };
 try {
-  await page.goto(`http://127.0.0.1:5173/?backend=${process.env.PACK_BACKEND || 'webgpu'}`);
+  await page.goto(`http://127.0.0.1:5173/?backend=${backend}`);
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
+  assert.equal(await page.evaluate(() => window.__holo.stats().backend), backend === 'webgpu' ? 'WebGPUBackend' : 'WebGLBackend', 'the requested backend must actually render the test');
   await page.getByRole('button', { name: 'Open a pack' }).click(); await waitState('PackReady');
   assert.equal(await page.evaluate(() => document.querySelector('#ui').inert), true);
   assert.deepEqual((await state()).orientation, [0, 0, 0, 1], 'pack starts upright');
@@ -124,7 +129,7 @@ try {
   assert.equal(await page.evaluate(() => window.__holo.factory.stats().instances), 1);
   report.push('Direct tear/mouth/extract/reveal drags, spring-back, five separate meshes, keyboard selection, same-mesh viewer transfer, preload races, cleanup, reduced-motion portrait, 360-degree rotation, click flips, intro containment and 41-point solid clearance check passed.');
   assert.equal(errors.length, 0, errors.join('\n'));
-  console.log(JSON.stringify({ report, errors }, null, 2));
+  console.log(JSON.stringify({ backend, report, errors, warnings }, null, 2));
 } catch (error) { await page.screenshot({ path: join(out, 'failure.png') }); console.error(error); console.log(JSON.stringify({ state: await state(), errors }, null, 2)); process.exitCode = 1; }
-finally { await writeFile(join(out, 'report.json'), JSON.stringify({ report, errors }, null, 2)); await browser.close(); }
+finally { await writeFile(join(out, 'report.json'), JSON.stringify({ backend, passed: process.exitCode !== 1 && report.length > 0, report, errors, warnings }, null, 2)); await browser.close(); }
 
