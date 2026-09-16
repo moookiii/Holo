@@ -1,4 +1,5 @@
 import './styles.css';
+import { Raycaster, Vector2 } from 'three/webgpu';
 import { createRenderer } from './rendering/StudioRenderer';
 import { StudioLighting } from './lighting/StudioLighting';
 import { cards as builtInCards, type CardDefinition } from './card/CardDefinition';
@@ -34,7 +35,12 @@ async function start() {
   let initialMode: InteractionMode = 'tilt';
   try { if (localStorage.getItem('holo:interaction-mode') === 'rotate') initialMode = 'rotate'; } catch { /* Session preference is optional. */ }
   const motion = new CardMotion(initialMode);
-  const pointer = new PointerController(container, motion);
+  const clickRay = new Raycaster();
+  const pointer = new PointerController(container, motion, (x, y) => {
+    const rect = container.getBoundingClientRect();
+    clickRay.setFromCamera(new Vector2((x - rect.left) / rect.width * 2 - 1, 1 - (y - rect.top) / rect.height * 2), camera);
+    if (card && clickRay.intersectObject(card, false).length) motion.requestFlip();
+  });
   const setMode = (mode: InteractionMode) => {
     pointer.setMode(mode);
     try { localStorage.setItem('holo:interaction-mode', mode); } catch { /* Restricted storage does not affect controls. */ }
@@ -214,6 +220,8 @@ async function start() {
       setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),
       skipToHit: () => pack?.setStage('hit', 0), summary: () => pack?.setStage('summary'),
       select: (index: number) => pack?.select(index), advance: () => pack?.advance(),
+      setRevealProgress: (progress: number) => pack?.setRevealProgress(progress),
+      pose: (yaw: number, pitch = 0, roll = 0) => pack?.pose(yaw, pitch, roll),
       stats: () => pack?.stats() ?? { state: packRequest ? 'Loading' : 'Closed' },
     },
     material: () => card.material[0] as HolographicMaterial,
@@ -225,7 +233,8 @@ async function start() {
     hideUI: () => { document.querySelector<HTMLElement>('#ui')!.style.display = 'none'; },
   };
   Object.assign(window, { __holo: debug });
-  for (const profile of profiles.filter(p => p.family === definition.franchise)) void prepareProfile(profile, definition, -1).catch(console.warn);
+  // Do not queue every franchise profile at startup: pack loading and user card changes
+  // must get exclusive access to the pattern worker. Profiles are prepared on demand.
   let lab: { dispose: () => void } | undefined;
   if (new URLSearchParams(location.search).has('lab')) {
     const { createMaterialLab } = await import('./debug/MaterialLab');
