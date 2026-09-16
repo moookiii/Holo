@@ -7,8 +7,8 @@ import { WrapperPicking } from './WrapperPicking';
 import { createLiningMaterial, createWrapperMaterial } from './PackWrapperMaterial';
 
 export interface WrapperPose { tear: number; mouth: number; grip: number; collapse: number; tension: number; release: number; }
-interface Film { mesh: Mesh; side: number; inner: boolean; strip: boolean; }
-interface CutRim { mesh: Mesh; outer: Film; inner: Film; start: number; count: number; }
+interface Film { mesh: Mesh; side: number; inner: boolean; strip: boolean; nx: number; ny: number; }
+interface CutRim { mesh: Mesh; count: number; torn: boolean; }
 /** Two film skins with folded sides, metalized inner faces and welded end seals.
  * The tear is a shared jagged boundary. Its separated region curls continuously
  * behind the moving tear front; it becomes a free piece only at full separation. */
@@ -47,33 +47,50 @@ export class PackWrapper {
     wrapper.deform({ tear: 0, mouth: 0, grip: 0, collapse: 0, tension: 0, release: 0 });
     return wrapper;
   }
-  private jagged(u: number) { return .019 * Math.sin(u * 127) + .012 * Math.sin(u * 291) + .009 * Math.sin(u * 67); }
+  private jagged(u: number) {
+    // A shallow wandering fracture with small irregular burrs, shared exactly
+    // by body and strip. No repeated scallops or independently jittered faces.
+    return .018 * Math.sin(u * 7.1 + .8) + .009 * Math.sin(u * 137 + Math.sin(u * 23))
+      + .006 * Math.sin(u * 281 + .9) + .008 * Math.sin(u * 49 + 2.4);
+  }
   private addCutRims(material: Material) {
     for (const outer of this.films.filter(film => !film.inner)) {
       const inner = this.films.find(film => film.inner && film.side === outer.side && film.strip === outer.strip)!;
-      const count = 145, start = outer.strip ? 0 : outer.mesh.geometry.getAttribute('position').count - count;
-      const geometry = new BufferGeometry(), indices: number[] = [];
-      geometry.setAttribute('position', new Float32BufferAttribute(new Float32Array(count * 6), 3));
-      for (let i = 0; i < count - 1; i++) indices.push(i * 2, i * 2 + 1, i * 2 + 2, i * 2 + 1, i * 2 + 3, i * 2 + 2);
-      geometry.setIndex(indices);
-      for (const name of ['uv', 'filmCoordinates', 'filmTangentU', 'filmTangentV', 'filmType']) {
-        const source = outer.mesh.geometry.getAttribute(name), values: number[] = [];
-        for (let i = 0; i < count; i++) for (const film of [outer, inner]) {
-          const attr = film.mesh.geometry.getAttribute(name);
-          for (let k = 0; k < attr.itemSize; k++) values.push(name === 'filmType' && k === 1 ? 1 : attr.array[(start + i) * attr.itemSize + k]);
-        }
-        geometry.setAttribute(name, new Float32BufferAttribute(values, source.itemSize));
-      }
-      const positions = geometry.getAttribute('position');
-      for (let i = 0; i < count; i++) for (const [layer, film] of [outer, inner].entries()) {
-        const source = film.mesh.geometry.getAttribute('position');
-        positions.setXYZ(i * 2 + layer, source.getX(start + i), source.getY(start + i), source.getZ(start + i));
-      }
-      geometry.computeVertexNormals();
-      const mesh = new Mesh(geometry, material); mesh.frustumCulled = false;
-      (outer.strip ? this.strip : this.body).add(mesh);
-      this.rims.push({ mesh, outer, inner, start, count });
+      const { nx, ny } = outer, row = nx + 1;
+      const across = Array.from({ length: row }, (_, x) => x);
+      const down = Array.from({ length: ny + 1 }, (_, y) => y * row);
+      this.addRim(outer, inner, across.map(x => x + (outer.strip ? 0 : ny * row)), material, true);
+      // Close the film laminate around the remaining perimeter. These rims
+      // remain visible while sealed, including in a true edge-on view.
+      this.addRim(outer, inner, across.map(x => x + (outer.strip ? ny * row : 0)), material, false);
+      this.addRim(outer, inner, down, material, false);
+      this.addRim(outer, inner, down.map(i => i + nx), material, false);
     }
+  }
+  private addRim(outer: Film, inner: Film, boundary: number[], material: Material, torn: boolean) {
+    const count = boundary.length;
+    const geometry = new BufferGeometry(), indices: number[] = [];
+    geometry.setAttribute('position', new Float32BufferAttribute(new Float32Array(count * 6), 3));
+    for (let i = 0; i < count - 1; i++) indices.push(i * 2, i * 2 + 1, i * 2 + 2, i * 2 + 1, i * 2 + 3, i * 2 + 2);
+    geometry.setIndex(indices);
+    for (const name of ['uv', 'filmCoordinates', 'filmTangentU', 'filmTangentV', 'filmType']) {
+      const source = outer.mesh.geometry.getAttribute(name), values: number[] = [];
+      for (let i = 0; i < count; i++) for (const film of [outer, inner]) {
+        const attr = film.mesh.geometry.getAttribute(name);
+        for (let k = 0; k < attr.itemSize; k++) values.push(name === 'filmType' && k === 1 ? 1 : attr.array[boundary[i] * attr.itemSize + k]);
+      }
+      geometry.setAttribute(name, new Float32BufferAttribute(values, source.itemSize));
+    }
+    const positions = geometry.getAttribute('position');
+    for (let i = 0; i < count; i++) for (const [layer, film] of [outer, inner].entries()) {
+      const source = film.mesh.geometry.getAttribute('position');
+      positions.setXYZ(i * 2 + layer, source.getX(boundary[i]), source.getY(boundary[i]), source.getZ(boundary[i]));
+    }
+    geometry.computeVertexNormals();
+    const mesh = new Mesh(geometry, material); mesh.frustumCulled = false;
+    (outer.strip ? this.strip : this.body).add(mesh);
+    mesh.name = torn ? 'Torn laminate edge' : 'Sealed laminate edge';
+    this.rims.push({ mesh, count, torn });
   }
   private addFilm(strip: boolean, side: number, inner: boolean, material: Material) {
     const nx = 144, ny = strip ? 10 : 80;
@@ -81,7 +98,10 @@ export class PackWrapper {
     for (let iy = 0; iy <= ny; iy++) for (let ix = 0; ix <= nx; ix++) {
       const u = ix / nx * 2 - 1, v = iy / ny;
       const tear = this.tearHeight + this.jagged(u);
-      const y = strip ? tear + (this.dimensions.height / 2 - tear) * v : -this.dimensions.height / 2 + (tear + this.dimensions.height / 2) * v;
+      // Concentrate body rows near the end folds without increasing its mesh
+      // budget. This gives heat-seal shoulders a smooth rolled transition.
+      const bodyV = v - .11 * Math.sin(v * Math.PI * 2);
+      const y = strip ? tear + (this.dimensions.height / 2 - tear) * v : -this.dimensions.height / 2 + (tear + this.dimensions.height / 2) * bodyV;
       const point = this.manufacturedPoint(u, y, side, inner, strip);
       positions.push(...point); coordinates.push(u, y, side, inner ? 1 : 0); types.push(strip ? 1 : 0, 0);
       const step = .0005;
@@ -103,26 +123,37 @@ export class PackWrapper {
     geometry.computeVertexNormals(); geometry.computeBoundingSphere();
     const mesh = new Mesh(geometry, material); mesh.frustumCulled = false;
     (strip ? this.strip : this.body).add(mesh);
-    this.films.push({ mesh, side, inner, strip });
-    if (!inner) this.picking.add(mesh, strip, side);
+    mesh.name = `${strip ? 'Tear strip' : 'Wrapper'} ${side > 0 ? 'front' : 'back'} ${inner ? 'lining' : 'print'}`;
+    this.films.push({ mesh, side, inner, strip, nx, ny });
+    if (!inner) this.picking.add(mesh, strip, side, nx, ny);
   }
   private manufacturedPoint(u: number, y: number, side: number, inner: boolean, strip: boolean) {
     const { width, height, depth } = this.dimensions;
-    const edge = Math.max(.000001, 1 - u * u), x = u * width / 2;
-    const end = height / 2 - Math.abs(y), seal = 1 - ease((end - .48) / .52), sideDepth = edge ** .24;
-    const crease = Math.sin(u * 33 + y * 2.1) * .013 * Math.abs(u) ** 5
-      + Math.sin(u * 64 - y * 3.6) * .026 * Math.exp(-end * 1.8) + Math.sin(u * 14 + y * 1.8) * .008 * edge;
-    const crimp = seal * (.008 + .006 * Math.cos(x * 40));
-    const fin = side < 0 && !inner ? .045 * Math.exp(-((u / .048) ** 2)) * (1 - seal) : 0;
-    const z = side * (sideDepth * (depth / 2 * (1 - seal) + .014 + crimp + crease - (inner ? .007 : 0)) + fin) * ease(end / .055);
+    const edge = Math.max(0, 1 - u * u), x = u * width / 2;
+    const end = height / 2 - Math.abs(y), seal = 1 - ease((end - .48) / .52);
+    // Smoothly close the side fold instead of clamping it to a nonzero gap.
+    // This also avoids an infinite tangent at the edge of the fractional power.
+    const sideDepth = ((edge + .008) ** .24 - .008 ** .24) / (1.008 ** .24 - .008 ** .24);
+    const shoulder = (1 - seal) * Math.exp(-Math.max(0, end - .65) * 1.9);
+    const phase = u * 53 + Math.sin(u * 8 + side * 1.6) * 1.8 + y * (1.3 + u * .4);
+    const crease = Math.sin(u * 31 + y * 2.1 + side) * .010 * Math.abs(u) ** 5
+      + Math.sin(phase) * .018 * shoulder + Math.sin(u * 14 + y * 1.8) * .008 * edge;
+    // Fine parallel jaw impressions retain a pressed flat land at either end.
+    const crimp = seal * (.007 + .004 * Math.cos(x * 34 + .16 * Math.sin(y * 12))) * ease(end / .065);
+    // A folded lap has one raised land and a distinct closing lip. It is not
+    // a round bead down the middle of the reverse print.
+    const lap = ease((x + .23) / .10) * (1 - ease((x - .16) / .045));
+    const fin = side < 0 ? .035 * lap * (1 - seal) : 0;
+    const cavity = Math.max(0, depth / 2 * (1 - seal) + crimp + crease);
+    const z = side * (sideDepth * cavity * ease(end / .065) + fin + (inner ? 0 : .007));
     return [x, strip ? y - this.tearHeight : y, z];
   }
   deform(p: WrapperPose) {
     this.currentPose = p;
     this.deformation.update(p);
     for (const rim of this.rims) {
-      rim.mesh.visible = p.tear > 0;
-      rim.mesh.geometry.setDrawRange(0, Math.max(6, Math.floor(p.tear * (rim.count - 1)) * 6));
+      rim.mesh.visible = !rim.torn || p.tear > 0;
+      if (rim.torn) rim.mesh.geometry.setDrawRange(0, Math.max(6, Math.ceil(clamp(p.tear * 1.1) * (rim.count - 1)) * 6));
     }
     const r = clamp(p.release);
     this.strip.position.set(r * 6.6, this.tearHeight + r * .65 - r * r * 2.8, -r * .4);
