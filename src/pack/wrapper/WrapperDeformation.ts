@@ -13,6 +13,7 @@ export class WrapperDeformation {
   readonly gripU = uniform(-.82);
   readonly tipU = uniform(-.82);
   readonly direction = uniform(1);
+  readonly separated = uniform(0);
   readonly pull = uniform(new Vector2());
   private field: DataTexture;
   private revision = -1;
@@ -25,6 +26,11 @@ export class WrapperDeformation {
     const deform = Fn(([point, coordinates]: [Node<'vec3'>, Node<'vec4'>]) => {
       const u = coordinates.x, y0 = coordinates.y, side = coordinates.z;
       const strip = attribute('filmType', 'vec2').x;
+      // Once the strip is fully separated it keeps its torn curl, but opening
+      // and collapsing the bag no longer flexes the loose piece a second time.
+      const looseStrip = strip.mul(this.separated);
+      const mouth = this.mouth.mul(looseStrip.oneMinus());
+      const collapse = this.collapse.mul(looseStrip.oneMinus());
       const seamY = attribute('filmSeam', 'float');
       const sample = u.add(1).mul(.5 * (path.count - 1)).clamp(0, path.count - 1);
       const first = sample.floor();
@@ -36,14 +42,14 @@ export class WrapperDeformation {
       const gripWeight = u.sub(this.gripU).pow2().mul(-4).exp();
       const tipWeight = u.sub(this.tipU).pow2().mul(-42).exp();
       const pinch = u.sub(this.gripU).pow2().mul(-65).exp().mul(this.grip, top);
-      const lip = eased(y0.sub(tearHeight - .6).div(.6)).mul(edge, this.mouth);
+      const lip = eased(y0.sub(tearHeight - .6).div(.6)).mul(edge, mouth);
       const strain = tipWeight.mul(this.tension.clamp(-1, 1), top, edge, .045);
-      const bodyZ = point.z.add(side.mul(this.mouth, top, edge, .66)).add(side.mul(free, top, edge, .045))
+      const bodyZ = point.z.add(side.mul(mouth, top, edge, .66)).add(side.mul(free, top, edge, .045))
         .sub(side.mul(pinch, .055, edge))
         .add(side.mul(lip, .12)).add(side.mul(strain))
-        .mul(float(1).sub(this.collapse.mul(.74))).add(this.collapse.mul(.07, edge, y0.mul(3).add(u.mul(6)).sin()));
-      const bodyY = point.y.add(field.r.mul(seamBand)).sub(this.mouth.mul(top, edge.pow(.65), mix(.16, 1.42, float(side.greaterThan(0)))))
-        .sub(lip.mul(.055)).sub(this.collapse.mul(.2, edge, y0.mul(2).sin()));
+        .mul(float(1).sub(collapse.mul(.74))).add(collapse.mul(.07, edge, y0.mul(3).add(u.mul(6)).sin()));
+      const bodyY = point.y.add(field.r.mul(seamBand)).sub(mouth.mul(top, edge.pow(.65), mix(.16, 1.42, float(side.greaterThan(0)))))
+        .sub(lip.mul(.055)).sub(collapse.mul(.2, edge, y0.mul(2).sin()));
       // Both surfaces share the pinch and boundary displacement. Only actually
       // fractured columns peel away; untouched spans remain welded exactly.
       const curl = free.mul(peeled.mul(.85).add(.22).add(this.pull.y.mul(.18, gripWeight)));
@@ -83,6 +89,7 @@ export class WrapperDeformation {
   update(pose: WrapperPose) {
     if (this.revision !== this.path.revision) { this.field.needsUpdate = true; this.revision = this.path.revision; }
     this.gripU.value = this.path.gripU; this.tipU.value = this.path.tipU; this.direction.value = this.path.direction;
+    this.separated.value = this.path.progress === 1 ? 1 : 0;
     this.pull.value.set(pose.pullX, pose.pullY);
     this.mouth.value = pose.mouth; this.grip.value = pose.grip;
     this.collapse.value = pose.collapse; this.tension.value = pose.tension;
