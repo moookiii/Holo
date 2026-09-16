@@ -55,7 +55,7 @@ export class CardFactory {
     await compilation;
   }
 
-  async create(definition: CardDefinition, signal?: AbortSignal, compile = true): Promise<CardInstance> {
+  async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0): Promise<CardInstance> {
     const check = () => {
       signal?.throwIfAborted();
       if (this.disposed) throw new Error('Card factory disposed');
@@ -69,7 +69,7 @@ export class CardFactory {
         const image = front.image as HTMLImageElement;
         return this.maps.load(definition, image.width / image.height, profile.watermark === 'quarter-century');
       }),
-      this.prepareProfile(profile, definition),
+      this.prepareProfile(profile, definition, priority),
     ]);
     check();
     const yugioh = definition.franchise === 'Yu-Gi-Oh!';

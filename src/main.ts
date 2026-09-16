@@ -59,15 +59,57 @@ async function start() {
   let pack: PackOpeningController | undefined;
   let packRequest: AbortController | undefined;
   let packSeed = 1741;
+  let warmupRequest: AbortController | undefined;
+  let warmupIdleHandle: number | undefined;
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
+  const warmupCardIds = ['tyranitar-paldea-evolved', 'squirtle-frlg-reverse', 'blue-eyes', 'lugia-neo-genesis', 'dark-magician-girl'];
+  const cancelWarmup = () => {
+    warmupRequest?.abort(); warmupRequest = undefined;
+    if (warmupIdleHandle !== undefined) {
+      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(warmupIdleHandle);
+      else window.clearTimeout(warmupIdleHandle);
+      warmupIdleHandle = undefined;
+    }
+  };
+  const scheduleWarmup = () => {
+    if (disposed || pack || packRequest || !ui) return;
+    cancelWarmup();
+    const start = () => {
+      warmupIdleHandle = undefined;
+      const request = new AbortController(); warmupRequest = request;
+      void (async () => {
+        try {
+          for (const id of warmupCardIds) {
+            if (request.signal.aborted || id === definition.id) continue;
+            const next = cards.find(card => card.id === id);
+            if (!next) continue;
+            const candidate = await factory.create(next, request.signal, false, -1);
+            candidate.dispose();
+          }
+          for (const profile of profiles.filter(profile => profile.family === definition.franchise).slice(0, 2)) {
+            if (request.signal.aborted) break;
+            await prepareProfile(profile, definition, -1);
+          }
+        } catch (error) {
+          if (!request.signal.aborted) console.warn('Idle warmup failed', error);
+        } finally {
+          if (warmupRequest === request) warmupRequest = undefined;
+        }
+      })();
+    };
+    if (typeof window.requestIdleCallback === 'function') warmupIdleHandle = window.requestIdleCallback(start, { timeout: 1800 });
+    else warmupIdleHandle = window.setTimeout(start, 900);
+  };
   const cancelPackLoad = document.createElement('button');
   cancelPackLoad.className = 'pack-load-cancel'; cancelPackLoad.textContent = 'Back to viewer'; cancelPackLoad.hidden = true; loading.append(cancelPackLoad);
   const closePack = () => {
+    cancelWarmup();
     packRequest?.abort(); packRequest = undefined;
     pack?.dispose(); pack = undefined;
     factory.setBackgroundPaused(false);
     card.visible = true; pointer.setEnabled(true); viewerUI.inert = false;
     document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
+    scheduleWarmup();
     document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
   cancelPackLoad.onclick = closePack;
@@ -83,6 +125,7 @@ async function start() {
   };
   const openPack = async (id = 'archive-01') => {
     if (disposed) return;
+    cancelWarmup();
     if (!['archive-01', 'test-pack'].includes(id)) throw new Error(`Unknown pack: ${id}`);
     if (pack || packRequest) closePack();
     const request = new AbortController(); packRequest = request;
@@ -117,19 +160,25 @@ async function start() {
   };
   const prepareProfile = factory.prepareProfile.bind(factory);
   const setProfile = async (id: string) => {
-    const p = resolveCardProfile(definition, id);
-    const generation = ++profileGeneration;
-    const field = await prepareProfile(p, definition);
-    if (generation !== profileGeneration) return;
-    const material = card.material[0] as HolographicMaterial;
-    material.setProfile(p, field); activeProfile = id;
-    ui?.selectProfile(id);
+    cancelWarmup(); factory.setBackgroundPaused(true);
+    try {
+      const p = resolveCardProfile(definition, id);
+      const generation = ++profileGeneration;
+      const field = await prepareProfile(p, definition);
+      if (generation !== profileGeneration) return;
+      const material = card.material[0] as HolographicMaterial;
+      material.setProfile(p, field); activeProfile = id;
+      ui?.selectProfile(id);
+    } finally {
+      factory.setBackgroundPaused(false); scheduleWarmup();
+    }
   };
   const setCard = async (id: string) => {
     const next = cards.find(c => c.id === id);
     if (!next) throw new Error(`Unknown card: ${id}`);
     if (disposed) return;
     const generation = ++loadGeneration;
+    cancelWarmup(); factory.setBackgroundPaused(true);
     requestedCardId = id;
     pendingLoads.set(id, (pendingLoads.get(id) ?? 0) + 1);
     setLoading(true, definition.id === id ? 'Loading card…' : 'Loading next card…');
@@ -151,6 +200,7 @@ async function start() {
         setLoading(false);
       }
       releaseRetiredImports();
+      factory.setBackgroundPaused(false); scheduleWarmup();
     }
   };
   const addImportedCard = async (imported: ImportedCard) => {
@@ -194,6 +244,7 @@ async function start() {
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { void openPack().catch(showError); },
   }, motion.mode, new URLSearchParams(location.search).has('lab'));
+  scheduleWarmup();
   const resize = () => {
     camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(container.clientWidth, container.clientHeight);
@@ -242,7 +293,7 @@ async function start() {
   }
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;
-    packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
+    cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); lab?.dispose();
     factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();
