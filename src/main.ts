@@ -32,8 +32,9 @@ async function start() {
   const cards = [...builtInCards];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);
-  let initialMode: InteractionMode = 'tilt';
-  try { if (localStorage.getItem('holo:interaction-mode') === 'rotate') initialMode = 'rotate'; } catch { /* Session preference is optional. */ }
+  // Start every session in the presentation-friendly tilt mode. The user can
+  // still switch modes explicitly from the interaction menu.
+  const initialMode: InteractionMode = 'tilt';
   const motion = new CardMotion(initialMode);
   const clickRay = new Raycaster();
   const pointer = new PointerController(container, motion, (x, y) => {
