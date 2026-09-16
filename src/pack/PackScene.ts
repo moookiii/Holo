@@ -14,7 +14,7 @@ export class PackScene {
   readonly root = new Group();
   private variations: { x: number; y: number; yaw: number; pitch: number }[];
   private inspectStart?: { position: Vector3; quaternion: ReturnType<typeof orientation> };
-  constructor(readonly cards: CardInstance[], readonly wrapper: PackWrapper, scene: Scene, seed: number) {
+  constructor(readonly cards: CardInstance[], readonly wrapper: PackWrapper, private scene: Scene, seed: number) {
     this.root.name = 'Pack opening'; this.root.add(wrapper.root, ...cards.map(card => card.mesh)); scene.add(this.root);
     const random = randomSequence(seed);
     this.variations = cards.map(() => ({ x: (random() - .5) * .023, y: (random() - .5) * .023, yaw: (random() - .5) * .002, pitch: (random() - .5) * .001 }));
@@ -30,8 +30,8 @@ export class PackScene {
     wrapperPosition.x -= 7 * extracted; wrapperPosition.y += -extracted * 11 + (1 - ease(p.intro)) * 2;
     this.wrapper.root.position.lerp(wrapperPosition, smoothing);
     this.wrapper.root.visible = extracted < .995;
-    this.wrapper.deform({ tear: p.tear, mouth: p.mouth, grip: p.grip, release: p.release, tension: reduced ? 0 : p.tension,
-      collapse: ease((p.extract - .8) / .2), pullX: p.pointerX, pullY: p.pointerY });
+    this.wrapper.deform({ tear: p.tear, mouth: p.mouth, grip: p.grip, extract: p.extract, release: p.release, tension: reduced ? 0 : p.tension,
+      collapse: ease((p.extract - .8) / .2), pullX: p.pointerX, pullY: p.pointerY }, this.scene);
     const mid = (this.cards.length - 1) / 2;
     this.cards.forEach((card, i) => {
       const mesh = card.mesh, variation = this.variations[i];
