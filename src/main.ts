@@ -13,6 +13,7 @@ import { profiles } from './materials/profiles';
 import { resolveCardProfile } from './materials/profiles/resolveCardProfile';
 import type { ImportedCard } from './assets/CardImporter';
 import type { createImportDialog } from './ui/ImportDialog';
+import type { PackOpeningController, DebugPackStage } from './pack/PackOpeningController';
 
 async function start() {
   const container = document.querySelector<HTMLElement>('#studio')!;
@@ -49,6 +50,48 @@ async function start() {
   let ui: ReturnType<typeof createUI> | undefined;
   let importDialog: ReturnType<typeof createImportDialog> | undefined;
   let openingImport = false;
+  let pack: PackOpeningController | undefined;
+  let packRequest: AbortController | undefined;
+  let packSeed = 1741;
+  const viewerUI = document.querySelector<HTMLElement>('#ui')!;
+  const cancelPackLoad = document.createElement('button');
+  cancelPackLoad.className = 'pack-load-cancel'; cancelPackLoad.textContent = 'Back to viewer'; cancelPackLoad.hidden = true; loading.append(cancelPackLoad);
+  const closePack = () => {
+    packRequest?.abort(); packRequest = undefined;
+    pack?.dispose(); pack = undefined;
+    card.visible = true; pointer.setEnabled(true); viewerUI.inert = false;
+    document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
+    document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
+  };
+  cancelPackLoad.onclick = closePack;
+  const inspectPackCard = (instance: CardInstance) => {
+    pack?.dispose(instance); pack = undefined; packRequest = undefined;
+    ++loadGeneration; ++profileGeneration;
+    activeCard.dispose(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
+    motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
+    activeProfile = definition.profile; requestedCardId = definition.id; ui?.selectCard(definition.id); ui?.selectProfile(activeProfile);
+    pointer.setEnabled(true); viewerUI.inert = false; document.body.classList.remove('pack-mode');
+    releaseRetiredImports(); document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
+  };
+  const openPack = async (id = 'archive-01') => {
+    if (disposed) return;
+    if (!['archive-01', 'test-pack'].includes(id)) throw new Error(`Unknown pack: ${id}`);
+    if (pack || packRequest) closePack();
+    const request = new AbortController(); packRequest = request;
+    ++loadGeneration; ++profileGeneration; ui?.close(); pointer.setEnabled(false); viewerUI.inert = true;
+    document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing five physical cards…');
+    try {
+      const [{ PackOpeningController }, { showcasePack }] = await Promise.all([import('./pack/PackOpeningController'), import('./pack/PackDefinition')]);
+      request.signal.throwIfAborted();
+      const candidate = await PackOpeningController.create(showcasePack, packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
+        signal: request.signal, close: closePack, inspect: inspectPackCard });
+      if (request.signal.aborted || disposed) { candidate.dispose(); return; }
+      pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
+    } catch (error) {
+      if (request.signal.aborted) return;
+      closePack(); throw error;
+    }
+  };
   const imports = new Map<string, ImportedCard>();
   const retiredImports = new Set<string>();
   const pendingLoads = new Map<string, number>();
@@ -139,6 +182,7 @@ async function start() {
     flip: () => motion.requestFlip(), reset: () => motion.reset(), mode: setMode,
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
+    pack: () => { void openPack().catch(showError); },
   }, motion.mode, new URLSearchParams(location.search).has('lab'));
   const resize = () => {
     camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix();
@@ -149,15 +193,25 @@ async function start() {
   const frameTimes: number[] = [];
   renderer.setAnimationLoop(() => {
     const now = performance.now(); const dt = (now - last) / 1000; last = now;
-    motion.update(dt); card.quaternion.copy(motion.orientation);
-    camera.position.z = framingDistance(definition.dimensions, motion.orientation, camera.aspect, camera.fov, container.clientHeight) * motion.zoom;
-    camera.position.y = -0.06;
+    if (pack) pack.update(dt);
+    else {
+      motion.update(dt); card.quaternion.copy(motion.orientation);
+      camera.position.z = framingDistance(definition.dimensions, motion.orientation, camera.aspect, camera.fov, container.clientHeight) * motion.zoom;
+      camera.position.y = -0.06;
+    }
     pipeline.render();
     if (frameTimes.length >= 240) frameTimes.shift(); frameTimes.push(dt * 1000);
   });
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
     ready: true, renderer, scene, camera, lighting, motion, factory,
+    pack: {
+      open: openPack, close: closePack, reset: () => openPack(), setSeed: (seed: number) => { packSeed = seed >>> 0; },
+      setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),
+      skipToHit: () => pack?.setStage('hit', 0), summary: () => pack?.setStage('summary'),
+      select: (index: number) => pack?.select(index), advance: () => pack?.advance(),
+      stats: () => pack?.stats() ?? { state: packRequest ? 'Loading' : 'Closed' },
+    },
     material: () => card.material[0] as HolographicMaterial,
     pose: (yaw: number, pitch: number, roll = 0) => motion.setPose(yaw * Math.PI / 180, pitch * Math.PI / 180, roll * Math.PI / 180),
     flip: () => motion.requestFlip(), reset: () => motion.reset(),
@@ -175,6 +229,7 @@ async function start() {
   }
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;
+    packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); lab?.dispose();
     factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();

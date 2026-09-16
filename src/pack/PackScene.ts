@@ -1,0 +1,74 @@
+import { Group, Vector3, type Scene } from 'three/webgpu';
+import type { CardInstance } from '../card/CardInstance';
+import type { PackWrapper } from './wrapper/PackWrapper';
+import type { PackState } from './PackOpeningState';
+import { clamp, ease, mix, orientation } from './PackMath';
+import { randomSequence } from './PackDefinition';
+
+export interface PackPose {
+  state: PackState; intro: number; tear: number; mouth: number; extract: number; settle: number;
+  reveal: number; active: number; hit: number; hover: number; selected: number; inspect: number;
+  grip: number; tension: number; release: number; pointerX: number; pointerY: number;
+}
+export class PackScene {
+  readonly root = new Group();
+  private variations: { x: number; y: number; yaw: number; pitch: number }[];
+  private inspectStart?: { position: Vector3; quaternion: ReturnType<typeof orientation> };
+  constructor(readonly cards: CardInstance[], readonly wrapper: PackWrapper, scene: Scene, seed: number) {
+    this.root.name = 'Pack opening'; this.root.add(wrapper.root, ...cards.map(card => card.mesh)); scene.add(this.root);
+    const random = randomSequence(seed);
+    this.variations = cards.map(() => ({ x: (random() - .5) * .023, y: (random() - .5) * .023, yaw: (random() - .5) * .004, pitch: (random() - .5) * .002 }));
+  }
+  beginInspect(index: number) { const mesh = this.cards[index].mesh; this.inspectStart = { position: mesh.position.clone(), quaternion: mesh.quaternion.clone() }; }
+  update(p: PackPose, dt: number, portrait: boolean, reduced: boolean, snap = false) {
+    const smoothing = snap ? 1 : 1 - Math.exp(-dt * (reduced ? 26 : 14));
+    const preview = ['RevealCard', 'HitReveal', 'PackSummary', 'Inspect'].includes(p.state);
+    const extracted = preview ? 1 : p.settle;
+    const packQ = orientation(-.15 + p.pointerX * .10, .035 + p.pointerY * .05, -.035 + p.pointerX * -.02);
+    this.wrapper.root.quaternion.slerp(packQ, smoothing);
+    const wrapperPosition = new Vector3(mix(0, -7, extracted), -p.extract * 4.8 - extracted * 11 + (1 - ease(p.intro)) * 2, 0);
+    this.wrapper.root.position.lerp(wrapperPosition, smoothing);
+    this.wrapper.root.visible = extracted < .995;
+    this.wrapper.deform({ tear: p.tear, mouth: p.mouth, grip: p.grip, tension: reduced ? 0 : p.tension,
+      collapse: ease((p.extract - .8) / .2), release: p.release });
+    const mid = (this.cards.length - 1) / 2;
+    this.cards.forEach((card, i) => {
+      const mesh = card.mesh, variation = this.variations[i];
+      const position = new Vector3(variation.x, -.12 + variation.y, (this.cards.length - 1 - i) * .042 - .09);
+      let q = packQ.clone().multiply(orientation(Math.PI + variation.yaw, variation.pitch));
+      position.applyQuaternion(packQ); position.y += p.extract * 7.4 * (1 - extracted);
+      if (extracted > 0) q.slerp(orientation(Math.PI + variation.yaw, variation.pitch, -.025), extracted);
+      if (preview) {
+        if (i < p.active) {
+          position.set(-8.3 + i * .13, -.8 + i * .07, -2 - i * .042); q = orientation(-.25, .03, .12 - i * .02);
+        } else if (i === p.active) {
+          const r = ease(p.reveal);
+          position.y += r * .28; position.z += r * 1.15;
+          q = orientation(mix(Math.PI, -.15, r), mix(0, .035, r), mix(-.025, 0, r));
+          if (p.state === 'HitReveal') {
+            q = orientation(reduced ? -.12 : mix(-.24, .035, ease(p.hit)), .025, 0);
+            position.set(0, .14, 1.15);
+          }
+        }
+      }
+      if (p.state === 'PackSummary' || p.state === 'Inspect') {
+        const d = i - mid;
+        position.set(d * (portrait ? .78 : 3.35), portrait ? -d * 1.7 : -.28 * d * d, i * .095);
+        q = orientation(d * .035, .045, -d * (portrait ? .055 : .085));
+        if (p.hover === i) { position.y += portrait ? .35 : .85; position.z += 1.6; q = orientation(-.1, .02); }
+        if (p.state === 'Inspect') {
+          if (i === p.selected && this.inspectStart) {
+            position.copy(this.inspectStart.position).lerp(new Vector3(), ease(p.inspect));
+            q.copy(this.inspectStart.quaternion).slerp(orientation(-.10, .025), ease(p.inspect));
+          } else { position.x += Math.sign(d || 1) * ease(p.inspect) * 22; position.z -= ease(p.inspect) * 5; }
+        }
+      }
+      // A newly exposed card stays a physical card below the leading card.
+      mesh.position.lerp(position, smoothing); mesh.quaternion.slerp(q, smoothing);
+      mesh.visible = true;
+    });
+    this.root.updateMatrixWorld(true);
+  }
+  take(index: number) { const card = this.cards[index]; card.mesh.removeFromParent(); return card; }
+  dispose(except?: CardInstance) { this.root.removeFromParent(); this.wrapper.dispose(); this.cards.forEach(card => { if (card !== except) card.dispose(); }); }
+}

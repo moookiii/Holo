@@ -2,6 +2,7 @@ import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
 import type { CardMotion, InteractionMode } from './Motion';
 
 export class PointerController {
+  private enabled = true;
   private pointers = new Map<number, Vector2>();
   private lastTime = 0;
   private previous = new Vector2();
@@ -17,6 +18,7 @@ export class PointerController {
       this.disposeHandlers.push(() => element.removeEventListener(name, handler));
     };
     on('pointerdown', e => {
+      if (!this.enabled) return;
       if (e.button !== 0) return;
       element.setPointerCapture(e.pointerId);
       this.pointers.set(e.pointerId, new Vector2(e.clientX, e.clientY));
@@ -27,6 +29,7 @@ export class PointerController {
       else this.follow(e.clientX, e.clientY);
     });
     on('pointermove', e => {
+      if (!this.enabled) return;
       if (!this.pointers.has(e.pointerId)) {
         if (e.pointerType === 'mouse' || e.pointerType === 'pen') {
           this.follow(e.clientX, e.clientY);
@@ -62,6 +65,7 @@ export class PointerController {
     on('pointerup', release); on('pointercancel', release); on('lostpointercapture', release);
     on('pointerleave', () => { if (!this.motion.dragging) this.motion.setHover(0, 0); });
     on('wheel', e => {
+      if (!this.enabled) return;
       e.preventDefault();
       const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? element.clientHeight : 1);
       this.motion.targetZoom = Math.max(0.58, Math.min(1.9, this.motion.targetZoom * Math.exp(Math.max(-250, Math.min(250, delta)) * 0.0012)));
@@ -69,6 +73,10 @@ export class PointerController {
     element.dataset.mode = motion.mode;
   }
   setMode(mode: InteractionMode) { this.motion.setMode(mode); this.element.dataset.mode = mode; }
+  setEnabled(enabled: boolean) {
+    this.enabled = enabled;
+    if (!enabled) { this.pointers.clear(); this.motion.dragging = false; this.motion.velocity.set(0, 0, 0); this.element.classList.remove('dragging'); }
+  }
   private follow(x: number, y: number) {
     const rect = this.element.getBoundingClientRect();
     this.motion.setHover((x - rect.left - rect.width / 2) / (rect.width * .42), (y - rect.top - rect.height / 2) / (rect.height * .42));

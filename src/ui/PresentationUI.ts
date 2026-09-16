@@ -11,11 +11,12 @@ interface ViewerActions {
   mode: (mode: InteractionMode) => void;
   importCard: () => void;
   removeCard: (id: string) => void;
+  pack: () => void;
 }
 export interface ProfileOption { id: string; name: string; family: string; labOnly?: boolean; }
 const icon = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
 export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: ProfileOption[], actions: ViewerActions, initialMode: InteractionMode = 'tilt', development = false) {
-  root.innerHTML = `<nav class="controls" aria-label="Card controls">
+  root.innerHTML = `<button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button><nav class="controls" aria-label="Card controls">
     <button id="card-toggle" class="text-control" aria-expanded="false" aria-controls="card-panel">Card ${icon('<path d="m8 10 4 4 4-4"/>')}</button>
     <div class="select-wrap"><select id="holo-select" aria-label="Holographic treatment"></select>${icon('<path d="m8 10 4 4 4-4"/>')}</div>
     <div class="divider"></div>
@@ -29,6 +30,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   <section id="mode-panel" class="popover mode-panel" aria-label="Interaction mode" hidden></section>
   <section id="light-panel" class="popover light-panel" aria-label="Choose lighting" hidden></section>`;
   const select = root.querySelector<HTMLSelectElement>('#holo-select')!;
+  root.querySelector<HTMLButtonElement>('#pack-open')!.onclick = actions.pack;
   let selectedCard = cards[0].id;
   let selectedProfile = cards[0].profile;
   const selectProfile = (id: string) => {
@@ -148,6 +150,7 @@ image.loading = 'lazy';
   });
   const outside = (e: PointerEvent) => { if (!root.contains(e.target as HTMLElement)) close(); };
   const keyboard = (e: KeyboardEvent) => {
+    if (root.inert) return;
     if (document.querySelector('dialog[open]')) return;
     if (e.key === 'Escape') { close(); return; }
     if ((e.target as HTMLElement).matches('input,select,textarea,[contenteditable="true"]')) return;
