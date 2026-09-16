@@ -8,6 +8,7 @@ import { spectrum } from './layers/DiffractionLayer';
 import { radialStructure, gratingDirection } from './layers/PatternLayer';
 import { glints } from './layers/GlintLayer';
 import { angularGrid } from './layers/AngularGridLayer';
+import { starlightGridReflection } from './layers/StarlightLayer';
 import { reliefNormal } from './layers/ReliefLayer';
 import { hologramImage, hologramReconstruction } from './layers/ImageHologramLayer';
 import type { PatternTextures } from './patterns/PatternCache';
@@ -79,8 +80,10 @@ class HolographicLightingModel extends PhysicalLightingModel {
       // Keep derivatives in continuous control flow. Building this expression
       // inside an optional TSL branch can leave shared intermediate values
       // undefined in the subsequently evaluated physical-lighting graph.
-      const selected = angularGrid(momentum, tangentView, geometryBitangent, geometryNormal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth);
-      const grid = mix(float(1), selected.mul(2.4).add(.48), u.gridStrength).toVar();
+      const selected = angularGrid(momentum, tangentView, geometryBitangent, geometryNormal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth, u.gridCrisp);
+      const gridGain = mix(float(2.4), float(4.8), u.gridCrisp);
+      const grid = mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength).toVar();
+      const opticalGrid = mix(grid, float(1), u.gridCrisp);
       const spacing = mix(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5), u.fieldBlend);
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
       const variance = (axis: Node<'vec3'>) => footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
@@ -90,7 +93,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const aperture = exp(transverse.pow2().mul(-0.5)).mul(u.crossWidth.div(angularWidth));
       const etched = mix(structure.engraving, region.details.a, u.fieldBlend);
       const patternCoverage = mix(float(1), region.field.a, u.fieldBlend);
-      const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, grid);
+      const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, opticalGrid);
       const spectral = spectrum(path, u.bandwidth, u.secondary, gratingVariance.mul(u.period.mul(spacing).pow2())).mul(aperture, grooveEnergy, u.strength, u.crossing.oneMinus()).toVar();
       If(u.imageHologram.greaterThan(0), () => {
         spectral.addAssign(hologramReconstruction(light, region.image!, region.imageDepth!, u, variance(tangentView)));
@@ -104,10 +107,12 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
       const sparkle = glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints }, region.seed).mul(this.sparkleCoverage, region.pattern);
+      const starlightGrid = starlightGridReflection(momentum, tangentView, geometryBitangent, selected, u, region.seed)
+        .mul(region.pattern, this.sparkleCoverage);
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
-      const silver = foilNormal.dot(momentum.normalize()).max(0).pow(85).mul(patternCoverage, .25, u.fieldBlend, u.patternedSilver, region.pattern, grid);
+      const silver = foilNormal.dot(momentum.normalize()).max(0).pow(85).mul(patternCoverage, .25, u.fieldBlend, u.patternedSilver, region.pattern, opticalGrid);
       const incident = foilNormal.dot(light).max(0);
       const visible = foilNormal.dot(positionViewDirection).max(0).sqrt();
       // Nacre needs a neutral, broad reflection lobe in addition to its
@@ -116,7 +121,8 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
+      const foil = spectral.add(sparkle.mul(opticalGrid)).add(silver).add(starlightGrid.mul(u.gridCrisp));
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(foil.add(vec3(1, .985, .96).mul(pearlSheen)).mul(region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
     });
   }
   override indirectSpecular(builder: NodeBuilder) {

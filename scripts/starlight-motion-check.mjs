@@ -22,7 +22,9 @@ async function curves(page, screenshot) {
     const canvas = document.createElement('canvas'); canvas.width = im.width; canvas.height = im.height;
     const ctx = canvas.getContext('2d'); ctx.drawImage(im, 0, 0); const pixels = ctx.getImageData(0, 0, im.width, im.height).data;
     const h = window.__holo, d = h.cards.find(c => c.id === 'effect-veiler-ra01').dimensions, rows = [], columns = Array.from({ length: 128 }, () => []);
-    const percentile = list => [...list].sort((a, b) => a - b)[Math.floor(list.length * .2)];
+    // Integrate the isolated grid along each axis. A low percentile deletes
+    // narrow straight cuts when perspective spreads them over adjacent columns.
+    const mean = list => list.reduce((sum, value) => sum + value, 0) / list.length;
     for (let y = 0; y < 180; y++) {
       const row = [];
       for (let x = 0; x < 128; x++) {
@@ -31,13 +33,13 @@ async function curves(page, screenshot) {
         const px = Math.round((p.x + 1) * im.width / 2), py = Math.round((1 - p.y) * im.height / 2);
         const value = pixels[(py * im.width + px) * 4]; row.push(value); columns[x].push(value);
       }
-      rows.push(percentile(row));
+      rows.push(mean(row));
     }
-    return { x: columns.map(percentile), y: rows };
+    return { x: columns.map(mean), y: rows };
   }, screenshot.toString('base64'));
 }
 try {
-  for (const backend of ['webgpu', 'webgl']) {
+  for (const backend of process.env.YGO_BACKEND ? [process.env.YGO_BACKEND] : ['webgpu', 'webgl']) {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
     const errors = []; page.on('pageerror', e => errors.push(e.message)); page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
     await page.goto(`http://127.0.0.1:5173/?backend=${backend}`); await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
@@ -54,7 +56,7 @@ try {
       const normal = normalViewGeometry, bitangent = normal.cross(tangentView).mul(tangentGeometry.w).normalize();
       const lightPosition = cameraViewMatrix.mul(vec4(uniform(h.lighting.key.position), 1)).xyz;
       const momentum = lightPosition.sub(positionView).normalize().add(positionViewDirection);
-      const u = original.optics, response = angularGrid(momentum, tangentView, bitangent, normal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth);
+      const u = original.optics, response = angularGrid(momentum, tangentView, bitangent, normal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth, u.gridCrisp);
       const material = new MeshBasicNodeMaterial(); material.fragmentNode = vec4(vec3(response), 1); material.toneMapped = false;
       object.material[0] = material;
     });
