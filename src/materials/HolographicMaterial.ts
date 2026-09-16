@@ -10,6 +10,7 @@ import { glints } from './layers/GlintLayer';
 import { angularGrid } from './layers/AngularGridLayer';
 import { starlightGridReflection } from './layers/StarlightLayer';
 import { reliefNormal } from './layers/ReliefLayer';
+import { RecessedNameLayer } from './layers/RecessedNameLayer';
 import { hologramImage, hologramReconstruction } from './layers/ImageHologramLayer';
 import type { PatternTextures } from './patterns/PatternCache';
 import { DEFAULT_FOIL_LAYOUT, type CardDefinition } from '../card/CardDefinition';
@@ -138,6 +139,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
 }
 
 export class HolographicMaterial extends MeshPhysicalNodeMaterial {
+  readonly nameRecess?: RecessedNameLayer;
   readonly optics = new OpticalUniforms();
   readonly secondaryOptics = new OpticalUniforms();
   readonly stampOptics = new OpticalUniforms();
@@ -169,7 +171,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private neutralWhite = new DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1, RGBAFormat, UnsignedByteType);
   private neutralHologram = new DataTexture(new Uint8Array([128, 0, 128, 0]), 1, 1, RGBAFormat, UnsignedByteType);
   private regions: OpticalRegion[];
-  constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor']) {
+  constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false) {
     super({ clearcoat: 0.72, clearcoatRoughness: 0.2, metalness: 0.5, roughness: 0.3, envMapIntensity: 0.65 });
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
     this.neutralHologram.needsUpdate = true;
@@ -180,6 +182,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.patternTextureNode = texture(cardMaps?.pattern ?? this.neutralWhite);
     this.normalTextureNode = texture(cardMaps?.normal ?? this.neutralWhite);
     this.printTextureNode = texture(art); this.coverageTextureNode = texture(coverage); this.surfaceTextureNode = texture(surface);
+    this.nameRecess = recessedName ? new RecessedNameLayer(this.coverageTextureNode, this.optics.aspect, this.optics.cardHeight) : undefined;
     const controls = this.surfaceControls;
     controls.hasStamp.value = cardMaps?.hasStamp ? 1 : 0; controls.hasNormal.value = cardMaps?.hasNormal ? 1 : 0;
     controls.hasExtendedFoil.value = cardMaps?.hasExtendedFoil ? 1 : 0;
@@ -234,6 +237,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.colorNode = this.colorNode.mul(absorption.mul(.94).oneMinus());
     const imageCoverage = primary.mul(this.optics.imageHologram).add(secondary.mul(this.secondaryOptics.imageHologram)).add(stamp.mul(this.stampOptics.imageHologram));
     this.colorNode = mix(this.colorNode, vec3(.25, .27, .28), imageCoverage.clamp(0, 1));
+    if (this.nameRecess) this.colorNode = this.colorNode.mul(this.nameRecess.occlusion);
     this.metalnessNode = mix(mix(mix(float(.015), this.optics.metalness, primary), this.secondaryOptics.metalness, secondary), this.stampOptics.metalness, stamp).max(metal.mul(this.inkMetalness));
     const foilRoughness = mix(mix(mix(float(.48), this.optics.roughness, primary), this.secondaryOptics.roughness, secondary), this.stampOptics.roughness, stamp).sub(metal.mul(.12)).max(.12);
     const normalVariance = this.reliefTextureNode.rg.fwidth().length().mul(this.optics.normalVariance, primary)
@@ -254,12 +258,14 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const baseNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
     const varnishStrength = this.optics.varnishRelief.mul(primary).add(this.secondaryOptics.varnishRelief.mul(secondary)).add(this.stampOptics.varnishRelief.mul(stamp));
     this.clearcoatNormalNode = reliefNormal(this.surfaceTextureNode.r, varnishStrength.mul(.008));
+    if (this.nameRecess) this.clearcoatNormalNode = (this.clearcoatNormalNode as Node<'vec3'>).add(this.nameRecess.normal.sub(normalViewGeometry)).normalize();
     const slope = this.reliefTextureNode.rg.sub(.5).mul(this.optics.facetTilt, this.optics.reflectionCoupling, this.optics.fieldBlend, primary)
       .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.reflectionCoupling, this.secondaryOptics.fieldBlend, secondary))
       .add(this.stampReliefTextureNode.rg.sub(.5).mul(this.stampOptics.facetTilt, this.stampOptics.reflectionCoupling, this.stampOptics.fieldBlend, stamp));
     this.normalNode = Fn(() => {
       const normal = baseNormal.toVar();
       const geometryNormal = normalViewGeometry as unknown as Node<'vec3'>;
+      if (this.nameRecess) normal.addAssign(this.nameRecess.normal.sub(geometryNormal));
       // Resolve the geometric frame before optional normal-map control flow.
       // Otherwise TSL can first initialize NORMAL_tangentView inside that branch
       // and later reuse its uninitialized value for manufactured slopes.
