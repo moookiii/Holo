@@ -65,12 +65,15 @@ export class PackOpeningController {
   static async create(definition: PackDefinition, seed: number, deps: PackDependencies) {
     const contents = resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
-    let ready = 0; deps.progress?.(0, definitions.length + 1);
+    const total = definitions.length * 2 + 2;
+    let ready = 0; deps.progress?.(0, total);
     // Prepare card assets concurrently, but defer GPU compilation until the shared
     // renderer has one card at a time. Parallel compileAsync calls contend for the
     // same shader compiler and are slower on WebGPU and fallback backends.
-    const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets), ...definitions.map(async card => {
-      const instance = await deps.factory.create(card, deps.signal, false); deps.progress?.(++ready, definitions.length + 1); return instance;
+    const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets).then(wrapper => {
+      deps.progress?.(++ready, total); return wrapper;
+    }), ...definitions.map(async card => {
+      const instance = await deps.factory.create(card, deps.signal, false); deps.progress?.(++ready, total); return instance;
     })]);
     const failure = results.find(result => result.status === 'rejected');
     if (failure || deps.signal.aborted) {
@@ -84,9 +87,9 @@ export class PackOpeningController {
       for (const card of cards) {
         deps.signal.throwIfAborted();
         await deps.factory.compile(card.mesh);
-        deps.progress?.(++ready, definitions.length + 1);
+        deps.progress?.(++ready, total);
       }
-      await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); deps.progress?.(++ready, definitions.length + 1);
+      await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); deps.progress?.(++ready, total);
     } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); throw error; }
     return new PackOpeningController(definition, contents, cards, wrapper, deps, seed);
   }
