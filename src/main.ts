@@ -106,7 +106,8 @@ async function start() {
       frontReady, assets.load(next.back, true), frontReady.then(front => { const image = front.image as HTMLImageElement; return mapLoader.load(next, image.width / image.height); }), prepareProfile(profile, next),
     ]);
     if (generation !== loadGeneration) return;
-    const holo = new HolographicMaterial(front, maps.coverage, maps.surface, next.seed, profile, next.substrate, maps, next.frontBorderColor, next.franchise === 'Yu-Gi-Oh!');
+    const yugioh = next.franchise === 'Yu-Gi-Oh!';
+    const holo = new HolographicMaterial(front, maps.coverage, maps.surface, next.seed, profile, next.substrate, maps, next.frontBorderColor, yugioh, yugioh);
     holo.setProfile(profile, field); holo.setAspect(next.dimensions.width / next.dimensions.height, next.dimensions.height);
     const backFinish = next.franchise === 'Yu-Gi-Oh!' ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined;
     const materials = [holo, createPrintMaterial(back, assets.black, backFinish, next.backCrop), createEdgeMaterial()];

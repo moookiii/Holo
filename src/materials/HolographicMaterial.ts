@@ -8,9 +8,9 @@ import { spectrum } from './layers/DiffractionLayer';
 import { radialStructure, gratingDirection } from './layers/PatternLayer';
 import { glints } from './layers/GlintLayer';
 import { angularGrid } from './layers/AngularGridLayer';
-import { starlightGridReflection } from './layers/StarlightLayer';
 import { reliefNormal } from './layers/ReliefLayer';
 import { RecessedNameLayer } from './layers/RecessedNameLayer';
+import { StockSurfaceLayer } from './layers/StockSurfaceLayer';
 import { hologramImage, hologramReconstruction } from './layers/ImageHologramLayer';
 import type { PatternTextures } from './patterns/PatternCache';
 import { DEFAULT_FOIL_LAYOUT, type CardDefinition } from '../card/CardDefinition';
@@ -84,7 +84,6 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const selected = angularGrid(momentum, tangentView, geometryBitangent, geometryNormal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth, u.gridCrisp);
       const gridGain = mix(float(2.4), float(4.8), u.gridCrisp);
       const grid = mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength).toVar();
-      const opticalGrid = mix(grid, float(1), u.gridCrisp);
       const spacing = mix(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5), u.fieldBlend);
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
       const variance = (axis: Node<'vec3'>) => footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
@@ -94,7 +93,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const aperture = exp(transverse.pow2().mul(-0.5)).mul(u.crossWidth.div(angularWidth));
       const etched = mix(structure.engraving, region.details.a, u.fieldBlend);
       const patternCoverage = mix(float(1), region.field.a, u.fieldBlend);
-      const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, opticalGrid);
+      const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, grid);
       const spectral = spectrum(path, u.bandwidth, u.secondary, gratingVariance.mul(u.period.mul(spacing).pow2())).mul(aperture, grooveEnergy, u.strength, u.crossing.oneMinus()).toVar();
       If(u.imageHologram.greaterThan(0), () => {
         spectral.addAssign(hologramReconstruction(light, region.image!, region.imageDepth!, u, variance(tangentView)));
@@ -108,12 +107,10 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
       const sparkle = glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints }, region.seed).mul(this.sparkleCoverage, region.pattern);
-      const starlightGrid = starlightGridReflection(momentum, tangentView, geometryBitangent, selected, u, region.seed)
-        .mul(region.pattern, this.sparkleCoverage);
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
-      const silver = foilNormal.dot(momentum.normalize()).max(0).pow(85).mul(patternCoverage, .25, u.fieldBlend, u.patternedSilver, region.pattern, opticalGrid);
+      const silver = foilNormal.dot(momentum.normalize()).max(0).pow(85).mul(patternCoverage, .25, u.fieldBlend, u.patternedSilver, region.pattern, grid);
       const incident = foilNormal.dot(light).max(0);
       const visible = foilNormal.dot(positionViewDirection).max(0).sqrt();
       // Nacre needs a neutral, broad reflection lobe in addition to its
@@ -122,8 +119,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      const foil = spectral.add(sparkle.mul(opticalGrid)).add(silver).add(starlightGrid.mul(u.gridCrisp));
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(foil.add(vec3(1, .985, .96).mul(pearlSheen)).mul(region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
     });
   }
   override indirectSpecular(builder: NodeBuilder) {
@@ -140,6 +136,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
 
 export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   readonly nameRecess?: RecessedNameLayer;
+  readonly stock?: StockSurfaceLayer;
   readonly optics = new OpticalUniforms();
   readonly secondaryOptics = new OpticalUniforms();
   readonly stampOptics = new OpticalUniforms();
@@ -171,7 +168,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private neutralWhite = new DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1, RGBAFormat, UnsignedByteType);
   private neutralHologram = new DataTexture(new Uint8Array([128, 0, 128, 0]), 1, 1, RGBAFormat, UnsignedByteType);
   private regions: OpticalRegion[];
-  constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false) {
+  constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false, coatedStock = false) {
     super({ clearcoat: 0.72, clearcoatRoughness: 0.2, metalness: 0.5, roughness: 0.3, envMapIntensity: 0.65 });
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
     this.neutralHologram.needsUpdate = true;
@@ -183,6 +180,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.normalTextureNode = texture(cardMaps?.normal ?? this.neutralWhite);
     this.printTextureNode = texture(art); this.coverageTextureNode = texture(coverage); this.surfaceTextureNode = texture(surface);
     this.nameRecess = recessedName ? new RecessedNameLayer(this.coverageTextureNode, this.optics.aspect, this.optics.cardHeight) : undefined;
+    this.stock = coatedStock ? new StockSurfaceLayer(seed) : undefined;
     const controls = this.surfaceControls;
     controls.hasStamp.value = cardMaps?.hasStamp ? 1 : 0; controls.hasNormal.value = cardMaps?.hasNormal ? 1 : 0;
     controls.hasExtendedFoil.value = cardMaps?.hasExtendedFoil ? 1 : 0;
@@ -252,12 +250,23 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.clearcoatNode = mix(mix(this.optics.laminate, this.secondaryOptics.laminate, secondary), this.stampOptics.laminate, stamp).mul(mask.a);
     this.clearcoatRoughnessNode = mix(mix(this.optics.laminateRoughness, this.secondaryOptics.laminateRoughness, secondary), this.stampOptics.laminateRoughness, stamp);
     const frame = inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus(), primary, this.optics.frameVarnish);
+    // Authored name and metal masks protect lettering from coating relief.
+    const stockCoverage = metal.max(mask.g).smoothstep(.02, .12).oneMinus();
     this.clearcoatNode = (this.clearcoatNode as Node<'float'>).max(frame);
     this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>, float(.18), frame);
+    if (this.stock) {
+      const stockPaper = primary.max(secondary).max(stamp).oneMinus().mul(inside(layout.artwork).oneMinus(), this.stock.strength, stockCoverage);
+      const stockCoat = stockPaper.mul(.42);
+      this.clearcoatNode = (this.clearcoatNode as Node<'float'>).max(stockCoat);
+      const coatingRoughness = mix(this.clearcoatRoughnessNode as Node<'float'>, float(.24), stockPaper);
+      const texturedRoughness = coatingRoughness.add(this.stock.roughness.mul(.7)).pow2().add(this.stock.variance).sqrt().clamp(.14, .65);
+      this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>, texturedRoughness, stockCoverage);
+    }
     const heightStrength = mix(this.optics.relief.mul(primary).add(this.secondaryOptics.relief.mul(secondary)).add(this.stampOptics.relief.mul(stamp)), controls.embossStrength, controls.embossOverride);
     const baseNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
     const varnishStrength = this.optics.varnishRelief.mul(primary).add(this.secondaryOptics.varnishRelief.mul(secondary)).add(this.stampOptics.varnishRelief.mul(stamp));
     this.clearcoatNormalNode = reliefNormal(this.surfaceTextureNode.r, varnishStrength.mul(.008));
+    if (this.stock) this.clearcoatNormalNode = this.stock.normal(this.clearcoatNormalNode as Node<'vec3'>, stockCoverage.mul(.7));
     if (this.nameRecess) this.clearcoatNormalNode = (this.clearcoatNormalNode as Node<'vec3'>).add(this.nameRecess.normal.sub(normalViewGeometry)).normalize();
     const slope = this.reliefTextureNode.rg.sub(.5).mul(this.optics.facetTilt, this.optics.reflectionCoupling, this.optics.fieldBlend, primary)
       .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.reflectionCoupling, this.secondaryOptics.fieldBlend, secondary))
