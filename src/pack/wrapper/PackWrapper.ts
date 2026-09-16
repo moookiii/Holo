@@ -1,8 +1,9 @@
-import { BufferGeometry, Float32BufferAttribute, Group, Mesh, type Material } from 'three/webgpu';
+import { BufferGeometry, Float32BufferAttribute, Group, Mesh, type Material, type Raycaster } from 'three/webgpu';
 import type { AssetManager } from '../../assets/AssetManager';
 import type { PackDefinition } from '../PackDefinition';
 import { clamp, ease, orientation } from '../PackMath';
 import { WrapperDeformation } from './WrapperDeformation';
+import { WrapperPicking } from './WrapperPicking';
 import { createLiningMaterial, createWrapperMaterial } from './PackWrapperMaterial';
 
 export interface WrapperPose { tear: number; mouth: number; grip: number; collapse: number; tension: number; release: number; }
@@ -20,9 +21,12 @@ export class PackWrapper {
   private rims: CutRim[] = [];
   private materials: Material[] = [];
   private deformation: WrapperDeformation;
+  private picking: WrapperPicking;
+  private currentPose: WrapperPose = { tear: 0, mouth: 0, grip: 0, collapse: 0, tension: 0, release: 0 };
   private constructor(readonly dimensions: PackDefinition['wrapper']) {
     this.tearHeight = dimensions.height / 2 - .92;
     this.deformation = new WrapperDeformation(this.tearHeight);
+    this.picking = new WrapperPicking(this.tearHeight);
     this.root.name = 'Metalized foil wrapper'; this.root.add(this.body, this.strip);
   }
   static async create(definition: PackDefinition, assets: AssetManager) {
@@ -95,6 +99,7 @@ export class PackWrapper {
     const mesh = new Mesh(geometry, material); mesh.frustumCulled = false;
     (strip ? this.strip : this.body).add(mesh);
     this.films.push({ mesh, side, inner, strip });
+    if (!inner) this.picking.add(mesh, strip, side);
   }
   private manufacturedPoint(u: number, y: number, side: number, inner: boolean, strip: boolean) {
     const { width, height, depth } = this.dimensions;
@@ -108,6 +113,7 @@ export class PackWrapper {
     return [x, strip ? y - this.tearHeight : y, z];
   }
   deform(p: WrapperPose) {
+    this.currentPose = p;
     this.deformation.update(p);
     for (const rim of this.rims) {
       rim.mesh.visible = p.tear > 0;
@@ -117,5 +123,6 @@ export class PackWrapper {
     this.strip.position.set(r * 6.6, this.tearHeight + r * .65 - r * r * 2.8, -r * .4);
     this.strip.quaternion.copy(orientation(r * .32, r * -.25, r * -.42));
   }
-  dispose() { this.root.removeFromParent(); this.films.forEach(f => f.mesh.geometry.dispose()); this.rims.forEach(rim => rim.mesh.geometry.dispose()); this.materials.forEach(m => m.dispose()); }
+  raycast(ray: Raycaster) { return this.root.visible ? this.picking.raycast(ray, this.currentPose) : undefined; }
+  dispose() { this.root.removeFromParent(); this.picking.dispose(); this.films.forEach(f => f.mesh.geometry.dispose()); this.rims.forEach(rim => rim.mesh.geometry.dispose()); this.materials.forEach(m => m.dispose()); }
 }

@@ -30,14 +30,15 @@ export class PackInteraction {
     const rect = this.element.getBoundingClientRect();
     this.ray.setFromCamera(new Vector2((e.clientX - rect.left) / rect.width * 2 - 1, -(e.clientY - rect.top) / rect.height * 2 + 1), this.camera);
     const point = this.ray.ray.intersectPlane(this.plane, new Vector3()) ?? new Vector3();
-    const wrapperHit = this.scene.wrapper.root.visible ? this.ray.intersectObject(this.scene.wrapper.root, true)[0] : undefined;
+    const wrapperHit = this.scene.wrapper.raycast(this.ray);
     const cardHit = this.ray.intersectObjects(this.scene.cards.map(c => c.mesh), false)[0];
+    const wrapperFirst = wrapperHit && (!cardHit || wrapperHit.distance < cardHit.distance);
     const radius = Math.min(rect.width, rect.height) * .42;
     const bx = (e.clientX - rect.left - rect.width / 2) / radius, by = (rect.top + rect.height / 2 - e.clientY) / radius;
     const distance = bx * bx + by * by;
     const ball = new Vector3(bx, by, distance <= .5 ? Math.sqrt(1 - distance) : .5 / Math.sqrt(distance)).normalize();
-    return { x: point.x, y: point.y, local: wrapperHit ? this.scene.wrapper.root.worldToLocal(wrapperHit.point.clone()) : null,
-      card: cardHit ? this.scene.cards.findIndex(c => c.mesh === cardHit.object) : -1, ball, time: e.timeStamp };
+    return { x: point.x, y: point.y, local: wrapperFirst ? this.scene.wrapper.root.worldToLocal(wrapperHit.point.clone()) : null,
+      card: cardHit && !wrapperFirst ? this.scene.cards.findIndex(c => c.mesh === cardHit.object) : -1, ball, time: e.timeStamp };
   }
   dispose() { this.abort.abort(); this.element.style.cursor = ''; }
 }
