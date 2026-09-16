@@ -127,16 +127,15 @@ async function start() {
   const openPack = async (id = 'archive-01') => {
     if (disposed) return;
     cancelWarmup();
-    if (!['archive-01', 'test-pack'].includes(id)) throw new Error(`Unknown pack: ${id}`);
     if (pack || packRequest) closePack();
     const request = new AbortController(); packRequest = request;
     factory.setBackgroundPaused(true);
     ++loadGeneration; ++profileGeneration; ui?.close(); pointer.setEnabled(false); viewerUI.inert = true;
-    document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing five physical cards…');
+    document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing pack…');
     try {
-      const [{ PackOpeningController }, { showcasePack }] = await Promise.all([import('./pack/PackOpeningController'), import('./pack/PackDefinition')]);
+      const [{ PackOpeningController }, { getPack }] = await Promise.all([import('./pack/PackOpeningController'), import('./pack/PackDefinition')]);
       request.signal.throwIfAborted();
-      const candidate = await PackOpeningController.create(showcasePack, packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
+      const candidate = await PackOpeningController.create(getPack(id), packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
         signal: request.signal, close: closePack, inspect: inspectPackCard,
         progress: (ready, total) => { if (!request.signal.aborted) setLoading(true, `Preparing collection · ${ready} / ${total}`); } });
       if (request.signal.aborted || disposed) { candidate.dispose(); return; }

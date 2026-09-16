@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PackOpeningState } from '../src/pack/PackOpeningState.ts';
-import { resolvePackContents, showcasePack } from '../src/pack/PackDefinition.ts';
+import { getPack, resolvePackContents, showcasePack, testPack } from '../src/pack/PackDefinition.ts';
 import { Spring } from '../src/pack/PackMath.ts';
 
 test('pack state machine rejects skipping physical stages and permits repeated card reveals', () => {
@@ -10,6 +10,14 @@ test('pack state machine rejects skipping physical stages and permits repeated c
   for (const state of ['PackReady', 'Grip', 'PackReady', 'Grip', 'Tear', 'OpenWrapper', 'ExtractStack', 'RevealCard', 'RevealCard', 'HitReveal', 'PackSummary', 'Inspect'] as const) machine.transition(state);
   assert.equal(machine.value, 'Inspect');
   assert.throws(() => machine.transition('Tear'));
+});
+
+test('the registry resolves distinct showcase and test packs', () => {
+  assert.equal(getPack('archive-01'), showcasePack);
+  assert.equal(getPack('test-pack'), testPack);
+  assert.notEqual(testPack.cardCount, showcasePack.cardCount);
+  assert.notDeepEqual(testPack.contents, showcasePack.contents);
+  assert.throws(() => getPack('missing-pack'), /Unknown pack/);
 });
 
 test('pack contents are deterministic, bounded and do not mutate the authored definition', () => {

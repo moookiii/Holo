@@ -13,6 +13,8 @@ export interface PackDefinition {
   order: 'fixed' | 'seeded';
   wrapper: { front: string; back: string; ink: string; width: number; height: number; depth: number };
 }
+const archiveWrapper = { front: '/packs/archive/front.svg', back: '/packs/archive/back.svg', ink: '/packs/archive/ink.svg', width: 7.55, height: 11.8, depth: .66 };
+
 export const showcasePack: PackDefinition = {
   id: 'archive-01', name: 'Archive / 01', category: 'Studio selection', cardCount: 5, seed: 1741,
   order: 'fixed',
@@ -23,8 +25,29 @@ export const showcasePack: PackDefinition = {
     { cardId: 'lugia-neo-genesis', rarity: 'foil' },
     { cardId: 'dark-magician-girl', rarity: 'signature', reveal: 'studio-sweep' },
   ],
-  wrapper: { front: '/packs/archive/front.svg', back: '/packs/archive/back.svg', ink: '/packs/archive/ink.svg', width: 7.55, height: 11.8, depth: .66 },
+  wrapper: archiveWrapper,
 };
+
+/** Small deterministic fixture for interaction and visual regression checks. */
+export const testPack: PackDefinition = {
+  id: 'test-pack', name: 'Test / 01', category: 'Development fixture', cardCount: 3, seed: 91,
+  order: 'fixed',
+  contents: [
+    { cardId: 'nocturne', rarity: 'standard' },
+    { cardId: 'charizard-base-set', rarity: 'foil' },
+    { cardId: 'dark-magician-girl', rarity: 'signature', reveal: 'studio-sweep' },
+  ],
+  // The fixture intentionally reuses the authored archive wrapper until it has
+  // dedicated test artwork; its card contents and timing remain independent.
+  wrapper: archiveWrapper,
+};
+
+export const packRegistry = [showcasePack, testPack] as const;
+export function getPack(id: string) {
+  const pack = packRegistry.find(candidate => candidate.id === id);
+  if (!pack) throw new Error(`Unknown pack: ${id}`);
+  return pack;
+}
 export function randomSequence(seed: number) {
   return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let n = Math.imul(seed ^ seed >>> 15, 1 | seed); n ^= n + Math.imul(n ^ n >>> 7, 61 | n); return ((n ^ n >>> 14) >>> 0) / 4294967296; };
 }
