@@ -180,7 +180,7 @@ export class PackWrapper {
       const drift = p.mouth * .35 + p.collapse * 1.9;
       // The wrapper travels left as the cards extract; send the loose tear
       // strip decisively to the opposite side so it clears the reveal.
-      const right = p.mouth * 6.2 + p.extract * 4 + p.collapse * 1.2;
+      const right = 3.4 + p.mouth * 6.2 + p.extract * 4 + p.collapse * 1.2;
       this.strip.position.copy(this.detachedOrigin.position).add(new Vector3(right, -drift, -p.mouth * .16));
       this.strip.quaternion.copy(this.detachedOrigin.quaternion).multiply(new Quaternion().setFromAxisAngle(new Vector3(0, 0, 1), p.mouth * .24 + p.collapse * .38));
     }
