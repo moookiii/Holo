@@ -34,7 +34,7 @@ export class PackWrapper {
   }
   private jagged(u: number) { return .019 * Math.sin(u * 127) + .012 * Math.sin(u * 291) + .009 * Math.sin(u * 67); }
   private addFilm(strip: boolean, side: number, inner: boolean, material: Material) {
-    const nx = 100, ny = strip ? 10 : 80;
+    const nx = 144, ny = strip ? 10 : 80;
     const positions: number[] = [], uvs: number[] = [], indices: number[] = [];
     for (let iy = 0; iy <= ny; iy++) for (let ix = 0; ix <= nx; ix++) {
       const u = ix / nx * 2 - 1, v = iy / ny;
@@ -70,12 +70,12 @@ export class PackWrapper {
         const crease = Math.sin(u * 33 + y0 * 2.1) * .013 * Math.pow(Math.abs(u), 5)
           + Math.sin(u * 64 - y0 * 3.6) * .026 * Math.exp(-endDistance * 1.8)
           + Math.sin(u * 14 + y0 * 1.8) * .008 * edge;
-        const crimp = seal * (.008 + .006 * Math.cos(x0 * 70));
+        const crimp = seal * (.008 + .006 * Math.cos(x0 * 40));
         const weld = ease(endDistance / .055);
         let z = film.side * (sideDepth * (depth / 2 * (1 - seal) + .014 + crimp) + crease - innerOffset * sideDepth) * weld;
         let y = y0, x = x0;
         const top = ease((y0 - 2.4) / (this.tearHeight - 2.4));
-        const free = ease((p.tear * 2 - 1 - u) / .2) * (p.tear > 0 ? 1 : 0);
+        const free = p.tear >= 1 ? 1 : ease((p.tear * 2 - 1 - u) / .2) * (p.tear > 0 ? 1 : 0);
         if (film.strip) {
           const lift = free * p.tear;
           y += lift * (.40 + (1 - u) * .23);

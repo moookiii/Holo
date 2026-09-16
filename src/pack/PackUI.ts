@@ -15,9 +15,9 @@ export class PackUI {
     sound.onclick = () => { const muted = mute(); sound.textContent = muted ? 'Sound off' : 'Sound on'; sound.setAttribute('aria-pressed', String(muted)); sound.setAttribute('aria-label', muted ? 'Enable pack sound' : 'Mute pack sound'); };
     document.body.append(this.root);
     document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') { e.preventDefault(); close(); return; }
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); select(e.key === 'ArrowLeft' ? -1 : 1); return; }
       if ((e.target as HTMLElement).matches('button,input,select,textarea')) return;
-      if (e.key === 'Escape') { e.preventDefault(); close(); }
       if (e.code === 'Space' || e.key === 'Enter') { e.preventDefault(); if (!e.repeat) advance(); }
     }, { signal: this.abort.signal });
     this.root.tabIndex = -1; this.root.style.outline = 'none'; this.root.focus({ preventScroll: true });

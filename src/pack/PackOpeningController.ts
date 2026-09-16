@@ -19,6 +19,7 @@ export type DebugPackStage = 'sealed' | 'gripped' | 'tear' | 'open' | 'extract' 
 interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
   element: HTMLElement; signal: AbortSignal; close: () => void; inspect: (card: CardInstance) => void;
+  progress?: (ready: number, total: number) => void;
 }
 export class PackOpeningController {
   readonly state = new PackOpeningState();
@@ -54,13 +55,16 @@ export class PackOpeningController {
     this.lights = new PackLighting(deps.lighting, deps.scene);
     this.interaction = new PackInteraction(deps.element, deps.camera, this.presentation, { down: p => this.down(p), move: (p, held) => this.move(p, held), up: cancel => this.up(cancel) });
     this.ui = new PackUI(definition.name, deps.close, () => this.advance(), () => { void this.audio.unlock(); this.audio.setMuted(!this.audio.muted); return this.audio.muted; }, direction => {
-      if (this.state.value === 'PackSummary') { this.hover = (Math.max(0, this.hover) + direction + this.contents.length) % this.contents.length; }
+      if (this.state.value === 'PackSummary') { this.frozen = false; this.hover = (Math.max(0, this.hover) + direction + this.contents.length) % this.contents.length; }
     });
   }
   static async create(definition: PackDefinition, seed: number, deps: PackDependencies) {
     const contents = resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
-    const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets), ...definitions.map(card => deps.factory.create(card, deps.signal))]);
+    let ready = 0; deps.progress?.(0, definitions.length + 1);
+    const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets), ...definitions.map(async card => {
+      const instance = await deps.factory.create(card, deps.signal); deps.progress?.(++ready, definitions.length + 1); return instance;
+    })]);
     const failure = results.find(result => result.status === 'rejected');
     if (failure || deps.signal.aborted) {
       results.forEach(result => { if (result.status === 'fulfilled') result.value.dispose(); });
@@ -69,7 +73,7 @@ export class PackOpeningController {
     }
     const wrapper = (results[0] as PromiseFulfilledResult<PackWrapper>).value;
     const cards = results.slice(1).map(result => (result as PromiseFulfilledResult<CardInstance>).value);
-    try { await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); }
+    try { await deps.factory.compile(wrapper.root); deps.signal.throwIfAborted(); deps.progress?.(++ready, definitions.length + 1); }
     catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); throw error; }
     return new PackOpeningController(definition, contents, cards, wrapper, deps, seed);
   }
@@ -92,7 +96,7 @@ export class PackOpeningController {
   private move(p: PackPointer, held: boolean) {
     if (this.disposed) return;
     if (!held) {
-      if (this.state.value === 'PackSummary') this.hover = p.card;
+      if (this.state.value === 'PackSummary' && this.hover !== p.card) { this.frozen = false; this.hover = p.card; }
       const object = p.local || p.card >= 0;
       this.deps.element.style.cursor = object ? 'grab' : 'default';
       return;
@@ -180,7 +184,7 @@ export class PackOpeningController {
       this.camera.viewer(framingDistance(card.definition.dimensions, orientation(-.10, .025), this.deps.camera.aspect, this.deps.camera.fov, innerHeight));
     } else if (state === 'RevealCard' || state === 'HitReveal') this.camera.frame(8, state === 'HitReveal' ? 9.7 : 10.3, .1, 0, 1.6);
     else this.camera.frame(9.8, 13 + 10.9 * this.extract.value * (1 - ease(this.settle)), this.extract.value * (this.extract.value - .45) * .9 * (1 - ease(this.settle)), 0, 1);
-    this.camera.update(dt, force);
+    this.camera.update(dt, force, reduced);
     this.lights.update(state === 'HitReveal' ? ease(clamp(this.state.elapsed / .5)) : 0, hit, inspect);
     const titleIndex = state === 'PackSummary' ? this.hover : state === 'Inspect' ? this.selected : this.revealed ? this.active : -1;
     this.ui.update(state, this.active, this.contents.length, this.revealed, titleIndex >= 0 ? this.presentation.cards[titleIndex].definition.title : '', state === 'HitReveal' && this.state.elapsed < (reduced ? .4 : 1.8));

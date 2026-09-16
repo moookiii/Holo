@@ -22,7 +22,8 @@ export class PackCameraRig {
     this.z.target = Math.max(height / (2 * tan * safeY), width / (2 * tan * this.camera.aspect * .86)) + depth;
   }
   viewer(distance: number) { this.x.target = 0; this.y.target = -.06; this.z.target = distance; }
-  update(dt: number, snap = false) {
+  update(dt: number, snap = false, reduced = false) {
+    this.x.frequency = this.y.frequency = this.z.frequency = reduced ? 28 : 9;
     if (snap) { this.x.snap(this.x.target); this.y.snap(this.y.target); this.z.snap(this.z.target); }
     this.camera.position.set(this.x.step(dt), this.y.step(dt), this.z.step(dt));
     this.camera.quaternion.slerp(this.orientation, snap ? 1 : 1 - Math.exp(-dt * 10));

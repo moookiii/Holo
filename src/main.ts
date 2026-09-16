@@ -59,6 +59,7 @@ async function start() {
   const closePack = () => {
     packRequest?.abort(); packRequest = undefined;
     pack?.dispose(); pack = undefined;
+    factory.setBackgroundPaused(false);
     card.visible = true; pointer.setEnabled(true); viewerUI.inert = false;
     document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
     document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
@@ -66,6 +67,7 @@ async function start() {
   cancelPackLoad.onclick = closePack;
   const inspectPackCard = (instance: CardInstance) => {
     pack?.dispose(instance); pack = undefined; packRequest = undefined;
+    factory.setBackgroundPaused(false);
     ++loadGeneration; ++profileGeneration;
     activeCard.dispose(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
     motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
@@ -78,13 +80,15 @@ async function start() {
     if (!['archive-01', 'test-pack'].includes(id)) throw new Error(`Unknown pack: ${id}`);
     if (pack || packRequest) closePack();
     const request = new AbortController(); packRequest = request;
+    factory.setBackgroundPaused(true);
     ++loadGeneration; ++profileGeneration; ui?.close(); pointer.setEnabled(false); viewerUI.inert = true;
     document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing five physical cards…');
     try {
       const [{ PackOpeningController }, { showcasePack }] = await Promise.all([import('./pack/PackOpeningController'), import('./pack/PackDefinition')]);
       request.signal.throwIfAborted();
       const candidate = await PackOpeningController.create(showcasePack, packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
-        signal: request.signal, close: closePack, inspect: inspectPackCard });
+        signal: request.signal, close: closePack, inspect: inspectPackCard,
+        progress: (ready, total) => { if (!request.signal.aborted) setLoading(true, `Preparing collection · ${ready} / ${total}`); } });
       if (request.signal.aborted || disposed) { candidate.dispose(); return; }
       pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
     } catch (error) {
@@ -221,7 +225,7 @@ async function start() {
     hideUI: () => { document.querySelector<HTMLElement>('#ui')!.style.display = 'none'; },
   };
   Object.assign(window, { __holo: debug });
-  for (const profile of profiles.filter(p => p.family === definition.franchise)) void prepareProfile(profile, definition).catch(console.warn);
+  for (const profile of profiles.filter(p => p.family === definition.franchise)) void prepareProfile(profile, definition, -1).catch(console.warn);
   let lab: { dispose: () => void } | undefined;
   if (new URLSearchParams(location.search).has('lab')) {
     const { createMaterialLab } = await import('./debug/MaterialLab');

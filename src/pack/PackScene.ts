@@ -24,7 +24,7 @@ export class PackScene {
     const smoothing = snap ? 1 : 1 - Math.exp(-dt * (reduced ? 26 : 14));
     const preview = ['RevealCard', 'HitReveal', 'PackSummary', 'Inspect'].includes(p.state);
     const extracted = preview ? 1 : p.settle;
-    const packQ = orientation(-.15 + p.pointerX * .10, .035 + p.pointerY * .05, -.035 + p.pointerX * -.02);
+    const packQ = orientation(-.15 + (reduced ? 0 : p.pointerX * .10), .035 + (reduced ? 0 : p.pointerY * .05), -.035 + (reduced ? 0 : p.pointerX * -.02));
     this.wrapper.root.quaternion.slerp(packQ, smoothing);
     const wrapperPosition = new Vector3(mix(0, -7, extracted), -p.extract * 4.8 - extracted * 11 + (1 - ease(p.intro)) * 2, 0);
     this.wrapper.root.position.lerp(wrapperPosition, smoothing);
@@ -34,7 +34,7 @@ export class PackScene {
     const mid = (this.cards.length - 1) / 2;
     this.cards.forEach((card, i) => {
       const mesh = card.mesh, variation = this.variations[i];
-      const position = new Vector3(variation.x, -.12 + variation.y, (this.cards.length - 1 - i) * .042 - .09);
+      const position = new Vector3(variation.x, -.12 + variation.y, (mid - i) * .042);
       let q = packQ.clone().multiply(orientation(Math.PI + variation.yaw, variation.pitch));
       position.applyQuaternion(packQ); position.y += p.extract * 7.4 * (1 - extracted);
       if (extracted > 0) {
@@ -43,7 +43,7 @@ export class PackScene {
       }
       if (preview) {
         if (i < p.active) {
-          position.set(-14 + i * .06, -1.8 + i * .035, -2.4 - i * .042); q = orientation(-.25, .03, .12 - i * .02);
+          position.set(-18 + i * .06, -1.8 + i * .035, -2.4 - i * .042); q = orientation(-.25, .03, .12 - i * .02);
         } else if (i === p.active) {
           const r = ease(p.reveal);
           position.y += r * .28 + Math.sin(r * Math.PI) * .65;

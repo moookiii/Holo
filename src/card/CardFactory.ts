@@ -22,14 +22,15 @@ export class CardFactory {
   constructor(private renderer: WebGPURenderer, private camera: Camera,
     private scene: Scene, private target: RenderTarget) {}
 
-  async prepareProfile(profile: HolographicProfile, definition: CardDefinition): Promise<ProfileFields> {
+  setBackgroundPaused(paused: boolean) { this.patterns.setBackgroundPaused(paused); }
+  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0): Promise<ProfileFields> {
     const aspect = definition.dimensions.width / definition.dimensions.height;
     const prepareLayer = async (layer: FoilLayer | undefined, seed: number, motifPath?: string) => {
       if (!layer || layer.structure.field === 'radial') return undefined;
       const motif = layer.structure.field === 'symbol-foil' && motifPath ? await this.assets.load(motifPath, false) : undefined;
       const field = await this.patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
         ...(layer.structure.motif ? { motif: layer.structure.motif } : {}),
-        ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif);
+        ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif, priority);
       if (!this.disposed) { this.renderer.initTexture(field.direction); this.renderer.initTexture(field.relief); }
       return field;
     };

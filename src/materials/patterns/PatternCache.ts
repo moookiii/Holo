@@ -8,16 +8,31 @@ export class PatternCache {
   private requests = new Map<number, { resolve: (f: FieldData) => void; reject: (e: Error) => void }>();
   private cache = new Map<string, Promise<PatternTextures>>();
   private textures = new Set<DataTexture>();
+  private queue: { id: number; key: string; priority: number; message: unknown; transfers: Transferable[] }[] = [];
+  private busy = false;
+  private backgroundPaused = false;
   constructor() {
     this.worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string }>) => {
-      const task = this.requests.get(event.data.id); if (!task) return;
+      this.busy = false;
+      const task = this.requests.get(event.data.id); if (!task) { this.dispatch(); return; }
       this.requests.delete(event.data.id);
       if (event.data.error) task.reject(new Error(event.data.error)); else task.resolve(event.data.field);
+      this.dispatch();
     };
-    this.worker.onerror = e => { for (const r of this.requests.values()) r.reject(new Error(e.message)); this.requests.clear(); };
+    this.worker.onerror = e => { for (const r of this.requests.values()) r.reject(new Error(e.message)); this.requests.clear(); this.queue = []; this.busy = false; };
   }
-  get(spec: PatternSpec, motifTexture?: Texture): Promise<PatternTextures> {
+  setBackgroundPaused(paused: boolean) { this.backgroundPaused = paused; this.dispatch(); }
+  private dispatch() {
+    if (this.busy) return;
+    this.queue.sort((a, b) => b.priority - a.priority || a.id - b.id);
+    if (!this.queue.length || (this.backgroundPaused && this.queue[0].priority < 0)) return;
+    const task = this.queue.shift()!; this.busy = true;
+    this.worker.postMessage(task.message, task.transfers);
+  }
+  get(spec: PatternSpec, motifTexture?: Texture, priority = 0): Promise<PatternTextures> {
     const key = JSON.stringify([spec, motifTexture?.uuid]);
+    const queued = this.queue.find(task => task.key === key);
+    if (queued && queued.priority < priority) { queued.priority = priority; this.dispatch(); }
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
       let motifImage;
       if (motifTexture) {
@@ -29,7 +44,7 @@ export class PatternCache {
         motifImage = { width: 512, height: 512, data };
       }
       const id = ++this.sequence; this.requests.set(id, { resolve, reject });
-      this.worker.postMessage({ id, spec, motifImage }, motifImage ? [motifImage.data.buffer] : []);
+      this.queue.push({ id, key, priority, message: { id, spec, motifImage }, transfers: motifImage ? [motifImage.data.buffer] : [] }); this.dispatch();
     }).then(data => {
       const make = (values: Uint8Array) => {
         const t = new DataTexture(values, data.width, data.height, RGBAFormat, UnsignedByteType);
@@ -42,6 +57,7 @@ export class PatternCache {
   }
   dispose() {
     this.worker.terminate(); for (const r of this.requests.values()) r.reject(new Error('Pattern generation disposed'));
+    this.queue = []; this.busy = false;
     for (const t of this.textures) t.dispose(); this.cache.clear(); this.textures.clear(); this.requests.clear();
   }
 }
