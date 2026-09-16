@@ -32,15 +32,15 @@ export class CardMapLoader {
     };
     this.worker.onerror = event => { for (const request of this.pending.values()) request.reject(new Error(event.message)); this.pending.clear(); };
   }
-  load(card: CardDefinition, aspect: number): Promise<CardMaterialMaps> {
-    const key = JSON.stringify([card.id, card.coverageMode, card.maps, card.mapSettings, card.layout, aspect]);
+  load(card: CardDefinition, aspect: number, needsAnniversary = false): Promise<CardMaterialMaps> {
+    const key = JSON.stringify([card.id, card.coverageMode, card.maps, card.mapSettings, card.layout, aspect, needsAnniversary]);
     this.released.delete(card.id);
     if (!this.keys.has(card.id)) this.keys.set(card.id, new Set());
     this.keys.get(card.id)!.add(key);
-    if (!this.cache.has(key)) this.cache.set(key, this.prepare(card, aspect).catch(error => { this.cache.delete(key); throw error; }));
+    if (!this.cache.has(key)) this.cache.set(key, this.prepare(card, aspect, needsAnniversary).catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
-  private async prepare(card: CardDefinition, aspect: number): Promise<CardMaterialMaps> {
+  private async prepare(card: CardDefinition, aspect: number, needsAnniversary: boolean): Promise<CardMaterialMaps> {
     const paths = resolveCoverageMaps(card);
     const wholeFront = card.imported
       && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
@@ -49,7 +49,7 @@ export class CardMapLoader {
     const [coverage, surface, normal, direction, secondaryDirection, stampDirection, anniversary] = await Promise.all([
       load(paths.coverage, wholeFront ? this.assets.fullFoil : this.assets.black), load(paths.surface, this.assets.neutralSurface), load(paths.normal, this.assets.flatNormal),
       load(paths.direction), load(paths.secondaryDirection), load(paths.stampDirection),
-      this.assets.load('/materials/ygo-25th.webp', false),
+      needsAnniversary ? this.assets.load('/materials/ygo-25th.webp', false) : Promise.resolve(undefined),
     ]);
     let result: Pick<CardMaterialMaps, 'coverage' | 'surface' | 'pattern' | 'hologram'> = { coverage: coverage!, surface: surface!, pattern: this.assets.white };
     {
@@ -60,10 +60,10 @@ export class CardMapLoader {
           const texture = await this.assets.load(paths[name]!, false);
           images[name] = await createImageBitmap(texture.image as HTMLImageElement);
         }
-        anniversaryImage = await createImageBitmap(anniversary!.image as HTMLImageElement);
+        if (anniversary) anniversaryImage = await createImageBitmap(anniversary.image as HTMLImageElement);
         const packed = await new Promise<PackedMaps>((resolve, reject) => {
           const id = ++this.sequence; this.pending.set(id, { resolve, reject });
-          this.worker.postMessage({ id, aspect, images, anniversary: anniversaryImage, defaultPrimary: wholeFront ? 255 : 0 }, [...Object.values(images), anniversaryImage!]);
+          this.worker.postMessage({ id, aspect, images, anniversary: anniversaryImage, defaultPrimary: wholeFront ? 255 : 0 }, [...Object.values(images), ...(anniversaryImage ? [anniversaryImage] : [])]);
         });
         if (this.released.has(card.id)) throw new Error('The imported card was removed.');
         const make = (bytes: Uint8Array) => {

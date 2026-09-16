@@ -65,7 +65,10 @@ export class CardFactory {
     const frontReady = this.assets.load(definition.front, true);
     const [front, back, maps, fields] = await Promise.all([
       frontReady, this.assets.load(definition.back, true),
-      frontReady.then(front => { const image = front.image as HTMLImageElement; return this.maps.load(definition, image.width / image.height); }),
+      frontReady.then(front => {
+        const image = front.image as HTMLImageElement;
+        return this.maps.load(definition, image.width / image.height, profile.watermark === 'quarter-century');
+      }),
       this.prepareProfile(profile, definition),
     ]);
     check();
