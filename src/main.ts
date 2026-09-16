@@ -242,7 +242,7 @@ async function start() {
     flip: () => motion.requestFlip(), reset: () => motion.reset(), mode: setMode,
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
-    pack: () => { void openPack().catch(showError); },
+    pack: () => { packSeed = crypto.getRandomValues(new Uint32Array(1))[0]; void openPack().catch(showError); },
   }, motion.mode, new URLSearchParams(location.search).has('lab'));
   scheduleWarmup();
   const resize = () => {
