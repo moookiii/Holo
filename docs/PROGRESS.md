@@ -52,7 +52,7 @@ This is a rendering approximation built from the unchanged front and authored sh
 
 ## Accepted interaction change
 
-The user revised the input request to two separate modes. Rotate restores quaternion arcball manipulation around all axes and analytic angular inertia. Tilt uses pointer-follow yaw/pitch with a little diagonal roll; it does not accumulate drag rotation. A compact mode picker remembers the choice. The requested tilt range is stronger (13.75° yaw, 11.46° pitch, 3.72° roll). The final explicit direction is **away**: moving right recedes the right edge, moving down recedes the bottom edge. Geometry-based tests cover all four directions. Interrupting reset continues from the visible orientation.
+Tilt and Rotate are now one interaction: pointer position supplies restrained yaw/pitch with a little diagonal roll, while dragging applies quaternion arcball rotation with analytic angular inertia. The redundant mode picker has been removed. The tilt range remains 13.75° yaw, 11.46° pitch and 3.72° roll, directed **away** from the pointer: moving right recedes the right edge and moving down recedes the bottom edge. Geometry-based tests cover all four directions, and interrupting reset continues from the visible orientation.
 
 Both Tilt and Rotate now start and reset face-on. Reset preserves smooth quaternion interpolation from arbitrary rotated/flipped poses. The test compares orientation correctly: opposite quaternion signs represent the same physical pose.
 

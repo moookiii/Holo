@@ -12,6 +12,7 @@ if (!existsSync(executablePath)) for (const v of (await readdir(base)).filter(n 
 }
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const out = join(process.cwd(), 'artifacts', 'browser-check'); await mkdir(out, { recursive: true });
+const previewUrl = process.env.HOLO_URL || 'http://127.0.0.1:5173';
 const report = [];
 async function stationaryDifference(page, a, b) {
   if (a.equals(b)) return { changed: 0, max: 0, over1: 0 };
@@ -35,20 +36,17 @@ try {
     const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
     const errors = []; page.on('pageerror', error => errors.push(error.message));
     page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
-    await page.goto(`http://127.0.0.1:5173/?backend=${backend}`);
+    await page.goto(`${previewUrl}/?backend=${backend}`);
     await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
     assert.equal(await page.evaluate(() => window.__holo.lighting.key.type), 'RectAreaLight', 'preview runs the current softbox lighting implementation');
-    assert.deepEqual(await page.evaluate(() => window.__holo.stats().quaternion), [0, 0, 0, 1], 'Tilt starts face-on');
+    assert.deepEqual(await page.evaluate(() => window.__holo.stats().quaternion), [0, 0, 0, 1], 'Combined interaction starts face-on');
     const offered = await page.locator('#holo-select option:not([hidden])').evaluateAll(options => options.map(o => o.value));
     assert.ok(['master-prism', 'microdiamond', 'starfield', 'pokemon-cosmos', 'pokemon-galaxy-star', 'opal', 'solar-fresnel', 'liquid-spectrum', 'cathedral-prism', 'spectral-lattice', 'black-chrome-prism'].every(id => offered.includes(id)), 'new and established treatments remain available across cards');
-    await page.locator('#mode-toggle').click();
-    await page.getByRole('button', { name: 'Rotate', exact: true }).click();
-    assert.equal((await page.evaluate(() => window.__holo.stats())).mode, 'rotate');
+    assert.equal(await page.locator('#mode-toggle').count(), 0, 'separate interaction mode picker is removed');
+    assert.equal((await page.evaluate(() => window.__holo.stats())).mode, 'combined');
     await page.evaluate(() => { window.__holo.pose(38, -21, 32); window.__holo.flip(); });
-    await page.waitForTimeout(700); await page.evaluate(() => window.__holo.reset()); await page.waitForTimeout(800);
-    assert.ok(Math.abs((await page.evaluate(() => window.__holo.stats().quaternion))[3]) > .999999, 'Rotate reset returns the front straight toward the camera (q and -q are equivalent)');
-    await page.locator('#mode-toggle').click();
-    await page.getByRole('button', { name: 'Tilt', exact: true }).click();
+    await page.waitForTimeout(700); await page.mouse.move(720, 500); await page.evaluate(() => window.__holo.reset()); await page.waitForTimeout(800);
+    assert.ok(Math.abs((await page.evaluate(() => window.__holo.stats().quaternion))[3]) > .999999, 'Reset returns the front straight toward the camera (q and -q are equivalent)');
     await page.evaluate(() => window.__holo.pose(0, 0));
     await page.mouse.move(1300, 500); await page.waitForTimeout(1100);
     const rightTilt = await page.evaluate(() => window.__holo.motion.hover.toArray());
@@ -58,6 +56,10 @@ try {
     const downTilt = await page.evaluate(() => window.__holo.motion.hover.toArray());
     assert.ok(downTilt[0] > .18, 'moving down recedes the bottom edge');
     await page.screenshot({ path: join(out, `${backend}-tilt-down.png`) });
+    const beforeDrag = await page.evaluate(() => window.__holo.motion.manual.toArray());
+    await page.mouse.move(720, 500); await page.mouse.down(); await page.mouse.move(930, 590, { steps: 8 }); await page.mouse.up();
+    const afterDrag = await page.evaluate(() => window.__holo.motion.manual.toArray());
+    assert.ok(beforeDrag.some((value, index) => Math.abs(value - afterDrag[index]) > 1e-3), 'drag rotation works in the same interaction as pointer-follow tilt');
     await page.evaluate(() => { window.__holo.setMode('rotate'); window.__holo.pose(-7, 4); });
     await page.evaluate(() => window.__holo.hideUI());
     await page.waitForTimeout(700);

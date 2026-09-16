@@ -32,9 +32,7 @@ async function start() {
   const cards = [...builtInCards];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);
-  // Start every session in the presentation-friendly tilt mode. The user can
-  // still switch modes explicitly from the interaction menu.
-  const initialMode: InteractionMode = 'tilt';
+  const initialMode: InteractionMode = 'combined';
   const motion = new CardMotion(initialMode);
   const clickRay = new Raycaster();
   const pointer = new PointerController(container, motion, (x, y) => {
@@ -239,11 +237,11 @@ async function start() {
   };
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
-    flip: () => motion.requestFlip(), reset: () => motion.reset(), mode: setMode,
+    flip: () => motion.requestFlip(), reset: () => motion.reset(),
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { packSeed = crypto.getRandomValues(new Uint32Array(1))[0]; void openPack().catch(showError); },
-  }, motion.mode, new URLSearchParams(location.search).has('lab'));
+  }, new URLSearchParams(location.search).has('lab'));
   scheduleWarmup();
   const resize = () => {
     camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix();
@@ -279,7 +277,7 @@ async function start() {
     pose: (yaw: number, pitch: number, roll = 0) => motion.setPose(yaw * Math.PI / 180, pitch * Math.PI / 180, roll * Math.PI / 180),
     flip: () => motion.requestFlip(), reset: () => motion.reset(),
     zoom: (value: number) => { motion.zoom = value; motion.targetZoom = value; },
-    setCard, setProfile, setMode: (mode: InteractionMode) => { setMode(mode); ui?.selectMode(mode); }, profiles, cards,
+    setCard, setProfile, setMode, profiles, cards,
     stats: () => ({ backend: renderer.backend.constructor.name, card: definition.id, profile: activeProfile, mode: motion.mode, frameMs: frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length, frames: frameTimes.length, triangles: renderer.info.render.triangles, quaternion: motion.orientation.toArray(), zoom: motion.zoom }),
     hideUI: () => { document.querySelector<HTMLElement>('#ui')!.style.display = 'none'; },
   };

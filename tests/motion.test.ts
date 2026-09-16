@@ -6,9 +6,9 @@ import { CardMotion, Y_AXIS, Z_AXIS } from '../src/input/Motion.ts';
 const closeOrientation = (a: Quaternion, b: Quaternion, epsilon = 1e-6) => assert.ok(a.angleTo(b) < epsilon, `orientation differs by ${a.angleTo(b)} radians`);
 const advance = (motion: CardMotion, seconds: number, hz = 120) => { for (let i = 0; i < Math.round(seconds * hz); i++) motion.update(1 / hz); };
 
-test('both modes start face-on and reset a tilted, rotated or flipped card to the front', () => {
-  for (const mode of ['tilt', 'rotate'] as const) {
-    const motion = new CardMotion(mode);
+test('combined interaction starts face-on and resets a tilted, rotated or flipped card to the front', () => {
+  {
+    const motion = new CardMotion();
     closeOrientation(motion.orientation, new Quaternion());
     advance(motion, .5); closeOrientation(motion.orientation, new Quaternion());
     motion.setPose(.8, -.4, .7); motion.setHover(.8, -.6);
@@ -59,14 +59,14 @@ test('arbitrary small rotations stay normalized and zoom converges', () => {
   assert.ok(Math.abs(motion.zoom - 0.65) < 1e-9);
 });
 
-test('Rotate supports roll; Tilt ignores drag rotation and preserves the chosen pose', () => {
-  const motion = new CardMotion(); motion.setPose(.4, -.3); motion.setMode('rotate'); motion.dragging = true;
+test('combined interaction supports drag roll while preserving pointer-follow tilt', () => {
+  const motion = new CardMotion(); motion.setPose(.4, -.3); motion.dragging = true;
   const initial = motion.manual.clone(), roll = new Quaternion().setFromAxisAngle(Z_AXIS, .7);
   motion.applyRotation(roll, .016); advance(motion, .1);
   closeOrientation(motion.manual, initial.premultiply(roll));
-  const rotated = motion.manual.clone(); motion.setMode('tilt');
-  motion.applyRotation(roll, .016); advance(motion, .1);
-  closeOrientation(motion.manual, rotated); assert.equal(motion.velocity.length(), 0);
+  const rotated = motion.manual.clone(); motion.setHover(.8, -.6); advance(motion, .1);
+  closeOrientation(motion.manual, rotated);
+  assert.ok(motion.hover.length() > 0, 'pointer-follow tilt remains active alongside manual rotation');
 });
 
 test('mouse-follow roll is bounded, smooth and separate from manual orientation', () => {

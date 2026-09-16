@@ -1,6 +1,6 @@
 import { Quaternion, Vector3 } from 'three/webgpu';
 
-export type InteractionMode = 'rotate' | 'tilt';
+export type InteractionMode = 'combined' | 'rotate' | 'tilt';
 export const X_AXIS = new Vector3(1, 0, 0);
 export const Y_AXIS = new Vector3(0, 1, 0);
 export const Z_AXIS = new Vector3(0, 0, 1);
@@ -31,14 +31,15 @@ export class CardMotion {
   private resetStart = new Quaternion();
   readonly flipDuration = 0.58;
 
-  constructor(mode: InteractionMode = 'tilt') {
-    this.mode = mode;
+  constructor(_mode: InteractionMode = 'combined') {
+    this.mode = 'combined';
     this.manual.copy(DEFAULT_ORIENTATION); this.orientation.copy(DEFAULT_ORIENTATION);
   }
 
-  setMode(mode: InteractionMode) {
-    this.mode = mode; this.velocity.set(0, 0, 0);
-    this.hoverTarget.set(0, 0, 0);
+  setMode(_mode: InteractionMode) {
+    // Legacy debug callers may still request Tilt or Rotate. Both now resolve to
+    // the unified interaction: pointer position tilts and dragging rotates.
+    this.mode = 'combined';
   }
   requestFlip() {
     this.halt(); this.flipPending = Math.min(8, this.flipPending + 1);
@@ -57,7 +58,6 @@ export class CardMotion {
     this.resetting = false; this.velocity.set(0, 0, 0);
   }
   applyRotation(rotation: Quaternion, dt: number) {
-    if (this.mode !== 'rotate') return;
     if (this.resetting) this.halt();
     this.delta.copy(rotation).normalize();
     if (this.delta.w < 0) this.delta.set(-this.delta.x, -this.delta.y, -this.delta.z, -this.delta.w);
@@ -70,7 +70,7 @@ export class CardMotion {
     }
   }
   setHover(x: number, y: number) {
-    if (this.mode !== 'tilt' || this.resetting) return;
+    if (this.resetting) return;
     const px = Math.max(-1, Math.min(1, x)), py = Math.max(-1, Math.min(1, y));
     // Recede the edge in the pointer's direction: right -> right edge back; down -> bottom edge back.
     this.hoverTarget.set(py * .20, px * .24, -px * py * .065);
@@ -88,7 +88,7 @@ export class CardMotion {
       if (t === 1) this.resetting = false;
       return;
     }
-    if (!this.dragging && this.mode === 'rotate') {
+    if (!this.dragging) {
       const speed = this.velocity.length();
       if (speed > 0.002) {
         // Analytic exponential integration keeps angular travel identical at 60 and 240 Hz.

@@ -28,8 +28,8 @@ export class PointerController {
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
       this.clickStart.copy(this.previous); this.clickDistance = this.pointers.size > 1 ? 100 : 0;
       if (this.pointers.size === 2) this.pinchDistance = this.distance();
-      if (this.motion.mode === 'rotate') element.classList.add('dragging');
-      else this.follow(e.clientX, e.clientY);
+      element.classList.add('dragging');
+      this.follow(e.clientX, e.clientY);
     });
     on('pointermove', e => {
       if (!this.enabled) return;
@@ -46,12 +46,11 @@ export class PointerController {
         if (this.pinchDistance > 0) this.motion.targetZoom = Math.max(0.58, Math.min(1.9, this.motion.targetZoom * this.pinchDistance / d));
         this.pinchDistance = d; return;
       }
-      if (this.motion.mode === 'rotate') {
-        this.project(this.previous.x, this.previous.y, this.from); this.project(e.clientX, e.clientY, this.to);
-        this.turn.setFromUnitVectors(this.from, this.to);
-        if (e.shiftKey) this.turn.slerpQuaternions(this.identity, this.turn, .25);
-        this.motion.applyRotation(this.turn, Math.max(.001, Math.min(.05, (e.timeStamp - this.lastTime) / 1000)));
-      } else this.follow(e.clientX, e.clientY);
+      this.project(this.previous.x, this.previous.y, this.from); this.project(e.clientX, e.clientY, this.to);
+      this.turn.setFromUnitVectors(this.from, this.to);
+      if (e.shiftKey) this.turn.slerpQuaternions(this.identity, this.turn, .25);
+      this.motion.applyRotation(this.turn, Math.max(.001, Math.min(.05, (e.timeStamp - this.lastTime) / 1000)));
+      this.follow(e.clientX, e.clientY);
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
     });
     const release = (e: PointerEvent) => {
@@ -76,9 +75,9 @@ export class PointerController {
       const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? element.clientHeight : 1);
       this.motion.targetZoom = Math.max(0.58, Math.min(1.9, this.motion.targetZoom * Math.exp(Math.max(-250, Math.min(250, delta)) * 0.0012)));
     }, { passive: false });
-    element.dataset.mode = motion.mode;
+    element.dataset.mode = 'combined';
   }
-  setMode(mode: InteractionMode) { this.motion.setMode(mode); this.element.dataset.mode = mode; }
+  setMode(mode: InteractionMode) { this.motion.setMode(mode); this.element.dataset.mode = 'combined'; }
   setEnabled(enabled: boolean) {
     this.enabled = enabled;
     if (!enabled) { this.pointers.clear(); this.motion.dragging = false; this.motion.velocity.set(0, 0, 0); this.element.classList.remove('dragging'); }

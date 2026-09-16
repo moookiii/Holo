@@ -6,8 +6,8 @@ button { cursor: pointer; border: 0; background: none; }
 button:focus-visible, select:focus-visible { outline: 1px solid #c8a45b; outline-offset: 3px; }
 button:hover { color: #d5b676; }
 #studio { position: fixed; inset: 0; touch-action: none; user-select: none; }
-#studio[data-mode="rotate"] { cursor: grab; }
-#studio[data-mode="rotate"].dragging { cursor: grabbing; }
+#studio[data-mode="combined"] { cursor: grab; }
+#studio[data-mode="combined"].dragging { cursor: grabbing; }
 #studio canvas { display: block; width: 100%; height: 100%; outline: none; }
 #ui { position: fixed; inset: 0; pointer-events: none; }
 .loading-screen { position: fixed; z-index: 20; inset: 0; display: grid; place-content: center; justify-items: center; gap: 18px; color: #bca979; background: rgba(5, 5, 5, .82); backdrop-filter: blur(3px); transition: opacity 220ms ease, visibility 220ms ease; }
@@ -40,9 +40,6 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .card-option span { display: block; margin-top: 9px; font-size: 11px; }
 .light-panel { left: 50%; width: 160px; display: flex; flex-direction: column; gap: 4px; }
 .light-panel button { text-align: left; padding: 9px; font-size: 12px; }
-.mode-panel { left: 50%; width: 152px; display: flex; flex-direction: column; gap: 4px; }
-.mode-panel button { display: flex; align-items: center; gap: 13px; padding: 9px; font-size: 12px; border-radius: 4px; }
-.mode-panel button:hover { background: #171717; }
 #ui.idle:not(.open) .controls { opacity: .22; }
 #ui.idle .controls:hover, #ui:focus-within .controls { opacity: 1; }
 :fullscreen #ui.idle:not(.open) .controls { opacity: 0; }
