@@ -30,6 +30,9 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .popover { position: absolute; bottom: max(87px, calc(env(safe-area-inset-bottom) + 67px)); pointer-events: auto; background: #0c0c0c; border: 1px solid #222; border-radius: 10px; padding: 15px; max-height: min(560px, 70vh); overflow: auto; }
 .popover[hidden] { display: none; }
 .card-panel { left: 50%; transform: translateX(-50%); width: min(460px, calc(100vw - 28px)); }
+.card-finish-tabs { display: flex; gap: 3px; margin-bottom: 14px; padding: 3px; background: #101010; border: 1px solid #252525; border-radius: 6px; }
+.card-finish-tabs button { flex: 1; padding: 6px 8px; border-radius: 4px; color: #777; font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+.card-finish-tabs button[aria-pressed="true"] { color: #c8a45b; background: #1b1710; box-shadow: inset 0 0 0 1px #463722; }
 .filters { display: flex; gap: 20px; margin-bottom: 18px; }
 .filters button { color: #777; font-size: 10px; padding: 4px 0; text-transform: uppercase; letter-spacing: .06em; }
 .selected, .filters .selected { color: #c8a45b; }

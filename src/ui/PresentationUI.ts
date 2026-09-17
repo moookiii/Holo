@@ -12,6 +12,7 @@ interface ViewerActions {
   pack: () => void;
 }
 export interface ProfileOption { id: string; name: string; family: string; labOnly?: boolean; }
+type CardFinish = 'all' | 'holo' | 'non-holo';
 const icon = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
 export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: ProfileOption[], actions: ViewerActions, development = false) {
   root.innerHTML = `<button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button><nav class="controls" aria-label="Card controls">
@@ -23,7 +24,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     <button id="reset" class="icon-control" aria-label="Reset view">${icon('<path d="M4 9a8 8 0 1 1 0 6M4 4v5h5"/>')}</button>
     <button id="fullscreen" class="icon-control" aria-label="Enter fullscreen">${icon('<path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/>')}</button>
   </nav>
-  <section id="card-panel" class="popover card-panel" aria-label="Choose card" hidden><div class="card-panel-actions"><button id="import-card">Import card</button></div><div class="filters" role="group" aria-label="Card category"></div><div class="card-grid"></div></section>
+  <section id="card-panel" class="popover card-panel" aria-label="Choose card" hidden><div class="card-panel-actions"><button id="import-card">Import card</button></div><div class="card-finish-tabs" role="group" aria-label="Card finish"></div><div class="filters" role="group" aria-label="Card category"></div><div class="card-grid"></div></section>
   <section id="light-panel" class="popover light-panel" aria-label="Choose lighting" hidden></section>`;
   const select = root.querySelector<HTMLSelectElement>('#holo-select')!;
   root.querySelector<HTMLButtonElement>('#pack-open')!.onclick = actions.pack;
@@ -74,13 +75,16 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
       root.classList.toggle('open', wasHidden);
     };
   });
+  let selectedFinish: CardFinish = 'all';
   let selectedCategory = 'All';
   root.querySelector<HTMLButtonElement>('#import-card')!.onclick = () => { close(); actions.importCard(); };
+  const finishTabs = root.querySelector<HTMLElement>('.card-finish-tabs')!;
+  const cardsForFinish = () => cards.filter(card => selectedFinish === 'all' || (selectedFinish === 'holo' ? card.profile !== 'print-only' : card.profile === 'print-only'));
+  const availableCategories = () => ['All', ...new Set(cardsForFinish().map(card => card.franchise))];
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
-  const drawCards = (category: string) => {
-    selectedCategory = category;
+  const drawCards = () => {
     grid.replaceChildren();
-    cards.filter(c => category === 'All' || c.franchise === category).forEach(card => {
+    cardsForFinish().filter(card => selectedCategory === 'All' || card.franchise === selectedCategory).forEach(card => {
       const button = document.createElement('button'); button.className = 'card-option';
       button.setAttribute('aria-pressed', String(card.id === selectedCard));
       const image = document.createElement('img');
@@ -108,16 +112,32 @@ image.loading = 'lazy';
     });
   };
   const filters = root.querySelector('.filters')!;
-  const refreshCards = () => {
-    const categories = ['All', ...new Set(cards.map(c => c.franchise))];
+  const drawFinishTabs = () => {
+    finishTabs.replaceChildren();
+    const finishOptions: Array<[CardFinish, string]> = [['all', 'All'], ['holo', 'Holo'], ['non-holo', 'Non-holo']];
+    finishOptions.forEach(([finish, label]) => {
+      const button = document.createElement('button'); button.type = 'button'; button.textContent = label;
+      button.setAttribute('aria-pressed', String(finish === selectedFinish));
+      button.onclick = () => {
+        selectedFinish = finish;
+        if (!availableCategories().includes(selectedCategory)) selectedCategory = 'All';
+        drawFinishTabs(); drawFilters(); drawCards();
+      };
+      finishTabs.append(button);
+    });
+  };
+  const drawFilters = () => {
+    const categories = availableCategories();
     if (!categories.includes(selectedCategory)) selectedCategory = 'All';
     filters.replaceChildren();
     categories.forEach(category => {
-      const button = document.createElement('button'); button.textContent = category; button.className = category === selectedCategory ? 'selected' : '';
-      button.onclick = () => { filters.querySelectorAll('button').forEach(b => b.classList.toggle('selected', b === button)); drawCards(category); };
+      const button = document.createElement('button'); button.type = 'button'; button.textContent = category; button.className = category === selectedCategory ? 'selected' : '';
+      button.onclick = () => { selectedCategory = category; drawFilters(); drawCards(); };
       filters.append(button);
     });
-    drawCards(selectedCategory); drawProfiles();
+  };
+  const refreshCards = () => {
+    drawFinishTabs(); drawFilters(); drawCards(); drawProfiles();
   };
   refreshCards();
   const lightPanel = root.querySelector('#light-panel')!;
@@ -139,7 +159,7 @@ image.loading = 'lazy';
   let hideTimer = 0;
   const wake = () => { root.classList.remove('idle'); clearTimeout(hideTimer); hideTimer = window.setTimeout(() => root.classList.add('idle'), 4500); };
   document.addEventListener('pointermove', wake); document.addEventListener('keydown', wake); document.addEventListener('pointerdown', wake); wake();
-  return { selectProfile, refreshCards, selectCard: (id: string) => { selectedCard = id; drawCards(selectedCategory); drawProfiles(); }, close, dispose: () => {
+  return { selectProfile, refreshCards, selectCard: (id: string) => { selectedCard = id; drawCards(); drawProfiles(); }, close, dispose: () => {
     close(); clearTimeout(hideTimer);
     document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', keyboard);
     document.removeEventListener('pointermove', wake); document.removeEventListener('keydown', wake); document.removeEventListener('pointerdown', wake);
