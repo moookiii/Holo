@@ -30,6 +30,7 @@ async function start() {
   const factory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
   const { assets, maps: mapLoader } = factory;
   const cards = [...builtInCards];
+  const initialCard = cards.find(card => card.id === 'pikachu-vmax-vivid-voltage') ?? cards[0];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);
   const initialMode: InteractionMode = 'combined';
@@ -44,7 +45,7 @@ async function start() {
     pointer.setMode(mode);
     try { localStorage.setItem('holo:interaction-mode', mode); } catch { /* Restricted storage does not affect controls. */ }
   };
-  let definition = cards[0];
+  let definition = initialCard;
   let activeCard: CardInstance;
   let card: CardInstance['mesh'];
   let loadGeneration = 0;
@@ -242,6 +243,7 @@ async function start() {
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { packSeed = crypto.getRandomValues(new Uint32Array(1))[0]; void openPack().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
+  ui.selectCard(definition.id); ui.selectProfile(activeProfile);
   scheduleWarmup();
   const resize = () => {
     camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix();
