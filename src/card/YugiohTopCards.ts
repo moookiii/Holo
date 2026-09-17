@@ -12,7 +12,7 @@ const cardDesigns = { ...firstTenDesigns, ...nextTenDesigns, ...remainingDesigns
 function maps(slug: string, profile: string): CardMapPaths {
   const title = `${root}/maps/${slug}-name.png`;
   const result: CardMapPaths = {
-    foil: '/cards/shared/yugioh-standard/artwork.svg?v=3',
+    foil: '/cards/shared/yugioh-standard/artwork.svg?v=4',
     laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1',
   };
   if (['ygo-ultra', 'ygo-ultimate', 'ygo-quarter-century'].includes(profile)) result.metallic = title;
@@ -23,7 +23,7 @@ function maps(slug: string, profile: string): CardMapPaths {
   if (profile !== 'ygo-super') result.height = `${root}/maps/${slug}-height.png`;
   if (cardDesigns[slug]) {
     result.stamp = '/cards/shared/yugioh-standard/designed-stamp.svg';
-    if (result.extendedFoil) result.extendedFoil = '/cards/shared/yugioh-standard/designed-parallel.svg';
+    if (result.extendedFoil) result.extendedFoil = '/cards/shared/yugioh-standard/designed-parallel.svg?v=2';
   }
   return result;
 }

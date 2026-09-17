@@ -41,7 +41,7 @@ test('Yu-Gi-Oh fronts are full 813 × 1185 cards and use the bounded artwork mas
   };
   for (const card of holoBulkCards.filter(card => card.franchise === 'Yu-Gi-Oh!')) {
     assert.deepEqual(jpegSize(`public${card.front}`), [813, 1185], card.title);
-    assert.equal(card.maps?.foil, '/cards/shared/yugioh-standard/artwork.svg?v=3');
+    assert.equal(card.maps?.foil, '/cards/shared/yugioh-standard/artwork.svg?v=4');
     assert.ok(card.maps?.metallic?.endsWith('-name.png'));
     assert.ok(card.maps?.height?.endsWith('-height.png'));
     assert.equal(card.mapSettings?.embossStrength, .12);
