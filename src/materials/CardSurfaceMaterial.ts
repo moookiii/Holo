@@ -2,7 +2,10 @@ import { MeshPhysicalNodeMaterial, MeshStandardNodeMaterial, Color, Texture } fr
 import { texture, mix, vec2, vec3, uv, positionLocal, sin, float } from 'three/tsl';
 
 export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { clearcoat: number; clearcoatRoughness: number; }, crop?: [number, number, number, number]) {
-  const material = new MeshPhysicalNodeMaterial({ clearcoat: finish?.clearcoat ?? 0.72, clearcoatRoughness: finish?.clearcoatRoughness ?? 0.21, roughness: 0.44, metalness: 0.08, envMapIntensity: 0.65 });
+  // Card backs use a broad satin varnish. A tight clearcoat lobe turns the
+  // camera/stack settling motion after extraction into a sequence of hard
+  // white flashes, especially beneath the pack's narrow studio emitters.
+  const material = new MeshPhysicalNodeMaterial({ clearcoat: finish?.clearcoat ?? 0.34, clearcoatRoughness: finish?.clearcoatRoughness ?? 0.42, roughness: 0.44, metalness: 0.08, envMapIntensity: 0.65 });
   // Register the photographed print to the card without resampling the asset.
   const printUV = crop ? uv().mul(vec2(crop[2] - crop[0], crop[3] - crop[1])).add(vec2(crop[0], 1 - crop[3])) : uv();
   const print = texture(art, printUV);
