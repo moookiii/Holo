@@ -53,11 +53,14 @@ test('all bulk holo cards are eligible for random pack foil slots', () => {
   for (const id of holoBulkCardIds) assert.ok(holographicCardIds.includes(id), `${id} is missing from the pack pool`);
 });
 
-test('MTG traditional foil uses one upright full-height sheet with four rounded corners', () => {
+test('MTG foil follows the square printed panel and laminate has no inset boundary', () => {
   const mask = readFileSync('public/cards/shared/mtg-standard/foil.svg', 'utf8');
-  assert.match(mask, /x="58" y="45" width="629" height="955" rx="28" ry="28"/);
+  assert.match(mask, /x="36" y="36" width="673" height="968"/);
+  assert.ok(!/\br[xy]=/.test(mask), 'rounded corners cut into the square printed panel');
   assert.equal((mask.match(/fill="#606060"/g) ?? []).length, 1);
   assert.ok(!mask.includes('y="464"'), 'legacy vertically inverted artwork patch remains');
+  const laminate = readFileSync('public/cards/shared/mtg-standard/laminate.svg', 'utf8');
+  assert.match(laminate, /<rect width="745" height="1040" fill="white"/);
 });
 
 test('fronts, shared maps, and online evidence are present', () => {

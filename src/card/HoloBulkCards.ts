@@ -84,7 +84,7 @@ export const holoBulkCards: CardDefinition[] = [
     id: `holo-magic-m11-${slug}`, title, franchise: 'Magic: The Gathering' as const,
     set: 'Magic 2011 · Traditional foil', number, dimensions: standard,
     front: `/cards/holo-bulk/magic/${slug}.png`, back: '/cards/magic/back.png',
-    maps: { foil: '/cards/shared/mtg-standard/foil.svg?v=3', laminate: '/cards/shared/mtg-standard/laminate.svg?v=1' },
+    maps: { foil: '/cards/shared/mtg-standard/foil.svg?v=4', laminate: '/cards/shared/mtg-standard/laminate.svg?v=2' },
     layout: magicLayout, profile: 'mtg-traditional', seed: 2011000 + index * 37 + Number(number),
     source: { image: `https://cards.scryfall.io/png/front/${scryfallId[0]}/${scryfallId[1]}/${scryfallId}.png`, metadata: `https://api.scryfall.com/cards/${scryfallId}`, notes: 'Exact Magic 2011 printing. Scryfall lists both nonfoil and foil finishes; the clean same-printing image has no baked foil reflection.' },
   })),

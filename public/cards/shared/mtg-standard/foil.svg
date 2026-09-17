@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="745" height="1040" viewBox="0 0 745 1040">
   <rect width="745" height="1040" fill="black"/>
-  <!-- M11 traditional foil is one continuous sheet beneath the printed card.
-       Align it to the scanned card edge instead of adding a second artwork
-       rectangle, which created inverted and square-looking cutouts. -->
-  <rect x="58" y="45" width="629" height="955" rx="28" ry="28" fill="#606060"/>
+  <!-- All 17 M11 fronts have a square colored panel at x=35..710,
+       y=35..1005. Rounded title/P-T ornaments are printed inside it.
+       One pixel of inset keeps filtering inside the black border. -->
+  <rect x="36" y="36" width="673" height="968" fill="#606060"/>
 </svg>
