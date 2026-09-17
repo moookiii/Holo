@@ -54,6 +54,7 @@ export class PackOpeningController {
   private extractionSounded = false;
   private cardSlideSounded = false;
   private pendingCardSettle = -1;
+  private tearFinishAnnounced = false;
   private media = matchMedia('(prefers-reduced-motion: reduce)');
   private inspectionComplete = false;
   private constructor(readonly definition: PackDefinition, readonly contents: PackCard[], cards: CardInstance[], wrapper: PackWrapper, private deps: PackDependencies, seed: number, readonly audio: PackAudio) {
@@ -145,6 +146,7 @@ export class PackOpeningController {
         const path = this.presentation.wrapper.tearPath, old = path.progress;
         const origin = this.start.materialLocal!;
         path.move(origin.x + pullX, origin.y + pullY); this.tear.target = path.progress;
+        if (path.progress >= 1) this.announceTearFinish();
         const flex = clamp(Math.hypot(pullX, pullY) / 2.4);
         this.audio.playTension(clamp(flex * .55 + pointerVelocity * .035));
         if (path.progress > .14 && path.progress < .86 && path.progress > old + .0025) {
@@ -162,7 +164,7 @@ export class PackOpeningController {
   }
   private up(cancel: boolean) {
     this.presentation.wrapper.tearPath.end();
-    if (this.state.value === 'Tear') this.audio.fadeCrinkles();
+    if (this.state.value === 'Tear' || this.state.value === 'OpenWrapper') this.audio.fadeCrinkles(.05);
     if (this.state.value === 'Grip') this.state.transition('PackReady');
     if (this.state.value === 'RevealCard' && !this.revealed) this.reveal.target = !cancel && this.start && (this.dragDistance < .10 || this.reveal.target > .52) ? 1 : 0;
     this.packMotion.dragging = false; if (cancel || this.media.matches) this.packMotion.velocity.set(0, 0, 0);
@@ -182,6 +184,10 @@ export class PackOpeningController {
       case 'HitReveal': if (this.state.elapsed > (this.media.matches ? .4 : 1.8)) this.next(); break;
       case 'PackSummary': this.inspect(this.hover >= 0 ? this.hover : this.contents.length - 1); break;
     }
+  }
+  private announceTearFinish() {
+    if (this.tearFinishAnnounced) return;
+    this.tearFinishAnnounced = true; this.audio.playTearFinish();
   }
   private beginTear(volume = 1) {
     // The tear is a presentation boundary: settle any freely handled pack back
@@ -225,16 +231,19 @@ export class PackOpeningController {
       }
     }
     if (this.autoTear && !this.frozen) this.presentation.wrapper.tearPath.fill(this.tear.value);
+    if (!this.frozen && this.state.value === 'Tear' && this.presentation.wrapper.tearPath.progress >= 1) this.announceTearFinish();
     if (!this.frozen) {
       if (this.state.value === 'PackIntro' && this.state.elapsed > duration) this.state.transition('PackReady');
       if (this.state.value === 'Tear' && this.tear.value > .998 && this.presentation.wrapper.tearPath.progress === 1) {
         this.tear.snap(1); this.release.target = 1; this.grip.target = 0; this.pointerX.target = this.pointerY.target = 0;
         this.autoTear = false; this.presentation.wrapper.tearPath.end();
         this.audio.fadeCrinkles(.045);
-        this.audio.playTearFinish(); this.audio.playStripRelease();
+        this.announceTearFinish(); this.audio.playStripRelease();
         this.state.transition('OpenWrapper'); this.start = undefined;
       }
-      if (this.state.value === 'OpenWrapper' && this.mouth.value > .998) { this.mouth.snap(1); this.state.transition('ExtractStack'); this.start = undefined; }
+      if (this.state.value === 'OpenWrapper' && this.mouth.value > .998) {
+        this.mouth.snap(1); this.audio.fadeCrinkles(.045); this.state.transition('ExtractStack'); this.start = undefined;
+      }
       if (this.state.value === 'ExtractStack' && this.extract.value > .998) {
         this.extract.snap(1); this.settle = clamp(this.settle + dt / duration);
         if (this.settle === 1) this.state.transition('RevealCard');
@@ -277,7 +286,7 @@ export class PackOpeningController {
     this.presentation.wrapper.tearPath.reset();
     this.packMotion.setPose(0, 0); this.packMotion.dragging = false;
     this.tear.snap(0); this.mouth.snap(0); this.extract.snap(0); this.reveal.snap(0); this.grip.snap(0); this.release.snap(0); this.pointerX.snap(0); this.pointerY.snap(0);
-    this.active = 0; this.revealed = false; this.settle = 0; this.hover = -1; this.extractionSounded = false; this.cardSlideSounded = false; this.pendingCardSettle = -1;
+    this.active = 0; this.revealed = false; this.settle = 0; this.hover = -1; this.extractionSounded = false; this.cardSlideSounded = false; this.pendingCardSettle = -1; this.tearFinishAnnounced = false;
     const afterTear = ['open', 'extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage);
     if (afterTear) { this.tear.snap(1); this.release.snap(1); }
     if (['extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage)) this.mouth.snap(1);
