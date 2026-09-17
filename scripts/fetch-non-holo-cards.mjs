@@ -4,15 +4,15 @@ import path from 'node:path';
 const root = path.resolve('public/cards/non-holo');
 const headers = { 'User-Agent': 'HoloArchive/1.0 (local interactive card viewer)', Accept: 'application/json' };
 const pokemon = [
-  ['beedrill', 'Beedrill', 17], ['dragonair', 'Dragonair', 18], ['dugtrio', 'Dugtrio', 19], ['electabuzz', 'Electabuzz', 20],
-  ['electrode', 'Electrode', 21], ['pidgeotto', 'Pidgeotto', 22], ['arcanine', 'Arcanine', 23], ['charmeleon', 'Charmeleon', 24],
-  ['dewgong', 'Dewgong', 25], ['dratini', 'Dratini', 26], ['farfetchd', "Farfetch'd", 27], ['growlithe', 'Growlithe', 28],
-  ['haunter', 'Haunter', 29], ['ivysaur', 'Ivysaur', 30], ['jynx', 'Jynx', 31], ['kadabra', 'Kadabra', 32],
-  ['kakuna', 'Kakuna', 33], ['machoke', 'Machoke', 34], ['magikarp', 'Magikarp', 35], ['magmar', 'Magmar', 36],
-  ['nidorino', 'Nidorino', 37], ['poliwhirl', 'Poliwhirl', 38], ['porygon', 'Porygon', 39], ['raticate', 'Raticate', 40],
-  ['seel', 'Seel', 41], ['wartortle', 'Wartortle', 42], ['abra', 'Abra', 43], ['caterpie', 'Caterpie', 45],
-  ['doduo', 'Doduo', 48], ['magnemite', 'Magnemite', 53], ['paras', 'Paras', 57], ['rattata', 'Rattata', 61],
-  ['starmie', 'Starmie', 64], ['tangela', 'Tangela', 66],
+  ['butterfree', 'Butterfree', 'base2', 'base2-33'], ['dodrio', 'Dodrio', 'base2', 'base2-34'], ['gloom', 'Gloom', 'base2', 'base2-35'], ['lickitung', 'Lickitung', 'base2', 'base2-36'],
+  ['marowak', 'Marowak', 'base2', 'base2-37'], ['nidorina', 'Nidorina', 'base2', 'base2-38'], ['parasect', 'Parasect', 'base2', 'base2-39'], ['persian', 'Persian', 'base2', 'base2-40'],
+  ['primeape', 'Primeape', 'base2', 'base2-41'], ['rapidash', 'Rapidash', 'base2', 'base2-42'], ['rhydon', 'Rhydon', 'base2', 'base2-43'], ['seaking', 'Seaking', 'base2', 'base2-44'],
+  ['tauros', 'Tauros', 'base2', 'base2-45'], ['weepinbell', 'Weepinbell', 'base2', 'base2-46'], ['bellsprout', 'Bellsprout', 'base2', 'base2-47'], ['cubone', 'Cubone', 'base2', 'base2-48'],
+  ['eevee', 'Eevee', 'base2', 'base2-49'], ['exeggcute', 'Exeggcute', 'base2', 'base2-50'], ['goldeen', 'Goldeen', 'base2', 'base2-51'], ['jigglypuff', 'Jigglypuff', 'base2', 'base2-52'],
+  ['mankey', 'Mankey', 'base2', 'base2-53'], ['meowth', 'Meowth', 'base2', 'base2-54'], ['nidoran-f', 'Nidoran ♀', 'base2', 'base2-55'], ['oddish', 'Oddish', 'base2', 'base2-56'],
+  ['rhyhorn', 'Rhyhorn', 'base2', 'base2-58'], ['spearow', 'Spearow', 'base2', 'base2-59'], ['venonat', 'Venonat', 'base2', 'base2-60'],
+  ['geodude', 'Geodude', 'base3', 'base3-34'], ['golbat', 'Golbat', 'base3', 'base3-35'], ['golduck', 'Golduck', 'base3', 'base3-36'], ['grimer', 'Grimer', 'base3', 'base3-37'],
+  ['kabuto', 'Kabuto', 'base3', 'base3-38'], ['krabby', 'Krabby', 'base3', 'base3-39'], ['omanyte', 'Omanyte', 'base3', 'base3-40'],
 ];
 const yugioh = [
   ['dark-magician', 'Dark Magician'], ['red-eyes-b-black-dragon', 'Red-Eyes B. Dragon'], ['gaia-the-fierce-knight', 'Gaia The Fierce Knight'],
@@ -53,10 +53,13 @@ async function image(url, destination) {
 
 const provenance = [];
 for (const family of ['pokemon', 'yugioh', 'magic']) await mkdir(path.join(root, family), { recursive: true });
-for (const [slug, title, number] of pokemon) {
-  const url = `https://images.pokemontcg.io/base1/${number}_hires.png`;
+for (const [slug, title, set, cardId] of pokemon) {
+  const number = cardId.replace(`${set}-`, '');
+  // The standard endpoint returns a 240 × 330 preview.  These cards are shown
+  // full-frame in the studio, so always retain the service's 600 × 825 master.
+  const url = `https://images.pokemontcg.io/${set}/${number}_hires.png`;
   await image(url, path.join(root, 'pokemon', `${slug}.png`));
-  provenance.push({ franchise: 'Pokémon', slug, title, source: url, card: `base1/${number}` });
+  provenance.push({ franchise: 'Pokémon', slug, title, source: url, card: `${set}/${number}` });
 }
 for (const [slug, name] of yugioh) {
   const result = await json(`https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${encodeURIComponent(name)}`);
