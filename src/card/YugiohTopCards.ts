@@ -14,7 +14,7 @@ function maps(slug: string, profile: string): CardMapPaths {
   if (['ygo-ultra', 'ygo-ultimate', 'ygo-quarter-century'].includes(profile)) result.metallic = title;
   if (['ygo-secret', 'ygo-prismatic-secret', 'ygo-starlight', 'ygo-collector'].includes(profile)) result.secondaryFoil = title;
   if (['ygo-starlight', 'ygo-quarter-century', 'ygo-collector'].includes(profile)) {
-    result.extendedFoil = '/cards/shared/yugioh-standard/extended.svg?v=1';
+    result.extendedFoil = '/cards/shared/yugioh-standard/extended.svg?v=2';
   }
   if (profile !== 'ygo-super') result.height = `${root}/maps/${slug}-height.png`;
   return result;
