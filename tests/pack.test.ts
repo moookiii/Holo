@@ -26,11 +26,11 @@ test('the registry resolves distinct showcase and test packs', () => {
 
 test('pack contents are deterministic, bounded and do not mutate the authored definition', () => {
   const copy = JSON.stringify(showcasePack);
-  assert.equal(nonHoloCards.length, 150);
-  assert.equal(newNonHoloCards.length, 132);
-  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Pokémon').length, 34);
-  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Yu-Gi-Oh!').length, 49);
-  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Magic: The Gathering').length, 49);
+  assert.equal(nonHoloCards.length, 350);
+  assert.equal(newNonHoloCards.length, 332);
+  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Pokémon').length, 101);
+  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Yu-Gi-Oh!').length, 116);
+  assert.equal(newNonHoloCards.filter(card => card.franchise === 'Magic: The Gathering').length, 115);
   const staticPokemon = ['Alakazam', 'Blastoise', 'Chansey', 'Clefairy', 'Gyarados', 'Hitmonchan', 'Machamp', 'Magneton', 'Mewtwo', 'Nidoking', 'Ninetales', 'Poliwrath', 'Raichu', 'Venusaur', 'Zapdos'];
   assert.ok(newNonHoloCards.every(card => !staticPokemon.includes(card.title)));
   assert.deepEqual(resolvePackContents(showcasePack, 42), resolvePackContents(showcasePack, 42));

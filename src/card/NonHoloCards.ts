@@ -1,4 +1,5 @@
 import type { CardDefinition, CardDimensions } from './CardDefinition';
+import { nonHoloExpansionCatalog } from './NonHoloExpansion.ts';
 
 const standard: CardDimensions = { width: 6.3, height: 8.8, thickness: 0.032, cornerRadius: 0.3, bevel: 0.007 };
 const yugiohSize: CardDimensions = { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.1, bevel: 0.006 };
@@ -70,7 +71,20 @@ export const nonHoloCards: CardDefinition[] = [
     set: 'Archive non-foil', number: `${index + 1}/49`, dimensions: standard,
     front: `/cards/non-holo/magic/${slug}.jpg`, back: '/cards/magic/back.png', profile: 'print-only', seed: 6300 + index,
   })),
+  ...nonHoloExpansionCatalog.map((card, index) => ({
+    id: `non-holo-expansion-${card.family}-${card.slug}`,
+    title: card.title,
+    franchise: card.family === 'pokemon' ? 'Pokémon' as const : card.family === 'yugioh' ? 'Yu-Gi-Oh!' as const : 'Magic: The Gathering' as const,
+    set: card.set,
+    number: card.number,
+    dimensions: card.family === 'yugioh' ? yugiohSize : standard,
+    front: `/cards/non-holo/${card.family}/${card.slug}.${card.family === 'pokemon' || card.family === 'magic' ? 'png' : 'jpg'}`,
+    back: card.family === 'pokemon' ? '/cards/pokemon/back.jpg' : card.family === 'yugioh' ? '/cards/yugioh/back-en.png' : '/cards/magic/back.png',
+    profile: 'print-only',
+    seed: 7000 + index,
+  })),
 ];
 
 export const nonHoloCardIds = nonHoloCards.map(card => card.id);
 export const newNonHoloCards = nonHoloCards.filter(card => card.seed >= 6118);
+export const expandedNonHoloCards = nonHoloCards.filter(card => card.seed >= 7000);
