@@ -57,9 +57,7 @@ async function start() {
   let openingImport = false;
   let pack: PackOpeningController | undefined;
   let packRequest: AbortController | undefined;
-  // Choose the next pack before it is requested so idle preparation can cache
-  // its exact contents instead of warming unrelated cards.
-  let packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
+  let packSeed = 1741;
   let warmupRequest: AbortController | undefined;
   let warmupIdleHandle: number | undefined;
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
@@ -80,16 +78,11 @@ async function start() {
       const request = new AbortController(); warmupRequest = request;
       void (async () => {
         try {
-          const { getPack, resolvePackContents } = await import('./pack/PackDefinition');
-          const nextPackIds = resolvePackContents(getPack('archive-01'), packSeed).map(entry => entry.cardId);
-          const ids = [...new Set([...nextPackIds, ...warmupCardIds])];
-          for (const id of ids) {
+          for (const id of warmupCardIds) {
             if (request.signal.aborted || id === definition.id) continue;
             const next = cards.find(card => card.id === id);
             if (!next) continue;
-            // Exact next-pack cards also compile their reusable pipelines. Other
-            // viewer warmups retain the cheaper asset/field-only behavior.
-            const candidate = await factory.create(next, request.signal, nextPackIds.includes(id), -1);
+            const candidate = await factory.create(next, request.signal, false, -1);
             candidate.dispose();
           }
           for (const profile of profiles.filter(profile => profile.family === definition.franchise).slice(0, 2)) {
@@ -109,14 +102,12 @@ async function start() {
   const cancelPackLoad = document.createElement('button');
   cancelPackLoad.className = 'pack-load-cancel'; cancelPackLoad.textContent = 'Back to viewer'; cancelPackLoad.hidden = true; loading.append(cancelPackLoad);
   const closePack = () => {
-    const hadPack = !!pack || !!packRequest;
     cancelWarmup();
     packRequest?.abort(); packRequest = undefined;
     pack?.dispose(); pack = undefined;
     factory.setBackgroundPaused(false);
     card.visible = true; pointer.setEnabled(true); viewerUI.inert = false;
     document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
-    if (hadPack) packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
     scheduleWarmup();
     document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
@@ -129,8 +120,7 @@ async function start() {
     motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
     activeProfile = definition.profile; requestedCardId = definition.id; ui?.selectCard(definition.id); ui?.selectProfile(activeProfile);
     pointer.setEnabled(true); viewerUI.inert = false; document.body.classList.remove('pack-mode');
-    packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
-    releaseRetiredImports(); scheduleWarmup(); document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
+    releaseRetiredImports(); document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
   const openPack = async (id = 'archive-01') => {
     if (disposed) return;
@@ -250,7 +240,7 @@ async function start() {
     flip: () => motion.requestFlip(), reset: () => motion.reset(),
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
-    pack: () => { void openPack().catch(showError); },
+    pack: () => { packSeed = crypto.getRandomValues(new Uint32Array(1))[0]; void openPack().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
   scheduleWarmup();
   const resize = () => {
