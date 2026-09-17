@@ -23,6 +23,7 @@ interface OpticalRegion {
   field: Node<'vec4'>;
   details: Node<'vec4'>;
   pattern: Node<'float'>;
+  inkTransmission?: Node<'vec3'>;
   image?: Node<'vec3'>;
   imageDepth?: Node<'float'>;
 }
@@ -30,13 +31,19 @@ export interface ProfileFields { primary?: PatternTextures; secondary?: PatternT
 
 class HolographicLightingModel extends PhysicalLightingModel {
   constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>) { super(true, false, true, true); }
+  private substrateReflection() {
+    // Starlight assigns most incident energy to the microprism response below.
+    // Reserve a small share for the smooth print/backing and laminate response;
+    // evaluating both at full strength washes out the colored cuts at the key.
+    return this.regions.reduce<Node<'float'>>((weight, region) => weight.sub(region.coverage.mul(region.optics.gridCrisp, .88)), float(1)).max(.12);
+  }
   override direct(data: LightingModelDirectInput, builder: NodeBuilder) {
     // Substrate and clearcoat are evaluated once, regardless of the number of foil regions.
-    super.direct(data, builder);
+    super.direct({ ...data, lightColor: (data.lightColor as Node<'vec3'>).mul(this.substrateReflection()) }, builder);
     this.diffract(data);
   }
   override directRectArea(data: LightingModelDirectRectAreaInput, builder: NodeBuilder) {
-    super.directRectArea(data, builder);
+    super.directRectArea({ ...data, lightColor: (data.lightColor as Node<'vec3'>).mul(this.substrateReflection()) }, builder);
     const width = data.halfWidth as Node<'vec3'>, height = data.halfHeight as Node<'vec3'>;
     const center = (data.lightPosition as Node<'vec3'>).sub(positionView);
     const facing = width.cross(height).normalize();
@@ -58,7 +65,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const direction = mix(structure.direction, rotatedDirection, u.fieldBlend).normalize();
       const grating = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
       const foilNormal = normalView.toVar();
-      If(u.facetCoupling.greaterThan(0), () => {
+      If(u.facetCoupling.max(u.gridCrisp).greaterThan(0), () => {
         // A grating pressed into an inclined ribbon lies in that ribbon's plane.
         // Transport its axis onto the manufactured normal before evaluating the
         // optical path. Otherwise facet tilt changes silver but leaves a flat
@@ -67,11 +74,13 @@ class HolographicLightingModel extends PhysicalLightingModel {
         const geometryNormal = normalViewGeometry as unknown as Node<'vec3'>;
         const geometryBitangent = geometryNormal.cross(tangentView).mul(tangentGeometry.w).normalize();
         const sheetAxis = tangentView.mul(direction.x).add(geometryBitangent.mul(direction.y)).normalize();
-        const slope = region.details.rg.sub(.5).mul(u.facetTilt);
+        // Starlight's atlas stores shallow aggregate sheet slopes. Its optical
+        // prism faces are steeper, allowing visible orders near the mirror angle.
+        const slope = region.details.rg.sub(.5).mul(u.facetTilt, mix(float(1), float(10), u.gridCrisp));
         const facetNormal = geometryNormal.add(tangentView.mul(slope.x)).add(geometryBitangent.mul(slope.y)).normalize();
         const facetAxis = sheetAxis.sub(facetNormal.mul(sheetAxis.dot(facetNormal))).normalize();
-        grating.assign(mix(grating, facetAxis, u.facetCoupling).normalize());
-        foilNormal.assign(mix(foilNormal, facetNormal, u.facetCoupling).normalize());
+        grating.assign(mix(grating, facetAxis, u.facetCoupling.max(u.gridCrisp)).normalize());
+        foilNormal.assign(mix(foilNormal, facetNormal, u.facetCoupling.max(u.gridCrisp)).normalize());
       });
       const groove = foilNormal.cross(grating).normalize();
       // Reflection-grating momentum: d * |(L + V) · G| = m λ.
@@ -119,17 +128,21 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
+      const ink = mix(vec3(1), region.inkTransmission!, u.gridCrisp);
+      // Reallocate the suppressed smooth reflection into diffracted orders.
+      // The whole response still scales with this emitter's incident radiance.
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.mul(mix(float(1), float(4), u.gridCrisp)).add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(ink, region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
     });
   }
   override indirectSpecular(builder: NodeBuilder) {
     super.indirectSpecular(builder);
     const context = builder.context as LightingContext;
+    (context.reflectedLight.indirectSpecular as Node<'vec3'>).mulAssign(this.substrateReflection());
     const radiance = context.radiance as Node<'vec3'>;
     for (const region of this.regions) {
       // Neutral backing must not disappear merely because the scan pixels are dark.
       const backing = mix(float(1), mix(float(.18), float(1), region.field.a.mul(region.pattern)), region.optics.fieldBlend);
-      (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign(radiance.mul(region.coverage, region.optics.foilReflectance, backing));
+      (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign(radiance.mul(region.coverage, region.optics.foilReflectance, backing, mix(vec3(1), region.inkTransmission!, region.optics.gridCrisp)));
     }
   }
 }
@@ -219,6 +232,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       { coverage: stamp, optics: this.stampOptics, seed: seed + 16381, field: this.stampFieldTextureNode, details: this.stampReliefTextureNode, pattern: this.patternTextureNode.b },
     ];
     for (const region of this.regions) {
+      // The parallel foil lies beneath colored ink. Its reflected light must
+      // pass through that ink instead of adding an unfiltered white veil over it.
+      region.inkTransmission = correctedPrint.max(0).sqrt().mul(.94).add(.06);
       region.image = hologramImage(this.printTextureNode, this.hologramTextureNode, region.optics);
       region.imageDepth = this.hologramTextureNode.b;
     }
