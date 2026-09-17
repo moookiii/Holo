@@ -1,4 +1,4 @@
-import { Group, Mesh, Quaternion, type PerspectiveCamera, type Scene } from 'three/webgpu';
+import { Group, Quaternion, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import { CardMotion } from '../input/Motion';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
@@ -94,10 +94,7 @@ export class PackOpeningController {
     // pipelines will be needed later. A failed speculative compile is harmless:
     // the renderer will compile that card on demand when it becomes visible.
     const compilation = new Group();
-    // Construct metadata-free views instead of Object3D.clone(): CardInstance is
-    // intentionally stored in userData and is circular, while Three serializes
-    // userData through JSON during cloning.
-    compilation.add(...cards.map(card => new Mesh(card.mesh.geometry, card.mesh.material)));
+    compilation.add(...cards.map(card => card.mesh.clone()));
     void deps.factory.compile(compilation).catch(error => {
       if (!deps.signal.aborted) console.warn('Background card compilation failed', error);
     }).finally(() => compilation.clear());
