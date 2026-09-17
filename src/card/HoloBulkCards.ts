@@ -4,12 +4,35 @@ const standard = { width: 6.3, height: 8.8, thickness: 0.032, cornerRadius: 0.3,
 const yugioh = { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.1, bevel: 0.006 };
 const eReaderLayout: CardLayout = { artwork: [55 / 600, 132 / 825, 541 / 600, 444 / 825], innerFrame: [65 / 600, 14 / 825, 585 / 600, 760 / 825] };
 const magicLayout: CardLayout = { artwork: [57 / 745, 116 / 1040, 688 / 745, 576 / 1040], innerFrame: [35 / 745, 28 / 1040, 710 / 745, 998 / 1040] };
-const yugiohLayout: CardLayout = { artwork: [20 / 345, 88 / 489, 324 / 345, 359 / 489], innerFrame: [1 / 345, 2 / 489, 344 / 345, 487 / 489] };
+const yugiohLayout: CardLayout = { artwork: [96 / 813, 205 / 1185, 730 / 813, 848 / 1185], innerFrame: [30 / 813, 28 / 1185, 783 / 813, 1157 / 1185] };
 
 const pokemon = [
   ['dual-ball', 'Dual Ball', '139'], ['energy-removal-2', 'Energy Removal 2', '140'],
   ['energy-restore', 'Energy Restore', '141'], ['master-ball', 'Master Ball', '143'],
   ['pokemon-reversal', 'Pokémon Reversal', '146'], ['power-charge', 'Power Charge', '147'],
+] as const;
+
+const yugiohSupers = [
+  ['ash-blossom-joyous-spring', 'Ash Blossom & Joyous Spring', '14558127', '25th Anniversary Rarity Collection', 'RA01-EN008'],
+  ['nibiru-the-primal-being', 'Nibiru, the Primal Being', '27204311', '25th Anniversary Rarity Collection', 'RA01-EN015'],
+  ['forbidden-droplet', 'Forbidden Droplet', '24299458', '25th Anniversary Rarity Collection', 'RA01-EN064'],
+  ['triple-tactics-talent', 'Triple Tactics Talent', '25311006', '25th Anniversary Rarity Collection', 'RA01-EN063'],
+  ['pot-of-prosperity', 'Pot of Prosperity', '84211599', '25th Anniversary Rarity Collection', 'RA01-EN066'],
+  ['evenly-matched', 'Evenly Matched', '15693423', '25th Anniversary Rarity Collection', 'RA01-EN074'],
+  ['called-by-the-grave', 'Called by the Grave', '24224830', '25th Anniversary Rarity Collection', 'RA01-EN057'],
+  ['lightning-storm', 'Lightning Storm', '14532163', '25th Anniversary Rarity Collection', 'RA01-EN061'],
+  ['baronne-de-fleur', 'Baronne de Fleur', '84815190', '25th Anniversary Rarity Collection', 'RA01-EN034'],
+  ['droll-lock-bird', 'Droll & Lock Bird', '94145021', '25th Anniversary Rarity Collection II', 'RA02-EN006'],
+  ['ghost-belle-haunted-mansion', 'Ghost Belle & Haunted Mansion', '73642296', '25th Anniversary Rarity Collection', 'RA01-EN011'],
+  ['ghost-ogre-snow-rabbit', 'Ghost Ogre & Snow Rabbit', '59438930', '25th Anniversary Rarity Collection II', 'RA02-EN009'],
+  ['dimension-shifter', 'Dimension Shifter', '91800273', '25th Anniversary Rarity Collection', 'RA01-EN014'],
+  ['borreload-savage-dragon', 'Borreload Savage Dragon', '27548199', '25th Anniversary Rarity Collection', 'RA01-EN033'],
+  ['apollousa-bow-of-the-goddess', 'Apollousa, Bow of the Goddess', '4280258', '25th Anniversary Rarity Collection II', 'RA02-EN040'],
+  ['accesscode-talker', 'Accesscode Talker', '86066372', '25th Anniversary Rarity Collection II', 'RA02-EN044'],
+  ['knightmare-unicorn', 'Knightmare Unicorn', '38342335', '25th Anniversary Rarity Collection', 'RA01-EN043'],
+  ['underworld-goddess-closed-world', 'Underworld Goddess of the Closed World', '98127546', '25th Anniversary Rarity Collection II', 'RA02-EN045'],
+  ['mudragon-of-the-swamp', 'Mudragon of the Swamp', '54757758', '25th Anniversary Rarity Collection', 'RA01-EN028'],
+  ['garura-wings-of-resonant-life', 'Garura, Wings of Resonant Life', '11765832', '25th Anniversary Rarity Collection II', 'RA02-EN024'],
 ] as const;
 
 const magic = [
@@ -41,20 +64,30 @@ export const holoBulkCards: CardDefinition[] = [
     coverageMode: 'reverse' as const, layout: eReaderLayout, profile: 'pokemon-e-reader', seed: 2002139 + index * 31,
     source: { image: `https://images.pokemontcg.io/ecard1/${number}_hires.png`, metadata: `https://api.tcgdex.net/v2/en/cards/ecard1-${number}`, notes: 'Exact clean Expedition front. TCGdex records both normal and reverse variants; the shared mask foils the printed silver body while protecting artwork and e-reader rails.' },
   })),
+  ...yugiohSupers.map(([slug, title, passcode, set, number], index) => ({
+    id: `holo-yugioh-super-${slug}`, title, franchise: 'Yu-Gi-Oh!' as const,
+    set: `${set} · Ultra Rare`, number, dimensions: yugioh,
+    front: `/cards/holo-bulk/yugioh/${slug}.jpg`, back: '/cards/yugioh/back-en.png',
+    maps: { foil: '/cards/shared/yugioh-standard/artwork.svg?v=3', metallic: `/cards/holo-bulk/yugioh/maps/${slug}-name.png`, height: `/cards/holo-bulk/yugioh/maps/${slug}-height.png`, laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1' },
+    mapSettings: { embossStrength: .12 }, layout: yugiohLayout, profile: 'ygo-ultra', seed: 2024000 + index * 97 + Number(passcode) % 997,
+    source: { image: `https://images.ygoprodeck.com/images/cards/${passcode}.jpg`, metadata: `https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${encodeURIComponent(title)}`, notes: `Clean 813 × 1185 standard-layout front without baked glare. The card_sets record verifies ${number} as Ultra Rare; foil is confined to an inset artwork-window mask and the extracted title mask supplies recessed gold lettering.` },
+  })),
   {
     id: 'holo-yugioh-dark-ruler-no-more', title: 'Dark Ruler No More', franchise: 'Yu-Gi-Oh!',
-    set: '25th Anniversary Rarity Collection · Super Rare', number: 'RA01-EN060', dimensions: yugioh,
-    front: '/cards/holo-bulk/yugioh/dark-ruler-no-more.png', back: '/cards/yugioh/back-en.png',
-    maps: { foil: '/cards/shared/yugioh-standard/artwork.svg?v=2', laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1' },
-    layout: yugiohLayout, profile: 'ygo-super', seed: 2023060,
-    source: { image: 'https://cdn11.bigcommerce.com/s-b4ioc4fed9/images/stencil/original/products/374153/2988372/mkbpCyClkUDMGmbLSkrfRUpoS__27229.1765489051.png', metadata: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark%20Ruler%20No%20More', notes: 'Clean SDCH-EN027 Common scan supplies the same artwork and standard Spell layout without foil glare. The card_sets record verifies RA01-EN060 as Super Rare.' },
+    set: '25th Anniversary Rarity Collection · Ultra Rare', number: 'RA01-EN060', dimensions: yugioh,
+    front: '/cards/holo-bulk/yugioh/dark-ruler-no-more.jpg', back: '/cards/yugioh/back-en.png',
+    maps: { foil: '/cards/shared/yugioh-standard/artwork.svg?v=3', metallic: '/cards/holo-bulk/yugioh/maps/dark-ruler-no-more-name.png', height: '/cards/holo-bulk/yugioh/maps/dark-ruler-no-more-height.png', laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1' },
+    mapSettings: { embossStrength: .12 }, layout: yugiohLayout, profile: 'ygo-ultra', seed: 2023060,
+    source: { image: 'https://images.ygoprodeck.com/images/cards/54693926.jpg', metadata: 'https://db.ygoprodeck.com/api/v7/cardinfo.php?name=Dark%20Ruler%20No%20More', notes: 'Clean 813 × 1185 standard-layout front replaces the rejected low-resolution crop. The card_sets record verifies RA01-EN060 as Ultra Rare; foil is confined to the inset artwork window and the title uses recessed gold lettering.' },
   },
   ...magic.map(([slug, title, number, scryfallId], index) => ({
     id: `holo-magic-m11-${slug}`, title, franchise: 'Magic: The Gathering' as const,
     set: 'Magic 2011 · Traditional foil', number, dimensions: standard,
     front: `/cards/holo-bulk/magic/${slug}.png`, back: '/cards/magic/back.png',
-    maps: { foil: '/cards/shared/mtg-standard/foil.svg?v=2', laminate: '/cards/shared/mtg-standard/laminate.svg?v=1' },
+    maps: { foil: '/cards/shared/mtg-standard/foil.svg?v=3', laminate: '/cards/shared/mtg-standard/laminate.svg?v=1' },
     layout: magicLayout, profile: 'mtg-traditional', seed: 2011000 + index * 37 + Number(number),
     source: { image: `https://cards.scryfall.io/png/front/${scryfallId[0]}/${scryfallId[1]}/${scryfallId}.png`, metadata: `https://api.scryfall.com/cards/${scryfallId}`, notes: 'Exact Magic 2011 printing. Scryfall lists both nonfoil and foil finishes; the clean same-printing image has no baked foil reflection.' },
   })),
 ];
+
+export const holoBulkCardIds = holoBulkCards.map(card => card.id);
