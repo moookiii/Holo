@@ -4,7 +4,7 @@ import type { HolographicProfile } from '../HolographicProfile';
 export const pokemonProfiles: HolographicProfile[] = [{
   id: 'pokemon-rainbow-etched', name: 'Rainbow Rare · Etched', family: 'Pokémon', status: 'reference-pending',
   description: 'Sword & Shield Rainbow Rare: fine engraved full-card foil, directional body striae, granular backing and shallow silhouette relief. Card-authored maps register the grating and surface to the print; reflected wavelengths follow the light, view and etched normals.',
-  diffraction: { period: 1.18, bandwidth: .052, strength: .48, secondaryOrder: .14, direction: 0, crossWidth: .48, facetCoupling: 0 },
+  diffraction: { period: 1.18, bandwidth: .048, strength: .36, secondaryOrder: .14, direction: 0, crossWidth: .48, facetCoupling: 0 },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: .1, facetTilt: 0, normalVariance: .35 },
   glints: { density: .24, scale: 820, sharpness: 220, strength: 7, spread: .65 },
   surface: { metalness: .72, roughness: .38, laminate: .07, laminateRoughness: .38, foilReflectance: .028, varnishRelief: .06, substrateDarkening: .10 },

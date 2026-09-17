@@ -22,7 +22,7 @@ const archiveWrapper = { front: '/packs/archive/front.svg', back: '/packs/archiv
 export const holographicCardIds = [
   ...holoBulkCardIds,
   ...yugiohTopCardIds,
-  'nocturne', 'lugia-neo-genesis', 'charizard-base-set', 'tyranitar-paldea-evolved',
+  'nocturne', 'lugia-neo-genesis', 'charizard-base-set', 'tyranitar-paldea-evolved', 'pikachu-vmax-vivid-voltage',
   'eevee-legendary-reverse', 'charizard-expedition-reverse', 'squirtle-frlg-reverse',
   'effect-veiler-ra01', 'dark-magician-girl', 'ip-masquerena', 'blue-eyes',
   'angel-of-serenity', 'black-lotus',

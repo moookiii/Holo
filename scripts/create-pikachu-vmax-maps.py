@@ -70,7 +70,7 @@ RIGHT_ARM = 'M557 535 L551 552 Q545 568 563 577 Q563 587 579 597 Q614 620 649 63
 BELLY = 'M264 678 Q305 779 291 842 Q277 921 225 956'
 LIGHTNING = 'M297 0 L439 0 L480 198 L294 130 L294 202 L147 154 M109 221 L47 225 L93 328 L11 357 L58 456 L0 498 L72 576 L0 638 L44 674'
 
-body = mask(BODY)
+body = gaussian_filter(mask(BODY), 2.4)
 left_hand, right_hand = mask(LEFT_HAND), mask(RIGHT_HAND)
 left_ear, right_ear = mask(LEFT_EAR), mask(RIGHT_EAR)
 left_cheek, right_cheek = mask(LEFT_CHEEK), mask(RIGHT_CHEEK)
@@ -109,8 +109,8 @@ active = 1-protection
 # A curved diagonal engraving across the torso, turning around the neck/belly.
 # Different engraved regions terminate at the traced anatomical boundaries.
 body_phase = (y - .54*x + 38*np.sin((x-90)/310) + .00013*(y-480)**2)/2.35
-fields = [(gaussian_filter(left_hand, 6), (y-.70*x+.0008*(x-220)**2)/2.25),
-                    (right_hand, (y+.53*x)/2.15),
+fields = [(gaussian_filter(left_hand, 20), (y-.58*x+.0004*(x-220)**2)/2.30),
+                    (gaussian_filter(right_hand, 18), (y+.24*x)/2.20),
                     (left_ear, (y-.94*x)/2.1), (right_ear, (y+.7*x)/2.2),
                     (left_cheek, (y+.18*x+.0012*(x-247)**2)/2.1),
                     (right_cheek, (x+.38*y)/1.9),
@@ -158,7 +158,7 @@ for area, phase in fields:
 background_angle = np.arctan2(-bgy, bgx)
 axis_c = axis_c*body+np.cos(2*background_angle)*(1-body)
 axis_s = axis_s*body+np.sin(2*background_angle)*(1-body)
-angle = np.arctan2(axis_s, axis_c)*.5 + .008*slow + .16*fine
+angle = np.arctan2(axis_s, axis_c)*.5 + .008*slow + (.10*body+.18*(1-body))*fine
 spacing = .326 + .004*np.tanh(slow) + .012*grain
 direction = np.stack([np.cos(angle*2)*.5+.5, np.sin(angle*2)*.5+.5, spacing, np.ones_like(x)], axis=2)
 

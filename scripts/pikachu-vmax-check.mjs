@@ -59,6 +59,13 @@ try {
   assert.equal(initial.normal, 1); assert.deepEqual(initial.directionSize, [1468, 2048]);
   assert.deepEqual(initial.packedSize, [1468, 2048]);
   await shot('presentation');
+  // Exercise the normal picker, not just the debug setter.
+  await page.locator('#card-toggle').click();
+  await page.locator('#card-search').fill('188/185');
+  const picker = await page.locator('.card-grid .card-option').getAttribute('title');
+  assert.ok(picker.includes('Pikachu VMAX') && picker.includes('188/185'), 'Exact printing is discoverable through the card picker');
+  await shot('picker');
+  await page.locator('.card-grid .card-option').click();
   await page.evaluate(() => window.__holo.hideUI());
   const poses = [['front',0,0,0], ['left',-22,5,0], ['right',22,5,0], ['key',-15,-15,0],
     ['diagonal',-28,24,20], ['grazing-65',65,8,0], ['grazing-80',80,-10,0], ['edge',88,0,0], ['back',180,0,0]];
@@ -102,9 +109,11 @@ try {
     const a=i/159;
     await page.evaluate(a => window.__holo.pose(-38+76*a,12*Math.sin(a*Math.PI*2),4*Math.sin(a*Math.PI*2)),a);
     await page.waitForTimeout(35);
+    if (i%8===0) await shot(`motion-${String(i/8).padStart(2,'0')}`);
   }
   for (let i=0;i<=100;i++) {
     await page.evaluate(a=>window.__holo.pose(a,0,0),i*3.6); await page.waitForTimeout(30);
+    if(i%10===0) await shot(`turn-${String(i/10).padStart(2,'0')}`);
   }
   await page.evaluate(()=>window.__holo.pose(10,5,0));
   await shot('final');
