@@ -21,10 +21,10 @@ export const firstTenDesigns: Record<string, CardProfileOverrides> = {
     surface: { roughness: .27, metalness: .7, foilReflectance: .13, laminate: .2, laminateRoughness: .29 },
   },
   'pot-of-sloth': {
-    diffraction: { strength: 1.18, bandwidth: .032, crossing: .34, secondaryOrder: .12 },
-    structure: { scale: 255, facetTilt: .54, reflectionCoupling: .22, gridStrength: .82, gridScale: 3.8, gridWidth: .13 },
-    glints: { density: .23, strength: 8, sharpness: 350, spread: .32 },
-    surface: { roughness: .3, metalness: .66, foilReflectance: .11, laminate: .23, laminateRoughness: .28 },
+    diffraction: { strength: 1.82, bandwidth: .03, crossing: .42, secondaryOrder: .1 },
+    structure: { scale: 255, facetTilt: .62, reflectionCoupling: .16, gridStrength: .92, gridScale: 3.8, gridWidth: .105 },
+    glints: { density: .2, strength: 11, sharpness: 390, spread: .27 },
+    surface: { roughness: .38, metalness: .42, foilReflectance: .035, laminate: .1, laminateRoughness: .38, substrateDarkening: .22 },
   },
   'sp-little-knight': {
     diffraction: { strength: 1.36, bandwidth: .034, crossing: .48, secondaryOrder: .10 },
