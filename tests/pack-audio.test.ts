@@ -10,7 +10,10 @@ test('pack audio manifest contains only the supplied recorded cue families', () 
   });
   const publicRoot = fileURLToPath(new URL('../public', import.meta.url));
   for (const urls of Object.values(PACK_AUDIO_MANIFEST)) {
-    for (const url of urls) assert.ok(existsSync(`${publicRoot}${url}`), `missing ${url}`);
+    for (const url of urls) {
+      assert.match(url, /^\/audio\/pack\/[a-z0-9_]+\.wav$/, `unexpected pack audio URL: ${url}`);
+      assert.ok(existsSync(`${publicRoot}${url}`), `missing ${url}`);
+    }
   }
 });
 

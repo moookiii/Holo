@@ -1,7 +1,8 @@
 export type PackAudioGroup = 'master' | 'wrapper' | 'tear' | 'cards';
 export type PackAudioCue = 'crinkle' | 'tension' | 'tearStart' | 'tearFinish' | 'stripRelease' | 'extract' | 'cardSlide' | 'cardSettle';
 
-const asset = (name: string) => `/audio/pack/${name}.wav`;
+const assetBase = import.meta.env?.BASE_URL ?? '/';
+const asset = (name: string) => `${assetBase}audio/pack/${name}.wav`;
 const numbered = (name: string, count: number) => Array.from({ length: count }, (_, index) => asset(`${name}_${String(index + 1).padStart(2, '0')}`));
 const clamp = (value: number, min = 0, max = 1) => Math.max(min, Math.min(max, value));
 
