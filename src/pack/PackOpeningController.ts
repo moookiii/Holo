@@ -131,7 +131,7 @@ export class PackOpeningController {
     if ((this.state.value === 'Grip' || this.state.value === 'Tear') && p.dragLocal && this.start.dragLocal) {
       const pullX = p.dragLocal.x - this.start.dragLocal.x, pullY = p.dragLocal.y - this.start.dragLocal.y;
       this.pointerX.target = clamp(pullX, -6, 6); this.pointerY.target = clamp(pullY, -1.8, 2.2);
-      if (this.state.value === 'Grip' && Math.hypot(pullX, pullY) > .09) { this.state.transition('Tear'); this.audio.play('tear-start', .8); }
+      if (this.state.value === 'Grip' && Math.hypot(pullX, pullY) > .09) { this.beginTear(.8); }
       if (this.state.value === 'Tear') {
         const path = this.presentation.wrapper.tearPath, old = path.progress;
         const origin = this.start.materialLocal!;
@@ -158,9 +158,9 @@ export class PackOpeningController {
     if (this.disposed) return;
     void this.audio.unlock(); this.frozen = false;
     switch (this.state.value) {
-      case 'PackReady': this.packMotion.reset(); this.state.transition('Grip');
+      case 'PackReady': this.state.transition('Grip');
       // Accessible equivalent follows the same springs and state boundaries.
-      case 'Grip': this.state.transition('Tear'); this.audio.play('tear-start');
+      case 'Grip': this.beginTear();
       case 'Tear': this.autoTear = true; this.tear.target = 1; break;
       case 'OpenWrapper': this.mouth.target = 1; this.audio.play('open'); break;
       case 'ExtractStack': this.extract.target = 1; this.audio.play('slide'); break;
@@ -168,6 +168,11 @@ export class PackOpeningController {
       case 'HitReveal': if (this.state.elapsed > (this.media.matches ? .4 : 1.8)) this.next(); break;
       case 'PackSummary': this.inspect(this.hover >= 0 ? this.hover : this.contents.length - 1); break;
     }
+  }
+  private beginTear(volume = 1) {
+    // The tear is a presentation boundary: settle any freely handled pack back
+    // toward its authored, camera-facing pose for a clear opening and reveal.
+    this.packMotion.reset(); this.state.transition('Tear'); this.audio.play('tear-start', volume);
   }
   private next() {
     if (this.state.value === 'HitReveal' && this.state.elapsed < (this.media.matches ? .4 : 1.8)) return;

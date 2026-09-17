@@ -62,10 +62,12 @@ try {
   await capture('accessible-open');
 
   await reset(); await page.evaluate(() => window.__holo.pack.pose(28, 6, 24));
-  const orientation = (await stats()).orientation;
   await begin(3.2, 5.3); await move(.3, 5.6); await page.mouse.up(); await capture('rotated-tear');
   assert.ok((await stats()).tearPath.progress > .3, 'the stroke follows a rotated pack');
-  assert.deepEqual((await stats()).orientation, orientation, 'gripping preserves pack orientation');
+  await page.waitForTimeout(700);
+  const facing = (await stats()).orientation;
+  assert.ok(Math.abs(facing[0]) < 1e-5 && Math.abs(facing[1]) < 1e-5 && Math.abs(facing[2]) < 1e-5 && Math.abs(facing[3]) > .99999,
+    'starting the tear returns the pack face-on');
 
   await page.setViewportSize({ width: 390, height: 844 }); await page.emulateMedia({ reducedMotion: 'reduce' });
   await reset(); await page.waitForTimeout(200); await reset();
