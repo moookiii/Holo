@@ -124,6 +124,24 @@ export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yu
     notes: '600 × 825 first-edition scan. Printed Charizard, wings, flame, frame and text remain unchanged; background foil is reconstructed using a traced subject mask. Moving-reference validation remains pending.',
   },
 }, {
+  id: 'pikachu-vmax-vivid-voltage', title: 'Pikachu VMAX', franchise: 'Pokémon',
+  set: 'Vivid Voltage · Rainbow Rare', number: '188/185', dimensions: DIMENSIONS.standard,
+  front: '/cards/pikachu-vmax-vivid-voltage/front.png', back: '/cards/pokemon/back.jpg',
+  layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
+  profile: 'pokemon-rainbow-etched', seed: 2020188,
+  mapSettings: { roughnessMode: 'absolute', embossStrength: .1, normalScale: 1 },
+  maps: {
+    foil: '/cards/pikachu-vmax-vivid-voltage/foil.png', protection: '/cards/pikachu-vmax-vivid-voltage/protection.png',
+    height: '/cards/pikachu-vmax-vivid-voltage/height.png', normal: '/cards/pikachu-vmax-vivid-voltage/normal.png',
+    roughness: '/cards/pikachu-vmax-vivid-voltage/roughness.png', direction: '/cards/pikachu-vmax-vivid-voltage/direction.png',
+    pattern: '/cards/pikachu-vmax-vivid-voltage/pattern.png', laminate: '/cards/pikachu-vmax-vivid-voltage/laminate.png',
+    sparkle: '/cards/pikachu-vmax-vivid-voltage/sparkle.png',
+  },
+  source: {
+    image: 'https://images.pokemontcg.io/swsh4/188_hires.png', metadata: 'https://limitlesstcg.com/cards/en/VIV/188',
+    notes: 'English 2020 Vivid Voltage 188/185 Rainbow Rare, aky CG Works. Unmodified 734 × 1024 digital print; real etched treatment reconstructed with registered 1468 × 2048 surface maps from multiple physical-card photographs. No photographed lighting in the front. See docs/pikachu-vmax-rainbow.md and source.json for reference provenance and visual validation.',
+  },
+}, {
   id: 'tyranitar-paldea-evolved', title: 'Tyranitar', franchise: 'Pokémon',
   set: 'Paldea Evolved', number: '135/193', dimensions: DIMENSIONS.standard,
   layout: { artwork: [59/734, 102/1021, 675/734, 482/1021], innerFrame: [29/734, 28/1021, 703/734, 994/1021] },

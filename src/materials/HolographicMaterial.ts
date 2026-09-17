@@ -23,6 +23,8 @@ interface OpticalRegion {
   field: Node<'vec4'>;
   details: Node<'vec4'>;
   pattern: Node<'float'>;
+  /** Artist-authored grating axes lie in the authored relief's tangent plane. */
+  followsAuthoredSurface?: boolean;
   inkTransmission?: Node<'vec3'>;
   image?: Node<'vec3'>;
   imageDepth?: Node<'float'>;
@@ -65,6 +67,12 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const direction = mix(structure.direction, rotatedDirection, u.fieldBlend).normalize();
       const grating = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
       const foilNormal = normalView.toVar();
+      if (region.followsAuthoredSurface) {
+        // Normal maps previously changed silver reflection but left the X part
+        // of an imported grating in the flat card plane. Project the complete
+        // axis so etched ridges also redirect their diffracted wavelengths.
+        grating.assign(grating.sub(foilNormal.mul(grating.dot(foilNormal))).normalize());
+      }
       If(u.facetCoupling.max(u.gridCrisp).greaterThan(0), () => {
         // A grating pressed into an inclined ribbon lies in that ribbon's plane.
         // Transport its axis onto the manufactured normal before evaluating the
@@ -227,9 +235,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const primary = mix(artCoverage, this.hologramTextureNode.g, this.optics.imageHologram).mul(this.optics.enabled, secondary.oneMinus(), stamp.oneMinus());
     const metal = mask.b.max(stampMask.mul(this.stampOptics.enabled.oneMinus()));
     this.regions = [
-      { coverage: primary, optics: this.optics, seed, field: this.fieldTextureNode, details: this.reliefTextureNode, pattern: this.patternTextureNode.r },
-      { coverage: secondary, optics: this.secondaryOptics, seed: seed + 8191, field: this.secondaryFieldTextureNode, details: this.secondaryReliefTextureNode, pattern: this.patternTextureNode.g },
-      { coverage: stamp, optics: this.stampOptics, seed: seed + 16381, field: this.stampFieldTextureNode, details: this.stampReliefTextureNode, pattern: this.patternTextureNode.b },
+      { coverage: primary, optics: this.optics, seed, field: this.fieldTextureNode, details: this.reliefTextureNode, pattern: this.patternTextureNode.r, followsAuthoredSurface: !!cardMaps?.direction && cardMaps.hasNormal },
+      { coverage: secondary, optics: this.secondaryOptics, seed: seed + 8191, field: this.secondaryFieldTextureNode, details: this.secondaryReliefTextureNode, pattern: this.patternTextureNode.g, followsAuthoredSurface: !!cardMaps?.secondaryDirection && cardMaps.hasNormal },
+      { coverage: stamp, optics: this.stampOptics, seed: seed + 16381, field: this.stampFieldTextureNode, details: this.stampReliefTextureNode, pattern: this.patternTextureNode.b, followsAuthoredSurface: !!cardMaps?.stampDirection && cardMaps.hasNormal },
     ];
     for (const region of this.regions) {
       // The parallel foil lies beneath colored ink. Its reflected light must

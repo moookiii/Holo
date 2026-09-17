@@ -2,6 +2,13 @@ import type { HolographicProfile } from '../HolographicProfile';
 
 /** Optical reconstructions stay in development until compared against moving, multi-light references. */
 export const pokemonProfiles: HolographicProfile[] = [{
+  id: 'pokemon-rainbow-etched', name: 'Rainbow Rare · Etched', family: 'Pokémon', status: 'reference-pending',
+  description: 'Sword & Shield Rainbow Rare: fine engraved full-card foil, directional body striae, granular backing and shallow silhouette relief. Card-authored maps register the grating and surface to the print; reflected wavelengths follow the light, view and etched normals.',
+  diffraction: { period: 1.18, bandwidth: .060, strength: .80, secondaryOrder: .12, direction: 0, crossWidth: .48, facetCoupling: 0 },
+  structure: { field: 'plain', scale: 1, engraving: 0, relief: .1, facetTilt: 0, normalVariance: .35 },
+  glints: { density: .065, scale: 920, sharpness: 340, strength: 1.8, spread: .5 },
+  surface: { metalness: .52, roughness: .34, laminate: .22, laminateRoughness: .34, foilReflectance: .065, varnishRelief: .06 },
+}, {
   id: 'pokemon-ex-energy', name: 'EX Energy symbols', family: 'Pokémon', status: 'reference-pending',
   description: 'FireRed & LeafGreen-style varied energy symbols with independently inclined optical cells. A printing supplies its picture coverage and any separate rules stamp; the symbols are etched foil geometry, not colored decals.',
   diffraction: { period: 1.22, bandwidth: .042, strength: 1.5, secondaryOrder: .12, direction: 0, crossWidth: .42, facetCoupling: 1 },
