@@ -24,7 +24,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     <button id="reset" class="icon-control" aria-label="Reset view">${icon('<path d="M4 9a8 8 0 1 1 0 6M4 4v5h5"/>')}</button>
     <button id="fullscreen" class="icon-control" aria-label="Enter fullscreen">${icon('<path d="M8 4H4v4m12-4h4v4M4 16v4h4m12-4v4h-4"/>')}</button>
   </nav>
-  <section id="card-panel" class="popover card-panel" aria-label="Choose card" hidden><div class="card-panel-actions"><button id="import-card">Import card</button></div><div class="card-finish-tabs" role="group" aria-label="Card finish"></div><div class="filters" role="group" aria-label="Card category"></div><div class="card-grid"></div></section>
+  <section id="card-panel" class="popover card-panel" aria-label="Choose card" hidden><div class="card-panel-actions"><button id="import-card">Import card</button></div><div class="card-finish-tabs" role="group" aria-label="Card finish"></div><div class="filters" role="group" aria-label="Card category"></div><div class="card-search"><input id="card-search" type="search" aria-label="Search cards" placeholder="Search cards" autocomplete="off" spellcheck="false"></div><div class="card-grid"></div><p class="card-empty" role="status" hidden>No cards match these filters.</p></section>
   <section id="light-panel" class="popover light-panel" aria-label="Choose lighting" hidden></section>`;
   const select = root.querySelector<HTMLSelectElement>('#holo-select')!;
   root.querySelector<HTMLButtonElement>('#pack-open')!.onclick = actions.pack;
@@ -79,12 +79,18 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   let selectedCategory = 'All';
   root.querySelector<HTMLButtonElement>('#import-card')!.onclick = () => { close(); actions.importCard(); };
   const finishTabs = root.querySelector<HTMLElement>('.card-finish-tabs')!;
+  const searchField = root.querySelector<HTMLInputElement>('#card-search')!;
+  let searchQuery = '';
   const cardsForFinish = () => cards.filter(card => selectedFinish === 'all' || (selectedFinish === 'holo' ? card.profile !== 'print-only' : card.profile === 'print-only'));
   const availableCategories = () => ['All', ...new Set(cardsForFinish().map(card => card.franchise))];
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
+  const empty = root.querySelector<HTMLElement>('.card-empty')!;
+  const matchesSearch = (card: CardDefinition) => !searchQuery || [card.title, card.set, card.number, card.franchise].some(value => value.toLocaleLowerCase().includes(searchQuery));
   const drawCards = () => {
     grid.replaceChildren();
-    cardsForFinish().filter(card => selectedCategory === 'All' || card.franchise === selectedCategory).forEach(card => {
+    const visibleCards = cardsForFinish().filter(card => (selectedCategory === 'All' || card.franchise === selectedCategory) && matchesSearch(card));
+    empty.hidden = visibleCards.length > 0;
+    visibleCards.forEach(card => {
       const button = document.createElement('button'); button.className = 'card-option';
       button.setAttribute('aria-pressed', String(card.id === selectedCard));
       const image = document.createElement('img');
@@ -111,6 +117,7 @@ image.loading = 'lazy';
       grid.append(item);
     });
   };
+  searchField.oninput = () => { searchQuery = searchField.value.trim().toLocaleLowerCase(); drawCards(); };
   const filters = root.querySelector('.filters')!;
   const drawFinishTabs = () => {
     finishTabs.replaceChildren();
