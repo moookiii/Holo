@@ -82,7 +82,10 @@ export class PackScene {
       }
       // A newly exposed card stays a physical card below the leading card.
       mesh.position.lerp(position, smoothing); mesh.quaternion.slerp(q, smoothing);
-      mesh.visible = true;
+      // Cards are fully enclosed before extraction. Keeping them out of renderer
+      // traversal lets their pipelines compile asynchronously during the tactile
+      // wrapper sequence instead of blocking entry to the pack.
+      mesh.visible = p.extract > .001 || preview;
     });
     this.root.updateMatrixWorld(true);
     this.initialized = true; this.root.visible = true;
