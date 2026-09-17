@@ -11,7 +11,7 @@ import json
 import re
 import numpy as np
 from PIL import Image, ImageDraw
-from scipy.ndimage import gaussian_filter, maximum_filter, distance_transform_edt
+from scipy.ndimage import gaussian_filter, maximum_filter
 
 ROOT = Path(__file__).resolve().parents[1] / 'public/cards/pikachu-vmax-vivid-voltage'
 W, H, S = 1468, 2048, 2
@@ -109,14 +109,12 @@ active = 1-protection
 # A curved diagonal engraving across the torso, turning around the neck/belly.
 # Different engraved regions terminate at the traced anatomical boundaries.
 body_phase = (y - .54*x + 38*np.sin((x-90)/310) + .00013*(y-480)**2)/2.35
-phase = body_phase.copy()
-for area, local in [(left_hand, (y-.70*x+.0008*(x-220)**2)/2.25),
+fields = [(gaussian_filter(left_hand, 6), (y-.70*x+.0008*(x-220)**2)/2.25),
                     (right_hand, (y+.53*x)/2.15),
                     (left_ear, (y-.94*x)/2.1), (right_ear, (y+.7*x)/2.2),
-                    (left_cheek, np.sqrt(((x-247)*.86)**2+((y-337)*1.05)**2)/2.1),
+                    (left_cheek, (y+.18*x+.0012*(x-247)**2)/2.1),
                     (right_cheek, (x+.38*y)/1.9),
-                    (eyes, (y-.25*x)/1.9)]:
-    phase = phase*(1-area)+local*area
+                    (eyes, (y-.25*x)/1.9)]
 
 # The background shows interrupted, directionally related microcuts. Fixed
 # multiscale deviations break their continuity without turning them into noise.
@@ -125,17 +123,22 @@ slow = gaussian_filter(noise, 15); slow /= max(float(slow.std()), 1e-6)
 fine = gaussian_filter(noise, .7); fine /= max(float(fine.std()), 1e-6)
 background_phase = (y+.24*x+14*np.sin(x/83)+7*np.sin(y/115))/1.95 + .18*slow
 background_cut = (np.cos(background_phase*2*np.pi)*.5+.5)**2
-body_cut = (np.cos(phase*2*np.pi)*.5+.5)**2
+body_cut = (np.cos((body_phase+.045*fine)*2*np.pi)*.5+.5)**2
+for area, phase in fields:
+    # Blend physical ridges, never scalar phases: interpolating unrelated phase
+    # counts invents dense interference seams at the hand/ear boundaries.
+    cut = (np.cos((phase+.045*fine)*2*np.pi)*.5+.5)**2
+    body_cut = body_cut*(1-area)+cut*area
 grain = smooth(-.6, 1.2, fine)
 interrupt = .45+.55*smooth(-1.1, .9, gaussian_filter(noise, 1.0)*3.5)
-micro = (body_cut*.72 + grain*.28)*body + (background_cut*.48*interrupt + grain*.52)*(1-body)
+micro = (body_cut*.52 + grain*.48)*body + (background_cut*.32*interrupt + grain*.68)*(1-body)
 micro *= 1-eyes*.64
 micro *= active
 
 # Physical relief in centimetres (micron-scale). Macro contours and fine etch
 # are separate so height derivatives and the micro normal never double-count.
 macro = (.00010*body + .00023*edge + .00009*lightning)*active
-micro_cm = (micro-.42)*(.00048*body+.00068*(1-body))
+micro_cm = (micro-.42)*(.00075*body+.00115*(1-body))
 gy, gx = np.gradient(micro_cm, 8.8/H, 6.3/W)
 normals = np.stack([-gx, gy, np.ones_like(gx)], axis=2)
 normals /= np.linalg.norm(normals, axis=2, keepdims=True)
@@ -144,14 +147,22 @@ normals /= np.linalg.norm(normals, axis=2, keepdims=True)
 # image Y axis inverted to the material's +Y-up tangent convention. Double-angle
 # encoding makes unoriented 180-degree grating axes interpolate without seams.
 bgy, bgx = np.gradient(background_phase, 8.8/H, 6.3/W)
-pgy, pgx = np.gradient(phase, 8.8/H, 6.3/W)
-axis_x = pgx*body+bgx*(1-body)
-axis_y = -(pgy*body+bgy*(1-body))
-angle = np.arctan2(axis_y, axis_x) + .035*slow
-spacing = .326 + .016*np.tanh(slow) + .008*grain
+pgy, pgx = np.gradient(body_phase, 8.8/H, 6.3/W)
+angle = np.arctan2(-pgy, pgx)
+axis_c, axis_s = np.cos(2*angle), np.sin(2*angle)
+for area, phase in fields:
+    pgy, pgx = np.gradient(phase, 8.8/H, 6.3/W)
+    angle = np.arctan2(-pgy, pgx)
+    axis_c = axis_c*(1-area)+np.cos(2*angle)*area
+    axis_s = axis_s*(1-area)+np.sin(2*angle)*area
+background_angle = np.arctan2(-bgy, bgx)
+axis_c = axis_c*body+np.cos(2*background_angle)*(1-body)
+axis_s = axis_s*body+np.sin(2*background_angle)*(1-body)
+angle = np.arctan2(axis_s, axis_c)*.5 + .008*slow + .16*fine
+spacing = .326 + .004*np.tanh(slow) + .012*grain
 direction = np.stack([np.cos(angle*2)*.5+.5, np.sin(angle*2)*.5+.5, spacing, np.ones_like(x)], axis=2)
 
-roughness = (.29*body+.33*(1-body)) + .055*(1-micro) + .018*np.tanh(slow)
+roughness = (.34*body+.37*(1-body)) + .055*(1-micro) + .009*np.tanh(slow)
 roughness = roughness*(1-eyes)+.245*eyes
 roughness = roughness*(1-edge*.6)+.23*edge*.6
 roughness = roughness*active + .46*protection
@@ -159,7 +170,7 @@ foil = .89*body+.96*(1-body)
 foil = np.maximum(foil, edge*.99)
 laminate = (.46*body+.38*(1-body))*(1-protection*.22)
 pattern = (.78+.22*micro)*(1-eyes*.4)
-sparkle = (.12*body+.28*(1-body))*active
+sparkle = (.45*body+.70*(1-body))*active
 
 save('foil', foil)
 save('protection', protection)
