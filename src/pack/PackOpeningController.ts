@@ -68,9 +68,10 @@ export class PackOpeningController {
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
     const total = definitions.length + 2;
     let ready = 0; deps.progress?.(0, total);
-    // Prepare all assets concurrently. Only the wrapper must be compiled before
-    // entry: every card is physically concealed until extraction, so making the
-    // user wait here for every front/back/edge pipeline only delays the opening.
+    // Prepare card assets concurrently, then compile the complete opening in one
+    // renderer traversal. Separate compileAsync calls repeat renderer setup and
+    // pipeline-cache waits for every card; one group pass prepares the same set of
+    // materials without that serial barrier.
     const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets).then(wrapper => {
       deps.progress?.(++ready, total); return wrapper;
     }), ...definitions.map(async card => {
@@ -85,20 +86,12 @@ export class PackOpeningController {
     const wrapper = (results[0] as PromiseFulfilledResult<PackWrapper>).value;
     const cards = results.slice(1).map(result => (result as PromiseFulfilledResult<CardInstance>).value);
     try {
-      await deps.factory.compile(wrapper.root);
+      const opening = new Group();
+      opening.add(wrapper.root, ...cards.map(card => card.mesh));
+      await deps.factory.compile(opening);
       deps.signal.throwIfAborted(); deps.progress?.(++ready, total);
     } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); throw error; }
-    const controller = new PackOpeningController(definition, contents, cards, wrapper, deps, seed);
-    // Compile shared card materials while the user handles and opens the wrapper.
-    // Clones preserve the live scene hierarchy and share the exact resources whose
-    // pipelines will be needed later. A failed speculative compile is harmless:
-    // the renderer will compile that card on demand when it becomes visible.
-    const compilation = new Group();
-    compilation.add(...cards.map(card => card.mesh.clone()));
-    void deps.factory.compile(compilation).catch(error => {
-      if (!deps.signal.aborted) console.warn('Background card compilation failed', error);
-    }).finally(() => compilation.clear());
-    return controller;
+    return new PackOpeningController(definition, contents, cards, wrapper, deps, seed);
   }
   private down(p: PackPointer) {
     this.frozen = false; void this.audio.unlock(); this.start = this.previousPointer = p; this.dragDistance = 0;
