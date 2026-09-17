@@ -1,5 +1,6 @@
 import { nonHoloCardIds } from '../card/NonHoloCards.ts';
 import { holoBulkCardIds } from '../card/HoloBulkCards.ts';
+import { yugiohTopCardIds } from '../card/YugiohTopCards.ts';
 
 export interface PackCard {
   cardId: string;
@@ -20,6 +21,7 @@ export interface PackDefinition {
 const archiveWrapper = { front: '/packs/archive/front.svg', back: '/packs/archive/back.svg', ink: '/packs/archive/ink.svg', backInk: '/packs/archive/back-ink.svg', width: 7.55, height: 11.8, depth: .66 };
 export const holographicCardIds = [
   ...holoBulkCardIds,
+  ...yugiohTopCardIds,
   'nocturne', 'lugia-neo-genesis', 'charizard-base-set', 'tyranitar-paldea-evolved',
   'eevee-legendary-reverse', 'charizard-expedition-reverse', 'squirtle-frlg-reverse',
   'effect-veiler-ra01', 'dark-magician-girl', 'ip-masquerena', 'blue-eyes',

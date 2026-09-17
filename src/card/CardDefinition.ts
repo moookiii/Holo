@@ -1,6 +1,7 @@
 import type { CardProfileOverrides } from '../materials/HolographicProfile';
 import { nonHoloCards } from './NonHoloCards.ts';
 import { holoBulkCards } from './HoloBulkCards.ts';
+import { yugiohTopCards } from './YugiohTopCards.ts';
 
 export type Franchise = 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
 export interface CardLayout {
@@ -92,7 +93,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, {
+export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
