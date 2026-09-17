@@ -32,7 +32,7 @@ test('every prepared front and registration map exists at standard resolution', 
     throw new Error(`No JPEG dimensions in ${path}`);
   };
   for (const card of yugiohTopCards) {
-    assert.deepEqual(jpegSize(`public${card.front}`), [813, 1185], card.title);
+    assert.deepEqual(jpegSize(`public${card.front.split('?')[0]}`), [813, 1185], card.title);
     for (const path of Object.values(card.maps ?? {})) assert.ok(existsSync(`public${path.split('?')[0]}`), `${card.title}: ${path}`);
     assert.ok(card.source?.notes.includes('optical tuning remains for Astra'));
   }

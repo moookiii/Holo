@@ -36,7 +36,9 @@ export const yugiohTopCards: CardDefinition[] = sources.map(card => ({
   number: card.setCode,
   dimensions,
   layout: { artwork: [...layout.artwork], innerFrame: [...layout.innerFrame] },
-  front: `${root}/${card.slug}.jpg`,
+  // Bump the local URL when replacing a card front so an already-open viewer
+  // cannot keep serving the previous image from the browser cache.
+  front: `${root}/${card.slug}.jpg${card.slug === 'pot-of-sloth' ? '?v=replica' : ''}`,
   back: '/cards/yugioh/back-en.png',
   maps: maps(card.slug, card.profile),
   mapSettings: { embossStrength: card.profile === 'ygo-ultimate' ? .24 : .12 },
