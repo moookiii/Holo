@@ -110,7 +110,6 @@ active = 1-protection
 # Different engraved regions terminate at the traced anatomical boundaries.
 body_phase = (y - .54*x + 38*np.sin((x-90)/310) + .00013*(y-480)**2)/2.35
 fields = [(gaussian_filter(left_hand, 20), (y-.58*x+.0004*(x-220)**2)/2.30),
-                    (gaussian_filter(right_hand, 18), (y+.24*x)/2.20),
                     (left_ear, (y-.94*x)/2.1), (right_ear, (y+.7*x)/2.2),
                     (left_cheek, (y+.18*x+.0012*(x-247)**2)/2.1),
                     (right_cheek, (x+.38*y)/1.9),

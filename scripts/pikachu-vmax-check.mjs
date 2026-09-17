@@ -21,14 +21,15 @@ if (!existsSync(chromium.executablePath())) {
 }
 const browser = await chromium.launch(options);
 const context = await browser.newContext({ viewport: { width: 1280, height: 1000 }, deviceScaleFactor: 1,
-  recordVideo: { dir: out, size: { width: 1280, height: 1000 } } });
+  ...(backend === 'webgpu' ? {recordVideo: { dir: out, size: { width: 1280, height: 1000 } }} : {}) });
 const page = await context.newPage();
 const errors = [], warnings = [], captures = [];
 page.on('pageerror', e => errors.push(e.stack));
 page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); if (m.type() === 'warning') warnings.push(m.text()); });
 const shot = async name => {
   await page.waitForTimeout(180);
-  const buffer = await page.screenshot({ path: join(out, `${name}.png`) });
+  const buffer = await page.screenshot({ path: join(out, `${name}.png`), timeout: 30000 });
+  console.log(`${backend}: ${name}`);
   captures.push(name); return buffer.toString('base64');
 };
 const difference = async (a, b) => page.evaluate(async ([a, b]) => {
@@ -121,4 +122,7 @@ try {
   await writeFile(join(out,'report.json'),JSON.stringify({initial,temporal,diffraction,relief,unlitMaximum:dark,
     final:await page.evaluate(()=>window.__holo.stats()),captures,errors,warnings},null,2));
   console.log(JSON.stringify({backend,temporal,diffraction,relief,unlitMaximum:dark,errors,warnings},null,2));
+} catch (error) {
+  await writeFile(join(out,'failure.json'),JSON.stringify({error:String(error),captures,errors,warnings},null,2));
+  throw error;
 } finally { await context.close(); await browser.close(); }
