@@ -44,7 +44,11 @@ try {
   await page.waitForFunction(() => window.__holo.pack.stats().revealed, undefined, { timeout: 30000 });
   audio = await audioStats();
   assert.equal(audio.playCounts.cardSlide, 1);
-  assert.equal(audio.playCounts.cardSettle, 1);
+  assert.equal(audio.playCounts.cardSettle, 0, 'reveal completion does not settle the card');
+  await page.locator('.pack-action').click();
+  await tick();
+  audio = await audioStats();
+  assert.equal(audio.playCounts.cardSettle, 1, 'the outgoing card settles after crossing offscreen');
 
   await page.locator('.pack-back').click();
   await page.evaluate(() => { void window.__holo.pack.open('test-pack'); });

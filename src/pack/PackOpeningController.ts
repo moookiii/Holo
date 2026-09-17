@@ -53,7 +53,7 @@ export class PackOpeningController {
   private disposed = false;
   private extractionSounded = false;
   private cardSlideSounded = false;
-  private cardSettled = false;
+  private pendingCardSettle = -1;
   private media = matchMedia('(prefers-reduced-motion: reduce)');
   private inspectionComplete = false;
   private constructor(readonly definition: PackDefinition, readonly contents: PackCard[], cards: CardInstance[], wrapper: PackWrapper, private deps: PackDependencies, seed: number, readonly audio: PackAudio) {
@@ -191,7 +191,10 @@ export class PackOpeningController {
   private next() {
     if (this.state.value === 'HitReveal' && this.state.elapsed < (this.media.matches ? .4 : 1.8)) return;
     if (this.active >= this.contents.length - 1) { this.state.transition('PackSummary'); this.hover = -1; }
-    else { this.active++; this.reveal.snap(0); this.revealed = false; this.cardSlideSounded = false; this.cardSettled = false; this.state.transition('RevealCard'); }
+    else {
+      this.pendingCardSettle = this.active; this.active++; this.reveal.snap(0); this.revealed = false;
+      this.cardSlideSounded = false; this.state.transition('RevealCard');
+    }
   }
   private inspect(index: number) {
     this.selected = index; this.presentation.beginInspect(index); this.state.transition('Inspect');
@@ -237,9 +240,7 @@ export class PackOpeningController {
         if (this.settle === 1) this.state.transition('RevealCard');
       }
       if (this.state.value === 'RevealCard' && this.reveal.value > .998 && !this.revealed) {
-        const settleVelocity = Math.abs(this.reveal.velocity);
         this.reveal.snap(1); this.revealed = true;
-        if (!this.cardSettled) { this.cardSettled = true; this.audio.playCardSettle(clamp(.32 + settleVelocity * .025)); }
         if (this.contents[this.active].reveal === 'studio-sweep') this.state.transition('HitReveal');
       }
     }
@@ -251,6 +252,9 @@ export class PackOpeningController {
       active: this.active, hit, hover: this.hover, selected: this.selected, inspect, grip: this.grip.value,
       tension: this.tear.velocity, release: this.release.value, pointerX: this.pointerX.value, pointerY: this.pointerY.value };
     this.presentation.update(pose, dt, portrait, reduced, force);
+    if (this.pendingCardSettle >= 0 && this.presentation.cards[this.pendingCardSettle].mesh.position.x < -15.5) {
+      this.audio.playCardSettle(.42); this.pendingCardSettle = -1;
+    }
     if (state === 'PackSummary') this.camera.frame(portrait ? 10.5 : this.contents.length * 3.35 + 5, portrait ? 18 : 11, -.4, 0, 3.5);
     else if (state === 'Inspect') {
       const card = this.presentation.cards[this.selected];
@@ -273,7 +277,7 @@ export class PackOpeningController {
     this.presentation.wrapper.tearPath.reset();
     this.packMotion.setPose(0, 0); this.packMotion.dragging = false;
     this.tear.snap(0); this.mouth.snap(0); this.extract.snap(0); this.reveal.snap(0); this.grip.snap(0); this.release.snap(0); this.pointerX.snap(0); this.pointerY.snap(0);
-    this.active = 0; this.revealed = false; this.settle = 0; this.hover = -1; this.extractionSounded = false; this.cardSlideSounded = false; this.cardSettled = false;
+    this.active = 0; this.revealed = false; this.settle = 0; this.hover = -1; this.extractionSounded = false; this.cardSlideSounded = false; this.pendingCardSettle = -1;
     const afterTear = ['open', 'extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage);
     if (afterTear) { this.tear.snap(1); this.release.snap(1); }
     if (['extract', 'stack', 'reveal', 'hit', 'summary'].includes(stage)) this.mouth.snap(1);
