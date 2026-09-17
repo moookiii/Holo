@@ -2,11 +2,12 @@ import type { CardDefinition, CardMapPaths } from './CardDefinition';
 import sources from '../../public/cards/yugioh-top-holos/sources.json' with { type: 'json' };
 import { firstTenDesigns } from './YugiohFirstTenDesigns.ts';
 import { nextTenDesigns } from './YugiohNextTenDesigns.ts';
+import { remainingDesigns } from './YugiohRemainingDesigns.ts';
 
 const dimensions = { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.1, bevel: 0.006 };
 const layout = { artwork: [96 / 813, 205 / 1185, 730 / 813, 848 / 1185], innerFrame: [30 / 813, 28 / 1185, 783 / 813, 1157 / 1185] } as const;
 const root = '/cards/yugioh-top-holos';
-const cardDesigns = { ...firstTenDesigns, ...nextTenDesigns };
+const cardDesigns = { ...firstTenDesigns, ...nextTenDesigns, ...remainingDesigns };
 
 function maps(slug: string, profile: string): CardMapPaths {
   const title = `${root}/maps/${slug}-name.png`;
@@ -45,7 +46,7 @@ export const yugiohTopCards: CardDefinition[] = sources.map(card => ({
   source: {
     image: card.image,
     metadata: card.metadata,
-    notes: `Rank ${card.rank} at ${card.usage} usage in 263 topping TCG decklists during the captured last-month window. YGOPRODeck verifies ${card.setCode} as ${card.rarity}. Clean standard front, registered title mask and conservative relief are prepared; print-specific optical tuning remains for Astra. Ranking source: ${card.rankingSource}`,
+    notes: `Rank ${card.rank} at ${card.usage} usage in 263 topping TCG decklists during the captured last-month window. YGOPRODeck verifies ${card.setCode} as ${card.rarity}. Clean standard front, registered title mask and individual optical tuning are assigned; physical-reference matching remains pending. Ranking source: ${card.rankingSource}`,
   },
 }));
 
