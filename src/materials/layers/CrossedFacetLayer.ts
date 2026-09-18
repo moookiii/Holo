@@ -2,7 +2,15 @@ import type { Node } from 'three/webgpu';
 import { uv, vec2, vec3, float, exp, mix, normalView, positionViewDirection } from 'three/tsl';
 import type { OpticalUniforms } from '../OpticalUniforms';
 import { stableHash } from './PatternLayer';
-import { spectrum } from './DiffractionLayer';
+
+/** Compact silver-biased first-order response for the two crossed cut families.
+ * Keeping this local avoids expanding the full seven-band grating model twice
+ * in WebGL while retaining narrow, physically ordered spectral flashes. */
+function facetSpectrum(path: Node<'float'>, bandwidth: Node<'float'>, variance: Node<'float'>) {
+  const width = bandwidth.mul(1.25).pow2().add(variance).sqrt();
+  const band = (wavelength: number) => exp(path.sub(wavelength).div(width).pow2().mul(-.5)).mul(bandwidth.div(width));
+  return vec3(band(.455).mul(.22), band(.535).mul(.34), band(.615).mul(.24));
+}
 
 /** Crossed embossed microprisms. Geometry lives in card UVs; only the BRDF
  * depends on the emitter/view. Correlated inclinations produce broken glints,
@@ -60,7 +68,7 @@ export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitang
     const path = momentum.dot(grating).abs().mul(u.period, field.b.mul(1.5).add(.5));
     const transverseWidth = intrinsic.mul(5).add(variance(groove).mul(4)).sqrt();
     const aperture = exp(momentum.dot(groove).div(transverseWidth).pow2().mul(-.5));
-    const color = spectrum(path, u.bandwidth, u.secondary, variance(grating).mul(4, u.period.pow2()));
+    const color = facetSpectrum(path, u.bandwidth, variance(grating).mul(4, u.period.pow2()));
     const incident = facet.dot(light).max(0);
     const visibility = normal.dot(positionViewDirection).max(0).smoothstep(0, .16);
     // Silver is dominant at mirror alignment; spectral orders only live on

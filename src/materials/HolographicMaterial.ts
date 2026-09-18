@@ -33,12 +33,12 @@ interface OpticalRegion {
 export interface ProfileFields { primary?: PatternTextures; secondary?: PatternTextures; stamp?: PatternTextures; }
 
 class HolographicLightingModel extends PhysicalLightingModel {
-  constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>) { super(true, false, true, true); }
+  constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>, private crossedShaders: boolean[]) { super(true, false, true, true); }
   private substrateReflection() {
     // Starlight assigns most incident energy to the microprism response below.
     // Reserve a small share for the smooth print/backing and laminate response;
     // evaluating both at full strength washes out the colored cuts at the key.
-    return this.regions.reduce<Node<'float'>>((weight, region) => weight.sub(region.coverage.mul(region.optics.crossedFacets, .91)), float(1)).max(.09);
+    return this.regions.reduce<Node<'float'>>((weight, region, i) => this.crossedShaders[i] ? weight.sub(region.coverage.mul(.91)) : weight, float(1)).max(.09);
   }
   override direct(data: LightingModelDirectInput, builder: NodeBuilder) {
     // Substrate and clearcoat are evaluated once, regardless of the number of foil regions.
@@ -59,7 +59,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
     this.diffract({ lightDirection: direction, lightColor: (data.lightColor as Node<'vec3'>).mul(solidAngle), reflectedLight: data.reflectedLight }, [angularWidth, angularHeight]);
   }
   private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
-    for (const region of this.regions) If(region.optics.enabled.greaterThan(0), () => {
+    for (const [regionIndex, region] of this.regions.entries()) If(region.optics.enabled.greaterThan(0), () => {
       const u = region.optics;
       const light = data.lightDirection as Node<'vec3'>;
       const structure = radialStructure(u.scale, u.angle, u.aspect);
@@ -136,12 +136,16 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      const ink = mix(vec3(1), region.inkTransmission!, u.crossedFacets);
-      const conventional = spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(incident, visible);
-      const cuts = crossedFacets(light, tangentView, geometryBitangent, geometryNormal, region.field, region.details, u, region.seed, footprint)
-        .mul(region.pattern, this.sparkleCoverage);
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(mix(conventional, cuts, u.crossedFacets)
-        .mul(ink, region.coverage, data.lightColor as Node<'vec3'>));
+      if (this.crossedShaders[regionIndex]) {
+        const cuts = crossedFacets(light, tangentView, geometryBitangent, geometryNormal, region.field, region.details, u, region.seed, footprint)
+          .mul(region.pattern, this.sparkleCoverage);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(cuts
+          .mul(region.inkTransmission!, region.coverage, data.lightColor as Node<'vec3'>));
+      } else {
+        const conventional = spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(incident, visible);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
+          .mul(region.coverage, data.lightColor as Node<'vec3'>));
+      }
     });
   }
   override indirectSpecular(builder: NodeBuilder) {
@@ -191,6 +195,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private neutralWhite = new DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1, RGBAFormat, UnsignedByteType);
   private neutralHologram = new DataTexture(new Uint8Array([128, 0, 128, 0]), 1, 1, RGBAFormat, UnsignedByteType);
   private regions: OpticalRegion[];
+  private crossedShaders = [false, false, false];
+  private activeShaders = [true, false, false];
   constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false, coatedStock = false) {
     super({ clearcoat: 0.72, clearcoatRoughness: 0.2, metalness: 0.5, roughness: 0.3, envMapIntensity: 0.65 });
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
@@ -342,6 +348,13 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.colorNode = mix(this.colorNode, vec3(.58, .61, .59), pearl[0].add(pearl[1]).add(pearl[2]).clamp(0, 1));
   }
   setProfile(profile: HolographicProfile, maps: ProfileFields = {}) {
+    const active = [profile, profile.secondary, profile.stamp].map(Boolean);
+    const crossed = [profile, profile.secondary, profile.stamp].map(layer => layer?.structure.field === 'starlight');
+    if (active.some((value, i) => value !== this.activeShaders[i]) || crossed.some((value, i) => value !== this.crossedShaders[i])) {
+      this.activeShaders = active;
+      this.crossedShaders = crossed;
+      this.needsUpdate = true;
+    }
     this.surfaceControls.extendedCoverage.value = profile.extendedCoverage ? 1 : 0;
     this.surfaceControls.anniversary.value = profile.watermark === 'quarter-century' ? 1 : 0;
     this.fieldTextureNode.value = this.cardMaps?.direction ?? maps.primary?.direction ?? this.neutralField;
@@ -364,7 +377,11 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   setAspect(aspect: number, height = 8.8) {
     for (const optics of [this.optics, this.secondaryOptics, this.stampOptics]) { optics.aspect.value = aspect; optics.cardHeight.value = height; }
   }
-  override setupLightingModel() { return new HolographicLightingModel(this.regions, this.surfaceTextureNode.b); }
+  override setupLightingModel() {
+    const regions = this.regions.filter((_, i) => this.activeShaders[i]);
+    const crossed = this.crossedShaders.filter((_, i) => this.activeShaders[i]);
+    return new HolographicLightingModel(regions, this.surfaceTextureNode.b, crossed);
+  }
   override dispose() { this.neutralField.dispose(); this.neutralRelief.dispose(); this.neutralWhite.dispose(); this.neutralHologram.dispose(); super.dispose(); }
 }
 

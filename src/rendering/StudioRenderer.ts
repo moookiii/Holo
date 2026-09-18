@@ -2,7 +2,12 @@ import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, Neutra
 import { pass } from 'three/tsl';
 
 export async function createRenderer(container: HTMLElement) {
-  const renderer = new WebGPURenderer({ antialias: true, alpha: false, forceWebGL: new URLSearchParams(location.search).get('backend') === 'webgl' });
+  const requestedBackend = new URLSearchParams(location.search).get('backend');
+  // Firefox currently exposes WebGPU on configurations where Three's node
+  // material pipeline can initialize successfully but produce a black canvas.
+  // Its WebGL 2 backend is stable and supports the same TSL material graph.
+  const firefox = /Firefox\//.test(navigator.userAgent);
+  const renderer = new WebGPURenderer({ antialias: true, alpha: false, forceWebGL: requestedBackend === 'webgl' || (firefox && requestedBackend !== 'webgpu') });
   renderer.outputColorSpace = SRGBColorSpace;
   renderer.toneMapping = NeutralToneMapping;
   renderer.toneMappingExposure = 1;
