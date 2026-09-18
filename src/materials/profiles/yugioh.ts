@@ -98,10 +98,10 @@ const treatments: HolographicProfile[] = [{
 }, {
   id: 'ygo-starlight', name: 'Starlight', family: 'Yu-Gi-Oh!', status: 'reference-pending', extendedCoverage: true,
   description: 'Dense crossed microprisms with fine silver flashes and broken directional reflections selected by light and view. Full-card foil remains beneath protected printed ink.',
-  diffraction: { period: 1.22, bandwidth: .048, strength: .75, secondaryOrder: .06, direction: 0, crossWidth: .12, crossing: .5 },
+  diffraction: { period: 1.22, bandwidth: .042, strength: 1.3, secondaryOrder: .06, direction: 0, crossWidth: .12, crossing: .5 },
   structure: { field: 'starlight', scale: 420, engraving: 0, relief: .008, facetTilt: 1.1, reflectionCoupling: .025, normalVariance: .12 },
-  glints: { density: 1, scale: 420, sharpness: 720, strength: 38, spread: .65 },
-  surface: { metalness: .62, roughness: .3, laminate: .24, laminateRoughness: .23, foilReflectance: .08 },
+  glints: { density: 1, scale: 420, sharpness: 580, strength: 12, spread: .65 },
+  surface: { metalness: .58, roughness: .32, laminate: .18, laminateRoughness: .24, foilReflectance: .025 },
   secondary: secretName,
 }, {
   id: 'ygo-quarter-century', name: 'Quarter Century', family: 'Yu-Gi-Oh!', status: 'reference-pending', extendedCoverage: true,

@@ -38,7 +38,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
     // Starlight assigns most incident energy to the microprism response below.
     // Reserve a small share for the smooth print/backing and laminate response;
     // evaluating both at full strength washes out the colored cuts at the key.
-    return this.regions.reduce<Node<'float'>>((weight, region) => weight.sub(region.coverage.mul(region.optics.crossedFacets, .55)), float(1)).max(.45);
+    return this.regions.reduce<Node<'float'>>((weight, region) => weight.sub(region.coverage.mul(region.optics.crossedFacets, .91)), float(1)).max(.09);
   }
   override direct(data: LightingModelDirectInput, builder: NodeBuilder) {
     // Substrate and clearcoat are evaluated once, regardless of the number of foil regions.
@@ -83,8 +83,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
         const geometryNormal = normalViewGeometry as unknown as Node<'vec3'>;
         const geometryBitangent = geometryNormal.cross(tangentView).mul(tangentGeometry.w).normalize();
         const sheetAxis = tangentView.mul(direction.x).add(geometryBitangent.mul(direction.y)).normalize();
-        // Starlight's atlas stores shallow aggregate sheet slopes. Its optical
-        // prism faces are steeper, allowing visible orders near the mirror angle.
+        // Manufactured inclinations transport the grating into the facet plane.
         const slope = region.details.rg.sub(.5).mul(u.facetTilt);
         const facetNormal = geometryNormal.add(tangentView.mul(slope.x)).add(geometryBitangent.mul(slope.y)).normalize();
         const facetAxis = sheetAxis.sub(facetNormal.mul(sheetAxis.dot(facetNormal))).normalize();

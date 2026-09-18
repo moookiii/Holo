@@ -33,13 +33,16 @@ export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitang
     const r = stableHash(cell, seed + (vertical ? 491 : 127));
     const s = stableHash(cell, seed + (vertical ? 617 : 283));
     const local = shifted.fract().sub(vec2(.5, s.sub(.5).mul(.32).add(.5)));
-    const size = vec2(r.mul(.23).add(.18), s.mul(.085).add(.075));
+    const size = vec2(r.mul(.18).add(.29), s.mul(.09).add(.09));
     const pixel = lattice.fwidth().max(.001);
     // Exact box/pixel overlap keeps subpixel cuts fine at distance and grazing.
     const lo = local.sub(pixel.mul(.5)).max(size.negate());
     const hi = local.add(pixel.mul(.5)).min(size);
     const area = hi.sub(lo).max(0).div(pixel);
-    const shape = area.x.mul(area.y);
+    // Once several cells fit inside one pixel, converge to their covered area.
+    // Sampling just the current cell would lose energy and shimmer edge-on.
+    const resolved = pixel.x.max(pixel.y).smoothstep(.65, 1.8).oneMinus();
+    const shape = mix(size.x.mul(size.y, 4), area.x.mul(area.y), resolved);
     const jitter = vec2(r.sub(.5).mul(u.spread, 2), s.sub(.5).mul(.10));
     const mean = vertical ? sheet.yx : sheet;
     const facetSlope = vec2(mean.x.mul(.3), mean.y).add(jitter);
@@ -63,8 +66,8 @@ export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitang
     // Silver is dominant at mirror alignment; spectral orders only live on
     // the inclined cuts, not on a rainbow overlay spanning the artwork.
     const response = vec3(1, .985, .96).mul(peak, u.glintStrength)
-      .add(color.mul(aperture, u.strength, 1.8));
-    result.addAssign(response.mul(shape, incident, visibility));
+      .add(color.mul(aperture, u.strength, 5));
+    result.addAssign(response.mul(shape, incident, visibility, vertical ? .38 : .62));
   }
-  return result.mul(.5);
+  return result;
 }
