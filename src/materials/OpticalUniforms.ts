@@ -7,7 +7,7 @@ export class OpticalUniforms {
   secondary = uniform(0.2); angle = uniform(0); crossWidth = uniform(0.32);
   crossing = uniform(0); facetCoupling = uniform(0);
   gridStrength = uniform(0); gridScale = uniform(6.4); gridTravel = uniform(14); gridWidth = uniform(.55);
-  gridCrisp = uniform(0);
+  crossedFacets = uniform(0);
   engraving = uniform(0.64); scale = uniform(95); relief = uniform(0.24);
   density = uniform(0.22); glintScale = uniform(310); sharpness = uniform(230);
   glintStrength = uniform(13); spread = uniform(0.56);
@@ -41,7 +41,7 @@ export class OpticalUniforms {
     this.normalVariance.value = p.structure.normalVariance ?? 0;
     this.gridStrength.value = p.structure.gridStrength ?? 0; this.gridScale.value = p.structure.gridScale ?? 6.4;
     this.gridTravel.value = p.structure.gridTravel ?? 14; this.gridWidth.value = p.structure.gridWidth ?? .55;
-    this.gridCrisp.value = p.structure.field === 'starlight' ? 1 : 0;
+    this.crossedFacets.value = p.structure.field === 'starlight' ? 1 : 0;
     this.metalness.value = p.surface.metalness; this.roughness.value = p.surface.roughness;
     this.patternRoughness.value = p.surface.patternRoughness ?? 0;
     this.laminate.value = p.surface.laminate; this.laminateRoughness.value = p.surface.laminateRoughness;

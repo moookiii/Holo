@@ -97,11 +97,11 @@ const treatments: HolographicProfile[] = [{
   secondary: secretName,
 }, {
   id: 'ygo-starlight', name: 'Starlight', family: 'Yu-Gi-Oh!', status: 'reference-pending', extendedCoverage: true,
-  description: 'Widely spaced square grid with crisp straight spectral cuts, card-colored reflections and fine silver facets. Authored full-card coverage protects text and selected artwork.',
-  diffraction: { period: 1.22, bandwidth: .035, strength: 2.15, secondaryOrder: .2, direction: 0, crossWidth: .48, crossing: .35 },
-  structure: { field: 'starlight', scale: 255, engraving: .1, relief: .015, facetTilt: .85, normalVariance: .5, gridStrength: 1, gridScale: 3.8, gridTravel: 14, gridWidth: .12 },
-  glints: { density: .42, scale: 580, sharpness: 350, strength: 23, spread: .45 },
-  surface: { metalness: .79, roughness: .23, laminate: .18, laminateRoughness: .3, foilReflectance: .2 },
+  description: 'Dense crossed microprisms with fine silver flashes and broken directional reflections selected by light and view. Full-card foil remains beneath protected printed ink.',
+  diffraction: { period: 1.22, bandwidth: .048, strength: .75, secondaryOrder: .06, direction: 0, crossWidth: .12, crossing: .5 },
+  structure: { field: 'starlight', scale: 420, engraving: 0, relief: .008, facetTilt: 1.1, reflectionCoupling: .025, normalVariance: .12 },
+  glints: { density: 1, scale: 420, sharpness: 720, strength: 38, spread: .65 },
+  surface: { metalness: .62, roughness: .3, laminate: .24, laminateRoughness: .23, foilReflectance: .08 },
   secondary: secretName,
 }, {
   id: 'ygo-quarter-century', name: 'Quarter Century', family: 'Yu-Gi-Oh!', status: 'reference-pending', extendedCoverage: true,

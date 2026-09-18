@@ -189,7 +189,21 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
       spacing = .9 + .17 * Math.sin(x * 9 - y * 7) + (phase - .5) * .04;
       amplitude = .65 + dome * .12; depth = .46 + dome * .035;
       nx = -a * .17; ny = -b * .17; grain = .55 + phase * .3;
-    } else if (spec.kind === 'starlight' || spec.kind === 'quarter-century') {
+    } else if (spec.kind === 'starlight') {
+      // Aperiodic, anisotropically correlated inclinations of the stamping die.
+      // These are normals, not painted streaks. The crossed-facet BRDF selects
+      // different, interrupted portions of this field for each light/view pair.
+      nx = (smoothNoise(x * 19, y * 2.7, seed + 181) - .5) * .92
+        + (smoothNoise(x * 47, y * 11, seed + 193) - .5) * .17;
+      ny = (smoothNoise(x * 3.1, y * 23, seed + 211) - .5) * .92
+        + (smoothNoise(x * 13, y * 61, seed + 223) - .5) * .17;
+      angle = .018 * (smoothNoise(x * 9, y * 13, seed + 83) - .5);
+      spacing = .96 + .13 * smoothNoise(x * 12, y * 16, seed + 139);
+      amplitude = 1;
+      // Fine cut geometry is analytically integrated at the pixel footprint in
+      // CrossedFacetLayer, so mipmaps cannot bake sparkles into the normal map.
+      depth = .5; grain = .8;
+    } else if (spec.kind === 'quarter-century') {
       const anniversary = spec.kind === 'quarter-century';
       // Dense orthogonal cuts: both grating axes coexist, so store the same pair
       // throughout the sheet. Alternating 0/90 degree axes cancel in filtered mipmaps.

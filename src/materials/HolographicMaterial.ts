@@ -7,6 +7,7 @@ import { OpticalUniforms } from './OpticalUniforms';
 import { spectrum } from './layers/DiffractionLayer';
 import { radialStructure, gratingDirection } from './layers/PatternLayer';
 import { glints } from './layers/GlintLayer';
+import { crossedFacets } from './layers/CrossedFacetLayer';
 import { angularGrid } from './layers/AngularGridLayer';
 import { reliefNormal } from './layers/ReliefLayer';
 import { RecessedNameLayer } from './layers/RecessedNameLayer';
@@ -37,7 +38,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
     // Starlight assigns most incident energy to the microprism response below.
     // Reserve a small share for the smooth print/backing and laminate response;
     // evaluating both at full strength washes out the colored cuts at the key.
-    return this.regions.reduce<Node<'float'>>((weight, region) => weight.sub(region.coverage.mul(region.optics.gridCrisp, .88)), float(1)).max(.12);
+    return this.regions.reduce<Node<'float'>>((weight, region) => weight.sub(region.coverage.mul(region.optics.crossedFacets, .55)), float(1)).max(.45);
   }
   override direct(data: LightingModelDirectInput, builder: NodeBuilder) {
     // Substrate and clearcoat are evaluated once, regardless of the number of foil regions.
@@ -73,7 +74,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
         // axis so etched ridges also redirect their diffracted wavelengths.
         grating.assign(grating.sub(foilNormal.mul(grating.dot(foilNormal))).normalize());
       }
-      If(u.facetCoupling.max(u.gridCrisp).greaterThan(0), () => {
+      If(u.facetCoupling.greaterThan(0), () => {
         // A grating pressed into an inclined ribbon lies in that ribbon's plane.
         // Transport its axis onto the manufactured normal before evaluating the
         // optical path. Otherwise facet tilt changes silver but leaves a flat
@@ -84,11 +85,11 @@ class HolographicLightingModel extends PhysicalLightingModel {
         const sheetAxis = tangentView.mul(direction.x).add(geometryBitangent.mul(direction.y)).normalize();
         // Starlight's atlas stores shallow aggregate sheet slopes. Its optical
         // prism faces are steeper, allowing visible orders near the mirror angle.
-        const slope = region.details.rg.sub(.5).mul(u.facetTilt, mix(float(1), float(10), u.gridCrisp));
+        const slope = region.details.rg.sub(.5).mul(u.facetTilt);
         const facetNormal = geometryNormal.add(tangentView.mul(slope.x)).add(geometryBitangent.mul(slope.y)).normalize();
         const facetAxis = sheetAxis.sub(facetNormal.mul(sheetAxis.dot(facetNormal))).normalize();
-        grating.assign(mix(grating, facetAxis, u.facetCoupling.max(u.gridCrisp)).normalize());
-        foilNormal.assign(mix(foilNormal, facetNormal, u.facetCoupling.max(u.gridCrisp)).normalize());
+        grating.assign(mix(grating, facetAxis, u.facetCoupling).normalize());
+        foilNormal.assign(mix(foilNormal, facetNormal, u.facetCoupling).normalize());
       });
       const groove = foilNormal.cross(grating).normalize();
       // Reflection-grating momentum: d * |(L + V) · G| = m λ.
@@ -98,9 +99,9 @@ class HolographicLightingModel extends PhysicalLightingModel {
       // Keep derivatives in continuous control flow. Building this expression
       // inside an optional TSL branch can leave shared intermediate values
       // undefined in the subsequently evaluated physical-lighting graph.
-      const selected = angularGrid(momentum, tangentView, geometryBitangent, geometryNormal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth, u.gridCrisp);
-      const gridGain = mix(float(2.4), float(4.8), u.gridCrisp);
-      const grid = mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength).toVar();
+      const selected = angularGrid(momentum, tangentView, geometryBitangent, geometryNormal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth);
+      const gridGain = float(2.4);
+      const grid = mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength.mul(u.crossedFacets.oneMinus())).toVar();
       const spacing = mix(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5), u.fieldBlend);
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
       const variance = (axis: Node<'vec3'>) => footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
@@ -136,10 +137,12 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      const ink = mix(vec3(1), region.inkTransmission!, u.gridCrisp);
-      // Reallocate the suppressed smooth reflection into diffracted orders.
-      // The whole response still scales with this emitter's incident radiance.
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.mul(mix(float(1), float(4), u.gridCrisp)).add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(ink, region.coverage, incident, visible, data.lightColor as Node<'vec3'>));
+      const ink = mix(vec3(1), region.inkTransmission!, u.crossedFacets);
+      const conventional = spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(incident, visible);
+      const cuts = crossedFacets(light, tangentView, geometryBitangent, geometryNormal, region.field, region.details, u, region.seed, footprint)
+        .mul(region.pattern, this.sparkleCoverage);
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(mix(conventional, cuts, u.crossedFacets)
+        .mul(ink, region.coverage, data.lightColor as Node<'vec3'>));
     });
   }
   override indirectSpecular(builder: NodeBuilder) {
@@ -150,7 +153,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
     for (const region of this.regions) {
       // Neutral backing must not disappear merely because the scan pixels are dark.
       const backing = mix(float(1), mix(float(.18), float(1), region.field.a.mul(region.pattern)), region.optics.fieldBlend);
-      (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign(radiance.mul(region.coverage, region.optics.foilReflectance, backing, mix(vec3(1), region.inkTransmission!, region.optics.gridCrisp)));
+      (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign(radiance.mul(region.coverage, region.optics.foilReflectance, backing, mix(vec3(1), region.inkTransmission!, region.optics.crossedFacets)));
     }
   }
 }

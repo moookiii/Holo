@@ -43,7 +43,7 @@ export const yugiohTopCards: CardDefinition[] = sources.map(card => ({
   maps: maps(card.slug, card.profile),
   mapSettings: { embossStrength: card.profile === 'ygo-ultimate' ? .24 : .12 },
   profile: card.profile,
-  profileOverrides: cardDesigns[card.slug],
+  profileOverrides: card.profile === 'ygo-starlight' ? undefined : cardDesigns[card.slug],
   seed: 2026000 + card.rank * 101 + Number(card.passcode) % 997,
   source: {
     image: card.image,
