@@ -9,7 +9,7 @@ const layout = { artwork: [96 / 813, 205 / 1185, 730 / 813, 848 / 1185], innerFr
 const root = '/cards/yugioh-top-holos';
 const cardDesigns = { ...firstTenDesigns, ...nextTenDesigns, ...remainingDesigns };
 
-function maps(slug: string, profile: string): CardMapPaths {
+function maps(slug: string, profile: string, hasStamp: boolean | undefined): CardMapPaths {
   const title = `${root}/maps/${slug}-name.png`;
   const result: CardMapPaths = {
     foil: '/cards/shared/yugioh-standard/artwork.svg?v=4',
@@ -21,7 +21,7 @@ function maps(slug: string, profile: string): CardMapPaths {
     result.extendedFoil = '/cards/shared/yugioh-standard/extended.svg?v=2';
   }
   if (profile !== 'ygo-super') result.height = `${root}/maps/${slug}-height.png`;
-  if (cardDesigns[slug]) {
+  if (cardDesigns[slug] && hasStamp !== false) {
     result.stamp = '/cards/shared/yugioh-standard/designed-stamp.svg';
     // Starlight foil must remain continuous through the lower effect-text and
     // copyright sections. The designed parallel mask intentionally dims those
@@ -46,7 +46,9 @@ export const yugiohTopCards: CardDefinition[] = sources.map(card => ({
   // cannot keep serving the previous image from the browser cache.
   front: `${root}/${card.slug}.jpg${card.slug === 'pot-of-sloth' ? '?v=replica' : ''}`,
   back: '/cards/yugioh/back-en.png',
-  maps: maps(card.slug, card.profile),
+  // The downloaded YGOPRODeck fronts are replica prints and do not carry the
+  // lower-right security stamp. Do not generate a stamp hologram over them.
+  maps: maps(card.slug, card.profile, false),
   mapSettings: { embossStrength: card.profile === 'ygo-ultimate' ? .24 : .12 },
   profile: card.profile,
   // These printings share the same Starlight die. Earlier per-card grid guesses
