@@ -17,16 +17,18 @@ export const PACK_AUDIO_MANIFEST: Readonly<Record<PackAudioCue, readonly string[
   cardSettle: numbered('card_settle', 4),
 };
 
-interface CueMix { group: Exclude<PackAudioGroup, 'master'>; level: number; cooldown: number; rateVariation: number; gainVariation: number; }
+interface CueMix { group: Exclude<PackAudioGroup, 'master'>; level: number; cooldown: number; rateVariation: number; gainVariation: number; maxDuration: number; }
 const cueMix: Record<PackAudioCue, CueMix> = {
-  crinkle: { group: 'wrapper', level: .38, cooldown: .085, rateVariation: .04, gainVariation: .04 },
-  tension: { group: 'wrapper', level: .34, cooldown: .30, rateVariation: .025, gainVariation: .035 },
-  tearStart: { group: 'tear', level: .62, cooldown: .25, rateVariation: .025, gainVariation: .025 },
-  tearFinish: { group: 'tear', level: .67, cooldown: .25, rateVariation: .02, gainVariation: .02 },
-  stripRelease: { group: 'tear', level: .58, cooldown: .25, rateVariation: .025, gainVariation: .025 },
-  extract: { group: 'cards', level: .66, cooldown: .25, rateVariation: .025, gainVariation: .03 },
-  cardSlide: { group: 'cards', level: .44, cooldown: .18, rateVariation: .03, gainVariation: .03 },
-  cardSettle: { group: 'cards', level: .32, cooldown: .18, rateVariation: .025, gainVariation: .025 },
+  crinkle: { group: 'wrapper', level: .38, cooldown: .085, rateVariation: .04, gainVariation: .04, maxDuration: .22 },
+  tension: { group: 'wrapper', level: .34, cooldown: .30, rateVariation: .025, gainVariation: .035, maxDuration: .28 },
+  tearStart: { group: 'tear', level: .62, cooldown: .25, rateVariation: .025, gainVariation: .025, maxDuration: .36 },
+  tearFinish: { group: 'tear', level: .67, cooldown: .25, rateVariation: .02, gainVariation: .02, maxDuration: .32 },
+  // The release recording is intentionally capped to the strip's visible
+  // travel; a longer tail makes the wrapper sound as if it is still moving.
+  stripRelease: { group: 'tear', level: .58, cooldown: .25, rateVariation: .025, gainVariation: .025, maxDuration: .3 },
+  extract: { group: 'cards', level: .66, cooldown: .25, rateVariation: .025, gainVariation: .03, maxDuration: .5 },
+  cardSlide: { group: 'cards', level: .44, cooldown: .18, rateVariation: .03, gainVariation: .03, maxDuration: .4 },
+  cardSettle: { group: 'cards', level: .32, cooldown: .18, rateVariation: .025, gainVariation: .025, maxDuration: .32 },
 };
 
 /** Chooses a random recording without immediately repeating the previous one. */
@@ -169,7 +171,12 @@ export class PackAudio {
         gain.gain.value = mix.level * (.22 + strength * .78) * (1 + (Math.random() * 2 - 1) * mix.gainVariation);
         source.connect(gain).connect(group); this.active.add(source);
         if (cue === 'crinkle') this.activeCrinkles.set(source, gain);
-        source.start(context.currentTime + delay);
+        const startTime = context.currentTime + delay;
+        source.start(startTime);
+        // Foley clips are allowed to overlap during motion, but never outlive
+        // the physical gesture they represent. This is especially important
+        // for the torn strip release, which immediately transitions to opening.
+        try { source.stop(startTime + mix.maxDuration); } catch { /* already scheduled */ }
         this.playCounts.set(cue, (this.playCounts.get(cue) ?? 0) + 1);
         source.onended = () => { this.active.delete(source); this.activeCrinkles.delete(source); source.disconnect(); gain.disconnect(); };
       });

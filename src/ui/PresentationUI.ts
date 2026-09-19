@@ -89,6 +89,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const drawCards = () => {
     grid.replaceChildren();
     const visibleCards = cardsForFinish().filter(card => (selectedCategory === 'All' || card.franchise === selectedCategory) && matchesSearch(card));
+    visibleCards.sort((a, b) => Number(a.profile === 'print-only') - Number(b.profile === 'print-only'));
     empty.hidden = visibleCards.length > 0;
     visibleCards.forEach(card => {
       const button = document.createElement('button'); button.className = 'card-option';

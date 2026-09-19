@@ -23,7 +23,7 @@ function smoothNoise(x: number, y: number, seed: number) {
 }
 
 /** Encodes manufacturing geometry only. Neither texture contains spectral colors or lighting. */
-export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'starlight', 'galaxy-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
+export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
   if (spec.kind === 'symbol-foil') {
     if (!spec.motif) throw new Error('Symbol foil requires a motif specification.');
     return generateMotifField(spec.seed, spec.aspect, spec.scale, height, spec.motif);
@@ -193,15 +193,16 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
       // Aperiodic, anisotropically correlated inclinations of the stamping die.
       // These are normals, not painted streaks. The crossed-facet BRDF selects
       // different, interrupted portions of this field for each light/view pair.
-      nx = (smoothNoise(x * 19, y * 2.7, seed + 181) - .5) * .92
-        + (smoothNoise(x * 47, y * 11, seed + 193) - .5) * .17;
-      ny = (smoothNoise(x * 3.1, y * 23, seed + 211) - .5) * .92
-        + (smoothNoise(x * 13, y * 61, seed + 223) - .5) * .17;
+      nx = (smoothNoise(x * 22, y * 3.7, seed + 181) - .5) * .48
+        + (smoothNoise(x * 233, y * 43, seed + 193) - .5) * .72;
+      ny = (smoothNoise(x * 4.1, y * 29, seed + 211) - .5) * .48
+        + (smoothNoise(x * 47, y * 277, seed + 223) - .5) * .72;
       angle = .018 * (smoothNoise(x * 9, y * 13, seed + 83) - .5);
       spacing = .96 + .13 * smoothNoise(x * 12, y * 16, seed + 139);
       amplitude = 1;
-      // Fine cut geometry is analytically integrated at the pixel footprint in
-      // CrossedFacetLayer, so mipmaps cannot bake sparkles into the normal map.
+      // The 1024px atlas only carries correlated inclinations. Fine cut geometry
+      // is integrated analytically at the pixel footprint in CrossedFacetLayer;
+      // increasing atlas resolution would add load cost without finer facets.
       depth = .5; grain = .8;
     } else if (spec.kind === 'quarter-century') {
       const anniversary = spec.kind === 'quarter-century';

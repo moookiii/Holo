@@ -62,6 +62,16 @@ class HolographicLightingModel extends PhysicalLightingModel {
     for (const [regionIndex, region] of this.regions.entries()) If(region.optics.enabled.greaterThan(0), () => {
       const u = region.optics;
       const light = data.lightDirection as Node<'vec3'>;
+      // Build only the optical model this region uses. TSL assignments and
+      // conditional blocks are emitted even when their final value is unused.
+      if (this.crossedShaders[regionIndex]) {
+        const geometryNormal = normalViewGeometry as unknown as Node<'vec3'>;
+        const geometryBitangent = geometryNormal.cross(tangentView).mul(tangentGeometry.w).normalize();
+        const cuts = crossedFacets(light, tangentView, geometryBitangent, geometryNormal, region.field, region.details, u, region.seed, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(cuts
+          .mul(region.pattern, this.sparkleCoverage, region.inkTransmission!, region.coverage, data.lightColor as Node<'vec3'>));
+        return;
+      }
       const structure = radialStructure(u.scale, u.angle, u.aspect);
       const bitangent = bitangentView as unknown as Node<'vec3'>;
       const rotatedDirection = gratingDirection(region.field.rg, u.angle);
@@ -136,16 +146,9 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      if (this.crossedShaders[regionIndex]) {
-        const cuts = crossedFacets(light, tangentView, geometryBitangent, geometryNormal, region.field, region.details, u, region.seed, footprint)
-          .mul(region.pattern, this.sparkleCoverage);
-        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(cuts
-          .mul(region.inkTransmission!, region.coverage, data.lightColor as Node<'vec3'>));
-      } else {
-        const conventional = spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(incident, visible);
-        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
-          .mul(region.coverage, data.lightColor as Node<'vec3'>));
-      }
+      const conventional = spectral.add(sparkle.mul(grid)).add(silver).add(vec3(1, .985, .96).mul(pearlSheen)).mul(incident, visible);
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
+        .mul(region.coverage, data.lightColor as Node<'vec3'>));
     });
   }
   override indirectSpecular(builder: NodeBuilder) {
@@ -376,6 +379,12 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   }
   setAspect(aspect: number, height = 8.8) {
     for (const optics of [this.optics, this.secondaryOptics, this.stampOptics]) { optics.aspect.value = aspect; optics.cardHeight.value = height; }
+  }
+  override customProgramCacheKey() {
+    // These flags alter generated code, not uniform values. Three treats arrays
+    // as opaque objects, so needsUpdate alone would reuse the previous program
+    // when switching a live card into or out of Starlight.
+    return `${super.customProgramCacheKey()}:${this.activeShaders.map((active, i) => active ? this.crossedShaders[i] ? 'crossed' : 'grating' : 'off').join('/')}`;
   }
   override setupLightingModel() {
     const regions = this.regions.filter((_, i) => this.activeShaders[i]);

@@ -23,7 +23,13 @@ function maps(slug: string, profile: string): CardMapPaths {
   if (profile !== 'ygo-super') result.height = `${root}/maps/${slug}-height.png`;
   if (cardDesigns[slug]) {
     result.stamp = '/cards/shared/yugioh-standard/designed-stamp.svg';
-    if (result.extendedFoil) result.extendedFoil = '/cards/shared/yugioh-standard/designed-parallel.svg?v=2';
+    // Starlight foil must remain continuous through the lower effect-text and
+    // copyright sections. The designed parallel mask intentionally dims those
+    // areas for other treatments, which leaves a visible missing foil band on
+    // Starlight cards.
+    if (result.extendedFoil && profile !== 'ygo-starlight') {
+      result.extendedFoil = '/cards/shared/yugioh-standard/designed-parallel.svg?v=2';
+    }
   }
   return result;
 }

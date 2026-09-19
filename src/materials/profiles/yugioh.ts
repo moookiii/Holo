@@ -98,9 +98,9 @@ const treatments: HolographicProfile[] = [{
 }, {
   id: 'ygo-starlight', name: 'Starlight', family: 'Yu-Gi-Oh!', status: 'reference-pending', extendedCoverage: true,
   description: 'Dense crossed microprisms with fine silver flashes and broken directional reflections selected by light and view. Full-card foil remains beneath protected printed ink.',
-  diffraction: { period: 1.22, bandwidth: .042, strength: 1.3, secondaryOrder: .06, direction: 0, crossWidth: .12, crossing: .5 },
-  structure: { field: 'starlight', scale: 420, engraving: 0, relief: .008, facetTilt: 1.1, reflectionCoupling: .025, normalVariance: .12 },
-  glints: { density: 1, scale: 420, sharpness: 580, strength: 12, spread: .65 },
+    diffraction: { period: 1.22, bandwidth: .028, strength: 3.2, secondaryOrder: .06, direction: 0, crossWidth: .12, crossing: .5 },
+    structure: { field: 'starlight', scale: 640, engraving: 0, relief: .008, facetTilt: 1.1, reflectionCoupling: .025, normalVariance: .12 },
+    glints: { density: 1, scale: 640, sharpness: 1400, strength: 18, spread: .24 },
   surface: { metalness: .58, roughness: .32, laminate: .18, laminateRoughness: .24, foilReflectance: .025 },
   secondary: secretName,
 }, {
