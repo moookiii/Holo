@@ -68,7 +68,9 @@ export interface HolographicProfile extends FoilLayer {
   /** A separately masked security mark or rarity stamp. */
   stamp?: FoilLayer;
   /** Coverage B: non-diffractive metallic ink. Color is linear RGB. */
-  metallicInk?: { color?: [number, number, number]; roughness: number; metalness: number; };
+  metallicInk?: { color?: [number, number, number]; roughness: number; metalness: number;
+    /** Optional conductor-body controls. Defaults preserve existing metallic lettering. */
+    environmentIntensity?: number; recess?: number; normalFiltering?: number; };
 }
 
 export interface FoilOverrides {

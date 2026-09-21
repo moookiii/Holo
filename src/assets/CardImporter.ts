@@ -41,7 +41,9 @@ export async function prepareImportedCard(spec: CardImportSpec, files: SelectedF
     const front = await resolve(spec.front, false), back = await resolve(spec.back, false);
     const maps: NonNullable<CardDefinition['maps']> = {};
     for (const name of CARD_MAP_KEYS) if (spec.maps?.[name]) maps[name] = await resolve(spec.maps[name]!, true);
-    const definition: CardDefinition = { ...spec, id: `import-${crypto.randomUUID()}`, imported: true, front, back, maps,
+    const backMaps: NonNullable<CardDefinition['backMaps']> = {};
+    for (const name of CARD_MAP_KEYS) if (spec.backMaps?.[name]) backMaps[name] = await resolve(spec.backMaps[name]!, true);
+    const definition: CardDefinition = { ...spec, id: `import-${crypto.randomUUID()}`, imported: true, front, back, maps, ...(spec.backMaps ? { backMaps } : {}),
       source: { image: spec.front, metadata: 'Local card import', notes: 'Selected source files are unmodified. Imported images and material maps stay in this browser session.' } };
     return { definition, assetUrls: [...urls.values()], dispose: () => { urls.forEach(url => URL.revokeObjectURL(url)); urls.clear(); } };
   } catch (error) { urls.forEach(url => URL.revokeObjectURL(url)); throw error; }

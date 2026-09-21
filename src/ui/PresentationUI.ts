@@ -12,7 +12,7 @@ interface ViewerActions {
   pack: () => void;
 }
 export interface ProfileOption { id: string; name: string; family: string; labOnly?: boolean; }
-type CardFinish = 'all' | 'holo' | 'non-holo';
+type CardFinish = 'all' | 'holo' | 'non-holo' | 'metal';
 const icon = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
 export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: ProfileOption[], actions: ViewerActions, development = false) {
   root.innerHTML = `<a class="lab-entry" href="?lab=1">Holo Lab ↗</a><button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button><nav class="controls" aria-label="Card controls">
@@ -83,7 +83,9 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const finishTabs = root.querySelector<HTMLElement>('.card-finish-tabs')!;
   const searchField = root.querySelector<HTMLInputElement>('#card-search')!;
   let searchQuery = '';
-  const cardsForFinish = () => cards.filter(card => selectedFinish === 'all' || (selectedFinish === 'holo' ? card.profile !== 'print-only' : card.profile === 'print-only'));
+  const cardsForFinish = () => cards.filter(card => selectedFinish === 'all'
+    || (selectedFinish === 'metal' ? card.construction?.kind === 'metal'
+      : !card.construction && (selectedFinish === 'holo' ? card.profile !== 'print-only' : card.profile === 'print-only')));
   const availableCategories = () => ['All', ...new Set(cardsForFinish().map(card => card.franchise))];
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
@@ -124,7 +126,7 @@ image.loading = 'lazy';
   const filters = root.querySelector('.filters')!;
   const drawFinishTabs = () => {
     finishTabs.replaceChildren();
-    const finishOptions: Array<[CardFinish, string]> = [['all', 'All'], ['holo', 'Holo'], ['non-holo', 'Non-holo']];
+    const finishOptions: Array<[CardFinish, string]> = [['all', 'All'], ['holo', 'Holo'], ['non-holo', 'Non-holo'], ['metal', 'Metal']];
     finishOptions.forEach(([finish, label]) => {
       const button = document.createElement('button'); button.type = 'button'; button.textContent = label;
       button.setAttribute('aria-pressed', String(finish === selectedFinish));

@@ -53,6 +53,7 @@ export function deserializeProfile(text: string): HolographicProfile {
     object(p.metallicInk);
     if (typeof p.metallicInk.roughness !== 'number' || typeof p.metallicInk.metalness !== 'number') throw new Error('Invalid metallic ink.');
     if (p.metallicInk.color && (!Array.isArray(p.metallicInk.color) || p.metallicInk.color.length !== 3 || p.metallicInk.color.some((n: unknown) => typeof n !== 'number'))) throw new Error('Invalid metallic color.');
+    for (const key of ['environmentIntensity', 'recess', 'normalFiltering']) if (p.metallicInk[key] !== undefined && (typeof p.metallicInk[key] !== 'number' || p.metallicInk[key] < 0 || p.metallicInk[key] > (key === 'environmentIntensity' ? 3 : 1))) throw new Error(`Invalid metallic ${key}.`);
   }
   if (p.mapSettings !== undefined) {
     object(p.mapSettings);

@@ -82,19 +82,20 @@ function profileOverrides(value: unknown, profiles: readonly HolographicProfile[
     }
   }
   if (source.metallicInk !== undefined) {
-    const ink = record(source.metallicInk, 'metallicInk'); onlyKeys(ink, ['color', 'roughness', 'metalness'], 'metallicInk');
+    const ink = record(source.metallicInk, 'metallicInk'); onlyKeys(ink, ['color', 'roughness', 'metalness', 'environmentIntensity', 'recess', 'normalFiltering'], 'metallicInk');
     const color = ink.color;
     if (color !== undefined && (!Array.isArray(color) || color.length !== 3)) throw new Error('metallicInk.color needs three linear RGB components.');
     result.metallicInk = { roughness: number(ink.roughness, 'metallicInk.roughness', .045, 1), metalness: number(ink.metalness, 'metallicInk.metalness', 0, 1),
       ...(color ? { color: (color as unknown[]).map((n, i) => number(n, `metallicInk.color[${i}]`, 0, 1)) as [number, number, number] } : {}) };
+    for (const key of ['environmentIntensity', 'recess', 'normalFiltering'] as const) if (ink[key] !== undefined) result.metallicInk[key] = number(ink[key], `metallicInk.${key}`, 0, key === 'environmentIntensity' ? 3 : 1);
   }
   return result;
 }
-function dimensions(value: unknown, franchise: Franchise): CardDimensions {
+function dimensions(value: unknown, franchise: Franchise, metal = false): CardDimensions {
   const result = { ...(franchise === 'Yu-Gi-Oh!' ? DIMENSIONS.yugioh : DIMENSIONS.standard) };
   if (value === undefined) return result;
   const source = record(value, 'dimensions'); onlyKeys(source, Object.keys(result), 'dimensions');
-  const limits: Record<keyof CardDimensions, Range> = { width: [3, 12], height: [4, 18], thickness: [.008, .12], cornerRadius: [.05, 1], bevel: [.001, .03] };
+  const limits: Record<keyof CardDimensions, Range> = { width: [3, 12], height: [4, 18], thickness: [.008, metal ? .8 : .12], cornerRadius: [.05, 1], bevel: [.001, metal ? .15 : .03] };
   for (const key of Object.keys(result) as Array<keyof CardDimensions>) if (source[key] !== undefined) result[key] = number(source[key], `dimensions.${key}`, ...limits[key]);
   if (result.bevel >= result.thickness / 2 || result.bevel >= result.cornerRadius) throw new Error('The bevel must be smaller than half the thickness and smaller than the corner radius.');
   return result;
@@ -103,16 +104,24 @@ function dimensions(value: unknown, franchise: Franchise): CardDimensions {
 /** Parses data only; every asset must be resolved from files explicitly selected by the user. */
 export function parseCardImportManifest(value: unknown, profiles: readonly HolographicProfile[]): CardImportSpec {
   const source = record(value, 'Card manifest');
-  onlyKeys(source, ['version', 'id', 'title', 'franchise', 'set', 'number', 'dimensions', 'front', 'back', 'backCrop', 'profile', 'seed', 'coverageMode', 'maps', 'mapSettings', 'profileOverrides', 'substrate', 'layout'], 'card manifest');
+  onlyKeys(source, ['version', 'id', 'title', 'franchise', 'set', 'number', 'dimensions', 'front', 'back', 'backCrop', 'profile', 'seed', 'coverageMode', 'maps', 'backMaps', 'construction', 'mapSettings', 'profileOverrides', 'substrate', 'layout'], 'card manifest');
   if (source.version !== undefined && source.version !== 1) throw new Error('This card manifest version is not supported.');
   const franchise = string(source.franchise, 'franchise', 'Original') as Franchise;
   if (!['Original', 'Pokémon', 'Yu-Gi-Oh!', 'Magic: The Gathering'].includes(franchise)) throw new Error('Choose Original, Pokémon, Yu-Gi-Oh!, or Magic: The Gathering as the franchise.');
   const profile = string(source.profile, 'profile', 'print-only'), base = profiles.find(p => p.id === profile);
   if (!base) throw new Error(`Unknown foil profile: ${profile}.`);
   if (profile !== 'print-only' && base.family !== franchise) throw new Error('The primary foil profile must belong to the selected franchise.');
+  let construction: CardDefinition['construction'];
+  if (source.construction !== undefined) {
+    const c = record(source.construction, 'construction'); onlyKeys(c, ['kind', 'frontReliefCm', 'backReliefCm'], 'construction');
+    if (c.kind !== 'metal') throw new Error('construction.kind must be metal.');
+    if (!base.metallicInk || base.metallicInk.metalness < .8 || base.diffraction.strength !== 0) throw new Error('Metal construction requires a non-diffractive metallic profile.');
+    construction = { kind: 'metal', frontReliefCm: number(c.frontReliefCm, 'frontReliefCm', 0, .15), backReliefCm: number(c.backReliefCm, 'backReliefCm', 0, .15) };
+  }
   const result: CardImportSpec = {
     title: string(source.title, 'title'), franchise, set: source.set === '' ? '' : string(source.set, 'set', ''), number: source.number === '' ? '' : string(source.number, 'number', ''),
-    dimensions: dimensions(source.dimensions, franchise), front: relativeAssetPath(source.front, 'front'), back: relativeAssetPath(source.back, 'back'), profile,
+    dimensions: dimensions(source.dimensions, franchise, !!construction), front: relativeAssetPath(source.front, 'front'), back: relativeAssetPath(source.back, 'back'), profile,
+    ...(construction ? { construction } : {}),
     seed: source.seed === undefined ? 2026 : Math.trunc(number(source.seed, 'seed', 0, 2147483647)),
   };
   if (source.backCrop !== undefined) {
@@ -125,6 +134,13 @@ export function parseCardImportManifest(value: unknown, profiles: readonly Holog
     const maps = record(source.maps, 'maps'); onlyKeys(maps, CARD_MAP_KEYS, 'maps'); result.maps = {};
     for (const key of CARD_MAP_KEYS) if (maps[key] !== undefined) result.maps[key] = relativeAssetPath(maps[key], `maps.${key}`);
   }
+  if (source.backMaps !== undefined) {
+    if (!construction) throw new Error('backMaps require metal construction.');
+    const maps = record(source.backMaps, 'backMaps'); onlyKeys(maps, CARD_MAP_KEYS, 'backMaps'); result.backMaps = {};
+    for (const key of CARD_MAP_KEYS) if (maps[key] !== undefined) result.backMaps[key] = relativeAssetPath(maps[key], `backMaps.${key}`);
+  }
+  if (construction && (!result.maps?.height || !result.backMaps?.height || !result.maps?.metallic || !result.backMaps?.metallic)) throw new Error('Metal construction requires height and metallic maps on both faces.');
+  if (construction && source.backCrop !== undefined) throw new Error('Metal back maps must be registered to the full die face, without backCrop.');
   if (source.coverageMode !== undefined) {
     if (source.coverageMode !== 'artwork' && source.coverageMode !== 'reverse') throw new Error('coverageMode must be artwork or reverse.');
     result.coverageMode = source.coverageMode;

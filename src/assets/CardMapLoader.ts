@@ -33,7 +33,8 @@ export class CardMapLoader {
     this.worker.onerror = event => { for (const request of this.pending.values()) request.reject(new Error(event.message)); this.pending.clear(); };
   }
   load(card: CardDefinition, aspect: number, needsAnniversary = false): Promise<CardMaterialMaps> {
-    const key = JSON.stringify([card.id, card.coverageMode, card.maps, card.mapSettings, card.layout, aspect, needsAnniversary]);
+    if (card.construction) aspect = card.dimensions.width / card.dimensions.height;
+    const key = JSON.stringify([card.id, card.coverageMode, card.maps, card.mapSettings, card.construction, card.layout, aspect, needsAnniversary]);
     this.released.delete(card.id);
     if (!this.keys.has(card.id)) this.keys.set(card.id, new Set());
     this.keys.get(card.id)!.add(key);
@@ -86,7 +87,8 @@ export class CardMapLoader {
     if (this.released.has(card.id)) throw new Error('The imported card was removed.');
     return { ...result, layout: card.layout, normal: normal!, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
       roughnessMode: card.mapSettings?.roughnessMode ?? (paths.roughness ? 'absolute' : 'profile'),
-      embossStrength: card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };
+      embossStrength: card.construction ? (paths.normal ? 0 : card.construction.frontReliefCm / .008)
+        : card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };
   }
   release(cardId: string) {
     this.released.add(cardId);

@@ -57,6 +57,16 @@ Optional `metallicInk` inside `profileOverrides` contains `roughness`, `metalnes
 
 ## Maps
 
+### Solid metal collectibles
+
+Bundles can declare `construction: { "kind": "metal", "frontReliefCm": 0.09, "backReliefCm": 0.04 }` and a separate `backMaps` object with the same map keys as `maps`. Use a non-diffractive metallic profile such as `minted-gold` (Pokémon). Both faces require `height` and `metallic`; authored `roughness` and `normal` are recommended. These maps register to the full physical die face. `backCrop` is not supported with metal construction.
+
+`dimensions.thickness` is the base slab, excluding relief. Heights are additional centimetres: black is the slab face, white is the corresponding relief scale. Metal bundles accept thickness up to 0.8 cm and bevel up to 0.15 cm, still smaller than half the thickness and corner radius. Ordinary card limits stay unchanged. A dense closed mesh supplies real displacement on both sides; a supplied normal map replaces derivative emboss to avoid applying the relief slope twice.
+
+Optional `profileOverrides.metallicInk.environmentIntensity` (0–3), `recess` (0–1) and `normalFiltering` (0–1) control reflected studio brightness, ambient cavity attenuation and specular anti-aliasing. Existing profiles retain their response when omitted. See [the Burger King Charizard reconstruction](burger-king-charizard.md) for reference provenance and measurement limits.
+
+### Registered surface data
+
 All maps register to the complete front image: same top, bottom and UV layout. Different resolutions are resampled into that layout. Map channels are data, without sRGB-to-linear conversion. Prefer PNG or another lossless source for material maps. Grayscale maps use their red channel; alpha is not a substitute for grayscale coverage.
 
 Optional `layout` supplies `artwork` and `innerFrame` rectangles as normalized `[left, top, right, bottom]` arrays measured from the front's top left. Both rectangles must have positive area and artwork must fit inside the frame. Collector manufacturing fields use this registration to separate artwork engraving from the colored frame and outer border. `profileOverrides.surface.frameVarnish` (0–1) adds clear varnish to covered foil within the colored frame, excluding artwork and protected rules. The `satin` manufacturing field describes a continuous sheet with fine fixed surface grain, used by the SDK-inspired Blue-Eyes treatment.

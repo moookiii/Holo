@@ -200,6 +200,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private inkTintStrength = uniform(0);
   private inkRoughness = uniform(.28);
   private inkMetalness = uniform(.85);
+  private inkRecess = uniform(0);
+  private inkNormalFiltering = uniform(0);
   private neutralField = new DataTexture(new Uint8Array([255, 128, 85, 255]), 1, 1, RGBAFormat, UnsignedByteType);
   private neutralRelief = new DataTexture(new Uint8Array([128, 128, 128, 128]), 1, 1, RGBAFormat, UnsignedByteType);
   private neutralWhite = new DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1, RGBAFormat, UnsignedByteType);
@@ -272,6 +274,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       : substrate ? mix(correctedPrint, vec3(...substrate.color), primary.mul(1 - substrate.printRetention))
         : mix(correctedPrint, vec3(0.27, 0.31, 0.30), primary.mul(0.1));
     this.colorNode = mix(base, this.inkTint, metal.mul(this.inkTintStrength));
+    // Ambient cavity loss only; moving direct specular still reaches the die walls.
+    this.aoNode = float(1).sub(this.surfaceTextureNode.r.smoothstep(.025, .3).oneMinus().mul(this.inkRecess, metal));
     this.colorNode = mix(this.colorNode, vec3(.42, .44, .43), watermark.mul(.36));
     const absorption = primary.mul(this.optics.substrateDarkening).add(secondary.mul(this.secondaryOptics.substrateDarkening)).add(stamp.mul(this.stampOptics.substrateDarkening));
     this.colorNode = this.colorNode.mul(absorption.mul(.94).oneMinus());
@@ -289,6 +293,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       .add(this.fieldTextureNode.a.mul(this.optics.patternRoughness, primary))
       .add(this.secondaryFieldTextureNode.a.mul(this.secondaryOptics.patternRoughness, secondary))
       .add(this.stampFieldTextureNode.a.mul(this.stampOptics.patternRoughness, stamp)).clamp(.045, 1);
+    const metalNormalVariance = this.normalTextureNode.rgb.fwidth().length().mul(this.inkNormalFiltering, controls.hasNormal, metal).min(.14);
+    const unfilteredRoughness = this.roughnessNode as Node<'float'>;
+    this.roughnessNode = mix(unfilteredRoughness, unfilteredRoughness.pow2().add(metalNormalVariance).sqrt().clamp(.045, 1), this.inkNormalFiltering.sign());
     this.clearcoatNode = mix(mix(this.optics.laminate, this.secondaryOptics.laminate, secondary), this.stampOptics.laminate, stamp).mul(mask.a);
     this.clearcoatRoughnessNode = mix(mix(this.optics.laminateRoughness, this.secondaryOptics.laminateRoughness, secondary), this.stampOptics.laminateRoughness, stamp);
     const frame = inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus(), primary, this.optics.frameVarnish);
@@ -391,6 +398,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.inkTint.value.fromArray(profile.metallicInk?.color ?? [1, 1, 1]);
     this.inkRoughness.value = profile.metallicInk?.roughness ?? .28;
     this.inkMetalness.value = profile.metallicInk?.metalness ?? .85;
+    this.inkRecess.value = profile.metallicInk?.recess ?? 0;
+    this.inkNormalFiltering.value = profile.metallicInk?.normalFiltering ?? 0;
+    this.envMapIntensity = profile.metallicInk?.environmentIntensity ?? .65;
   }
   /** Rebind authored maps without replacing artwork, geometry or material. */
   setMaps(maps: CardMaterialMaps) {

@@ -1,0 +1,86 @@
+{
+  "front": {
+    "referenceCornersPx": [
+      [
+        9,
+        10
+      ],
+      [
+        304,
+        10
+      ],
+      [
+        303,
+        468
+      ],
+      [
+        9,
+        468
+      ]
+    ],
+    "heightRangeMm": 0.9,
+    "authoredPeakMm": 0.7649946649151299,
+    "roughnessRange": [
+      0.145,
+      0.37263757115249396
+    ]
+  },
+  "back": {
+    "referenceCornersPx": [
+      [
+        323,
+        791
+      ],
+      [
+        1093,
+        786
+      ],
+      [
+        1110,
+        2000
+      ],
+      [
+        337,
+        2004
+      ]
+    ],
+    "heightRangeMm": 0.4,
+    "authoredPeakMm": 0.30512602627075724,
+    "roughnessRange": [
+      0.145,
+      0.3724897530546861
+    ]
+  },
+  "measurementStatus": "Visual reconstruction calibrated against supplied photos and video. Bare thickness and feature heights are not caliper measurements.",
+  "baseSlabMm": 3.0,
+  "sources": {
+    "front": {
+      "kind": "user-supplied",
+      "sha256": "d1afbebe888b3e698fc633199e1b7b9bc930e4608dc679e6edb58a22dd273426"
+    },
+    "back": {
+      "kind": "user-supplied",
+      "sha256": "aa25cf1c9114ae662bb8b80ee8e466fea8a38ce6dc169355aa3fdeafeae87288"
+    },
+    "reverseDetail": {
+      "kind": "supplementary PSA reference scan",
+      "url": "https://d1htnxwo4o0jhw.cloudfront.net/cert/202239596/Zh--DiA--US4P4QvtZtCNw.jpg",
+      "sha256": "b2583afd4728448e6a29df8a01439ca785395467a65cfa9b4e80fc6a598327f6"
+    },
+    "video": {
+      "kind": "user-supplied",
+      "filename": "2026-09-20 22-40-47.mp4",
+      "framesReviewedSeconds": [
+        1,
+        5,
+        10,
+        17,
+        18.5,
+        20,
+        25,
+        30
+      ],
+      "notes": "Clear cover remains around the plaque in most views. Bare metal edge is distinguished from that cover; visual scale only."
+    }
+  }
+}

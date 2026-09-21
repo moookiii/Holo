@@ -71,6 +71,7 @@ export class CardFactory {
     const profile = resolveCardProfile(definition);
     const frontReady = this.assets.load(definition.front, true);
     const reverseDefinition = definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
+      construction: { ...definition.construction, frontReliefCm: definition.construction.backReliefCm },
       mapSettings: { ...definition.mapSettings, embossStrength: definition.construction.backReliefCm / .008 } } : undefined;
     const [front, back, maps, fields, backMaps] = await Promise.all([
       frontReady, this.assets.load(definition.back, true),
@@ -83,15 +84,6 @@ export class CardFactory {
       reverseDefinition ? this.maps.load(reverseDefinition, definition.dimensions.width / definition.dimensions.height) : Promise.resolve(undefined),
     ]);
     check();
-    const yugioh = definition.franchise === 'Yu-Gi-Oh!';
-    const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile,
-      definition.substrate, maps, definition.frontBorderColor, yugioh, yugioh);
-    holo.setProfile(profile, fields);
-    holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height);
-    const reverse = backMaps ? new HolographicMaterial(back, backMaps.coverage, backMaps.surface, definition.seed, profile, undefined, backMaps)
-      : createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
-    if (reverse instanceof HolographicMaterial) { reverse.setProfile(profile, fields); reverse.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); }
-    const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
     const key = JSON.stringify([definition.dimensions, definition.construction, definition.construction ? [definition.maps?.height, definition.backMaps?.height] : null]);
     if (!this.geometries.has(key)) {
       if (definition.construction) {
@@ -105,9 +97,19 @@ export class CardFactory {
         };
         const [frontHeight, backHeight] = await Promise.all([readHeight(definition.maps?.height), readHeight(definition.backMaps?.height)]);
         check();
-        this.geometries.set(key, createMetalReliefGeometry(definition.dimensions, frontHeight, backHeight, definition.construction.frontReliefCm, definition.construction.backReliefCm));
+        if (!this.geometries.has(key)) this.geometries.set(key, createMetalReliefGeometry(definition.dimensions, frontHeight, backHeight, definition.construction.frontReliefCm, definition.construction.backReliefCm));
       } else this.geometries.set(key, createCardGeometry(definition.dimensions));
     }
+    // All awaited work precedes per-instance material allocation, including abort checks.
+    const yugioh = definition.franchise === 'Yu-Gi-Oh!';
+    const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile,
+      definition.substrate, maps, definition.frontBorderColor, yugioh, yugioh);
+    holo.setProfile(profile, fields);
+    holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height);
+    const reverse = backMaps ? new HolographicMaterial(back, backMaps.coverage, backMaps.surface, definition.seed, profile, undefined, backMaps)
+      : createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
+    if (reverse instanceof HolographicMaterial) { reverse.setProfile(profile, fields); reverse.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); }
+    const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);
     try {

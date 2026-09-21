@@ -9,5 +9,5 @@ export const mintedGold: HolographicProfile = {
   glints: { density: 0, scale: 1, sharpness: 100, strength: 0, spread: 0 },
   surface: { metalness: 1, roughness: .28, laminate: 0, laminateRoughness: .3, iridescence: 0 },
   // Linear gold reflectance, not an sRGB paint tint.
-  metallicInk: { color: [1, .71, .29], roughness: .28, metalness: 1 },
+  metallicInk: { color: [1, .76, .36], roughness: .23, metalness: 1, environmentIntensity: 1.15, recess: .16, normalFiltering: .2 },
 };
