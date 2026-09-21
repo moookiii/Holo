@@ -1,7 +1,7 @@
 .holo-lab #ui { display:none; }
 .holo-lab #studio { inset:84px 328px 94px 252px; }
 .hl-shell { --gold:#c8ad73; --line:#29251f; font-size:12px; color:#bdbab2; }
-.hl-header { position:fixed; inset:0 0 auto; height:84px; display:flex; align-items:center; gap:22px; padding:18px 25px; border-bottom:1px solid var(--line); background:#0b0b0b; }
+.hl-header { position:fixed; z-index:40; inset:0 0 auto; height:84px; display:flex; align-items:center; gap:22px; padding:18px 25px; border-bottom:1px solid var(--line); background:#0b0b0b; }
 .hl-brand { display:grid; gap:5px; min-width:165px; }
 .hl-brand strong { color:#ddc99d; font-weight:500; letter-spacing:.2em; font-size:15px; }
 .hl-brand span,.hl-eyebrow { font-size:9px; letter-spacing:.16em; color:#8c7c5c; }
