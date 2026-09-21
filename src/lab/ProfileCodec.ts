@@ -23,6 +23,18 @@ function layer(value: unknown) {
   }
   if (!fields.has(value.structure.field)) throw new Error('Unsupported manufacturing field.');
   if (value.structure.field === 'symbol-foil' && !value.structure.motif) throw new Error('Symbol foil requires a motif.');
+  if (value.structure.motif !== undefined) {
+    const motif = value.structure.motif; object(motif);
+    const symbols = 'colorless water fire grass lightning psychic fighting darkness metal ball star'.split(' ');
+    if (!Array.isArray(motif.symbols) || !motif.symbols.length || motif.symbols.length > 32 || motif.symbols.some((s: string) => !symbols.includes(s)) || !['scattered','staggered'].includes(motif.arrangement)) throw new Error('Invalid motif symbols or arrangement.');
+    for (const key of ['size','smallScale','rotation','curvature']) if (typeof motif[key] !== 'number') throw new Error(`Invalid motif ${key}.`);
+    if (motif.size <= 0 || motif.size > 1 || motif.smallScale <= 0 || motif.smallScale > 1 || motif.curvature < 0 || motif.curvature > 1) throw new Error('Invalid motif dimensions.');
+  }
+  if (value.glints.ordered !== undefined && typeof value.glints.ordered !== 'boolean') throw new Error('Invalid sparkle ordering.');
+  for (const key of ['metalness','roughness','laminate','laminateRoughness','iridescence','anisotropy']) if (value.surface[key] !== undefined && (value.surface[key] < 0 || value.surface[key] > 1)) throw new Error(`Surface ${key} must be between 0 and 1.`);
+  if (value.surface.filmIOR !== undefined && value.surface.filmIOR < 1) throw new Error('Film IOR must be at least 1.');
+  if ((value.surface.filmMin ?? 200) > (value.surface.filmMax ?? 600)) throw new Error('Minimum film thickness exceeds maximum.');
+  for (const [group, keys] of Object.entries({ diffraction: ['strength','secondaryOrder','crossing','facetCoupling'], structure: ['relief','engraving'], glints: ['strength','density','spread'] })) for (const key of keys) if (value[group][key] !== undefined && value[group][key] < 0) throw new Error(`Negative ${group}.${key}.`);
   if (value.diffraction.period <= 0 || value.diffraction.bandwidth <= 0 || value.diffraction.crossWidth <= 0 || value.structure.scale <= 0 || value.glints.scale <= 0 || value.glints.sharpness <= 0) throw new Error('Optical widths, spacing and scales must be positive.');
   if (value.enabled !== undefined && typeof value.enabled !== 'boolean') throw new Error('Invalid layer switch.');
   if (value.disabledMechanisms !== undefined && (!Array.isArray(value.disabledMechanisms) || value.disabledMechanisms.some((v: unknown) => !mechanisms.has(v as string)))) throw new Error('Unknown mechanism.');
@@ -35,6 +47,8 @@ export function deserializeProfile(text: string): HolographicProfile {
   if (!p.id.trim() || !p.name.trim() || !families.includes(p.family) || !['development', 'curated', 'reference-pending'].includes(p.status)) throw new Error('Invalid profile metadata.');
   if (p.secondary !== undefined) layer(p.secondary);
   if (p.stamp !== undefined) layer(p.stamp);
+  for (const key of ['extendedCoverage','labOnly']) if (p[key] !== undefined && typeof p[key] !== 'boolean') throw new Error(`Invalid ${key}.`);
+  if (p.watermark !== undefined && p.watermark !== 'quarter-century') throw new Error('Invalid watermark.');
   if (p.metallicInk !== undefined) {
     object(p.metallicInk);
     if (typeof p.metallicInk.roughness !== 'number' || typeof p.metallicInk.metalness !== 'number') throw new Error('Invalid metallic ink.');

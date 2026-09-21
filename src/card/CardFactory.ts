@@ -26,7 +26,7 @@ export class CardFactory {
     private scene: Scene, private target: RenderTarget) {}
 
   setBackgroundPaused(paused: boolean) { this.patterns.setBackgroundPaused(paused); }
-  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0): Promise<ProfileFields> {
+  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns): Promise<ProfileFields> {
     const aspect = definition.dimensions.width / definition.dimensions.height;
     const prepareLayer = async (layer: FoilLayer | undefined, seed: number, motifPath?: string) => {
       // Radial and plain layers are analytic in the material and contain no
@@ -34,7 +34,7 @@ export class CardFactory {
       // 1024px pair of neutral textures for them during pack preparation.
       if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain') return undefined;
       const motif = layer.structure.field === 'symbol-foil' && motifPath ? await this.assets.load(motifPath, false) : undefined;
-      const field = await this.patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
+      const field = await patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
         ...(layer.structure.motif ? { motif: layer.structure.motif } : {}),
         ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif, priority);
       if (!this.disposed) { this.renderer.initTexture(field.direction); this.renderer.initTexture(field.relief); }

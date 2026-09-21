@@ -5,7 +5,7 @@ import { button, element, numeric, section, select } from './LabControls';
 const degrees = 180 / Math.PI;
 export function inspectionControls(root: HTMLElement, lighting: StudioLighting, scene: Scene, motion: CardMotion) {
   const pose = section('Pose & inspection', false), light = section('Lighting studio', false); root.append(light, pose);
-  let sweep = false, azimuth = -30, elevation = 30, distance = lighting.key.position.length(), temperature = 5600;
+  let sweep = false, azimuth = Math.atan2(lighting.key.position.x,lighting.key.position.z)*degrees, elevation = Math.asin(lighting.key.position.y/lighting.key.position.length())*degrees, distance = lighting.key.position.length(), temperature = 5600;
   const aim = () => { const az = azimuth / degrees, el = elevation / degrees; lighting.key.position.set(Math.sin(az)*Math.cos(el)*distance, Math.sin(el)*distance, Math.cos(az)*Math.cos(el)*distance); lighting.key.lookAt(0,0,0); };
   const rigs: Record<string, [number, number, number, number, number, number, number, number]> = {
     'Neutral studio': [-30,30,17,1.5,2.5,130,.65,.7], 'Broad softbox': [-25,25,17,7,11,9.2,1.2,1.1], 'Narrow grazing': [-75,10,15,.4,9,150,.15,.2],

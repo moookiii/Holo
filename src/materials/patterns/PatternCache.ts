@@ -9,6 +9,8 @@ export class PatternCache {
   private requests = new Map<number, { resolve: (f: FieldData) => void; reject: (e: Error) => void }>();
   private cache = new Map<string, Promise<PatternTextures>>();
   private textures = new Set<DataTexture>();
+  private settled = new Map<string, PatternTextures>();
+  private disposed = false;
   private queue: { id: number; key: string; priority: number; message: unknown; transfers: Transferable[] }[] = [];
   private backgroundPaused = false;
   constructor(workerCount = 1) {
@@ -40,7 +42,10 @@ export class PatternCache {
     }
   }
   get(spec: PatternSpec, motifTexture?: Texture, priority = 0): Promise<PatternTextures> {
+    if (this.disposed) return Promise.reject(new Error('Pattern cache disposed'));
     const key = JSON.stringify([spec, motifTexture?.uuid]);
+    const previous = this.settled.get(key);
+    if (previous) { this.settled.delete(key); this.settled.set(key, previous); }
     const queued = this.queue.find(task => task.key === key);
     if (queued && queued.priority < priority) { queued.priority = priority; this.dispatch(); }
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
@@ -56,18 +61,32 @@ export class PatternCache {
       const id = ++this.sequence; this.requests.set(id, { resolve, reject });
       this.queue.push({ id, key, priority, message: { id, spec, motifImage }, transfers: motifImage ? [motifImage.data.buffer] : [] }); this.dispatch();
     }).then(data => {
+      if (this.disposed) throw new Error('Pattern cache disposed');
       const make = (values: Uint8Array) => {
         const t = new DataTexture(values, data.width, data.height, RGBAFormat, UnsignedByteType);
         t.minFilter = LinearMipmapLinearFilter; t.magFilter = LinearFilter; t.generateMipmaps = true;
         t.colorSpace = NoColorSpace; t.anisotropy = 8; t.needsUpdate = true; this.textures.add(t); return t;
       };
-      return { direction: make(data.direction), relief: make(data.relief) };
+      const field = { direction: make(data.direction), relief: make(data.relief) };
+      this.settled.set(key, field); return field;
     }).catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
+  /** Authoring caches can evict old fields while protecting those bound to the live card. */
+  trim(limit: number, protectedFields: Array<PatternTextures | undefined> = []) {
+    for (const [key, field] of this.settled) {
+      if (this.settled.size <= limit) break;
+      if (protectedFields.includes(field)) continue;
+      field.direction.dispose(); field.relief.dispose();
+      this.textures.delete(field.direction as DataTexture); this.textures.delete(field.relief as DataTexture);
+      this.settled.delete(key); this.cache.delete(key);
+    }
+  }
+  stats() { return { fields: this.settled.size, textures: this.textures.size, pending: this.requests.size }; }
   dispose() {
+    this.disposed = true;
     this.workers.forEach(worker => worker.terminate()); for (const r of this.requests.values()) r.reject(new Error('Pattern generation disposed'));
     this.queue = []; this.busy.clear();
-    for (const t of this.textures) t.dispose(); this.cache.clear(); this.textures.clear(); this.requests.clear();
+    for (const t of this.textures) t.dispose(); this.cache.clear(); this.textures.clear(); this.requests.clear(); this.settled.clear();
   }
 }

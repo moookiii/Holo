@@ -3,6 +3,10 @@ import type { CardFactory } from '../card/CardFactory';
 import type { HolographicProfile } from '../materials/HolographicProfile';
 import type { HolographicMaterial, ProfileFields } from '../materials/HolographicMaterial';
 import type { Mechanism, Region } from './LayerCatalog';
+import { PatternCache } from '../materials/patterns/PatternCache';
+import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
+
+const manufacturingKey = (p: HolographicProfile) => JSON.stringify([...[p,p.secondary,p.stamp].map(l => l && [l.structure.field,l.structure.scale,l.structure.motif]),p.maps?.motif,p.maps?.secondaryMotif,p.maps?.stampMotif]);
 
 export type Isolation = 'none' | 'optical' | 'neutral' | 'spectral' | 'sparkle' | 'physical' | 'relief' | 'varnish' | 'laminate' | 'selected' | 'bypass';
 export class LabRuntime {
@@ -19,13 +23,15 @@ export class LabRuntime {
   private latest?: HolographicProfile;
   private running = false;
   private disposed = false;
+  private patterns = new PatternCache(1);
   constructor(private factory: CardFactory, private getMaterial: () => HolographicMaterial, private getCard: () => CardDefinition, private status: (message: string) => void, private refreshed: () => void) {}
   apply(profile: HolographicProfile, immediate = false) {
     this.latest = structuredClone(profile); ++this.request;
     const material = this.getMaterial();
     if (material !== this.material) { this.material = material; this.fieldKey = ''; this.mapKey = ''; this.fields = {}; }
     // Never briefly replace an untouched card's manufacturing field with a neutral one.
-    if (this.fieldKey) { material.setProfile(profile, this.fields); this.inspect(material); }
+    const fieldKey = JSON.stringify([this.getCard().id, manufacturingKey(profile)]);
+    if (this.fieldKey === fieldKey && this.mapKey === JSON.stringify([this.getCard().id,profile.maps,profile.watermark])) { material.setProfile(profile, this.fields); this.inspect(material); }
     window.clearTimeout(this.timer);
     this.timer = window.setTimeout(() => void this.prepare(), immediate ? 0 : 160);
   }
@@ -35,11 +41,13 @@ export class LabRuntime {
     const request = this.request, profile = this.latest, card = this.getCard(), material = this.getMaterial();
     let owner: string | undefined;
     try {
-      const fieldKey = JSON.stringify([card.id, ...[profile, profile.secondary, profile.stamp].map(p => p && [p.structure.field, p.structure.scale, p.structure.motif]), profile.maps?.motif, profile.maps?.secondaryMotif, profile.maps?.stampMotif]);
+      const fieldKey = JSON.stringify([card.id, manufacturingKey(profile)]);
       const mapKey = JSON.stringify([card.id, profile.maps, profile.watermark]);
       if (fieldKey !== this.fieldKey || mapKey !== this.mapKey) {
         this.status('Preparing material…');
-        const fields = fieldKey === this.fieldKey ? this.fields : await this.factory.prepareProfile(profile, { ...card, maps: { ...card.maps, ...profile.maps } });
+        let custom = true;
+        try { custom = manufacturingKey(resolveCardProfile(card, profile.id)) !== manufacturingKey(profile); } catch { /* New working profile. */ }
+        const fields = fieldKey === this.fieldKey ? this.fields : await this.factory.prepareProfile(profile, { ...card, maps: { ...card.maps, ...profile.maps } }, 0, custom ? this.patterns : undefined);
         const image = material.printTextureNode.value.image as HTMLImageElement;
         // Edited maps have an explicit temporary owner, released after the material stops using them.
         owner = profile.maps ? `lab-maps-${request}` : undefined;
@@ -48,7 +56,7 @@ export class LabRuntime {
         if (maps) { material.setMaps(maps); if (this.mapOwner && this.mapOwner !== owner) this.factory.maps.release(this.mapOwner); this.mapOwner = owner; }
         this.fields = fields; this.fieldKey = fieldKey; this.mapKey = mapKey;
       }
-      material.setProfile(profile, this.fields); this.inspect(material); this.refreshed(); this.status('Live · shared optical renderer');
+      material.setProfile(profile, this.fields); this.inspect(material); this.patterns.trim(6,Object.values(this.fields)); this.refreshed(); this.status('Live · shared optical renderer');
     } catch (error) { if (owner && owner !== this.mapOwner) this.factory.maps.release(owner); this.status(`Could not apply: ${error instanceof Error ? error.message : error}`); }
     finally { this.running = false; if (!this.disposed && request !== this.request) void this.prepare(); }
   }
@@ -88,5 +96,6 @@ export class LabRuntime {
     }
     if (mode === 'varnish' || mode === 'laminate') { material.surfaceControls.normalScale.value = 0; material.surfaceControls.embossStrength.value = 0; material.surfaceControls.embossOverride.value = 1; }
   }
-  dispose() { this.disposed = true; ++this.request; clearTimeout(this.timer); if (this.mapOwner) this.factory.maps.release(this.mapOwner); }
+  stats() { return this.patterns.stats(); }
+  dispose() { this.disposed = true; ++this.request; clearTimeout(this.timer); this.patterns.dispose(); if (this.mapOwner) this.factory.maps.release(this.mapOwner); }
 }

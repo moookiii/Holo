@@ -41,3 +41,9 @@ test('persistent library contains user profiles only and surfaces failed writes'
   writeUserProfiles(storage, [fixtures[0], p]); assert.deepEqual(readUserProfiles(storage), [p]);
   assert.throws(() => writeUserProfiles({ setItem: () => { throw new Error('Quota'); } }, [p]));
 });
+test('map assignment edits undo independently and reject external or malformed paths', () => {
+  const state = new ProfileState(fixtures[0]); state.edit(p => p.maps = { foil: '/cards/example/foil.png' });
+  assert.equal(deserializeProfile(serializeProfile(state.current)).maps?.foil, '/cards/example/foil.png');
+  state.undo(); assert.equal(state.current.maps, undefined); state.redo(); assert.ok(state.current.maps);
+  for (const path of ['https://example.com/foil.png','//example.com/x','/cards/../private','data:image/png,x']) assert.throws(() => serializeProfile({ ...fixtures[0], maps: { foil: path } }));
+});

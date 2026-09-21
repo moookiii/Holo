@@ -34,7 +34,8 @@ test('every prepared front and registration map exists at standard resolution', 
   for (const card of yugiohTopCards) {
     assert.deepEqual(jpegSize(`public${card.front.split('?')[0]}`), [813, 1185], card.title);
     for (const path of Object.values(card.maps ?? {})) assert.ok(existsSync(`public${path.split('?')[0]}`), `${card.title}: ${path}`);
-    assert.ok(card.source?.notes.includes('optical tuning remains for Astra'));
+    assert.ok(card.source?.notes.includes('individual optical tuning are assigned'), `${card.title}: missing tuning provenance`);
+    assert.ok(card.source?.notes.includes('physical-reference matching remains pending'), `${card.title}: missing validation status`);
   }
 });
 

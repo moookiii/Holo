@@ -37,3 +37,23 @@ test('foreground manufacturing bypasses queued warmups and paused requests resum
     worker.finish(); await later;
   } finally { cache.dispose(); globalThis.Worker = previous; }
 });
+
+test('authoring cache evicts old variants without disposing fields bound to the card', async () => {
+  const previous = globalThis.Worker;
+  let worker;
+  class WorkerFixture {
+    onmessage; onerror;
+    constructor() { worker = this; }
+    postMessage(message) { queueMicrotask(() => this.onmessage({ data: { id: message.id, field: { width: 1, height: 1, direction: new Uint8Array(4), relief: new Uint8Array(4) } } })); }
+    terminate() {}
+  }
+  globalThis.Worker = WorkerFixture;
+  const cache = new PatternCache();
+  try {
+    const bound = await cache.get({ kind: 'satin', seed: 1, aspect: .7, scale: 10 });
+    let boundDisposed = false; bound.direction.addEventListener('dispose', () => boundDisposed = true);
+    for (let scale = 11; scale < 30; scale++) { await cache.get({ kind: 'satin', seed: 1, aspect: .7, scale }); cache.trim(3, [bound]); }
+    assert.equal(boundDisposed, false); assert.equal(cache.stats().fields, 3); assert.equal(cache.stats().textures, 6);
+    cache.trim(0); assert.equal(boundDisposed, true); assert.equal(cache.stats().textures, 0);
+  } finally { cache.dispose(); globalThis.Worker = previous; }
+});
