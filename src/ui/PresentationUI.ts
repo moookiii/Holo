@@ -90,10 +90,17 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
   const matchesSearch = (card: CardDefinition) => !searchQuery || [card.title, card.set, card.number, card.franchise].some(value => value.toLocaleLowerCase().includes(searchQuery));
+  const pickerPriority = ['pikachu-vmax-vivid-voltage', 'nocturne', 'lugia-neo-genesis'];
   const drawCards = () => {
     grid.replaceChildren();
     const visibleCards = cardsForFinish().filter(card => (selectedCategory === 'All' || card.franchise === selectedCategory) && matchesSearch(card));
-    visibleCards.sort((a, b) => Number(a.profile === 'print-only') - Number(b.profile === 'print-only'));
+    visibleCards.sort((a, b) => {
+      if (a.imported !== b.imported) return Number(b.imported) - Number(a.imported);
+      const priorityA = pickerPriority.indexOf(a.id);
+      const priorityB = pickerPriority.indexOf(b.id);
+      if (priorityA !== priorityB) return (priorityA < 0 ? pickerPriority.length : priorityA) - (priorityB < 0 ? pickerPriority.length : priorityB);
+      return Number(a.profile === 'print-only') - Number(b.profile === 'print-only');
+    });
     empty.hidden = visibleCards.length > 0;
     visibleCards.forEach(card => {
       const button = document.createElement('button'); button.className = 'card-option';

@@ -106,7 +106,10 @@ export class PackAudio {
     for (const group of ['wrapper', 'tear', 'cards'] as const) {
       const gain = context.createGain(); gain.gain.value = levels[group]; gain.connect(this.master); this.groups.set(group, gain);
     }
-    this.prepared = engine.cache.preload(context, Object.values(PACK_AUDIO_MANIFEST).flat());
+    // Build the graph at pack load, but decode recordings lazily on first use.
+    // The shared cache still prevents repeat fetch/decode work across openings;
+    // no pack click waits for every Foley variant.
+    this.prepared = Promise.resolve();
     return this.prepared;
   }
 

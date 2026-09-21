@@ -2,6 +2,7 @@ import { Group, Quaternion, type PerspectiveCamera, type Scene } from 'three/web
 import { CardMotion } from '../input/Motion';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
+import type { PreparedCardCpu } from '../card/CardCpuPreparation';
 import type { CardInstance } from '../card/CardInstance';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { framingDistance } from '../camera/Framing';
@@ -21,6 +22,8 @@ interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
   element: HTMLElement; signal: AbortSignal; close: () => void; inspect: (card: CardInstance) => void;
   progress?: (ready: number, total: number) => void;
+  prepared?: Map<string, PreparedCardCpu>;
+  preparedContents?: PackCard[];
 }
 export class PackOpeningController {
   readonly state = new PackOpeningState();
@@ -67,7 +70,7 @@ export class PackOpeningController {
     });
   }
   static async create(definition: PackDefinition, seed: number, deps: PackDependencies) {
-    const contents = resolvePackContents(definition, seed);
+    const contents = deps.preparedContents ?? resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
     const audio = new PackAudio();
     const total = definitions.length + 3;
@@ -80,7 +83,8 @@ export class PackOpeningController {
     const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets).then(wrapper => {
       deps.progress?.(++ready, total); return wrapper;
     }), ...definitions.map(async card => {
-      const instance = await deps.factory.create(card, deps.signal, false); deps.progress?.(++ready, total); return instance;
+      const cached = deps.prepared?.get(card.id);
+      const instance = cached ? await deps.factory.realizeCardGpu(cached, deps.signal, false) : await deps.factory.create(card, deps.signal, false); deps.progress?.(++ready, total); return instance;
     })]);
     const failure = results.find(result => result.status === 'rejected');
     const audioFailure = await audioReady;

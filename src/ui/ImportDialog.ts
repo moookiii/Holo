@@ -32,8 +32,8 @@ export function createImportDialog(profiles: readonly HolographicProfile[], onIm
       <details class="import-maps"><summary>Optional material maps</summary><div class="import-columns"><label>Secondary treatment<select id="import-secondary"><option value="">Treatment default</option></select></label><label>Stamp treatment<select id="import-stamp"><option value="">Metallic ink</option></select></label></div><div class="import-map-grid"></div></details>
     </fieldset>
     <fieldset id="bundle-import" role="tabpanel" aria-labelledby="bundle-tab" hidden disabled>
-      <p>Select one JSON card manifest with its image files, or choose their folder.</p>
-      <label>Bundle files<input id="import-bundle-files" type="file" accept=".json,${imageTypes}" multiple required></label>
+      <p>Select one JSON card manifest with its image files, choose their folder, or select a ZIP archive.</p>
+      <label>Bundle files<input id="import-bundle-files" type="file" accept=".zip,application/zip,.json,${imageTypes}" multiple required></label>
       <input id="import-folder" type="file" webkitdirectory multiple hidden>
       <button id="choose-import-folder" type="button" class="import-folder-button">Choose folder</button><p class="import-bundle-status" aria-live="polite"></p>
     </fieldset>

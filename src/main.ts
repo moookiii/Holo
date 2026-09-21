@@ -16,6 +16,8 @@ import { resolveCardProfile } from './materials/profiles/resolveCardProfile';
 import type { ImportedCard } from './assets/CardImporter';
 import type { createImportDialog } from './ui/ImportDialog';
 import type { PackOpeningController, DebugPackStage } from './pack/PackOpeningController';
+import { getPack, resolvePackContents, type PackDefinition } from './pack/PackDefinition';
+import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparation';
 
 async function start() {
   try { for (const profile of readUserProfiles(localStorage)) if (!profiles.some(p => p.id === profile.id)) profiles.push(profile); } catch (error) { console.warn('Saved profile library could not be loaded', error); }
@@ -30,6 +32,7 @@ async function start() {
   setLoading(true);
   const { renderer, scene, camera, pipeline, scenePass } = await createRenderer(container);
   const factory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
+  const cpuPreparation = new CardCpuPreparation(profiles);
   const { assets, maps: mapLoader } = factory;
   const cards = [...builtInCards];
   const initialCard = cards.find(card => card.id === 'pikachu-vmax-vivid-voltage') ?? cards[0];
@@ -60,16 +63,16 @@ async function start() {
   let openingImport = false;
   let pack: PackOpeningController | undefined;
   let packRequest: AbortController | undefined;
-  let packSeed = 1741;
+  let packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
   let warmupRequest: AbortController | undefined;
   let warmupIdleHandle: number | undefined;
+  let preparedPack: { seed: number; definition: PackDefinition; contents: ReturnType<typeof resolvePackContents>; cards: Map<string, PreparedCardCpu> } | undefined;
+  const packMetrics: { cpuPreparationMs?: number; clickToGpuMs?: number; clickToReadyMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
-  const warmupCardIds = ['tyranitar-paldea-evolved', 'squirtle-frlg-reverse', 'blue-eyes', 'lugia-neo-genesis', 'dark-magician-girl'];
   const cancelWarmup = () => {
-    warmupRequest?.abort(); warmupRequest = undefined;
+    warmupRequest?.abort(); warmupRequest = undefined; preparedPack = undefined;
     if (warmupIdleHandle !== undefined) {
-      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(warmupIdleHandle);
-      else window.clearTimeout(warmupIdleHandle);
+      if (typeof window.cancelIdleCallback === 'function') window.cancelIdleCallback(warmupIdleHandle); else window.clearTimeout(warmupIdleHandle);
       warmupIdleHandle = undefined;
     }
   };
@@ -77,40 +80,36 @@ async function start() {
     if (disposed || pack || packRequest || !ui || new URLSearchParams(location.search).has('lab')) return;
     cancelWarmup();
     const start = () => {
-      warmupIdleHandle = undefined;
-      const request = new AbortController(); warmupRequest = request;
+      warmupIdleHandle = undefined; const request = new AbortController(); warmupRequest = request;
       void (async () => {
         try {
-          for (const id of warmupCardIds) {
-            if (request.signal.aborted || id === definition.id) continue;
-            const next = cards.find(card => card.id === id);
-            if (!next) continue;
-            const candidate = await factory.create(next, request.signal, false, -1);
-            candidate.dispose();
+          const packDefinition = getPack('archive-01'), contents = resolvePackContents(packDefinition, packSeed);
+          const selected = contents.map(entry => cards.find(card => card.id === entry.cardId));
+          if (selected.some(card => !card)) throw new Error('The next pack contains an unavailable card.');
+          const prepared = new Map<string, PreparedCardCpu>(), started = performance.now();
+          // Every continuation in this task remains in CardCpuPreparation: it has no renderer reference and only returns raw CPU data.
+          for (const card of selected as CardDefinition[]) {
+            if (request.signal.aborted) return;
+            prepared.set(card.id, await cpuPreparation.prepare(card, request.signal));
           }
-          for (const profile of profiles.filter(profile => profile.family === definition.franchise).slice(0, 2)) {
-            if (request.signal.aborted) break;
-            await prepareProfile(profile, definition, -1);
-          }
-        } catch (error) {
-          if (!request.signal.aborted) console.warn('Idle warmup failed', error);
-        } finally {
-          if (warmupRequest === request) warmupRequest = undefined;
-        }
+          if (!request.signal.aborted && warmupRequest === request) { packMetrics.cpuPreparationMs = performance.now() - started; preparedPack = { seed: packSeed, definition: packDefinition, contents, cards: prepared }; }
+        } catch (error) { if (!request.signal.aborted) console.warn('CPU pack preparation failed', error); }
+        finally { if (warmupRequest === request) warmupRequest = undefined; }
       })();
     };
-    if (typeof window.requestIdleCallback === 'function') warmupIdleHandle = window.requestIdleCallback(start, { timeout: 1800 });
-    else warmupIdleHandle = window.setTimeout(start, 900);
+    if (typeof window.requestIdleCallback === 'function') warmupIdleHandle = window.requestIdleCallback(start, { timeout: 1800 }); else warmupIdleHandle = window.setTimeout(start, 900);
   };
   const cancelPackLoad = document.createElement('button');
   cancelPackLoad.className = 'pack-load-cancel'; cancelPackLoad.textContent = 'Back to viewer'; cancelPackLoad.hidden = true; loading.append(cancelPackLoad);
   const closePack = () => {
+    const hadPack = !!pack || !!packRequest;
     cancelWarmup();
     packRequest?.abort(); packRequest = undefined;
     pack?.dispose(); pack = undefined;
     factory.setBackgroundPaused(false);
     card.visible = true; pointer.setEnabled(true); viewerUI.inert = false;
     document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
+    if (hadPack) packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
     scheduleWarmup();
     document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
@@ -123,10 +122,13 @@ async function start() {
     motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
     activeProfile = definition.profile; requestedCardId = definition.id; ui?.selectCard(definition.id); ui?.selectProfile(activeProfile);
     pointer.setEnabled(true); viewerUI.inert = false; document.body.classList.remove('pack-mode');
-    releaseRetiredImports(); document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
+    packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
+    releaseRetiredImports(); scheduleWarmup(); document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
   const openPack = async (id = 'archive-01') => {
     if (disposed) return;
+    const cached = id === 'archive-01' && preparedPack?.seed === packSeed ? preparedPack : undefined;
+    const clickStarted = performance.now(); packMetrics.lastWasPrepared = !!cached;
     cancelWarmup();
     if (pack || packRequest) closePack();
     const request = new AbortController(); packRequest = request;
@@ -134,12 +136,15 @@ async function start() {
     ++loadGeneration; ++profileGeneration; ui?.close(); pointer.setEnabled(false); viewerUI.inert = true;
     document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing pack…');
     try {
-      const [{ PackOpeningController }, { getPack }] = await Promise.all([import('./pack/PackOpeningController'), import('./pack/PackDefinition')]);
+      const { PackOpeningController } = await import('./pack/PackOpeningController');
       request.signal.throwIfAborted();
-      const candidate = await PackOpeningController.create(getPack(id), packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
+      const candidate = await PackOpeningController.create(cached?.definition ?? getPack(id), packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
+        prepared: cached?.cards, preparedContents: cached?.contents,
         signal: request.signal, close: closePack, inspect: inspectPackCard,
         progress: (ready, total) => { if (!request.signal.aborted) setLoading(true, `Preparing collection · ${ready} / ${total}`); } });
       if (request.signal.aborted || disposed) { candidate.dispose(); return; }
+      packMetrics.clickToGpuMs = performance.now() - clickStarted;
+      packMetrics.clickToReadyMs = performance.now() - clickStarted;
       pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
     } catch (error) {
       if (request.signal.aborted) return;
@@ -210,7 +215,7 @@ async function start() {
   const addImportedCard = async (imported: ImportedCard) => {
     if (disposed) throw new Error('The studio was reloaded. Open the import again.');
     const { id } = imported.definition;
-    imports.set(id, imported); cards.push(imported.definition); ui?.refreshCards();
+    imports.set(id, imported); cards.unshift(imported.definition); ui?.refreshCards();
     try { await setCard(id); }
     catch (error) {
       cards.splice(cards.findIndex(c => c.id === id), 1); retiredImports.add(id); releaseRetiredImports(); ui?.refreshCards();
@@ -246,7 +251,7 @@ async function start() {
     flip: () => motion.requestFlip(), reset: () => motion.reset(),
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
-    pack: () => { packSeed = crypto.getRandomValues(new Uint32Array(1))[0]; void openPack().catch(showError); },
+    pack: () => { void openPack().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
   ui.selectCard(definition.id); ui.selectProfile(activeProfile);
   scheduleWarmup();
@@ -270,7 +275,7 @@ async function start() {
   });
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
-    ready: true, renderer, scene, camera, lighting, motion, factory,
+    ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation,
     pack: {
       open: openPack, close: closePack, reset: () => openPack(), setSeed: (seed: number) => { packSeed = seed >>> 0; },
       setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),
@@ -299,7 +304,7 @@ async function start() {
     flip: () => motion.requestFlip(), reset: () => motion.reset(),
     zoom: (value: number) => { motion.zoom = value; motion.targetZoom = value; },
     setCard, setProfile, setMode, profiles, cards,
-    stats: () => ({ backend: renderer.backend.constructor.name, card: definition.id, profile: activeProfile, mode: motion.mode, frameMs: frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length, frames: frameTimes.length, triangles: renderer.info.render.triangles, quaternion: motion.orientation.toArray(), zoom: motion.zoom }),
+    stats: () => ({ backend: renderer.backend.constructor.name, card: definition.id, profile: activeProfile, mode: motion.mode, frameMs: frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length, frames: frameTimes.length, triangles: renderer.info.render.triangles, quaternion: motion.orientation.toArray(), zoom: motion.zoom, factory: factory.stats(), cpuPreparation: cpuPreparation.stats(), preparedPack: preparedPack ? { seed: preparedPack.seed, cardIds: [...preparedPack.cards.keys()] } : undefined, packMetrics }),
     hideUI: () => { document.querySelector<HTMLElement>('#ui')!.style.display = 'none'; },
   };
   Object.assign(window, { __holo: debug });
@@ -316,7 +321,7 @@ async function start() {
     cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); lab?.dispose();
-    factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();
+    cpuPreparation.dispose(); factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();
     imports.forEach(imported => imported.dispose()); imports.clear();
   });
 }
