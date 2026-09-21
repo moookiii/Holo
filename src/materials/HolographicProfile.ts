@@ -3,6 +3,9 @@ import type { MotifSpec } from './patterns/MotifField';
 
 /** One optical material, independent of which printed region receives it. */
 export interface FoilLayer {
+  /** Authoring switches; omitted values preserve the calibrated material exactly. */
+  enabled?: boolean;
+  disabledMechanisms?: Array<'diffraction' | 'sparkle' | 'relief' | 'varnish' | 'laminate' | 'reflection' | 'film' | 'image'>;
   diffraction: {
     /** Grating period in micrometres; wavelength bands use the same unit. */
     period: number;
@@ -44,6 +47,8 @@ export interface FoilLayer {
 }
 
 export interface HolographicProfile extends FoilLayer {
+  /** Optional authored-map response overrides, shared by viewer and Lab. */
+  mapSettings?: { normalScale?: number; embossStrength?: number; roughnessMode?: 'profile' | 'absolute' | 'offset' };
   id: string;
   name: string;
   family: 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
