@@ -73,7 +73,7 @@ export class CardFactory {
       frontReady, this.assets.load(definition.back, true),
       frontReady.then(front => {
         const image = front.image as HTMLImageElement;
-        return this.maps.load(definition, image.width / image.height, profile.watermark === 'quarter-century');
+        return this.maps.load({ ...definition, maps: { ...definition.maps, ...profile.maps }, mapSettings: { ...definition.mapSettings, ...profile.mapSettings } }, image.width / image.height, profile.watermark === 'quarter-century');
       }),
       this.prepareProfile(profile, definition, priority),
     ]);

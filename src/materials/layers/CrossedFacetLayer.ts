@@ -65,8 +65,8 @@ export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitang
     const visibility = normal.dot(positionViewDirection).max(0).smoothstep(0, .16);
     // Silver is dominant at mirror alignment; spectral orders only live on
     // the inclined cuts, not on a rainbow overlay spanning the artwork.
-    const response = vec3(1, .985, .96).mul(peak, u.glintStrength)
-      .add(color.mul(aperture, u.strength, 5));
+    const response = vec3(1, .985, .96).mul(peak, u.glintStrength, u.sparkleGain)
+      .add(color.mul(aperture, u.strength, u.spectralGain, 5));
     result.addAssign(response.mul(shape, incident, visibility, vertical ? .38 : .62));
   }
   return result;

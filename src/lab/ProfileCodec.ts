@@ -45,6 +45,11 @@ export function deserializeProfile(text: string): HolographicProfile {
     for (const key of ['normalScale', 'embossStrength']) if (p.mapSettings[key] !== undefined && (typeof p.mapSettings[key] !== 'number' || p.mapSettings[key] < 0 || p.mapSettings[key] > 4)) throw new Error(`Invalid ${key}.`);
     if (p.mapSettings.roughnessMode !== undefined && !['profile', 'absolute', 'offset'].includes(p.mapSettings.roughnessMode)) throw new Error('Invalid roughness mode.');
   }
+  if (p.maps !== undefined) {
+    object(p.maps);
+    const keys = new Set('coverage surface foil reverseFoil motif secondaryMotif stampMotif extendedFoil secondaryFoil metallic laminate height roughness sparkle stamp pattern secondaryPattern stampPattern protection direction secondaryDirection stampDirection normal hologram'.split(' '));
+    for (const [key, path] of Object.entries(p.maps)) if (!keys.has(key) || typeof path !== 'string' || !path.startsWith('/') || path.startsWith('//') || path.includes('..') || path.length > 2048) throw new Error('Map assignments must be project-relative paths beginning with /.');
+  }
   return structuredClone(p) as HolographicProfile;
 }
 export const serializeProfile = (profile: HolographicProfile) => JSON.stringify(deserializeProfile(JSON.stringify(profile)), null, 2);

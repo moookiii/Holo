@@ -3,6 +3,7 @@ import type { FoilLayer } from './HolographicProfile';
 
 export class OpticalUniforms {
   enabled = uniform(1);
+  spectralGain = uniform(1); sparkleGain = uniform(1); neutralGain = uniform(1);
   period = uniform(1.35); bandwidth = uniform(0.043); strength = uniform(1.1);
   secondary = uniform(0.2); angle = uniform(0); crossWidth = uniform(0.32);
   crossing = uniform(0); facetCoupling = uniform(0);
@@ -26,7 +27,7 @@ export class OpticalUniforms {
   imageHologram = uniform(0); imageDepth = uniform(.18); imageContrast = uniform(1.5); imageWidth = uniform(.22); cardHeight = uniform(8.8);
   iridescence = uniform(0); filmIOR = uniform(1.5); filmMin = uniform(200); filmMax = uniform(600); pearlBody = uniform(0);
   apply(p: FoilLayer | undefined) {
-    this.enabled.value = p ? 1 : 0;
+    this.enabled.value = p && p.enabled !== false ? 1 : 0;
     if (!p) return;
     this.period.value = p.diffraction.period; this.bandwidth.value = p.diffraction.bandwidth;
     this.strength.value = p.diffraction.strength; this.secondary.value = p.diffraction.secondaryOrder;
@@ -60,5 +61,16 @@ export class OpticalUniforms {
     this.iridescence.value = p.surface.iridescence ?? 0; this.filmIOR.value = p.surface.filmIOR ?? 1.5;
     this.filmMin.value = p.surface.filmMin ?? 200; this.filmMax.value = p.surface.filmMax ?? 600;
     this.pearlBody.value = p.surface.pearlBody ?? 0;
+    this.spectralGain.value = this.sparkleGain.value = this.neutralGain.value = 1;
+    for (const mechanism of p.disabledMechanisms ?? []) {
+      if (mechanism === 'diffraction') this.strength.value = 0;
+      if (mechanism === 'sparkle') this.glintStrength.value = 0;
+      if (mechanism === 'relief') this.relief.value = this.patternRelief.value = this.facetTilt.value = 0;
+      if (mechanism === 'varnish') this.varnishRelief.value = this.frameVarnish.value = 0;
+      if (mechanism === 'laminate') this.laminate.value = 0;
+      if (mechanism === 'reflection') { this.neutralGain.value = 0; this.foilReflectance.value = this.sheen.value = 0; }
+      if (mechanism === 'film') this.iridescence.value = this.pearlBody.value = 0;
+      if (mechanism === 'image') this.imageHologram.value = 0;
+    }
   }
 }

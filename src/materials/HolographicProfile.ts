@@ -1,5 +1,6 @@
 import type { PatternKind } from './patterns/ManufacturingField';
 import type { MotifSpec } from './patterns/MotifField';
+import type { CardMapPaths } from '../card/CardDefinition';
 
 /** One optical material, independent of which printed region receives it. */
 export interface FoilLayer {
@@ -47,6 +48,8 @@ export interface FoilLayer {
 }
 
 export interface HolographicProfile extends FoilLayer {
+  /** Optional assignments resolved by the existing card map loader. */
+  maps?: Partial<CardMapPaths>;
   /** Optional authored-map response overrides, shared by viewer and Lab. */
   mapSettings?: { normalScale?: number; embossStrength?: number; roughnessMode?: 'profile' | 'absolute' | 'offset' };
   id: string;

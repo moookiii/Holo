@@ -4,6 +4,8 @@ import { getProfile } from './index';
 
 function overrideLayer(base: FoilLayer, changes: FoilOverrides = {}): FoilLayer {
   return {
+    ...(base.enabled !== undefined ? { enabled: base.enabled } : {}),
+    ...(base.disabledMechanisms ? { disabledMechanisms: [...base.disabledMechanisms] } : {}),
     diffraction: { ...base.diffraction, ...changes.diffraction },
     structure: { ...base.structure, ...changes.structure },
     glints: { ...base.glints, ...changes.glints },
