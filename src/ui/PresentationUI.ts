@@ -44,7 +44,9 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     const card = cards.find(c => c.id === selectedCard) ?? cards[0];
     // Keep the established library available across cards. Printing defaults are
     // recommendations, not restrictions on the user's material experiments.
-    const available = card.profile === 'print-only'
+    const available = card.construction?.kind === 'metal' && !development
+      ? profiles.filter(p => p.id === card.profile)
+      : card.profile === 'print-only'
       ? profiles.filter(p => p.id === 'print-only')
       : (development ? profiles : profiles.filter(p => p.id === card.profile || !p.labOnly));
     select.replaceChildren();

@@ -90,6 +90,9 @@ export interface CardDefinition {
   frontBorderColor?: [number, number, number];
   source?: { image: string; metadata: string; notes: string; };
   maps?: CardMapPaths;
+  /** Two-sided cast metal; dimensions.thickness is the base slab, relief is additional centimetres. */
+  construction?: { kind: 'metal'; frontReliefCm: number; backReliefCm: number; };
+  backMaps?: CardMapPaths;
   layout?: CardLayout;
 }
 

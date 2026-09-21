@@ -9,6 +9,7 @@ import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { CardDefinition } from './CardDefinition';
 import { createCardGeometry } from './CardGeometry';
 import { CardInstance } from './CardInstance';
+import { createMetalReliefGeometry, type HeightField } from './MetalReliefGeometry';
 
 /** One resource domain for viewer, packs and imports. Disposing a card cannot
  * invalidate the shared textures or manufacturing fields of another card. */
@@ -69,13 +70,17 @@ export class CardFactory {
     check();
     const profile = resolveCardProfile(definition);
     const frontReady = this.assets.load(definition.front, true);
-    const [front, back, maps, fields] = await Promise.all([
+    const reverseDefinition = definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
+      mapSettings: { ...definition.mapSettings, embossStrength: definition.construction.backReliefCm / .008 } } : undefined;
+    const [front, back, maps, fields, backMaps] = await Promise.all([
       frontReady, this.assets.load(definition.back, true),
       frontReady.then(front => {
         const image = front.image as HTMLImageElement;
-        return this.maps.load({ ...definition, maps: { ...definition.maps, ...profile.maps }, mapSettings: { ...definition.mapSettings, ...profile.mapSettings } }, image.width / image.height, profile.watermark === 'quarter-century');
+        return this.maps.load({ ...definition, maps: { ...definition.maps, ...profile.maps }, mapSettings: { ...definition.mapSettings, ...profile.mapSettings,
+          ...(definition.construction ? { embossStrength: definition.construction.frontReliefCm / .008 } : {}) } }, image.width / image.height, profile.watermark === 'quarter-century');
       }),
       this.prepareProfile(profile, definition, priority),
+      reverseDefinition ? this.maps.load(reverseDefinition, definition.dimensions.width / definition.dimensions.height) : Promise.resolve(undefined),
     ]);
     check();
     const yugioh = definition.franchise === 'Yu-Gi-Oh!';
@@ -83,10 +88,26 @@ export class CardFactory {
       definition.substrate, maps, definition.frontBorderColor, yugioh, yugioh);
     holo.setProfile(profile, fields);
     holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height);
-    const materials = [holo, createPrintMaterial(back, this.assets.black,
-      yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop), createEdgeMaterial()];
-    const key = JSON.stringify(definition.dimensions);
-    if (!this.geometries.has(key)) this.geometries.set(key, createCardGeometry(definition.dimensions));
+    const reverse = backMaps ? new HolographicMaterial(back, backMaps.coverage, backMaps.surface, definition.seed, profile, undefined, backMaps)
+      : createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
+    if (reverse instanceof HolographicMaterial) { reverse.setProfile(profile, fields); reverse.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); }
+    const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
+    const key = JSON.stringify([definition.dimensions, definition.construction, definition.construction ? [definition.maps?.height, definition.backMaps?.height] : null]);
+    if (!this.geometries.has(key)) {
+      if (definition.construction) {
+        const readHeight = async (path?: string): Promise<HeightField> => {
+          if (!path) throw new Error('Metal collectibles require height maps on both faces.');
+          const image = (await this.assets.load(path, false)).image as HTMLImageElement;
+          const canvas = new OffscreenCanvas(image.width, image.height), context = canvas.getContext('2d')!;
+          context.drawImage(image, 0, 0); const pixels = context.getImageData(0, 0, image.width, image.height).data;
+          const data = new Uint8Array(image.width * image.height); for (let i = 0; i < data.length; i++) data[i] = pixels[i * 4];
+          return { width: image.width, height: image.height, data };
+        };
+        const [frontHeight, backHeight] = await Promise.all([readHeight(definition.maps?.height), readHeight(definition.backMaps?.height)]);
+        check();
+        this.geometries.set(key, createMetalReliefGeometry(definition.dimensions, frontHeight, backHeight, definition.construction.frontReliefCm, definition.construction.backReliefCm));
+      } else this.geometries.set(key, createCardGeometry(definition.dimensions));
+    }
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);
     try {

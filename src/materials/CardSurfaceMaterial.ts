@@ -16,7 +16,8 @@ export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { 
   return material;
 }
 
-export function createEdgeMaterial() {
+export function createEdgeMaterial(metal?: { color?: [number, number, number]; roughness: number; metalness: number; }) {
+  if (metal) return new MeshStandardNodeMaterial({ color: new Color(...(metal.color ?? [1, .71, .29])), roughness: metal.roughness, metalness: metal.metalness, envMapIntensity: .65 });
   const material = new MeshStandardNodeMaterial({ color: new Color('#aea89a'), roughness: 0.9, metalness: 0 });
   const fibers = sin(positionLocal.z.mul(1800).add(sin(positionLocal.x.mul(140)).mul(0.4))).mul(0.035);
   material.colorNode = vec3(0.39, 0.37, 0.32).add(fibers);
