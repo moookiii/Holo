@@ -19,6 +19,8 @@ export class CardMotion {
   zoom = 1;
   targetZoom = 1;
   dragging = false;
+  /** Opt-in precision inspection; ordinary viewer hover is unchanged. */
+  precise = false;
   private flipBase = 0;
   private flipElapsed = 0;
   private flipPending = 0;
@@ -70,6 +72,7 @@ export class CardMotion {
     }
   }
   setHover(x: number, y: number) {
+    if (this.precise) { this.hoverTarget.set(0, 0, 0); return; }
     if (this.resetting) return;
     const px = Math.max(-1, Math.min(1, x)), py = Math.max(-1, Math.min(1, y));
     // Recede the edge in the pointer's direction: right -> right edge back; down -> bottom edge back.

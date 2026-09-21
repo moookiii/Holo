@@ -1,0 +1,69 @@
+.holo-lab #ui { display:none; }
+.holo-lab #studio { inset:84px 328px 94px 252px; }
+.hl-shell { --gold:#c8ad73; --line:#29251f; font-size:12px; color:#bdbab2; }
+.hl-header { position:fixed; inset:0 0 auto; height:84px; display:flex; align-items:center; gap:22px; padding:18px 25px; border-bottom:1px solid var(--line); background:#0b0b0b; }
+.hl-brand { display:grid; gap:5px; min-width:165px; }
+.hl-brand strong { color:#ddc99d; font-weight:500; letter-spacing:.2em; font-size:15px; }
+.hl-brand span,.hl-eyebrow { font-size:9px; letter-spacing:.16em; color:#8c7c5c; }
+.hl-selections { display:flex; gap:12px; flex:1; min-width:0; }
+.hl-shell select { appearance:auto; min-width:0; max-width:100%; height:34px; border:1px solid #302b23; background:#11110f; border-radius:4px; padding:0 9px; color:#c6b792; font-size:11px; }
+.hl-selections select { width:50%; max-width:340px; text-overflow:ellipsis; }
+.hl-shell button { border:1px solid #302b23; border-radius:4px; min-height:29px; padding:5px 9px; font-size:11px; }
+.hl-shell button:hover { border-color:#7b6945; background:#191711; }
+.hl-shell button:disabled { opacity:.35; cursor:default; }
+.hl-shell button[aria-pressed=true] { border-color:#8e7546; background:#211c12; color:#e0c58f; }
+.hl-shell .hl-primary { color:#e5cb96; border-color:#695330; background:#211b10; }
+.hl-actions { display:flex; gap:5px; flex-wrap:wrap; }
+.hl-exit { color:#a59370; text-decoration:none; white-space:nowrap; font-size:11px; }
+.hl-stack,.hl-inspector { position:fixed; top:84px; bottom:94px; overflow-y:auto; scrollbar-width:thin; scrollbar-color:#3c3427 transparent; background:#0b0b0a; padding:21px 16px; }
+.hl-stack { left:0; width:252px; border-right:1px solid var(--line); }
+.hl-inspector { right:0; width:328px; border-left:1px solid var(--line); padding:23px 22px; }
+.hl-panel-head { margin-bottom:21px; }
+.hl-shell h1,.hl-shell h2 { font-size:20px; font-weight:400; color:#ddd7cb; letter-spacing:-.03em; margin:9px 0; }
+.hl-shell p { line-height:1.65; font-size:11px; color:#77776f; }
+.hl-layers { display:grid; gap:7px; }
+.hl-layers>button { text-align:left; color:#939084; padding:10px 9px; }
+.hl-group { border-top:1px solid var(--line); margin-top:18px; padding-top:12px; }
+.hl-group summary { color:#b8aa8b; cursor:pointer; font-size:11px; padding:0 0 10px; list-style-position:inside; }
+.hl-group>select { width:100%; margin:3px 0 9px; }
+.hl-region { margin:0; border:1px solid #25231e; border-radius:5px; padding:10px 8px 3px; }
+.hl-region summary { color:#b7aa8b; font-size:11px; }
+.hl-region .hl-layer { display:block; width:100%; text-align:left; border-color:transparent; padding:9px 10px; margin-bottom:3px; }
+.hl-layer small { display:block; font-size:9px; color:#66685f; margin-top:3px; }
+.hl-layer[data-disabled=true] { opacity:.45; }
+.hl-check { display:flex; align-items:center; gap:7px; font-size:10px; color:#969185; line-height:1.5; margin:3px 0 10px; }
+.hl-check input { accent-color:#c8ad73; width:12px; height:12px; }
+.hl-layer-tools { display:flex; gap:5px; flex-wrap:wrap; margin-bottom:20px; }
+.hl-layer-tools .hl-check { width:100%; }
+.hl-number { display:grid; grid-template-columns:1fr 68px; align-items:center; gap:6px; margin:14px 0 17px; }
+.hl-number>span { font-size:11px; color:#9f9f94; padding-right:6px; }
+.hl-shell input[type=number] { width:68px; text-align:right; font:11px ui-monospace,monospace; color:#cfc2a7; background:#141410; border:1px solid #322d23; border-radius:3px; padding:6px 4px; }
+.hl-number input[type=range] { grid-column:1/-1; width:100%; height:13px; margin:0; accent-color:#b79a5e; cursor:ew-resize; }
+.hl-shell input:focus-visible { outline:1px solid var(--gold); outline-offset:2px; }
+.hl-footer { position:fixed; inset:auto 0 0; min-height:94px; display:flex; align-items:center; justify-content:center; flex-wrap:wrap; gap:8px 14px; padding:12px 20px; border-top:1px solid var(--line); background:#0b0b0b; }
+.hl-compare { display:flex; gap:5px; }
+.hl-compare button:nth-child(2),.hl-compare button:nth-child(4) { min-width:29px; }
+.hl-status { color:#706e63; font-size:10px; width:100%; text-align:center; }
+.hl-dirty { color:#aa966e; font-size:10px; }
+.hl-final { color:#c8ad73; }
+.hl-menu { position:relative; }
+.hl-menu summary { list-style:none; cursor:pointer; border:1px solid #302b23; border-radius:4px; padding:7px 10px; }
+.hl-menu-body { position:absolute; top:40px; right:0; width:225px; padding:8px; background:#10100e; border:1px solid #463b28; border-radius:5px; box-shadow:0 12px 40px #0009; display:grid; gap:4px; z-index:30; }
+.hl-menu-body button { text-align:left; border-color:transparent; }
+.hl-map { display:grid; grid-template-columns:1fr 28px; gap:6px; border-bottom:1px solid #25231e; padding:12px 0; }
+.hl-map>button:first-child { grid-column:1/-1; text-align:left; text-transform:capitalize; }
+.hl-map small { grid-column:1/-1; font-size:9px; color:#777269; overflow:hidden; text-overflow:ellipsis; }
+.hl-map input { min-width:0; width:100%; color:#a9a294; background:#141410; border:1px solid #302b23; border-radius:3px; font-size:10px; padding:6px; }
+.hl-map>button:last-child { padding:3px; }
+.hl-dialog { background:#11110f; border:1px solid #57472e; color:#cbc1ac; border-radius:7px; width:390px; padding:25px; }
+.hl-dialog::backdrop { background:#000b; }
+.hl-dialog form { display:flex; gap:12px; flex-wrap:wrap; }
+.hl-dialog h2 { width:100%; font-size:18px; font-weight:400; }
+.hl-dialog input { width:100%; padding:10px; color:#ddd; background:#1b1914; border:1px solid #51452f; margin-bottom:12px; }
+.hl-dialog button { color:#c8ad73; padding:8px 12px; border:1px solid #51452f; border-radius:3px; }
+.hl-inspection .hl-number { grid-template-columns:1fr 59px; }
+.hl-inspection input[type=number] { width:59px; }
+.hl-inspection .hl-group { margin-top:20px; }
+@media(min-width:1700px) { .holo-lab #studio { left:282px; right:360px; } .hl-stack{width:282px;} .hl-inspector{width:360px;padding:25px;} }
+@media(max-width:1100px) { .holo-lab #studio{left:218px;right:285px;} .hl-stack{width:218px;padding:17px 12px;} .hl-inspector{width:285px;padding:18px;} .hl-header{gap:10px;padding:16px;} .hl-brand{min-width:132px;} .hl-brand strong{font-size:13px;} .hl-exit{display:none;} .hl-footer{gap:7px;} .hl-dirty{display:none;} }
+@media(max-width:800px) { .hl-header{height:112px;flex-wrap:wrap;gap:8px;} .hl-brand{width:130px;} .hl-selections{order:3;flex-basis:100%;} .hl-selections select{max-width:none;} .hl-top-actions{margin-left:auto;} .hl-stack{width:170px;top:112px;bottom:132px;} .hl-inspector{width:240px;top:112px;bottom:132px;padding:15px;} .holo-lab #studio{inset:112px 240px 132px 170px;} .hl-footer{height:132px;} .hl-footer select{max-width:180px;} }

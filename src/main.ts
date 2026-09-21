@@ -11,12 +11,14 @@ import { createUI } from './ui/PresentationUI';
 import { HolographicMaterial } from './materials/HolographicMaterial';
 import { framingDistance } from './camera/Framing';
 import { profiles } from './materials/profiles';
+import { readUserProfiles } from './lab/ProfileCodec';
 import { resolveCardProfile } from './materials/profiles/resolveCardProfile';
 import type { ImportedCard } from './assets/CardImporter';
 import type { createImportDialog } from './ui/ImportDialog';
 import type { PackOpeningController, DebugPackStage } from './pack/PackOpeningController';
 
 async function start() {
+  try { for (const profile of readUserProfiles(localStorage)) if (!profiles.some(p => p.id === profile.id)) profiles.push(profile); } catch (error) { console.warn('Saved profile library could not be loaded', error); }
   const container = document.querySelector<HTMLElement>('#studio')!;
   const loading = document.querySelector<HTMLElement>('#loading')!;
   const loadingLabel = loading.querySelector<HTMLElement>('.loading-label')!;
@@ -72,7 +74,7 @@ async function start() {
     }
   };
   const scheduleWarmup = () => {
-    if (disposed || pack || packRequest || !ui) return;
+    if (disposed || pack || packRequest || !ui || new URLSearchParams(location.search).has('lab')) return;
     cancelWarmup();
     const start = () => {
       warmupIdleHandle = undefined;
@@ -166,7 +168,10 @@ async function start() {
       const field = await prepareProfile(p, definition);
       if (generation !== profileGeneration) return;
       const material = card.material[0] as HolographicMaterial;
-      material.setProfile(p, field); activeProfile = id;
+      const frontImage = material.printTextureNode.value.image as HTMLImageElement;
+      const maps = await mapLoader.load({ ...definition, maps: { ...definition.maps, ...p.maps } }, frontImage.width / frontImage.height, p.watermark === 'quarter-century');
+      if (generation !== profileGeneration) return;
+      material.setMaps(maps); material.setProfile(p, field); activeProfile = id;
       ui?.selectProfile(id);
     } finally {
       factory.setBackgroundPaused(false); scheduleWarmup();
@@ -302,8 +307,9 @@ async function start() {
   // must get exclusive access to the pattern worker. Profiles are prepared on demand.
   let lab: { dispose: () => void } | undefined;
   if (new URLSearchParams(location.search).has('lab')) {
-    const { createMaterialLab } = await import('./debug/MaterialLab');
-    lab = createMaterialLab({ material: () => card.material[0] as HolographicMaterial, renderer, lighting, motion });
+    const { createHoloLab } = await import('./lab/HoloLab');
+    const designer = createHoloLab({ material: () => card.material[0] as HolographicMaterial, definition: () => definition, cards, profiles, factory, lighting, motion, scene, setCard, importCard: openImport });
+    lab = designer; Object.assign(debug, { lab: designer });
   }
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;

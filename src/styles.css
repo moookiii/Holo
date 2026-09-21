@@ -126,3 +126,5 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .pack-load-cancel[hidden] { display: none; }
 @media (max-width: 600px) { .pack-entry { top: max(15px, env(safe-area-inset-top)); right: 16px; } .pack-header { padding: max(15px, env(safe-area-inset-top)) 20px 0; } .pack-footer { bottom: max(22px, env(safe-area-inset-bottom)); } }
 @media (prefers-reduced-motion: reduce) { #ui, .pack-entry, .pack-action { transition: none; } }
+
+.lab-entry { position:absolute;right:25px;top:25px;color:#897750;font-size:11px;text-decoration:none;pointer-events:auto; }
