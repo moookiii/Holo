@@ -141,8 +141,9 @@ class CpuMapCache {
 
 export class CardCpuPreparation {
   private assets = new CpuAssetCache();
-  private patterns = new CpuPatternCache();
-  private maps = new CpuMapCache();
+  // No idle pack-worker startup competes with the first card's workers.
+  private patterns?: CpuPatternCache;
+  private maps?: CpuMapCache;
   private cache = new Map<string, Promise<PreparedCardCpu>>();
   private disposed = false;
   private hitCount = 0;
@@ -172,7 +173,7 @@ export class CardCpuPreparation {
     for (const name of PACKED_MAP_KEYS) if (paths[name]) packedInputs[name] = await clone(paths[name]!);
     const anniversaryImage = anniversary ? await clone('/materials/ygo-25th.webp') : undefined;
     let packed: PackedMaps | undefined;
-    if (Object.keys(packedInputs).length || anniversary || wholeFront) packed = await this.maps.get(JSON.stringify([paths, aspect, anniversary, wholeFront]), aspect, packedInputs, anniversaryImage, wholeFront ? 255 : 0);
+    if (Object.keys(packedInputs).length || anniversary || wholeFront) packed = await (this.maps ??= new CpuMapCache()).get(JSON.stringify([paths, aspect, anniversary, wholeFront]), aspect, packedInputs, anniversaryImage, wholeFront ? 255 : 0);
     const [normal, direction, secondaryDirection, stampDirection] = await Promise.all([
       paths.normal ? this.assets.image(paths.normal, signal) : undefined,
       paths.direction ? this.assets.image(paths.direction, signal) : undefined,
@@ -187,7 +188,7 @@ export class CardCpuPreparation {
     if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain') return undefined;
     const motif = layer.structure.field === 'symbol-foil' && motifPath ? await this.assets.image(motifPath, signal) : undefined;
     const started = performance.now();
-    try { return await this.patterns.get({ kind: layer.structure.field, seed, aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale,
+    try { return await (this.patterns ??= new CpuPatternCache()).get({ kind: layer.structure.field, seed, aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale,
       ...(layer.structure.motif ? { motif: layer.structure.motif } : {}), ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: card.layout } : {}) }, motif, signal); }
     finally { this.patternMs += performance.now() - started; }
   }
@@ -211,5 +212,5 @@ export class CardCpuPreparation {
     return this.cache.get(key)!;
   }
   stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0 }; }
-  dispose() { this.disposed = true; this.assets.clear(); this.patterns.dispose(); this.maps.dispose(); this.cache.clear(); }
+  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.maps?.dispose(); this.cache.clear(); }
 }

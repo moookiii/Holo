@@ -62,10 +62,10 @@ export class CardMapLoader {
       const images: Partial<Record<PackedMapKey, ImageBitmap>> = {};
       let anniversaryImage: ImageBitmap | undefined;
       try {
-        for (const name of PACKED_MAP_KEYS) if (paths[name]) {
+        await Promise.all(PACKED_MAP_KEYS.map(async name => { if (paths[name]) {
           const texture = await this.assets.load(paths[name]!, false);
           images[name] = await createImageBitmap(texture.image as HTMLImageElement);
-        }
+        } }));
         if (anniversary) anniversaryImage = await createImageBitmap(anniversary.image as HTMLImageElement);
         const packed = await new Promise<PackedMaps>((resolve, reject) => {
           const id = ++this.sequence; this.pending.set(id, { resolve, reject });
