@@ -18,12 +18,21 @@ import { PackUI } from './PackUI';
 import { clamp, ease, orientation, Spring } from './PackMath';
 
 export type DebugPackStage = 'intro' | 'sealed' | 'gripped' | 'tear' | 'open' | 'extract' | 'stack' | 'reveal' | 'hit' | 'summary';
+export interface PackLoadMetrics {
+  preparedLookupMs: number; cpuGenerationMs: number; wrapperMs: number; gpuRealizationMs: number;
+  materialCreationMs: number; uploadReadinessMs: number; uploadedResources: number; compileMs: number;
+  gpuTexturesCreated: number; gpuTextureCacheHits: number; holoMaterials: number; printMaterials: number;
+  cardMaterialTypes: string[]; usedCpuPreparation: boolean;
+}
 interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
   element: HTMLElement; signal: AbortSignal; close: () => void; inspect: (card: CardInstance) => void;
   progress?: (ready: number, total: number) => void;
   prepared?: Map<string, PreparedCardCpu>;
   preparedContents?: PackCard[];
+  prepareCardCpu: (card: CardDefinition, signal: AbortSignal) => Promise<PreparedCardCpu>;
+  metrics?: (metrics: PackLoadMetrics) => void;
+  gpuReady?: () => void;
 }
 export class PackOpeningController {
   readonly state = new PackOpeningState();
@@ -70,8 +79,15 @@ export class PackOpeningController {
     });
   }
   static async create(definition: PackDefinition, seed: number, deps: PackDependencies) {
+    const before = deps.factory.stats();
+    const metrics: PackLoadMetrics = { preparedLookupMs: 0, cpuGenerationMs: 0, wrapperMs: 0, gpuRealizationMs: 0, materialCreationMs: 0,
+      uploadReadinessMs: 0, uploadedResources: 0, compileMs: 0, gpuTexturesCreated: 0, gpuTextureCacheHits: 0,
+      holoMaterials: 0, printMaterials: 0, cardMaterialTypes: [], usedCpuPreparation: false };
+    const lookupStarted = performance.now();
     const contents = deps.preparedContents ?? resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
+    metrics.usedCpuPreparation = definitions.every(card => deps.prepared?.has(card.id));
+    metrics.preparedLookupMs = performance.now() - lookupStarted;
     const audio = new PackAudio();
     const total = definitions.length + 3;
     let ready = 0; deps.progress?.(0, total);
@@ -80,11 +96,19 @@ export class PackOpeningController {
     // renderer traversal. Separate compileAsync calls repeat renderer setup and
     // pipeline-cache waits for every card; one group pass prepares the same set of
     // materials without that serial barrier.
+    const wrapperStarted = performance.now();
     const results = await Promise.allSettled([PackWrapper.create(definition, deps.factory.assets).then(wrapper => {
+      metrics.wrapperMs = performance.now() - wrapperStarted;
       deps.progress?.(++ready, total); return wrapper;
     }), ...definitions.map(async card => {
       const cached = deps.prepared?.get(card.id);
-      const instance = cached ? await deps.factory.realizeCardGpu(cached, deps.signal, false) : await deps.factory.create(card, deps.signal, false); deps.progress?.(++ready, total); return instance;
+      const cpuStarted = performance.now();
+      const prepared = cached ?? (card.construction ? undefined : await deps.prepareCardCpu(card, deps.signal));
+      if (!cached) metrics.cpuGenerationMs = Math.max(metrics.cpuGenerationMs, performance.now() - cpuStarted);
+      const gpuStarted = performance.now();
+      const instance = prepared ? await deps.factory.realizeCardGpu(prepared, deps.signal, false) : await deps.factory.create(card, deps.signal, false);
+      metrics.gpuRealizationMs += performance.now() - gpuStarted;
+      deps.progress?.(++ready, total); return instance;
     })]);
     const failure = results.find(result => result.status === 'rejected');
     const audioFailure = await audioReady;
@@ -100,10 +124,29 @@ export class PackOpeningController {
     try {
       const opening = new Group();
       opening.add(wrapper.root, ...cards.map(card => card.mesh));
-      await deps.factory.compile(opening);
+      const uploadStarted = performance.now();
+      metrics.uploadedResources = await deps.factory.uploadCardResources(cards);
+      metrics.uploadReadinessMs = performance.now() - uploadStarted;
+      deps.gpuReady?.();
+      // Torn rims are initially hidden. Compile them too, before any tear can
+      // reveal a new mesh/material combination.
+      const hidden: import('three/webgpu').Object3D[] = [];
+      opening.traverse(object => { if (!object.visible) { hidden.push(object); object.visible = true; } });
+      const compileStarted = performance.now();
+      try { await deps.factory.compile(opening); }
+      finally { hidden.forEach(object => { object.visible = false; }); }
+      metrics.compileMs = performance.now() - compileStarted;
       deps.signal.throwIfAborted(); deps.progress?.(++ready, total);
     } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); audio.dispose(); throw error; }
-    return new PackOpeningController(definition, contents, cards, wrapper, deps, seed, audio);
+    const after = deps.factory.stats();
+    metrics.materialCreationMs = after.materialCreationMs - before.materialCreationMs;
+    metrics.gpuTexturesCreated = after.textureRealizations - before.textureRealizations;
+    metrics.gpuTextureCacheHits = after.textureCacheHits - before.textureCacheHits;
+    metrics.holoMaterials = after.holoMaterials - before.holoMaterials;
+    metrics.printMaterials = after.printMaterials - before.printMaterials;
+    metrics.cardMaterialTypes = [...new Set(cards.flatMap(card => card.mesh.material.map(material => material.constructor.name)))];
+    const controller = new PackOpeningController(definition, contents, cards, wrapper, deps, seed, audio);
+    deps.metrics?.(metrics); return controller;
   }
   private down(p: PackPointer) {
     this.frozen = false; void this.audio.unlock(); this.start = this.previousPointer = p; this.dragDistance = 0;

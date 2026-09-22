@@ -92,6 +92,21 @@ export class AssetManager {
     return this.cache.get(key)!;
   }
 
+  /** Adopt an already decoded immutable image into the same asset domain as
+   * viewer loads. In particular a prepared pack never duplicates a card back. */
+  fromBitmap(url: string, bitmap: ImageBitmap, color: boolean) {
+    const key = `${color ? 'srgb' : 'data'}:${resolveAssetUrl(url)}`;
+    const hit = this.cache.has(key);
+    if (!hit) {
+      const texture = new Texture(bitmap);
+      texture.colorSpace = color ? SRGBColorSpace : NoColorSpace;
+      texture.anisotropy = this.anisotropy; texture.minFilter = LinearMipmapLinearFilter;
+      texture.magFilter = LinearFilter; texture.generateMipmaps = true; texture.needsUpdate = true;
+      this.owned.add(texture); this.cache.set(key, Promise.resolve(texture));
+    }
+    return { texture: this.cache.get(key)!, hit };
+  }
+
   async optional(url: string | undefined, fallback: Texture) {
     if (!url) return fallback;
 

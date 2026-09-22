@@ -22,11 +22,11 @@ export class StockSurfaceLayer {
   readonly slope;
   readonly roughness;
   readonly variance;
-  constructor(seed: number) {
+  constructor(seed: number, seedOffset?: Node<'vec2'>) {
     // Continuous fields in physical centimetres; no screen coordinates, time,
     // source-image resampling, or extra GPU samplers (foil already uses sixteen).
     // Match the tangent direction on both faces (the reverse has mirrored U).
-    const point = vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(vec2((seed % 97) / 7, (seed % 71) / 11));
+    const point = vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(seedOffset ?? vec2((seed % 97) / 7, (seed % 71) / 11));
     const grainUV = (p: Node<'vec2'>) => vec2(p.x.mul(.8).sub(p.y.mul(.6)), p.x.mul(.6).add(p.y.mul(.8))).mul(52);
     const fineUV = (p: Node<'vec2'>) => vec2(p.x.mul(.36).add(p.y.mul(.93295)), p.y.mul(.36).sub(p.x.mul(.93295))).mul(125);
     // Integrate away subpixel grains rather than sampling them into glitter.

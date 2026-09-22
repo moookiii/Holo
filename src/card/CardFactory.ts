@@ -1,6 +1,8 @@
 import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
 import { AssetManager } from '../assets/AssetManager';
 import { CardMapLoader } from '../assets/CardMapLoader';
+import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
+import { CardTextureCache } from './CardTextureCache';
 import { HolographicMaterial, type ProfileFields } from '../materials/HolographicMaterial';
 import type { FoilLayer, HolographicProfile } from '../materials/HolographicProfile';
 import { createEdgeMaterial, createPrintMaterial } from '../materials/CardSurfaceMaterial';
@@ -12,7 +14,7 @@ import { CardInstance } from './CardInstance';
 import { createMetalReliefGeometry, type HeightField } from './MetalReliefGeometry';
 import type { CardMaterialMaps } from '../assets/CardMapLoader';
 import type { PatternTextures } from '../materials/patterns/PatternCache';
-import type { PreparedCardCpu, PreparedMapsCpu, CpuImage } from './CardCpuPreparation';
+import type { PreparedCardCpu, CpuImage } from './CardCpuPreparation';
 
 /** One resource domain for viewer, packs and imports. Disposing a card cannot
  * invalidate the shared textures or manufacturing fields of another card. */
@@ -26,8 +28,8 @@ export class CardFactory {
   private geometries = new Map<string, BufferGeometry>();
   private instances = new Set<CardInstance>();
   private disposed = false;
-  private realizedTextures = new Set<Texture>();
-  private gpuStats = { realizations: 0, textureRealizations: 0, compilations: 0 };
+  private textures = new CardTextureCache();
+  private gpuStats = { realizations: 0, sharedTextureCreates: 0, sharedTextureHits: 0, compilations: 0, materialCreationMs: 0, gpuRealizationMs: 0, printMaterials: 0, holoMaterials: 0 };
   constructor(private renderer: WebGPURenderer, private camera: Camera,
     private scene: Scene, private target: RenderTarget) {}
 
@@ -54,49 +56,92 @@ export class CardFactory {
     return { primary, secondary, stamp };
   }
 
-  private imageTexture(image: CpuImage) {
-    const texture = new Texture(image.bitmap); texture.colorSpace = SRGBColorSpace; texture.minFilter = LinearMipmapLinearFilter; texture.magFilter = LinearFilter; texture.anisotropy = 8; texture.generateMipmaps = true; texture.needsUpdate = true;
-    this.realizedTextures.add(texture); this.gpuStats.textureRealizations++; return texture;
-  }
-  private bytesTexture(bytes: Uint8Array, width: number, height: number) {
-    const texture = new DataTexture(bytes, width, height, RGBAFormat, UnsignedByteType);
-    texture.flipY = true; texture.colorSpace = NoColorSpace; texture.minFilter = LinearMipmapLinearFilter; texture.magFilter = LinearFilter; texture.anisotropy = 8; texture.generateMipmaps = true; texture.needsUpdate = true;
-    this.realizedTextures.add(texture); this.gpuStats.textureRealizations++; return texture;
-  }
-  private realizeMaps(maps: PreparedMapsCpu): CardMaterialMaps {
-    const packed = maps.packed;
-    return {
-      coverage: packed ? this.bytesTexture(packed.coverage, packed.width, packed.height) : this.assets.black,
-      surface: packed ? this.bytesTexture(packed.surface, packed.width, packed.height) : this.assets.neutralSurface,
-      pattern: packed ? this.bytesTexture(packed.pattern, packed.width, packed.height) : this.assets.white,
-      hologram: packed?.hologram ? this.bytesTexture(packed.hologram, packed.width, packed.height) : undefined,
-      normal: maps.normal ? this.imageTexture(maps.normal) : this.assets.flatNormal,
-      direction: maps.direction ? this.imageTexture(maps.direction) : undefined,
-      secondaryDirection: maps.secondaryDirection ? this.imageTexture(maps.secondaryDirection) : undefined,
-      stampDirection: maps.stampDirection ? this.imageTexture(maps.stampDirection) : undefined,
-      layout: maps.layout, hasNormal: maps.hasNormal, hasStamp: maps.hasStamp, hasExtendedFoil: maps.hasExtendedFoil,
-      roughnessMode: maps.roughnessMode, embossStrength: maps.embossStrength, normalScale: maps.normalScale,
-    };
-  }
-  private realizeField(field: import('../materials/patterns/ManufacturingField').FieldData | undefined): PatternTextures | undefined {
-    if (!field) return undefined;
-    return { direction: this.bytesTexture(field.direction, field.width, field.height), relief: this.bytesTexture(field.relief, field.width, field.height) };
-  }
   async realizeCardGpu(prepared: PreparedCardCpu, signal?: AbortSignal, compile = true): Promise<CardInstance> {
     signal?.throwIfAborted(); if (this.disposed) throw new Error('Card factory disposed');
-    this.gpuStats.realizations++;
-    const definition = prepared.definition, profile = prepared.profile, maps = this.realizeMaps(prepared.maps), fields = { primary: this.realizeField(prepared.fields.primary), secondary: this.realizeField(prepared.fields.secondary), stamp: this.realizeField(prepared.fields.stamp) };
-    const front = this.imageTexture(prepared.front), back = this.imageTexture(prepared.back);
-    const key = JSON.stringify([definition.dimensions, definition.construction, definition.construction ? [definition.maps?.height, definition.backMaps?.height] : null]);
-    if (!this.geometries.has(key)) this.geometries.set(key, createCardGeometry(definition.dimensions));
-    const yugioh = definition.franchise === 'Yu-Gi-Oh!';
-    const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile, definition.substrate, maps, definition.frontBorderColor, yugioh, yugioh);
-    holo.setProfile(profile, fields); holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height);
-    const reverse = createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
-    const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
-    const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance)); this.instances.add(instance);
-    try { instance.mesh.frustumCulled = false; if (compile) await this.compile(instance.mesh); signal?.throwIfAborted(); instance.mesh.frustumCulled = true; return instance; }
-    catch (error) { instance.dispose(); throw error; }
+    const started = performance.now(), releases: (() => void)[] = [], resources = new Set<Texture>();
+    const definition = prepared.definition, profile = prepared.profile;
+    const retain = !definition.imported;
+    const imageTexture = (image: CpuImage, color = true) => {
+      const lease = this.textures.acquire(image.source ? `${color ? 'srgb' : 'data'}:${image.source}` : image.bitmap,
+        image.width * image.height * 4 * 4 / 3, () => {
+          const texture = new Texture(image.bitmap); texture.colorSpace = color ? SRGBColorSpace : NoColorSpace;
+          texture.minFilter = LinearMipmapLinearFilter; texture.magFilter = LinearFilter; texture.anisotropy = 8;
+          texture.generateMipmaps = true; texture.needsUpdate = true; return texture;
+        }, retain);
+      releases.push(lease.release); resources.add(lease.texture); return lease.texture;
+    };
+    const bytesTexture = (bytes: Uint8Array, width: number, height: number) => {
+      const lease = this.textures.acquire(bytes, width * height * 4 * 4 / 3, () => {
+        const texture = new DataTexture(bytes, width, height, RGBAFormat, UnsignedByteType);
+        texture.flipY = true; texture.colorSpace = NoColorSpace; texture.minFilter = LinearMipmapLinearFilter;
+        texture.magFilter = LinearFilter; texture.anisotropy = 8; texture.generateMipmaps = true; texture.needsUpdate = true; return texture;
+      }, retain);
+      releases.push(lease.release); resources.add(lease.texture); return lease.texture;
+    };
+    const field = (data: import('../materials/patterns/ManufacturingField').FieldData | undefined): PatternTextures | undefined => data
+      ? { direction: bytesTexture(data.direction, data.width, data.height), relief: bytesTexture(data.relief, data.width, data.height) } : undefined;
+    let instance: CardInstance | undefined;
+    try {
+      const front = imageTexture(prepared.front);
+      const shared = !definition.imported ? this.assets.fromBitmap(definition.back, prepared.back.bitmap, true) : undefined;
+      if (shared) { if (shared.hit) this.gpuStats.sharedTextureHits++; else this.gpuStats.sharedTextureCreates++; }
+      const back = shared ? await shared.texture : imageTexture(prepared.back);
+      resources.add(back);
+      signal?.throwIfAborted(); if (this.disposed) throw new Error('Card factory disposed');
+      const key = JSON.stringify([definition.dimensions, definition.construction, definition.construction ? [definition.maps?.height, definition.backMaps?.height] : null]);
+      if (!this.geometries.has(key)) this.geometries.set(key, createCardGeometry(definition.dimensions));
+      const yugioh = definition.franchise === 'Yu-Gi-Oh!';
+      const source = prepared.maps;
+      const normal = source.normal ? imageTexture(source.normal, false) : undefined;
+      let material: HolographicMaterial | PrintFrontMaterial;
+      let materialStarted: number;
+      if (profile.id === 'print-only') {
+        const roughness = source.printRoughness ? imageTexture(source.printRoughness, false) : undefined;
+        const height = source.printHeight ? imageTexture(source.printHeight, false) : undefined;
+        materialStarted = performance.now();
+        material = new PrintFrontMaterial(front, definition, profile, normal, roughness, height);
+        this.gpuStats.printMaterials++;
+      } else {
+        const packed = source.packed;
+        const maps: CardMaterialMaps = { ...source,
+          coverage: packed ? bytesTexture(packed.coverage, packed.width, packed.height) : this.assets.black,
+          surface: packed ? bytesTexture(packed.surface, packed.width, packed.height) : this.assets.neutralSurface,
+          pattern: packed ? bytesTexture(packed.pattern, packed.width, packed.height) : this.assets.white,
+          hologram: packed?.hologram ? bytesTexture(packed.hologram, packed.width, packed.height) : undefined,
+          normal: normal ?? this.assets.flatNormal,
+          direction: source.direction ? imageTexture(source.direction, false) : undefined,
+          secondaryDirection: source.secondaryDirection ? imageTexture(source.secondaryDirection, false) : undefined,
+          stampDirection: source.stampDirection ? imageTexture(source.stampDirection, false) : undefined,
+        };
+        const fields = { primary: field(prepared.fields.primary), secondary: field(prepared.fields.secondary), stamp: field(prepared.fields.stamp) };
+        materialStarted = performance.now();
+        const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile, definition.substrate, maps, definition.frontBorderColor, yugioh, yugioh);
+        holo.setProfile(profile, fields); holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); material = holo;
+        this.gpuStats.holoMaterials++;
+      }
+      const reverse = createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
+      const materials = [material, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
+      this.gpuStats.materialCreationMs += performance.now() - materialStarted;
+      instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => {
+        this.instances.delete(instance!); releases.forEach(release => release());
+      }); this.instances.add(instance);
+      instance.mesh.userData.resourceTextures = [...resources];
+      this.gpuStats.realizations++; this.gpuStats.gpuRealizationMs += performance.now() - started;
+      instance.mesh.frustumCulled = false;
+      if (compile) await this.compile(instance.mesh);
+      signal?.throwIfAborted(); instance.mesh.frustumCulled = true; return instance;
+    } catch (error) { if (instance) instance.dispose(); else releases.forEach(release => release()); throw error; }
+  }
+
+  /** Only called during the explicit pack transition. Full-size card uploads
+   * and mip generation finish before compilation/presentation begins. */
+  async uploadCardResources(cards: CardInstance[]) {
+    const resources = new Set<Texture>(cards.flatMap(card => card.mesh.userData.resourceTextures ?? []));
+    for (const texture of resources) this.renderer.initTexture(texture);
+    // WebGPU queue fence is a readiness boundary, not a GPU-duration timer.
+    const backend = this.renderer.backend as unknown as { device?: { queue: { onSubmittedWorkDone(): Promise<void> } } };
+    await backend.device?.queue.onSubmittedWorkDone();
+    return resources.size;
   }
 
   async compile(object: Object3D) {
@@ -113,13 +158,31 @@ export class CardFactory {
     await compilation;
   }
 
-  async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0): Promise<CardInstance> {
+  async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false): Promise<CardInstance> {
     const check = () => {
       signal?.throwIfAborted();
       if (this.disposed) throw new Error('Card factory disposed');
     };
     check();
     const profile = resolveCardProfile(definition);
+    if (profile.id === 'print-only' && !editableOptics && !definition.construction) {
+      const paths = { ...definition.maps, ...profile.maps };
+      const [front, back, normal, roughness, height] = await Promise.all([
+        this.assets.load(definition.front, true), this.assets.load(definition.back, true),
+        paths.normal ? this.assets.load(paths.normal, false) : undefined,
+        paths.roughness ? this.assets.load(paths.roughness, false) : undefined,
+        paths.height ? this.assets.load(paths.height, false) : undefined,
+      ]);
+      check(); const key = JSON.stringify([definition.dimensions]);
+      if (!this.geometries.has(key)) this.geometries.set(key, createCardGeometry(definition.dimensions));
+      const materials = [new PrintFrontMaterial(front, definition, profile, normal, roughness, height),
+        createPrintMaterial(back, this.assets.black, definition.franchise === 'Yu-Gi-Oh!' ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop), createEdgeMaterial()];
+      this.gpuStats.printMaterials++;
+      const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
+      this.instances.add(instance);
+      try { instance.mesh.frustumCulled = false; if (compile) await this.compile(instance.mesh); check(); instance.mesh.frustumCulled = true; return instance; }
+      catch (error) { instance.dispose(); throw error; }
+    }
     const frontReady = this.assets.load(definition.front, true);
     const reverseDefinition = definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
       construction: { ...definition.construction, frontReliefCm: definition.construction.backReliefCm },
@@ -172,12 +235,14 @@ export class CardFactory {
     } catch (error) { instance.dispose(); throw error; }
   }
   inUse(id: string) { return [...this.instances].some(card => card.definition.id === id); }
-  stats() { return { instances: this.instances.size, geometries: this.geometries.size, ...this.gpuStats }; }
+  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, ...this.gpuStats, ...textures,
+    textureRealizations: textures.textureRealizations + this.gpuStats.sharedTextureCreates,
+    textureCacheHits: textures.textureCacheHits + this.gpuStats.sharedTextureHits }; }
   dispose() {
     this.disposed = true;
     this.instances.forEach(card => card.dispose());
     this.geometries.forEach(geometry => geometry.dispose()); this.geometries.clear();
     this.maps.dispose(); this.assets.dispose(); this.patterns.dispose();
-    for (const texture of this.realizedTextures) texture.dispose(); this.realizedTextures.clear();
+    this.textures.dispose();
   }
 }

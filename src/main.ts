@@ -15,7 +15,7 @@ import { readUserProfiles } from './lab/ProfileCodec';
 import { resolveCardProfile } from './materials/profiles/resolveCardProfile';
 import type { ImportedCard } from './assets/CardImporter';
 import type { createImportDialog } from './ui/ImportDialog';
-import type { PackOpeningController, DebugPackStage } from './pack/PackOpeningController';
+import type { PackOpeningController, DebugPackStage, PackLoadMetrics } from './pack/PackOpeningController';
 import { getPack, resolvePackContents, type PackDefinition } from './pack/PackDefinition';
 import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparation';
 
@@ -67,7 +67,7 @@ async function start() {
   let warmupRequest: AbortController | undefined;
   let warmupIdleHandle: number | undefined;
   let preparedPack: { seed: number; definition: PackDefinition; contents: ReturnType<typeof resolvePackContents>; cards: Map<string, PreparedCardCpu> } | undefined;
-  const packMetrics: { cpuPreparationMs?: number; clickToGpuMs?: number; clickToReadyMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
+  const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickToGpuMs?: number; clickToReadyMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
   const cancelWarmup = () => {
     warmupRequest?.abort(); warmupRequest = undefined; preparedPack = undefined;
@@ -140,10 +140,12 @@ async function start() {
       request.signal.throwIfAborted();
       const candidate = await PackOpeningController.create(cached?.definition ?? getPack(id), packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
         prepared: cached?.cards, preparedContents: cached?.contents,
+        prepareCardCpu: (card, signal) => cpuPreparation.prepare(card, signal),
+        metrics: metrics => Object.assign(packMetrics, metrics),
+        gpuReady: () => { packMetrics.clickToGpuMs = performance.now() - clickStarted; },
         signal: request.signal, close: closePack, inspect: inspectPackCard,
         progress: (ready, total) => { if (!request.signal.aborted) setLoading(true, `Preparing collection · ${ready} / ${total}`); } });
       if (request.signal.aborted || disposed) { candidate.dispose(); return; }
-      packMetrics.clickToGpuMs = performance.now() - clickStarted;
       packMetrics.clickToReadyMs = performance.now() - clickStarted;
       pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
     } catch (error) {
@@ -170,6 +172,13 @@ async function start() {
     try {
       const p = resolveCardProfile(definition, id);
       const generation = ++profileGeneration;
+      if (!(card.material[0] instanceof HolographicMaterial) || (p.id === 'print-only' && !new URLSearchParams(location.search).has('lab'))) {
+        const candidate = await factory.create({ ...definition, profile: id, profileOverrides: id === definition.profile ? definition.profileOverrides : undefined });
+        if (generation !== profileGeneration || disposed) { candidate.dispose(); return; }
+        candidate.mesh.position.copy(card.position); candidate.mesh.quaternion.copy(card.quaternion); candidate.mesh.scale.copy(card.scale);
+        activeCard.dispose(); activeCard = candidate; card = candidate.mesh; scene.add(card);
+        activeProfile = id; ui?.selectProfile(id); return;
+      }
       const field = await prepareProfile(p, definition);
       if (generation !== profileGeneration) return;
       const material = card.material[0] as HolographicMaterial;
@@ -193,7 +202,7 @@ async function start() {
     setLoading(true, definition.id === id ? 'Loading card…' : 'Loading next card…');
     try {
     ++profileGeneration;
-    const candidate = await factory.create(next);
+    const candidate = await factory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
     if (generation !== loadGeneration || disposed) { candidate.dispose(); return; }
     // Transfer ownership only after textures, manufacturing fields and GPU programs are ready.
     ++profileGeneration;

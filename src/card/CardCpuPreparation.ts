@@ -5,10 +5,12 @@ import type { FoilLayer, HolographicProfile } from '../materials/HolographicProf
 import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { FieldData, PatternSpec } from '../materials/patterns/ManufacturingField';
 
-export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; }
+export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
 export interface PreparedMapsCpu {
   packed?: PackedMaps;
   normal?: CpuImage;
+  printRoughness?: CpuImage;
+  printHeight?: CpuImage;
   direction?: CpuImage;
   secondaryDirection?: CpuImage;
   stampDirection?: CpuImage;
@@ -55,7 +57,17 @@ class CpuAssetCache {
     const key = urlFor(path);
     let pending = this.images.get(key);
     if (!pending) {
-      pending = this.blob(path, signal).then(blob => createImageBitmap(blob).then(bitmap => ({ bitmap, width: bitmap.width, height: bitmap.height }))).catch(error => { this.images.delete(key); throw error; });
+      pending = this.blob(path, signal).then(async blob => {
+        let bitmap: ImageBitmap;
+        if (blob.type.includes('svg')) {
+          // Chrome cannot decode SVG Blob directly with createImageBitmap.
+          // Image decoding and canvas rasterization remain CPU-only.
+          const url = URL.createObjectURL(blob), image = new Image();
+          try { image.src = url; await image.decode(); bitmap = await createImageBitmap(image); }
+          finally { URL.revokeObjectURL(url); }
+        } else bitmap = await createImageBitmap(blob);
+        return { bitmap, width: bitmap.width, height: bitmap.height, source: key };
+      }).catch(error => { this.images.delete(key); throw error; });
       this.images.set(key, pending);
     }
     return pending;
@@ -142,6 +154,17 @@ export class CardCpuPreparation {
     return JSON.stringify([card.id, card.maps, card.mapSettings, card.layout, profile.maps, aspect, anniversary]);
   }
   private async prepareMaps(card: CardDefinition, profile: HolographicProfile, aspect: number, anniversary: boolean, signal: AbortSignal): Promise<PreparedMapsCpu> {
+    if (profile.id === 'print-only') {
+      const paths = { ...card.maps, ...profile.maps };
+      const [normal, printRoughness, printHeight] = await Promise.all([
+        paths.normal ? this.assets.image(paths.normal, signal) : undefined,
+        paths.roughness ? this.assets.image(paths.roughness, signal) : undefined,
+        paths.height ? this.assets.image(paths.height, signal) : undefined,
+      ]);
+      return { normal, printRoughness, printHeight, hasNormal: !!normal, hasStamp: false, hasExtendedFoil: false,
+        roughnessMode: card.mapSettings?.roughnessMode ?? (printRoughness ? 'absolute' : 'profile'),
+        embossStrength: card.mapSettings?.embossStrength, normalScale: card.mapSettings?.normalScale ?? 1 };
+    }
     const paths = { ...resolveCoverageMaps(card), ...profile.maps } as CardMapPaths;
     const wholeFront = card.imported && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
     const clone = async (path: string) => { const image = await this.assets.image(path, signal); const bitmap = await createImageBitmap(image.bitmap); return { bitmap, width: bitmap.width, height: bitmap.height }; };
@@ -164,8 +187,10 @@ export class CardCpuPreparation {
     if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain') return undefined;
     const motifPath = layer.structure.field === 'symbol-foil' ? card.maps?.motif : undefined;
     const motif = motifPath ? await this.assets.image(motifPath, signal) : undefined;
-    return this.patterns.get({ kind: layer.structure.field, seed, aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale,
-      ...(layer.structure.motif ? { motif: layer.structure.motif } : {}), ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: card.layout } : {}) }, motif, signal);
+    const started = performance.now();
+    try { return await this.patterns.get({ kind: layer.structure.field, seed, aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale,
+      ...(layer.structure.motif ? { motif: layer.structure.motif } : {}), ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: card.layout } : {}) }, motif, signal); }
+    finally { this.patternMs += performance.now() - started; }
   }
   async prepare(card: CardDefinition, signal: AbortSignal): Promise<PreparedCardCpu> {
     if (this.disposed) throw new Error('CPU preparation disposed');
@@ -174,12 +199,13 @@ export class CardCpuPreparation {
     if (this.cache.has(key)) { this.hitCount++; return this.cache.get(key)!; }
     this.missCount++;
     if (!this.cache.has(key)) this.cache.set(key, (async () => {
-      signal.throwIfAborted();      const mapStart = performance.now();
+      signal.throwIfAborted();
+      const mapsReady = (async () => { const started = performance.now(); try { return await this.prepareMaps(card, profile, aspect, anniversary, signal); } finally { this.mapMs += performance.now() - started; } })();
+      const print = profile.id === 'print-only';
       const [front, back, maps, primary, secondary, stamp] = await Promise.all([
-        this.assets.image(card.front, signal), this.assets.image(card.back, signal), this.prepareMaps(card, profile, aspect, anniversary, signal),
-        this.prepareLayer(profile, card, card.seed, -1, signal), this.prepareLayer(profile.secondary, card, card.seed + 8191, -1, signal), this.prepareLayer(profile.stamp, card, card.seed + 16381, -1, signal),
+        this.assets.image(card.front, signal), this.assets.image(card.back, signal), mapsReady,
+        print ? undefined : this.prepareLayer(profile, card, card.seed, -1, signal), print ? undefined : this.prepareLayer(profile.secondary, card, card.seed + 8191, -1, signal), print ? undefined : this.prepareLayer(profile.stamp, card, card.seed + 16381, -1, signal),
       ]);
-      this.mapMs += performance.now() - mapStart;
       signal.throwIfAborted();
       return { definition: card, profile, front, back, maps, fields: { primary, secondary, stamp }, preparedAt: performance.now() };
     })().catch(error => { this.cache.delete(key); throw error; }));

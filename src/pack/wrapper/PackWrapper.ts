@@ -14,6 +14,9 @@ interface CutRim { mesh: Mesh; count: number; torn: boolean; }
  * The tear is a shared jagged boundary. Its separated region curls continuously
  * behind the moving tear front; it becomes a free piece only at full separation. */
 export class PackWrapper {
+  // CPU templates only; each session receives independent buffers and picking.
+  // Geometry is deformed in TSL, but cloning also makes future CPU edits safe.
+  private static templates = new Map<string, { films: { geometry: BufferGeometry; side: number; inner: boolean; strip: boolean; nx: number; ny: number }[]; rims: { geometry: BufferGeometry; strip: boolean; count: number; torn: boolean }[] }>();
   readonly root = new Group();
   readonly body = new Group();
   readonly strip = new Group();
@@ -43,10 +46,36 @@ export class PackWrapper {
     const frontMaterial = createWrapperMaterial(front, ink, surface), backMaterial = createWrapperMaterial(back, backInk, surface), inside = createLiningMaterial(surface);
     wrapper.materials = [frontMaterial, backMaterial, inside];
     [frontMaterial, backMaterial, inside].forEach(material => wrapper.deformation.apply(material));
-    for (const strip of [false, true]) for (const side of [1, -1]) for (const inner of [false, true]) {
-      wrapper.addFilm(strip, side, inner, inner ? inside : side === 1 ? frontMaterial : backMaterial);
+    const key = JSON.stringify([definition.wrapper.width, definition.wrapper.height, definition.wrapper.depth]);
+    const template = this.templates.get(key);
+    if (template) {
+      for (const film of template.films) {
+        const mesh = new Mesh(film.geometry.clone(), film.inner ? inside : film.side === 1 ? frontMaterial : backMaterial);
+        mesh.frustumCulled = false; mesh.name = `${film.strip ? 'Tear strip' : 'Wrapper'} ${film.side > 0 ? 'front' : 'back'} ${film.inner ? 'lining' : 'print'}`;
+        (film.strip ? wrapper.strip : wrapper.body).add(mesh);
+        wrapper.films.push({ ...film, mesh });
+        if (!film.inner) wrapper.picking.add(mesh, film.strip, film.side, film.nx, film.ny);
+      }
+      for (const rim of template.rims) {
+        const mesh = new Mesh(rim.geometry.clone(), inside); mesh.frustumCulled = false;
+        mesh.name = rim.torn ? 'Torn laminate edge' : 'Sealed laminate edge';
+        (rim.strip ? wrapper.strip : wrapper.body).add(mesh); wrapper.rims.push({ ...rim, mesh });
+      }
+    } else {
+      for (const strip of [false, true]) for (const side of [1, -1]) for (const inner of [false, true]) {
+        wrapper.addFilm(strip, side, inner, inner ? inside : side === 1 ? frontMaterial : backMaterial);
+      }
+      wrapper.addCutRims(inside);
+      this.templates.set(key, {
+        films: wrapper.films.map(({ mesh, ...film }) => ({ ...film, geometry: mesh.geometry.clone() })),
+        rims: wrapper.rims.map(({ mesh, ...rim }) => ({ ...rim, strip: mesh.parent === wrapper.strip, geometry: mesh.geometry.clone() })),
+      });
+      if (this.templates.size > 4) {
+        const oldest = this.templates.keys().next().value!;
+        const evicted = this.templates.get(oldest)!;
+        [...evicted.films, ...evicted.rims].forEach(part => part.geometry.dispose()); this.templates.delete(oldest);
+      }
     }
-    wrapper.addCutRims(inside);
     wrapper.deform(wrapper.currentPose);
     return wrapper;
   }
