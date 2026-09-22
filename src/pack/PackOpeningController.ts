@@ -22,6 +22,7 @@ export interface PackLoadMetrics {
   preparedLookupMs: number; cpuGenerationMs: number; wrapperMs: number; gpuRealizationMs: number;
   materialCreationMs: number; uploadReadinessMs: number; uploadedResources: number; compileMs: number;
   gpuTexturesCreated: number; gpuTextureCacheHits: number; holoMaterials: number; printMaterials: number;
+  cardTextureCacheMisses: number; postCompileUploadMs: number;
   cardMaterialTypes: string[]; usedCpuPreparation: boolean;
   renderPipelines: number; printPipelines: number; holoPipelines: number;
 }
@@ -83,7 +84,8 @@ export class PackOpeningController {
     const before = deps.factory.stats();
     const metrics: PackLoadMetrics = { preparedLookupMs: 0, cpuGenerationMs: 0, wrapperMs: 0, gpuRealizationMs: 0, materialCreationMs: 0,
       uploadReadinessMs: 0, uploadedResources: 0, compileMs: 0, gpuTexturesCreated: 0, gpuTextureCacheHits: 0,
-      holoMaterials: 0, printMaterials: 0, cardMaterialTypes: [], usedCpuPreparation: false, renderPipelines: 0, printPipelines: 0, holoPipelines: 0 };
+      holoMaterials: 0, printMaterials: 0, cardMaterialTypes: [], usedCpuPreparation: false, renderPipelines: 0, printPipelines: 0, holoPipelines: 0,
+      cardTextureCacheMisses: 0, postCompileUploadMs: 0 };
     const lookupStarted = performance.now();
     const contents = deps.preparedContents ?? resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
@@ -106,9 +108,7 @@ export class PackOpeningController {
       const cpuStarted = performance.now();
       const prepared = cached ?? (card.construction ? undefined : await deps.prepareCardCpu(card, deps.signal));
       if (!cached) metrics.cpuGenerationMs = Math.max(metrics.cpuGenerationMs, performance.now() - cpuStarted);
-      const gpuStarted = performance.now();
       const instance = prepared ? await deps.factory.realizeCardGpu(prepared, deps.signal, false) : await deps.factory.create(card, deps.signal, false);
-      metrics.gpuRealizationMs += performance.now() - gpuStarted;
       deps.progress?.(++ready, total); return instance;
     })]);
     const failure = results.find(result => result.status === 'rejected');
@@ -137,12 +137,16 @@ export class PackOpeningController {
       try { await deps.factory.compile(opening); }
       finally { hidden.forEach(object => { object.visible = false; }); }
       metrics.compileMs = performance.now() - compileStarted;
+      const fenceStarted = performance.now();
+      await deps.factory.finishResourceUploads();
+      metrics.postCompileUploadMs = performance.now() - fenceStarted;
       deps.signal.throwIfAborted(); deps.progress?.(++ready, total);
     } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); audio.dispose(); throw error; }
     const after = deps.factory.stats();
     metrics.materialCreationMs = after.materialCreationMs - before.materialCreationMs;
     metrics.gpuRealizationMs = after.gpuRealizationMs - before.gpuRealizationMs;
-    metrics.gpuTexturesCreated = after.textureRealizations - before.textureRealizations;
+    metrics.gpuTexturesCreated = after.residentGpuTextures - before.residentGpuTextures;
+    metrics.cardTextureCacheMisses = after.textureRealizations - before.textureRealizations;
     metrics.gpuTextureCacheHits = after.textureCacheHits - before.textureCacheHits;
     metrics.holoMaterials = after.holoMaterials - before.holoMaterials;
     metrics.printMaterials = after.printMaterials - before.printMaterials;

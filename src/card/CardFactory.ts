@@ -141,10 +141,13 @@ export class CardFactory {
   async uploadCardResources(cards: CardInstance[]) {
     const resources = new Set<Texture>(cards.flatMap(card => card.mesh.userData.resourceTextures ?? []));
     for (const texture of resources) this.renderer.initTexture(texture);
+    await this.finishResourceUploads();
+    return resources.size;
+  }
+  async finishResourceUploads() {
     // WebGPU queue fence is a readiness boundary, not a GPU-duration timer.
     const backend = this.renderer.backend as unknown as { device?: { queue: { onSubmittedWorkDone(): Promise<void> } } };
     await backend.device?.queue.onSubmittedWorkDone();
-    return resources.size;
   }
 
   async compile(object: Object3D) {
@@ -254,7 +257,7 @@ export class CardFactory {
     } catch (error) { instance.dispose(); throw error; }
   }
   inUse(id: string) { return [...this.instances].some(card => card.definition.id === id); }
-  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, ...this.gpuStats, ...textures,
+  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures,
     textureRealizations: textures.textureRealizations + this.gpuStats.sharedTextureCreates,
     textureCacheHits: textures.textureCacheHits + this.gpuStats.sharedTextureHits }; }
   dispose() {

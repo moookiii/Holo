@@ -93,7 +93,7 @@ class CpuPatternCache {
     this.worker.onerror = event => { for (const task of this.pending.values()) task.reject(new Error(event.message)); this.pending.clear(); };
   }
   get(spec: PatternSpec, motif?: CpuImage, signal?: AbortSignal) {
-    const key = JSON.stringify([spec, motif?.width, motif?.height]);
+    const key = JSON.stringify([spec, motif?.source, motif?.width, motif?.height]);
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
       if (signal?.aborted) { reject(signal.reason); return; }
       const id = ++this.sequence;
@@ -183,10 +183,9 @@ export class CardCpuPreparation {
       layout: card.layout, roughnessMode: card.mapSettings?.roughnessMode ?? (paths.roughness ? 'absolute' : 'profile'),
       embossStrength: card.construction ? (paths.normal ? 0 : card.construction.frontReliefCm / .008) : card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };
   }
-  private async prepareLayer(layer: FoilLayer | undefined, card: CardDefinition, seed: number, priority: number, signal: AbortSignal) {
+  private async prepareLayer(layer: FoilLayer | undefined, card: CardDefinition, seed: number, signal: AbortSignal, motifPath?: string) {
     if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain') return undefined;
-    const motifPath = layer.structure.field === 'symbol-foil' ? card.maps?.motif : undefined;
-    const motif = motifPath ? await this.assets.image(motifPath, signal) : undefined;
+    const motif = layer.structure.field === 'symbol-foil' && motifPath ? await this.assets.image(motifPath, signal) : undefined;
     const started = performance.now();
     try { return await this.patterns.get({ kind: layer.structure.field, seed, aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale,
       ...(layer.structure.motif ? { motif: layer.structure.motif } : {}), ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: card.layout } : {}) }, motif, signal); }
@@ -204,7 +203,7 @@ export class CardCpuPreparation {
       const print = profile.id === 'print-only';
       const [front, back, maps, primary, secondary, stamp] = await Promise.all([
         this.assets.image(card.front, signal), this.assets.image(card.back, signal), mapsReady,
-        print ? undefined : this.prepareLayer(profile, card, card.seed, -1, signal), print ? undefined : this.prepareLayer(profile.secondary, card, card.seed + 8191, -1, signal), print ? undefined : this.prepareLayer(profile.stamp, card, card.seed + 16381, -1, signal),
+        print ? undefined : this.prepareLayer(profile, card, card.seed, signal, card.maps?.motif), print ? undefined : this.prepareLayer(profile.secondary, card, card.seed + 8191, signal, card.maps?.secondaryMotif), print ? undefined : this.prepareLayer(profile.stamp, card, card.seed + 16381, signal, card.maps?.stampMotif),
       ]);
       signal.throwIfAborted();
       return { definition: card, profile, front, back, maps, fields: { primary, secondary, stamp }, preparedAt: performance.now() };
