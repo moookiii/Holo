@@ -10,7 +10,7 @@ try {
     const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
     const errors = [];
     page.on('pageerror', e => errors.push(e.message));
-    page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
+    page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); if (m.type() === 'warning') console.log(m.text()); });
     await page.addInitScript(({ prepared }) => {
       const random = crypto.getRandomValues.bind(crypto);
       crypto.getRandomValues = array => array instanceof Uint32Array && array.length === 1 ? (array[0] = 0x12345678, array) : random(array);
@@ -18,7 +18,7 @@ try {
     }, { prepared });
     await page.goto(process.env.HOLO_URL ?? 'http://127.0.0.1:5173/');
     await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 180000 });
-    if (prepared) await page.waitForFunction(() => window.__holo.stats().preparedPack, null, { timeout: 180000 });
+    if (prepared) await page.waitForFunction(() => window.__holo.stats().preparedPack, null, { timeout: 30000 }).catch(async error => { console.log(await page.evaluate(() => window.__holo.stats())); throw error; });
     const before = await page.evaluate(() => window.__holo.stats());
     await page.evaluate(async () => {
       const h = window.__holo, timings = window.__packProbe = {};
