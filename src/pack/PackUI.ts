@@ -4,15 +4,14 @@ export class PackUI {
   private action: HTMLButtonElement;
   private status: HTMLElement;
   private abort = new AbortController();
-  constructor(name: string, close: () => void, advance: () => void, mute: () => boolean, select: (direction: number) => void) {
+  constructor(name: string, close: () => void, advance: () => void, anotherPack: () => void, select: (direction: number) => void) {
     this.root.className = 'pack-ui'; this.root.setAttribute('aria-label', 'Pack opening');
-    this.root.innerHTML = '<header class="pack-header"><button class="pack-back" aria-label="Back to card viewer">← <span>Back</span></button><span class="pack-title"></span><button class="pack-sound" aria-label="Mute pack sound" aria-pressed="false">Sound on</button></header><footer class="pack-footer"><p class="pack-status" role="status" aria-live="polite"></p><button class="pack-action"></button></footer>';
+    this.root.innerHTML = '<header class="pack-header"><button class="pack-back" aria-label="Back to card viewer">← <span>Back</span></button><span class="pack-title"></span><button class="pack-entry pack-another" aria-label="Open another pack"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/></svg><span>Open another pack</span></button></header><footer class="pack-footer"><p class="pack-status" role="status" aria-live="polite"></p><button class="pack-action"></button></footer>';
     this.root.querySelector('.pack-title')!.textContent = name;
     this.action = this.root.querySelector('.pack-action')!; this.status = this.root.querySelector('.pack-status')!;
     this.root.querySelector<HTMLButtonElement>('.pack-back')!.onclick = close;
     this.action.onclick = advance;
-    const sound = this.root.querySelector<HTMLButtonElement>('.pack-sound')!;
-    sound.onclick = () => { const muted = mute(); sound.textContent = muted ? 'Sound off' : 'Sound on'; sound.setAttribute('aria-pressed', String(muted)); sound.setAttribute('aria-label', muted ? 'Enable pack sound' : 'Mute pack sound'); };
+    this.root.querySelector<HTMLButtonElement>('.pack-another')!.onclick = anotherPack;
     document.body.append(this.root);
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') { e.preventDefault(); close(); return; }

@@ -32,6 +32,7 @@ interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
   element: HTMLElement; signal: AbortSignal; close: () => void; inspect: (card: CardInstance) => void;
   progress?: (ready: number, total: number) => void;
+  openAnotherPack?: () => void;
   prepared?: Map<string, PreparedCardCpu>;
   preparedContents?: PackCard[];
   prepareCardCpu: (card: CardDefinition, signal: AbortSignal) => Promise<PreparedCardCpu>;
@@ -78,7 +79,7 @@ export class PackOpeningController {
     this.camera = new PackCameraRig(deps.camera); this.camera.begin();
     this.lights = new PackLighting(deps.lighting, deps.scene);
     this.interaction = new PackInteraction(deps.element, deps.camera, this.presentation, { down: p => this.down(p), move: (p, held) => this.move(p, held), up: cancel => this.up(cancel) });
-    this.ui = new PackUI(definition.name, deps.close, () => this.advance(), () => { void this.audio.unlock(); this.audio.setMuted(!this.audio.muted); return this.audio.muted; }, direction => {
+    this.ui = new PackUI(definition.name, deps.close, () => this.advance(), () => deps.openAnotherPack?.(), direction => {
       if (this.state.value === 'PackSummary') { this.frozen = false; this.hover = (Math.max(0, this.hover) + direction + this.contents.length) % this.contents.length; }
     });
   }

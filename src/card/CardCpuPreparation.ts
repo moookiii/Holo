@@ -54,7 +54,8 @@ class CpuAssetCache {
             if (!response.ok) throw new Error(`Unable to load ${url} (${response.status})`);
             return await response.blob();
           } catch (error) {
-            if (signal.aborted || attempt >= 2) throw error;
+            if (signal.aborted) throw error;
+            if (attempt >= 2) throw new Error(`Unable to load ${url}. Retry preparation.`, { cause: error });
             await new Promise(resolve => setTimeout(resolve, 250 * 2 ** attempt));
           }
         }
