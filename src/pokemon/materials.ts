@@ -41,6 +41,11 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
     proceduralFoil: variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? 'artwork' : 'full',
     // Reuse existing etched optics without borrowing Pikachu's authored relief.
     profileOverrides: profile === 'pokemon-rainbow-etched' ? { structure: { relief: 0 }, diffraction: { strength: .24 }, glints: { strength: 1.4 } } : undefined,
-    layout: { artwork: [.08, .10, .92, .48], innerFrame: [.035, .025, .965, .975] },
+    layout: card.era === 'sv' ? {
+      // Inside the silver picture bevel; the evolution medallion overlaps this window.
+      artwork: [.084, .106, .916, .477], innerFrame: [.035, .025, .965, .975],
+      artworkRadius: [.006, .004],
+      artworkExclusions: card.evolveFrom ? [[.102, .124, .090, .065]] : [],
+    } : { artwork: [.08, .10, .92, .48], innerFrame: [.035, .025, .965, .975] },
   };
 }

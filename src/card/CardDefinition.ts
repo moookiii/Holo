@@ -9,6 +9,9 @@ export interface CardLayout {
   /** Normalized rectangles in the front image, measured from its top left. */
   artwork: [number, number, number, number];
   innerFrame: [number, number, number, number];
+  /** Artwork corner radii and opaque badge ellipses, in front-image coordinates. */
+  artworkRadius?: [number, number];
+  artworkExclusions?: [number, number, number, number][];
 }
 export const DEFAULT_FOIL_LAYOUT: CardLayout = { artwork: [.12, .18, .88, .70], innerFrame: [.035, .023, .965, .977] };
 

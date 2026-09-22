@@ -79,7 +79,7 @@ export class TcgdexAdapter {
       }
       if (!variants.length) throw new Error(`Print variants missing for ${id}.`);
       return { id: card.id, localId: card.localId, name: card.name, setId: set.id, setName: set.name,
-        seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity: titleCase(card.rarity), variants, foil,
+        seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity: titleCase(card.rarity), variants, foil, evolveFrom: card.evolveFrom,
         boosterIds: card.boosters?.map(b => b.id), front: card.image ? card.getImageURL('high', 'png') : undefined,
         thumbnail: card.image ? card.getImageURL('low', 'webp') : undefined };
     });

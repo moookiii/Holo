@@ -9,6 +9,7 @@ export interface PokemonCard {
   id: string; localId: string; name: string; setId: string; setName: string;
   seriesId: string; seriesName: string; era: string; rarity: string;
   variants: PrintVariant[]; foil?: Partial<Record<PrintVariant, string>>;
+  evolveFrom?: string;
   /** Undefined means no published restriction; [] means explicitly in no boosters. */
   boosterIds?: string[]; front?: string; thumbnail?: string;
 }
