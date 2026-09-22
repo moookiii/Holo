@@ -13,10 +13,15 @@ export interface PackPose {
 export class PackScene {
   readonly root = new Group();
   private variations: { x: number; y: number; yaw: number; pitch: number }[];
+  private stackPitch: number;
   private inspectStart?: { position: Vector3; quaternion: ReturnType<typeof orientation> };
   private initialized = false;
   constructor(readonly cards: CardInstance[], readonly wrapper: PackWrapper, scene: Scene, seed: number) {
     const random = randomSequence(seed);
+    const maxCardThickness = cards.reduce((thickness, card) => Math.max(thickness, card.definition.dimensions.thickness), 0);
+    // The wrapper folds pinch inward at the card edges, so keep the pile within its central cavity.
+    const stackDepth = Math.max(maxCardThickness, wrapper.dimensions.depth * .49);
+    this.stackPitch = cards.length > 1 ? Math.min(.046, (stackDepth - maxCardThickness) / (cards.length - 1)) : 0;
     this.variations = cards.map(() => ({ x: (random() - .5) * .023, y: (random() - .5) * .023, yaw: (random() - .5) * .002, pitch: (random() - .5) * .001 }));
     // The loaded card meshes begin at their factory origin. Keep the opening
     // hidden until update establishes the sealed in-pack pose, avoiding a frame
@@ -40,7 +45,7 @@ export class PackScene {
     const mid = (this.cards.length - 1) / 2;
     this.cards.forEach((card, i) => {
       const mesh = card.mesh, variation = this.variations[i];
-      const position = new Vector3(variation.x + i * .006 * extracted, -.12 + variation.y - i * .006 * extracted, (mid - i) * .046);
+      const position = new Vector3(variation.x + i * .006 * extracted, -.12 + variation.y - i * .006 * extracted, (mid - i) * this.stackPitch);
       let q = packQ.clone().multiply(orientation(Math.PI + variation.yaw, variation.pitch));
       position.applyQuaternion(packQ);
       position.applyQuaternion(orientation().slerp(orientation(-.42, -.12, -.025), extracted));
