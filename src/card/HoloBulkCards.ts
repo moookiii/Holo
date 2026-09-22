@@ -5,6 +5,9 @@ const yugioh = { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.1, b
 const eReaderLayout: CardLayout = { artwork: [55 / 600, 132 / 825, 541 / 600, 444 / 825], innerFrame: [65 / 600, 14 / 825, 585 / 600, 760 / 825] };
 const magicLayout: CardLayout = { artwork: [57 / 745, 116 / 1040, 688 / 745, 576 / 1040], innerFrame: [35 / 745, 28 / 1040, 710 / 745, 998 / 1040] };
 const yugiohLayout: CardLayout = { artwork: [96 / 813, 205 / 1185, 730 / 813, 848 / 1185], innerFrame: [30 / 813, 28 / 1185, 783 / 813, 1157 / 1185] };
+const yugiohLinkCards = new Set([
+  'apollousa-bow-of-the-goddess', 'accesscode-talker', 'knightmare-unicorn', 'underworld-goddess-closed-world',
+]);
 
 const pokemon = [
   ['dual-ball', 'Dual Ball', '139'], ['energy-removal-2', 'Energy Removal 2', '140'],
@@ -68,7 +71,7 @@ export const holoBulkCards: CardDefinition[] = [
     id: `holo-yugioh-super-${slug}`, title, franchise: 'Yu-Gi-Oh!' as const,
     set: `${set} · Ultra Rare`, number, dimensions: yugioh,
     front: `/cards/holo-bulk/yugioh/${slug}.jpg`, back: '/cards/yugioh/back-en.png',
-    maps: { foil: '/cards/shared/yugioh-standard/artwork.svg?v=4', metallic: `/cards/holo-bulk/yugioh/maps/${slug}-name.png`, height: `/cards/holo-bulk/yugioh/maps/${slug}-height.png`, laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1' },
+    maps: { foil: yugiohLinkCards.has(slug) ? '/cards/shared/yugioh-standard/artwork-link.svg?v=1' : '/cards/shared/yugioh-standard/artwork.svg?v=4', metallic: `/cards/holo-bulk/yugioh/maps/${slug}-name.png`, height: `/cards/holo-bulk/yugioh/maps/${slug}-height.png`, laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1' },
     mapSettings: { embossStrength: .12 }, layout: yugiohLayout, profile: 'ygo-ultra', seed: 2024000 + index * 97 + Number(passcode) % 997,
     source: { image: `https://images.ygoprodeck.com/images/cards/${passcode}.jpg`, metadata: `https://db.ygoprodeck.com/api/v7/cardinfo.php?name=${encodeURIComponent(title)}`, notes: `Clean 813 × 1185 standard-layout front without baked glare. The card_sets record verifies ${number} as Ultra Rare; foil is confined to an inset artwork-window mask and the extracted title mask supplies recessed gold lettering.` },
   })),

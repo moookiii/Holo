@@ -8,11 +8,14 @@ const dimensions = { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.
 const layout = { artwork: [96 / 813, 205 / 1185, 730 / 813, 848 / 1185], innerFrame: [30 / 813, 28 / 1185, 783 / 813, 1157 / 1185] } as const;
 const root = '/cards/yugioh-top-holos';
 const cardDesigns = { ...firstTenDesigns, ...nextTenDesigns, ...remainingDesigns };
+const yugiohLinkCards = new Set([
+  'sp-little-knight', 'charmer-quartet-in-bloom', 'dharc-dark-charmer-gloomy', 'zennas-deceiving-doll-maidens', 'cross-sheep',
+]);
 
 function maps(slug: string, profile: string, hasStamp: boolean | undefined): CardMapPaths {
   const title = `${root}/maps/${slug}-name.png`;
   const result: CardMapPaths = {
-    foil: '/cards/shared/yugioh-standard/artwork.svg?v=4',
+    foil: yugiohLinkCards.has(slug) ? '/cards/shared/yugioh-standard/artwork-link.svg?v=1' : '/cards/shared/yugioh-standard/artwork.svg?v=4',
     laminate: '/cards/shared/yugioh-standard/laminate.svg?v=1',
   };
   if (['ygo-ultra', 'ygo-ultimate', 'ygo-quarter-century'].includes(profile)) result.metallic = title;

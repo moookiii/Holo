@@ -48,6 +48,16 @@ test('rarity coverage maps to distinct physical treatment families', () => {
   }
 });
 
+test('Link Monsters use the corner-cleared artwork mask', () => {
+  const linkTitles = ['S:P Little Knight', 'Charmer Quartet in Bloom', 'Dharc the Dark Charmer, Gloomy', "Zenna's Deceiving Doll Maidens", 'Cross-Sheep'];
+  for (const card of yugiohTopCards) {
+    const expected = linkTitles.includes(card.title)
+      ? '/cards/shared/yugioh-standard/artwork-link.svg?v=1'
+      : '/cards/shared/yugioh-standard/artwork.svg?v=4';
+    assert.equal(card.maps?.foil, expected, card.title);
+  }
+});
+
 test('all 50 cards enter the random holo pool', () => {
   assert.equal(new Set(yugiohTopCardIds).size, 50);
   for (const id of yugiohTopCardIds) assert.ok(holographicCardIds.includes(id), `${id} is missing from the pack pool`);
