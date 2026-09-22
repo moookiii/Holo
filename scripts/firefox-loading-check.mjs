@@ -20,7 +20,8 @@ try {
   for (const cache of ['cold', 'warm']) {
     await page.goto(process.env.HOLO_URL ?? 'http://127.0.0.1:4173/Holo/');
     await page.waitForFunction(() => window.__holo?.startupTiming.firstCardInteractive !== undefined, null, { timeout: 180000 });
-    const run = { cache, startup: await page.evaluate(() => window.__holo.startupTiming) };
+    const run = { cache, startup: await page.evaluate(() => window.__holo.startupTiming),
+      resources: await page.evaluate(() => performance.getEntriesByType('resource').map(r => ({ url: r.name, transferSize: r.transferSize, duration: r.duration }))) };
     console.log(JSON.stringify(run));
     await page.screenshot({ path: `${out}/${cache}-viewer.png` });
     await page.evaluate(() => {
@@ -43,34 +44,42 @@ try {
       };
       window.__frames = async (count, rotate = false) => {
         const samples = []; let previous = performance.now();
-        for (let i = 0; i < count; i++) {
+        for (let i = 0; i < count || (rotate && !h.stats().preparedPack && i < 5000); i++) {
           const now = await new Promise(requestAnimationFrame);
           samples.push(now - previous); previous = now;
           if (rotate) h.pose(Math.sin(i / 25) * 35, Math.cos(i / 31) * 20);
         }
         samples.sort((a, b) => a - b);
-        return { mean: samples.reduce((a, b) => a + b, 0) / count, p95: samples[Math.floor(count * .95)], max: samples.at(-1) };
+        return { count: samples.length, mean: samples.reduce((a, b) => a + b, 0) / samples.length, p95: samples[Math.floor(samples.length * .95)], max: samples.at(-1) };
       };
     });
     run.packs = [];
-    for (const mode of ['cold', 'prepared', 'repeat']) {
+    for (const mode of (process.env.LOAD_MODES ?? 'cold,prepared,repeat').split(',')) {
       if (mode !== 'cold') {
-        await page.evaluate(() => { window.__holo.pack.close(); window.__prepare?.(); });
         const before = await page.evaluate(() => structuredClone(window.__probe));
+        await page.evaluate(() => { if (window.__holo.pack.stats().state !== 'Closed') window.__holo.pack.close(); window.__prepare?.(); });
         const frames = await page.evaluate(() => window.__frames(240, true));
         await page.waitForFunction(() => !!window.__holo.stats().preparedPack, null, { timeout: 60000 });
         const after = await page.evaluate(() => structuredClone(window.__probe));
         run[`${mode}Background`] = { frames, newPipelines: after.pipelines.length - before.pipelines.length, newUploads: after.uploads.length - before.uploads.length };
+        if (process.env.LOAD_VERIFY) {
+          assert.equal(after.pipelines.length, before.pipelines.length, 'CPU preparation cannot compile');
+          assert.equal(after.uploads.length, before.uploads.length, 'CPU preparation cannot upload');
+        }
       }
-      await page.evaluate(() => window.__holo.pack.open());
-      await page.waitForFunction(() => window.__holo.pack.stats().state === 'PackReady', null, { timeout: 30000 });
+      const observedClickToReadyMs = await page.evaluate(async () => {
+        const start = performance.now(); await window.__holo.pack.open();
+        while (window.__holo.pack.stats().state !== 'PackReady') await new Promise(requestAnimationFrame);
+        return performance.now() - start;
+      });
       const pack = await page.evaluate(() => ({ metrics: window.__holo.stats().packMetrics, factory: window.__holo.factory.stats(), probe: structuredClone(window.__probe) }));
+      pack.observedClickToReadyMs = observedClickToReadyMs;
       pack.mode = mode;
       pack.stages = [];
       for (const [stage, progress] of [['sealed', 0], ['tear', .5], ['open', 1], ['extract', .6], ['reveal', 0], ['reveal', 1], ['reveal', 2], ['reveal', 3], ['hit', .5], ['summary', 0]]) {
         await page.evaluate(([s, p]) => window.__holo.pack.setStage(s, p), [stage, progress]);
         pack.stages.push({ stage, frames: await page.evaluate(() => window.__frames(20)) });
-        if (mode === 'cold' && ['sealed', 'tear', 'hit', 'summary'].includes(stage)) await page.screenshot({ path: `${out}/${cache}-${stage}.png` });
+        if (mode !== 'repeat' && ['sealed', 'tear', 'hit', 'summary'].includes(stage)) await page.screenshot({ path: `${out}/${cache}-${mode}-${stage}.png` });
       }
       pack.after = await page.evaluate(() => structuredClone(window.__probe));
       if (process.env.LOAD_VERIFY) {
