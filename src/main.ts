@@ -19,6 +19,8 @@ import type { createImportDialog } from './ui/ImportDialog';
 import type { PackOpeningController, DebugPackStage, PackLoadMetrics } from './pack/PackOpeningController';
 import { getPack, resolvePackContents, type PackDefinition } from './pack/PackDefinition';
 import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparation';
+import { packIdentity, prepareExactPack, type PreparedPack } from './pack/PreparedPack';
+import type { PackBrowser } from './pokemon/PackBrowser';
 
 async function start() {
   startupMark('modulesReady');
@@ -70,7 +72,10 @@ async function start() {
   let packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
   let warmupRequest: AbortController | undefined;
   let warmupIdleHandle: number | undefined;
-  let preparedPack: { seed: number; definition: PackDefinition; contents: ReturnType<typeof resolvePackContents>; cards: Map<string, PreparedCardCpu> } | undefined;
+  let preparedPack: PreparedPack | undefined;
+  let selectedPack: PackDefinition = getPack('archive-01');
+  let packBrowser: PackBrowser | undefined;
+  let browserLoading = false;
   const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickAt?: number; clickToGpuMs?: number; loadCompleteMs?: number; firstVisibleMs?: number; clickToReadyMs?: number; moduleLoadMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
   const cancelWarmup = () => {
@@ -81,22 +86,19 @@ async function start() {
     }
   };
   const scheduleWarmup = () => {
-    if (disposed || pack || packRequest || !ui || new URLSearchParams(location.search).has('lab')) return;
+    if (disposed || pack || packRequest || packBrowser || browserLoading || !ui || new URLSearchParams(location.search).has('lab')) return;
     cancelWarmup();
     const start = () => {
       warmupIdleHandle = undefined; const request = new AbortController(); warmupRequest = request;
       void (async () => {
         try {
-          const packDefinition = getPack('archive-01'), contents = resolvePackContents(packDefinition, packSeed);
-          const selected = contents.map(entry => cards.find(card => card.id === entry.cardId));
-          if (selected.some(card => !card)) throw new Error('The next pack contains an unavailable card.');
-          const prepared = new Map<string, PreparedCardCpu>(), started = performance.now();
-          // Every continuation in this task remains in CardCpuPreparation: it has no renderer reference and only returns raw CPU data.
-          for (const card of selected as CardDefinition[]) {
-            if (request.signal.aborted) return;
-            prepared.set(card.id, await cpuPreparation.prepare(card, request.signal));
+          // Pokémon is collated by the browser only after selecting a booster.
+          if (selectedPack.pokemon) return;
+          const started = performance.now(), seed = packSeed, packDefinition = selectedPack;
+          const prepared = await prepareExactPack(packDefinition, seed, cards, request.signal, (card, signal) => cpuPreparation.prepare(card, signal));
+          if (!request.signal.aborted && warmupRequest === request && selectedPack === packDefinition && packSeed === seed) {
+            packMetrics.cpuPreparationMs = performance.now() - started; preparedPack = prepared;
           }
-          if (!request.signal.aborted && warmupRequest === request) { packMetrics.cpuPreparationMs = performance.now() - started; preparedPack = { seed: packSeed, definition: packDefinition, contents, cards: prepared }; }
         } catch (error) { if (!request.signal.aborted) console.warn('CPU pack preparation failed', error); }
         finally { if (warmupRequest === request) warmupRequest = undefined; }
       })();
@@ -129,14 +131,18 @@ async function start() {
     packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
     releaseRetiredImports(); scheduleWarmup(); document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
-  const openPack = async (id = 'archive-01') => {
+  const openPack = async (id = selectedPack.id, exact?: PreparedPack) => {
     if (disposed) return;
-    const cached = id === 'archive-01' && preparedPack?.seed === packSeed ? preparedPack : undefined;
+    const target = exact?.definition ?? getPack(id);
+    const seed = exact?.seed ?? packSeed;
+    const cached = exact ?? (preparedPack?.identity === packIdentity(target, seed) ? preparedPack : undefined);
+    if (exact && exact.identity !== packIdentity(target, seed, exact.contents)) throw new Error('Prepared pack identity changed. Select the booster again.');
     const clickStarted = performance.now(); packMetrics.lastWasPrepared = !!cached;
     packMetrics.clickAt = clickStarted;
     delete packMetrics.clickToReadyMs; delete packMetrics.firstVisibleMs; delete packMetrics.loadCompleteMs;
     cancelWarmup();
     if (pack || packRequest) closePack();
+    selectedPack = target; packSeed = seed;
     const request = new AbortController(); packRequest = request;
     factory.setBackgroundPaused(true);
     ++loadGeneration; ++profileGeneration; ui?.close(); pointer.setEnabled(false); viewerUI.inert = true;
@@ -145,20 +151,39 @@ async function start() {
       const { PackOpeningController } = await import('./pack/PackOpeningController');
       packMetrics.moduleLoadMs = performance.now() - clickStarted;
       request.signal.throwIfAborted();
-      const candidate = await PackOpeningController.create(cached?.definition ?? getPack(id), packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
+      const candidate = await PackOpeningController.create(target, seed, { factory, definitions: cached?.definitions ?? cards, scene, camera, lighting, element: container,
         prepared: cached?.cards, preparedContents: cached?.contents,
         prepareCardCpu: (card, signal) => cpuPreparation.prepare(card, signal),
         metrics: metrics => Object.assign(packMetrics, metrics),
         gpuReady: () => { packMetrics.clickToGpuMs = performance.now() - clickStarted; },
         signal: request.signal, close: closePack, inspect: inspectPackCard,
+        openAnotherPack: () => { closePack(); void browsePacks().catch(showError); },
         progress: (ready, total) => { if (!request.signal.aborted) setLoading(true, `Preparing collection · ${ready} / ${total}`); } });
       if (request.signal.aborted || disposed) { candidate.dispose(); return; }
+      if (cached) {
+        for (const pulled of cached.definitions) if (!cards.some(c => c.id === pulled.id)) cards.push(pulled);
+        ui?.refreshCards();
+      }
       packMetrics.loadCompleteMs = performance.now() - clickStarted;
       pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
     } catch (error) {
       if (request.signal.aborted) return;
       closePack(); throw error;
     }
+  };
+  const browsePacks = async () => {
+    if (disposed || packBrowser || browserLoading) return;
+    browserLoading = true; cancelWarmup(); ui?.close(); pointer.setEnabled(false);
+    try {
+      const { PackBrowser } = await import('./pokemon/PackBrowser');
+      if (disposed) return;
+      packBrowser = new PackBrowser({ definitions: cards,
+        prepare: (definition, seed, definitions, signal, progress) => prepareExactPack(definition, seed, definitions, signal,
+          (card, signal) => cpuPreparation.prepare(card, signal), progress),
+        open: prepared => openPack(prepared.definition.id, prepared),
+        close: () => { packBrowser = undefined; if (!pack && !packRequest) pointer.setEnabled(true); scheduleWarmup(); },
+      });
+    } finally { browserLoading = false; if (!packBrowser && !pack) pointer.setEnabled(true); }
   };
   const imports = new Map<string, ImportedCard>();
   const retiredImports = new Set<string>();
@@ -267,7 +292,7 @@ async function start() {
     flip: () => motion.requestFlip(), reset: () => motion.reset(),
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
-    pack: () => { void openPack().catch(showError); },
+    pack: () => { void browsePacks().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
   ui.selectCard(definition.id); ui.selectProfile(activeProfile);
   const resize = () => {
@@ -300,7 +325,7 @@ async function start() {
   const debug = {
     ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming, startupPipelines,
     pack: {
-      open: openPack, close: closePack, reset: () => openPack(), setSeed: (seed: number) => { packSeed = seed >>> 0; },
+      open: openPack, browse: browsePacks, close: closePack, reset: () => browsePacks(), setSeed: (seed: number) => { cancelWarmup(); packSeed = seed >>> 0; },
       setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),
       skipToHit: () => pack?.setStage('hit', 0), summary: () => pack?.setStage('summary'),
       select: (index: number) => pack?.select(index), advance: () => pack?.advance(),
@@ -341,7 +366,7 @@ async function start() {
   }
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;
-    cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
+    packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); lab?.dispose();
     cpuPreparation.dispose(); factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();

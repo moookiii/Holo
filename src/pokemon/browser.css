@@ -1,0 +1,18 @@
+.pokemon-browser { color: #e8e9ed; background: #11151bef; border: 1px solid #ffffff20; border-radius: 16px; width: min(960px, calc(100vw - 36px)); max-height: 85dvh; padding: 28px; box-shadow: 0 28px 90px #000a; }
+.pokemon-browser::backdrop { background: #080b10c9; backdrop-filter: blur(16px); }
+.pokemon-browser header { display: flex; align-items: center; gap: 20px; }
+.pokemon-browser h2 { flex: 1; margin: 0; font-size: 21px; font-weight: 450; }
+.pokemon-browser header button { color: #c3c9d4; background: transparent; border: 1px solid #ffffff20; border-radius: 7px; padding: 10px 14px; cursor: pointer; }
+.pokemon-browser p { color: #abb5c4; font-size: 13px; line-height: 1.7; min-height: 24px; }
+.pokemon-browser-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 16px; }
+.pokemon-pack-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 20px; border: 1px solid #ffffff18; border-radius: 10px; color: #e0e5ed; background: #1a2029; cursor: pointer; transition: border-color .2s, background .2s; min-height: 100px; }
+.pokemon-pack-tile:hover, .pokemon-pack-tile[aria-pressed=true] { border-color: #aab6c77a; background: #252e3b; }
+.pokemon-pack-tile:focus-visible { outline: 2px solid #c1d0e7; outline-offset: 4px; }
+.pokemon-pack-tile:disabled { opacity: .6; cursor: default; }
+.pokemon-pack-tile img { width: 100%; height: 170px; object-fit: contain; }
+.pokemon-pack-tile.pokemon-booster img { height: 310px; }
+.pokemon-pack-tile strong { font-size: 15px; font-weight: 500; }
+.pokemon-pack-tile small { font-size: 11px; color: #a8b2c3; line-height: 1.6; }
+.pokemon-open { grid-column: 1 / -1; min-height: 52px; background: #d5deeb; color: #121924; }
+.pokemon-open:hover { background: #eaf0f8; }
+@media (max-width: 560px) { .pokemon-browser { padding: 18px; } .pokemon-browser header { gap: 10px; } .pokemon-browser h2 { font-size: 17px; } .pokemon-browser-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pokemon-pack-tile { padding: 12px; } .pokemon-pack-tile.pokemon-booster img { height: 230px; } }

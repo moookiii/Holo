@@ -8,6 +8,7 @@ export interface PackCard {
   reveal?: 'studio-sweep';
 }
 export interface PackDefinition {
+  pokemon?: import('../pokemon/types').ResolvedPokemonPack;
   id: string;
   name: string;
   category: string;

@@ -65,6 +65,9 @@ export const DIMENSIONS = {
 } satisfies Record<string, CardDimensions>;
 
 export interface CardDefinition {
+  pokemon?: import('../pokemon/types').PokemonCard & { variant: import('../pokemon/types').PrintVariant; materialProfile: string };
+  /** Lightweight procedural coverage for API prints; authored maps always win. */
+  proceduralFoil?: 'artwork' | 'reverse' | 'full';
   id: string;
   title: string;
   franchise: Franchise;

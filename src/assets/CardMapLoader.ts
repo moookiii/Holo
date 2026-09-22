@@ -5,6 +5,7 @@ import { resolveCoverageMaps } from './CardCoverage';
 import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from './MapPacking';
 
 export interface CardMaterialMaps {
+  proceduralFoil?: CardDefinition['proceduralFoil'];
   coverage: Texture; surface: Texture; pattern: Texture; normal: Texture;
   direction?: Texture; secondaryDirection?: Texture; stampDirection?: Texture;
   hologram?: Texture;
@@ -87,7 +88,7 @@ export class CardMapLoader {
       } catch (error) { Object.values(images).forEach(image => image.close()); anniversaryImage?.close(); throw error; }
     }
     if (this.released.has(card.id)) throw new Error('The imported card was removed.');
-    return { ...result, layout: card.layout, normal: normal!, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
+    return { ...result, proceduralFoil: card.proceduralFoil, layout: card.layout, normal: normal!, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
       roughnessMode: card.mapSettings?.roughnessMode ?? (paths.roughness ? 'absolute' : 'profile'),
       embossStrength: card.construction ? (paths.normal ? 0 : card.construction.frontReliefCm / .008)
         : card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };

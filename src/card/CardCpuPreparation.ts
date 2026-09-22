@@ -7,6 +7,7 @@ import type { FieldData, PatternSpec } from '../materials/patterns/Manufacturing
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
 export interface PreparedMapsCpu {
+  proceduralFoil?: CardDefinition['proceduralFoil'];
   packed?: PackedMaps;
   normal?: CpuImage;
   printRoughness?: CpuImage;
@@ -180,7 +181,7 @@ export class CardCpuPreparation {
       paths.secondaryDirection ? this.assets.image(paths.secondaryDirection, signal) : undefined,
       paths.stampDirection ? this.assets.image(paths.stampDirection, signal) : undefined,
     ]);
-    return { packed, normal, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
+    return { packed, proceduralFoil: card.proceduralFoil, normal, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
       layout: card.layout, roughnessMode: card.mapSettings?.roughnessMode ?? (paths.roughness ? 'absolute' : 'profile'),
       embossStrength: card.construction ? (paths.normal ? 0 : card.construction.frontReliefCm / .008) : card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };
   }

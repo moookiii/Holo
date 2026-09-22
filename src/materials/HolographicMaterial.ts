@@ -253,7 +253,13 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const printTransmission = print.dot(vec3(.2126, .7152, .0722)).smoothstep(.025, .22);
     const watermark = logoShape.mul(controls.anniversary, printTransmission);
     const secondary = mix(mask.g, watermark, controls.anniversary).mul(this.secondaryOptics.enabled, stamp.oneMinus());
-    const artCoverage = mask.r.max(extended);
+    // No segmentation or generated per-card maps: deliberately approximate shared
+    // layout coverage for remote prints. Exact authored cards never set this flag.
+    const procedural = cardMaps?.proceduralFoil;
+    const genericCoverage = procedural === 'full' ? inside(layout.innerFrame)
+      : procedural === 'reverse' ? inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus())
+      : procedural === 'artwork' ? inside(layout.artwork) : float(0);
+    const artCoverage = mask.r.max(extended).max(genericCoverage);
     const primary = mix(artCoverage, this.hologramTextureNode.g, this.optics.imageHologram).mul(this.optics.enabled, secondary.oneMinus(), stamp.oneMinus());
     const metal = mask.b.max(stampMask.mul(this.stampOptics.enabled.oneMinus()));
     this.regions = [
