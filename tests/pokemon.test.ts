@@ -11,6 +11,16 @@ import type { PokemonCard, PrintVariant } from '../src/pokemon/types.ts';
 import type { PreparedCardCpu } from '../src/card/CardCpuPreparation.ts';
 
 const rarities = ['Common', 'Uncommon', 'Rare', 'Double Rare', 'Ultra Rare', 'Illustration Rare', 'Special Illustration Rare', 'Hyper Rare', 'ACE SPEC Rare'];
+test('SV picture holos use traced frames without a procedural rectangle over the badge', () => {
+  const card = fixture().find(c => c.rarity === 'Rare')!;
+  const evolved = pokemonDefinition({ ...card, evolveFrom: 'Glimmet' }, 'holo', []);
+  assert.equal(evolved.maps?.foil, '/cards/pokemon/sv-evolved-artwork.svg');
+  assert.equal(evolved.proceduralFoil, undefined);
+  assert.equal(pokemonDefinition(card, 'holo', []).maps?.foil, '/cards/pokemon/sv-basic-artwork.svg');
+  const full = pokemonDefinition({ ...card, rarity: 'Illustration Rare' }, 'holo', []);
+  assert.equal(full.maps, undefined);
+  assert.equal(full.proceduralFoil, 'full');
+});
 function fixture(setId = 'sv01'): PokemonCard[] {
   return rarities.flatMap((rarity, r) => Array.from({ length: 8 }, (_, n) => ({
     id: `${setId}-${r * 10 + n}`, localId: `${r * 10 + n}`, name: `${rarity} ${n}`, setId, setName: setId,

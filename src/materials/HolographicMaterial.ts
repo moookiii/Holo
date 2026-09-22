@@ -253,21 +253,12 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const printTransmission = print.dot(vec3(.2126, .7152, .0722)).smoothstep(.025, .22);
     const watermark = logoShape.mul(controls.anniversary, printTransmission);
     const secondary = mix(mask.g, watermark, controls.anniversary).mul(this.secondaryOptics.enabled, stamp.oneMinus());
-    // Remote prints use template geometry; exact authored cards retain their masks.
+    // No segmentation or generated per-card maps: deliberately approximate shared
+    // layout coverage for remote prints. Exact authored cards never set this flag.
     const procedural = cardMaps?.proceduralFoil;
-    let artworkCoverage = inside(layout.artwork);
-    if (layout.artworkRadius) {
-      const [rx, ry] = layout.artworkRadius, [left, top, right, bottom] = layout.artwork;
-      const nearest = printPoint.clamp(vec2(left + rx, top + ry), vec2(right - rx, bottom - ry));
-      artworkCoverage = artworkCoverage.mul(printPoint.sub(nearest).div(vec2(rx, ry)).length().smoothstep(.9, 1).oneMinus());
-    }
-    let badgeProtection: typeof artworkCoverage = float(1);
-    for (const [x, y, rx, ry] of layout.artworkExclusions ?? []) {
-      badgeProtection = badgeProtection.mul(printPoint.sub(vec2(x, y)).div(vec2(rx, ry)).length().smoothstep(1, 1.015));
-    }
     const genericCoverage = procedural === 'full' ? inside(layout.innerFrame)
-      : procedural === 'reverse' ? inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus(), badgeProtection)
-      : procedural === 'artwork' ? artworkCoverage.mul(badgeProtection) : float(0);
+      : procedural === 'reverse' ? inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus())
+      : procedural === 'artwork' ? inside(layout.artwork) : float(0);
     const artCoverage = mask.r.max(extended).max(genericCoverage);
     const primary = mix(artCoverage, this.hologramTextureNode.g, this.optics.imageHologram).mul(this.optics.enabled, secondary.oneMinus(), stamp.oneMinus());
     const metal = mask.b.max(stampMask.mul(this.stampOptics.enabled.oneMinus()));

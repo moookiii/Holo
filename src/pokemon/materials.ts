@@ -38,14 +38,14 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   return { id, title: card.name, franchise: 'Pokémon', set: card.setName, number: `${card.localId} · ${card.rarity} · ${variant}`,
     dimensions: DIMENSIONS.standard, front: card.front ?? '', back: '/cards/pokemon/back.jpg', profile, seed: 1741,
     pokemon: metadata,
-    proceduralFoil: variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? 'artwork' : 'full',
+    proceduralFoil: variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? card.era === 'sv' ? undefined : 'artwork' : 'full',
+    maps: card.era === 'sv' && variant === 'holo' && ['Common', 'Uncommon', 'Rare'].includes(card.rarity)
+      ? { foil: `/cards/pokemon/sv-${card.evolveFrom ? 'evolved' : 'basic'}-artwork.svg` } : undefined,
     // Reuse existing etched optics without borrowing Pikachu's authored relief.
     profileOverrides: profile === 'pokemon-rainbow-etched' ? { structure: { relief: 0 }, diffraction: { strength: .24 }, glints: { strength: 1.4 } } : undefined,
     layout: card.era === 'sv' ? {
-      // Inside the silver picture bevel; the evolution medallion overlaps this window.
-      artwork: [.084, .106, .916, .477], innerFrame: [.035, .025, .965, .975],
-      artworkRadius: [.006, .004],
-      artworkExclusions: card.evolveFrom ? [[.102, .124, .090, .065]] : [],
+      // Bounds registered to the 600 × 825 TCGdex front, inside the picture rails.
+      artwork: [48/600, 82/825, 553/600, 390/825], innerFrame: [.035, .025, .965, .975],
     } : { artwork: [.08, .10, .92, .48], innerFrame: [.035, .025, .965, .975] },
   };
 }
