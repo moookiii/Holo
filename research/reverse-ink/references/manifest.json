@@ -1,0 +1,1113 @@
+{
+  "schema_version": 1,
+  "coordinate_system": {
+    "width": 630,
+    "height": 880,
+    "units": "card-space",
+    "origin": "top-left"
+  },
+  "source_root_hint": "~/Pictures",
+  "families": [
+    "grass",
+    "fire",
+    "water",
+    "lightning",
+    "psychic",
+    "fighting",
+    "darkness",
+    "colorless",
+    "dragon",
+    "trainer",
+    "metal"
+  ],
+  "references": [
+    {
+      "id": "charmander",
+      "family": "fire",
+      "file": "aoeuaoeu.jpg",
+      "sha256": "76ca69655a27271ad167b72fee598c3fdfbaa73fd7a3d6e3a9645e6a239cb4e1",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          239,
+          223
+        ],
+        [
+          914,
+          230
+        ],
+        [
+          869,
+          1120
+        ],
+        [
+          262,
+          1118
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Stand occludes bottom edge; moderate perspective and grain.",
+      "reviewed": true
+    },
+    {
+      "id": "oddish",
+      "family": "grass",
+      "file": "s-l960.jpgaoeu.jpg",
+      "sha256": "992cc11f147b087eafcdc2510be499c08dcee8ebe00c906cd35d8ad15e96d1f1",
+      "source_size": [
+        720,
+        960
+      ],
+      "corners": [
+        [
+          101,
+          66
+        ],
+        [
+          653,
+          80
+        ],
+        [
+          635,
+          857
+        ],
+        [
+          78,
+          847
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Uneven illumination; top-right glare.",
+      "reviewed": true
+    },
+    {
+      "id": "bulbasaur",
+      "family": "grass",
+      "file": "s-l1600.jpgaoeu.jpg",
+      "sha256": "09647ce5a6dd0a4124258286b3a50231fdeae45c4718de94a2309c8552c9aea1",
+      "source_size": [
+        744,
+        1040
+      ],
+      "corners": [
+        [
+          0,
+          0
+        ],
+        [
+          744,
+          0
+        ],
+        [
+          744,
+          1040
+        ],
+        [
+          0,
+          1040
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Tightly cropped scan; virtual corner intersections at image bounds.",
+      "reviewed": true
+    },
+    {
+      "id": "lickitung-plain",
+      "family": "colorless",
+      "file": "516677_in_1000x1000.jpg",
+      "sha256": "47ccb44c40944aca8030f021bfd684394935f3918c1c9a2d76b2f7574030ce7a",
+      "source_size": [
+        660,
+        920
+      ],
+      "corners": [
+        [
+          1,
+          1
+        ],
+        [
+          658,
+          1
+        ],
+        [
+          658,
+          919
+        ],
+        [
+          1,
+          919
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "plain-comparison",
+      "inspection": "Non-reverse digital comparison; different lighting cannot calibrate opacity directly.",
+      "reviewed": true
+    },
+    {
+      "id": "dragonite",
+      "family": "dragon",
+      "file": "euiddiuidu.jpg",
+      "sha256": "147f3e864ebe3ee586a1e18a0acd9763ef10066607133b8fac6d8177a536ca94",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          148,
+          173
+        ],
+        [
+          1022,
+          175
+        ],
+        [
+          1056,
+          1426
+        ],
+        [
+          119,
+          1434
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Strong perspective; text and ability bar cover different regions from other Dragons.",
+      "reviewed": true
+    },
+    {
+      "id": "dragonair",
+      "family": "dragon",
+      "file": "euidiuddiu.jpg",
+      "sha256": "290b7087699585f0eea026abde1997d63d29b1b5efb145109878a6a38431a6cb",
+      "source_size": [
+        782,
+        1098
+      ],
+      "corners": [
+        [
+          33,
+          26
+        ],
+        [
+          769,
+          26
+        ],
+        [
+          769,
+          1063
+        ],
+        [
+          28,
+          1066
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Diffuse scan with edge shadow.",
+      "reviewed": true
+    },
+    {
+      "id": "dratini",
+      "family": "dragon",
+      "file": "euiddui.jpg",
+      "sha256": "73da872fea9c18404d24a5129c8268461bc66d64acd25bbdd935f71fa442446c",
+      "source_size": [
+        1600,
+        1071
+      ],
+      "corners": [
+        [
+          40,
+          47
+        ],
+        [
+          754,
+          45
+        ],
+        [
+          760,
+          1038
+        ],
+        [
+          46,
+          1041
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Front card only; back and sleeve explicitly excluded.",
+      "reviewed": true
+    },
+    {
+      "id": "lickitung",
+      "family": "colorless",
+      "file": "euid.jpg",
+      "sha256": "44b610bc758c2df69d1c30875586e7d2173a5a868ebe70721dc2761bfd4ae42f",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          132,
+          174
+        ],
+        [
+          1029,
+          164
+        ],
+        [
+          1042,
+          1437
+        ],
+        [
+          124,
+          1445
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Sleeve reflections; mild perspective.",
+      "reviewed": true
+    },
+    {
+      "id": "meowth",
+      "family": "colorless",
+      "file": "oeuioiue.jpg",
+      "sha256": "c4d2aa3da409e454cf7fdde82cba2278c9dbffc8bbe500673c4d240887cb8a56",
+      "source_size": [
+        754,
+        1030
+      ],
+      "corners": [
+        [
+          11,
+          0
+        ],
+        [
+          752,
+          0
+        ],
+        [
+          752,
+          1027
+        ],
+        [
+          9,
+          1027
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Near-flat scan; some rounded corners clipped.",
+      "reviewed": true
+    },
+    {
+      "id": "pidgey",
+      "family": "colorless",
+      "file": "oeiuouei.jpg",
+      "sha256": "cbfbf039d8fe7580d88f80ce1936a8eec1148f6a260ad38c7a7af19efa03ec48",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          61,
+          73
+        ],
+        [
+          1144,
+          79
+        ],
+        [
+          1105,
+          1533
+        ],
+        [
+          89,
+          1528
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Stand occlusion at bottom; light glare across body.",
+      "reviewed": true
+    },
+    {
+      "id": "koffing",
+      "family": "darkness",
+      "file": "eouioeuioiue.jpg",
+      "sha256": "a5c1fb126ab9fac8b3ea611151b6a3e3f8d28b9464252f6e9b617b57098be55b",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          239,
+          418
+        ],
+        [
+          912,
+          412
+        ],
+        [
+          910,
+          1363
+        ],
+        [
+          231,
+          1359
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Slight perspective; foil texture visible.",
+      "reviewed": true
+    },
+    {
+      "id": "grimer",
+      "family": "darkness",
+      "file": "oeuioeuiiue.jpg",
+      "sha256": "4e5ccfc07272e0e96c6e8d5964db668b084a4039e55a29ea9da46c0b41186c17",
+      "source_size": [
+        746,
+        1033
+      ],
+      "corners": [
+        [
+          1,
+          1
+        ],
+        [
+          746,
+          1
+        ],
+        [
+          746,
+          1034
+        ],
+        [
+          1,
+          1034
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Low-contrast dark scan.",
+      "reviewed": true
+    },
+    {
+      "id": "ekans",
+      "family": "darkness",
+      "file": "oeiuoueioiue.jpg",
+      "sha256": "4355796f76c13d3d9212b71bc150680aec6b107719cff5b9f3be375737744821",
+      "source_size": [
+        1096,
+        1443
+      ],
+      "corners": [
+        [
+          54,
+          26
+        ],
+        [
+          1047,
+          28
+        ],
+        [
+          1046,
+          1398
+        ],
+        [
+          52,
+          1393
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Vertical sleeve scratches must not become geometry.",
+      "reviewed": true
+    },
+    {
+      "id": "cubone",
+      "family": "fighting",
+      "file": "oeuioeuiouei.jpg",
+      "sha256": "0fd2e9dc40e0dda1c80aefb1b6d0999e931a9bae3995d82648cb3ba60cef9f93",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          49,
+          61
+        ],
+        [
+          1102,
+          59
+        ],
+        [
+          1089,
+          1508
+        ],
+        [
+          65,
+          1510
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Stand at bottom; ability and long rules cover central field.",
+      "reviewed": true
+    },
+    {
+      "id": "machop",
+      "family": "fighting",
+      "file": "oeuioeui.jpg",
+      "sha256": "db8193388d0ce6801552f18e4fda2695df66356147d3ee7f40e5e304350ae7f4",
+      "source_size": [
+        1199,
+        1599
+      ],
+      "corners": [
+        [
+          337,
+          498
+        ],
+        [
+          884,
+          502
+        ],
+        [
+          919,
+          1293
+        ],
+        [
+          304,
+          1283
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Small card in photograph; sleeve glare and stand.",
+      "reviewed": true
+    },
+    {
+      "id": "sandshrew",
+      "family": "fighting",
+      "file": "oeuiouie.jpg",
+      "sha256": "6363df49bdd167792765c0d5f3a9817928f37055aa144ff6c5bd2efaa5491d11",
+      "source_size": [
+        1199,
+        1599
+      ],
+      "corners": [
+        [
+          249,
+          380
+        ],
+        [
+          971,
+          360
+        ],
+        [
+          967,
+          1417
+        ],
+        [
+          211,
+          1383
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Perspective and strong sleeve glare; covered by long rules.",
+      "reviewed": true
+    },
+    {
+      "id": "drowzee",
+      "family": "psychic",
+      "file": "aoeuoeuoeu.jpg",
+      "sha256": "c53008fea6dcd63fa11fdb25f6a44a8f7d39fa75ff70f3339746a224c81d94ff",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          84,
+          85
+        ],
+        [
+          1111,
+          91
+        ],
+        [
+          1109,
+          1517
+        ],
+        [
+          86,
+          1526
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Top glare and darker lower field; body has little foreground.",
+      "reviewed": true
+    },
+    {
+      "id": "gastly",
+      "family": "psychic",
+      "file": "aoeuaeouueo.jpg",
+      "sha256": "393b438dfac9c75e4b145e0b9fa1799720fee35a9556cfc5582c51f0760f65d5",
+      "source_size": [
+        720,
+        1600
+      ],
+      "corners": [
+        [
+          36,
+          392
+        ],
+        [
+          662,
+          391
+        ],
+        [
+          669,
+          1274
+        ],
+        [
+          32,
+          1278
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Portrait photo with card occupying central region.",
+      "reviewed": true
+    },
+    {
+      "id": "abra",
+      "family": "psychic",
+      "file": "aoeuoeu.jpg",
+      "sha256": "6961819aab88e1e63a4cb285734ae04302762c3a7474d0b363b1dcaa11aaf517",
+      "source_size": [
+        1178,
+        1600
+      ],
+      "corners": [
+        [
+          91,
+          18
+        ],
+        [
+          1121,
+          20
+        ],
+        [
+          1170,
+          1578
+        ],
+        [
+          4,
+          1578
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Severe perspective; left glare; sparse body text.",
+      "reviewed": true
+    },
+    {
+      "id": "magneton",
+      "family": "lightning",
+      "file": "aoeuaeou.jpg",
+      "sha256": "b098f72095fb4e4660f09df439ea4f9143b152814eb9dc17341b3b89a8e05b6f",
+      "source_size": [
+        1080,
+        1440
+      ],
+      "corners": [
+        [
+          138,
+          124
+        ],
+        [
+          929,
+          112
+        ],
+        [
+          908,
+          1164
+        ],
+        [
+          184,
+          1167
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Perspective; diffuse reflection.",
+      "reviewed": true
+    },
+    {
+      "id": "voltorb",
+      "family": "lightning",
+      "file": "oeauoueueo.jpg",
+      "sha256": "86a06b4c4ab77c5b205948cb4efe79fc116b352b17c231d81cee823d3d84941e",
+      "source_size": [
+        1600,
+        1599
+      ],
+      "corners": [
+        [
+          374,
+          145
+        ],
+        [
+          1272,
+          139
+        ],
+        [
+          1285,
+          1392
+        ],
+        [
+          388,
+          1408
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Stand obscures bottom; clear lower-body geometry.",
+      "reviewed": true
+    },
+    {
+      "id": "pikachu",
+      "family": "lightning",
+      "file": "s-l960.jpgaoeuoaeu.jpg",
+      "sha256": "6f34ace7af5f26034208cb46e6dc3fdf708ec9c5e3c6547730c5413764d6b37e",
+      "source_size": [
+        720,
+        960
+      ],
+      "corners": [
+        [
+          134,
+          140
+        ],
+        [
+          596,
+          138
+        ],
+        [
+          625,
+          841
+        ],
+        [
+          105,
+          836
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "High glare at top; clear high-contrast lower field.",
+      "reviewed": true
+    },
+    {
+      "id": "poliwag",
+      "family": "water",
+      "file": "oaeuaoeuuaeoueo.jpg",
+      "sha256": "5d3b70f2ed6adab9bf3b7f8390b335fbaf52bc8f3b09fd4dacbc2606c66d3804",
+      "source_size": [
+        323,
+        450
+      ],
+      "corners": [
+        [
+          1,
+          0
+        ],
+        [
+          322,
+          0
+        ],
+        [
+          322,
+          449
+        ],
+        [
+          1,
+          449
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Very low resolution; registration validation only, not fine edge donor.",
+      "reviewed": true
+    },
+    {
+      "id": "psyduck",
+      "family": "water",
+      "file": "aoeuaoeuuaeo.jpg",
+      "sha256": "aa72ae7674d26a6e55555613d84bc77db38d5c1a09e1184c298a51d4742d38d4",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          70,
+          85
+        ],
+        [
+          1124,
+          83
+        ],
+        [
+          1141,
+          1540
+        ],
+        [
+          92,
+          1563
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Header glare; lower body clear.",
+      "reviewed": true
+    },
+    {
+      "id": "growlithe",
+      "family": "fire",
+      "file": "aoeuaoeuueo.jpg",
+      "sha256": "7d421ac8ac394e180ec281be6ea5e71aa549f9d0d6b1848af9a9ba34adc3d02b",
+      "source_size": [
+        797,
+        1075
+      ],
+      "corners": [
+        [
+          30,
+          23
+        ],
+        [
+          775,
+          21
+        ],
+        [
+          775,
+          1062
+        ],
+        [
+          29,
+          1060
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Low contrast and scan grain.",
+      "reviewed": true
+    },
+    {
+      "id": "vulpix",
+      "family": "fire",
+      "file": "aoeuauoaoeu.jpg",
+      "sha256": "973b6907843287338e4351b4f54500d995b0cf5ab641df1844e87ff0c800318a",
+      "source_size": [
+        1192,
+        1600
+      ],
+      "corners": [
+        [
+          49,
+          12
+        ],
+        [
+          1171,
+          17
+        ],
+        [
+          1165,
+          1580
+        ],
+        [
+          33,
+          1575
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Scan with sleeve edges; useful lower-body detail.",
+      "reviewed": true
+    },
+    {
+      "id": "caterpie",
+      "family": "grass",
+      "file": "s-l1600.pngaoeu.png",
+      "sha256": "dc42111ddc5a2b1b998f70f93c0db2a7e704404e68add34f33aea77a412b340d",
+      "source_size": [
+        1600,
+        1200
+      ],
+      "corners": [
+        [
+          363,
+          84
+        ],
+        [
+          1029,
+          95
+        ],
+        [
+          1041,
+          1020
+        ],
+        [
+          357,
+          1024
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Perspective, top glare, stand covers legal strip.",
+      "reviewed": true
+    },
+    {
+      "id": "squirtle",
+      "family": "water",
+      "file": "aoeuaueoueouoe.png",
+      "sha256": "ec1fd893168820b357af37211c0c52d13344a5d1c79b6236365840905f8408d2",
+      "source_size": [
+        1177,
+        1600
+      ],
+      "corners": [
+        [
+          77,
+          90
+        ],
+        [
+          1101,
+          89
+        ],
+        [
+          1106,
+          1511
+        ],
+        [
+          78,
+          1514
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "High-quality scan; grain and minor sleeve shadow.",
+      "reviewed": true
+    },
+    {
+      "id": "helix-fossil",
+      "family": "trainer",
+      "file": "aoeuaoeuuaeo3.jpg",
+      "sha256": "7b17454a952d56c1b96c773236a4524cf6032281edeb55e3cdde5df3f4a3f574",
+      "source_size": [
+        1161,
+        1600
+      ],
+      "corners": [
+        [
+          20,
+          18
+        ],
+        [
+          1145,
+          18
+        ],
+        [
+          1144,
+          1586
+        ],
+        [
+          19,
+          1585
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Many text lines; item rule panel occludes bottom-right.",
+      "reviewed": true
+    },
+    {
+      "id": "revavroom",
+      "family": "metal",
+      "file": "s-l500.jpg",
+      "sha256": "5dc7abb405522ce664265c53703945b02823a659e166fd75409055511a31e30d",
+      "source_size": [
+        356,
+        500
+      ],
+      "corners": [
+        [
+          0,
+          2
+        ],
+        [
+          355,
+          1
+        ],
+        [
+          355,
+          498
+        ],
+        [
+          0,
+          499
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Low-resolution scan; not a fine edge donor.",
+      "reviewed": true
+    },
+    {
+      "id": "forretress",
+      "family": "metal",
+      "file": "aoeuoeuaeouoeu.jpg",
+      "sha256": "bf5b4770cd690f9651a3244971d5dea62850d4db70d06d0677b0dab8c486831c",
+      "source_size": [
+        587,
+        800
+      ],
+      "corners": [
+        [
+          17,
+          40
+        ],
+        [
+          551,
+          40
+        ],
+        [
+          550,
+          777
+        ],
+        [
+          18,
+          778
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Dark scan with extensive body text.",
+      "reviewed": true
+    },
+    {
+      "id": "energy-sticker",
+      "family": "trainer",
+      "file": "aoeuoeuaeoueuo.jpg",
+      "sha256": "259ec74ba398ee7c692331568ca84a589e9a024c12be9152d54906cceb08b402",
+      "source_size": [
+        1200,
+        1600
+      ],
+      "corners": [
+        [
+          316,
+          252
+        ],
+        [
+          952,
+          279
+        ],
+        [
+          920,
+          1107
+        ],
+        [
+          380,
+          1215
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Strong perspective and stand occlusion; useful different Trainer text placement.",
+      "reviewed": true
+    },
+    {
+      "id": "old-amber",
+      "family": "trainer",
+      "file": "aoeuaeouaoeuaoeu.jpg",
+      "sha256": "54e9c243209739b2a4866a64a1d680f133073171a915d0ac40b35f98ff1e77cd",
+      "source_size": [
+        1140,
+        1520
+      ],
+      "corners": [
+        [
+          41,
+          46
+        ],
+        [
+          1044,
+          41
+        ],
+        [
+          1047,
+          1465
+        ],
+        [
+          20,
+          1465
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Grain and horizontal sleeve texture; rule panel occlusion.",
+      "reviewed": true
+    },
+    {
+      "id": "varoom",
+      "family": "metal",
+      "file": "uiuoieuieouie.png",
+      "sha256": "72e8631e131bcb749de1b6e00c4669568ca75994038d78b6c816ecf8810e19d9",
+      "source_size": [
+        1600,
+        1600
+      ],
+      "corners": [
+        [
+          288,
+          153
+        ],
+        [
+          1293,
+          155
+        ],
+        [
+          1230,
+          1430
+        ],
+        [
+          344,
+          1429
+        ]
+      ],
+      "corner_method": "manual-outer-edge-intersections",
+      "role": "reverse-reference",
+      "inspection": "Perspective; stand obscures legal strip; body clear except attack.",
+      "reviewed": true
+    }
+  ]
+}
