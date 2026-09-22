@@ -9,6 +9,23 @@ export function fallbackWrapper(set: Pick<PokemonSet, 'name'>, back = false) {
 }
 export const wrapperInk = svgUrl('<svg xmlns="http://www.w3.org/2000/svg" width="1" height="1"><path fill="#bbb" d="M0 0h1v1H0z"/></svg>');
 const artworkCache = new Map<string, string>();
+const cardImageCache = new Map<string, string>();
+/** Some CDN PNG objects return duplicate CORS headers. Preserve high resolution
+ * by falling back to TCGdex's equivalent WebP, never a proxy or a set-wide fetch. */
+export async function usableCardFront(url: string, signal: AbortSignal): Promise<string> {
+  signal.throwIfAborted();
+  if (cardImageCache.has(url)) return cardImageCache.get(url)!;
+  const candidates = [url, url.replace(/\/high\.png$/, '/high.webp')];
+  for (const candidate of [...new Set(candidates)]) {
+    try {
+      const response = await fetch(candidate, { signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]) });
+      if (!response.ok) continue;
+      const bitmap = await createImageBitmap(await response.blob()); bitmap.close();
+      signal.throwIfAborted(); cardImageCache.set(url, candidate); return candidate;
+    } catch { signal.throwIfAborted(); }
+  }
+  throw new Error(`Card image unavailable: ${url}. Retry preparation.`);
+}
 async function decoded(url: string, signal: AbortSignal) {
   for (let attempt = 0; ; attempt++) {
     signal.throwIfAborted();

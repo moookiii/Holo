@@ -6,10 +6,10 @@ import type { PreparedPack } from '../pack/PreparedPack';
 import { pokemonCatalog } from './TcgdexAdapter';
 import { collatePokemon } from './collator';
 import { recipeFor } from './recipes';
-import { SelectionTask } from './requests';
+import { boundedMap, SelectionTask } from './requests';
 import type { CatalogEntry, PokemonBooster, PokemonCard, PokemonSet } from './types';
 import { pokemonDefinition } from './materials';
-import { fallbackWrapper, prepareWrapper } from './assets';
+import { fallbackWrapper, prepareWrapper, usableCardFront } from './assets';
 
 export interface PackBrowserDependencies {
   definitions: readonly CardDefinition[];
@@ -138,6 +138,11 @@ export class PackBrowser {
       const wrapper = await prepareWrapper(set, booster, request.signal);
       if (!this.task.current(request)) return;
       const definitions = resolved.pulls.map(p => pokemonDefinition(p.card, p.variant, this.deps.definitions));
+      this.status.textContent = 'Checking exact card images…';
+      await boundedMap(definitions, 3, request.signal, async definition => {
+        if (definition.front.startsWith('https://assets.tcgdex.net/')) definition.front = await usableCardFront(definition.front, request.signal);
+      });
+      if (!this.task.current(request)) return;
       const pack: PackDefinition = { id: `pokemon:${set.id}:${booster.id}`, name: `${set.name} · ${booster.name}`, category: 'Pokémon',
         seed, cardCount: resolved.pulls.length, order: 'fixed', wrapper, pokemon: resolved,
         contents: resolved.pulls.map((p, i) => ({ cardId: definitions[i].id, rarity: p.variant === 'normal' ? 'standard' : 'foil' })) };
