@@ -34,6 +34,8 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   const profile = exact?.profile ?? pokemonProfile(card, variant);
   const suppliedMask = card.setId === 'sve' && variant === 'holo'
     ? '/cards/pokemon/energy/sv-artwork-mask.png'
+    : card.era === 'sv' && variant === 'reverse' && card.category === 'Trainer'
+      ? '/cards/pokemon/sv-trainer-reverse-artwork.png'
     : card.era === 'sv' && variant === 'reverse' && card.category === 'Pokemon' && card.evolveFrom
       ? '/cards/pokemon/sv-evolved-reverse-artwork.png'
       : card.era === 'sv' && variant === 'holo' && card.category === 'Trainer'
