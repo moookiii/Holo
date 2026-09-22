@@ -32,14 +32,18 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
   const exact = existing.find(c => c.id === authored[card.id]?.[variant]);
   const profile = exact?.profile ?? pokemonProfile(card, variant);
+  const suppliedMask = card.era === 'sv' && variant === 'reverse' && card.category === 'Pokemon' && card.evolveFrom
+    ? '/cards/pokemon/sv-evolved-reverse-artwork.png'
+    : card.era === 'sv' && variant === 'holo' && card.category === 'Trainer'
+      ? '/cards/pokemon/sv-trainer-artwork.png' : undefined;
   const id = `pokemon:${card.id}:${variant}`;
   const metadata = { ...card, variant, materialProfile: profile };
   if (exact) return { ...exact, id, pokemon: metadata, number: `${card.localId} · ${card.rarity} · ${variant}` };
   return { id, title: card.name, franchise: 'Pokémon', set: card.setName, number: `${card.localId} · ${card.rarity} · ${variant}`,
     dimensions: DIMENSIONS.standard, front: card.front ?? '', back: '/cards/pokemon/back.jpg', profile, seed: 1741,
     pokemon: metadata,
-    proceduralFoil: variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? card.era === 'sv' ? undefined : 'artwork' : 'full',
-    maps: card.era === 'sv' && variant === 'holo' && ['Common', 'Uncommon', 'Rare'].includes(card.rarity)
+    proceduralFoil: suppliedMask ? undefined : variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? card.era === 'sv' ? undefined : 'artwork' : 'full',
+    maps: suppliedMask ? { foil: suppliedMask } : card.era === 'sv' && variant === 'holo' && ['Common', 'Uncommon', 'Rare'].includes(card.rarity)
       ? { foil: `/cards/pokemon/sv-${card.evolveFrom ? 'evolved' : 'basic'}-artwork.svg` } : undefined,
     // Reuse existing etched optics without borrowing Pikachu's authored relief.
     profileOverrides: profile === 'pokemon-rainbow-etched' ? { structure: { relief: 0 }, diffraction: { strength: .24 }, glints: { strength: 1.4 } } : undefined,
