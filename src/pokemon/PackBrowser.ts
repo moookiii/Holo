@@ -154,17 +154,20 @@ export class PackBrowser {
     }, () => this.choose(booster, seed));
   }
   private ready(prepared: PreparedPack) {
-    this.prepared = prepared; this.status.textContent = `${prepared.contents.length} cards prepared. Your pack is ready.`;
-    const open = this.button('Open Pack', () => {
+    this.prepared = prepared;
+    const openPack = () => {
       if (this.prepared !== prepared) return;
-      open.disabled = true; this.root.close();
+      this.root.close();
       void this.deps.open(prepared).then(() => this.dispose(), error => {
-        if (this.disposed) return; this.root.showModal(); open.disabled = false;
+        if (this.disposed) return;
+        this.root.showModal();
         this.status.textContent = `Unable to open: ${error instanceof Error ? error.message : 'Please retry.'}`;
-        open.textContent = 'Retry Open Pack';
+        this.body.replaceChildren();
+        const retry = this.button('Retry Open Pack', openPack);
+        retry.classList.add('pokemon-open'); retry.focus();
       });
-    });
-    open.classList.add('pokemon-open'); open.focus();
+    };
+    openPack();
   }
   private goBack() {
     switch (this.step) {
