@@ -10,7 +10,7 @@ import { getPack, resolvePackContents } from '../src/pack/PackDefinition.ts';
 import type { PokemonCard, PrintVariant } from '../src/pokemon/types.ts';
 import type { PreparedCardCpu } from '../src/card/CardCpuPreparation.ts';
 
-const rarities = ['Common', 'Uncommon', 'Rare', 'Double Rare', 'Ultra Rare', 'Illustration Rare', 'Special Illustration Rare', 'Hyper Rare'];
+const rarities = ['Common', 'Uncommon', 'Rare', 'Double Rare', 'Ultra Rare', 'Illustration Rare', 'Special Illustration Rare', 'Hyper Rare', 'ACE SPEC Rare'];
 function fixture(setId = 'sv01'): PokemonCard[] {
   return rarities.flatMap((rarity, r) => Array.from({ length: 8 }, (_, n) => ({
     id: `${setId}-${r * 10 + n}`, localId: `${r * 10 + n}`, name: `${rarity} ${n}`, setId, setName: setId,
@@ -26,7 +26,7 @@ test('seeded packs are stable, immutable and independent of metadata response or
   assert.deepEqual(pack.pulls, collatePokemon('sv01', 'different-art', 123, pool).pulls);
   assert.notEqual(pack.identity, collatePokemon('sv01', 'different-art', 123, pool).identity);
 });
-test('both validated sets honor every slot, count, set, rarity and variant across seeds', () => {
+test('all validated sets honor every slot, count, set, rarity and variant across seeds', () => {
   for (const recipe of pokemonRecipes) for (let seed = 0; seed < 300; seed++) {
     const pack = collatePokemon(recipe.setId, 'standard', seed, fixture(recipe.setId));
     assert.equal(pack.pulls.length, 10); let cursor = 0;
@@ -51,9 +51,22 @@ test('booster membership is honored without redistributing absent outcome probab
   assert.throws(() => collatePokemon('sv01', 'A', 9, pool.filter(c => c.rarity !== 'Hyper Rare')), /Incomplete/);
 });
 test('unsupported sets and wrong set recipes never borrow odds', () => {
-  assert.equal(recipeFor('sv03'), undefined);
-  assert.throws(() => collatePokemon('sv03', 'standard', 1, fixture('sv03')), /no validated/);
+  assert.equal(recipeFor('sv06'), undefined);
+  assert.throws(() => collatePokemon('sv06', 'standard', 1, fixture('sv06')), /no validated/);
   assert.throws(() => collatePokemon('sv02', 'standard', 1, fixture('sv02'), recipeFor('sv01')), /no validated/);
+});
+test('Temporal Forces ACE SPEC occupies the first reverse slot and can coexist with other hits', () => {
+  let ace = 0, combined = 0;
+  const pool = fixture('sv05');
+  for (let seed = 0; seed < 3000; seed++) {
+    const pack = collatePokemon('sv05', 'standard', seed, pool);
+    for (const [index, pull] of pack.pulls.entries()) if (pull.card.rarity === 'ACE SPEC Rare') {
+      ace++; assert.equal(index, 7); assert.equal(pull.variant, 'holo');
+      if (pack.pulls[8].variant === 'holo' && pack.pulls[9].card.rarity !== 'Rare') combined++;
+    }
+  }
+  assert.ok(ace > 100 && ace < 200, `ACE SPEC frequency: ${ace}/3000`);
+  assert.ok(combined > 0, 'Independent slots must allow multiple hits');
 });
 test('generic collator supports different counts and guaranteed card-specific slots', () => {
   const pool = fixture();

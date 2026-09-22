@@ -91,7 +91,7 @@ export class PackBrowser {
     this.screen('Pokémon series');
     void this.run('Loading series…', async request => {
       const series = await pokemonCatalog.series(request.signal); if (!this.task.current(request)) return;
-      this.status.textContent = 'Choose a series. Opening available for Scarlet & Violet and Paldea Evolved.';
+      this.status.textContent = 'Choose a series. Supported sets are marked Opening available.';
       series.sort((a, b) => Number(b.id === 'sv') - Number(a.id === 'sv')).forEach(s => this.button(s.name, () => { this.selection.series = s; this.sets(); }, s.logo));
     }, () => this.series());
   }
