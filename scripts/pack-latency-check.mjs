@@ -22,9 +22,15 @@ try {
     await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 180000 });
     await page.evaluate(() => {
       const backend = window.__holo.renderer.backend;
-      const gpu = window.__gpuProbe = { pipelines: [], uploads: [], allocations: 0 };
+      const gpu = window.__gpuProbe = { pipelines: [], uploads: [], allocations: 0, nodeBuilds: [], pipelineMs: [] };
+      const nodes = window.__holo.renderer._nodes, build = nodes.getForRenderAsync.bind(nodes);
+      nodes.getForRenderAsync = async object => { const start = performance.now(); try { return await build(object); } finally { gpu.nodeBuilds.push({ mesh: object.object.name, material: object.material.constructor.name, ms: performance.now() - start }); } };
       const create = backend.createRenderPipeline.bind(backend), upload = backend.updateTexture.bind(backend), allocate = backend.createTexture.bind(backend);
-      backend.createRenderPipeline = (object, ...args) => { gpu.pipelines.push({ material: object.material.constructor.name, mesh: object.object.name }); return create(object, ...args); };
+      backend.createRenderPipeline = (object, ...args) => {
+        gpu.pipelines.push({ material: object.material.constructor.name, mesh: object.object.name }); const start = performance.now();
+        const result = create(object, ...args);
+        void Promise.all(args[0] ?? []).then(() => gpu.pipelineMs.push({ mesh: object.object.name, ms: performance.now() - start })); return result;
+      };
       backend.createTexture = (...args) => { gpu.allocations++; return allocate(...args); };
       backend.updateTexture = (texture, ...args) => { gpu.uploads.push({ width: texture.image?.width, height: texture.image?.height }); return upload(texture, ...args); };
       window.__sampleFrames = count => new Promise(resolve => {
