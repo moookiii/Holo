@@ -24,6 +24,24 @@ test('CORS-rejected PNG falls back to full-resolution WebP and caches only its U
     await assert.rejects(usableCardFront(url, cancelled.signal), { name: 'AbortError' });
   } finally { globalThis.createImageBitmap = original; }
 });
+test('both rejected high-resolution formats fall back to the exact card thumbnail', async t => {
+  const urls: string[] = [];
+  t.mock.method(globalThis, 'fetch', async (url: string) => {
+    urls.push(url);
+    if (url.includes('/high.')) throw new TypeError('CORS header rejected');
+    return new Response(new Blob(['image']));
+  });
+  const original = globalThis.createImageBitmap;
+  globalThis.createImageBitmap = (async () => ({ close: () => {} })) as typeof createImageBitmap;
+  try {
+    const high = 'https://assets.tcgdex.net/en/sv/sv08/108/high.png';
+    const low = 'https://assets.tcgdex.net/en/sv/sv08/108/low.webp';
+    const signal = new AbortController().signal;
+    assert.equal(await usableCardFront(high, signal, low), low);
+    assert.equal(await usableCardFront(high, signal, low), low);
+    assert.deepEqual(urls, [high, high.replace('.png', '.webp'), low]);
+  } finally { globalThis.createImageBitmap = original; }
+});
 test('missing artwork fallback remains set-specific and escapes remote names', () => {
   const a = fallbackWrapper({ name: 'Scarlet & Violet' });
   assert.notEqual(a, fallbackWrapper({ name: 'Paldea Evolved' }));

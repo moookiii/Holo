@@ -38,7 +38,7 @@ Only pulled cards request high PNG images. Metadata and browsing use no full-set
 
 ## Developer simulation
 
-Browser validation found some TCGdex `high.png` responses with duplicate `Access-Control-Allow-Origin` values (`*, *`). Only the exact pulled images are checked; a rejected PNG uses the same card's full-resolution `high.webp`. Both failures leave the exact seed intact and show Retry/Back. The original API front URL remains in Pokémon metadata, while the render definition retains the usable image URL for later inspection.
+Browser validation found some TCGdex high-resolution responses with duplicate `Access-Control-Allow-Origin` values (`*, *`). Only the exact pulled images are checked; a rejected PNG uses the same card's full-resolution `high.webp`, then its `low.webp` thumbnail if both high formats fail. This was verified for `sv08-108`, whose two high formats have invalid CORS headers while its low WebP is accessible. If all formats fail, the exact seed remains intact and Retry/Back stay available. The original API front URL remains in Pokémon metadata, while the render definition retains the usable image URL for later inspection.
 
 ```powershell
 node --experimental-strip-types scripts/simulate-pokemon.ts sv01 10000

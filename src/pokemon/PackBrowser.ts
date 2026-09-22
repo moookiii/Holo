@@ -140,7 +140,7 @@ export class PackBrowser {
       const definitions = resolved.pulls.map(p => pokemonDefinition(p.card, p.variant, this.deps.definitions));
       this.status.textContent = 'Checking exact card images…';
       await boundedMap(definitions, 3, request.signal, async definition => {
-        if (definition.front.startsWith('https://assets.tcgdex.net/')) definition.front = await usableCardFront(definition.front, request.signal);
+        if (definition.front.startsWith('https://assets.tcgdex.net/')) definition.front = await usableCardFront(definition.front, request.signal, definition.pokemon?.thumbnail);
       });
       if (!this.task.current(request)) return;
       const pack: PackDefinition = { id: `pokemon:${set.id}:${booster.id}`, name: `${set.name} · ${booster.name}`, category: 'Pokémon',
