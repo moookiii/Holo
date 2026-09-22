@@ -67,7 +67,9 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .card-panel-actions button { padding: 5px 8px; font-size: 11px; color: #c8a45b; }
 .card-item { position: relative; min-width: 0; }
 .card-item .card-option { width: 100%; }
-.remove-import { position: absolute; top: 9px; right: 9px; width: 22px; height: 22px; border-radius: 50%; background: #111e; border: 1px solid #444; color: #ccc; font-size: 15px; }
+.remove-import { position: absolute; z-index: 2; top: 9px; right: 9px; width: 22px; height: 22px; display: grid; place-items: center; padding: 0; border-radius: 50%; background: #111e; border: 1px solid #444; color: #ddd; line-height: 0; }
+.remove-import svg { width: 14px; height: 14px; stroke-width: 1.8; pointer-events: none; }
+.remove-import:hover { color: #fff; background: #281c1b; border-color: #91685f; }
 .import-dialog { width: min(560px, calc(100vw - 28px)); max-height: calc(100dvh - 36px); padding: 25px; color: #ccc; background: #101010; border: 1px solid #34302a; border-radius: 12px; box-shadow: 0 24px 90px #000a; overflow: auto; }
 .import-dialog::backdrop { background: #000b; }
 .import-dialog form { display: grid; gap: 16px; }

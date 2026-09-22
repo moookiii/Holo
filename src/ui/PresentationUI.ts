@@ -122,9 +122,12 @@ image.loading = 'lazy';
       button.append(image, name); button.onclick = () => { actions.card(card.id); close(); };
       const item = document.createElement('div'); item.className = 'card-item'; item.append(button);
       if (card.imported) {
-        const remove = document.createElement('button'); remove.className = 'remove-import'; remove.textContent = '×';
+        const remove = document.createElement('button');
+        remove.type = 'button'; remove.className = 'remove-import';
         remove.setAttribute('aria-label', `Remove ${card.title}`); remove.title = 'Remove from this session';
-        remove.onclick = () => actions.removeCard(card.id); item.append(remove);
+        remove.innerHTML = icon('<path d="M7 7l10 10M17 7L7 17"/>');
+        remove.onclick = event => { event.stopPropagation(); actions.removeCard(card.id); };
+        item.append(remove);
       }
       grid.append(item);
     });
