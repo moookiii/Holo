@@ -1,4 +1,5 @@
 import './styles.css';
+import { startupMark, startupTiming } from './rendering/LoadTiming';
 import { Raycaster, Vector2 } from 'three/webgpu';
 import { createRenderer } from './rendering/StudioRenderer';
 import { StudioLighting } from './lighting/StudioLighting';
@@ -20,6 +21,7 @@ import { getPack, resolvePackContents, type PackDefinition } from './pack/PackDe
 import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparation';
 
 async function start() {
+  startupMark('modulesReady');
   try { for (const profile of readUserProfiles(localStorage)) if (!profiles.some(p => p.id === profile.id)) profiles.push(profile); } catch (error) { console.warn('Saved profile library could not be loaded', error); }
   const container = document.querySelector<HTMLElement>('#studio')!;
   const loading = document.querySelector<HTMLElement>('#loading')!;
@@ -31,6 +33,7 @@ async function start() {
   };
   setLoading(true);
   const { renderer, scene, camera, pipeline, scenePass } = await createRenderer(container);
+  startupMark('rendererReady');
   const factory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
   const cpuPreparation = new CardCpuPreparation(profiles);
   const { assets, maps: mapLoader } = factory;
@@ -38,6 +41,7 @@ async function start() {
   const initialCard = cards.find(card => card.id === 'pikachu-vmax-vivid-voltage') ?? cards[0];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);
+  startupMark('environmentReady');
   const initialMode: InteractionMode = 'combined';
   const motion = new CardMotion(initialMode);
   const clickRay = new Raycaster();
@@ -280,11 +284,15 @@ async function start() {
       camera.position.y = -0.06;
     }
     pipeline.render();
+    if (startupTiming.firstCardVisible === undefined) {
+      startupMark('firstCardVisible');
+      requestAnimationFrame(() => startupMark('firstCardInteractive'));
+    }
     if (frameTimes.length >= 240) frameTimes.shift(); frameTimes.push(dt * 1000);
   });
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
-    ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation,
+    ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming,
     pack: {
       open: openPack, close: closePack, reset: () => openPack(), setSeed: (seed: number) => { packSeed = seed >>> 0; },
       setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),

@@ -1,5 +1,6 @@
 import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
 import { AssetManager } from '../assets/AssetManager';
+import { startupMark } from '../rendering/LoadTiming';
 import { CardMapLoader } from '../assets/CardMapLoader';
 import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
 import { CardTextureCache } from './CardTextureCache';
@@ -221,6 +222,7 @@ export class CardFactory {
     ]);
     check();
     const key = JSON.stringify([definition.dimensions, definition.construction, definition.construction ? [definition.maps?.height, definition.backMaps?.height] : null]);
+    startupMark('initialAssetsReady');
     if (!this.geometries.has(key)) {
       if (definition.construction) {
         const readHeight = async (path?: string): Promise<HeightField> => {
@@ -250,7 +252,9 @@ export class CardFactory {
     this.instances.add(instance);
     try {
       instance.mesh.frustumCulled = false;
+      startupMark('initialGpuRealization');
       if (compile) await this.compile(instance.mesh);
+      startupMark('initialCompilation');
       check();
       instance.mesh.frustumCulled = true;
       return instance;
