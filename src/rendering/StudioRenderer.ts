@@ -1,5 +1,6 @@
 import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, NeutralToneMapping, SRGBColorSpace } from 'three/webgpu';
 import { pass } from 'three/tsl';
+import { startupPipelines, startupTiming } from './LoadTiming';
 
 export async function createRenderer(container: HTMLElement) {
   const requestedBackend = new URLSearchParams(location.search).get('backend');
@@ -15,6 +16,17 @@ export async function createRenderer(container: HTMLElement) {
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
   await renderer.init();
+  const backend = renderer.backend as unknown as { createRenderPipeline: (object: { material: { name: string; type: string } }, promises?: Promise<unknown>[]) => void };
+  const create = backend.createRenderPipeline;
+  backend.createRenderPipeline = function(object, promises) {
+    if (startupTiming.firstCardInteractive !== undefined) return create.call(this, object, promises);
+    const entry = { material: object.material.name || object.material.type, started: performance.now(), elapsed: 0, async: Array.isArray(promises) };
+    startupPipelines.push(entry);
+    const count = promises?.length ?? 0;
+    create.call(this, object, promises);
+    entry.elapsed = performance.now() - entry.started;
+    if (promises) void Promise.all(promises.slice(count)).then(() => { entry.elapsed = performance.now() - entry.started; });
+  };
   const scene = new Scene(); scene.background = new Color('#050505');
   const camera = new PerspectiveCamera(30, container.clientWidth / container.clientHeight, 0.2, 100);
   const pipeline = new RenderPipeline(renderer);

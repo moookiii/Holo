@@ -1,5 +1,5 @@
 import './styles.css';
-import { startupMark, startupTiming } from './rendering/LoadTiming';
+import { startupMark, startupTiming, startupPipelines } from './rendering/LoadTiming';
 import { Raycaster, Vector2 } from 'three/webgpu';
 import { createRenderer } from './rendering/StudioRenderer';
 import { StudioLighting } from './lighting/StudioLighting';
@@ -292,7 +292,7 @@ async function start() {
   });
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
-    ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming,
+    ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming, startupPipelines,
     pack: {
       open: openPack, close: closePack, reset: () => openPack(), setSeed: (seed: number) => { packSeed = seed >>> 0; },
       setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),
