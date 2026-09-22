@@ -32,6 +32,8 @@ Only pulled cards request high PNG images. Metadata and browsing use no full-set
 
 ## Developer simulation
 
+Browser validation found some TCGdex `high.png` responses with duplicate `Access-Control-Allow-Origin` values (`*, *`). Only the exact pulled images are checked; a rejected PNG uses the same card's full-resolution `high.webp`. Both failures leave the exact seed intact and show Retry/Back. The original API front URL remains in Pokémon metadata, while the render definition retains the usable image URL for later inspection.
+
 ```powershell
 node --experimental-strip-types scripts/simulate-pokemon.ts sv01 10000
 node --experimental-strip-types scripts/simulate-pokemon.ts sv02 10000
@@ -42,3 +44,5 @@ Optional fourth argument selects the actual booster ID. The utility loads metada
 ## Validation
 
 `npm test` covers deterministic collation, set/count/slot/variant validity, booster restrictions, unsupported sets, prepared identity, Archive compatibility, stale work, bounded concurrency, transport abort isolation/retries and exact authored treatment reuse. `npm run build` uses the existing `/Holo/` production base. Local assets continue through the existing base-aware asset loaders; API URLs and data/blob URLs are unchanged.
+
+Validated on 2026-09-22: 95 automated tests pass; production build succeeds. Ran 10,000 metadata-only packs for each supported set. Browser checks used the live API, localhost development and the production preview at `/Holo/`: visual booster selection, exact preparation, selected physical wrapper, pointer tear, extraction, all ten reveals, collection fan, keyboard selection, inspect handoff, normal-profile retention, and reloading a reverse print from the normal card picker. Archive / 02 also prepares and opens through the generalized path. A real CDN failure exercised Retry/Back and led to the full-resolution fallback above.
