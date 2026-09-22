@@ -16,11 +16,12 @@ export async function createRenderer(container: HTMLElement) {
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
   await renderer.init();
-  const backend = renderer.backend as unknown as { createRenderPipeline: (object: { material: { name: string; type: string } }, promises?: Promise<unknown>[]) => void };
+  const backend = renderer.backend as unknown as { createRenderPipeline: (object: { material: { name: string; type: string }; pipeline: { vertexProgram: { code: string }; fragmentProgram: { code: string } } }, promises?: Promise<unknown>[]) => void };
   const create = backend.createRenderPipeline;
   backend.createRenderPipeline = function(object, promises) {
     if (startupTiming.firstCardInteractive !== undefined) return create.call(this, object, promises);
-    const entry = { material: object.material.name || object.material.type, started: performance.now(), elapsed: 0, async: Array.isArray(promises) };
+    const entry = { material: object.material.name || object.material.type, started: performance.now(), elapsed: 0, async: Array.isArray(promises),
+      ...(new URLSearchParams(location.search).has('profile') ? { vertex: object.pipeline.vertexProgram.code, fragment: object.pipeline.fragmentProgram.code } : {}) };
     startupPipelines.push(entry);
     const count = promises?.length ?? 0;
     create.call(this, object, promises);
