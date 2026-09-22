@@ -1,10 +1,11 @@
-import { chromium } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
 import assert from 'node:assert/strict';
 
 const out = `artifacts/pack-latency-${process.env.PACK_LABEL ?? 'current'}`;
 await mkdir(out, { recursive: true });
-const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
+const browser = process.env.PACK_BROWSER === 'firefox' ? await firefox.launch({ headless: true })
+  : await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE ?? 'C:/Program Files/Google/Chrome/Application/chrome.exe', headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const reports = [];
 try {
   for (const prepared of [false, true]) {
