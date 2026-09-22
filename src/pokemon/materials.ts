@@ -32,10 +32,12 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
   const exact = existing.find(c => c.id === authored[card.id]?.[variant]);
   const profile = exact?.profile ?? pokemonProfile(card, variant);
-  const suppliedMask = card.era === 'sv' && variant === 'reverse' && card.category === 'Pokemon' && card.evolveFrom
-    ? '/cards/pokemon/sv-evolved-reverse-artwork.png'
-    : card.era === 'sv' && variant === 'holo' && card.category === 'Trainer'
-      ? '/cards/pokemon/sv-trainer-artwork.png' : undefined;
+  const suppliedMask = card.setId === 'sve' && variant === 'holo'
+    ? '/cards/pokemon/energy/sv-artwork-mask.png'
+    : card.era === 'sv' && variant === 'reverse' && card.category === 'Pokemon' && card.evolveFrom
+      ? '/cards/pokemon/sv-evolved-reverse-artwork.png'
+      : card.era === 'sv' && variant === 'holo' && card.category === 'Trainer'
+        ? '/cards/pokemon/sv-trainer-artwork.png' : undefined;
   const id = `pokemon:${card.id}:${variant}`;
   const metadata = { ...card, variant, materialProfile: profile };
   if (exact) return { ...exact, id, pokemon: metadata, number: `${card.localId} · ${card.rarity} · ${variant}` };
