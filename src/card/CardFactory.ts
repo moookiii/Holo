@@ -1,6 +1,7 @@
 import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
 import { AssetManager } from '../assets/AssetManager';
 import { startupMark } from '../rendering/LoadTiming';
+import { capturePassContext } from '../rendering/PassCompileContext';
 import { CardMapLoader } from '../assets/CardMapLoader';
 import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
 import { CardTextureCache } from './CardTextureCache';
@@ -174,8 +175,9 @@ export class CardFactory {
     let compilation: Promise<void>;
     try {
       this.renderer.setRenderTarget(this.target); this.renderer.setMRT(null);
-      // r186 captures the HDR attachment context before its first async yield.
-      compilation = this.renderer.compileAsync(object, this.camera, this.scene);
+      // Match both HDR attachments and the nested beauty-pass context.
+      const contexts = (this.renderer as unknown as { _renderContexts: { get: (target: RenderTarget | null, mrt?: unknown, depth?: number) => unknown } })._renderContexts;
+      compilation = capturePassContext(contexts, this.target, () => this.renderer.compileAsync(object, this.camera, this.scene));
     } catch (error) {
       backend.createRenderPipeline = createPipeline; throw error;
     } finally {
