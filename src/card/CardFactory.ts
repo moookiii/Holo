@@ -162,10 +162,6 @@ export class CardFactory {
     // r186 backend contract (not yet declared on @types/three's base Backend).
     const backend = this.renderer.backend as unknown as { createRenderPipeline: (object: { object: Object3D; material: Material }, promises?: Promise<unknown>[]) => void };
     const createPipeline = backend.createRenderPipeline;
-    // Three r186 otherwise waits for each link before submitting the next.
-    // These objects are not presented until compile() resolves. Submit all
-    // independent links during the traversal, then join their readiness here.
-    const links: Promise<unknown>[] = [];
     backend.createRenderPipeline = (...args: Parameters<typeof createPipeline>) => {
       const renderObject = args[0];
       if (objects.has(renderObject.object)) {
@@ -173,7 +169,7 @@ export class CardFactory {
         if (renderObject.material instanceof PrintFrontMaterial) this.gpuStats.printPipelines++;
         if (renderObject.material instanceof HolographicMaterial) this.gpuStats.holoPipelines++;
       }
-      return createPipeline.call(backend, renderObject, objects.has(renderObject.object) && args[1] ? links : args[1]);
+      return createPipeline.apply(backend, args);
     };
     const target = this.renderer.getRenderTarget(), mrt = this.renderer.getMRT();
     let compilation: Promise<void>;
@@ -187,12 +183,8 @@ export class CardFactory {
     } finally {
       this.renderer.setRenderTarget(target); this.renderer.setMRT(mrt);
     }
-    try { await compilation; await Promise.all(links); }
-    finally {
-      // A cancelled/failed load must not dispose a program still being linked.
-      await Promise.allSettled(links);
-      backend.createRenderPipeline = createPipeline;
-    }
+    try { await compilation; }
+    finally { backend.createRenderPipeline = createPipeline; }
   }
 
   async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false): Promise<CardInstance> {
