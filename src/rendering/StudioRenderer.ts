@@ -1,6 +1,7 @@
 import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, NeutralToneMapping, SRGBColorSpace } from 'three/webgpu';
 import { pass } from 'three/tsl';
 import { startupPipelines, startupTiming } from './LoadTiming';
+import { stabilizeLtcOrder } from './StableShaderCode';
 
 export async function createRenderer(container: HTMLElement) {
   const requestedBackend = new URLSearchParams(location.search).get('backend');
@@ -16,6 +17,14 @@ export async function createRenderer(container: HTMLElement) {
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
   await renderer.init();
+  if (renderer.backend.isWebGLBackend) renderer.debug.onNodeBuilderCreated = nodeBuilder => {
+    const builder = nodeBuilder as unknown as { codes: Record<string, { code: string }[]>; getCodes: (stage: string) => string };
+    const getCodes = builder.getCodes;
+    builder.getCodes = function(stage) {
+      stabilizeLtcOrder(this.codes[stage]);
+      return getCodes.call(this, stage);
+    };
+  };
   const backend = renderer.backend as unknown as { createRenderPipeline: (object: { material: { name: string; type: string }; pipeline: { vertexProgram: { code: string }; fragmentProgram: { code: string } } }, promises?: Promise<unknown>[]) => void };
   const create = backend.createRenderPipeline;
   backend.createRenderPipeline = function(object, promises) {
