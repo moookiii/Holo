@@ -1,6 +1,10 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { usableCardFront, fallbackWrapper } from '../src/pokemon/assets.ts';
+import { localBoosterArt } from '../src/pokemon/boosterArt.ts';
+import { basicEnergyCards } from '../src/pokemon/energy.ts';
+import { pokemonRecipes } from '../src/pokemon/recipes.ts';
+import { existsSync } from 'node:fs';
 
 test('CORS-rejected PNG falls back to full-resolution WebP and caches only its URL', async t => {
   const urls: string[] = []; let closed = 0;
@@ -25,4 +29,13 @@ test('missing artwork fallback remains set-specific and escapes remote names', (
   assert.notEqual(a, fallbackWrapper({ name: 'Paldea Evolved' }));
   assert.ok(decodeURIComponent(a).includes('Scarlet &amp; Violet'));
   assert.ok(!decodeURIComponent(fallbackWrapper({ name: '<script>' })).includes('<script>'));
+});
+test('every validated set has local booster art and every Basic Energy has a local front', () => {
+  for (const recipe of pokemonRecipes) {
+    const booster = localBoosterArt(recipe.setId)?.[0];
+    assert.ok(booster?.front, `Missing booster art for ${recipe.setId}`);
+    assert.ok(existsSync(`public${new URL(booster.front, 'https://local.test').pathname}`));
+  }
+  assert.equal(basicEnergyCards.length, 8);
+  for (const card of basicEnergyCards) assert.ok(card.front && existsSync(`public${card.front}`), `Missing ${card.name}`);
 });

@@ -29,12 +29,12 @@ test('seeded packs are stable, immutable and independent of metadata response or
 test('all validated sets honor every slot, count, set, rarity and variant across seeds', () => {
   for (const recipe of pokemonRecipes) for (let seed = 0; seed < 300; seed++) {
     const pack = collatePokemon(recipe.setId, 'standard', seed, fixture(recipe.setId));
-    assert.equal(pack.pulls.length, 10); let cursor = 0;
+    assert.equal(pack.pulls.length, 11); let cursor = 0;
     for (const slot of recipe.slots) {
       const group = pack.pulls.slice(cursor, cursor += slot.count);
       if (slot.unique) assert.equal(new Set(group.map(p => p.card.id)).size, group.length);
       for (const pull of group) {
-        assert.equal(pull.card.setId, recipe.setId);
+        assert.equal(pull.card.setId, slot.pool === 'energy' ? 'sve' : recipe.setId);
         assert.ok(pull.card.variants.includes(pull.variant));
         assert.ok(slot.outcomes.some(o => o.variant === pull.variant && o.rarities.includes(pull.card.rarity)));
       }
@@ -45,15 +45,27 @@ test('booster membership is honored without redistributing absent outcome probab
   const pool = fixture().map((card, i) => ({ ...card, boosterIds: [i % 2 ? 'A' : 'B'] }));
   for (const booster of ['A', 'B']) {
     const pack = collatePokemon('sv01', booster, 9, pool);
-    assert.ok(pack.pulls.every(p => p.card.boosterIds!.includes(booster)));
+    assert.ok(pack.pulls.filter(p => p.card.setId !== 'sve').every(p => p.card.boosterIds!.includes(booster)));
   }
   assert.throws(() => collatePokemon('sv01', 'C', 9, pool), /Incomplete/);
   assert.throws(() => collatePokemon('sv01', 'A', 9, pool.filter(c => c.rarity !== 'Hyper Rare')), /Incomplete/);
 });
 test('unsupported sets and wrong set recipes never borrow odds', () => {
-  assert.equal(recipeFor('sv06'), undefined);
-  assert.throws(() => collatePokemon('sv06', 'standard', 1, fixture('sv06')), /no validated/);
+  assert.equal(recipeFor('sv11'), undefined);
+  assert.throws(() => collatePokemon('sv11', 'standard', 1, fixture('sv11')), /no validated/);
   assert.throws(() => collatePokemon('sv02', 'standard', 1, fixture('sv02'), recipeFor('sv01')), /no validated/);
+});
+test('every supported pack includes one deterministic Basic Energy and 151 can produce Cosmos foil Energy', () => {
+  for (const recipe of pokemonRecipes) for (let seed = 0; seed < 100; seed++) {
+    const pack = collatePokemon(recipe.setId, 'featured', seed, fixture(recipe.setId));
+    const energy = pack.pulls.filter(p => p.slot.startsWith('energy:'));
+    assert.equal(energy.length, 1); assert.equal(energy[0].card.setId, 'sve');
+    assert.equal(energy[0].card.rarity, 'Energy');
+    assert.deepEqual(pack, collatePokemon(recipe.setId, 'featured', seed, fixture(recipe.setId)));
+  }
+  let foil = 0;
+  for (let seed = 0; seed < 1000; seed++) foil += Number(collatePokemon('sv03.5', 'featured', seed, fixture('sv03.5')).pulls.at(-1)!.variant === 'holo');
+  assert.ok(foil > 200 && foil < 300, `151 foil Energy frequency: ${foil}/1000`);
 });
 test('Temporal Forces ACE SPEC occupies the first reverse slot and can coexist with other hits', () => {
   let ace = 0, combined = 0;

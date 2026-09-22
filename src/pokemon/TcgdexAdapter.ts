@@ -1,6 +1,7 @@
 import TCGdex from '@tcgdex/sdk';
 import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './types.ts';
 import { boundedMap, pause } from './requests.ts';
+import { localBoosterArt } from './boosterArt.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -57,7 +58,8 @@ export class TcgdexAdapter {
       if (!set) throw new Error('This set is unavailable.');
       return { id: set.id, name: set.name, logo: image(set.logo), series: { id: set.serie.id, name: set.serie.name },
         era: set.serie.id, releaseDate: set.releaseDate, cardIds: set.cards.map(c => c.id),
-        boosters: set.boosters?.length ? set.boosters.map(b => ({ id: b.id, name: b.name, logo: image(b.logo), front: image(b.artwork_front), back: image(b.artwork_back) })) : [{ id: 'standard', name: 'Standard booster' }] };
+        boosters: set.boosters?.length ? set.boosters.map(b => ({ id: b.id, name: b.name, logo: image(b.logo), front: image(b.artwork_front), back: image(b.artwork_back) }))
+          : localBoosterArt(set.id) ?? [{ id: 'standard', name: 'Standard booster' }] };
     });
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {

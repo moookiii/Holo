@@ -1,6 +1,7 @@
 import { randomSequence } from '../pack/PackDefinition.ts';
 import { recipeFor, type PokemonRecipe } from './recipes.ts';
 import type { PokemonCard, PokemonPull, ResolvedPokemonPack } from './types.ts';
+import { basicEnergyCards } from './energy.ts';
 
 function hash(text: string) { let n = 2166136261; for (const c of text) n = Math.imul(n ^ c.charCodeAt(0), 16777619); return n >>> 0; }
 export function collatePokemon(setId: string, boosterId: string, seed: number, cards: readonly PokemonCard[], recipe: PokemonRecipe | undefined = recipeFor(setId)): ResolvedPokemonPack {
@@ -10,12 +11,13 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
   const pool = cards.filter(c => c.setId === setId && c.era === recipe.era && (!c.boosterIds || c.boosterIds.includes(boosterId))).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   if (new Set(pool.map(c => c.id)).size !== pool.length) throw new Error('Duplicate card metadata');
   // Cosmetic art variants have identical eligible pools and therefore identical pulls.
-  const eligibilityKey = pool.map(c => `${c.id}:${[...c.variants].sort().join(',')}:${c.rarity}`).join('|');
+  const eligibilityKey = [...pool, ...basicEnergyCards].map(c => `${c.id}:${[...c.variants].sort().join(',')}:${c.rarity}`).join('|');
   const random = randomSequence(hash(`${seed}:${setId}:${recipe.id}:${recipe.version}:${eligibilityKey}`));
   const pulls: PokemonPull[] = [];
   for (const slot of recipe.slots) {
     if (!Number.isInteger(slot.count) || slot.count < 1 || !slot.outcomes.length || slot.outcomes.some(o => !Number.isFinite(o.weight) || o.weight <= 0) || Math.abs(slot.outcomes.reduce((n, o) => n + o.weight, 0) - 1) > 1e-8) throw new Error(`Invalid recipe slot ${slot.id}`);
-    const outcomes = slot.outcomes.map(o => ({ ...o, pool: pool.filter(c => o.rarities.includes(c.rarity) && c.variants.includes(o.variant) && (!o.cardIds || o.cardIds.includes(c.id))) }));
+    const slotPool = slot.pool === 'energy' ? basicEnergyCards : pool;
+    const outcomes = slot.outcomes.map(o => ({ ...o, pool: slotPool.filter(c => o.rarities.includes(c.rarity) && c.variants.includes(o.variant) && (!o.cardIds || o.cardIds.includes(c.id))) }));
     // Never redistribute a missing rarity's odds or quietly bias an incomplete pool.
     for (const o of outcomes) if (o.pool.length < (slot.unique ? slot.count : 1)) throw new Error(`Incomplete ${slot.id} pool (${o.rarities.join('/')}). Retry metadata or choose another booster.`);
     const used = new Set<string>();
