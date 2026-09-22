@@ -23,6 +23,7 @@ export interface PackLoadMetrics {
   materialCreationMs: number; uploadReadinessMs: number; uploadedResources: number; compileMs: number;
   gpuTexturesCreated: number; gpuTextureCacheHits: number; holoMaterials: number; printMaterials: number;
   cardMaterialTypes: string[]; usedCpuPreparation: boolean;
+  renderPipelines: number; printPipelines: number; holoPipelines: number;
 }
 interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
@@ -82,7 +83,7 @@ export class PackOpeningController {
     const before = deps.factory.stats();
     const metrics: PackLoadMetrics = { preparedLookupMs: 0, cpuGenerationMs: 0, wrapperMs: 0, gpuRealizationMs: 0, materialCreationMs: 0,
       uploadReadinessMs: 0, uploadedResources: 0, compileMs: 0, gpuTexturesCreated: 0, gpuTextureCacheHits: 0,
-      holoMaterials: 0, printMaterials: 0, cardMaterialTypes: [], usedCpuPreparation: false };
+      holoMaterials: 0, printMaterials: 0, cardMaterialTypes: [], usedCpuPreparation: false, renderPipelines: 0, printPipelines: 0, holoPipelines: 0 };
     const lookupStarted = performance.now();
     const contents = deps.preparedContents ?? resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
@@ -140,10 +141,14 @@ export class PackOpeningController {
     } catch (error) { wrapper.dispose(); cards.forEach(card => card.dispose()); audio.dispose(); throw error; }
     const after = deps.factory.stats();
     metrics.materialCreationMs = after.materialCreationMs - before.materialCreationMs;
+    metrics.gpuRealizationMs = after.gpuRealizationMs - before.gpuRealizationMs;
     metrics.gpuTexturesCreated = after.textureRealizations - before.textureRealizations;
     metrics.gpuTextureCacheHits = after.textureCacheHits - before.textureCacheHits;
     metrics.holoMaterials = after.holoMaterials - before.holoMaterials;
     metrics.printMaterials = after.printMaterials - before.printMaterials;
+    metrics.renderPipelines = after.renderPipelines - before.renderPipelines;
+    metrics.printPipelines = after.printPipelines - before.printPipelines;
+    metrics.holoPipelines = after.holoPipelines - before.holoPipelines;
     metrics.cardMaterialTypes = [...new Set(cards.flatMap(card => card.mesh.material.map(material => material.constructor.name)))];
     const controller = new PackOpeningController(definition, contents, cards, wrapper, deps, seed, audio);
     deps.metrics?.(metrics); return controller;

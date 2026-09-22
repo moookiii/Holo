@@ -1,4 +1,4 @@
-import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
+import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
 import { AssetManager } from '../assets/AssetManager';
 import { CardMapLoader } from '../assets/CardMapLoader';
 import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
@@ -29,7 +29,8 @@ export class CardFactory {
   private instances = new Set<CardInstance>();
   private disposed = false;
   private textures = new CardTextureCache();
-  private gpuStats = { realizations: 0, sharedTextureCreates: 0, sharedTextureHits: 0, compilations: 0, materialCreationMs: 0, gpuRealizationMs: 0, printMaterials: 0, holoMaterials: 0 };
+  private gpuStats = { realizations: 0, sharedTextureCreates: 0, sharedTextureHits: 0, compilations: 0, materialCreationMs: 0, gpuRealizationMs: 0, printMaterials: 0, holoMaterials: 0,
+    renderPipelines: 0, printPipelines: 0, holoPipelines: 0 };
   constructor(private renderer: WebGPURenderer, private camera: Camera,
     private scene: Scene, private target: RenderTarget) {}
 
@@ -85,7 +86,9 @@ export class CardFactory {
       const front = imageTexture(prepared.front);
       const shared = !definition.imported ? this.assets.fromBitmap(definition.back, prepared.back.bitmap, true) : undefined;
       if (shared) { if (shared.hit) this.gpuStats.sharedTextureHits++; else this.gpuStats.sharedTextureCreates++; }
+      const waitStarted = performance.now();
       const back = shared ? await shared.texture : imageTexture(prepared.back);
+      const waitMs = shared ? performance.now() - waitStarted : 0;
       resources.add(back);
       signal?.throwIfAborted(); if (this.disposed) throw new Error('Card factory disposed');
       const key = JSON.stringify([definition.dimensions, definition.construction, definition.construction ? [definition.maps?.height, definition.backMaps?.height] : null]);
@@ -126,7 +129,7 @@ export class CardFactory {
         this.instances.delete(instance!); releases.forEach(release => release());
       }); this.instances.add(instance);
       instance.mesh.userData.resourceTextures = [...resources];
-      this.gpuStats.realizations++; this.gpuStats.gpuRealizationMs += performance.now() - started;
+      this.gpuStats.realizations++; this.gpuStats.gpuRealizationMs += performance.now() - started - waitMs;
       instance.mesh.frustumCulled = false;
       if (compile) await this.compile(instance.mesh);
       signal?.throwIfAborted(); instance.mesh.frustumCulled = true; return instance;
@@ -146,16 +149,32 @@ export class CardFactory {
 
   async compile(object: Object3D) {
     this.gpuStats.compilations++;
+    const objects = new Set<Object3D>(); object.traverse(child => objects.add(child));
+    // r186 backend contract (not yet declared on @types/three's base Backend).
+    const backend = this.renderer.backend as unknown as { createRenderPipeline: (object: { object: Object3D; material: Material }, promises?: Promise<unknown>[]) => void };
+    const createPipeline = backend.createRenderPipeline;
+    backend.createRenderPipeline = (...args: Parameters<typeof createPipeline>) => {
+      const renderObject = args[0];
+      if (objects.has(renderObject.object)) {
+        this.gpuStats.renderPipelines++;
+        if (renderObject.material instanceof PrintFrontMaterial) this.gpuStats.printPipelines++;
+        if (renderObject.material instanceof HolographicMaterial) this.gpuStats.holoPipelines++;
+      }
+      return createPipeline.apply(backend, args);
+    };
     const target = this.renderer.getRenderTarget(), mrt = this.renderer.getMRT();
     let compilation: Promise<void>;
     try {
       this.renderer.setRenderTarget(this.target); this.renderer.setMRT(null);
       // r186 captures the HDR attachment context before its first async yield.
       compilation = this.renderer.compileAsync(object, this.camera, this.scene);
+    } catch (error) {
+      backend.createRenderPipeline = createPipeline; throw error;
     } finally {
       this.renderer.setRenderTarget(target); this.renderer.setMRT(mrt);
     }
-    await compilation;
+    try { await compilation; }
+    finally { backend.createRenderPipeline = createPipeline; }
   }
 
   async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false): Promise<CardInstance> {
