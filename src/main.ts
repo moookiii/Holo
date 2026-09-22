@@ -71,7 +71,7 @@ async function start() {
   let warmupRequest: AbortController | undefined;
   let warmupIdleHandle: number | undefined;
   let preparedPack: { seed: number; definition: PackDefinition; contents: ReturnType<typeof resolvePackContents>; cards: Map<string, PreparedCardCpu> } | undefined;
-  const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickToGpuMs?: number; clickToReadyMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
+  const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickAt?: number; clickToGpuMs?: number; loadCompleteMs?: number; firstVisibleMs?: number; clickToReadyMs?: number; moduleLoadMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
   const cancelWarmup = () => {
     warmupRequest?.abort(); warmupRequest = undefined; preparedPack = undefined;
@@ -133,6 +133,8 @@ async function start() {
     if (disposed) return;
     const cached = id === 'archive-01' && preparedPack?.seed === packSeed ? preparedPack : undefined;
     const clickStarted = performance.now(); packMetrics.lastWasPrepared = !!cached;
+    packMetrics.clickAt = clickStarted;
+    delete packMetrics.clickToReadyMs; delete packMetrics.firstVisibleMs; delete packMetrics.loadCompleteMs;
     cancelWarmup();
     if (pack || packRequest) closePack();
     const request = new AbortController(); packRequest = request;
@@ -141,6 +143,7 @@ async function start() {
     document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing pack…');
     try {
       const { PackOpeningController } = await import('./pack/PackOpeningController');
+      packMetrics.moduleLoadMs = performance.now() - clickStarted;
       request.signal.throwIfAborted();
       const candidate = await PackOpeningController.create(cached?.definition ?? getPack(id), packSeed, { factory, definitions: cards, scene, camera, lighting, element: container,
         prepared: cached?.cards, preparedContents: cached?.contents,
@@ -150,7 +153,7 @@ async function start() {
         signal: request.signal, close: closePack, inspect: inspectPackCard,
         progress: (ready, total) => { if (!request.signal.aborted) setLoading(true, `Preparing collection · ${ready} / ${total}`); } });
       if (request.signal.aborted || disposed) { candidate.dispose(); return; }
-      packMetrics.clickToReadyMs = performance.now() - clickStarted;
+      packMetrics.loadCompleteMs = performance.now() - clickStarted;
       pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
     } catch (error) {
       if (request.signal.aborted) return;
@@ -267,7 +270,6 @@ async function start() {
     pack: () => { void openPack().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
   ui.selectCard(definition.id); ui.selectProfile(activeProfile);
-  scheduleWarmup();
   const resize = () => {
     camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(container.clientWidth, container.clientHeight);
@@ -286,7 +288,11 @@ async function start() {
     pipeline.render();
     if (startupTiming.firstCardVisible === undefined) {
       startupMark('firstCardVisible');
-      requestAnimationFrame(() => startupMark('firstCardInteractive'));
+      requestAnimationFrame(() => { startupMark('firstCardInteractive'); scheduleWarmup(); });
+    }
+    if (pack && packMetrics.clickAt !== undefined) {
+      packMetrics.firstVisibleMs ??= performance.now() - packMetrics.clickAt;
+      if (pack.state.value === 'PackReady') packMetrics.clickToReadyMs ??= performance.now() - packMetrics.clickAt;
     }
     if (frameTimes.length >= 240) frameTimes.shift(); frameTimes.push(dt * 1000);
   });

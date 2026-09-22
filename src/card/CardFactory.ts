@@ -37,7 +37,7 @@ export class CardFactory {
     private scene: Scene, private target: RenderTarget) {}
 
   setBackgroundPaused(paused: boolean) { this.patterns.setBackgroundPaused(paused); }
-  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns): Promise<ProfileFields> {
+  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns, upload = true): Promise<ProfileFields> {
     const aspect = definition.dimensions.width / definition.dimensions.height;
     const prepareLayer = async (layer: FoilLayer | undefined, seed: number, motifPath?: string) => {
       // Radial and plain layers are analytic in the material and contain no
@@ -48,7 +48,7 @@ export class CardFactory {
       const field = await patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
         ...(layer.structure.motif ? { motif: layer.structure.motif } : {}),
         ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif, priority);
-      if (!this.disposed) { this.renderer.initTexture(field.direction); this.renderer.initTexture(field.relief); }
+      if (upload && !this.disposed) { this.renderer.initTexture(field.direction); this.renderer.initTexture(field.relief); }
       return field;
     };
     const [primary, secondary, stamp] = await Promise.all([
@@ -227,7 +227,7 @@ export class CardFactory {
         return this.maps.load({ ...definition, maps: { ...definition.maps, ...profile.maps }, mapSettings: { ...definition.mapSettings, ...profile.mapSettings,
           ...(definition.construction ? { embossStrength: definition.construction.frontReliefCm / .008 } : {}) } }, image.width / image.height, profile.watermark === 'quarter-century');
       }),
-      this.prepareProfile(profile, definition, priority),
+      this.prepareProfile(profile, definition, priority, this.patterns, false),
       reverseDefinition ? this.maps.load(reverseDefinition, definition.dimensions.width / definition.dimensions.height) : Promise.resolve(undefined),
     ]);
     check();
@@ -260,9 +260,13 @@ export class CardFactory {
     const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);
+    instance.mesh.userData.resourceTextures = [front, back, ...Object.values(maps), ...Object.values(backMaps ?? {}),
+      ...Object.values(fields).flatMap(field => field ? [field.direction, field.relief] : [])].filter(value => value instanceof Texture);
     try {
       instance.mesh.frustumCulled = false;
       startupMark('initialGpuRealization');
+      if (compile) await this.uploadCardResources([instance]);
+      startupMark('initialUploadComplete');
       if (compile) await this.compile(instance.mesh);
       startupMark('initialCompilation');
       check();
