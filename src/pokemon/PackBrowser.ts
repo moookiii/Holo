@@ -42,7 +42,7 @@ export class PackBrowser {
     document.body.append(this.root); this.root.showModal(); this.types();
   }
   private screen(title: string, status = '') {
-    this.task.cancel(); this.prepared = undefined; this.retry = undefined;
+    this.task.cancel(); this.prepared = undefined; this.retry = undefined; this.root.setAttribute('aria-busy', 'false');
     this.heading.textContent = title; this.status.textContent = status; this.body.replaceChildren();
     this.back.hidden = this.step === 'type';
   }

@@ -46,10 +46,19 @@ class CpuAssetCache {
     const url = urlFor(path);
     let pending = this.blobs.get(url);
     if (!pending) {
-      pending = fetch(url, { signal }).then(response => {
-        if (!response.ok) throw new Error(`Unable to load ${url} (${response.status})`);
-        return response.blob();
-      }).catch(error => { this.blobs.delete(url); throw error; });
+      pending = (async () => {
+        for (let attempt = 0; ; attempt++) {
+          signal.throwIfAborted();
+          try {
+            const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]) });
+            if (!response.ok) throw new Error(`Unable to load ${url} (${response.status})`);
+            return await response.blob();
+          } catch (error) {
+            if (signal.aborted || attempt >= 2) throw error;
+            await new Promise(resolve => setTimeout(resolve, 250 * 2 ** attempt));
+          }
+        }
+      })().catch(error => { this.blobs.delete(url); throw error; });
       this.blobs.set(url, pending);
     }
     return pending;
