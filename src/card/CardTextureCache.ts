@@ -8,7 +8,8 @@ export class CardTextureCache {
   private idleBytes = 0;
   created = 0;
   hits = 0;
-  constructor(private budget = 32 * 1024 * 1024) {}
+  private budget: number;
+  constructor(budget = 32 * 1024 * 1024) { this.budget = budget; }
   acquire(key: object | string, bytes: number, create: () => Texture, retain = true) {
     let entry = this.entries.get(key);
     if (entry) {
