@@ -25,6 +25,8 @@ export interface PackLoadMetrics {
   cardTextureCacheMisses: number; postCompileUploadMs: number;
   cardMaterialTypes: string[]; usedCpuPreparation: boolean;
   renderPipelines: number; printPipelines: number; holoPipelines: number;
+  textureUploads: number; textureUploadCpuMs: number; mipmapCalls: number; mipmapCpuMs: number;
+  audioMs: number; sceneConstructionMs: number; preparedCards: number;
 }
 interface PackDependencies {
   factory: CardFactory; definitions: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; lighting: StudioLighting;
@@ -85,16 +87,19 @@ export class PackOpeningController {
     const metrics: PackLoadMetrics = { preparedLookupMs: 0, cpuGenerationMs: 0, wrapperMs: 0, gpuRealizationMs: 0, materialCreationMs: 0,
       uploadReadinessMs: 0, uploadedResources: 0, compileMs: 0, gpuTexturesCreated: 0, gpuTextureCacheHits: 0,
       holoMaterials: 0, printMaterials: 0, cardMaterialTypes: [], usedCpuPreparation: false, renderPipelines: 0, printPipelines: 0, holoPipelines: 0,
-      cardTextureCacheMisses: 0, postCompileUploadMs: 0 };
+      cardTextureCacheMisses: 0, postCompileUploadMs: 0, textureUploads: 0, textureUploadCpuMs: 0, mipmapCalls: 0, mipmapCpuMs: 0,
+      audioMs: 0, sceneConstructionMs: 0, preparedCards: 0 };
     const lookupStarted = performance.now();
     const contents = deps.preparedContents ?? resolvePackContents(definition, seed);
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
     metrics.usedCpuPreparation = definitions.every(card => deps.prepared?.has(card.id));
+    metrics.preparedCards = definitions.filter(card => deps.prepared?.has(card.id)).length;
     metrics.preparedLookupMs = performance.now() - lookupStarted;
     const audio = new PackAudio();
     const total = definitions.length + 3;
     let ready = 0; deps.progress?.(0, total);
-    const audioReady = audio.prepare().then(() => { deps.progress?.(++ready, total); return undefined; }, error => error);
+    const audioStarted = performance.now();
+    const audioReady = audio.prepare().then(() => { metrics.audioMs = performance.now() - audioStarted; deps.progress?.(++ready, total); return undefined; }, error => error);
     // Prepare card assets concurrently, then compile the complete opening in one
     // renderer traversal. Separate compileAsync calls repeat renderer setup and
     // pipeline-cache waits for every card; one group pass prepares the same set of
@@ -145,7 +150,11 @@ export class PackOpeningController {
     const after = deps.factory.stats();
     metrics.materialCreationMs = after.materialCreationMs - before.materialCreationMs;
     metrics.gpuRealizationMs = after.gpuRealizationMs - before.gpuRealizationMs;
-    metrics.gpuTexturesCreated = after.residentGpuTextures - before.residentGpuTextures;
+    metrics.gpuTexturesCreated = after.textureAllocations - before.textureAllocations;
+    metrics.textureUploads = after.textureUploads - before.textureUploads;
+    metrics.textureUploadCpuMs = after.textureUploadCpuMs - before.textureUploadCpuMs;
+    metrics.mipmapCalls = after.mipmapCalls - before.mipmapCalls;
+    metrics.mipmapCpuMs = after.mipmapCpuMs - before.mipmapCpuMs;
     metrics.cardTextureCacheMisses = after.textureRealizations - before.textureRealizations;
     metrics.gpuTextureCacheHits = after.textureCacheHits - before.textureCacheHits;
     metrics.holoMaterials = after.holoMaterials - before.holoMaterials;
@@ -153,8 +162,10 @@ export class PackOpeningController {
     metrics.renderPipelines = after.renderPipelines - before.renderPipelines;
     metrics.printPipelines = after.printPipelines - before.printPipelines;
     metrics.holoPipelines = after.holoPipelines - before.holoPipelines;
-    metrics.cardMaterialTypes = [...new Set(cards.flatMap(card => card.mesh.material.map(material => material.constructor.name)))];
+    metrics.cardMaterialTypes = [...new Set(cards.flatMap(card => card.mesh.material.map(material => material.name || material.type)))];
+    const sceneStarted = performance.now();
     const controller = new PackOpeningController(definition, contents, cards, wrapper, deps, seed, audio);
+    metrics.sceneConstructionMs = performance.now() - sceneStarted;
     deps.metrics?.(metrics); return controller;
   }
   private down(p: PackPointer) {

@@ -2,6 +2,7 @@ import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearF
 import { AssetManager } from '../assets/AssetManager';
 import { startupMark } from '../rendering/LoadTiming';
 import { capturePassContext } from '../rendering/PassCompileContext';
+import { ResourceTelemetry } from '../rendering/ResourceTelemetry';
 import { CardMapLoader } from '../assets/CardMapLoader';
 import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
 import { CardTextureCache } from './CardTextureCache';
@@ -31,10 +32,13 @@ export class CardFactory {
   private instances = new Set<CardInstance>();
   private disposed = false;
   private textures = new CardTextureCache();
+  private resourceTelemetry: ResourceTelemetry;
   private gpuStats = { realizations: 0, sharedTextureCreates: 0, sharedTextureHits: 0, compilations: 0, materialCreationMs: 0, gpuRealizationMs: 0, printMaterials: 0, holoMaterials: 0,
     renderPipelines: 0, printPipelines: 0, holoPipelines: 0 };
   constructor(private renderer: WebGPURenderer, private camera: Camera,
-    private scene: Scene, private target: RenderTarget) {}
+    private scene: Scene, private target: RenderTarget) {
+    this.resourceTelemetry = new ResourceTelemetry(renderer.backend as unknown as ConstructorParameters<typeof ResourceTelemetry>[0]);
+  }
 
   setBackgroundPaused(paused: boolean) { this.patterns.setBackgroundPaused(paused); }
   async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns, upload = true): Promise<ProfileFields> {
@@ -275,7 +279,7 @@ export class CardFactory {
     } catch (error) { instance.dispose(); throw error; }
   }
   inUse(id: string) { return [...this.instances].some(card => card.definition.id === id); }
-  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures,
+  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures, ...this.resourceTelemetry.stats,
     textureRealizations: textures.textureRealizations + this.gpuStats.sharedTextureCreates,
     textureCacheHits: textures.textureCacheHits + this.gpuStats.sharedTextureHits }; }
   dispose() {
@@ -284,5 +288,6 @@ export class CardFactory {
     this.geometries.forEach(geometry => geometry.dispose()); this.geometries.clear();
     this.maps.dispose(); this.assets.dispose(); this.patterns.dispose();
     this.textures.dispose();
+    this.resourceTelemetry.dispose();
   }
 }
