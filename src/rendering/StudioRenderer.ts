@@ -17,7 +17,7 @@ export async function createRenderer(container: HTMLElement) {
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
   await renderer.init();
-  if (renderer.backend.isWebGLBackend) renderer.debug.onNodeBuilderCreated = nodeBuilder => {
+  if ((renderer.backend as unknown as { isWebGLBackend?: boolean }).isWebGLBackend) renderer.debug.onNodeBuilderCreated = nodeBuilder => {
     const builder = nodeBuilder as unknown as { codes: Record<string, { code: string }[]>; getCodes: (stage: string) => string };
     const getCodes = builder.getCodes;
     builder.getCodes = function(stage) {
