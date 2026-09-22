@@ -1,6 +1,6 @@
 # Pokémon booster product shots
 
-TCGdex returned no booster metadata for these English sets when validated on 2026-09-22. The app therefore keeps one representative English retail wrapper locally for reliable selection and rendering. The images remain Pokémon product artwork; local WebP conversion trims empty margins and reduces transfer size.
+TCGdex returned no booster metadata for these English sets when validated on 2026-09-22. The original representative English wrappers remain below; the additional designs listed later are now used for random selection. The images remain Pokémon product artwork. Local WebP conversion reduces transfer size without cropping the pack edges.
 
 - `sv01.webp`: [Raygun Comics product image](https://www.rayguncomics.co.uk/cdn/shop/products/Pokemon_TCG_Scarlet_Violet_Booster_Wrap_Gyarados_1500x.png?v=1674580883)
 - `sv02.webp`: [TCG Tower product image](https://tcgtower.com/cdn/shop/products/paldea-evolved-bp.png?v=1682208362&width=2048)
@@ -13,3 +13,49 @@ TCGdex returned no booster metadata for these English sets when validated on 202
 - `sv08.webp`: [Prisma product image](https://cdn.s-cloud.fi/v1/w1440_q60/assets/dam-id/B_pe1huPK_GACmAYBbzuma.webp)
 - `sv09.webp`: [Walmart product image](https://i5.walmartimages.com/seo/Pokemon-SV9-Scarlet-and-Violet-Journey-Together-Booster-Pack-N-s-Zoroark_4112faf8-2743-4dd2-8e35-168f2c4721e0.a37b78be7a8d7c30d0e77fa6bea4f494.png)
 - `sv10.webp`: [Destined Rivals press product image mirror](https://images.squarespace-cdn.com/content/v1/5e3b1164feb39b444b58f15b/1742832693175-6IQ0XYWHU27KCUNJX0Z2/Pokemon_TCG_Scarlet_Violet%E2%80%94Destined_Rivals_Booster_Wrap_Team_Rocket.png)
+
+## Additional English artwork variants
+
+These product designs come from Bulbagarden Archives. The local WebP files retain their full dimensions and edges.
+
+- `sv01-gyarados.webp`: [Gyarados](https://archives.bulbagarden.net/media/upload/a/a5/SV1_Booster_Gyarados.png)
+- `sv01-koraidon.webp`: [Koraidon](https://archives.bulbagarden.net/media/upload/2/2e/SV1_Booster_Koraidon.png)
+- `sv01-miraidon.webp`: [Miraidon](https://archives.bulbagarden.net/media/upload/6/63/SV1_Booster_Miraidon.png)
+- `sv01-partners.webp`: [Partners](https://archives.bulbagarden.net/media/upload/5/58/SV1_Booster_Partners.png)
+- `sv02-chien-pao.webp`: [Chien-Pao](https://archives.bulbagarden.net/media/upload/c/c0/SV2_Booster_Chien-Pao.png)
+- `sv02-meowscarada.webp`: [Meowscarada](https://archives.bulbagarden.net/media/upload/0/0b/SV2_Booster_Meowscarada.png)
+- `sv02-quaquaval.webp`: [Quaquaval](https://archives.bulbagarden.net/media/upload/f/f2/SV2_Booster_Quaquaval.png)
+- `sv02-skeledirge.webp`: [Skeledirge](https://archives.bulbagarden.net/media/upload/e/ed/SV2_Booster_Skeledirge.png)
+- `sv02-ting-lu.webp`: [Ting-Lu](https://archives.bulbagarden.net/media/upload/7/72/SV2_Booster_Ting-Lu.png)
+- `sv03-charizard.webp`: [Charizard](https://archives.bulbagarden.net/media/upload/5/52/SV3_Booster_Charizard.png)
+- `sv03-dragonite.webp`: [Dragonite](https://archives.bulbagarden.net/media/upload/2/20/SV3_Booster_Dragonite.png)
+- `sv03-revavroom.webp`: [Revavroom](https://archives.bulbagarden.net/media/upload/a/ac/SV3_Booster_Revavroom.png)
+- `sv03-tyranitar.webp`: [Tyranitar](https://archives.bulbagarden.net/media/upload/a/a9/SV3_Booster_Tyranitar.png)
+- `sv04-armarouge.webp`: [Armarouge](https://archives.bulbagarden.net/media/upload/5/51/SV4_Booster_Armarouge.png)
+- `sv04-garchomp.webp`: [Garchomp](https://archives.bulbagarden.net/media/upload/8/8e/SV4_Booster_Garchomp.png)
+- `sv04-iron-valiant.webp`: [Iron Valiant](https://archives.bulbagarden.net/media/upload/3/3d/SV4_Booster_Iron_Valiant.png)
+- `sv04-roaring-moon.webp`: [Roaring Moon](https://archives.bulbagarden.net/media/upload/9/95/SV4_Booster_Roaring_Moon.png)
+- `sv05-iron-crown.webp`: [Iron Crown](https://archives.bulbagarden.net/media/upload/3/3e/SV5_Booster_Iron_Crown.png)
+- `sv05-iron-leaves.webp`: [Iron Leaves](https://archives.bulbagarden.net/media/upload/8/88/SV5_Booster_Iron_Leaves.png)
+- `sv05-raging-bolt.webp`: [Raging Bolt](https://archives.bulbagarden.net/media/upload/3/37/SV5_Booster_Raging_Bolt.png)
+- `sv05-walking-wake.webp`: [Walking Wake](https://archives.bulbagarden.net/media/upload/d/d7/SV5_Booster_Walking_Wake.png)
+- `sv06-dragapult.webp`: [Dragapult](https://archives.bulbagarden.net/media/upload/f/f4/SV6_Booster_Dragapult.png)
+- `sv06-ogerpon.webp`: [Ogerpon](https://archives.bulbagarden.net/media/upload/a/a0/SV6_Booster_Ogerpon.png)
+- `sv06-sinistcha.webp`: [Sinistcha](https://archives.bulbagarden.net/media/upload/8/83/SV6_Booster_Sinistcha.png)
+- `sv06-ursaluna.webp`: [Ursaluna](https://archives.bulbagarden.net/media/upload/c/c6/SV6_Booster_Ursaluna.png)
+- `sv07-cinderace.webp`: [Cinderace](https://archives.bulbagarden.net/media/upload/a/ac/SV7_Booster_Cinderace.png)
+- `sv07-galvantula.webp`: [Galvantula](https://archives.bulbagarden.net/media/upload/d/d2/SV7_Booster_Galvantula.png)
+- `sv07-lapras.webp`: [Lapras](https://archives.bulbagarden.net/media/upload/4/46/SV7_Booster_Lapras.png)
+- `sv07-terapagos.webp`: [Terapagos](https://archives.bulbagarden.net/media/upload/8/8e/SV7_Booster_Terapagos.png)
+- `sv08-alolan-exeggutor.webp`: [Alolan Exeggutor](https://archives.bulbagarden.net/media/upload/9/96/SV8_Booster_Alolan_Exeggutor.png)
+- `sv08-archaludon.webp`: [Archaludon](https://archives.bulbagarden.net/media/upload/4/4b/SV8_Booster_Archaludon.png)
+- `sv08-latias.webp`: [Latias](https://archives.bulbagarden.net/media/upload/0/08/SV8_Booster_Latias.png)
+- `sv08-pikachu.webp`: [Pikachu](https://archives.bulbagarden.net/media/upload/8/8b/SV8_Booster_Pikachu.png)
+- `sv09-hop-zacian.webp`: [Hop Zacian](https://archives.bulbagarden.net/media/upload/4/40/SV9_Booster_Hop_Zacian.png)
+- `sv09-iono-bellibolt.webp`: [Iono Bellibolt](https://archives.bulbagarden.net/media/upload/b/b3/SV9_Booster_Iono_Bellibolt.png)
+- `sv09-lillie-clefairy.webp`: [Lillie Clefairy](https://archives.bulbagarden.net/media/upload/1/16/SV9_Booster_Lillie_Clefairy.png)
+- `sv09-n-zoroark.webp`: [N Zoroark](https://archives.bulbagarden.net/media/upload/e/e0/SV9_Booster_N_Zoroark.png)
+- `sv10-cynthia-garchomp.webp`: [Cynthia Garchomp](https://archives.bulbagarden.net/media/upload/e/e2/SV10_Booster_Cynthia_Garchomp.png)
+- `sv10-ethan-ho-oh.webp`: [Ethan Ho-Oh](https://archives.bulbagarden.net/media/upload/3/3b/SV10_Booster_Ethan_Ho-Oh.png)
+- `sv10-giovanni-mewtwo.webp`: [Giovanni Mewtwo](https://archives.bulbagarden.net/media/upload/f/f1/SV10_Booster_Giovanni_Mewtwo.png)
+- `sv10-team-rocket.webp`: [Team Rocket](https://archives.bulbagarden.net/media/upload/2/24/SV10_Booster_Team_Rocket.png)

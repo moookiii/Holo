@@ -48,15 +48,15 @@ function filmFields(surface: FilmSurface) {
 }
 
 /** Printed ink and metalized foil beneath a separate dielectric film lobe. */
-export function createWrapperMaterial(print: Texture, inkMask: Texture, surface: FilmSurface) {
+export function createWrapperMaterial(print: Texture, inkMask: Texture, surface: FilmSurface, printedSeals = false) {
   const material = new MeshPhysicalNodeMaterial({ side: DoubleSide, clearcoat: 1,
     clearcoatRoughness: .21, roughness: .34, metalness: 0, envMapIntensity: .7 });
   const f = filmFields(surface);
   const ink = texture(inkMask).r.mul(f.seal.oneMinus());
   const foil = ink.oneMinus();
-  // Neutral aluminum at the seals; the artwork retains its printed colors and
-  // the gold knockout retains a tinted metallic response.
-  material.colorNode = mix(texture(print).rgb, vec3(.55, .58, .61), f.seal.mul(.85));
+  // Product photography already includes the crimp print. Keep its color on
+  // the folded seals while the manufactured relief still shapes reflections.
+  material.colorNode = printedSeals ? texture(print).rgb : mix(texture(print).rgb, vec3(.55, .58, .61), f.seal.mul(.85));
   material.metalnessNode = foil.mul(.94);
   material.roughnessNode = mix(float(.29), float(.43), ink)
     .add(f.seal.mul(.09), f.broad.mul(.025), f.fine.mul(.018), f.resolved.oneMinus().mul(.008));

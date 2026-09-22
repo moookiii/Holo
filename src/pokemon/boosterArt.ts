@@ -1,11 +1,23 @@
 import type { PokemonBooster } from './types.ts';
 
-const featuredSets = new Set(['sv01', 'sv02', 'sv03', 'sv03.5', 'sv04', 'sv05', 'sv06', 'sv07', 'sv08', 'sv09', 'sv10']);
+const designs: Record<string, readonly string[]> = {
+  sv01: ['gyarados', 'koraidon', 'miraidon', 'partners'],
+  sv02: ['chien-pao', 'meowscarada', 'quaquaval', 'skeledirge', 'ting-lu'],
+  sv03: ['charizard', 'dragonite', 'revavroom', 'tyranitar'],
+  sv04: ['armarouge', 'garchomp', 'iron-valiant', 'roaring-moon'],
+  sv05: ['iron-crown', 'iron-leaves', 'raging-bolt', 'walking-wake'],
+  sv06: ['dragapult', 'ogerpon', 'sinistcha', 'ursaluna'],
+  sv07: ['cinderace', 'galvantula', 'lapras', 'terapagos'],
+  sv08: ['alolan-exeggutor', 'archaludon', 'latias', 'pikachu'],
+  sv09: ['hop-zacian', 'iono-bellibolt', 'lillie-clefairy', 'n-zoroark'],
+  sv10: ['cynthia-garchomp', 'ethan-ho-oh', 'giovanni-mewtwo', 'team-rocket'],
+};
 
-/** TCGdex currently omits English booster metadata for these products. These
- * local product shots keep selection and the physical wrapper deterministic. */
+/** TCGdex currently omits English booster metadata for these products. */
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
-  if (!featuredSets.has(setId)) return undefined;
-  const artwork = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/${setId}.webp`;
-  return [{ id: 'featured', name: 'Featured booster', front: artwork }];
+  const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
+  if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp` }];
+  return designs[setId]?.map(design => ({ id: design,
+    name: `${design.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} booster`,
+    front: `${base}${setId}-${design}.webp` }));
 }

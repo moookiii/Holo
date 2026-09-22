@@ -17,7 +17,7 @@ export interface PackDefinition {
   contents: PackCard[];
   order: 'fixed' | 'seeded';
   collation?: { commonSlots: number; commonPool: string[]; holoPool: string[] };
-  wrapper: { front: string; back: string; ink: string; backInk?: string; width: number; height: number; depth: number };
+  wrapper: { front: string; back: string; ink: string; backInk?: string; width: number; height: number; depth: number; printedSeals?: boolean };
 }
 const archiveWrapper = { front: '/packs/archive/front.svg', back: '/packs/archive/back.svg', ink: '/packs/archive/ink.svg', backInk: '/packs/archive/back-ink.svg', width: 7.55, height: 11.8, depth: .66 };
 export const holographicCardIds = [

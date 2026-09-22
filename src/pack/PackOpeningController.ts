@@ -337,7 +337,7 @@ export class PackOpeningController {
       const card = this.presentation.cards[this.selected];
       this.camera.viewer(framingDistance(card.definition.dimensions, orientation(-.10, .025), this.deps.camera.aspect, this.deps.camera.fov, innerHeight));
     } else if (state === 'RevealCard' || state === 'HitReveal') this.camera.frame(8, state === 'HitReveal' ? 9.7 : 10.3, .1, 0, 1.6);
-    else this.camera.frame(9.8, 13 + 10.9 * this.extract.value * (1 - ease(this.settle)), this.extract.value * (this.extract.value - .45) * .9 * (1 - ease(this.settle)), 0, 1);
+    else this.camera.frame(9.8, Math.max(13, this.presentation.wrapper.dimensions.height + 1.2) + 10.9 * this.extract.value * (1 - ease(this.settle)), this.extract.value * (this.extract.value - .45) * .9 * (1 - ease(this.settle)), 0, 1);
     this.camera.update(dt, force, reduced);
     this.lights.update(state === 'HitReveal' ? ease(clamp(this.state.elapsed / .5)) : 0, hit, inspect);
     const titleIndex = state === 'PackSummary' ? this.hover : state === 'Inspect' ? this.selected : this.revealed ? this.active : -1;
