@@ -1,7 +1,7 @@
 import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, NeutralToneMapping, SRGBColorSpace } from 'three/webgpu';
 import { pass } from 'three/tsl';
 import { startupPipelines, startupTiming } from './LoadTiming';
-import { stabilizeLtcOrder } from './StableShaderCode';
+import { stabilizeShaderCodeOrder } from './StableShaderCode';
 
 export async function createRenderer(container: HTMLElement) {
   const requestedBackend = new URLSearchParams(location.search).get('backend');
@@ -21,7 +21,7 @@ export async function createRenderer(container: HTMLElement) {
     const builder = nodeBuilder as unknown as { codes: Record<string, { code: string }[]>; getCodes: (stage: string) => string };
     const getCodes = builder.getCodes;
     builder.getCodes = function(stage) {
-      stabilizeLtcOrder(this.codes[stage]);
+      stabilizeShaderCodeOrder(this.codes[stage]);
       return getCodes.call(this, stage);
     };
   };
