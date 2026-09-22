@@ -84,7 +84,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
         // axis so etched ridges also redirect their diffracted wavelengths.
         grating.assign(grating.sub(foilNormal.mul(grating.dot(foilNormal))).normalize());
       }
-      If(u.facetCoupling.greaterThan(0), () => {
+      if (u.facetCoupling.value > 0) If(u.facetCoupling.greaterThan(0), () => {
         // A grating pressed into an inclined ribbon lies in that ribbon's plane.
         // Transport its axis onto the manufactured normal before evaluating the
         // optical path. Otherwise facet tilt changes silver but leaves a flat
@@ -110,7 +110,8 @@ class HolographicLightingModel extends PhysicalLightingModel {
       // undefined in the subsequently evaluated physical-lighting graph.
       const selected = angularGrid(momentum, tangentView, geometryBitangent, geometryNormal, u.aspect, u.gridScale, u.gridTravel, u.gridWidth);
       const gridGain = float(2.4);
-      const grid = mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength.mul(u.crossedFacets.oneMinus())).toVar();
+      const grid = u.gridStrength.value !== 0
+        ? mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength.mul(u.crossedFacets.oneMinus())).toVar() : float(1);
       const spacing = mix(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5), u.fieldBlend);
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
       const variance = (axis: Node<'vec3'>) => footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
@@ -122,10 +123,10 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const patternCoverage = mix(float(1), region.field.a, u.fieldBlend);
       const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, grid);
       const spectral = spectrum(path, u.bandwidth, u.secondary, gratingVariance.mul(u.period.mul(spacing).pow2())).mul(aperture, grooveEnergy, u.strength, u.crossing.oneMinus()).toVar();
-      If(u.imageHologram.greaterThan(0), () => {
+      if (u.imageHologram.value > 0) If(u.imageHologram.greaterThan(0), () => {
         spectral.addAssign(hologramReconstruction(light, region.image!, region.imageDepth!, u, variance(tangentView)));
       });
-      If(u.crossing.greaterThan(0), () => {
+      if (u.crossing.value > 0) If(u.crossing.greaterThan(0), () => {
         const crossPath = momentum.dot(groove).abs().mul(u.period, spacing);
         const crossWidth = u.crossWidth.pow2().add(gratingVariance).sqrt();
         const crossAperture = exp(momentum.dot(grating).div(crossWidth).pow2().mul(-.5)).mul(u.crossWidth.div(crossWidth));
@@ -133,7 +134,8 @@ class HolographicLightingModel extends PhysicalLightingModel {
       });
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
-      const sparkle = glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints }, region.seed).mul(this.sparkleCoverage, region.pattern);
+      const sparkle = u.glintStrength.value !== 0
+        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
@@ -365,6 +367,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.colorNode = mix(this.colorNode, vec3(.58, .61, .59), pearl[0].add(pearl[1]).add(pearl[2]).clamp(0, 1));
   }
   setProfile(profile: HolographicProfile, maps: ProfileFields = {}) {
+    const previousFeatures = this.opticalFeatureKey();
     const active = [profile, profile.secondary, profile.stamp].map(Boolean);
     const crossed = [profile, profile.secondary, profile.stamp].map(layer => layer?.structure.field === 'starlight');
     if (active.some((value, i) => value !== this.activeShaders[i]) || crossed.some((value, i) => value !== this.crossedShaders[i])) {
@@ -381,6 +384,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.stampFieldTextureNode.value = this.cardMaps?.stampDirection ?? maps.stamp?.direction ?? this.neutralField;
     this.stampReliefTextureNode.value = maps.stamp?.relief ?? this.neutralRelief;
     this.optics.apply(profile); this.secondaryOptics.apply(profile.secondary); this.stampOptics.apply(profile.stamp);
+    if (previousFeatures !== this.opticalFeatureKey()) this.needsUpdate = true;
     this.physicalGain.value = 1;
     const settings = { ...this.cardMaps, ...profile.mapSettings };
     this.surfaceControls.normalScale.value = settings.normalScale ?? 1;
@@ -424,7 +428,14 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // These flags alter generated code, not uniform values. Three treats arrays
     // as opaque objects, so needsUpdate alone would reuse the previous program
     // when switching a live card into or out of Starlight.
-    return `${super.customProgramCacheKey()}:${this.activeShaders.map((active, i) => active ? this.crossedShaders[i] ? 'crossed' : 'grating' : 'off').join('/')}:${this.regions?.map(r => +!!r.followsAuthoredSurface).join('/')}`;
+    return `${super.customProgramCacheKey()}:${this.activeShaders.map((active, i) => active ? this.crossedShaders[i] ? 'crossed' : 'grating' : 'off').join('/')}:${this.regions?.map(r => +!!r.followsAuthoredSurface).join('/')}:${this.opticalFeatureKey()}`;
+  }
+  private opticalFeatureKey() {
+    // Omit only mathematically inactive branches. Live profile/Lab edits that
+    // enable a mechanism invalidate the graph; active mechanisms keep all math.
+    return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
+      [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
+        u.crossing.value > 0, u.glintStrength.value !== 0].map(Number).join('')).join('/');
   }
   override setupLightingModel() {
     const regions = this.regions.filter((_, i) => this.activeShaders[i]);
