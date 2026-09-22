@@ -13,7 +13,7 @@ try {
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); if (m.type() === 'warning') console.log(m.text()); });
     await page.addInitScript(({ prepared }) => {
       const random = crypto.getRandomValues.bind(crypto);
-      crypto.getRandomValues = array => array instanceof Uint32Array && array.length === 1 ? (array[0] = 0x12345678, array) : random(array);
+      crypto.getRandomValues = array => array instanceof Uint32Array && array.length === 1 ? (array[0] = 94, array) : random(array);
       if (!prepared) window.requestIdleCallback = () => 0;
     }, { prepared });
     await page.goto(process.env.HOLO_URL ?? 'http://127.0.0.1:5173/');
