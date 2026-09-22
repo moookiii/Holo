@@ -94,7 +94,8 @@ async function unzip(file: File): Promise<File[]> {
       content = await new Response(compressed.stream().pipeThrough(new DecompressionStream('deflate-raw'))).arrayBuffer();
     } else throw new Error(`The ZIP entry ${name} uses an unsupported compression method.`);
     if (content.byteLength !== uncompressedSize) throw new Error(`The ZIP entry ${name} failed decompression.`);
-    output.push(new File([content], name));
+    const type = /\.svg$/i.test(name) ? 'image/svg+xml' : /\.png$/i.test(name) ? 'image/png' : /\.jpe?g$/i.test(name) ? 'image/jpeg' : /\.webp$/i.test(name) ? 'image/webp' : /\.avif$/i.test(name) ? 'image/avif' : '';
+    output.push(new File([content], name, type ? { type } : undefined));
   }
   if (!output.length) throw new Error('The ZIP archive does not contain any files.');
   return output;
