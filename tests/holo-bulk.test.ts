@@ -41,12 +41,20 @@ test('Yu-Gi-Oh fronts are full 813 × 1185 cards and use the bounded artwork mas
   };
   for (const card of holoBulkCards.filter(card => card.franchise === 'Yu-Gi-Oh!')) {
     assert.deepEqual(jpegSize(`public${card.front}`), [813, 1185], card.title);
-    assert.equal(card.maps?.foil, '/cards/shared/yugioh-standard/artwork.svg?v=4');
+    const isLink = ['Apollousa, Bow of the Goddess', 'Accesscode Talker', 'Knightmare Unicorn', 'Underworld Goddess of the Closed World'].includes(card.title);
+    assert.equal(card.maps?.foil, isLink
+      ? '/cards/shared/yugioh-standard/artwork-link.svg?v=1'
+      : '/cards/shared/yugioh-standard/artwork.svg?v=4');
     assert.ok(card.maps?.metallic?.endsWith('-name.png'));
     assert.ok(card.maps?.height?.endsWith('-height.png'));
     assert.equal(card.mapSettings?.embossStrength, .12);
     assert.deepEqual(card.layout?.artwork, [96 / 813, 205 / 1185, 730 / 813, 848 / 1185]);
   }
+  const linkMask = readFileSync('public/cards/shared/yugioh-standard/artwork-link.svg', 'utf8');
+  assert.match(linkMask, /<svg[^>]+viewBox=/);
+  assert.match(linkMask, /fill="#000000"/);
+  assert.match(linkMask, /fill="#aeaeae"/);
+  assert.match(linkMask, /fill-rule="evenodd"/);
 });
 
 test('all bulk holo cards are eligible for random pack foil slots', () => {
