@@ -1,5 +1,9 @@
 /** Plain application data. SDK models never cross this boundary. */
-export type PrintVariant = 'normal' | 'reverse' | 'holo';
+export type PrintVariant = 'normal' | 'reverse' | 'holo' | 'pokeball-reverse' | 'masterball-reverse';
+export const printVariantLabel = (variant: PrintVariant): string => ({
+  normal: 'Non-holo', reverse: 'Standard reverse holo', holo: 'Holo',
+  'pokeball-reverse': 'Poké Ball reverse holo', 'masterball-reverse': 'Master Ball reverse holo',
+})[variant];
 export interface CatalogEntry { id: string; name: string; logo?: string; }
 export interface PokemonBooster extends CatalogEntry { front?: string; back?: string; }
 export interface PokemonSet extends CatalogEntry {
@@ -10,6 +14,10 @@ export interface PokemonCard {
   seriesId: string; seriesName: string; era: string; rarity: string;
   category?: string;
   energyType?: string;
+  stage?: string;
+  types?: readonly string[];
+  trainerType?: string;
+  suffix?: string;
   variants: PrintVariant[]; foil?: Partial<Record<PrintVariant, string>>;
   evolveFrom?: string;
   /** Undefined means no published restriction; [] means explicitly in no boosters. */

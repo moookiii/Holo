@@ -2,6 +2,7 @@ import TCGdex from '@tcgdex/sdk';
 import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './types.ts';
 import { boundedMap, pause } from './requests.ts';
 import { localBoosterArt } from './boosterArt.ts';
+import { PRISMATIC_SET_ID, prismaticCard, prismaticSet } from './PrismaticCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -54,11 +55,15 @@ export class TcgdexAdapter {
     return this.read(`series:${seriesId}`, signal, async () => {
       const serie = await client.serie.get(seriesId);
       if (!serie) throw new Error('This series is unavailable.');
-      return serie.sets.map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
+      const sets = serie.sets.map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
+      if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
+      return sets;
     });
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === PRISMATIC_SET_ID) return { ...prismaticSet, series: { ...prismaticSet.series },
+        cardIds: [...prismaticSet.cardIds], boosters: prismaticSet.boosters.map(booster => ({ ...booster })) };
       const set = await client.set.get(id);
       if (!set) throw new Error('This set is unavailable.');
       return { id: set.id, name: set.name, logo: localSetLogo(set.id) ?? image(set.logo), series: { id: set.serie.id, name: set.serie.name },
@@ -68,10 +73,12 @@ export class TcgdexAdapter {
     });
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
-    return this.read(`card:${id}`, signal, async () => {
+    return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === PRISMATIC_SET_ID) return prismaticCard(id);
+      if (id.startsWith(`${PRISMATIC_SET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       const card = await client.card.get(id);
       if (!card || card.set.id !== set.id) throw new Error(`Card metadata unavailable: ${id}. Retry to keep the complete pool.`);
-      const variants: PrintVariant[] = ['normal', 'reverse', 'holo'].filter(v => card.variants?.[v as PrintVariant]) as PrintVariant[];
+      const variants: PrintVariant[] = (['normal', 'reverse', 'holo'] as const).filter(v => card.variants?.[v]);
       const foil: PokemonCard['foil'] = {};
       // Exclude promotional stamps/oversize/reprint foils from retail eligibility.
       for (const v of card.variantsDetailed ?? []) {
