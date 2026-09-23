@@ -37,3 +37,17 @@ pixels add no source detail. Columns have different orientation and scale.
 These sheets are tracing evidence, not corrected assets. The other nine
 components retain their existing review status; this correction does not
 establish their acceptance or complete the Step 1 master reconstruction.
+
+## Grass retrace revision
+
+The Grass specification and SVG now contain a second manual trace of the
+central Bulbasaur vein boundary. Several secondary branches were shortened
+and narrowed; the top fork was reduced. Edge refinement is restricted to
+0.6 card units instead of 1.4, limiting movement away from the authored trace.
+The outer silhouette is retained with the tighter refinement bound.
+
+The regenerated `../grass-comparison.png` checks all three references. This is
+still a revision candidate: Caterpie text covers central branches, Oddish lacks
+accepted ring registration, and the upper-right vein endpoint needs a more
+precise alternate-occurrence alignment. The index deliberately retains the
+rejected status until that evidence supports the replacement. Fire is unchanged.
