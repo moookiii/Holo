@@ -1,4 +1,5 @@
 import type { PokemonCard, PrintVariant } from './types.ts';
+import { prismaticRecipe } from './PrismaticRecipe.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
 export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; pool?: 'set' | 'energy' | 'set-and-energy'; }
@@ -40,6 +41,7 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
     ] };
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
+  prismaticRecipe,
   { id: 'base1-english-retail', version: '1', setId: 'base1', era: 'base',
     sources: ['https://www.cs.sjsu.edu/~stamp/cv/papers/pokemon.pdf', 'https://www.pokebeach.com/tcg/base-set/theme-decks'],
     note: '1999 Base Set · 5 commons + 2 in-set Basic Energy + 3 uncommons + 1 rare · no reverse · holo rate estimated at 1 in 3 packs.',

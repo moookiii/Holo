@@ -9,6 +9,7 @@ import { cards } from '../src/card/CardDefinition.ts';
 import { getPack, resolvePackContents } from '../src/pack/PackDefinition.ts';
 import type { PokemonCard, PrintVariant } from '../src/pokemon/types.ts';
 import type { PreparedCardCpu } from '../src/card/CardCpuPreparation.ts';
+import { prismaticCards } from '../src/pokemon/PrismaticCatalog.ts';
 
 const rarities = ['Common', 'Uncommon', 'Rare', 'Double Rare', 'Ultra Rare', 'Illustration Rare', 'Special Illustration Rare', 'Hyper Rare', 'ACE SPEC Rare'];
 test('SV picture holos use traced frames without a procedural rectangle over the badge', () => {
@@ -37,6 +38,7 @@ test('SV full-art rarities use the entire printed face without an inset mask or 
   assert.deepEqual(older.layout?.artwork, [.08, .10, .92, .48]);
 });
 function fixture(setId = 'sv01'): PokemonCard[] {
+  if (setId === 'sv08.5') return prismaticCards.map(card => ({ ...card }));
   return rarities.flatMap((rarity, r) => Array.from({ length: 8 }, (_, n) => ({
     id: `${setId}-${r * 10 + n}`, localId: `${r * 10 + n}`, name: `${rarity} ${n}`, setId, setName: setId,
     era: 'sv', seriesId: 'sv', seriesName: 'Scarlet & Violet', rarity,
@@ -59,7 +61,8 @@ test('all validated sets honor every slot, count, set, rarity and variant across
       const group = pack.pulls.slice(cursor, cursor += slot.count);
       if (slot.unique) assert.equal(new Set(group.map(p => p.card.id)).size, group.length);
       for (const pull of group) {
-        assert.equal(pull.card.setId, slot.pool === 'energy' ? 'sve' : recipe.setId);
+        assert.ok(pull.card.setId === recipe.setId || ((slot.pool === 'energy' || slot.pool === 'set-and-energy') && pull.card.setId === 'sve'));
+        if (slot.pool === 'energy') assert.equal(pull.card.setId, 'sve');
         assert.ok(pull.card.variants.includes(pull.variant));
         assert.ok(slot.outcomes.some(o => o.variant === pull.variant && o.rarities.includes(pull.card.rarity)));
       }

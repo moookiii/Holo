@@ -6,6 +6,7 @@ import type { PreparedPack } from '../pack/PreparedPack';
 import { pokemonCatalog } from './TcgdexAdapter';
 import { collatePokemon } from './collator';
 import { recipeFor } from './recipes';
+import { packAvailability } from './availability';
 import { boundedMap, SelectionTask } from './requests';
 import type { CatalogEntry, PokemonBooster, PokemonCard, PokemonSet } from './types';
 import { pokemonDefinition } from './materials';
@@ -109,8 +110,8 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => Number(!!recipeFor(b.id)) - Number(!!recipeFor(a.id))).forEach(set => this.button(set.name, () => this.boosters(set.id), set.logo,
-        recipeFor(set.id) ? 'Opening available' : 'Browse only · recipe not validated'));
+      sets.sort((a, b) => Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => this.boosters(set.id), set.logo,
+        packAvailability(set.id).label));
     }, () => this.sets());
   }
   private boosters(id: string) {
@@ -125,15 +126,17 @@ export class PackBrowser {
   private showBoosters() {
     const set = this.selection.set!; this.body.replaceChildren();
     const recipe = recipeFor(set.id);
-    this.status.textContent = recipe ? `Choose a booster. ${recipe.note}` : 'Opening unavailable: this set has no validated pack recipe.';
+    const availability = packAvailability(set.id);
+    this.status.textContent = availability.ready && recipe ? `Choose a booster. ${recipe.note}` : availability.detail;
     set.boosters.forEach(booster => {
       const button = this.button(booster.name, () => this.choose(booster), booster.front ?? fallbackWrapper(set), booster.front ? undefined : 'Set artwork fallback');
-      button.classList.add('pokemon-booster'); button.disabled = !recipe;
+      button.classList.add('pokemon-booster'); button.disabled = !availability.ready;
       button.setAttribute('aria-pressed', String(this.selection.booster?.id === booster.id));
     });
   }
   private choose(booster: PokemonBooster, retainedSeed?: number) {
     const set = this.selection.set!; this.selection.booster = booster; this.prepared = undefined; this.showBoosters();
+    if (!packAvailability(set.id).ready) return;
     const seed = retainedSeed ?? crypto.getRandomValues(new Uint32Array(1))[0];
     void this.run('Loading card metadata…', async request => {
       const metadata = this.metadata ?? await pokemonCatalog.cards(set, request.signal, (done, total) => {
@@ -144,7 +147,7 @@ export class PackBrowser {
       this.status.textContent = 'Preparing booster artwork…';
       const wrapper = await prepareWrapper(set, booster, request.signal);
       if (!this.task.current(request)) return;
-      const definitions = resolved.pulls.map(p => pokemonDefinition(p.card, p.variant, this.deps.definitions));
+      const definitions = resolved.pulls.map(p => pokemonDefinition(p.card, p.variant, this.deps.definitions, set.id));
       this.status.textContent = 'Checking exact card images…';
       await boundedMap(definitions, 3, request.signal, async definition => {
         if (definition.front.startsWith('https://assets.tcgdex.net/')) definition.front = await usableCardFront(definition.front, request.signal, definition.pokemon?.thumbnail);

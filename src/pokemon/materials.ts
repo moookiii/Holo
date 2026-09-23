@@ -2,6 +2,7 @@ import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import type { PokemonCard, PrintVariant } from './types.ts';
 import { baseSetAuthoredIds, baseSetCards } from '../card/BaseSetCards.ts';
 import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
+import { prismaticDefinition, prismaticProfile } from './PrismaticSurfaces.ts';
 
 /** Stable identities for existing authored printings, never a name-only match. */
 const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
@@ -13,6 +14,7 @@ const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
   'ex6-83': { reverse: 'squirtle-frlg-reverse' },
 };
 export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string {
+  if (card.setId === PRISMATIC_SET_ID) return prismaticProfile(card.id, variant);
   if (variant === 'normal') return 'print-only';
   if (variant === 'holo' && card.setId === 'base1' && baseSetAuthoredIds[card.id]) return 'pokemon-base-set-star';
   const foil = card.foil?.[variant]?.toLowerCase() ?? '';
@@ -30,7 +32,17 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
   if (card.era === 'neo') return 'pokemon-cosmos';
   return 'pokemon-sheen';
 }
-export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[]): CardDefinition {
+export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[], packSetId?: string): CardDefinition {
+  if (card.setId === PRISMATIC_SET_ID) return prismaticDefinition(card.id, variant);
+  // These SVE cards belong to several sets. Only Prismatic's pack context
+  // defers the reverse finish and keeps its nonfoil Energy out of the picker.
+  if (packSetId === PRISMATIC_SET_ID && card.setId === 'sve') {
+    if ((variant !== 'normal' && variant !== 'reverse') || !card.variants.includes(variant)) throw new Error('Invalid Prismatic Evolutions Energy printing.');
+    const definition = pokemonDefinition({ ...card, variants: ['normal'] }, 'normal', existing);
+    return { ...definition, id: `pokemon:${card.id}:${variant}`, pickerHidden: true,
+      number: `${card.localId} · ${variant === 'reverse' ? 'Standard reverse holo · foil pending' : 'Non-holo'}`,
+      pokemon: { ...card, variant, materialProfile: 'print-only', ...(variant === 'reverse' ? { treatmentStatus: 'deferred' as const } : {}) } };
+  }
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
   const baseId = variant === 'holo' && card.setId === 'base1' ? baseSetAuthoredIds[card.id] : undefined;
   const exact = existing.find(c => c.id === (baseId ?? authored[card.id]?.[variant]))
@@ -53,7 +65,6 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   const metadata = { ...card, variant, materialProfile: profile };
   if (exact) return { ...exact, id, pokemon: metadata, number: `${card.localId} · ${card.rarity} · ${variant}` };
   return { id, title: card.name, franchise: 'Pokémon', set: card.setName, number: `${card.localId} · ${card.rarity} · ${variant}`,
-    pickerHidden: card.setId === PRISMATIC_SET_ID && (variant === 'normal' || variant === 'reverse'),
     dimensions: DIMENSIONS.standard, front: card.front ?? '', back: '/cards/pokemon/back.jpg', profile, seed: 1741,
     pokemon: metadata,
     proceduralFoil: suppliedMask ? undefined : variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? card.era === 'sv' ? undefined : 'artwork' : 'full',

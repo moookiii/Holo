@@ -68,7 +68,7 @@ export const DIMENSIONS = {
 export interface CardDefinition {
   /** Pack pulls can be inspected without becoming entries in the card picker. */
   pickerHidden?: boolean;
-  pokemon?: import('../pokemon/types').PokemonCard & { variant: import('../pokemon/types').PrintVariant; materialProfile: string };
+  pokemon?: import('../pokemon/types').PokemonCard & { variant: import('../pokemon/types').PrintVariant; materialProfile: string; treatmentStatus?: 'deferred' };
   /** Lightweight procedural coverage for API prints; authored maps always win. */
   proceduralFoil?: 'artwork' | 'reverse' | 'full';
   id: string;

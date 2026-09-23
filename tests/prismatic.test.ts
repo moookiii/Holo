@@ -3,9 +3,13 @@ import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { prismaticCards, prismaticCard, prismaticPrintings, prismaticPrinting, prismaticSet } from '../src/pokemon/PrismaticCatalog.ts';
-import { prismaticRecipe } from '../src/pokemon/PrismaticRecipe.ts';
+import { prismaticRecipe, prismaticEnergyCards } from '../src/pokemon/PrismaticRecipe.ts';
 import { collatePokemon } from '../src/pokemon/collator.ts';
 import { TcgdexAdapter } from '../src/pokemon/TcgdexAdapter.ts';
+import { recipeFor } from '../src/pokemon/recipes.ts';
+import { pokemonDefinition, pokemonProfile } from '../src/pokemon/materials.ts';
+import { PrismaticSurfaceUnavailable, prismaticSurfaceProgress } from '../src/pokemon/PrismaticSurfaces.ts';
+import { packAvailability } from '../src/pokemon/availability.ts';
 
 const path = new URL('../public/cards/pokemon/prismatic-evolutions/', import.meta.url);
 test('complete English checklist and retail printings match the independent detailed source records', () => {
@@ -68,9 +72,10 @@ test('Prismatic metadata loads locally, remains abortable and rejects mismatched
 });
 
 test('ordinary-pack collation preserves real slots, independent ball hits, all rarity pools and deterministic identity', () => {
+  assert.equal(recipeFor('sv08.5'), prismaticRecipe);
   const counts: Record<string, number> = {}, reached = new Set<string>(); let doubleBall = 0, reverseEnergy = 0;
   for (let seed = 0; seed < 5000; seed++) {
-    const pack = collatePokemon(prismaticSet.id, 'standard', seed, prismaticCards, prismaticRecipe);
+    const pack = collatePokemon(prismaticSet.id, 'standard', seed, prismaticCards);
     assert.equal(pack.pulls.length, 11);
     assert.ok(pack.pulls.slice(0, 4).every(pull => pull.card.rarity === 'Common' && pull.variant === 'normal'));
     assert.ok(pack.pulls.slice(4, 7).every(pull => pull.card.rarity === 'Uncommon' && pull.variant === 'normal'));
@@ -96,4 +101,44 @@ test('ordinary-pack collation preserves real slots, independent ball hits, all r
   const exact = collatePokemon('sv08.5', 'standard', 175, prismaticCards, prismaticRecipe);
   assert.deepEqual(exact, collatePokemon('sv08.5', 'standard', 175, [...prismaticCards].reverse(), prismaticRecipe));
   assert.throws(() => collatePokemon('sv08.5', 'standard', 1, prismaticCards.slice(1), prismaticRecipe), /Incomplete.*checklist/);
+});
+
+test('Prismatic never inherits generic materials or makes a missing surface look ready', () => {
+  const progress = prismaticSurfaceProgress();
+  assert.equal(progress.required, 268);
+  assert.equal(progress.ready, 0);
+  assert.equal(packAvailability('sv08.5').ready, false);
+  assert.match(packAvailability('sv08.5').detail, /card-specific foil surfaces/);
+  assert.equal(packAvailability('sv01').ready, true);
+  for (const printing of progress.missing) {
+    const card = prismaticCard(printing.cardId);
+    assert.throws(() => pokemonProfile(card, printing.variant), PrismaticSurfaceUnavailable);
+    assert.throws(() => pokemonDefinition(card, printing.variant, []), PrismaticSurfaceUnavailable);
+  }
+});
+
+test('nonfoil cards remain pack-only and deferred reverses preserve their identities without substitute effects', () => {
+  for (const card of prismaticCards) for (const variant of card.variants.filter(v => v === 'normal' || v === 'reverse')) {
+    const definition = pokemonDefinition(card, variant, []);
+    assert.equal(definition.pickerHidden, true);
+    assert.equal(definition.profile, 'print-only');
+    assert.equal(definition.maps, undefined);
+    assert.equal(definition.proceduralFoil, undefined);
+    assert.equal(definition.pokemon?.variant, variant);
+    assert.equal(definition.pokemon?.treatmentStatus, variant === 'reverse' ? 'deferred' : undefined);
+    if (variant === 'reverse') assert.match(definition.number, /foil pending/);
+  }
+  // A fabricated caller-side rarity/variant cannot bypass the local checklist.
+  assert.throws(() => pokemonDefinition({ ...prismaticCard('sv08.5-161'), variants: ['normal'] }, 'normal', []), /Invalid/);
+  for (const card of prismaticEnergyCards) {
+    const reverse = pokemonDefinition(card, 'reverse', [], 'sv08.5');
+    assert.equal(reverse.profile, 'print-only');
+    assert.equal(reverse.pokemon?.variant, 'reverse');
+    assert.equal(reverse.pokemon?.treatmentStatus, 'deferred');
+    assert.equal(reverse.pickerHidden, true);
+    assert.equal(pokemonDefinition(card, 'normal', [], 'sv08.5').pickerHidden, true);
+    assert.equal(pokemonDefinition(card, 'normal', [], 'sv01').pickerHidden, undefined);
+    assert.throws(() => pokemonDefinition({ ...card, variants: ['holo'] }, 'holo', [], 'sv08.5'), /Invalid/);
+    assert.throws(() => pokemonDefinition({ ...card, variants: ['pokeball-reverse'] }, 'pokeball-reverse', [], 'sv08.5'), /Invalid/);
+  }
 });
