@@ -138,7 +138,7 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('spec',type=Path)
     args=parser.parse_args()
-    spec=json.loads(args.spec.read_text())
+    spec=json.loads(args.spec.read_text(encoding='utf-8'))
     source=Image.open(DATA/'normalized'/f"{spec['source']}.png").convert('RGB')
     scale=source.width/630
     x,y,w,h=spec['patch']
@@ -167,7 +167,7 @@ def main():
              '<desc>Monochrome geometry only. Positive glyph silhouette, not pigment polarity. '
              'Not a complete family master. See research/reverse-ink/review/symbols for provenance and review status.</desc>\n'
              f'<path fill="currentColor" fill-rule="evenodd" d="{" ".join(svg_path(p) for p in paths)}"/>\n</svg>\n')
-    (assets/f"{spec['family']}-symbol.svg").write_text(content)
+    (assets/f"{spec['family']}-symbol.svg").write_text(content,encoding='utf-8')
     print(json.dumps(metrics,indent=2))
 
 if __name__=='__main__':main()
