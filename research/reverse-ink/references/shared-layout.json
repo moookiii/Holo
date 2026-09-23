@@ -1,0 +1,23 @@
+{
+  "status": "rejected-dark-network-topology",
+  "coordinate_system": [630, 880],
+  "anchor": {"center": [448, 598], "inner_ring_radius": 105},
+  "method": "REJECTED: rounded positive-pebble seeds cross dark bands and miss connected junctions. The source marks are retained only to reproduce the rejected comparison. Do not use these paths as the ink network.",
+  "rejection": "User identified the left-bottom-sliver crossing a dark line. Absolute-gradient fitting did not establish which side was ink and cannot recover missing branches. See colorless-network-detail.json for the bounded source-based correction. Type-specific openings must not be averaged into one pebble field.",
+  "unknown": ["Geometry behind the illustration", "Header and side strips", "Remaining small pebble contours", "Most repeated family glyph placements", "Lower-left large medallion", "Pigment polarity and physical opacity"],
+  "pebbles": [
+    {"id":"upper-middle", "vertices":[[211,472],[242,468],[246,488],[226,508],[200,501],[202,487]], "rounding":5},
+    {"id":"upper-right", "vertices":[[321,465],[342,452],[349,468],[357,499],[319,501],[307,491]], "rounding":4},
+    {"id":"small-upper-left", "vertices":[[155,499],[175,500],[186,512],[172,520]], "rounding":3},
+    {"id":"diagonal-upper-left", "vertices":[[130,510],[143,503],[170,530],[141,548],[128,575],[106,561],[109,541]], "rounding":5},
+    {"id":"long-left", "vertices":[[84,569],[99,572],[125,592],[143,614],[131,628],[99,608],[75,591]], "rounding":5},
+    {"id":"small-left", "vertices":[[113,631],[129,627],[141,641],[133,654],[116,652]], "rounding":4},
+    {"id":"lower-left-quadrilateral", "vertices":[[146,623],[176,620],[204,624],[209,667],[156,666],[132,653],[135,637]], "rounding":5},
+    {"id":"large-center", "vertices":[[253,586],[280,565],[307,582],[325,606],[308,643],[257,667],[246,639]], "rounding":6},
+    {"id":"lower-horizontal", "vertices":[[180,682],[239,687],[250,703],[231,720],[179,716]], "rounding":5},
+    {"id":"small-below-wheel", "vertices":[[309,692],[343,696],[336,718],[315,717],[304,706]], "rounding":4},
+    {"id":"left-bottom-sliver", "vertices":[[72,690],[99,676],[109,686],[86,727]], "rounding":3},
+    {"id":"below-center-sliver", "vertices":[[238,665],[245,666],[245,680],[237,677]], "rounding":2}
+  ],
+  "dots": [{"id":"center-dot","center":[292,733],"radii":[7,9],"rotation":-25}]
+}

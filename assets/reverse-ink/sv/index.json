@@ -7,7 +7,7 @@
     "height": 880,
     "origin": "top-left"
   },
-  "geometry_convention": "Components are positive glyph silhouettes. Ink polarity, colors and opacity are not yet assigned.",
+  "geometry_convention": "Symbol components are positive glyph silhouettes. The corrected Colorless detail uses positive dark ink bands with transparent light openings. Old assembled pebble drafts are rejected; no full masters or calibrated ink colors are assigned.",
   "families": [
     {
       "id": "grass",
@@ -16,7 +16,9 @@
       "master": null,
       "ink": null,
       "symbol_status": "rejected-needs-retrace",
-      "review": "../../../research/reverse-ink/review/symbols/rejected-draft-evidence/README.md"
+      "review": "../../../research/reverse-ink/review/symbols/rejected-draft-evidence/README.md",
+      "pattern_draft": "drafts/grass-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "fire",
@@ -25,70 +27,92 @@
       "master": null,
       "ink": null,
       "symbol_status": "rejected-needs-retrace",
-      "review": "../../../research/reverse-ink/review/symbols/rejected-draft-evidence/README.md"
+      "review": "../../../research/reverse-ink/review/symbols/rejected-draft-evidence/README.md",
+      "pattern_draft": "drafts/fire-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "water",
       "label": "Water",
       "symbol": "components/water-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/water-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "lightning",
       "label": "Lightning",
       "symbol": "components/lightning-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/lightning-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "psychic",
       "label": "Psychic",
       "symbol": "components/psychic-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/psychic-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "fighting",
       "label": "Fighting",
       "symbol": "components/fighting-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/fighting-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "darkness",
       "label": "Darkness",
       "symbol": "components/darkness-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/darkness-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "colorless",
       "label": "Colorless",
       "symbol": "components/colorless-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/colorless-body.svg",
+      "pattern_status": "rejected-dark-network-topology",
+      "correction_detail": "details/colorless-dark-network.svg",
+      "correction_status": "bounded-source-traced-detail-needs-review"
     },
     {
       "id": "dragon",
       "label": "Dragon",
       "symbol": "components/dragon-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/dragon-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "trainer",
-      "label": "Trainer / Pok\u00c3\u00a9 Ball",
+      "label": "Trainer / Poké Ball",
       "symbol": "components/trainer-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/trainer-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     },
     {
       "id": "metal",
       "label": "Metal",
       "symbol": "components/metal-symbol.svg",
       "master": null,
-      "ink": null
+      "ink": null,
+      "pattern_draft": "drafts/metal-body.svg",
+      "pattern_status": "rejected-dark-network-topology"
     }
   ]
 }

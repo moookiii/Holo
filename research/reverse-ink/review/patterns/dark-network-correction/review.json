@@ -1,0 +1,258 @@
+{
+  "status": "source-traced-detail-needs-review",
+  "family": "colorless",
+  "bounds": [
+    60,
+    645,
+    245,
+    741
+  ],
+  "positive_geometry": "dark connected photo bands",
+  "sources": [
+    "lickitung",
+    "pidgey",
+    "meowth"
+  ],
+  "curve_count": 55,
+  "automatic_trace_used": false,
+  "signed_edge_checks": [
+    {
+      "source": "lickitung",
+      "opening": "upper-middle-cell",
+      "median_light_minus_dark": 0.13521,
+      "fraction_correct_polarity": 0.7552,
+      "samples": 143
+    },
+    {
+      "source": "lickitung",
+      "opening": "upper-right-cell",
+      "median_light_minus_dark": 0.01827,
+      "fraction_correct_polarity": 0.7159,
+      "samples": 88
+    },
+    {
+      "source": "lickitung",
+      "opening": "left-of-branch",
+      "median_light_minus_dark": 0.02087,
+      "fraction_correct_polarity": 0.8108,
+      "samples": 185
+    },
+    {
+      "source": "lickitung",
+      "opening": "upper-rounded-opening",
+      "median_light_minus_dark": 0.12446,
+      "fraction_correct_polarity": 0.8619,
+      "samples": 420
+    },
+    {
+      "source": "lickitung",
+      "opening": "central-opening",
+      "median_light_minus_dark": 0.14202,
+      "fraction_correct_polarity": 0.9279,
+      "samples": 444
+    },
+    {
+      "source": "lickitung",
+      "opening": "lower-left-opening",
+      "median_light_minus_dark": 0.0204,
+      "fraction_correct_polarity": 0.7259,
+      "samples": 321
+    },
+    {
+      "source": "lickitung",
+      "opening": "large-symbol-opening",
+      "median_light_minus_dark": 0.10675,
+      "fraction_correct_polarity": 0.8336,
+      "samples": 553
+    },
+    {
+      "source": "lickitung",
+      "opening": "right-opening",
+      "median_light_minus_dark": 0.16616,
+      "fraction_correct_polarity": 0.9693,
+      "samples": 358
+    },
+    {
+      "source": "pidgey",
+      "opening": "upper-middle-cell",
+      "median_light_minus_dark": 0.07145,
+      "fraction_correct_polarity": 0.7552,
+      "samples": 143
+    },
+    {
+      "source": "pidgey",
+      "opening": "upper-right-cell",
+      "median_light_minus_dark": 0.01064,
+      "fraction_correct_polarity": 0.6591,
+      "samples": 88
+    },
+    {
+      "source": "pidgey",
+      "opening": "left-of-branch",
+      "median_light_minus_dark": 0.00242,
+      "fraction_correct_polarity": 0.5784,
+      "samples": 185
+    },
+    {
+      "source": "pidgey",
+      "opening": "upper-rounded-opening",
+      "median_light_minus_dark": 0.06927,
+      "fraction_correct_polarity": 0.731,
+      "samples": 420
+    },
+    {
+      "source": "pidgey",
+      "opening": "central-opening",
+      "median_light_minus_dark": 0.09871,
+      "fraction_correct_polarity": 0.8356,
+      "samples": 444
+    },
+    {
+      "source": "pidgey",
+      "opening": "lower-left-opening",
+      "median_light_minus_dark": 0.0171,
+      "fraction_correct_polarity": 0.7819,
+      "samples": 321
+    },
+    {
+      "source": "pidgey",
+      "opening": "large-symbol-opening",
+      "median_light_minus_dark": 0.10154,
+      "fraction_correct_polarity": 0.8318,
+      "samples": 553
+    },
+    {
+      "source": "pidgey",
+      "opening": "right-opening",
+      "median_light_minus_dark": 0.1428,
+      "fraction_correct_polarity": 1.0,
+      "samples": 358
+    },
+    {
+      "source": "meowth",
+      "opening": "upper-middle-cell",
+      "median_light_minus_dark": 0.1792,
+      "fraction_correct_polarity": 0.8531,
+      "samples": 143
+    },
+    {
+      "source": "meowth",
+      "opening": "upper-right-cell",
+      "median_light_minus_dark": -0.01716,
+      "fraction_correct_polarity": 0.3636,
+      "samples": 88
+    },
+    {
+      "source": "meowth",
+      "opening": "left-of-branch",
+      "median_light_minus_dark": -0.0178,
+      "fraction_correct_polarity": 0.2649,
+      "samples": 185
+    },
+    {
+      "source": "meowth",
+      "opening": "upper-rounded-opening",
+      "median_light_minus_dark": 0.08042,
+      "fraction_correct_polarity": 0.8238,
+      "samples": 420
+    },
+    {
+      "source": "meowth",
+      "opening": "central-opening",
+      "median_light_minus_dark": 0.10219,
+      "fraction_correct_polarity": 0.9775,
+      "samples": 444
+    },
+    {
+      "source": "meowth",
+      "opening": "lower-left-opening",
+      "median_light_minus_dark": 0.10029,
+      "fraction_correct_polarity": 0.9657,
+      "samples": 321
+    },
+    {
+      "source": "meowth",
+      "opening": "large-symbol-opening",
+      "median_light_minus_dark": 0.15676,
+      "fraction_correct_polarity": 0.8825,
+      "samples": 553
+    },
+    {
+      "source": "meowth",
+      "opening": "right-opening",
+      "median_light_minus_dark": 0.248,
+      "fraction_correct_polarity": 0.9916,
+      "samples": 358
+    }
+  ],
+  "check_limitations": "Secondary photo checks include foreground text and registration error. Positive signed contrast checks the correct side of the band, not exact contour accuracy.",
+  "replaces": "rejected left-bottom-sliver fitted polygon",
+  "limitations": [
+    "This bounded detail is not the complete Colorless master.",
+    "The lighter symbol-shaped openings differ by family. Do not copy this Colorless detail into the other ten families.",
+    "Boundaries terminating at the viewBox continue outside the observed detail; they are not authored ends of the ink bands."
+  ],
+  "browser_validation": {
+    "renderer": "Microsoft Edge / Playwright",
+    "svg_vs_sampled_path_raster_agreement": 0.995503,
+    "connected_dark_components": 1,
+    "source_landmark_checks": [
+      {
+        "point": [
+          88,
+          694
+        ],
+        "dark_band_expected": true,
+        "svg_is_dark": true
+      },
+      {
+        "point": [
+          105,
+          710
+        ],
+        "dark_band_expected": true,
+        "svg_is_dark": true
+      },
+      {
+        "point": [
+          155,
+          701
+        ],
+        "dark_band_expected": true,
+        "svg_is_dark": true
+      },
+      {
+        "point": [
+          180,
+          713
+        ],
+        "dark_band_expected": true,
+        "svg_is_dark": true
+      },
+      {
+        "point": [
+          90,
+          677
+        ],
+        "dark_band_expected": false,
+        "svg_is_dark": false
+      },
+      {
+        "point": [
+          145,
+          686
+        ],
+        "dark_band_expected": false,
+        "svg_is_dark": false
+      },
+      {
+        "point": [
+          190,
+          700
+        ],
+        "dark_band_expected": false,
+        "svg_is_dark": false
+      }
+    ]
+  }
+}

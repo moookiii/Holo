@@ -64,3 +64,47 @@ node scripts/reverse_ink/render_components.mjs
 
 `review/symbols/components.png` is the browser-rendered monochrome contact sheet.
 Black shows the positive glyph shape; it does not assert printed-ink polarity.
+
+## Rejected pebble drafts and dark-network correction
+
+`scripts/reverse_ink/reconstruct_wheel.py` fits the ten-sector outer edge to
+31 independently registered photos. The **12 rounded pebble shapes and their
+assembled family drafts were rejected**: several contours cross the dark bands,
+and separate blobs lose the connected ink network. Smoothing or inverting those
+incorrect polygons does not fix the topology. `shared-layout.json` retains the
+rejected seeds with an explicit rejection status; the builder refuses to export
+them again. Absolute edge strength was insufficient because it did not check
+which side of a boundary was dark. `measure_sector_symbols.py` records
+candidate symbol placement scores; `sector-placement.json` summarizes only
+matches consistent with the expected rotational sequence.
+
+The old `review/patterns/families.png`, body overlays, and `drafts/*-body.svg`
+are retained as rejected evidence, not usable ink assets. Their geometry must
+not be promoted into a master.
+
+`references/colorless-network-detail.json` manually traces both sides of the
+dark bands around the user-marked lower-left junction. It preserves eight
+lighter openings in one positive dark field, including the branch missed by
+the old triangle. The data contain sparse cubic boundaries, not photo texture
+or a threshold auto-trace. It is a **bounded Colorless detail**, not a whole
+master. Some openings belong to family symbols, so copying this detail to the
+other ten families would also be wrong.
+
+```powershell
+python scripts/reverse_ink/trace_network_detail.py
+node scripts/reverse_ink/render_network_detail.mjs
+```
+
+The SVG is `assets/reverse-ink/sv/details/colorless-dark-network.svg`. Inspect
+`review/patterns/dark-network-correction/comparison.png` for the source, boundary
+overlay, positive dark-ink geometry, and independent Pidgey comparison.
+Meowth has its own overlay. The accompanying signed edge checks compare the
+lighter opening to the darker band on opposite sides of each boundary;
+foreground occlusion and registration error still limit those checks.
+
+The library remains **in progress**, not complete reverse-ink masters. The
+rejected blob approach has not reconstructed the repeated dark network;
+other visible card regions, family glyph accuracy,
+color, and opacity remain unresolved. User-rejected Grass and Fire glyphs are
+left out of the rejected assembled previews and explicitly marked as pending. No inferred
+period is tiled into occluded or unseen geometry.
