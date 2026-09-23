@@ -9,7 +9,7 @@
   ],
   "search_distance": 0.6,
   "method": "Revised manual boundary trace of the exposed Bulbasaur central leaf; branch taper checked against Caterpie upper-left occurrence",
-  "notes": "Revision after user rejection. Secondary branches follow the visible narrow tapered contours rather than the original broad lobes. Still requires review; threshold diagnostics are not exported geometry.",
+  "notes": "Lower-left silhouette revised after user correction: leaf shoulder joins the straight stem edge, replacing the rounded outward lobe. Internal veins remain a review candidate.",
   "paths": [
     {
       "start": [
@@ -18,7 +18,9 @@
       ],
       "sharp_joins": [
         2,
-        3
+        3,
+        4,
+        5
       ],
       "curves": [
         [
@@ -37,26 +39,54 @@
         ],
         [
           [
-            11,
+            16,
+            38
+          ],
+          [
+            12,
             43
           ],
           [
-            11,
-            61
+            14,
+            50
+          ]
+        ],
+        [
+          [
+            15,
+            56
           ],
           [
-            19,
+            20,
+            59
+          ],
+          [
+            22,
+            61
+          ]
+        ],
+        [
+          [
+            20.6667,
+            65
+          ],
+          [
+            19.3333,
+            69
+          ],
+          [
+            18,
             73
           ]
         ],
         [
           [
-            21,
-            77
+            20.3333,
+            74.6667
           ],
           [
-            23,
-            78
+            22.6667,
+            76.3333
           ],
           [
             25,
@@ -65,22 +95,22 @@
         ],
         [
           [
-            30,
-            72
+            27,
+            74.6667
           ],
           [
             29,
-            70
+            71.3333
           ],
           [
-            34,
-            70
+            31,
+            68
           ]
         ],
         [
           [
-            51,
-            82
+            48,
+            80
           ],
           [
             65,
