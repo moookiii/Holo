@@ -35,12 +35,29 @@ it deliberately refreshes source hashes only after reviewing changed originals.
 
 ## Reconstruction status
 
-Normalization and full-source inspection are established. Structural analysis,
-clean geometry recovery, conservative single-color estimates, and per-reference
-validation are in progress. The plain Lickitung is evidence for the absence of
+Normalization and full-source inspection are established. The shared ten-spoke
+radial construction is measured across all eleven families. Source-derived SVG
+glyph components now exist for Water, Colorless, Lightning, Trainer / Poké Ball,
+and Darkness, with three-reference comparison sheets and explicit uncertainty.
+These components are not full family masters. Remaining glyphs, surrounding
+geometry, conservative single-color estimates, and complete master validation
+are in progress. The plain Lickitung is evidence for the absence of
 the reverse pattern in a regular card, not a calibrated before/after exposure.
 Its photography and image processing differ from the reverse photograph.
 
 Unobserved geometry, physical pigment color, and pigment opacity must not be
 reported as measured where the supplied photographs do not determine them.
 Later passes will handle protection masks and final compositing.
+
+The component library is at `assets/reverse-ink/sv/components/`; its README
+records reproduction commands and source limitations. To verify topology and
+render the actual SVG exports independently from the photo overlay code:
+
+```powershell
+python -m unittest discover -s scripts/reverse_ink -p test_*.py
+$env:BROWSER_CHANNEL = 'msedge' # Or an installed Playwright Chromium with this omitted
+node scripts/reverse_ink/render_components.mjs
+```
+
+`review/symbols/components.png` is the browser-rendered monochrome contact sheet.
+Black shows the positive glyph shape; it does not assert printed-ink polarity.
