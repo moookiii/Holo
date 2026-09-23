@@ -89,3 +89,20 @@ Fighting uses six separate silhouettes traced from Sandshrew: four rounded
 fingers, a thumb and the notched palm. Cubone and Machop cover different parts
 with text. Those comparisons support the exposed shapes without copying their
 foreground into the component.
+
+## Grass and Fire — provisional internal contours
+
+Grass retains a connected branching vein cutout inside the leaf. Bulbasaur is
+the primary donor, and its larger lower-left repeated leaf also informs branch
+topology. The overall leaf is supported by Caterpie and Oddish. Fine vein widths
+remain provisional: the current path is broader than some visible photo edges
+and needs refinement before a full master is approved.
+
+Fire uses the Vulpix upper curl and lower tongues, with Charmander exposing the
+band hidden by Vulpix's text. The outer contour is supported across the three
+references. The small interior flame and its tips need further refinement;
+their present curves are documented estimates, not recovered production paths.
+
+All eleven families now have first-pass components. The library remains in
+progress: component existence and valid SVG serialization do not establish
+complete pattern accuracy or finish the requested master assets.

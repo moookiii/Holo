@@ -37,10 +37,11 @@ it deliberately refreshes source hashes only after reviewing changed originals.
 
 Normalization and full-source inspection are established. The shared ten-spoke
 radial construction is measured across all eleven families. Source-derived SVG
-glyph components now exist for Water, Colorless, Lightning, Trainer / Poké Ball,
-and Darkness, with three-reference comparison sheets and explicit uncertainty.
-These components are not full family masters. Remaining glyphs, surrounding
-geometry, conservative single-color estimates, and complete master validation
+glyph components now exist for all eleven families, with three-reference
+comparison sheets and explicit uncertainty. Grass vein widths and Fire's small
+interior contour remain provisional and require refinement.
+These components are not full family masters. Surrounding pattern geometry,
+glyph refinement, conservative single-color estimates, and complete master validation
 are in progress. The plain Lickitung is evidence for the absence of
 the reverse pattern in a regular card, not a calibrated before/after exposure.
 Its photography and image processing differ from the reverse photograph.

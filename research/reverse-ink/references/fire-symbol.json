@@ -1,0 +1,20 @@
+{
+  "family":"fire", "source":"vulpix", "patch":[402,553,90,100], "search_distance":1.5,
+  "method":"Manual curled flame contours from Vulpix; text-crossed sections checked against exposed Charmander geometry",
+  "notes":"The Vulpix glyph has the clearest upper curl and lower side tongues. Its rules cross the middle, so those source samples are excluded from edge refinement. Charmander exposes that band with more grain. Interior flame tips have lower confidence than the outer contour.",
+  "paths":[
+    {"start":[65,18],"sharp_joins":[1,3,6,7],"trusted_y_intervals":[[0,36],[60,100]],"curves":[
+      [[70,31],[62,42],[60,53]],[[61,62],[72,64],[80,60]],
+      [[78,69],[69,75],[59,74]],[[63,77],[69,78],[74,75]],
+      [[64,86],[47,92],[31,85]],[[15,79],[8,65],[10,50]],
+      [[11,35],[23,24],[40,24]],[[31,28],[27,36],[29,43]],
+      [[33,30],[39,29],[51,29]],[[61,29],[66,24],[65,18]]
+    ]},
+    {"start":[32,46],"sharp_joins":[0,2,4,6],"trusted_y_intervals":[[59,100]],"curves":[
+      [[30,49],[28,51],[30,54]],[[32,55],[34,54],[35,52]],
+      [[34,57],[37,61],[41,63]],[[43,64],[45,64],[47,62]],
+      [[43,69],[39,72],[38,80]],[[28,78],[21,72],[20,65]],
+      [[22,60],[26,58],[28,60]],[[27,53],[26,48],[32,46]]
+    ]}
+  ]
+}

@@ -33,7 +33,8 @@ class SymbolTests(unittest.TestCase):
 
     def test_all_exported_components_have_no_photo_or_effect(self):
         files=list((ROOT/'assets/reverse-ink/sv/components').glob('*-symbol.svg'))
-        self.assertGreaterEqual(len(files),5)
+        expected={'grass','fire','water','lightning','psychic','fighting','darkness','colorless','dragon','trainer','metal'}
+        self.assertEqual({f.stem.removesuffix('-symbol') for f in files},expected)
         for file in files:
             with self.subTest(file=file.name):
                 tree=ET.parse(file)
