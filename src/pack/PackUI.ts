@@ -2,13 +2,15 @@ import type { PackState } from './PackOpeningState';
 export class PackUI {
   readonly root = document.createElement('section');
   private action: HTMLButtonElement;
+  private another: HTMLButtonElement;
   private status: HTMLElement;
   private abort = new AbortController();
   constructor(name: string, close: () => void, advance: () => void, anotherPack: () => void, select: (direction: number) => void) {
     this.root.className = 'pack-ui'; this.root.setAttribute('aria-label', 'Pack opening');
     this.root.innerHTML = '<header class="pack-header"><button class="pack-back" aria-label="Back to card viewer">← <span>Back</span></button><span class="pack-title"></span><button class="pack-entry pack-another" aria-label="Open another pack"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/></svg><span>Open another pack</span></button></header><footer class="pack-footer"><p class="pack-status" role="status" aria-live="polite"></p><button class="pack-action"></button></footer>';
     this.root.querySelector('.pack-title')!.textContent = name;
-    this.action = this.root.querySelector('.pack-action')!; this.status = this.root.querySelector('.pack-status')!;
+    this.action = this.root.querySelector('.pack-action')!; this.another = this.root.querySelector('.pack-another')!; this.status = this.root.querySelector('.pack-status')!;
+    this.another.hidden = true;
     this.root.querySelector<HTMLButtonElement>('.pack-back')!.onclick = close;
     this.action.onclick = advance;
     this.root.querySelector<HTMLButtonElement>('.pack-another')!.onclick = anotherPack;
@@ -21,7 +23,7 @@ export class PackUI {
     }, { signal: this.abort.signal });
     this.root.tabIndex = -1; this.root.style.outline = 'none'; this.root.focus({ preventScroll: true });
   }
-  update(state: PackState, active: number, count: number, revealed: boolean, title: string, busy: boolean) {
+  update(state: PackState, active: number, count: number, revealed: boolean, title: string, busy: boolean, anotherAvailable: boolean) {
     const messages: Record<PackState, [string, string]> = {
       PackIntro: ['STUDIO SELECTION', 'Preparing your collection'],
       PackReady: [`SEALED · ${count} CARDS`, 'Grip the top seam →'],
@@ -37,6 +39,7 @@ export class PackUI {
     const [status, action] = messages[state];
     if (this.status.textContent !== status) this.status.textContent = status;
     if (this.action.textContent !== action) this.action.textContent = action;
+    this.another.hidden = !anotherAvailable;
     this.action.disabled = state === 'PackIntro' || state === 'Inspect' || busy;
   }
   dispose() { this.abort.abort(); this.root.remove(); }

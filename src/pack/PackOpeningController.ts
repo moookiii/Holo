@@ -341,7 +341,8 @@ export class PackOpeningController {
     this.camera.update(dt, force, reduced);
     this.lights.update(state === 'HitReveal' ? ease(clamp(this.state.elapsed / .5)) : 0, hit, inspect);
     const titleIndex = state === 'PackSummary' ? this.hover : state === 'Inspect' ? this.selected : this.revealed ? this.active : -1;
-    this.ui.update(state, this.active, this.contents.length, this.revealed, titleIndex >= 0 ? this.presentation.cards[titleIndex].definition.title : '', state === 'HitReveal' && this.state.elapsed < (reduced ? .4 : 1.8));
+    const anotherAvailable = state === 'PackSummary' && this.state.elapsed >= (reduced ? .25 : .8);
+    this.ui.update(state, this.active, this.contents.length, this.revealed, titleIndex >= 0 ? this.presentation.cards[titleIndex].definition.title : '', state === 'HitReveal' && this.state.elapsed < (reduced ? .4 : 1.8), anotherAvailable);
     if (state === 'Inspect' && inspect === 1 && !this.inspectionComplete) {
       this.inspectionComplete = true;
       // Snap the last subpixel of settling before transferring the same mesh.
