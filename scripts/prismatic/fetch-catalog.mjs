@@ -1,0 +1,85 @@
+/** Snapshot the English retail checklist and unmodified TCGdex front images.
+ * node scripts/prismatic/fetch-catalog.mjs [--refresh]
+ * Images are print references, NEVER evidence for physical relief.
+ */
+import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+
+const root = fileURLToPath(new URL('../../', import.meta.url));
+const directory = path.join(root, 'public/cards/pokemon/prismatic-evolutions');
+const snapshotPath = path.join(directory, 'catalog.json');
+const api = 'https://api.tcgdex.net/v2/en';
+const setId = 'sv08.5';
+const exists = async file => access(file).then(() => true, () => false);
+class MissingImage extends Error {}
+async function fetchBytes(url) {
+  for (let attempt = 0; ; attempt++) {
+    try {
+      const response = await fetch(url, { signal: AbortSignal.timeout(30000) });
+      if (response.status === 404) throw new MissingImage(`404: ${url}`);
+      if (!response.ok) throw new Error(`${response.status}: ${url}`);
+      return Buffer.from(await response.arrayBuffer());
+    } catch (error) {
+      if (error instanceof MissingImage || attempt === 4) throw error;
+      await new Promise(resolve => setTimeout(resolve, 500 * 2 ** attempt));
+    }
+  }
+}
+async function mapLimit(items, callback) {
+  const result = new Array(items.length); let cursor = 0;
+  await Promise.all(Array.from({ length: 4 }, async () => {
+    while (cursor < items.length) { const i = cursor++; result[i] = await callback(items[i], i); }
+  }));
+  return result;
+}
+await mkdir(directory, { recursive: true });
+let snapshot;
+if (!process.argv.includes('--refresh') && await exists(snapshotPath)) {
+  snapshot = JSON.parse(await readFile(snapshotPath, 'utf8'));
+} else {
+  const set = JSON.parse(await fetchBytes(`${api}/sets/${setId}`));
+  if (set.cards.length !== 180 || set.cardCount.official !== 131) throw new Error('Unexpected Prismatic checklist; audit before updating.');
+  const cards = await mapLimit(set.cards, async (brief, i) => {
+    const card = JSON.parse(await fetchBytes(`${api}/cards/${brief.id}`));
+    if (card.set.id !== setId || card.id !== brief.id || !card.image) throw new Error(`Invalid card ${brief.id}`);
+    const { id, localId, name, category, rarity, stage, evolveFrom, types, trainerType, suffix, illustrator, image, variants } = card;
+    if ((i + 1) % 20 === 0) console.log(`Metadata ${i + 1}/180`);
+    return { id, localId, name, category, rarity, stage, evolveFrom, types, trainerType, suffix, illustrator, image, variants,
+      variantsDetailed: (card.variants_detailed ?? []).map(({ type, size, foil, stamp, subtype, variantId }) => ({ type, size, foil, stamp, subtype, variantId })) };
+  });
+  snapshot = { source: `${api}/sets/${setId}`, language: 'en', id: setId, name: set.name, releaseDate: set.releaseDate,
+    printedTotal: 131, total: 180, series: set.serie, logo: set.logo, cards };
+  await writeFile(snapshotPath, JSON.stringify(snapshot, null, 2) + '\n');
+}
+const assets = await mapLimit(snapshot.cards, async (card, i) => {
+  let extension = await exists(path.join(directory, `${card.localId}.webp`)) ? 'webp' : 'png';
+  let url = `${card.image}/high.${extension}`, filename = `${card.localId}.${extension}`, target = path.join(directory, filename);
+  if (!await exists(target)) {
+    let bytes;
+    try { bytes = await fetchBytes(url); }
+    catch (error) {
+      if (!(error instanceof MissingImage) || extension !== 'png') throw error;
+      extension = 'webp'; url = `${card.image}/high.webp`; filename = `${card.localId}.webp`; target = path.join(directory, filename);
+      bytes = await fetchBytes(url);
+    }
+    await writeFile(target, bytes);
+  }
+  const bytes = await readFile(target);
+  const png = bytes.subarray(0, 8).toString('hex') === '89504e470d0a1a0a';
+  const webp = bytes.toString('ascii', 0, 4) === 'RIFF' && bytes.toString('ascii', 8, 12) === 'WEBP';
+  if (!(extension === 'png' ? png : webp)) throw new Error(`Invalid image: ${target}`);
+  if ((i + 1) % 30 === 0) console.log(`Fronts ${i + 1}/180`);
+  return { cardId: card.id, url, file: filename, sha256: createHash('sha256').update(bytes).digest('hex'),
+    ...(png ? { width: bytes.readUInt32BE(16), height: bytes.readUInt32BE(20) } : {}), role: 'printed-front-not-relief-evidence' };
+});
+await writeFile(path.join(directory, 'sources.json'), JSON.stringify(assets, null, 2) + '\n');
+// Compact, typed application data; detailed API records remain in the audit snapshot.
+const records = snapshot.cards.map(({ id, localId, name, rarity, category, stage, evolveFrom, trainerType, suffix, types }, i) =>
+  ({ id, localId, name, rarity, category, stage, evolveFrom, trainerType, suffix, types, front: assets[i].file }));
+await mkdir(path.join(root, 'src/pokemon/data'), { recursive: true });
+await writeFile(path.join(root, 'src/pokemon/data/prismatic.generated.ts'),
+  '// Generated by scripts/prismatic/fetch-catalog.mjs from TCGdex; see public/cards/pokemon/prismatic-evolutions/catalog.json.\n' +
+  'export const prismaticRecords = [\n' + records.map(record => `  ${JSON.stringify(record)},`).join('\n') + '\n] as const;\n');
+console.log(`Saved ${records.length} exact English card records and fronts.`);
