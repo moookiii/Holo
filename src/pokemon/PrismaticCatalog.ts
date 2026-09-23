@@ -1,5 +1,6 @@
 import { prismaticRecords } from './data/prismatic.generated.ts';
 import type { PokemonCard, PokemonSet, PrintVariant } from './types.ts';
+import { localBoosterArt } from './boosterArt.ts';
 
 export const PRISMATIC_SET_ID = 'sv08.5';
 export const PRISMATIC_ASSETS = '/cards/pokemon/prismatic-evolutions';
@@ -28,7 +29,8 @@ export const prismaticCards: readonly PokemonCard[] = prismaticRecords.map(recor
 export const prismaticSet: PokemonSet = {
   id: PRISMATIC_SET_ID, name: 'Prismatic Evolutions', series: { id: 'sv', name: 'Scarlet & Violet' },
   era: 'sv', releaseDate: '2025-01-17', cardIds: prismaticCards.map(card => card.id),
-  boosters: [{ id: 'standard', name: 'Prismatic Evolutions booster' }],
+  logo: `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/sv08.5-logo.png`,
+  boosters: localBoosterArt(PRISMATIC_SET_ID)!,
 };
 
 const byId = new Map(prismaticCards.map(card => [card.id, card]));

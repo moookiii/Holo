@@ -9,6 +9,7 @@ const designs: Record<string, readonly string[]> = {
   sv06: ['dragapult', 'ogerpon', 'sinistcha', 'ursaluna'],
   sv07: ['cinderace', 'galvantula', 'lapras', 'terapagos'],
   sv08: ['alolan-exeggutor', 'archaludon', 'latias', 'pikachu'],
+  'sv08.5': ['eevee-sylveon', 'espeon-umbreon', 'leafeon-glaceon', 'vaporeon-jolteon-flareon'],
   sv09: ['hop-zacian', 'iono-bellibolt', 'lillie-clefairy', 'n-zoroark'],
   sv10: ['cynthia-garchomp', 'ethan-ho-oh', 'giovanni-mewtwo', 'team-rocket'],
 };
