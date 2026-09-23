@@ -1,0 +1,30 @@
+{
+  "family": "water",
+  "source": "psyduck",
+  "patch": [402, 553, 90, 90],
+  "search_distance": 2.5,
+  "method": "Manual cubic topology and control points from normalized Psyduck; bounded photo-edge refinement",
+  "notes": "Entire glyph is exposed below the text. The oblique hole is authored separately. Compare against Squirtle and Poliwag where unobstructed.",
+  "paths": [
+    {
+      "start": [89, 36],
+      "curves": [
+        [[73, 27], [58, 19], [43, 19]],
+        [[27, 17], [12, 27], [8, 39]],
+        [[3, 52], [11, 68], [27, 77]],
+        [[40, 85], [55, 84], [61, 78]],
+        [[69, 72], [66, 62], [65, 53]],
+        [[63, 40], [72, 30], [89, 36]]
+      ]
+    },
+    {
+      "start": [20, 52],
+      "curves": [
+        [[24, 53], [30, 61], [30, 65]],
+        [[31, 70], [27, 68], [23, 65]],
+        [[19, 61], [17, 56], [17, 53]],
+        [[17, 51], [18, 51], [20, 52]]
+      ]
+    }
+  ]
+}
