@@ -78,3 +78,14 @@ ring fit was rejected; that comparison does not validate precise registration.
 Dragon uses Dratini's fully exposed central silhouette, including the narrow
 interior slit and the long tapered horn. Dragonair and Dragonite support its
 shape. The patch is 90 × 105 units so the glyph's full vertical extent is kept.
+
+## Metal and Fighting
+
+Metal preserves the central triangle and three distinct open brackets visible
+on Forretress. Varoom corroborates the exposed edges at higher resolution;
+Revavroom provides coarse confirmation. It is kept separate from Colorless.
+
+Fighting uses six separate silhouettes traced from Sandshrew: four rounded
+fingers, a thumb and the notched palm. Cubone and Machop cover different parts
+with text. Those comparisons support the exposed shapes without copying their
+foreground into the component.
