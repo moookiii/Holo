@@ -16,7 +16,7 @@ const designs: Record<string, readonly string[]> = {
 /** TCGdex currently omits English booster metadata for these products. */
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
-  if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp` }];
+  if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp`, back: `${base}sv03.5-back.png` }];
   return designs[setId]?.map(design => ({ id: design,
     name: `${design.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} booster`,
     front: `${base}${setId}-${design}.webp` }));

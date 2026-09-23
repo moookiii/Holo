@@ -6,6 +6,7 @@ TCGdex returned no booster metadata for these English sets when validated on 202
 - `sv02.webp`: [TCG Tower product image](https://tcgtower.com/cdn/shop/products/paldea-evolved-bp.png?v=1682208362&width=2048)
 - `sv03.webp`: [Poketrader product image](https://poketrader.eu/images/186-85374_SV03_3D_Booster_Wraps_Charizard_EN-780x1429-fa3488c%20%E2%80%94%20kopia.png)
 - `sv03.5.webp`: [Corruption product image](https://corruptshop.ca/cdn/shop/files/151englishpack.png?v=1695588858)
+- `sv03.5-back.png`: user-supplied photograph (`s-l1600.png`) of the 151 pack back.
 - `sv04.webp`: [CardHorizon product image](https://www.cardhorizon.com/cdn/shop/files/187-85399_SV04_3D_Booster_Wraps_Garchomp_EN-780x1429-1a2a380.png?v=1730104608&width=1445)
 - `sv05.webp`: [Awesome CCG product image](https://awesomeccg.com/cdn/shop/files/PKMN-BPACK-TEF_2_400x.png?v=1709052030)
 - `sv06.webp`: [Bear Gaming product image](https://cdn.ecommercedns.uk/files/1/258411/1/40607831/scarlet-violet-twilight-masquerade-booster-wrap-ogerpon.png)
