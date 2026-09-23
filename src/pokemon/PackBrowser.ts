@@ -71,7 +71,14 @@ export class PackBrowser {
     this.step = 'type'; this.selection.series = undefined; this.selection.set = undefined; this.selection.booster = undefined;
     this.screen('Open Pack', 'Choose your collection.');
     this.button('Archive', () => this.archive(), `${import.meta.env.BASE_URL}packs/archive/front.svg`, 'Holo’s studio selection');
-    this.button('Pokémon', () => this.series(), fallbackWrapper({ name: 'Pokémon' }), 'Browse series, sets and boosters');
+    const pokemon = this.button('Pokémon', () => this.series(), fallbackWrapper({ name: 'Pokémon' }), 'Browse series, sets and boosters');
+    const request = this.task.begin();
+    void pokemonCatalog.series(request.signal).then(series => {
+      if (!this.task.current(request) || this.step !== 'type') return;
+      const logo = series.find(entry => entry.id === 'base')?.logo;
+      const image = pokemon.querySelector('img');
+      if (logo && image) image.src = logo;
+    }).catch(() => {});
   }
   private archive() {
     this.step = 'archive'; this.screen('Archive', 'Choose a studio pack.');
