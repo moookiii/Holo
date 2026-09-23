@@ -1,6 +1,7 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import type { PokemonCard, PrintVariant } from './types.ts';
 import { baseSetAuthoredIds, baseSetCards } from '../card/BaseSetCards.ts';
+import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
 
 /** Stable identities for existing authored printings, never a name-only match. */
 const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
@@ -52,6 +53,7 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   const metadata = { ...card, variant, materialProfile: profile };
   if (exact) return { ...exact, id, pokemon: metadata, number: `${card.localId} · ${card.rarity} · ${variant}` };
   return { id, title: card.name, franchise: 'Pokémon', set: card.setName, number: `${card.localId} · ${card.rarity} · ${variant}`,
+    pickerHidden: card.setId === PRISMATIC_SET_ID && (variant === 'normal' || variant === 'reverse'),
     dimensions: DIMENSIONS.standard, front: card.front ?? '', back: '/cards/pokemon/back.jpg', profile, seed: 1741,
     pokemon: metadata,
     proceduralFoil: suppliedMask ? undefined : variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? card.era === 'sv' ? undefined : 'artwork' : 'full',

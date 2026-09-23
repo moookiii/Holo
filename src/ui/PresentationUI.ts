@@ -83,9 +83,9 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const finishTabs = root.querySelector<HTMLElement>('.card-finish-tabs')!;
   const searchField = root.querySelector<HTMLInputElement>('#card-search')!;
   let searchQuery = '';
-  const cardsForFinish = () => cards.filter(card => selectedFinish === 'all'
+  const cardsForFinish = () => cards.filter(card => !card.pickerHidden && (selectedFinish === 'all'
     || (selectedFinish === 'metal' ? card.construction?.kind === 'metal'
-      : !card.construction && (selectedFinish === 'holo' ? card.profile !== 'print-only' : card.profile === 'print-only')));
+      : !card.construction && (selectedFinish === 'holo' ? card.profile !== 'print-only' : card.profile === 'print-only'))));
   const availableCategories = () => ['All', ...new Set(cardsForFinish().map(card => card.franchise))];
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
