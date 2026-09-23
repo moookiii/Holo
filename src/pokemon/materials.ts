@@ -52,7 +52,7 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
     pokemon: metadata,
     proceduralFoil: suppliedMask ? undefined : variant === 'normal' ? undefined : variant === 'reverse' ? 'reverse' : ['Common', 'Uncommon', 'Rare'].includes(card.rarity) ? card.era === 'sv' ? undefined : 'artwork' : 'full',
     maps: suppliedMask ? { foil: suppliedMask } : card.era === 'sv' && variant === 'holo' && ['Common', 'Uncommon', 'Rare'].includes(card.rarity)
-      ? { foil: `/cards/pokemon/sv-${card.evolveFrom ? 'evolved' : 'basic'}-artwork.svg` } : undefined,
+      ? { foil: card.evolveFrom ? '/cards/pokemon/sv-evolved-artwork.png' : '/cards/pokemon/sv-basic-artwork.svg' } : undefined,
     // Reuse existing etched optics without borrowing Pikachu's authored relief.
     profileOverrides: profile === 'pokemon-rainbow-etched' ? { structure: { relief: 0 }, diffraction: { strength: .24 }, glints: { strength: 1.4 } } : undefined,
     layout: fullArt ? { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] } : card.era === 'sv' ? {

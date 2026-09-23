@@ -14,7 +14,7 @@ const rarities = ['Common', 'Uncommon', 'Rare', 'Double Rare', 'Ultra Rare', 'Il
 test('SV picture holos use traced frames without a procedural rectangle over the badge', () => {
   const card = fixture().find(c => c.rarity === 'Rare')!;
   const evolved = pokemonDefinition({ ...card, evolveFrom: 'Glimmet' }, 'holo', []);
-  assert.equal(evolved.maps?.foil, '/cards/pokemon/sv-evolved-artwork.svg');
+  assert.equal(evolved.maps?.foil, '/cards/pokemon/sv-evolved-artwork.png');
   assert.equal(evolved.proceduralFoil, undefined);
   assert.equal(pokemonDefinition(card, 'holo', []).maps?.foil, '/cards/pokemon/sv-basic-artwork.svg');
   const full = pokemonDefinition({ ...card, rarity: 'Illustration Rare' }, 'holo', []);
