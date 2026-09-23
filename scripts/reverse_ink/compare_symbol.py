@@ -22,16 +22,22 @@ def main():
     anchor=rows[spec['source']]
     selected=[r for r in manifest['references'] if r['family']==args.family and r['role']=='reverse-reference']
     sheet=Image.new('RGB',(540*len(selected),580),'white');draw=ImageDraw.Draw(sheet)
+    half=(max(w,h)+6)/2
+    display_scale=540/(half*2)
     for i,record in enumerate(selected):
         row=rows[record['id']]; cx,cy=row['center'];ratio=row['inner_ring_radius']/anchor['inner_ring_radius']
+        label='independent ring registration'
+        if row['review_status']=='rejected':
+            cx,cy=anchor['center'];ratio=1
+            label='card-space only; ring fit REJECTED'
         original=Image.open(DATA/'normalized'/f"{record['id']}.png")
         scale=original.width/630
-        crop=original.crop(tuple(round(v*scale) for v in (cx-45,cy-45,cx+45,cy+45))).resize((540,540),Image.Resampling.LANCZOS)
+        crop=original.crop(tuple(round(v*scale) for v in (cx-half,cy-half,cx+half,cy+half))).resize((540,540),Image.Resampling.LANCZOS)
         sheet.paste(crop,(i*540,30))
-        draw.text((i*540+5,8),f"{record['id']} | independent ring registration",fill='black')
+        draw.text((i*540+5,8),f"{record['id']} | {label}",fill='black')
         for path in data['refined_paths']:
             points=(sample_path(path,80)+[x,y]-anchor['center'])*ratio
-            points=(points+[45,45])*6+[i*540,30]
+            points=(points+[half,half])*display_scale+[i*540,30]
             draw.line([tuple(p) for p in points]+[tuple(points[0])],fill='#ff286b',width=2)
     sheet.save(out/f'{args.family}-comparison.png')
     print(f'Compared {args.family} against {len(selected)} independent references')

@@ -66,3 +66,15 @@ Those are offline measurement intervals, not generated per-card foreground or
 protection masks. Grimer and Ekans support the exposed perimeter. All three
 references obscure part of the inner boundary, so the connecting curve there
 has lower confidence and remains a documented inference.
+
+## Psychic and Dragon
+
+Psychic is traced from Gastly's exposed central glyph. Its enclosure and iris
+are connected; the interior aperture is a single U-shaped cutout, with a
+separate crescent pupil cutout. Drowzee independently supports these contours.
+Abra is shown at the donor's card-space coordinates because its glare-corrupted
+ring fit was rejected; that comparison does not validate precise registration.
+
+Dragon uses Dratini's fully exposed central silhouette, including the narrow
+interior slit and the long tapered horn. Dragonair and Dragonite support its
+shape. The patch is 90 × 105 units so the glyph's full vertical extent is kept.
