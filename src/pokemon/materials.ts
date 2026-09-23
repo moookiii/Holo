@@ -1,11 +1,11 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import type { PokemonCard, PrintVariant } from './types.ts';
+import { baseSetAuthoredIds, baseSetCards } from '../card/BaseSetCards.ts';
 
 /** Stable identities for existing authored printings, never a name-only match. */
 const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
   'sv02-135': { holo: 'tyranitar-paldea-evolved' },
   'swsh4-188': { holo: 'pikachu-vmax-vivid-voltage' },
-  'base1-4': { holo: 'charizard-base-set' },
   'neo1-9': { holo: 'lugia-neo-genesis' },
   'base6-74': { reverse: 'eevee-legendary-reverse' },
   'ecard1-40': { reverse: 'charizard-expedition-reverse' },
@@ -13,6 +13,7 @@ const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
 };
 export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string {
   if (variant === 'normal') return 'print-only';
+  if (variant === 'holo' && card.setId === 'base1' && baseSetAuthoredIds[card.id]) return 'pokemon-base-set-star';
   const foil = card.foil?.[variant]?.toLowerCase() ?? '';
   if (foil.includes('cosmos')) return 'pokemon-cosmos';
   if (foil.includes('galaxy')) return 'pokemon-galaxy-star';
@@ -30,7 +31,10 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
 }
 export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[]): CardDefinition {
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
-  const exact = existing.find(c => c.id === authored[card.id]?.[variant]);
+  const baseId = variant === 'holo' && card.setId === 'base1' ? baseSetAuthoredIds[card.id] : undefined;
+  const exact = existing.find(c => c.id === (baseId ?? authored[card.id]?.[variant]))
+    // Authored Base Set masks must also survive callers with a smaller library.
+    ?? (baseId ? baseSetCards.find(c => c.id === baseId) : undefined);
   const profile = exact?.profile ?? pokemonProfile(card, variant);
   const fullArt = card.era === 'sv' && ['Illustration Rare', 'Special Illustration Rare', 'Ultra Rare', 'Hyper Rare'].includes(card.rarity);
   const fullArtBasic = fullArt && variant === 'holo' && card.category === 'Pokemon' && !card.evolveFrom;

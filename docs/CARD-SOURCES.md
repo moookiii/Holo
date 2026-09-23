@@ -32,7 +32,7 @@ Additional static structure references inspected: [classic Ultimate specimen](ht
 
 ## Charizard · Base Set 4/102
 
-The unchanged [600 × 825 first-edition scan](https://images.pokemontcg.io/base1/4_hires.png) and [source metadata](https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base1.json) are cached under `artifacts/references/base1-4`. The visible print is 4/102 with the first-edition mark and illustration by Mitsuhiro Arita. It is now available in presentation, sharing the official Pokémon reverse.
+The visible front uses TCGdex's Base Set Charizard image (`https://assets.tcgdex.net/en/base/base1/4/high.png`), with identity confirmed by the [TCGdex card record](https://api.tcgdex.net/v2/en/cards/base1-4). The visible print is 4/102 with the first-edition mark and illustration by Mitsuhiro Arita. It is presented with the official Pokémon reverse.
 
 The background substrate is reconstructed beneath the masked foil, retaining the printed body, wings, mouth, tail and its yellow flame. The blue-edged breath shape retains a larger part of the original tint while remaining reflective. The user's reference establishes that this shape belongs in the holo background. The temporary request to remove its boundary was explicitly retracted. The original scan is not altered; source illumination remains partly visible in retained translucent areas.
 

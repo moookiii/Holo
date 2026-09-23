@@ -1,7 +1,7 @@
 import type { HolographicProfile } from '../materials/HolographicProfile.ts';
 
 const families = ['Original', 'Pokémon', 'Yu-Gi-Oh!', 'Magic: The Gathering'];
-const fields = new Set('radial symbol-foil silk crystal diamond starfield galaxy-star cosmos cosmos-hd tinsel contour liquid fresnel plain satin secret prismatic-secret platinum-secret quarter-century opal cathedral lattice chrome ultimate varnish starlight collector collector-prismatic mtg-halo mtg-surge mtg-fracture cracked-ice sequin confetti speckle e-reader sheen water-web vertical-line mirage legendary-fireworks fireworks crosshatch ace-spec'.split(' '));
+const fields = new Set('radial symbol-foil silk crystal diamond starfield galaxy-star base-set-star cosmos cosmos-hd tinsel contour liquid fresnel plain satin secret prismatic-secret platinum-secret quarter-century opal cathedral lattice chrome ultimate varnish starlight collector collector-prismatic mtg-halo mtg-surge mtg-fracture cracked-ice sequin confetti speckle e-reader sheen water-web vertical-line mirage legendary-fireworks fireworks crosshatch ace-spec'.split(' '));
 const mechanisms = new Set(['diffraction', 'sparkle', 'relief', 'varnish', 'laminate', 'reflection', 'film', 'image']);
 function object(value: unknown): asserts value is Record<string, any> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('Expected a profile object.');

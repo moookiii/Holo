@@ -25,7 +25,10 @@ test('Base Set has its own audited eleven-card recipe and three real local wrapp
   const recipe = recipeFor('base1')!;
   assert.equal(recipe.era, 'base'); assert.equal(recipe.version, '1');
   assert.deepEqual(recipe.slots.map(s => [s.id, s.count]), [['common', 5], ['energy', 2], ['uncommon', 3], ['rare', 1]]);
-  assert.deepEqual(localBoosterArt('base1')?.map(b => b.id), ['blastoise', 'charizard', 'venusaur']);
+  const boosters = localBoosterArt('base1');
+  assert.deepEqual(boosters?.map(b => b.id), ['blastoise', 'charizard', 'venusaur']);
+  assert.equal(boosters?.find(b => b.id === 'venusaur')?.front?.endsWith('/base1-venusaur.png'), true);
+  assert.ok(boosters?.every(b => b.back?.endsWith('/base1-back.jpg')));
 });
 test('Base Set collation separates in-set Basic Energy, special Energy, non-holo rares and holo rares', () => {
   let holos = 0, charizardSeed: number | undefined;
@@ -52,10 +55,11 @@ test('Base Set collation separates in-set Basic Energy, special Energy, non-holo
   const authored = authoredCards.find(c => c.id === 'charizard-base-set')!;
   const definition = pokemonDefinition(charizard.card, charizard.variant, authoredCards);
   assert.equal(definition.profile, authored.profile); assert.deepEqual(definition.maps, authored.maps);
-  assert.equal(definition.front, authored.front);
+  assert.equal(definition.front, 'https://assets.tcgdex.net/en/base/base1/4/high.png');
+  assert.equal(definition.source?.image, 'https://assets.tcgdex.net/en/base/base1/4/high.png');
   const other = pokemonDefinition(pool.find(c => c.id === 'base1-1')!, 'holo', authoredCards);
-  assert.equal(other.profile, 'pokemon-galaxy-star'); assert.equal(other.proceduralFoil, 'full');
-  assert.equal(other.maps, undefined);
+  assert.equal(other.profile, 'pokemon-base-set-star'); assert.equal(other.proceduralFoil, undefined);
+  assert.equal(other.maps?.foil, '/cards/pokemon/base-set/alakazam/foil.png');
   assert.equal(pokemonDefinition(pool[0], 'normal', authoredCards).profile, 'print-only');
 });
 test('missing required Base Set pools fail instead of changing odds', () => {

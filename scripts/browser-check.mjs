@@ -120,7 +120,7 @@ try {
     await page.waitForTimeout(200);
     await page.screenshot({ path: join(out, `${backend}-cosmos-hd.png`) });
     await page.evaluate(async () => { await window.__holo.setCard('charizard-base-set'); window.__holo.pose(0, 0); });
-    assert.equal((await page.evaluate(() => window.__holo.stats())).profile, 'pokemon-galaxy-star');
+    assert.equal((await page.evaluate(() => window.__holo.stats())).profile, 'pokemon-base-set-star');
     await page.waitForTimeout(200);
     const starsA = await page.screenshot(); await page.waitForTimeout(200);
     const galaxyStationary = await stationaryDifference(page, starsA, await page.screenshot());

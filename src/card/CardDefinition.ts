@@ -3,6 +3,7 @@ import { nonHoloCards } from './NonHoloCards.ts';
 import { holoBulkCards } from './HoloBulkCards.ts';
 import { yugiohTopCards } from './YugiohTopCards.ts';
 import { metalCollectibles } from './MetalCollectibles.ts';
+import { baseSetCards } from './BaseSetCards.ts';
 
 export type Franchise = 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
 export interface CardLayout {
@@ -100,7 +101,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, {
+export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
@@ -117,18 +118,6 @@ export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yu
     image: 'https://images.pokemontcg.io/neo1/9_hires.png',
     metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/neo1.json',
     notes: '600 × 825 first-edition scan. Subject and printed layout retained; the masked background foil is reconstructed to remove baked illumination. Optical reconstruction awaits moving-reference comparison.',
-  },
-}, {
-  id: 'charizard-base-set', title: 'Charizard', franchise: 'Pokémon',
-  set: 'Base Set · First Edition', number: '4/102', dimensions: DIMENSIONS.standard,
-  front: '/cards/charizard-base-set/front.png', back: '/cards/pokemon/back.jpg',
-  maps: { coverage: '/cards/charizard-base-set/coverage.svg', hologram: '/cards/charizard-base-set/hologram.svg', laminate: '/cards/charizard-base-set/laminate.svg' },
-  profile: 'pokemon-galaxy-star', seed: 1999,
-  substrate: { color: [.040, .008, .016], printRetention: .025 },
-  source: {
-    image: 'https://images.pokemontcg.io/base1/4_hires.png',
-    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base1.json',
-    notes: '600 × 825 first-edition scan. Printed Charizard, wings, flame, frame and text remain unchanged; background foil is reconstructed using a traced subject mask. Moving-reference validation remains pending.',
   },
 }, {
   id: 'pikachu-vmax-vivid-voltage', title: 'Pikachu VMAX', franchise: 'Pokémon',

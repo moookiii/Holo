@@ -1,0 +1,120 @@
+{
+  "status": "source-traced-body-candidate",
+  "family": "metal",
+  "sources": [
+    "varoom",
+    "forretress",
+    "revavroom"
+  ],
+  "bounds": [
+    35,
+    445,
+    604,
+    741
+  ],
+  "source_spec_sha256": "7139d2c097a768687f80566654aa9b07911a93ba3f5c2238f698c83173f79e0f",
+  "colorless_contours_imported": false,
+  "opening_count": 28,
+  "surrounding_glyph_count": 9,
+  "surrounding_glyphs": [
+    {
+      "id": "top-clipped-metal",
+      "center": [
+        174,
+        442
+      ],
+      "scale": 0.64,
+      "rotation": -16,
+      "evidence": "observed-clipped"
+    },
+    {
+      "id": "upper-right-metal",
+      "center": [
+        569,
+        480
+      ],
+      "scale": 0.57,
+      "rotation": 79,
+      "evidence": "observed"
+    },
+    {
+      "id": "above-left-metal",
+      "center": [
+        274,
+        542
+      ],
+      "scale": 0.39,
+      "rotation": -20,
+      "evidence": "observed-with-text-at-bottom"
+    },
+    {
+      "id": "large-left-metal",
+      "center": [
+        170,
+        584
+      ],
+      "scale": 1.25,
+      "rotation": 174,
+      "evidence": "interpolated-through-description"
+    },
+    {
+      "id": "left-edge-metal",
+      "center": [
+        40,
+        613
+      ],
+      "scale": 0.88,
+      "rotation": 79,
+      "evidence": "observed-clipped"
+    },
+    {
+      "id": "small-left-metal",
+      "center": [
+        109,
+        642
+      ],
+      "scale": 0.37,
+      "rotation": 172,
+      "evidence": "observed"
+    },
+    {
+      "id": "large-bottom-metal",
+      "center": [
+        159,
+        748
+      ],
+      "scale": 1.94,
+      "rotation": -27,
+      "evidence": "observed-clipped"
+    },
+    {
+      "id": "bottom-middle-metal",
+      "center": [
+        281,
+        705
+      ],
+      "scale": 0.72,
+      "rotation": 75,
+      "evidence": "observed"
+    },
+    {
+      "id": "below-wheel-metal",
+      "center": [
+        472,
+        750
+      ],
+      "scale": 0.36,
+      "rotation": -34,
+      "evidence": "observed-clipped"
+    }
+  ],
+  "wheel_glyph_count": 11,
+  "wheel_small_glyph_placement_status": "shared-law-candidate-needs-family-review",
+  "limitations": [
+    "Every cell below was authored on Varoom, then compared with Forretress and Revavroom. No Colorless body contours are imported.",
+    "Sparse curves follow the boundary of dark ink bands. Photographic grain is not geometry.",
+    "This covers the lower body only. Header, illustration-side strips and footer remain incomplete.",
+    "Repeated glyph placements and cells remain review candidates; interpolation through text is identified explicitly."
+  ],
+  "validation": "All three source overlays must be visually reviewed. Counts are not accuracy."
+}

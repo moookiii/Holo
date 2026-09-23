@@ -116,6 +116,13 @@ export const pokemonProfiles: HolographicProfile[] = [{
   glints: { density: .005, scale: 610, sharpness: 280, strength: .8, spread: .20 },
   surface: { metalness: .83, roughness: .30, laminate: .24, laminateRoughness: .28, foilReflectance: .19, sheen: .26 },
 }, {
+  id: 'pokemon-base-set-star', name: 'Star Holo: Base Set', family: 'Pokémon', status: 'reference-pending',
+  description: 'Original English Base Set sheet: filled curved four-point stars, occasional faint eight-point bursts and pinpoints above broad, soft horizontal reflective ribbons. Guided by the PokeHEX tilt reference and the supplied Blastoise close-up. The stars and backing change reflection with the light and viewing angle.',
+  diffraction: { period: 1.25, bandwidth: .085, strength: .78, secondaryOrder: .06, direction: 0, crossWidth: .52, facetCoupling: 1 },
+  structure: { field: 'base-set-star', scale: 16, engraving: 0, relief: 0, facetTilt: 1, reflectionCoupling: .14, normalVariance: .18 },
+  glints: { density: .004, scale: 560, sharpness: 180, strength: .75, spread: .45 },
+  surface: { metalness: .72, roughness: .34, laminate: .20, laminateRoughness: .34, foilReflectance: .15, sheen: .48 },
+}, {
   id: 'pokemon-galaxy-star', name: 'Starlight / Galaxy-Star', family: 'Pokémon', status: 'reference-pending',
   description: 'Early star sheet: sparse four- and eight-point stars, small pinpoints and coherent angular facets over a quiet spectral background.',
   diffraction: { period: 1.4, bandwidth: .055, strength: 2.1, secondaryOrder: .2, direction: 0, crossWidth: .50 },

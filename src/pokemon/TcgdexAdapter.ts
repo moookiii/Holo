@@ -29,6 +29,7 @@ TCGdex.fetch = async (url, init) => {
 class PermanentCatalogError extends Error {}
 const client = new TCGdex('en');
 const image = (path?: string) => path ? /\.(png|webp|jpe?g)$/i.test(path) ? path : `${path}.webp` : undefined;
+const localSetLogo = (setId: string) => setId === 'sv05' ? `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/sv05-logo.png` : undefined;
 const titleCase = (value: string) => value.replace(/\b\w/g, c => c.toUpperCase());
 
 export class TcgdexAdapter {
@@ -53,14 +54,14 @@ export class TcgdexAdapter {
     return this.read(`series:${seriesId}`, signal, async () => {
       const serie = await client.serie.get(seriesId);
       if (!serie) throw new Error('This series is unavailable.');
-      return serie.sets.map(s => ({ id: s.id, name: s.name, logo: image(s.logo) }));
+      return serie.sets.map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
     });
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
       const set = await client.set.get(id);
       if (!set) throw new Error('This set is unavailable.');
-      return { id: set.id, name: set.name, logo: image(set.logo), series: { id: set.serie.id, name: set.serie.name },
+      return { id: set.id, name: set.name, logo: localSetLogo(set.id) ?? image(set.logo), series: { id: set.serie.id, name: set.serie.name },
         era: set.serie.id, releaseDate: set.releaseDate, cardIds: set.cards.map(c => c.id),
         boosters: set.boosters?.length ? set.boosters.map(b => ({ id: b.id, name: b.name, logo: image(b.logo), front: image(b.artwork_front), back: image(b.artwork_back) }))
           : localBoosterArt(set.id) ?? [{ id: 'standard', name: 'Standard booster' }] };

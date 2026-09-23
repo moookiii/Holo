@@ -1,0 +1,461 @@
+{
+  "status": "uncalibrated-photographic-estimates",
+  "not_runtime_parameters": true,
+  "limitations": [
+    "Sampling is diagnostic; it creates no card-foreground protection mask.",
+    "Foreground, print texture, reflections and registration can survive automatic exclusions. Review each source sample sheet.",
+    "The plain Lickitung is not an exposure-matched calibration and is not used for pigment estimation.",
+    "Single-color values are apparent dark-field estimates. Many physical pigment/opacity pairs fit the same photographs.",
+    "Source ranges are observed variation, not confidence intervals. Colorless/Metal/Trainer neutrality can be shifted by lighting."
+  ],
+  "families": [
+    {
+      "family": "grass",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "bulbasaur",
+        "caterpie"
+      ],
+      "candidate_pair_count": 32,
+      "observed_dark_hex": "#a2b441",
+      "observed_light_hex": "#bacb4a",
+      "relative_black_equivalent_opacity": 0.2415,
+      "relative_opacity_source_range": [
+        0.23,
+        0.253
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#a2b441",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.72145,
+        0.76633,
+        0.78009
+      ],
+      "source_ratio_range": [
+        [
+          0.71891,
+          0.7514,
+          0.7567
+        ],
+        [
+          0.72399,
+          0.78127,
+          0.80347
+        ]
+      ]
+    },
+    {
+      "family": "fire",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "charmander",
+        "growlithe",
+        "vulpix"
+      ],
+      "candidate_pair_count": 49,
+      "observed_dark_hex": "#d19c75",
+      "observed_light_hex": "#efb188",
+      "relative_black_equivalent_opacity": 0.2667,
+      "relative_opacity_source_range": [
+        0.2465,
+        0.2715
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#d19c75",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.73654,
+        0.74449,
+        0.83502
+      ],
+      "source_ratio_range": [
+        [
+          0.68367,
+          0.74243,
+          0.66856
+        ],
+        [
+          0.75469,
+          0.74941,
+          0.89786
+        ]
+      ]
+    },
+    {
+      "family": "water",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "poliwag",
+        "psyduck",
+        "squirtle"
+      ],
+      "candidate_pair_count": 45,
+      "observed_dark_hex": "#547897",
+      "observed_light_hex": "#78a5c1",
+      "relative_black_equivalent_opacity": 0.4176,
+      "relative_opacity_source_range": [
+        0.3098,
+        0.4609
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#547897",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.62428,
+        0.56705,
+        0.56769
+      ],
+      "source_ratio_range": [
+        [
+          0.50191,
+          0.53776,
+          0.53776
+        ],
+        [
+          0.67985,
+          0.69028,
+          0.73989
+        ]
+      ]
+    },
+    {
+      "family": "lightning",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "magneton",
+        "voltorb",
+        "pikachu"
+      ],
+      "candidate_pair_count": 51,
+      "observed_dark_hex": "#9b854e",
+      "observed_light_hex": "#b3a064",
+      "relative_black_equivalent_opacity": 0.332,
+      "relative_opacity_source_range": [
+        0.295,
+        0.4513
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#9b854e",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.68474,
+        0.66805,
+        0.65759
+      ],
+      "source_ratio_range": [
+        [
+          0.52145,
+          0.55007,
+          0.57899
+        ],
+        [
+          0.72332,
+          0.69244,
+          0.6889
+        ]
+      ]
+    },
+    {
+      "family": "psychic",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "drowzee",
+        "gastly"
+      ],
+      "candidate_pair_count": 35,
+      "observed_dark_hex": "#76516a",
+      "observed_light_hex": "#8a607f",
+      "relative_black_equivalent_opacity": 0.3111,
+      "relative_opacity_source_range": [
+        0.2958,
+        0.3264
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#76516a",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.69799,
+        0.6802,
+        0.67304
+      ],
+      "source_ratio_range": [
+        [
+          0.68709,
+          0.66237,
+          0.65986
+        ],
+        [
+          0.70888,
+          0.69803,
+          0.68621
+        ]
+      ]
+    },
+    {
+      "family": "fighting",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "cubone",
+        "machop",
+        "sandshrew"
+      ],
+      "candidate_pair_count": 32,
+      "observed_dark_hex": "#b97f3a",
+      "observed_light_hex": "#e0944f",
+      "relative_black_equivalent_opacity": 0.2896,
+      "relative_opacity_source_range": [
+        0.2739,
+        0.3968
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#b97f3a",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.72859,
+        0.70338,
+        0.68637
+      ],
+      "source_ratio_range": [
+        [
+          0.59666,
+          0.60571,
+          0.54953
+        ],
+        [
+          0.76338,
+          0.72003,
+          0.78155
+        ]
+      ]
+    },
+    {
+      "family": "darkness",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "koffing",
+        "grimer"
+      ],
+      "candidate_pair_count": 22,
+      "observed_dark_hex": "#1a424a",
+      "observed_light_hex": "#235966",
+      "relative_black_equivalent_opacity": 0.4172,
+      "relative_opacity_source_range": [
+        0.2461,
+        0.5883
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#1a424a",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.54929,
+        0.57869,
+        0.55873
+      ],
+      "source_ratio_range": [
+        [
+          0.32582,
+          0.41275,
+          0.44462
+        ],
+        [
+          0.77275,
+          0.74463,
+          0.67284
+        ]
+      ]
+    },
+    {
+      "family": "colorless",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "lickitung",
+        "meowth",
+        "pidgey"
+      ],
+      "candidate_pair_count": 50,
+      "observed_dark_hex": "#a7a3a2",
+      "observed_light_hex": "#cfdad1",
+      "relative_black_equivalent_opacity": 0.2645,
+      "relative_opacity_source_range": [
+        0.254,
+        0.4888
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#a7a3a2",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.72701,
+        0.73541,
+        0.7329
+      ],
+      "source_ratio_range": [
+        [
+          0.49773,
+          0.51048,
+          0.54149
+        ],
+        [
+          0.77449,
+          0.73827,
+          0.75726
+        ]
+      ]
+    },
+    {
+      "family": "dragon",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "dragonite",
+        "dragonair",
+        "dratini"
+      ],
+      "candidate_pair_count": 43,
+      "observed_dark_hex": "#919451",
+      "observed_light_hex": "#b4ad5e",
+      "relative_black_equivalent_opacity": 0.2915,
+      "relative_opacity_source_range": [
+        0.2474,
+        0.3413
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#919451",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.66409,
+        0.72341,
+        0.76614
+      ],
+      "source_ratio_range": [
+        [
+          0.62502,
+          0.68286,
+          0.68397
+        ],
+        [
+          0.71862,
+          0.76226,
+          0.89986
+        ]
+      ]
+    },
+    {
+      "family": "trainer",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "helix-fossil",
+        "energy-sticker",
+        "old-amber"
+      ],
+      "candidate_pair_count": 34,
+      "observed_dark_hex": "#828c99",
+      "observed_light_hex": "#aabcc6",
+      "relative_black_equivalent_opacity": 0.4335,
+      "relative_opacity_source_range": [
+        0.3676,
+        0.4469
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#828c99",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.56937,
+        0.56977,
+        0.59678
+      ],
+      "source_ratio_range": [
+        [
+          0.54381,
+          0.5446,
+          0.59634
+        ],
+        [
+          0.61831,
+          0.62976,
+          0.63006
+        ]
+      ]
+    },
+    {
+      "family": "metal",
+      "status": "uncalibrated-estimate-review-required",
+      "sources": [
+        "revavroom",
+        "forretress",
+        "varoom"
+      ],
+      "candidate_pair_count": 40,
+      "observed_dark_hex": "#727676",
+      "observed_light_hex": "#9b9f9e",
+      "relative_black_equivalent_opacity": 0.3398,
+      "relative_opacity_source_range": [
+        0.2925,
+        0.4813
+      ],
+      "single_color_estimate": {
+        "color_srgb_hex": "#727676",
+        "meaning": "One observed dark-field color per family, equal-weight median across supplied photos; a conservative apparent-color estimate, not calibrated pigment reflectance.",
+        "physical_pigment_color": null,
+        "physical_opacity": null,
+        "do_not_apply_as_color_plus_alpha": "The observed color already includes the substrate and photography. Relative black-equivalent opacity describes local contrast separately; applying both as an alpha layer would count the darkening twice."
+      },
+      "linear_channel_ratio": [
+        0.61754,
+        0.66141,
+        0.66207
+      ],
+      "source_ratio_range": [
+        [
+          0.51354,
+          0.52527,
+          0.51942
+        ],
+        [
+          0.70856,
+          0.69046,
+          0.68843
+        ]
+      ]
+    }
+  ]
+}

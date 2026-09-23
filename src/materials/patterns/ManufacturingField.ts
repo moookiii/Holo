@@ -5,7 +5,7 @@ import { generatePokemonFacetField, type PokemonFacetKind } from './PokemonFacet
 import { generateMotifField, type MotifSpec } from './MotifField';
 import { DEFAULT_FOIL_LAYOUT, type CardLayout } from '../../card/CardDefinition';
 
-export type PatternKind = PokemonFacetKind | PokemonDirectionalKind | PokemonPatternKind | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
+export type PatternKind = PokemonFacetKind | PokemonDirectionalKind | PokemonPatternKind | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'base-set-star' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
 export interface PatternSpec { kind: PatternKind | 'symbol-foil'; seed: number; aspect: number; scale: number; layout?: CardLayout; motif?: MotifSpec; }
 export interface FieldData { width: number; height: number; direction: Uint8Array; relief: Uint8Array; }
 const TAU = Math.PI * 2;
@@ -23,7 +23,7 @@ function smoothNoise(x: number, y: number, seed: number) {
 }
 
 /** Encodes manufacturing geometry only. Neither texture contains spectral colors or lighting. */
-export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
+export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
   if (spec.kind === 'symbol-foil') {
     if (!spec.motif) throw new Error('Symbol foil requires a motif specification.');
     return generateMotifField(spec.seed, spec.aspect, spec.scale, height, spec.motif);
@@ -338,6 +338,37 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
       depth = .38 + Math.max(0, edge) * .6;
       amplitude = .62 + random(gx, gy, seed) * .38;
       grain = .75;
+    } else if (spec.kind === 'base-set-star') {
+      // The large motifs in the close-up are filled four-point astroids. Do not
+      // add diagonal rays to every star: those belong only to the faint bursts.
+      const sx = x * spec.scale, sy = y * spec.scale;
+      const gx = Math.floor(sx), gy = Math.floor(sy);
+      const a = sx - gx - (.24 + random(gx, gy, seed) * .52);
+      const b = sy - gy - (.24 + random(gx, gy, seed + 5) * .52);
+      const r = random(gx, gy, seed + 17), large = r > .57;
+      const radius = large ? .105 + Math.pow((r - .57) / .43, 1.35) * .15 : .012 + r * .016;
+      const burst = large && random(gx, gy, seed + 23) > .85;
+      const cross = (aa: number, bb: number, size: number) => Math.pow(Math.abs(aa) / size, 2/3) + Math.pow(Math.abs(bb) / size, 2/3);
+      const fourPoint = cross(a, b * .82, radius);
+      const shapeDistance = large ? (burst ? Math.min(fourPoint, cross((a + b) * Math.SQRT1_2, (b - a) * Math.SQRT1_2, radius * .64)) : fourPoint) : Math.hypot(a, b) / radius;
+      const edge = .025 + spec.scale / height / radius * .65;
+      const star = 1 - smooth(1 - edge, 1 + edge, shapeDistance);
+      const orientation = random(gx, gy, seed + 35) * Math.PI;
+      // Broad interrupted horizontal ribbons sit beneath the stars. Correlated
+      // inclinations select their highlights as the card tilts; they carry no
+      // painted color, emission, relief or animation. Fine grain is subordinate.
+      const ribbon = smoothNoise(x * 12, y * 48, seed + 71);
+      const broad = smoothNoise(x * 2.5, y * 16, seed + 79);
+      const band = smooth(.40, .83, ribbon);
+      const micro = smoothNoise(x * 100, y * 440, seed + 97);
+      const sheetY = (broad - .5) * .20 + (ribbon - .5) * .075;
+      angle = star > .01 ? orientation : Math.PI / 2 + (broad - .5) * .06;
+      spacing = star > .01 ? .90 + r * .22 : .98 + (broad - .5) * .12;
+      const motif = star * (burst ? .42 : .86);
+      amplitude = (.020 + band * .040 + micro * .003) * (1 - star) + motif;
+      nx = (broad - .5) * .012 * (1 - star) + (random(gx, gy, seed + 41) - .5) * .22 * star;
+      ny = sheetY * (1 - star) + (random(gx, gy, seed + 43) - .5) * .22 * star;
+      depth = .5; grain = .3 + star * .5;
     } else if (spec.kind === 'galaxy-star') {
       // Early PokÃ©mon sheet: sparse unequal four/eight-point stars, coherent
       // facets in each motif, and pinpoints over a quieter continuous foil.

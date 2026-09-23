@@ -17,7 +17,7 @@ const designs: Record<string, readonly string[]> = {
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
   if (setId === 'base1') return ['blastoise', 'charizard', 'venusaur'].map(design => ({ id: design,
-    name: `${design[0].toUpperCase()}${design.slice(1)} booster`, front: `${base}base1-${design}.jpg` }));
+    name: `${design[0].toUpperCase()}${design.slice(1)} booster`, front: `${base}base1-${design}.${design === 'venusaur' ? 'png' : 'jpg'}`, back: `${base}base1-back.jpg` }));
   if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp`, back: `${base}sv03.5-back.png` }];
   return designs[setId]?.map(design => ({ id: design,
     name: `${design.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} booster`,

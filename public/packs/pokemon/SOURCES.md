@@ -2,11 +2,12 @@
 
 ## 1999 English Base Set
 
-TCGdex returned no `base1` booster objects on 2026-09-23. These are scans of genuine English Base Set long packs, with their complete silver crimp and printed front preserved. They are used for both selection and the existing wrapper preparation.
+TCGdex returned no `base1` booster objects on 2026-09-23. The four supplied photographs below are used as the exact wrapper artwork: one shared reverse and the three corresponding booster fronts.
 
-- `base1-blastoise.jpg`: [Bulbagarden Archives, Blastoise long pack](https://archives.bulbagarden.net/wiki/File:Base_Set_Booster_Blastoise_Long.jpg)
-- `base1-charizard.jpg`: [Bulbagarden Archives, Charizard long pack](https://archives.bulbagarden.net/wiki/File:Base_Set_Booster_Charizard_Long.jpg)
-- `base1-venusaur.jpg`: [Bulbagarden Archives, Venusaur long pack](https://archives.bulbagarden.net/wiki/File:Base_Set_Booster_Venusaur_Long.jpg)
+- `base1-back.jpg`: user-supplied photograph (`udih.jpg`) used on the reverse of every Base Set booster.
+- `base1-blastoise.jpg`: user-supplied photograph (`diuhu.jpg`) used for the Blastoise booster front.
+- `base1-charizard.jpg`: user-supplied photograph (`aoeuaoeuaoeuoeu.jpg`) used for the Charizard booster front.
+- `base1-venusaur.png`: user-supplied photograph (`aoeuouoeuaoeu.png`) used for the Venusaur booster front.
 
 ## Scarlet & Violet
 
@@ -19,6 +20,7 @@ TCGdex returned no booster metadata for these English sets when validated on 202
 - `sv03.5-back.png`: user-supplied photograph (`s-l1600.png`) of the 151 pack back.
 - `sv04.webp`: [CardHorizon product image](https://www.cardhorizon.com/cdn/shop/files/187-85399_SV04_3D_Booster_Wraps_Garchomp_EN-780x1429-1a2a380.png?v=1730104608&width=1445)
 - `sv05.webp`: [Awesome CCG product image](https://awesomeccg.com/cdn/shop/files/PKMN-BPACK-TEF_2_400x.png?v=1709052030)
+- `sv05-logo.png`: user-supplied Temporal Forces set logo (`tp.png`).
 - `sv06.webp`: [Bear Gaming product image](https://cdn.ecommercedns.uk/files/1/258411/1/40607831/scarlet-violet-twilight-masquerade-booster-wrap-ogerpon.png)
 - `sv07.webp`: [Eclipse Cards product image](https://eclipsecards.com/cdn/shop/files/PokemonTCG_Scarlet_Violet_StellarCrownBoosterPackTerapagos.png?v=1724711514&width=1445)
 - `sv08.webp`: [Prisma product image](https://cdn.s-cloud.fi/v1/w1440_q60/assets/dam-id/B_pe1huPK_GACmAYBbzuma.webp)

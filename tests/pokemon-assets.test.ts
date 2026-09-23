@@ -54,6 +54,7 @@ test('every validated set has local booster art and every Basic Energy has a loc
     assert.ok(booster?.front, `Missing booster art for ${recipe.setId}`);
     assert.ok(existsSync(`public${new URL(booster.front, 'https://local.test').pathname}`));
   }
+  assert.ok(existsSync('public/packs/pokemon/sv05-logo.png'));
   assert.equal(basicEnergyCards.length, 8);
   for (const card of basicEnergyCards) assert.ok(card.front && existsSync(`public${card.front}`), `Missing ${card.name}`);
 });
