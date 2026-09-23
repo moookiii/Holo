@@ -107,7 +107,7 @@ test('ordinary-pack collation preserves real slots, independent ball hits, all r
 test('Prismatic never inherits generic materials or makes a missing surface look ready', () => {
   const progress = prismaticSurfaceProgress();
   assert.equal(progress.required, 268);
-  assert.equal(progress.ready, 1);
+  assert.equal(progress.ready, 7);
   assert.equal(packAvailability('sv08.5').ready, false);
   assert.match(packAvailability('sv08.5').detail, /card-specific foil surfaces/);
   assert.equal(packAvailability('sv01').ready, true);
@@ -146,7 +146,7 @@ test('nonfoil cards remain pack-only and deferred reverses preserve their identi
 
 test('authored regular holo resolves only its exact printing and preserves a foil-only picker', () => {
   const entries = prismaticPickerCards();
-  assert.deepEqual(entries.map(card => card.id), ['pokemon:sv08.5-059:holo']);
+  assert.deepEqual(entries.map(card => card.id), ['059', '116', '117', '119', '128', '129', '131'].map(n => `pokemon:sv08.5-${n}:holo`));
   const card = entries[0];
   assert.equal(card.pickerHidden, false);
   assert.equal(card.profile, 'prismatic_regular_holo');
@@ -162,4 +162,30 @@ test('authored regular holo resolves only its exact printing and preserves a foi
   assert.equal(profile.glints.strength, 0);
   assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-059'), 'masterball-reverse', entries), PrismaticSurfaceUnavailable);
   assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-059'), 'pokeball-reverse', entries), PrismaticSurfaceUnavailable);
+});
+
+test('all six ACE SPEC printings use individual coverage and no invented relief', () => {
+  const profilesById = new Map(prismaticProfiles.map(profile => [profile.id, profile]));
+  const hashes = new Set<string>();
+  for (const number of ['116', '117', '119', '128', '129', '131']) {
+    const card = pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'holo', []);
+    assert.equal(card.profile, 'prismatic_ace_spec');
+    assert.equal(card.pickerHidden, false);
+    assert.equal(card.proceduralFoil, undefined);
+    assert.equal(card.maps?.height, undefined);
+    assert.equal(card.maps?.normal, undefined);
+    const evidence = JSON.parse(readFileSync(new URL(`maps/${number}-holo-evidence.json`, path), 'utf8'));
+    assert.equal(evidence.cardId, card.pokemon?.id);
+    assert.equal(evidence.variant, card.pokemon?.variant);
+    assert.equal(evidence.textured, false);
+    assert.ok(evidence.references.length > 0);
+    for (const [file, hash] of Object.entries(evidence.maps)) {
+      assert.equal(createHash('sha256').update(readFileSync(new URL(`maps/${file}`, path))).digest('hex'), hash);
+    }
+    hashes.add(evidence.maps[`${number}-holo-foil.png`]);
+    assert.equal(profilesById.get(card.profile)?.structure.relief, 0);
+    assert.equal(profilesById.get(card.profile)?.glints.strength, 0);
+    assert.throws(() => pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'pokeball-reverse', []), /Invalid/);
+  }
+  assert.equal(hashes.size, 6, 'Different devices must not share a single foil mask');
 });

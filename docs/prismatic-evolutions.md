@@ -3,8 +3,8 @@
 This is an **incomplete surface implementation**, with a complete local retail
 catalog and registered pack recipe. The pack browser lists the set and explicitly
 keeps opening unavailable until the in-scope foil surfaces are finished. There
-is currently **1 of 268 authored foil printings** registered: Umbreon 059 regular
-holo. The complete etched/ball/premium surface pass is still outstanding.
+are currently **7 of 268 authored foil printings** registered: Umbreon 059 regular
+holo and all six ACE SPEC cards. The etched/ball/premium surface pass is still outstanding.
 
 ## Catalog and pack integration
 
@@ -19,7 +19,7 @@ SHA-256 records are in `public/cards/pokemon/prismatic-evolutions/`. Rebuild wit
 | Uncommon | 33 | — | Nonfoil front ready; pack only |
 | Rare | 21 | — | Umbreon 059 authored; 20 picture/border masks pending |
 | Double Rare ex | 25 | — | Exact ex/Tera foil regions pending |
-| ACE SPEC | 6 | — | Exact printed-region masks pending |
+| ACE SPEC | 6 | — | Individual object, internal foil-window and text masks authored |
 | Ultra Rare full-art Trainers | 12 | — | Photo evidence and authored relief pending |
 | Special Illustration Rare | 32 | — | Photo evidence and authored relief pending |
 | Hyper Rare gold | 5 | — | Photo evidence and authored relief pending |
@@ -46,7 +46,7 @@ and transparency through lossless WebP conversion.
 The full catalog is not inserted in the picker. Prismatic nonfoil pulls and
 deferred standard reverses are hidden there while remaining inspectable by pack
 identity. Only exact authored foil entries enter the picker through
-`prismaticPickerCards()`; currently that is Umbreon 059 regular holo.
+`prismaticPickerCards()`; currently those are Umbreon 059 regular holo and the six ACE SPEC cards.
 
 ## Standard reverse remains deferred
 
@@ -66,9 +66,22 @@ evolution portrait, framing and rules are excluded. Still-photo reconstruction
 does not claim measured optical constants; moving-reference calibration remains
 pending. Its source/region manifest is `maps/059-holo-evidence.json`.
 
+`prismatic_ace_spec` uses the existing horizontal diamond optical sheet with
+zero raised relief and zero sparkle glints. Separate maps for Max Rod 116,
+Maximum Belt 117, Prime Catcher 119, Scoop Up Cyclone 128, Sparkling Crystal 129
+and Treasure Tracker 131 preserve each opaque device/crystal silhouette. Exact
+internal windows restore photographed foil in the displays, liquid vials,
+transparent energy chambers and indicator lights. Vial straps, opaque hardware,
+white rules/name lettering, carbon framing and the bottom rule panel are protected.
+Sparkling Crystal has no added internal foil window: complementary flash and
+diffuse photographs separate laminate glare from the surrounding diamond sheet.
+Rebuild the 1200×1650 coverage/protection PNGs and hashed evidence manifests with
+`python scripts/prismatic/create-ace-maps.py`. Paths are in
+`scripts/prismatic/ace-regions.json`; they describe ink coverage, never relief.
+
 `PrismaticCatalog.ts` also names these **pending renderer profiles**:
 
-- `prismatic_ex_holo`, `prismatic_ace_spec`
+- `prismatic_ex_holo`
 - `prismatic_pokeball_reverse`, `prismatic_masterball_reverse`
 - `prismatic_fullart_texture`, `prismatic_sir_texture`, `prismatic_gold`
 
@@ -118,6 +131,6 @@ automated gallery descriptions and app grading claims are not treated as proof.
 Each photo was visually inspected. No uploaded photo pixels, glare or printed
 illustration contours have been converted into guessed height maps.
 
-Remaining work: finish exact-card multi-angle evidence, author the remaining 267 foil
+Remaining work: finish exact-card multi-angle evidence, author the remaining 261 foil
 surfaces (including 216 textured printings), calibrate the distinct profiles,
 compare rendered tilts against references, and then enable pack opening.

@@ -18,6 +18,13 @@ export interface PrismaticSurface {
 // Populate only after the per-printing photo, map and rendered-tilt review.
 // No generic Mirage/rainbow-etched fallback may stand in for a missing surface.
 const surfaces: Readonly<Record<string, PrismaticSurface>> = {
+  ...Object.fromEntries(['116', '117', '119', '128', '129', '131'].map(number => [`sv08.5-${number}:holo`, {
+    profile: 'prismatic_ace_spec',
+    maps: { foil: `${PRISMATIC_ASSETS}/maps/${number}-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/${number}-holo-protection.png` },
+    layout: { artwork: [49 / 600, 119 / 825, 551 / 600, 426 / 825], innerFrame: [23 / 600, 23 / 825, 577 / 600, 803 / 825] },
+    mapSettings: { embossStrength: 0, normalScale: 0 },
+    evidence: `${PRISMATIC_ASSETS}/maps/${number}-holo-evidence.json`,
+  } satisfies PrismaticSurface])),
   'sv08.5-059:holo': {
     profile: 'prismatic_regular_holo',
     maps: { foil: `${PRISMATIC_ASSETS}/maps/059-holo-foil.svg`, protection: `${PRISMATIC_ASSETS}/maps/059-holo-protection.png` },
