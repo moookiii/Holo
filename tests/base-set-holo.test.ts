@@ -44,8 +44,14 @@ test('the Base Set material is independent and is selected before generic era me
   assert.equal(profile.structure.field, 'base-set-star');
   assert.equal(profile.structure.relief, 0);
   assert.equal(profile.surface.imageHologram, undefined);
+  assert.equal(profile.surface.inkTransmission, .48);
   assert.equal(profile.extendedCoverage, undefined);
   assert.equal(profile.maps, undefined, 'material must consume the cards existing masks');
+  for (const card of baseSetCards) {
+    assert.ok(card.substrate?.backgroundColor, `${card.title} needs its own registered printed ground`);
+    assert.equal(card.substrate.printRetention, 0);
+    assert.notDeepEqual(card.substrate.color, card.substrate.backgroundColor);
+  }
   const legacy = pokemonProfiles.find(p => p.id === 'pokemon-galaxy-star')!;
   assert.equal(legacy.structure.field, 'galaxy-star');
   assert.equal(legacy.glints.strength, 10);

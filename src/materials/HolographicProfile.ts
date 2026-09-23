@@ -34,6 +34,8 @@ export interface FoilLayer {
     patternRoughness?: number;
     /** Soft neutral reflection from a pearlescent/nacre layer, separate from spectral diffraction. */
     sheen?: number;
+    /** Amount of foil reflection filtered by the registered printed ink colors. */
+    inkTransmission?: number;
     /** Thin-film interference, independent of the etched diffraction grating. Thickness is nm. */
     iridescence?: number; filmIOR?: number; filmMin?: number; filmMax?: number; pearlBody?: number;
     /** Absorbing finish on the foil substrate; printed regions keep their color. */

@@ -11,7 +11,7 @@ const opticalRanges: Record<string, Record<string, Range>> = {
   diffraction: { period: [.3, 5], bandwidth: [.002, .3], strength: [0, 6], secondaryOrder: [0, 1], direction: [-Math.PI * 2, Math.PI * 2], crossWidth: [.04, 2], crossing: [0, 1], facetCoupling: [0, 1] },
   structure: { engraving: [0, 1], scale: [1, 1200], relief: [0, 2], facetTilt: [0, 2], reflectionCoupling: [0, 1], patternRelief: [0, 2], normalVariance: [0, 1], gridStrength: [0, 1], gridScale: [1, 40], gridTravel: [-40, 40], gridWidth: [.1, 2] },
   glints: { density: [0, 1], scale: [1, 1200], sharpness: [1, 1500], strength: [0, 60], spread: [0, 2] },
-  surface: { patternRoughness: [-.3, .3], metalness: [0, 1], roughness: [.045, 1], laminate: [0, 1], laminateRoughness: [.045, 1], anisotropy: [0, 1], foilReflectance: [0, 1], sheen: [0, 2], iridescence: [0, 1], filmIOR: [1, 2.5], filmMin: [0, 2000], filmMax: [0, 2000], pearlBody: [0, 1], substrateDarkening: [0, 1], varnishRelief: [0, 2], frameVarnish: [0, 1], imageHologram: [0, 1], imageDepth: [0, .5], imageContrast: [.1, 4], imageWidth: [.04, 1] },
+  surface: { patternRoughness: [-.3, .3], metalness: [0, 1], roughness: [.045, 1], laminate: [0, 1], laminateRoughness: [.045, 1], anisotropy: [0, 1], foilReflectance: [0, 1], sheen: [0, 2], inkTransmission: [0, 1], iridescence: [0, 1], filmIOR: [1, 2.5], filmMin: [0, 2000], filmMax: [0, 2000], pearlBody: [0, 1], substrateDarkening: [0, 1], varnishRelief: [0, 2], frameVarnish: [0, 1], imageHologram: [0, 1], imageDepth: [0, .5], imageContrast: [.1, 4], imageWidth: [.04, 1] },
 };
 function record(value: unknown, name: string): Record<string, unknown> {
   if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error(`${name} must be an object.`);

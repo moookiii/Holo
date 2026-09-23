@@ -121,7 +121,7 @@ export const pokemonProfiles: HolographicProfile[] = [{
   diffraction: { period: 1.25, bandwidth: .085, strength: .78, secondaryOrder: .06, direction: 0, crossWidth: .52, facetCoupling: 1 },
   structure: { field: 'base-set-star', scale: 16, engraving: 0, relief: 0, facetTilt: 1, reflectionCoupling: .14, normalVariance: .18 },
   glints: { density: .004, scale: 560, sharpness: 180, strength: .75, spread: .45 },
-  surface: { metalness: .72, roughness: .34, laminate: .20, laminateRoughness: .34, foilReflectance: .15, sheen: .48 },
+  surface: { metalness: .72, roughness: .34, laminate: .20, laminateRoughness: .34, foilReflectance: .15, sheen: .48, inkTransmission: .48 },
 }, {
   id: 'pokemon-galaxy-star', name: 'Starlight / Galaxy-Star', family: 'Pokémon', status: 'reference-pending',
   description: 'Early star sheet: sparse four- and eight-point stars, small pinpoints and coherent angular facets over a quiet spectral background.',

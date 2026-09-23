@@ -148,7 +148,8 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      const conventional = spectral.mul(u.spectralGain).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible);
+      const printFilter = mix(vec3(1), region.inkTransmission!, u.inkTransmission);
+      const conventional = spectral.mul(u.spectralGain).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter);
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
         .mul(region.coverage, data.lightColor as Node<'vec3'>));
     });
@@ -166,7 +167,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
     for (const region of this.regions) {
       // Neutral backing must not disappear merely because the scan pixels are dark.
       const backing = mix(float(1), mix(float(.18), float(1), region.field.a.mul(region.pattern)), region.optics.fieldBlend);
-      (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign(radiance.mul(region.coverage, region.optics.foilReflectance, region.optics.neutralGain, backing, mix(vec3(1), region.inkTransmission!, region.optics.crossedFacets)));
+      (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign(radiance.mul(region.coverage, region.optics.foilReflectance, region.optics.neutralGain, backing, mix(vec3(1), region.inkTransmission!, region.optics.crossedFacets.max(region.optics.inkTransmission))));
     }
   }
 }

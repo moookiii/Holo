@@ -22,11 +22,15 @@ time-driven sparkle, raised relief or image hologram are used.
 
 The backing and stars share the existing physical lighting model, with reduced
 coupling to the aggregate surface normal to avoid embossed-looking star edges.
+Each card uses its own measured scan-ground median to correct the flat substrate
+color while retaining registered spatial ink variation: Raichu's blue-green
+horizontal bars, Mewtwo's broad angled rays, and other illustrated color regions
+stay in their original positions. The moving foil reflection is partially filtered
+by those local printed colors. No card-front image is projected into the
+manufacturing field, so artwork text cannot turn into spurious reflected imagery.
 Blastoise's backing tint follows the supplied blue-violet reference. This remains
 a visual reconstruction (`reference-pending`), not a measured optical calibration.
 The legacy Galaxy-Star and Cosmos treatments retain their own fields and defaults.
-No card-front image is sampled into the manufacturing field; this prevents print
-and text from appearing as spurious reflected imagery.
 
 ## Verification
 
