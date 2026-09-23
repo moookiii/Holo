@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "selection_policy": "One best supplied reference per family, following the user's revised scope. Other photographs remain background evidence; no new multi-photo fitting pass.",
+  "coordinate_system": [630, 880],
+  "families": [
+    {"family":"grass","source":"bulbasaur","reason":"Front-facing scan; strong exposed network and central leaf; limited perspective."},
+    {"family":"fire","source":"vulpix","reason":"Large, nearly front-facing photograph with strong exposed flame repetitions."},
+    {"family":"water","source":"squirtle","reason":"High-resolution front-facing scan with clear header, side strips and lower field."},
+    {"family":"lightning","source":"voltorb","reason":"Sharp, evenly exposed pattern; only one attack leaves substantial geometry visible."},
+    {"family":"psychic","source":"drowzee","reason":"High-resolution near-front view; one attack leaves central eye and most lower contours exposed. Header glare limits color evidence."},
+    {"family":"fighting","source":"cubone","reason":"High-resolution near-front view with clear fists and lower field; ability text obscures upper body."},
+    {"family":"darkness","source":"koffing","reason":"Sharp photograph and strong lower-field contrast; one attack. White rules text obscures part of the central glyph."},
+    {"family":"colorless","source":"lickitung","reason":"High-resolution single-attack photograph; existing manually traced contours provide a reviewed starting point."},
+    {"family":"dragon","source":"dratini","reason":"Front-facing scan with clear central and repeated dragon glyphs. Only the left card is normalized."},
+    {"family":"trainer","source":"helix-fossil","reason":"Sharp, nearly front-facing image and distinct Poké Ball shapes; opaque header and rule box limit observable coverage."},
+    {"family":"metal","source":"varoom","reason":"Largest, clearest Metal photograph with a single attack and exposed repeated brackets."}
+  ]
+}
