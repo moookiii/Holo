@@ -54,6 +54,10 @@ rejected status until that evidence supports the replacement. Fire is unchanged.
 
 ## Fire alternate interior trace
 
+**Rejected by the user.** The alternate trace below is incorrect and must not
+be transferred to the central Fire glyph. Its geometry is retained only as a
+record of the failed attempt; the earlier proposed topology is not validated.
+
 `references/fire-alternate-interior.json` now records a separate boundary trace
 of Vulpix's unobscured upper-left interior cutout. Run it through `fit_symbol.py`
 to reproduce `../fire-alternate-interior-fit.png` and its numeric report.
