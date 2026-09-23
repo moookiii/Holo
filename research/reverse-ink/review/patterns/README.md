@@ -15,3 +15,10 @@ photography, registration and foreground text; they are not accuracy ratings.
 
 The wheel and sector-symbol measurement files remain separate, provisional
 evidence. They do not validate the rejected surrounding pebble field.
+
+`colorless-network-body/comparison.png` extends the corrected model across the
+lower-body window with 41 manually authored light openings in the connected
+dark field. This is the current Colorless candidate; its solid and dashed
+contours distinguish observed boundaries from text-interpolated paths. The
+other ten family bodies remain pending. See the per-source signed-boundary
+report for weak contours requiring further inspection, not an approval score.

@@ -1,0 +1,233 @@
+{
+  "status": "source-traced-body-candidate",
+  "family": "colorless",
+  "sources": [
+    "lickitung",
+    "meowth",
+    "pidgey"
+  ],
+  "bounds": [
+    35,
+    445,
+    604,
+    741
+  ],
+  "coordinate_system": "630 x 880; independently wheel-registered photographs",
+  "polarity": "Dark bands are positive ink. All listed contours are lighter openings.",
+  "notes": [
+    "Manual sparse paths from enlarged source grids; no threshold contours are exported.",
+    "This is an observed lower-body reconstruction candidate, not the complete card-space master.",
+    "Straight-edge continuation through small text occlusions is labeled interpolated; verify the secondary sources before acceptance.",
+    "All openings are Colorless-specific until cross-family evidence establishes a shared contour."
+  ],
+  "openings": [
+    {
+      "id": "left-upper-cell",
+      "evidence": "observed",
+      "d": "M 44 458 C 48 458 57 462 61 466 C 65 470 55 482 49 491 C 47 495 43 496 39 492 L 34 486 L 34 472 C 36 467 40 461 44 458 Z"
+    },
+    {
+      "id": "top-left-cell",
+      "evidence": "observed-clipped",
+      "d": "M 80 438 L 138 438 C 136 452 129 466 119 467 L 109 463 C 103 465 94 475 90 474 C 84 471 80 466 79 461 C 77 456 80 444 80 438 Z"
+    },
+    {
+      "id": "upper-left-star",
+      "evidence": "observed",
+      "d": "M 69 468 L 88 487 L 108 470 L 104 494 L 130 501 L 107 510 L 110 531 L 91 519 L 74 536 L 77 511 L 53 503 L 78 494 Z"
+    },
+    {
+      "id": "top-small-star",
+      "evidence": "observed-clipped",
+      "d": "M 145 433 L 162 443 L 176 430 L 174 447 L 188 452 L 173 456 L 173 470 L 161 461 L 147 473 L 151 456 L 136 453 L 153 446 Z"
+    },
+    {
+      "id": "top-upright-cell",
+      "evidence": "observed-clipped",
+      "d": "M 199 436 L 220 436 L 214 452 C 212 458 211 464 206 466 C 201 466 192 462 192 457 C 192 451 197 440 199 436 Z"
+    },
+    {
+      "id": "upper-swept-cell",
+      "evidence": "observed",
+      "d": "M 205 472 C 216 469 241 463 254 463 C 260 462 263 466 260 472 C 256 479 244 489 235 497 C 229 503 213 505 199 501 C 196 498 198 484 199 479 C 200 476 202 474 205 472 Z"
+    },
+    {
+      "id": "upper-small-triangle",
+      "evidence": "observed",
+      "d": "M 248 495 L 270 483 C 275 481 278 489 277 495 C 277 500 270 500 262 499 L 247 498 Z"
+    },
+    {
+      "id": "upper-island",
+      "evidence": "observed",
+      "d": "M 154 499 C 158 498 170 499 173 503 C 176 506 171 510 167 511 C 162 512 157 506 154 499 Z"
+    },
+    {
+      "id": "upper-central-cell",
+      "evidence": "observed-with-text-at-lower-tip",
+      "d": "M 183 514 C 189 511 203 510 214 511 L 214 520 C 216 526 224 530 223 537 C 220 544 209 539 206 541 C 202 546 195 553 190 554 C 184 551 178 544 177 536 L 176 521 C 176 517 178 515 183 514 Z"
+    },
+    {
+      "id": "above-middle-star-cell",
+      "evidence": "observed",
+      "d": "M 230 512 C 240 509 266 508 278 512 C 282 516 276 522 272 526 L 270 534 L 260 527 L 257 541 C 247 539 236 535 233 529 C 230 524 230 517 230 512 Z"
+    },
+    {
+      "id": "wheel-upper-left-cell",
+      "evidence": "observed",
+      "d": "M 302 478 C 315 478 339 477 349 476 C 354 481 358 491 358 497 C 352 501 319 502 304 498 C 299 495 299 483 302 478 Z"
+    },
+    {
+      "id": "wheel-upper-left-top-cell",
+      "evidence": "observed-clipped",
+      "d": "M 307 434 L 347 434 L 346 466 C 335 470 315 465 307 459 C 302 455 303 442 307 434 Z"
+    },
+    {
+      "id": "left-edge-middle-cell",
+      "evidence": "observed-clipped",
+      "d": "M 28 503 C 39 505 57 507 66 512 C 67 521 61 532 58 537 L 35 545 L 28 540 Z"
+    },
+    {
+      "id": "left-middle-star",
+      "evidence": "interpolated-through-attack-icons",
+      "d": "M 91 531 L 117 548 L 141 529 L 136 562 L 164 573 L 134 578 L 132 607 L 109 586 L 88 601 L 90 573 L 64 565 L 88 556 Z"
+    },
+    {
+      "id": "left-mid-narrow-cell",
+      "evidence": "interpolated-through-description",
+      "d": "M 50 554 C 51 551 56 550 59 553 L 68 560 L 65 577 L 48 586 C 43 582 44 563 50 554 Z"
+    },
+    {
+      "id": "left-lower-diagonal-cell",
+      "evidence": "interpolated-through-description",
+      "d": "M 81 596 C 85 595 95 604 104 610 L 128 624 C 126 630 124 634 121 636 L 112 629 L 106 638 C 100 636 96 626 90 621 C 83 615 73 611 74 606 Z"
+    },
+    {
+      "id": "left-lower-small-cell",
+      "evidence": "observed-with-text-at-top",
+      "d": "M 63 614 C 68 614 76 620 81 626 L 78 637 C 72 639 65 631 60 625 C 56 620 59 616 63 614 Z"
+    },
+    {
+      "id": "center-left-triangle",
+      "evidence": "interpolated-through-description",
+      "d": "M 133 596 C 139 596 150 600 156 604 L 149 618 C 147 622 145 624 143 621 L 139 608 Z"
+    },
+    {
+      "id": "middle-large-star",
+      "evidence": "interpolated-through-description",
+      "d": "M 164 548 L 190 571 L 207 548 L 205 585 L 261 571 C 258 580 246 587 235 590 L 205 598 L 249 623 C 234 626 214 613 198 611 L 177 603 L 157 626 L 172 592 Z"
+    },
+    {
+      "id": "wheel-left-small-star",
+      "evidence": "interpolated-through-attack-name",
+      "d": "M 276 529 L 284 545 L 303 542 L 289 553 L 296 568 L 281 559 L 268 572 L 273 554 L 257 548 L 275 547 Z"
+    },
+    {
+      "id": "wheel-left-upright-cell",
+      "evidence": "interpolated-through-attack-name",
+      "d": "M 301 511 C 309 510 314 512 316 518 L 325 545 C 321 550 307 553 299 552 L 292 544 C 293 536 295 516 301 511 Z"
+    },
+    {
+      "id": "left-lower-star",
+      "evidence": "observed-manual-correction",
+      "d": "M 99 629 L 109 640 L 117 629 L 117 643 L 130 643 L 119 648 L 120 659 L 111 651 L 104 662 L 106 649 L 96 648 L 107 644 Z",
+      "review": "Re-authored from enlarged five-unit reference grid after the first bounded fit reached limits or retained weak boundary support."
+    },
+    {
+      "id": "lower-left-rounded-cell",
+      "evidence": "observed",
+      "d": "M 91 651 C 94 654 94 661 100 662 C 105 662 106 655 109 657 C 113 659 115 660 114 664 C 111 672 99 684 90 689 C 84 691 78 689 77 686 C 74 682 78 676 82 671 C 86 666 89 657 91 651 Z"
+    },
+    {
+      "id": "lower-left-necked-cell",
+      "evidence": "observed",
+      "d": "M 131 634 L 142 625 C 146 625 145 648 145 660 L 145 664 C 147 667 157 669 163 674 C 165 676 161 682 158 687 C 154 694 151 701 147 705 C 145 706 133 701 126 697 C 119 693 111 689 105 686 C 110 680 119 672 122 665 C 126 659 125 648 125 642 Z"
+    },
+    {
+      "id": "lower-center-cell",
+      "evidence": "observed",
+      "d": "M 159 628 C 166 626 173 616 178 616 C 182 615 185 623 190 627 L 202 636 C 208 640 207 662 201 673 C 192 672 166 667 154 663 C 151 659 153 647 153 640 C 153 633 153 630 159 628 Z"
+    },
+    {
+      "id": "left-edge-large-opening",
+      "evidence": "observed-clipped",
+      "d": "M 24 639 C 38 642 48 629 52 627 C 58 631 59 642 61 650 L 72 644 L 79 652 C 79 656 76 663 72 667 C 64 677 61 686 60 695 L 56 717 C 55 726 61 733 70 741 L 25 746 Z"
+    },
+    {
+      "id": "lower-left-edge-opening",
+      "evidence": "observed-clipped",
+      "d": "M 74 697 C 80 696 86 699 90 704 C 96 711 101 720 105 728 C 108 734 110 738 106 743 C 96 746 81 746 71 745 C 74 738 77 728 74 723 C 72 718 69 716 71 711 C 73 706 73 701 74 697 Z"
+    },
+    {
+      "id": "large-bottom-star-fragment",
+      "evidence": "observed-clipped",
+      "d": "M 96 695 C 111 705 132 716 142 719 C 146 720 148 717 151 713 C 159 702 165 685 170 676 C 172 672 174 670 175 671 C 175 681 173 694 174 704 C 174 712 174 721 177 725 C 181 730 215 728 240 728 C 225 735 217 739 207 745 L 121 745 C 125 738 122 733 118 726 C 110 714 102 705 96 695 Z"
+    },
+    {
+      "id": "lower-horizontal-cell",
+      "evidence": "observed",
+      "d": "M 187 683 C 193 682 210 688 229 687 C 235 687 237 687 239 690 C 243 693 246 698 247 701 C 244 705 232 715 225 719 C 219 722 197 721 188 719 C 183 718 184 707 184 698 C 184 691 182 685 187 683 Z"
+    },
+    {
+      "id": "center-right-diamond",
+      "evidence": "observed",
+      "d": "M 283 601 C 290 604 303 616 313 624 C 318 629 309 635 306 640 L 297 654 C 294 659 287 659 279 655 C 269 651 259 644 254 637 C 248 629 266 613 278 603 Z"
+    },
+    {
+      "id": "lower-diamond-chip",
+      "evidence": "observed",
+      "d": "M 288 665 C 293 663 296 668 296 674 L 299 685 C 299 691 291 692 286 690 C 282 687 281 672 283 668 Z"
+    },
+    {
+      "id": "lower-small-star",
+      "evidence": "observed-manual-correction",
+      "d": "M 282 679 L 282 694 L 302 694 L 288 704 L 298 719 L 280 711 L 274 731 L 269 711 L 251 712 L 267 702 L 257 686 L 274 695 Z",
+      "review": "Re-authored from enlarged five-unit reference grid after the first bounded fit reached limits or retained weak boundary support."
+    },
+    {
+      "id": "below-wheel-cell",
+      "evidence": "observed-manual-correction",
+      "d": "M 327 694 C 332 691 350 695 358 697 C 358 703 355 714 351 716 C 342 716 330 711 327 706 C 324 702 323 697 327 694 Z"
+    },
+    {
+      "id": "bottom-chip",
+      "evidence": "observed-clipped",
+      "d": "M 292 727 C 296 726 305 732 305 737 C 306 743 301 747 297 750 L 288 747 C 287 741 289 731 292 727 Z"
+    },
+    {
+      "id": "right-upper-star",
+      "evidence": "observed-manual-correction",
+      "d": "M 568 455 L 576 474 L 590 466 L 581 482 L 592 491 L 575 487 L 568 503 L 565 489 L 549 494 L 560 481 L 542 471 L 561 476 Z",
+      "review": "Re-authored from enlarged five-unit reference grid after the first bounded fit reached limits or retained weak boundary support."
+    },
+    {
+      "id": "right-top-cell",
+      "evidence": "observed-clipped",
+      "d": "M 579 438 L 602 438 L 599 459 L 585 467 L 577 461 Z"
+    },
+    {
+      "id": "right-middle-cell",
+      "evidence": "observed-clipped",
+      "d": "M 582 570 C 590 566 604 569 612 574 L 612 632 C 601 630 590 612 582 602 L 574 591 C 571 585 576 575 582 570 Z"
+    },
+    {
+      "id": "right-bottom-cell",
+      "evidence": "observed-clipped",
+      "d": "M 578 654 C 586 655 595 660 597 668 L 599 718 C 590 713 580 698 575 685 C 571 676 570 656 578 654 Z"
+    },
+    {
+      "id": "bottom-right-cell",
+      "evidence": "observed-clipped",
+      "d": "M 554 728 C 561 725 573 729 583 736 L 597 747 L 548 747 C 545 739 548 733 554 728 Z"
+    },
+    {
+      "id": "right-star-adjacent-chip",
+      "evidence": "observed",
+      "d": "M 589 474 C 593 474 595 480 594 484 C 591 487 585 482 586 479 Z"
+    },
+    {
+      "id": "right-star-under-chip",
+      "evidence": "observed",
+      "d": "M 540 488 C 544 486 547 492 551 493 L 561 494 C 563 496 563 499 560 500 L 539 497 C 536 495 538 490 540 488 Z"
+    }
+  ]
+}

@@ -1,0 +1,1242 @@
+{
+  "status": "diagnostic-not-approval",
+  "method": "Signed lighter-inside minus darker-outside differences at authored boundaries and a bounded +/-5-unit normal search.",
+  "limitations": [
+    "Foreground is deliberately retained in the source photographs; it can corrupt any source score.",
+    "Distance is to a selected signed contrast peak, not known ground truth.",
+    "Low support cannot prove a boundary; inspect the three source overlays.",
+    "No contours are automatically moved or approved by this script."
+  ],
+  "measurements": [
+    {
+      "opening": "left-upper-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1864,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.5
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0166,
+          "correct_polarity_fraction": 0.7217,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 3.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.1015,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 2.25
+        }
+      ]
+    },
+    {
+      "opening": "top-left-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1358,
+          "correct_polarity_fraction": 0.9426,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 2.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0634,
+          "correct_polarity_fraction": 0.7131,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.125,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0607,
+          "correct_polarity_fraction": 0.7951,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 2.975
+        }
+      ]
+    },
+    {
+      "opening": "upper-left-star",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1545,
+          "correct_polarity_fraction": 0.9806,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.25
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0175,
+          "correct_polarity_fraction": 0.6222,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0878,
+          "correct_polarity_fraction": 0.7972,
+          "edge_support_fraction": 0.9944,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 3.0
+        }
+      ]
+    },
+    {
+      "opening": "top-small-star",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": -0.0036,
+          "correct_polarity_fraction": 0.4457,
+          "edge_support_fraction": 0.9185,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0113,
+          "correct_polarity_fraction": 0.6304,
+          "edge_support_fraction": 0.75,
+          "median_signed_peak_distance": 1.875,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0076,
+          "correct_polarity_fraction": 0.7065,
+          "edge_support_fraction": 0.7554,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "top-upright-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0283,
+          "correct_polarity_fraction": 0.7612,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.2467,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.75
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0191,
+          "correct_polarity_fraction": 0.7463,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 3.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "upper-swept-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1297,
+          "correct_polarity_fraction": 0.9722,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 2.5
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1086,
+          "correct_polarity_fraction": 0.85,
+          "edge_support_fraction": 0.9889,
+          "median_signed_peak_distance": 1.75,
+          "p90_signed_peak_distance": 4.75
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0715,
+          "correct_polarity_fraction": 0.8778,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 3.5
+        }
+      ]
+    },
+    {
+      "opening": "upper-small-triangle",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.136,
+          "correct_polarity_fraction": 0.98,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 2.25
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1387,
+          "correct_polarity_fraction": 0.84,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 2.75
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0705,
+          "correct_polarity_fraction": 0.9933,
+          "edge_support_fraction": 0.9933,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 3.0
+        }
+      ]
+    },
+    {
+      "opening": "upper-island",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1824,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 0.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0574,
+          "correct_polarity_fraction": 0.7778,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.125,
+          "p90_signed_peak_distance": 4.5
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.115,
+          "correct_polarity_fraction": 0.9667,
+          "edge_support_fraction": 0.9667,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 2.0
+        }
+      ]
+    },
+    {
+      "opening": "upper-central-cell",
+      "evidence": "observed-with-text-at-lower-tip",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.103,
+          "correct_polarity_fraction": 0.8333,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.75,
+          "p90_signed_peak_distance": 3.5
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.088,
+          "correct_polarity_fraction": 0.7917,
+          "edge_support_fraction": 0.9833,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.083,
+          "correct_polarity_fraction": 0.8333,
+          "edge_support_fraction": 0.9917,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "above-middle-star-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0924,
+          "correct_polarity_fraction": 0.881,
+          "edge_support_fraction": 0.9714,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 3.25
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0534,
+          "correct_polarity_fraction": 0.6048,
+          "edge_support_fraction": 0.9952,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0065,
+          "correct_polarity_fraction": 0.5667,
+          "edge_support_fraction": 0.9714,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "wheel-upper-left-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1629,
+          "correct_polarity_fraction": 0.9917,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1874,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 2.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.1305,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.75,
+          "p90_signed_peak_distance": 1.5
+        }
+      ]
+    },
+    {
+      "opening": "wheel-upper-left-top-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0258,
+          "correct_polarity_fraction": 0.6667,
+          "edge_support_fraction": 0.9815,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1325,
+          "correct_polarity_fraction": 0.9259,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 4.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0207,
+          "correct_polarity_fraction": 0.7593,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.125,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "left-edge-middle-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0338,
+          "correct_polarity_fraction": 0.8286,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.625,
+          "p90_signed_peak_distance": 4.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0102,
+          "correct_polarity_fraction": 0.5714,
+          "edge_support_fraction": 0.9429,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.025,
+          "correct_polarity_fraction": 0.7143,
+          "edge_support_fraction": 0.9714,
+          "median_signed_peak_distance": 2.25,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "left-middle-star",
+      "evidence": "interpolated-through-attack-icons",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": -0.0069,
+          "correct_polarity_fraction": 0.4389,
+          "edge_support_fraction": 0.9278,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0018,
+          "correct_polarity_fraction": 0.5056,
+          "edge_support_fraction": 0.8556,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0122,
+          "correct_polarity_fraction": 0.625,
+          "edge_support_fraction": 0.7972,
+          "median_signed_peak_distance": 2.25,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "left-mid-narrow-cell",
+      "evidence": "interpolated-through-description",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0383,
+          "correct_polarity_fraction": 0.6067,
+          "edge_support_fraction": 0.9933,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0161,
+          "correct_polarity_fraction": 0.5267,
+          "edge_support_fraction": 0.96,
+          "median_signed_peak_distance": 2.375,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0006,
+          "correct_polarity_fraction": 0.5133,
+          "edge_support_fraction": 0.96,
+          "median_signed_peak_distance": 3.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "left-lower-diagonal-cell",
+      "evidence": "interpolated-through-description",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": -0.0143,
+          "correct_polarity_fraction": 0.3583,
+          "edge_support_fraction": 0.8917,
+          "median_signed_peak_distance": 3.125,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": -0.003,
+          "correct_polarity_fraction": 0.4583,
+          "edge_support_fraction": 0.8792,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.0047,
+          "correct_polarity_fraction": 0.4,
+          "edge_support_fraction": 0.6208,
+          "median_signed_peak_distance": 4.25,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "left-lower-small-cell",
+      "evidence": "observed-with-text-at-top",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": -0.002,
+          "correct_polarity_fraction": 0.4917,
+          "edge_support_fraction": 0.9583,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": -0.0098,
+          "correct_polarity_fraction": 0.375,
+          "edge_support_fraction": 0.6583,
+          "median_signed_peak_distance": 5.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.0117,
+          "correct_polarity_fraction": 0.4667,
+          "edge_support_fraction": 0.9083,
+          "median_signed_peak_distance": 4.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "center-left-triangle",
+      "evidence": "interpolated-through-description",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": -0.0169,
+          "correct_polarity_fraction": 0.38,
+          "edge_support_fraction": 0.9533,
+          "median_signed_peak_distance": 3.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": -0.005,
+          "correct_polarity_fraction": 0.44,
+          "edge_support_fraction": 0.94,
+          "median_signed_peak_distance": 3.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.0319,
+          "correct_polarity_fraction": 0.1133,
+          "edge_support_fraction": 0.5533,
+          "median_signed_peak_distance": 4.75,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "middle-large-star",
+      "evidence": "interpolated-through-description",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0331,
+          "correct_polarity_fraction": 0.6667,
+          "edge_support_fraction": 0.9556,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 4.925
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0131,
+          "correct_polarity_fraction": 0.5972,
+          "edge_support_fraction": 0.9417,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0057,
+          "correct_polarity_fraction": 0.5556,
+          "edge_support_fraction": 0.8889,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "wheel-left-small-star",
+      "evidence": "interpolated-through-attack-name",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0053,
+          "correct_polarity_fraction": 0.53,
+          "edge_support_fraction": 0.8967,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": -0.0066,
+          "correct_polarity_fraction": 0.4567,
+          "edge_support_fraction": 0.88,
+          "median_signed_peak_distance": 3.25,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.0031,
+          "correct_polarity_fraction": 0.4367,
+          "edge_support_fraction": 0.8133,
+          "median_signed_peak_distance": 3.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "wheel-left-upright-cell",
+      "evidence": "interpolated-through-attack-name",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0201,
+          "correct_polarity_fraction": 0.74,
+          "edge_support_fraction": 0.94,
+          "median_signed_peak_distance": 3.25,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0265,
+          "correct_polarity_fraction": 0.68,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.875,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0064,
+          "correct_polarity_fraction": 0.5667,
+          "edge_support_fraction": 0.94,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "left-lower-star",
+      "evidence": "observed-manual-correction",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0391,
+          "correct_polarity_fraction": 0.6889,
+          "edge_support_fraction": 0.9667,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 4.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0133,
+          "correct_polarity_fraction": 0.6083,
+          "edge_support_fraction": 0.9444,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0406,
+          "correct_polarity_fraction": 0.6972,
+          "edge_support_fraction": 0.95,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "lower-left-rounded-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1724,
+          "correct_polarity_fraction": 0.9381,
+          "edge_support_fraction": 0.981,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0067,
+          "correct_polarity_fraction": 0.5762,
+          "edge_support_fraction": 0.9762,
+          "median_signed_peak_distance": 3.25,
+          "p90_signed_peak_distance": 4.9
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0558,
+          "correct_polarity_fraction": 0.7238,
+          "edge_support_fraction": 0.9238,
+          "median_signed_peak_distance": 1.875,
+          "p90_signed_peak_distance": 4.0
+        }
+      ]
+    },
+    {
+      "opening": "lower-left-necked-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0923,
+          "correct_polarity_fraction": 0.903,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 3.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0318,
+          "correct_polarity_fraction": 0.7606,
+          "edge_support_fraction": 0.9758,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 4.475
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0445,
+          "correct_polarity_fraction": 0.7061,
+          "edge_support_fraction": 0.9424,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 4.5
+        }
+      ]
+    },
+    {
+      "opening": "lower-center-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1524,
+          "correct_polarity_fraction": 0.9952,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.5
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0366,
+          "correct_polarity_fraction": 0.7762,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 4.525
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.1141,
+          "correct_polarity_fraction": 0.9,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 3.0
+        }
+      ]
+    },
+    {
+      "opening": "left-edge-large-opening",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0127,
+          "correct_polarity_fraction": 0.6435,
+          "edge_support_fraction": 0.9537,
+          "median_signed_peak_distance": 3.25,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": -0.012,
+          "correct_polarity_fraction": 0.3889,
+          "edge_support_fraction": 0.8611,
+          "median_signed_peak_distance": 3.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0063,
+          "correct_polarity_fraction": 0.5463,
+          "edge_support_fraction": 0.787,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "lower-left-edge-opening",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0135,
+          "correct_polarity_fraction": 0.619,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0722,
+          "correct_polarity_fraction": 0.8776,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 3.5
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0157,
+          "correct_polarity_fraction": 0.7551,
+          "edge_support_fraction": 0.9796,
+          "median_signed_peak_distance": 2.625,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "large-bottom-star-fragment",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0741,
+          "correct_polarity_fraction": 0.8092,
+          "edge_support_fraction": 0.9962,
+          "median_signed_peak_distance": 1.75,
+          "p90_signed_peak_distance": 3.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1035,
+          "correct_polarity_fraction": 0.8702,
+          "edge_support_fraction": 0.9427,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 3.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0699,
+          "correct_polarity_fraction": 0.7557,
+          "edge_support_fraction": 0.9351,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 3.9
+        }
+      ]
+    },
+    {
+      "opening": "lower-horizontal-cell",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1703,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1086,
+          "correct_polarity_fraction": 0.9381,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.75,
+          "p90_signed_peak_distance": 3.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.117,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 2.0
+        }
+      ]
+    },
+    {
+      "opening": "center-right-diamond",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1358,
+          "correct_polarity_fraction": 0.9143,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 3.5
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0316,
+          "correct_polarity_fraction": 0.6571,
+          "edge_support_fraction": 0.9952,
+          "median_signed_peak_distance": 3.25,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0992,
+          "correct_polarity_fraction": 0.7143,
+          "edge_support_fraction": 0.9333,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "lower-diamond-chip",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.144,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1714,
+          "correct_polarity_fraction": 0.9867,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 2.25
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.1077,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 1.275
+        }
+      ]
+    },
+    {
+      "opening": "lower-small-star",
+      "evidence": "observed-manual-correction",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1124,
+          "correct_polarity_fraction": 0.9194,
+          "edge_support_fraction": 0.9972,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 2.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.2007,
+          "correct_polarity_fraction": 0.9083,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.75,
+          "p90_signed_peak_distance": 2.25
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0844,
+          "correct_polarity_fraction": 0.9056,
+          "edge_support_fraction": 0.9889,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 2.25
+        }
+      ]
+    },
+    {
+      "opening": "below-wheel-cell",
+      "evidence": "observed-manual-correction",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1391,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.75,
+          "p90_signed_peak_distance": 2.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1879,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 2.25
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0864,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.375,
+          "p90_signed_peak_distance": 2.0
+        }
+      ]
+    },
+    {
+      "opening": "bottom-chip",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0029,
+          "correct_polarity_fraction": 0.5,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 5.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0058,
+          "correct_polarity_fraction": 0.6389,
+          "edge_support_fraction": 0.8333,
+          "median_signed_peak_distance": 5.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.0078,
+          "correct_polarity_fraction": 0.3889,
+          "edge_support_fraction": 0.8333,
+          "median_signed_peak_distance": 5.0,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "right-upper-star",
+      "evidence": "observed-manual-correction",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0216,
+          "correct_polarity_fraction": 0.6889,
+          "edge_support_fraction": 0.9806,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 4.25
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.1195,
+          "correct_polarity_fraction": 0.7583,
+          "edge_support_fraction": 0.9806,
+          "median_signed_peak_distance": 1.25,
+          "p90_signed_peak_distance": 3.75
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0327,
+          "correct_polarity_fraction": 0.7,
+          "edge_support_fraction": 0.9667,
+          "median_signed_peak_distance": 1.875,
+          "p90_signed_peak_distance": 4.0
+        }
+      ]
+    },
+    {
+      "opening": "right-top-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.021,
+          "correct_polarity_fraction": 0.7164,
+          "edge_support_fraction": 0.9701,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.008,
+          "correct_polarity_fraction": 0.6119,
+          "edge_support_fraction": 0.8358,
+          "median_signed_peak_distance": 4.25,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.0041,
+          "correct_polarity_fraction": 0.4328,
+          "edge_support_fraction": 0.8507,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "right-middle-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0105,
+          "correct_polarity_fraction": 0.6154,
+          "edge_support_fraction": 0.8791,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0016,
+          "correct_polarity_fraction": 0.5165,
+          "edge_support_fraction": 0.7253,
+          "median_signed_peak_distance": 3.375,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": -0.001,
+          "correct_polarity_fraction": 0.4615,
+          "edge_support_fraction": 0.5604,
+          "median_signed_peak_distance": 4.0,
+          "p90_signed_peak_distance": 5.0
+        }
+      ]
+    },
+    {
+      "opening": "right-bottom-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0215,
+          "correct_polarity_fraction": 0.7126,
+          "edge_support_fraction": 0.9655,
+          "median_signed_peak_distance": 2.25,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0605,
+          "correct_polarity_fraction": 0.7471,
+          "edge_support_fraction": 0.9885,
+          "median_signed_peak_distance": 2.5,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.012,
+          "correct_polarity_fraction": 0.7126,
+          "edge_support_fraction": 0.9655,
+          "median_signed_peak_distance": 2.75,
+          "p90_signed_peak_distance": 4.925
+        }
+      ]
+    },
+    {
+      "opening": "bottom-right-cell",
+      "evidence": "observed-clipped",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.0435,
+          "correct_polarity_fraction": 0.7949,
+          "edge_support_fraction": 0.9487,
+          "median_signed_peak_distance": 1.75,
+          "p90_signed_peak_distance": 5.0
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0472,
+          "correct_polarity_fraction": 0.7436,
+          "edge_support_fraction": 0.8462,
+          "median_signed_peak_distance": 1.5,
+          "p90_signed_peak_distance": 4.95
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.0767,
+          "correct_polarity_fraction": 0.7692,
+          "edge_support_fraction": 0.8462,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 4.75
+        }
+      ]
+    },
+    {
+      "opening": "right-star-adjacent-chip",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.109,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.5,
+          "p90_signed_peak_distance": 0.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0207,
+          "correct_polarity_fraction": 0.8111,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 3.0,
+          "p90_signed_peak_distance": 4.525
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.108,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.75,
+          "p90_signed_peak_distance": 2.0
+        }
+      ]
+    },
+    {
+      "opening": "right-star-under-chip",
+      "evidence": "observed",
+      "sources": [
+        {
+          "source": "lickitung",
+          "median_signed_contrast_at_path": 0.1166,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 0.25,
+          "p90_signed_peak_distance": 0.75
+        },
+        {
+          "source": "meowth",
+          "median_signed_contrast_at_path": 0.0562,
+          "correct_polarity_fraction": 0.9667,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 2.0,
+          "p90_signed_peak_distance": 3.0
+        },
+        {
+          "source": "pidgey",
+          "median_signed_contrast_at_path": 0.1094,
+          "correct_polarity_fraction": 1.0,
+          "edge_support_fraction": 1.0,
+          "median_signed_peak_distance": 1.0,
+          "p90_signed_peak_distance": 1.525
+        }
+      ]
+    }
+  ]
+}

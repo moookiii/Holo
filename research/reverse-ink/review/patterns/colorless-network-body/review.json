@@ -1,0 +1,49 @@
+{
+  "status": "source-traced-body-candidate",
+  "family": "colorless",
+  "bounds": [
+    35,
+    445,
+    604,
+    741
+  ],
+  "opening_count": 41,
+  "text_interpolated_openings": [
+    "left-middle-star",
+    "left-mid-narrow-cell",
+    "left-lower-diagonal-cell",
+    "center-left-triangle",
+    "middle-large-star",
+    "wheel-left-small-star",
+    "wheel-left-upright-cell"
+  ],
+  "sources": [
+    "lickitung",
+    "meowth",
+    "pidgey"
+  ],
+  "limitations": [
+    "Manual sparse paths from enlarged source grids; no threshold contours are exported.",
+    "This is an observed lower-body reconstruction candidate, not the complete card-space master.",
+    "Straight-edge continuation through small text occlusions is labeled interpolated; verify the secondary sources before acceptance.",
+    "All openings are Colorless-specific until cross-family evidence establishes a shared contour."
+  ],
+  "bounded_registration_candidates": [
+    "left-upper-cell",
+    "upper-left-star",
+    "upper-swept-cell",
+    "upper-small-triangle",
+    "upper-island",
+    "above-middle-star-cell",
+    "wheel-upper-left-cell",
+    "lower-left-rounded-cell",
+    "lower-left-necked-cell",
+    "lower-center-cell",
+    "lower-horizontal-cell",
+    "center-right-diamond",
+    "lower-diamond-chip",
+    "right-star-adjacent-chip",
+    "right-star-under-chip"
+  ],
+  "validation": "Inspect all three boundary overlays; counts and smooth paths alone do not validate contours."
+}

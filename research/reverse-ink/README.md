@@ -108,3 +108,34 @@ other visible card regions, family glyph accuracy,
 color, and opacity remain unresolved. User-rejected Grass and Fire glyphs are
 left out of the rejected assembled previews and explicitly marked as pending. No inferred
 period is tiled into occluded or unseen geometry.
+
+## Colorless lower-body candidate
+
+The correction now extends across the observed lower-body window in
+`drafts/colorless-network-body.svg`: 41 source-authored openings, the measured
+wheel, and its eleven glyph occurrences. It is **one family's body candidate**,
+not a full-card master or an accepted replacement for the other ten families.
+`references/colorless-body-contours.json` records each sparse path and whether
+it is visible, clipped at the analysis window, or interpolated through text.
+The latter contours are ochre/dashed in the review overlays. The renderer
+unions light openings before subtraction so overlapping contours cannot create
+spurious dark islands. This internal SVG boolean mask is not a per-card
+foreground/protection mask or a runtime integration.
+
+```powershell
+python scripts/reverse_ink/build_colorless_body.py
+python scripts/reverse_ink/refine_colorless_body.py
+python scripts/reverse_ink/build_colorless_body.py
+python scripts/reverse_ink/review_colorless_body.py
+node scripts/reverse_ink/render_colorless_body.mjs
+```
+
+`review/patterns/colorless-network-body/comparison.png` shows the exported SVG
+and all three independently registered Colorless photos. Bounded signed-edge
+registration changes only path translation, rotation and scale, never adds
+vertices or photo-texture bumps, and skips interpolated contours. Three weak
+star outlines and the below-wheel cell were re-authored from enlarged source
+grids instead of accepting an optimizer at its bounds. Remaining weak/clipped
+edges and text interpolation are still candidates. The signed-edge report is
+a diagnostic, not a certificate of accuracy. A path near a dark/light transition
+can still have incorrect shape or topology.
