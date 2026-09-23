@@ -2,19 +2,93 @@
   "schema_version": 1,
   "stage": "printed-ink-reconstruction",
   "status": "in-progress",
-  "coordinate_system": {"width": 630, "height": 880, "origin": "top-left"},
+  "coordinate_system": {
+    "width": 630,
+    "height": 880,
+    "origin": "top-left"
+  },
   "geometry_convention": "Components are positive glyph silhouettes. Ink polarity, colors and opacity are not yet assigned.",
   "families": [
-    {"id": "grass", "label": "Grass", "symbol": "components/grass-symbol.svg", "master": null, "ink": null},
-    {"id": "fire", "label": "Fire", "symbol": "components/fire-symbol.svg", "master": null, "ink": null},
-    {"id": "water", "label": "Water", "symbol": "components/water-symbol.svg", "master": null, "ink": null},
-    {"id": "lightning", "label": "Lightning", "symbol": "components/lightning-symbol.svg", "master": null, "ink": null},
-    {"id": "psychic", "label": "Psychic", "symbol": "components/psychic-symbol.svg", "master": null, "ink": null},
-    {"id": "fighting", "label": "Fighting", "symbol": "components/fighting-symbol.svg", "master": null, "ink": null},
-    {"id": "darkness", "label": "Darkness", "symbol": "components/darkness-symbol.svg", "master": null, "ink": null},
-    {"id": "colorless", "label": "Colorless", "symbol": "components/colorless-symbol.svg", "master": null, "ink": null},
-    {"id": "dragon", "label": "Dragon", "symbol": "components/dragon-symbol.svg", "master": null, "ink": null},
-    {"id": "trainer", "label": "Trainer / Poké Ball", "symbol": "components/trainer-symbol.svg", "master": null, "ink": null},
-    {"id": "metal", "label": "Metal", "symbol": "components/metal-symbol.svg", "master": null, "ink": null}
+    {
+      "id": "grass",
+      "label": "Grass",
+      "symbol": "components/grass-symbol.svg",
+      "master": null,
+      "ink": null,
+      "symbol_status": "rejected-needs-retrace",
+      "review": "../../../research/reverse-ink/review/symbols/rejected-draft-evidence/README.md"
+    },
+    {
+      "id": "fire",
+      "label": "Fire",
+      "symbol": "components/fire-symbol.svg",
+      "master": null,
+      "ink": null,
+      "symbol_status": "rejected-needs-retrace",
+      "review": "../../../research/reverse-ink/review/symbols/rejected-draft-evidence/README.md"
+    },
+    {
+      "id": "water",
+      "label": "Water",
+      "symbol": "components/water-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "lightning",
+      "label": "Lightning",
+      "symbol": "components/lightning-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "psychic",
+      "label": "Psychic",
+      "symbol": "components/psychic-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "fighting",
+      "label": "Fighting",
+      "symbol": "components/fighting-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "darkness",
+      "label": "Darkness",
+      "symbol": "components/darkness-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "colorless",
+      "label": "Colorless",
+      "symbol": "components/colorless-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "dragon",
+      "label": "Dragon",
+      "symbol": "components/dragon-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "trainer",
+      "label": "Trainer / Pok\u00c3\u00a9 Ball",
+      "symbol": "components/trainer-symbol.svg",
+      "master": null,
+      "ink": null
+    },
+    {
+      "id": "metal",
+      "label": "Metal",
+      "symbol": "components/metal-symbol.svg",
+      "master": null,
+      "ink": null
+    }
   ]
 }

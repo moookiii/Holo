@@ -38,8 +38,10 @@ it deliberately refreshes source hashes only after reviewing changed originals.
 Normalization and full-source inspection are established. The shared ten-spoke
 radial construction is measured across all eleven families. Source-derived SVG
 glyph components now exist for all eleven families, with three-reference
-comparison sheets and explicit uncertainty. Grass vein widths and Fire's small
-interior contour remain provisional and require refinement.
+comparison sheets and explicit uncertainty. The user rejected the Grass and
+Fire contours; both are marked `rejected-needs-retrace` in the asset index.
+Alternate-occurrence evidence and the required corrections are recorded in
+`review/symbols/rejected-draft-evidence/README.md`.
 These components are not full family masters. Surrounding pattern geometry,
 glyph refinement, conservative single-color estimates, and complete master validation
 are in progress. The plain Lickitung is evidence for the absence of
