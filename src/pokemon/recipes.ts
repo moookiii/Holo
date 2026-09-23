@@ -1,6 +1,6 @@
 import type { PrintVariant } from './types.ts';
 
-export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; cardIds?: readonly string[]; }
+export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
 export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; pool?: 'set' | 'energy'; }
 export interface PokemonRecipe {
   id: string; version: string; setId: string; era: string; slots: readonly PackSlot[];
@@ -36,6 +36,18 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
     ] };
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
+  { id: 'base1-english-retail', version: '1', setId: 'base1', era: 'base',
+    sources: ['https://www.cs.sjsu.edu/~stamp/cv/papers/pokemon.pdf', 'https://www.pokebeach.com/tcg/base-set/theme-decks'],
+    note: '1999 Base Set · 5 commons + 2 in-set Basic Energy + 3 uncommons + 1 rare · no reverse · holo rate estimated at 1 in 3 packs.',
+    slots: [
+      { id: 'common', count: 5, unique: true, outcomes: [{ ...outcome(1, ['Common'], 'normal'), categories: ['Pokemon', 'Trainer'] }] },
+      { id: 'energy', count: 2, outcomes: [{ ...outcome(1, ['Common'], 'normal'), categories: ['Energy'], energyTypes: ['Normal'] }] },
+      { id: 'uncommon', count: 3, unique: true, outcomes: [outcome(1, ['Uncommon'], 'normal')] },
+      { id: 'rare', count: 1, outcomes: [
+        outcome(2 / 3, ['Rare'], 'normal'),
+        { ...outcome(1 / 3, ['Holo Rare'], 'holo'), excludedCardIds: ['base1-8'] },
+      ] },
+    ] },
   scarletViolet('sv01', [.1376, .0657, .0767, .0315, .0185], 'https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Scarlet-Violet-Pull-Rates/a7702fce-dd64-4a58-beb1-0f871c853215/'),
   scarletViolet('sv02', [.1372, .0664, .0770, .0317, .0176], 'https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Paldea-Evolved-Pull-Rates/1b7d3e70-9542-4a50-8692-1661e2316521/'),
   scarletViolet('sv03', [.1361, .0663, .0760, .0313, .0192], 'https://www.tcgplayer.com/content/article/Pok%C3%83%C2%A9mon-TCG-Obsidian-Flames-Pull-Rates/e2a66999-a7b5-4621-9765-c9a132e04bd2/'),

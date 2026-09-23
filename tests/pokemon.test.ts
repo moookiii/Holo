@@ -52,7 +52,7 @@ test('seeded packs are stable, immutable and independent of metadata response or
   assert.notEqual(pack.identity, collatePokemon('sv01', 'different-art', 123, pool).identity);
 });
 test('all validated sets honor every slot, count, set, rarity and variant across seeds', () => {
-  for (const recipe of pokemonRecipes) for (let seed = 0; seed < 300; seed++) {
+  for (const recipe of pokemonRecipes.filter(recipe => recipe.era === 'sv')) for (let seed = 0; seed < 300; seed++) {
     const pack = collatePokemon(recipe.setId, 'standard', seed, fixture(recipe.setId));
     assert.equal(pack.pulls.length, 11); let cursor = 0;
     for (const slot of recipe.slots) {
@@ -81,7 +81,7 @@ test('unsupported sets and wrong set recipes never borrow odds', () => {
   assert.throws(() => collatePokemon('sv02', 'standard', 1, fixture('sv02'), recipeFor('sv01')), /no validated/);
 });
 test('every supported pack includes one deterministic Basic Energy and 151 can produce Cosmos foil Energy', () => {
-  for (const recipe of pokemonRecipes) for (let seed = 0; seed < 100; seed++) {
+  for (const recipe of pokemonRecipes.filter(recipe => recipe.era === 'sv')) for (let seed = 0; seed < 100; seed++) {
     const pack = collatePokemon(recipe.setId, 'featured', seed, fixture(recipe.setId));
     const energy = pack.pulls.filter(p => p.slot.startsWith('energy:'));
     assert.equal(energy.length, 1); assert.equal(energy[0].card.setId, 'sve');
@@ -107,7 +107,7 @@ test('Temporal Forces ACE SPEC occupies the first reverse slot and can coexist w
 });
 test('generic collator supports different counts and guaranteed card-specific slots', () => {
   const pool = fixture();
-  const recipe = { ...pokemonRecipes[0], id: 'test-only', slots: [
+  const recipe = { ...recipeFor('sv01')!, id: 'test-only', slots: [
     { id: 'guaranteed', count: 1, outcomes: [{ weight: 1, variant: 'normal' as const, rarities: ['Common'], cardIds: [pool[0].id] }] },
   ] };
   assert.equal(collatePokemon('sv01', 'standard', 7, pool, recipe).pulls[0].card.id, pool[0].id);

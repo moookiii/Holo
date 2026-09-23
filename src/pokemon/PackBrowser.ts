@@ -118,10 +118,7 @@ export class PackBrowser {
     this.screen('Booster selection');
     void this.run('Loading set metadata…', async request => {
       const set = await pokemonCatalog.set(id, request.signal); if (!this.task.current(request)) return;
-      const artwork = set.boosters.filter(booster => booster.front);
-      const options = artwork.length ? artwork : set.boosters;
-      const choice = options[crypto.getRandomValues(new Uint32Array(1))[0] % options.length];
-      this.selection.set = { ...set, boosters: [choice] }; this.heading.textContent = set.name;
+      this.selection.set = set; this.heading.textContent = set.name;
       this.showBoosters();
     }, () => this.boosters(id));
   }

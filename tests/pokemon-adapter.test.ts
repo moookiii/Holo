@@ -19,6 +19,22 @@ test('SDK adapter caches normalized data and preserves image, rarity, variant an
   assert.deepEqual(await catalog.card('fixture-1', set, signal), card); assert.equal(requests, 1);
   assert.equal('getImageURL' in card, false);
 });
+test('Base Set normalization distinguishes holo rares and in-set Basic Energy', async t => {
+  const base: PokemonSet = { ...set, id: 'base1', era: 'base', series: { id: 'base', name: 'Base' } };
+  t.mock.method(globalThis, 'fetch', async (url: string) => {
+    const id = url.split('/').at(-1);
+    return reply({ id, localId: id?.split('-')[1], name: id, set: { id: 'base1', name: 'Base Set' },
+      rarity: id === 'base1-99' ? 'Common' : 'Rare', category: id === 'base1-99' ? 'Energy' : 'Pokemon',
+      energyType: id === 'base1-99' ? 'Normal' : undefined,
+      variants: { normal: id !== 'base1-4', holo: id === 'base1-4', reverse: false } });
+  });
+  const catalog = new TcgdexAdapter(), signal = new AbortController().signal;
+  assert.equal((await catalog.card('base1-4', base, signal)).rarity, 'Holo Rare');
+  assert.equal((await catalog.card('base1-17', base, signal)).rarity, 'Rare');
+  const energy = await catalog.card('base1-99', base, signal);
+  assert.equal(energy.category, 'Energy'); assert.equal(energy.energyType, 'Normal');
+  assert.equal(energy.rarity, 'Common');
+});
 test('concurrent SDK requests bind distinct AbortSignals and stale requests do not cache adapter data', async t => {
   const signals: AbortSignal[] = []; const finish: (() => void)[] = [];
   t.mock.method(globalThis, 'fetch', async (url: string, init: RequestInit) => {

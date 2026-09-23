@@ -9,7 +9,7 @@ import { localBoosterArt } from './boosterArt.ts';
 let requestSignal: AbortSignal | undefined;
 TCGdex.fetch = async (url, init) => {
   const signal = requestSignal ?? new AbortController().signal;
-  const retrySkew = [...url].reduce((sum, character) => sum + character.charCodeAt(0), 0) % 240;
+  const retrySkew = [...String(url)].reduce((sum, character) => sum + character.charCodeAt(0), 0) % 240;
   for (let attempt = 0; ; attempt++) {
     signal.throwIfAborted();
     try {
@@ -82,8 +82,10 @@ export class TcgdexAdapter {
         if (!v.foil) foil[type] = ''; // Ordinary printing takes precedence over e.g. tin Cosmos.
       }
       if (!variants.length) throw new Error(`Print variants missing for ${id}.`);
+      // Base Set holo and non-holo rare cards share the TCGdex "Rare" label.
+      const rarity = set.id === 'base1' && card.rarity === 'Rare' && variants.includes('holo') && !variants.includes('normal') ? 'Holo Rare' : titleCase(card.rarity);
       return { id: card.id, localId: card.localId, name: card.name, setId: set.id, setName: set.name,
-        seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity: titleCase(card.rarity), category: card.category, variants, foil, evolveFrom: card.evolveFrom,
+        seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity, category: card.category, energyType: card.energyType, variants, foil, evolveFrom: card.evolveFrom,
         boosterIds: card.boosters?.map(b => b.id), front: card.image ? card.getImageURL('high', 'png') : undefined,
         thumbnail: card.image ? card.getImageURL('low', 'webp') : undefined };
     });

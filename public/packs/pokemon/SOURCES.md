@@ -1,5 +1,15 @@
 # Pokémon booster product shots
 
+## 1999 English Base Set
+
+TCGdex returned no `base1` booster objects on 2026-09-23. These are scans of genuine English Base Set long packs, with their complete silver crimp and printed front preserved. They are used for both selection and the existing wrapper preparation.
+
+- `base1-blastoise.jpg`: [Bulbagarden Archives, Blastoise long pack](https://archives.bulbagarden.net/wiki/File:Base_Set_Booster_Blastoise_Long.jpg)
+- `base1-charizard.jpg`: [Bulbagarden Archives, Charizard long pack](https://archives.bulbagarden.net/wiki/File:Base_Set_Booster_Charizard_Long.jpg)
+- `base1-venusaur.jpg`: [Bulbagarden Archives, Venusaur long pack](https://archives.bulbagarden.net/wiki/File:Base_Set_Booster_Venusaur_Long.jpg)
+
+## Scarlet & Violet
+
 TCGdex returned no booster metadata for these English sets when validated on 2026-09-22. The original representative English wrappers remain below; the additional designs listed later are now used for random selection. The images remain Pokémon product artwork. Local WebP conversion reduces transfer size without cropping the pack edges.
 
 - `sv01.webp`: [Raygun Comics product image](https://www.rayguncomics.co.uk/cdn/shop/products/Pokemon_TCG_Scarlet_Violet_Booster_Wrap_Gyarados_1500x.png?v=1674580883)
