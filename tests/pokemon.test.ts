@@ -21,6 +21,21 @@ test('SV picture holos use traced frames without a procedural rectangle over the
   assert.equal(full.maps, undefined);
   assert.equal(full.proceduralFoil, 'full');
 });
+test('SV full-art rarities use the entire printed face without an inset mask or frame', () => {
+  const card = fixture().find(c => c.rarity === 'Rare')!;
+  for (const rarity of ['Illustration Rare', 'Special Illustration Rare', 'Ultra Rare', 'Hyper Rare']) {
+    const definition = pokemonDefinition({ ...card, rarity, category: 'Trainer' }, 'holo', []);
+    assert.deepEqual(definition.layout, { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] }, rarity);
+    assert.equal(definition.maps, undefined, rarity);
+    assert.equal(definition.proceduralFoil, 'full', rarity);
+  }
+  for (const rarity of ['Rare', 'Double Rare', 'ACE SPEC Rare']) {
+    const definition = pokemonDefinition({ ...card, rarity }, 'holo', []);
+    assert.deepEqual(definition.layout?.artwork, [48/600, 82/825, 553/600, 390/825], rarity);
+  }
+  const older = pokemonDefinition({ ...card, era: 'swsh', rarity: 'Illustration Rare' }, 'holo', []);
+  assert.deepEqual(older.layout?.artwork, [.08, .10, .92, .48]);
+});
 function fixture(setId = 'sv01'): PokemonCard[] {
   return rarities.flatMap((rarity, r) => Array.from({ length: 8 }, (_, n) => ({
     id: `${setId}-${r * 10 + n}`, localId: `${r * 10 + n}`, name: `${rarity} ${n}`, setId, setName: setId,

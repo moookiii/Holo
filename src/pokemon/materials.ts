@@ -32,13 +32,14 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
   const exact = existing.find(c => c.id === authored[card.id]?.[variant]);
   const profile = exact?.profile ?? pokemonProfile(card, variant);
+  const fullArt = card.era === 'sv' && ['Illustration Rare', 'Special Illustration Rare', 'Ultra Rare', 'Hyper Rare'].includes(card.rarity);
   const suppliedMask = card.setId === 'sve' && variant === 'holo'
     ? '/cards/pokemon/energy/sv-artwork-mask.png'
     : card.era === 'sv' && variant === 'reverse' && card.category === 'Trainer'
       ? '/cards/pokemon/sv-trainer-reverse-artwork.png'
     : card.era === 'sv' && variant === 'reverse' && card.category === 'Pokemon' && card.evolveFrom
       ? '/cards/pokemon/sv-evolved-reverse-artwork.png'
-      : card.era === 'sv' && variant === 'holo' && card.category === 'Trainer'
+      : card.era === 'sv' && variant === 'holo' && card.category === 'Trainer' && !fullArt
         ? '/cards/pokemon/sv-trainer-artwork.png' : undefined;
   const id = `pokemon:${card.id}:${variant}`;
   const metadata = { ...card, variant, materialProfile: profile };
@@ -51,7 +52,7 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
       ? { foil: `/cards/pokemon/sv-${card.evolveFrom ? 'evolved' : 'basic'}-artwork.svg` } : undefined,
     // Reuse existing etched optics without borrowing Pikachu's authored relief.
     profileOverrides: profile === 'pokemon-rainbow-etched' ? { structure: { relief: 0 }, diffraction: { strength: .24 }, glints: { strength: 1.4 } } : undefined,
-    layout: card.era === 'sv' ? {
+    layout: fullArt ? { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] } : card.era === 'sv' ? {
       // Bounds registered to the 600 × 825 TCGdex front, inside the picture rails.
       artwork: [48/600, 82/825, 553/600, 390/825], innerFrame: [.035, .025, .965, .975],
     } : { artwork: [.08, .10, .92, .48], innerFrame: [.035, .025, .965, .975] },
