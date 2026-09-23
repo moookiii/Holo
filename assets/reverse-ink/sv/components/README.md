@@ -35,3 +35,18 @@ python scripts/reverse_ink/compare_symbol.py water
 The fitted controls, photo-edge residuals and per-family comparison sheets are
 in `research/reverse-ink/review/symbols/`. Fit residuals describe the selected
 photographic edge targets and must not be presented as held-out accuracy.
+
+## Colorless and Lightning
+
+The six-point Colorless star uses twelve measured vertices from Meowth, checked
+against Lickitung and Pidgey. Its top tip intersects text in the donor, so that
+tip is less certain than the exposed lower edges. The Lightning bolt uses six
+vertices from Magneton's exposed central glyph, checked against Voltorb and
+Pikachu. The latter makes the inner bend particularly clear. Both components
+use straight edges with independent sharp corners; curve smoothing is disabled.
+
+Their `references/<family>-symbol.json` specifications use explicit vertices.
+Run the same fit and compare commands with `colorless` or `lightning` in place
+of `water`. All three comparison images per family have been visually reviewed;
+text-crossed edges and photo registration differences remain visible rather
+than being removed from the comparison.

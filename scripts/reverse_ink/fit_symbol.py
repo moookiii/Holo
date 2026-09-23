@@ -29,8 +29,22 @@ def unpack(values, template):
     curves[-1,2]=values[:2]  # enforce exact closure, no near-coincident seam
     return {'start':values[:2].tolist(),'curves':curves.tolist()}
 
+def polygon_path(vertices):
+    vertices=np.array(vertices,dtype=float)
+    curves=[]
+    for start,end in zip(vertices,np.roll(vertices,-1,axis=0)):
+        curves.append([start+(end-start)/3,start+2*(end-start)/3,end])
+    return {'start':vertices[0].tolist(),'curves':np.array(curves).tolist()}
+
 def refine(path, luminance, scale, search):
-    initial=np.r_[path['start'],np.asarray(path['curves']).ravel()].astype(float)
+    polygon='vertices' in path
+    if polygon:
+        initial=np.array(path['vertices'],dtype=float).ravel()
+        path=polygon_path(path['vertices'])
+        decode=lambda values:polygon_path(values.reshape((-1,2)))
+    else:
+        initial=np.r_[path['start'],np.asarray(path['curves']).ravel()].astype(float)
+        decode=lambda values:unpack(values,path)
     points=sample_path(path)
     tangent=np.roll(points,-1,axis=0)-np.roll(points,1,axis=0)
     normals=np.c_[-tangent[:,1],tangent[:,0]]
@@ -51,13 +65,13 @@ def refine(path, luminance, scale, search):
     strength=edges[np.arange(len(points)),indices]
     weights=np.clip(strength/(np.median(strength)+1e-6),.15,2)
     def residual(values):
-        current=unpack(values,path)
+        current=decode(values)
         fitted=sample_path(current)
         # Point-to-normal residual permits tangential redistribution of controls.
         distance=np.sum((fitted-targets)*normals,axis=1)
         joins=[]
         curves=np.array(current['curves'])
-        for i in range(len(curves)-1):
+        for i in range(0 if polygon else len(curves)-1):
             incoming=curves[i,2]-curves[i,1]
             outgoing=curves[i+1,0]-curves[i,2]
             # Collinear, forward-facing tangents keep authored smooth joins
@@ -67,7 +81,7 @@ def refine(path, luminance, scale, search):
                           min(float(incoming@outgoing),0)/denominator*6])
         return np.r_[distance*np.sqrt(weights),(values-initial)*.06,joins]
     result=least_squares(residual,initial,bounds=(initial-search,initial+search),loss='soft_l1',f_scale=.6,max_nfev=200)
-    refined=unpack(result.x,path)
+    refined=decode(result.x)
     distances=np.linalg.norm(sample_path(refined)-targets,axis=1)
     return refined,dict(median_target_distance=float(np.median(distances)),
                        p95_target_distance=float(np.percentile(distances,95)),
