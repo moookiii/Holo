@@ -9,17 +9,21 @@ import { localBoosterArt } from './boosterArt.ts';
 let requestSignal: AbortSignal | undefined;
 TCGdex.fetch = async (url, init) => {
   const signal = requestSignal ?? new AbortController().signal;
+  const retrySkew = [...url].reduce((sum, character) => sum + character.charCodeAt(0), 0) % 240;
   for (let attempt = 0; ; attempt++) {
     signal.throwIfAborted();
     try {
       const response = await fetch(url, { ...init, headers: { Accept: 'application/json' }, signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]) });
       if (response.ok) return response;
       if (response.status !== 429 && response.status < 500) throw new PermanentCatalogError(`TCGdex request failed (${response.status}).`);
-      if (attempt === 2) throw new PermanentCatalogError('TCGdex is temporarily unavailable. Please retry.');
+      if (attempt === 4) throw new PermanentCatalogError('TCGdex is temporarily unavailable. Please retry.');
     } catch (error) {
-      if (signal.aborted || error instanceof PermanentCatalogError || attempt === 2) throw error;
+      if (signal.aborted || error instanceof PermanentCatalogError) throw error;
+      if (attempt === 4) throw new PermanentCatalogError('TCGdex network access failed. Retry to continue from the cached cards.');
     }
-    await pause(350 * 2 ** attempt, signal);
+    // Offset concurrent card retries so a temporary gateway/CORS failure does
+    // not make the entire set retry in one synchronized burst.
+    await pause(350 * 2 ** attempt + retrySkew, signal);
   }
 };
 class PermanentCatalogError extends Error {}
@@ -86,7 +90,7 @@ export class TcgdexAdapter {
   }
   cards(set: PokemonSet, signal: AbortSignal, progress: (done: number, total: number) => void = () => {}) {
     let done = 0;
-    return boundedMap(set.cardIds, 6, signal, async id => {
+    return boundedMap(set.cardIds, 3, signal, async id => {
       const card = await this.card(id, set, signal); progress(++done, set.cardIds.length); return card;
     });
   }
