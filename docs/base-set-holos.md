@@ -14,7 +14,7 @@ and their authoring tools are being edited separately and are outside this chang
   and thick soft horizontal reflections behind the stars.
 
 The manufacturing field uses unequal eight-ray stars with compact centers and
-occasional hollow four-point impressions, following the stars on the card fronts.
+occasional thin, irregular long-ray bursts, following the stars on the card fronts.
 Unequal, softly broken horizontal strokes sit beneath them, with finer grain.
 Star positions stay fixed. Light, viewing angle and the local grating determine
 which wavelengths and neutral reflections are visible. No colored star decals,

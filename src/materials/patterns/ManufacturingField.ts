@@ -340,23 +340,23 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
       grain = .75;
     } else if (spec.kind === 'base-set-star') {
       // The original fronts show unequal, narrow eight-ray flashes with a
-      // compact bright core, plus occasional hollow four-ray impressions.
+      // compact bright core. Some flashes have longer, irregular vertical rays.
       const sx = x * spec.scale, sy = y * spec.scale;
       const gx = Math.floor(sx), gy = Math.floor(sy);
       const a = sx - gx - (.24 + random(gx, gy, seed) * .52);
       const b = sy - gy - (.24 + random(gx, gy, seed + 5) * .52);
       const r = random(gx, gy, seed + 17), large = r > .75;
       const radius = large ? .14 + Math.pow((r - .75) / .25, 1.2) * .12 : .008 + r * .013;
-      const hollow = large && random(gx, gy, seed + 23) > .82;
-      const cross = (aa: number, bb: number, size: number, power: number) => Math.pow(Math.abs(aa) / size, power) + Math.pow(Math.abs(bb) / size, power);
+      const spiky = large && random(gx, gy, seed + 23) > .82;
       const da = (a + b) * Math.SQRT1_2, db = (b - a) * Math.SQRT1_2;
+      const rayWidth = spiky ? .09 : .20;
       const rays = Math.min(
-        Math.abs(a) / radius + Math.abs(b) / (radius * .20),
-        Math.abs(a) / (radius * .18) + Math.abs(b) / (radius * 1.45),
-        Math.abs(da) / (radius * .66) + Math.abs(db) / (radius * .22),
-        Math.abs(da) / (radius * .23) + Math.abs(db) / (radius * .60),
+        Math.abs(a) / radius + Math.abs(b) / (radius * rayWidth),
+        Math.abs(a) / (radius * rayWidth) + Math.abs(b) / (radius * (spiky ? 1.75 : 1.45)),
+        Math.abs(da) / (radius * (spiky ? .43 : .66)) + Math.abs(db) / (radius * (spiky ? .14 : .22)),
+        Math.abs(da) / (radius * (spiky ? .14 : .23)) + Math.abs(db) / (radius * (spiky ? .49 : .60)),
         Math.hypot(a, b) / (radius * .23));
-      const shapeDistance = large ? (hollow ? Math.abs(cross(a, b * .73, radius * .82, .60) - 1) * 5.5 : rays) : Math.hypot(a, b) / radius;
+      const shapeDistance = large ? rays : Math.hypot(a, b) / radius;
       const edge = .025 + spec.scale / height / radius * .65;
       const star = 1 - smooth(1 - edge, 1 + edge, shapeDistance);
       const orientation = random(gx, gy, seed + 35) * Math.PI;
@@ -382,7 +382,7 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
       const sheetY = (broad - .5) * .08 + (phase - .5) * .24 * stroke;
       angle = star > .01 ? orientation : Math.PI / 2 + (phase - .5) * .10;
       spacing = star > .01 ? .90 + r * .22 : .88 + phase * .25;
-      const motif = star * (hollow ? .50 : .86);
+      const motif = star * (spiky ? .65 : .86);
       amplitude = (.007 + band * .012 + micro * .002 + stroke * (.055 + phase * .14)) * (1 - star) + motif;
       nx = (broad - .5) * .012 * (1 - star) + (random(gx, gy, seed + 41) - .5) * .22 * star;
       ny = sheetY * (1 - star) + (random(gx, gy, seed + 43) - .5) * .22 * star;
