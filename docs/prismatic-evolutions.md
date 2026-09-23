@@ -3,8 +3,8 @@
 This is an **incomplete surface implementation**, with a complete local retail
 catalog and registered pack recipe. The pack browser lists the set and explicitly
 keeps opening unavailable until the in-scope foil surfaces are finished. There
-are currently **0 of 268 authored foil printings** registered. No new Prismatic
-material profile or production mask is claimed complete.
+is currently **1 of 268 authored foil printings** registered: Umbreon 059 regular
+holo. The complete etched/ball/premium surface pass is still outstanding.
 
 ## Catalog and pack integration
 
@@ -17,7 +17,7 @@ SHA-256 records are in `public/cards/pokemon/prismatic-evolutions/`. Rebuild wit
 | --- | ---: | ---: | --- |
 | Common | 46 | — | Nonfoil front ready; pack only |
 | Uncommon | 33 | — | Nonfoil front ready; pack only |
-| Rare | 21 | — | Card-specific picture/border masks pending |
+| Rare | 21 | — | Umbreon 059 authored; 20 picture/border masks pending |
 | Double Rare ex | 25 | — | Exact ex/Tera foil regions pending |
 | ACE SPEC | 6 | — | Exact printed-region masks pending |
 | Ultra Rare full-art Trainers | 12 | — | Photo evidence and authored relief pending |
@@ -39,9 +39,14 @@ within each pool and independent replacement slots are explicit assumptions.
 Undocumented God/Demigod event rates are not invented. Incomplete checklists fail
 before collation; missing material assets must never change the selected pulls.
 
+All four real wrapper fronts and the set logo are local; asset provenance is
+in `public/packs/pokemon/sv08.5-sources.json`. Fronts retain full source dimensions
+and transparency through lossless WebP conversion.
+
 The full catalog is not inserted in the picker. Prismatic nonfoil pulls and
 deferred standard reverses are hidden there while remaining inspectable by pack
-identity. A future registered foil surface can appear after being pulled.
+identity. Only exact authored foil entries enter the picker through
+`prismaticPickerCards()`; currently that is Umbreon 059 regular holo.
 
 ## Standard reverse remains deferred
 
@@ -54,10 +59,16 @@ does not authorize previewing other incomplete foil printings: those throw
 
 ## Exact surface contract
 
-`PrismaticCatalog.ts` names these intended profile destinations; **these are not
-yet implemented renderer profiles**:
+`prismatic_regular_holo` is implemented using the existing horizontal optical
+sheet, restrained diffraction, zero glints and zero relief. Umbreon 059 has an
+individual subject/background/rim mask plus opaque footer protection. The
+evolution portrait, framing and rules are excluded. Still-photo reconstruction
+does not claim measured optical constants; moving-reference calibration remains
+pending. Its source/region manifest is `maps/059-holo-evidence.json`.
 
-- `prismatic_regular_holo`, `prismatic_ex_holo`, `prismatic_ace_spec`
+`PrismaticCatalog.ts` also names these **pending renderer profiles**:
+
+- `prismatic_ex_holo`, `prismatic_ace_spec`
 - `prismatic_pokeball_reverse`, `prismatic_masterball_reverse`
 - `prismatic_fullart_texture`, `prismatic_sir_texture`, `prismatic_gold`
 
@@ -66,7 +77,7 @@ fallbacks cannot silently substitute Mirage or Rainbow Rare. Each ready entry
 must carry its exact coverage, print protection, layout and evidence manifest;
 textured entries also require height, normal, direction and roughness maps.
 The normal existing card renderer/CPU map pipeline will consume those assets.
-No speculative profile constants, random relief or generic etching are added.
+No random relief or generic etching is added.
 
 ## Physical photo review
 
@@ -107,6 +118,6 @@ automated gallery descriptions and app grading claims are not treated as proof.
 Each photo was visually inspected. No uploaded photo pixels, glare or printed
 illustration contours have been converted into guessed height maps.
 
-Remaining work: finish exact-card multi-angle evidence, author the 268 foil
+Remaining work: finish exact-card multi-angle evidence, author the remaining 267 foil
 surfaces (including 216 textured printings), calibrate the distinct profiles,
 compare rendered tilts against references, and then enable pack opening.

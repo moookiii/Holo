@@ -21,6 +21,7 @@ import { getPack, resolvePackContents, type PackDefinition } from './pack/PackDe
 import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparation';
 import { packIdentity, prepareExactPack, type PreparedPack } from './pack/PreparedPack';
 import type { PackBrowser } from './pokemon/PackBrowser';
+import { prismaticPickerCards } from './pokemon/PrismaticSurfaces';
 
 async function start() {
   startupMark('modulesReady');
@@ -39,7 +40,7 @@ async function start() {
   const factory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
   const cpuPreparation = new CardCpuPreparation(profiles);
   const { assets, maps: mapLoader } = factory;
-  const cards = [...builtInCards];
+  const cards = [...builtInCards, ...prismaticPickerCards()];
   const initialCard = cards.find(card => card.id === 'pikachu-vmax-vivid-voltage') ?? cards[0];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);

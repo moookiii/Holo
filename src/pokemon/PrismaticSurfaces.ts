@@ -17,7 +17,15 @@ export interface PrismaticSurface {
 
 // Populate only after the per-printing photo, map and rendered-tilt review.
 // No generic Mirage/rainbow-etched fallback may stand in for a missing surface.
-const surfaces: Readonly<Record<string, PrismaticSurface>> = {};
+const surfaces: Readonly<Record<string, PrismaticSurface>> = {
+  'sv08.5-059:holo': {
+    profile: 'prismatic_regular_holo',
+    maps: { foil: `${PRISMATIC_ASSETS}/maps/059-holo-foil.svg`, protection: `${PRISMATIC_ASSETS}/maps/059-holo-protection.png` },
+    layout: { artwork: [49 / 600, 94 / 825, 552 / 600, 389 / 825], innerFrame: [23 / 600, 23 / 825, 577 / 600, 802 / 825] },
+    mapSettings: { embossStrength: 0, normalScale: 0 },
+    evidence: `${PRISMATIC_ASSETS}/maps/059-holo-evidence.json`,
+  },
+};
 export const prismaticSurfaceKey = (id: string, variant: PrintVariant) => `${id}:${variant}`;
 
 export class PrismaticSurfaceUnavailable extends Error {
@@ -69,4 +77,10 @@ export function prismaticSurfaceProgress() {
   const missing = required.filter(printing => !surfaces[prismaticSurfaceKey(printing.cardId, printing.variant)]);
   return { required: required.length, ready: required.length - missing.length, missing,
     complete: missing.length === 0 };
+}
+
+/** Only authored holo printings enter the picker. The full pool stays in packs. */
+export function prismaticPickerCards(): CardDefinition[] {
+  return prismaticPrintings.filter(printing => surfaces[prismaticSurfaceKey(printing.cardId, printing.variant)])
+    .map(printing => prismaticDefinition(printing.cardId, printing.variant));
 }

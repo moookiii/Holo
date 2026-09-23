@@ -8,7 +8,8 @@ import { collatePokemon } from '../src/pokemon/collator.ts';
 import { TcgdexAdapter } from '../src/pokemon/TcgdexAdapter.ts';
 import { recipeFor } from '../src/pokemon/recipes.ts';
 import { pokemonDefinition, pokemonProfile } from '../src/pokemon/materials.ts';
-import { PrismaticSurfaceUnavailable, prismaticSurfaceProgress } from '../src/pokemon/PrismaticSurfaces.ts';
+import { PrismaticSurfaceUnavailable, prismaticSurfaceProgress, prismaticPickerCards } from '../src/pokemon/PrismaticSurfaces.ts';
+import { prismaticProfiles } from '../src/materials/profiles/prismatic.ts';
 import { packAvailability } from '../src/pokemon/availability.ts';
 
 const path = new URL('../public/cards/pokemon/prismatic-evolutions/', import.meta.url);
@@ -106,7 +107,7 @@ test('ordinary-pack collation preserves real slots, independent ball hits, all r
 test('Prismatic never inherits generic materials or makes a missing surface look ready', () => {
   const progress = prismaticSurfaceProgress();
   assert.equal(progress.required, 268);
-  assert.equal(progress.ready, 0);
+  assert.equal(progress.ready, 1);
   assert.equal(packAvailability('sv08.5').ready, false);
   assert.match(packAvailability('sv08.5').detail, /card-specific foil surfaces/);
   assert.equal(packAvailability('sv01').ready, true);
@@ -141,4 +142,24 @@ test('nonfoil cards remain pack-only and deferred reverses preserve their identi
     assert.throws(() => pokemonDefinition({ ...card, variants: ['holo'] }, 'holo', [], 'sv08.5'), /Invalid/);
     assert.throws(() => pokemonDefinition({ ...card, variants: ['pokeball-reverse'] }, 'pokeball-reverse', [], 'sv08.5'), /Invalid/);
   }
+});
+
+test('authored regular holo resolves only its exact printing and preserves a foil-only picker', () => {
+  const entries = prismaticPickerCards();
+  assert.deepEqual(entries.map(card => card.id), ['pokemon:sv08.5-059:holo']);
+  const card = entries[0];
+  assert.equal(card.pickerHidden, false);
+  assert.equal(card.profile, 'prismatic_regular_holo');
+  assert.equal(card.maps?.height, undefined);
+  assert.equal(card.maps?.normal, undefined);
+  assert.equal(card.mapSettings?.embossStrength, 0);
+  for (const map of Object.values(card.maps ?? {})) assert.ok(existsSync(`public${map}`));
+  const evidence = JSON.parse(readFileSync(new URL('maps/059-holo-evidence.json', path), 'utf8'));
+  assert.equal(evidence.cardId, card.pokemon?.id);
+  assert.equal(evidence.variant, card.pokemon?.variant);
+  const profile = prismaticProfiles.find(profile => profile.id === card.profile)!;
+  assert.equal(profile.structure.relief, 0);
+  assert.equal(profile.glints.strength, 0);
+  assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-059'), 'masterball-reverse', entries), PrismaticSurfaceUnavailable);
+  assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-059'), 'pokeball-reverse', entries), PrismaticSurfaceUnavailable);
 });
