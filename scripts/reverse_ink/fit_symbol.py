@@ -14,6 +14,7 @@ import numpy as np
 from scipy.optimize import least_squares
 from PIL import Image, ImageDraw
 from normalize import ROOT, DATA
+from analytic_symbols import MODELS
 
 def sample_path(path, samples=24):
     start=np.array(path['start'],dtype=float); chunks=[]
@@ -37,6 +38,8 @@ def polygon_path(vertices):
     return {'start':vertices[0].tolist(),'curves':np.array(curves).tolist()}
 
 def refine(path, luminance, scale, search):
+    sharp_joins=path.get('sharp_joins',[])
+    trusted_intervals=path.get('trusted_y_intervals')
     polygon='vertices' in path
     if polygon:
         initial=np.array(path['vertices'],dtype=float).ravel()
@@ -64,6 +67,10 @@ def refine(path, luminance, scale, search):
     targets=sample[np.arange(len(points)),indices]
     strength=edges[np.arange(len(points)),indices]
     weights=np.clip(strength/(np.median(strength)+1e-6),.15,2)
+    if trusted_intervals:
+        trusted=np.zeros(len(points),dtype=bool)
+        for lower,upper in trusted_intervals:trusted|=(points[:,1]>=lower)&(points[:,1]<=upper)
+        weights*=trusted
     def residual(values):
         current=decode(values)
         fitted=sample_path(current)
@@ -72,6 +79,7 @@ def refine(path, luminance, scale, search):
         joins=[]
         curves=np.array(current['curves'])
         for i in range(0 if polygon else len(curves)-1):
+            if i in sharp_joins:continue
             incoming=curves[i,2]-curves[i,1]
             outgoing=curves[i+1,0]-curves[i,2]
             # Collinear, forward-facing tangents keep authored smooth joins
@@ -92,6 +100,40 @@ def svg_path(path):
     fmt=lambda p:' '.join(f'{v:.4f}' for v in p)
     return 'M '+fmt(path['start'])+' '+' '.join('C '+fmt(np.array(c).ravel()) for c in path['curves'])+' Z'
 
+def refine_analytic(spec,luminance,scale):
+    model=MODELS[spec['analytic_model']]
+    initial=np.array(spec['parameters'],dtype=float)
+    points=np.concatenate([sample_path(p) for p in model(initial)])
+    tangents=[]
+    for path in model(initial):
+        p=sample_path(path);tangents.append(np.roll(p,-1,axis=0)-np.roll(p,1,axis=0))
+    tangent=np.concatenate(tangents);normals=np.c_[-tangent[:,1],tangent[:,0]]
+    normals/=np.maximum(np.linalg.norm(normals,axis=1)[:,None],.001)
+    offsets=np.linspace(-spec.get('search_distance',2),spec.get('search_distance',2),41)
+    coords=points[:,None]+offsets[None,:,None]*normals[:,None]
+    def read(p):return cv2.remap(luminance,(p[:,:,0]*scale).astype(np.float32),(p[:,:,1]*scale).astype(np.float32),cv2.INTER_LINEAR)
+    strength=abs(read(coords+normals[:,None]*.65)-read(coords-normals[:,None]*.65))
+    idx=(strength-abs(offsets)[None]*.001).argmax(axis=1)
+    targets=coords[np.arange(len(points)),idx]
+    weights=np.clip(strength[np.arange(len(points)),idx]/max(np.median(strength.max(axis=1)),.001),.15,1.5)
+    if 'trusted_y_intervals' in spec:
+        trusted=np.zeros(len(points),dtype=bool)
+        for lower,upper in spec['trusted_y_intervals']:
+            trusted|=(points[:,1]>=lower)&(points[:,1]<=upper)
+        weights*=trusted
+    def residual(values):
+        fitted=np.concatenate([sample_path(p) for p in model(values)])
+        return np.r_[np.sum((fitted-targets)*normals,axis=1)*np.sqrt(weights),(values-initial)*.15]
+    bounds=np.array(spec['parameter_bounds'],dtype=float)
+    result=least_squares(residual,initial,bounds=(bounds[:,0],bounds[:,1]),loss='soft_l1',f_scale=.5,max_nfev=200)
+    paths=model(result.x)
+    distance=abs(np.sum((np.concatenate([sample_path(p) for p in paths])-targets)*normals,axis=1))
+    return paths,[{'analytic_model':spec['analytic_model'],'fitted_parameters':result.x.tolist(),
+                   'median_normal_target_distance':float(np.median(distance)),
+                   'p95_normal_target_distance':float(np.percentile(distance,95)),
+                   'trusted_sample_count':int(np.count_nonzero(weights)),
+                   'warning':'Constrained source-photo fit; text-covered arcs are inferred from exposed circular arcs.'}]
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('spec',type=Path)
@@ -104,9 +146,12 @@ def main():
     rgb=np.array(crop,dtype=np.float32)/255
     lum=cv2.GaussianBlur(rgb @ np.float32([.2126,.7152,.0722]),(0,0),.8)
     paths=[];metrics=[]
-    for path in spec['paths']:
-        refined,metric=refine(path,lum,scale,spec.get('search_distance',2))
-        paths.append(refined);metrics.append(metric)
+    if 'analytic_model' in spec:
+        paths,metrics=refine_analytic(spec,lum,scale)
+    else:
+        for path in spec['paths']:
+            refined,metric=refine(path,lum,scale,spec.get('search_distance',2))
+            paths.append(refined);metrics.append(metric)
     out=DATA/'review/symbols';out.mkdir(parents=True,exist_ok=True)
     preview=crop.resize((round(w*6),round(h*6)),Image.Resampling.LANCZOS)
     draw=ImageDraw.Draw(preview)

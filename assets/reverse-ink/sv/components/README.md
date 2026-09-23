@@ -50,3 +50,19 @@ Run the same fit and compare commands with `colorless` or `lightning` in place
 of `water`. All three comparison images per family have been visually reviewed;
 text-crossed edges and photo registration differences remain visible rather
 than being removed from the comparison.
+
+## Trainer / Poké Ball and Darkness
+
+The Trainer glyph has concentric circular boundaries and a diagonal dividing
+band. The fitted Helix Fossil parameters are retained as editable measurements;
+the resulting SVG uses sparse circular Bézier arcs. The small central annulus
+is preserved, including its transparent center. Energy Sticker and Old Amber
+confirm the structure and line thickness within their photographic limits.
+
+Darkness uses seven hand-authored cubic segments. An initial forced two-circle
+model was rejected because it missed visible edges. In the final source fit,
+only boundary samples above and below Koffing's rules line influence the fit.
+Those are offline measurement intervals, not generated per-card foreground or
+protection masks. Grimer and Ekans support the exposed perimeter. All three
+references obscure part of the inner boundary, so the connecting curve there
+has lower confidence and remains a documented inference.
