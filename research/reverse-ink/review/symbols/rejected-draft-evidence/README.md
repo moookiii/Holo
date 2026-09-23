@@ -51,3 +51,15 @@ still a revision candidate: Caterpie text covers central branches, Oddish lacks
 accepted ring registration, and the upper-right vein endpoint needs a more
 precise alternate-occurrence alignment. The index deliberately retains the
 rejected status until that evidence supports the replacement. Fire is unchanged.
+
+## Fire alternate interior trace
+
+`references/fire-alternate-interior.json` now records a separate boundary trace
+of Vulpix's unobscured upper-left interior cutout. Run it through `fit_symbol.py`
+to reproduce `../fire-alternate-interior-fit.png` and its numeric report.
+The specification uses `evidence_only: true`, so it cannot add a twelfth family
+component or overwrite the central Fire SVG. Its two upper pointed lobes and
+rounded lower bowl can now be aligned numerically to the central occurrence.
+The left-side notch is less sharply resolved and remains uncertain. This is
+source-space evidence; the central Fire draft is still rejected until alignment
+and independent reference checks support the replacement.

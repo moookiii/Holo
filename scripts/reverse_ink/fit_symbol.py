@@ -161,6 +161,9 @@ def main():
     preview.save(out/f"{spec['family']}-fit.png")
     document=dict(spec=spec,refined_paths=paths,metrics=metrics,status='component-needs-multiple-reference-review')
     (out/f"{spec['family']}.json").write_text(json.dumps(document,indent=2)+'\n')
+    if spec.get('evidence_only', False):
+        print(json.dumps(metrics,indent=2))
+        return
     assets=ROOT/'assets/reverse-ink/sv/components';assets.mkdir(parents=True,exist_ok=True)
     content=(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}">\n'
              f'<title>{spec["family"]} symbol geometry — source-derived component</title>\n'
