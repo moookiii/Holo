@@ -33,7 +33,10 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
   const exact = existing.find(c => c.id === authored[card.id]?.[variant]);
   const profile = exact?.profile ?? pokemonProfile(card, variant);
   const fullArt = card.era === 'sv' && ['Illustration Rare', 'Special Illustration Rare', 'Ultra Rare', 'Hyper Rare'].includes(card.rarity);
-  const suppliedMask = card.setId === 'sve' && variant === 'holo'
+  const fullArtBasic = fullArt && variant === 'holo' && card.category === 'Pokemon' && !card.evolveFrom;
+  const suppliedMask = fullArtBasic
+    ? '/cards/pokemon/sv-full-art-basic-foil.svg'
+    : card.setId === 'sve' && variant === 'holo'
     ? '/cards/pokemon/energy/sv-artwork-mask.png'
     : card.era === 'sv' && variant === 'reverse' && card.category === 'Trainer'
       ? '/cards/pokemon/sv-trainer-reverse-artwork.png'
