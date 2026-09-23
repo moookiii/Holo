@@ -13,9 +13,9 @@ and their authoring tools are being edited separately and are outside this chang
   stars with unequal sizes, occasional faint eight-point bursts and pinpoints,
   and thick soft horizontal reflections behind the stars.
 
-The manufacturing field uses four-point astroids for the prominent motifs, with
-only occasional secondary eight-point bursts. Broad interrupted horizontal
-ribbons supply correlated optical inclinations; fine grain is subordinate.
+The manufacturing field uses unequal eight-ray stars with compact centers and
+occasional hollow four-point impressions, following the stars on the card fronts.
+Unequal, softly broken horizontal strokes sit beneath them, with finer grain.
 Star positions stay fixed. Light, viewing angle and the local grating determine
 which wavelengths and neutral reflections are visible. No colored star decals,
 time-driven sparkle, raised relief or image hologram are used.
@@ -25,6 +25,8 @@ coupling to the aggregate surface normal to avoid embossed-looking star edges.
 Blastoise's backing tint follows the supplied blue-violet reference. This remains
 a visual reconstruction (`reference-pending`), not a measured optical calibration.
 The legacy Galaxy-Star and Cosmos treatments retain their own fields and defaults.
+No card-front image is sampled into the manufacturing field; this prevents print
+and text from appearing as spurious reflected imagery.
 
 ## Verification
 
