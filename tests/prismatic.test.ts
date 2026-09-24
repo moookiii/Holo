@@ -107,7 +107,7 @@ test('ordinary-pack collation preserves real slots, independent ball hits, all r
 test('Prismatic never inherits generic materials or makes a missing surface look ready', () => {
   const progress = prismaticSurfaceProgress();
   assert.equal(progress.required, 268);
-  assert.equal(progress.ready, 11);
+  assert.equal(progress.ready, 12);
   assert.equal(packAvailability('sv08.5').ready, false);
   assert.match(packAvailability('sv08.5').detail, /card-specific foil surfaces/);
   assert.equal(packAvailability('sv01').ready, true);
@@ -146,7 +146,7 @@ test('nonfoil cards remain pack-only and deferred reverses preserve their identi
 
 test('authored regular holo resolves only its exact printing and preserves a foil-only picker', () => {
   const entries = prismaticPickerCards();
-  assert.deepEqual(entries.map(card => card.id), ['005', '013', '022', '025', '059', '116', '117', '119', '128', '129', '131'].map(n => `pokemon:sv08.5-${n}:holo`));
+  assert.deepEqual(entries.map(card => card.id), ['005', '013', '022', '025', '029', '059', '116', '117', '119', '128', '129', '131'].map(n => `pokemon:sv08.5-${n}:holo`));
   const card = entries.find(card => card.id === 'pokemon:sv08.5-059:holo')!;
   assert.equal(card.pickerHidden, false);
   assert.equal(card.profile, 'prismatic_regular_holo');
@@ -166,7 +166,7 @@ test('authored regular holo resolves only its exact printing and preserves a foi
 
 test('regular holo foreground windows and print protection stay specific to each card', () => {
   const hashes = new Set<string>();
-  for (const number of ['005', '013', '022', '025']) {
+  for (const number of ['005', '013', '022', '025', '029']) {
     const card = pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'holo', []);
     const evidence = JSON.parse(readFileSync(new URL(`maps/${number}-holo-evidence.json`, path), 'utf8'));
     assert.equal(card.profile, 'prismatic_regular_holo');
@@ -182,7 +182,7 @@ test('regular holo foreground windows and print protection stay specific to each
     hashes.add(evidence.maps[`${number}-holo-foil.png`]);
     assert.throws(() => pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'masterball-reverse', []), PrismaticSurfaceUnavailable);
   }
-  assert.equal(hashes.size, 4);
+  assert.equal(hashes.size, 5);
 });
 
 test('all six ACE SPEC printings use individual coverage and no invented relief', () => {
