@@ -35,14 +35,18 @@ try {
   for (const photo of registration.photos) {
     const option = document.createElement('option');
     option.value = photo.file;
-    option.textContent = photo.source.includes('user-01') ? 'Your directional photograph' : `Photograph ${photo.source.replace('atticus-133-', '').split('.')[0].toUpperCase()}`;
+    option.textContent = photo.source.includes('user-01') ? 'Your directional photograph' : `Photograph ${photo.source.replace('atticus-133-', '').split('.')[0].toUpperCase()}${photo.closeUp ? ' · close-up' : ''}`;
     reference.append(option);
   }
   reference.addEventListener('change', () => {
     const photo = registration.photos.find(photo => photo.file === reference.value);
     for (const image of document.querySelectorAll('.card img')) image.src = photo ? `${base}${photo.file}` : front;
+    const [x0, y0, x1, y1] = photo?.printBounds ?? [0, 0, 600, 825];
+    for (const overlay of document.querySelectorAll('.coverage, .trace-guide')) {
+      overlay.style.clipPath = `inset(${y0/825*100}% ${(600-x1)/6}% ${(825-y1)/825*100}% ${x0/6}%)`;
+    }
     note.textContent = photo
-      ? `${photo.observed} Alignment median: ${photo.medianErrorPrintPixels.toFixed(2)} print pixels. Compare individual lines visually; alignment does not establish relief.`
+      ? `${photo.observed} ${photo.closeUp ? 'Blank areas were outside this close-up. ' : ''}Alignment median: ${photo.medianErrorPrintPixels.toFixed(2)} print pixels. Compare individual lines visually; alignment does not establish relief.`
       : 'Photographs are aligned for comparison only. None is a renderer texture.';
   });
 } catch (error) {
