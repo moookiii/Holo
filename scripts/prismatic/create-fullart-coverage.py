@@ -6,9 +6,9 @@ typography uses front pixels. The exact-card opaque contours are vector paths.
 from pathlib import Path
 import hashlib
 import json
-import xml.etree.ElementTree as ET
+import re
 import numpy as np
-from PIL import Image
+from PIL import Image, ImageDraw
 from scipy.ndimage import maximum_filter, binary_fill_holes
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -16,24 +16,52 @@ ASSETS = ROOT / 'public/cards/pokemon/prismatic-evolutions'
 DATA = json.loads(Path(__file__).with_name('fullart-regions.json').read_text())
 REFERENCES = json.loads((ROOT / 'research/prismatic-evolutions/references.json').read_text())
 PHOTOS = {p['file']: p for p in REFERENCES['photos']}
+SCALE = 4
+
+
+def draw_contour(draw, contour, value):
+    """Rasterize authored closed contours with subpixel edge antialiasing.
+
+    Coordinates stay in the 600x825 print master. Curves describe coverage
+    boundaries only; they are never used to invent physical etched linework.
+    """
+    tokens = re.findall(r'[MLQCZ]|-?\d*\.?\d+', contour)
+    cursor, points, current = 0, [], np.zeros(2)
+    while cursor < len(tokens):
+        command = tokens[cursor]
+        cursor += 1
+        if command == 'Z':
+            if len(points) < 3:
+                raise ValueError('A coverage contour needs at least three points')
+            draw.polygon([(round(x*SCALE), round(y*SCALE)) for x, y in points], fill=value)
+            points = []
+            continue
+        count = {'M': 2, 'L': 2, 'Q': 4, 'C': 6}[command]
+        controls = np.array([float(v) for v in tokens[cursor:cursor+count]]).reshape(-1, 2)
+        cursor += count
+        if command in ('M', 'L'):
+            points.append(tuple(controls[0]))
+        else:
+            for t in np.linspace(0, 1, 64)[1:]:
+                point = ((1-t)**2*current + 2*(1-t)*t*controls[0] + t*t*controls[1]) if command == 'Q' else ((1-t)**3*current + 3*(1-t)**2*t*controls[0] + 3*(1-t)*t*t*controls[1] + t**3*controls[2])
+                points.append(tuple(point))
+        current = controls[-1]
+    if points:
+        raise ValueError('Coverage contours must be explicitly closed')
 
 for number, regions in DATA['cards'].items():
-    svg = ET.Element('svg', xmlns='http://www.w3.org/2000/svg', width='1200', height='1650', viewBox='0 0 600 825')
-    ET.SubElement(svg, 'title').text = f'{regions["name"]} {number}/131 full-art foil coverage only; etched relief pending'
-    ET.SubElement(svg, 'rect', width='600', height='825', fill='black')
-    ET.SubElement(svg, 'rect', width='600', height='825', rx='25', fill='white')
+    foil = Image.new('L', (600*SCALE, 825*SCALE))
+    draw = ImageDraw.Draw(foil)
+    draw.rounded_rectangle((0, 0, foil.width-1, foil.height-1), radius=25*SCALE, fill=255)
     for region in regions['opaqueRegions']:
-        path = ET.SubElement(svg, 'path', d=region['path'], fill='black')
-        ET.SubElement(path, 'title').text = region['name']
+        draw_contour(draw, region['path'], 0)
     # Small transmissive features can sit inside a protected area. Keep these
     # explicit and card-specific; never infer foil from dark artwork pixels.
     for region in regions.get('foilIslands', []):
-        path = ET.SubElement(svg, 'path', d=region['path'], fill='white')
-        ET.SubElement(path, 'title').text = region['name']
-    ET.indent(svg, space='  ')
+        draw_contour(draw, region['path'], 255)
     output = ASSETS / 'maps'
-    foil_path = output / f'{number}-holo-foil.svg'
-    foil_path.write_text(ET.tostring(svg, encoding='unicode') + '\n', encoding='utf-8')
+    foil_path = output / f'{number}-holo-foil.png'
+    foil.resize((1200, 1650), Image.Resampling.LANCZOS).save(foil_path, optimize=True)
 
     rgb = np.asarray(Image.open(ASSETS / f'{number}.png').convert('RGBA').convert('RGB'), dtype=np.float32)
     protection = np.zeros((825, 600), dtype=np.float32)

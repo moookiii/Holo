@@ -179,7 +179,7 @@ test('regular holo foreground windows and print protection stay specific to each
     for (const [file, hash] of Object.entries(evidence.maps)) {
       assert.equal(createHash('sha256').update(readFileSync(new URL(`maps/${file}`, path))).digest('hex'), hash);
     }
-    hashes.add(evidence.maps[`${number}-holo-foil.svg`]);
+    hashes.add(evidence.maps[`${number}-holo-foil.png`]);
     assert.throws(() => pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'masterball-reverse', []), PrismaticSurfaceUnavailable);
   }
   assert.equal(hashes.size, 3);
@@ -235,7 +235,8 @@ test('Atticus full-art coverage is implemented without presenting unfinished etc
     const photo = new URL(`../research/prismatic-evolutions/photos/${reference.file}`, import.meta.url);
     assert.equal(createHash('sha256').update(readFileSync(photo)).digest('hex'), reference.sha256);
   }
-  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-foil.svg', '133-holo-protection.png']);
+  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-foil.png', '133-holo-protection.png']);
+  assert.ok(!existsSync(new URL('maps/133-holo-foil.svg', path)), 'Full-art coverage must ship as a raster PNG');
   assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-133'), 'holo', []), PrismaticSurfaceUnavailable);
   assert.ok(!prismaticPickerCards().some(card => card.pokemon?.id === 'sv08.5-133'));
 });

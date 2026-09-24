@@ -91,9 +91,12 @@ Rebuild the 1200×1650 coverage/protection PNGs and hashed evidence manifests wi
 restrained foil under colored ink and no procedural texture/glints. Authored
 normals supply all relief; authored directions follow that surface without
 generic facet replacement. Optical constants remain calibration values, not
-measurements. Atticus 133 has its own foil SVG, print-protection PNG and four-photo
-evidence manifest. Face/fingertips, typography and the printed Supporter interior
-are protected separately, while its etched clothing stays on the foil sheet.
+measurements. Atticus 133 has its own raster foil PNG, print-protection PNG and
+eight-photo evidence manifest, including the user-provided directional photograph.
+Skin, eye interior, fingertips, typography and the printed Supporter interior
+are protected; the eyebrow and upper lashes have separate foil islands within
+the face. Its etched clothing stays on the foil sheet. Full-art masks export
+as antialiased 1200x1650 grayscale PNGs, without SVG assets.
 These are **coverage-only assets**, not a completed textured printing: registration
 still requires the exact height, normal, direction and roughness maps and visual
 acceptance. Rebuild with `python scripts/prismatic/create-fullart-coverage.py`.
