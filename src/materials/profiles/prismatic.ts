@@ -1,7 +1,7 @@
 import type { HolographicProfile } from '../HolographicProfile';
 
 /** Prismatic retail surfaces. Coverage is always supplied by an exact printing.
- * Textured families must be added only with their photographed, authored maps.
+ * Textured candidates stay Lab-only until exact-card maps pass visual review.
  */
 export const prismaticProfiles: HolographicProfile[] = [{
   id: 'prismatic_regular_holo', name: 'Prismatic · Regular holo', family: 'Pokémon', status: 'development',
@@ -17,4 +17,12 @@ export const prismaticProfiles: HolographicProfile[] = [{
   structure: { field: 'ace-spec', scale: 440, engraving: 0, relief: 0, facetTilt: .85, reflectionCoupling: .18, normalVariance: .12 },
   glints: { density: 0, scale: 610, sharpness: 280, strength: 0, spread: .20 },
   surface: { metalness: .72, roughness: .31, laminate: .20, laminateRoughness: .30, foilReflectance: .09, sheen: 0, inkTransmission: 1 },
+}, {
+  id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'reference-pending', labOnly: true,
+  description: 'Scarlet & Violet full-art Trainer foil under colored ink. Exact-card traced normals and direction maps supply all etched structure; the material generates no substitute engraving. Atticus 133 coverage is authored; complete relief and moving-light calibration are pending.',
+  diffraction: { period: 1.18, bandwidth: .048, strength: .32, secondaryOrder: .08, direction: 0, crossWidth: .40, facetCoupling: 0 },
+  structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
+  glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+  surface: { metalness: .70, roughness: .34, laminate: .12, laminateRoughness: .34, foilReflectance: .04, sheen: 0, inkTransmission: 1 },
+  mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
 }];

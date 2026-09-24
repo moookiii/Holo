@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Atticus 133 · Surface authoring</title>
+<style>
+  :root{color-scheme:dark;font:15px/1.5 system-ui;background:#15171b;color:#e9e9ec}
+  body{margin:0;padding:28px;display:grid;grid-template-columns:minmax(300px,600px) minmax(230px,340px);gap:32px;justify-content:center}
+  .card{position:relative;aspect-ratio:600/825}.card img{width:100%;display:block}
+  .coverage{position:absolute;inset:0;background:#ef8b37;opacity:.5;mask-image:url('/cards/pokemon/prismatic-evolutions/maps/133-holo-foil.svg'),url('/cards/pokemon/prismatic-evolutions/maps/133-holo-protection.png');mask-mode:luminance,luminance;mask-composite:subtract;mask-size:100% 100%;pointer-events:none}
+  h1{font-size:25px;line-height:1.2;margin-top:0}h2{font-size:16px;margin-top:28px}
+  p,li{color:#bdc1cb}button{background:#30343c;color:white;border:1px solid #5e6573;border-radius:7px;padding:10px 14px;font:inherit;cursor:pointer}
+  a{color:#a9caff}.status{font-size:13px;color:#e6b779}.references{display:flex;gap:10px;flex-wrap:wrap}.references img{width:90px;height:123px;object-fit:contain;background:#0a0b0d}
+  @media(max-width:800px){body{grid-template-columns:1fr;padding:16px}.card{max-width:600px}}
+</style>
+<div class="card"><img src="/cards/pokemon/prismatic-evolutions/133.png" alt="Atticus 133/131 Prismatic Evolutions"><div class="coverage" id="coverage"></div></div>
+<aside>
+  <h1>Atticus 133/131</h1>
+  <p>Prismatic Evolutions · full-art Trainer</p>
+  <p class="status">Foil and print masks implemented. Etched surface in progress.</p>
+  <button type="button" aria-pressed="true" id="toggle">Hide foil coverage</button>
+  <p>Orange marks active foil. The eye/face, fingertips, printed rule interior, and lettering have separate protection. This overlay shows coverage, not the finished optical treatment.</p>
+  <h2>Material implemented</h2>
+  <p>The full-art profile uses the existing renderer with exact-card normals and foil directions. Procedural engraving, bumps, and sparkle are disabled.</p>
+  <h2>Still to finish</h2>
+  <p>Resolve the remaining photo gaps, trace the etched surface, generate its coordinated maps, and compare rendered tilts before enabling the printing.</p>
+  <h2>Physical references</h2>
+  <div class="references">
+    <a href="https://www.ebay.com/itm/128014357348" target="_blank" rel="noreferrer"><img src="./photos/atticus-133-a.webp" alt="Angled Atticus photograph on stand"></a>
+    <a href="https://www.ebay.com/itm/278395013449" target="_blank" rel="noreferrer"><img src="./photos/atticus-133-c.webp" alt="Directional-light Atticus photograph on fabric"></a>
+    <a href="https://www.ebay.com/itm/800662260600" target="_blank" rel="noreferrer"><img src="./photos/atticus-133-d.webp" alt="Complementary Atticus photograph in holder"></a>
+  </div>
+</aside>
+<script type="module">
+  const toggle=document.querySelector('#toggle'),coverage=document.querySelector('#coverage');
+  toggle.addEventListener('click',()=>{coverage.hidden=!coverage.hidden;toggle.setAttribute('aria-pressed',String(!coverage.hidden));toggle.textContent=coverage.hidden?'Show foil coverage':'Hide foil coverage';});
+</script>
+</html>

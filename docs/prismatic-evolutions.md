@@ -87,11 +87,23 @@ Rebuild the 1200×1650 coverage/protection PNGs and hashed evidence manifests wi
 `python scripts/prismatic/create-ace-maps.py`. Paths are in
 `scripts/prismatic/ace-regions.json`; they describe ink coverage, never relief.
 
+`prismatic_fullart_texture` is now implemented as a Lab-only candidate, with
+restrained foil under colored ink and no procedural texture/glints. Authored
+normals supply all relief; authored directions follow that surface without
+generic facet replacement. Optical constants remain calibration values, not
+measurements. Atticus 133 has its own foil SVG, print-protection PNG and four-photo
+evidence manifest. Face/fingertips, typography and the printed Supporter interior
+are protected separately, while its etched clothing stays on the foil sheet.
+These are **coverage-only assets**, not a completed textured printing: registration
+still requires the exact height, normal, direction and roughness maps and visual
+acceptance. Rebuild with `python scripts/prismatic/create-fullart-coverage.py`.
+The local authoring view is `research/prismatic-evolutions/atticus-133-review.html`.
+
 `PrismaticCatalog.ts` also names these **pending renderer profiles**:
 
 - `prismatic_ex_holo`
 - `prismatic_pokeball_reverse`, `prismatic_masterball_reverse`
-- `prismatic_fullart_texture`, `prismatic_sir_texture`, `prismatic_gold`
+- `prismatic_sir_texture`, `prismatic_gold`
 
 `PrismaticSurfaces.ts` resolves by card ID and printing. Generic era/rarity
 fallbacks cannot silently substitute Mirage or Rainbow Rare. Each ready entry

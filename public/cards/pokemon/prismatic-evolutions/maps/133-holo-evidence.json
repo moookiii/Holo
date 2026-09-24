@@ -1,0 +1,56 @@
+{
+  "cardId": "sv08.5-133",
+  "variant": "holo",
+  "profile": "prismatic_fullart_texture",
+  "status": "coverage-only",
+  "textured": true,
+  "rendererReady": false,
+  "references": [
+    {
+      "file": "atticus-133-a.webp",
+      "listing": "https://www.ebay.com/itm/128014357348",
+      "image": "https://i.ebayimg.com/images/g/RrcAAeSwr9dp~Rro/s-l1600.webp",
+      "sha256": "4069b1b47cd779cddfd22495fd2f2350b8df33f0eb1f552178154513bac31065",
+      "observed": "Physical sleeved full front on a stand with directional light. Foil and relief cross hood, mask, glove, green sleeve and lower garment, as well as the background and rim. Skin at eye and fingertips stays comparatively smooth. Card occupies only about 550 by 750 source pixels; line flow evidence, not enough detail for complete reconstruction."
+    },
+    {
+      "file": "atticus-133-b.webp",
+      "listing": "https://www.ebay.com/itm/327368902002",
+      "image": "https://i.ebayimg.com/images/g/2sgAAeSwUuBqsfoJ/s-l1600.webp",
+      "sha256": "bdcc75e3559eae0218bb6940cf7ef5cb0a3000650faff8a25de55f6c78693863",
+      "observed": "Detailed near-flat front shows local line flow in hood, cloth mask, glove, sleeve and lower garment plus curved rim and forest patterns. Exposed skin and gray waist panel have a smoother response. Capture method unconfirmed; it cannot substitute for complementary directional physical photos."
+    },
+    {
+      "file": "atticus-133-c.webp",
+      "listing": "https://www.ebay.com/itm/278395013449",
+      "image": "https://i.ebayimg.com/images/g/8tUAAeSwwlhqsPTc/s-l1600.webp",
+      "sha256": "c0567c6d4398504d1602f55fd9529e0ddafa87839f507d783cadf71125f5325f",
+      "observed": "Physical tilted full front on black patterned fabric with strong directional foil. Confirms coarse curved striae on hood, mask, glove/sleeve and lower garment, independent background flow and curved rim. Name field also shows curving surface lines under the light; do not assume the whole header is unetched. Exposed skin and orange rule-panel interior remain comparatively smooth. Some center and dark lower-left lines lack sufficient pixels for tracing."
+    },
+    {
+      "file": "atticus-133-d.webp",
+      "listing": "https://www.ebay.com/itm/800662260600",
+      "image": "https://i.ebayimg.com/images/g/MoIAAeSwnkFqqE48/s-l1600.webp",
+      "sha256": "987fe69ffd36353e2fdc4fa50c2a4e53e492f8bcb17e4585503887a9dcc66eb7",
+      "observed": "Physical full front in rigid holder, diffuse complementary lighting. Supports different hood/garment/background line flow and largely smooth exposed skin; plastic haze softens fine lines and does not resolve the remaining individual-line gaps."
+    }
+  ],
+  "authoring": "Physical angled fronts show foil over hood, mask, gloves, green sleeve, lower garment, forest and silver rim, including the name field. Exposed skin and printed orange rule interior are protected separately; the metallic rule rim and TRAINER header remain foil. Gray waist area remains part of the foil sheet; smooth appearance alone is not grounds for inventing or excluding relief.",
+  "remaining": "Exact etched regions, individual traced lines, height/normal/direction/roughness maps and rendered-tilt acceptance. Typography masks and coverage are implemented independently of that remaining relief work.",
+  "limitations": "Coverage reconstruction from still photos. No etching map, measured grating constant or completed surface is claimed.",
+  "opaqueRegions": [
+    "Exposed eye and face",
+    "Left pointing fingertip",
+    "Upper right fingertip",
+    "Lower left fingertip",
+    "Lower middle fingertip",
+    "Lower right fingertip",
+    "Rear upper fingertip",
+    "Rear lower fingertip",
+    "Printed Supporter rule interior"
+  ],
+  "maps": {
+    "133-holo-foil.svg": "8d529b0d6fd67ba0647c9089a7cdd329ce5eb81edaae0efa2d9386c9c4f4c9fb",
+    "133-holo-protection.png": "8a4e1693c7523d5bd2b38517440f903e13aa5cb1c18de5f96dfa59a6b58c37e0"
+  }
+}

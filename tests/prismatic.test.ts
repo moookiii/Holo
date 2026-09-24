@@ -210,3 +210,32 @@ test('all six ACE SPEC printings use individual coverage and no invented relief'
   }
   assert.equal(hashes.size, 6, 'Different devices must not share a single foil mask');
 });
+
+test('Atticus full-art coverage is implemented without presenting unfinished etching as a ready printing', () => {
+  const profile = prismaticProfiles.find(profile => profile.id === 'prismatic_fullart_texture')!;
+  assert.ok(profile);
+  assert.equal(profile.labOnly, true);
+  assert.equal(profile.status, 'reference-pending');
+  assert.equal(profile.structure.field, 'plain');
+  assert.equal(profile.structure.engraving, 0);
+  assert.equal(profile.structure.patternRelief, 0);
+  assert.equal(profile.structure.relief, 0);
+  assert.equal(profile.diffraction.facetCoupling, 0, 'Generic facets must not replace traced normals');
+  assert.equal(profile.glints.strength, 0);
+  assert.equal(profile.mapSettings?.embossStrength, 0, 'Do not differentiate full relief twice');
+  const evidence = JSON.parse(readFileSync(new URL('maps/133-holo-evidence.json', path), 'utf8'));
+  assert.equal(evidence.cardId, 'sv08.5-133');
+  assert.equal(evidence.status, 'coverage-only');
+  assert.equal(evidence.rendererReady, false);
+  assert.equal(evidence.references.length, 4);
+  for (const [file, hash] of Object.entries(evidence.maps)) {
+    assert.equal(createHash('sha256').update(readFileSync(new URL(`maps/${file}`, path))).digest('hex'), hash);
+  }
+  for (const reference of evidence.references) {
+    const photo = new URL(`../research/prismatic-evolutions/photos/${reference.file}`, import.meta.url);
+    assert.equal(createHash('sha256').update(readFileSync(photo)).digest('hex'), reference.sha256);
+  }
+  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-foil.svg', '133-holo-protection.png']);
+  assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-133'), 'holo', []), PrismaticSurfaceUnavailable);
+  assert.ok(!prismaticPickerCards().some(card => card.pokemon?.id === 'sv08.5-133'));
+});

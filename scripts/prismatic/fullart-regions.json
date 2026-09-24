@@ -1,0 +1,26 @@
+{
+  "coordinates": [600, 825],
+  "purpose": "Incremental full-art foil and opaque-print coverage. These contours are never relief and do not assert that etched evidence is complete.",
+  "cards": {
+    "133": {
+      "name": "Atticus",
+      "profile": "prismatic_fullart_texture",
+      "photoFiles": ["atticus-133-a.webp", "atticus-133-b.webp", "atticus-133-c.webp", "atticus-133-d.webp"],
+      "opaqueRegions": [
+        {"name": "Exposed eye and face", "path": "M361 204 L371 193 L386 188 L404 197 L416 206 L413 262 L394 250 L373 236 L351 223 L343 214 L353 219 Z"},
+        {"name": "Left pointing fingertip", "path": "M31 179 Q38 178 52 183 L77 192 L74 205 L68 215 Q47 211 34 199 Q26 192 27 185 Z"},
+        {"name": "Upper right fingertip", "path": "M247 207 Q264 199 279 194 Q289 192 288 202 Q285 214 270 223 L259 228 Q250 219 247 207 Z"},
+        {"name": "Lower left fingertip", "path": "M24 308 L44 296 Q57 288 62 292 Q66 296 61 304 Q52 316 35 322 Q24 325 21 319 Q18 314 24 308 Z"},
+        {"name": "Lower middle fingertip", "path": "M64 327 Q74 319 80 321 Q85 323 81 333 Q74 347 60 353 Q52 358 53 349 Z"},
+        {"name": "Lower right fingertip", "path": "M103 337 L116 335 Q123 345 122 356 Q122 365 116 366 Q111 365 107 355 Z"},
+        {"name": "Rear upper fingertip", "path": "M488 497 Q493 491 501 494 Q510 501 516 503 Q525 508 522 514 Q514 519 501 514 L490 509 Z"},
+        {"name": "Rear lower fingertip", "path": "M513 536 Q529 532 537 537 Q540 542 533 546 L519 549 Q511 548 510 543 Z"},
+        {"name": "Printed Supporter rule interior", "path": "M246 723 L554 723 Q580 723 575 748 Q570 774 552 787 Q546 792 525 792 L229 792 Q201 791 204 766 Q207 743 225 731 Q234 724 246 723 Z"}
+      ],
+      "blackGlyphRegions": [[36, 65, 194, 101], [174, 805, 427, 818]],
+      "outlinedGlyphRegions": [[42, 524, 553, 544], [42, 550, 243, 570], [42, 608, 547, 629], [34, 755, 136, 773], [34, 774, 198, 800]],
+      "observed": "Physical angled fronts show foil over hood, mask, gloves, green sleeve, lower garment, forest and silver rim, including the name field. Exposed skin and printed orange rule interior are protected separately; the metallic rule rim and TRAINER header remain foil. Gray waist area remains part of the foil sheet; smooth appearance alone is not grounds for inventing or excluding relief.",
+      "remaining": "Exact etched regions, individual traced lines, height/normal/direction/roughness maps and rendered-tilt acceptance. Typography masks and coverage are implemented independently of that remaining relief work."
+    }
+  }
+}
