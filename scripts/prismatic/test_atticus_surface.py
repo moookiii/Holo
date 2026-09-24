@@ -49,5 +49,21 @@ class AtticusSurfaceTests(unittest.TestCase):
             x,y=point
             self.assertEqual(names[int(labels[y*2,x*2])],expected)
 
+    def test_waist_junction_follows_printed_materials(self):
+        regions=json.loads((ROOT/'scripts/prismatic/atticus-surface-regions.json').read_text())['regions']
+        names={i:r['name'] for i,r in enumerate(regions,2)}
+        labels=np.asarray(Image.open(ROOT/'research/prismatic-evolutions/relief/133-regions.png'))
+        expected={
+            (455,480):'Blue waist side',
+            (440,495):'Blue waist side',
+            (305,480):'Gray waist smooth',
+            (295,500):'Gray waist smooth',
+            (290,520):'Gray waist smooth',
+            (280,530):'Continuous forest background',
+        }
+        for (x,y),material in expected.items():
+            with self.subTest(point=(x,y)):
+                self.assertEqual(names[int(labels[y*2,x*2])],material)
+
 
 if __name__=='__main__':unittest.main()
