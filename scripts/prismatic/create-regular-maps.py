@@ -32,12 +32,15 @@ for number, regions in DATA['cards'].items():
     rectangle(draw, (23, 23, 577, 802), 0, 11)
     picture = Image.new('L', foil.size)
     art = ImageDraw.Draw(picture)
-    rectangle(art, (49, 94, 552, 389), 255)
+    if 'artWindow' in regions:
+        contour(art, regions['artWindow'], 255)
+    else:
+        rectangle(art, (49, 94, 552, 389), 255)
     for path in regions['exclude']:
         contour(art, path, 0)
     for path in regions['windows']:
         contour(art, path, 255)
-    bounds = tuple(value*SCALE for value in (49, 94, 552, 389))
+    bounds = tuple(value*SCALE for value in (49, 82 if 'artWindow' in regions else 94, 552, 389))
     foil.paste(picture.crop(bounds), bounds[:2])
     contour(draw, EVOLUTION, 0)
     output = ASSETS / 'maps'
