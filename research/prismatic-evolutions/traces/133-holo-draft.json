@@ -1,0 +1,281 @@
+{
+  "version": 1,
+  "cardId": "sv08.5-133",
+  "variant": "holo",
+  "coordinates": [
+    600,
+    825
+  ],
+  "status": "draft-observations",
+  "lineworkReviewed": false,
+  "purpose": "Finite ridge centerline observations for cross-photo inspection only. No height, normal, direction, roughness, physical depth or complete-card etching is asserted. Never load this research guide as a renderer map.",
+  "evidence": [
+    {
+      "photo": "atticus-133-user-01.png",
+      "sha256": "5bc7c7cfbd5087ba5b83b35d984085cf838d2e17ffd74aa9de3f34f5608a21ae",
+      "observed": "Primary trace view: directional highlights resolve finite diagonal ridge segments on the extended glove. Points stop within the lit patch, before its printed silhouette and dark folds."
+    },
+    {
+      "photo": "atticus-133-g.webp",
+      "sha256": "b2f32a47420d90f2d9ce4821e55ccdd6df7286321afcf556a121f03408aceeed",
+      "observed": "Complementary exposure confirms diagonal flow across the same glove patch. Fine per-ridge phase remains uncertain at this resolution; this is not individual-line corroboration."
+    },
+    {
+      "photo": "atticus-133-b.webp",
+      "sha256": "bdcc75e3559eae0218bb6940cf7ef5cb0a3000650faff8a25de55f6c78693863",
+      "observed": "Independent exposure separates the printed green fold from the much finer diagonal surface linework. Some centerlines remain too dark to match one-to-one."
+    }
+  ],
+  "regions": [
+    {
+      "id": "extended-glove-palm",
+      "name": "Extended glove, lower palm",
+      "bounds": [
+        148,
+        274,
+        202,
+        320
+      ],
+      "primaryPhoto": "atticus-133-user-01.png",
+      "review": "Primary-view traces only. Broad flow is corroborated; individual ridge correspondence and precise centers remain pending. Registered-photo residuals are comparable to ridge spacing, so do not infer subpixel physical precision.",
+      "lines": [
+        {
+          "id": "glove-palm-01",
+          "points": [
+            [
+              149.6,
+              295.5
+            ],
+            [
+              153.8,
+              291.8
+            ],
+            [
+              157.2,
+              287.8
+            ],
+            [
+              160.5,
+              283.4
+            ],
+            [
+              163.8,
+              278.8
+            ],
+            [
+              166.7,
+              275.0
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-02",
+          "points": [
+            [
+              154.8,
+              298.1
+            ],
+            [
+              158.8,
+              294.2
+            ],
+            [
+              162.1,
+              290.1
+            ],
+            [
+              165.6,
+              285.7
+            ],
+            [
+              169.0,
+              281.0
+            ],
+            [
+              172.3,
+              276.6
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-03",
+          "points": [
+            [
+              160.6,
+              300.6
+            ],
+            [
+              164.4,
+              296.6
+            ],
+            [
+              167.9,
+              292.5
+            ],
+            [
+              171.6,
+              288.0
+            ],
+            [
+              175.1,
+              283.2
+            ],
+            [
+              178.5,
+              278.6
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-04",
+          "points": [
+            [
+              166.7,
+              304.1
+            ],
+            [
+              170.1,
+              300.1
+            ],
+            [
+              173.5,
+              295.9
+            ],
+            [
+              177.3,
+              291.4
+            ],
+            [
+              180.8,
+              286.6
+            ],
+            [
+              184.0,
+              282.0
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-05",
+          "points": [
+            [
+              172.5,
+              308.1
+            ],
+            [
+              176.2,
+              303.9
+            ],
+            [
+              179.7,
+              299.6
+            ],
+            [
+              183.4,
+              295.0
+            ],
+            [
+              187.0,
+              290.3
+            ],
+            [
+              190.3,
+              285.5
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-06",
+          "points": [
+            [
+              178.2,
+              312.0
+            ],
+            [
+              182.1,
+              307.7
+            ],
+            [
+              185.5,
+              303.5
+            ],
+            [
+              189.2,
+              298.8
+            ],
+            [
+              192.7,
+              294.0
+            ],
+            [
+              196.0,
+              289.3
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-07",
+          "points": [
+            [
+              184.6,
+              315.7
+            ],
+            [
+              188.3,
+              311.7
+            ],
+            [
+              191.7,
+              307.2
+            ],
+            [
+              195.3,
+              302.7
+            ],
+            [
+              198.7,
+              298.1
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        },
+        {
+          "id": "glove-palm-08",
+          "points": [
+            [
+              190.6,
+              318.0
+            ],
+            [
+              194.3,
+              314.1
+            ],
+            [
+              197.8,
+              309.8
+            ],
+            [
+              201.0,
+              305.3
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-user-01.png"
+        }
+      ]
+    }
+  ]
+}

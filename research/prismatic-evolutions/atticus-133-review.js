@@ -1,22 +1,26 @@
 const toggle = document.querySelector('#toggle');
 const coverages = [...document.querySelectorAll('.coverage')];
-toggle.addEventListener('click', () => {
-  const hidden = !coverages[0].hidden;
+function showCoverage(visible) {
+  const hidden = !visible;
   coverages.forEach(coverage => { coverage.hidden = hidden; });
   toggle.setAttribute('aria-pressed', String(!hidden));
   toggle.textContent = hidden ? 'Show foil coverage' : 'Hide foil coverage';
-});
+}
+toggle.addEventListener('click', () => showCoverage(coverages[0].hidden));
 
 const card = document.querySelector('#main-card');
 const detail = document.querySelector('#detail-card');
 const position = document.querySelector('#detail-position');
+function focusDetail(x, y) {
+  detail.style.left = `${135-x*3}px`;
+  detail.style.top = `${142.5-y*3}px`;
+  position.textContent = `Print coordinates: ${Math.round(x)}, ${Math.round(y)}`;
+}
 card.addEventListener('pointermove', event => {
   const bounds = card.getBoundingClientRect();
   const x = Math.max(45, Math.min(555, (event.clientX-bounds.left)/bounds.width*600));
   const y = Math.max(47.5, Math.min(777.5, (event.clientY-bounds.top)/bounds.height*825));
-  detail.style.left = `${135-x*3}px`;
-  detail.style.top = `${142.5-y*3}px`;
-  position.textContent = `Print coordinates: ${Math.round(x)}, ${Math.round(y)}`;
+  focusDetail(x, y);
 });
 
 const reference = document.querySelector('#reference');
@@ -43,4 +47,36 @@ try {
   });
 } catch (error) {
   note.textContent = error.message;
+}
+
+const traceToggle = document.querySelector('#trace-toggle');
+const traceNote = document.querySelector('#trace-note');
+const guides = [...document.querySelectorAll('.trace-guide')];
+try {
+  const response = await fetch('./traces/133-holo-draft.json');
+  if (!response.ok) throw new Error('Draft trace observations unavailable');
+  const draft = await response.json();
+  if (draft.cardId !== 'sv08.5-133' || draft.variant !== 'holo'
+      || draft.status !== 'draft-observations' || draft.lineworkReviewed !== false) {
+    throw new Error('Draft trace identity or review status does not match');
+  }
+  const region = draft.regions.find(region => region.id === 'extended-glove-palm');
+  if (!region?.lines.length) throw new Error('Glove observations unavailable');
+  traceNote.textContent = `${region.lines.length} draft segments in cyan; yellow dots mark their ends. Traced from your directional photo. Individual ridge correspondence in the other photos is still unverified. These lines are an inspection guide, not a relief map.`;
+  traceToggle.disabled = false;
+  traceToggle.addEventListener('click', () => {
+    const visible = guides[0].hidden;
+    guides.forEach(guide => { guide.hidden = !visible; });
+    traceNote.hidden = !visible;
+    traceToggle.setAttribute('aria-pressed', String(visible));
+    traceToggle.textContent = visible ? 'Hide draft glove traces' : 'Show draft glove traces';
+    if (visible) {
+      showCoverage(false);
+      const [x0, y0, x1, y1] = region.bounds;
+      focusDetail((x0+x1)/2, (y0+y1)/2);
+    }
+  });
+} catch (error) {
+  traceNote.hidden = false;
+  traceNote.textContent = error.message;
 }

@@ -47,6 +47,16 @@ Run `python scripts/prismatic/etched_maps.py path/to/traces.json path/to/output`
 The output includes foil, protection, height, normal, direction and roughness
 PNGs plus an evidence/hash manifest. Export alone does not register the card.
 
+Atticus's first finite glove observations are in
+`research/prismatic-evolutions/traces/133-holo-draft.json`. These are explicitly
+unreviewed observations from the user's directional photograph; complementary
+views confirm the regional flow but not each ridge's identity. Rebuild the
+transparent PNG comparison guide with `python scripts/prismatic/create-trace-guide.py`.
+The Atticus review page can toggle this guide over any registered photograph.
+Endpoints are visible, and no unseen continuation is generated. This guide is
+research-only: it supplies no relief depth, surface normals or renderer material
+and does not bypass the complete-printing evidence requirement above.
+
 Normals use centimetre-scaled surface derivatives with OpenGL +Y up. Direction
 RG uses the existing double-angle, unoriented grating convention; the grating
 momentum axis is perpendicular to the traced ridge. Direction alpha marks only
