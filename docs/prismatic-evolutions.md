@@ -101,6 +101,13 @@ These are **coverage-only assets**, not a completed textured printing: registrat
 still requires the exact height, normal, direction and roughness maps and visual
 acceptance. Rebuild with `python scripts/prismatic/create-fullart-coverage.py`.
 The local authoring view is `research/prismatic-evolutions/atticus-133-review.html`.
+It compares the same print coordinates across seven registered photographs,
+including the user's directional image. Move over the card to position the
+detail view, then change the photograph. Rebuild those comparison assets with
+`python scripts/prismatic/register-references.py 133`. The feature registration
+uses printed landmarks, reports its residual error, and rejects weak fits.
+These resampled photographs stay in `research/registered`; they never become
+renderer maps or proof of complete etching. Original source files stay unchanged.
 
 `PrismaticCatalog.ts` also names these **pending renderer profiles**:
 

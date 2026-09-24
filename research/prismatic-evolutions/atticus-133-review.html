@@ -10,19 +10,24 @@
   .coverage{position:absolute;inset:0;background:#ef8b37;opacity:.5;mask-image:url('/cards/pokemon/prismatic-evolutions/maps/133-holo-foil.png'),url('/cards/pokemon/prismatic-evolutions/maps/133-holo-protection.png');mask-mode:luminance,luminance;mask-composite:subtract;mask-size:100% 100%;pointer-events:none}
   .detail{position:relative;width:270px;height:285px;overflow:hidden;border:1px solid #5e6573;border-radius:8px}.detail .card{position:absolute;width:1800px;max-width:none;left:-1005px;top:-540px}
   h1{font-size:25px;line-height:1.2;margin-top:0}h2{font-size:16px;margin-top:28px}
-  p,li{color:#bdc1cb}button{background:#30343c;color:white;border:1px solid #5e6573;border-radius:7px;padding:10px 14px;font:inherit;cursor:pointer}
+  p,li{color:#bdc1cb}button,select{background:#30343c;color:white;border:1px solid #5e6573;border-radius:7px;padding:10px 14px;font:inherit}button{cursor:pointer}select{display:block;width:100%;margin:8px 0 12px}small{display:block;color:#9ca5b5;margin:8px 0}.detail-readout{font-size:12px;color:#9ca5b5}
   a{color:#a9caff}.status{font-size:13px;color:#e6b779}.references{display:flex;gap:10px;flex-wrap:wrap}.references img{width:90px;height:123px;object-fit:contain;background:#0a0b0d}
   @media(max-width:800px){body{grid-template-columns:1fr;padding:16px}.card{max-width:600px}}
 </style>
-<div class="card"><img src="/cards/pokemon/prismatic-evolutions/133.png" alt="Atticus 133/131 Prismatic Evolutions"><div class="coverage" id="coverage"></div></div>
+<div class="card" id="main-card"><img src="/cards/pokemon/prismatic-evolutions/133.png" alt="Atticus 133/131 Prismatic Evolutions"><div class="coverage" id="coverage"></div></div>
 <aside>
   <h1>Atticus 133/131</h1>
   <p>Prismatic Evolutions · full-art Trainer</p>
   <p class="status">Foil and print masks implemented. Etched surface in progress.</p>
+  <label for="reference">Compare Atticus photographs</label>
+  <select id="reference"><option value="front">Clean print front</option></select>
+  <small id="registration-note">Photographs are aligned for comparison only. None is a renderer texture.</small>
   <button type="button" aria-pressed="true" id="toggle">Hide foil coverage</button>
   <p>Orange marks active foil. Skin and the eye interior stay protected; the eyebrow and upper lashes are separate foil regions. Fingertips, printed rule interior, and lettering remain protected. This overlay shows coverage, not the finished optical treatment.</p>
-  <h2>Face detail · 3×</h2>
-  <div class="detail"><div class="card"><img src="/cards/pokemon/prismatic-evolutions/133.png" alt="Enlarged face coverage: metallic eyebrow and lashes, protected skin and eye"><div class="coverage"></div></div></div>
+  <h2>Surface detail · 3×</h2>
+  <p>Point at the card to inspect a region, then switch photographs to compare the same spot.</p>
+  <div class="detail"><div class="card" id="detail-card"><img src="/cards/pokemon/prismatic-evolutions/133.png" alt="Enlarged Atticus surface detail"><div class="coverage"></div></div></div>
+  <span class="detail-readout" id="detail-position">Print coordinates: 380, 228</span>
   <h2>Material implemented</h2>
   <p>The full-art profile uses the existing renderer with exact-card normals and foil directions. Procedural engraving, bumps, and sparkle are disabled.</p>
   <h2>Still to finish</h2>
@@ -35,8 +40,5 @@
     <a href="https://www.ebay.com/itm/800662260600" target="_blank" rel="noreferrer"><img src="./photos/atticus-133-d.webp" alt="Complementary Atticus photograph in holder"></a>
   </div>
 </aside>
-<script type="module">
-  const toggle=document.querySelector('#toggle'),coverages=[...document.querySelectorAll('.coverage')];
-  toggle.addEventListener('click',()=>{const hidden=!coverages[0].hidden;coverages.forEach(coverage=>coverage.hidden=hidden);toggle.setAttribute('aria-pressed',String(!hidden));toggle.textContent=hidden?'Show foil coverage':'Hide foil coverage';});
-</script>
+<script type="module" src="./atticus-133-review.js"></script>
 </html>
