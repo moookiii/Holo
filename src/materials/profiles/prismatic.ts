@@ -18,8 +18,8 @@ export const prismaticProfiles: HolographicProfile[] = [{
   glints: { density: 0, scale: 610, sharpness: 280, strength: 0, spread: .20 },
   surface: { metalness: .72, roughness: .31, laminate: .20, laminateRoughness: .30, foilReflectance: .09, sheen: 0, inkTransmission: 1 },
 }, {
-  id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'reference-pending', labOnly: true,
-  description: 'Scarlet & Violet full-art Trainer foil under colored ink. Exact-card traced normals and direction maps supply all etched structure; the material generates no substitute engraving. Atticus 133 coverage is authored; complete relief and moving-light calibration are pending.',
+  id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'development', labOnly: true,
+  description: 'Scarlet & Violet full-art Trainer foil under colored ink. Card-specific PNG normals and direction maps supply photo-guided regional etching; ridge placement and depth are reconstructed approximations. Atticus 133 is authored. Other full arts still need their own maps.',
   diffraction: { period: 1.18, bandwidth: .048, strength: .32, secondaryOrder: .08, direction: 0, crossWidth: .40, facetCoupling: 0 },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },

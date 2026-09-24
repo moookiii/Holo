@@ -107,7 +107,7 @@ test('ordinary-pack collation preserves real slots, independent ball hits, all r
 test('Prismatic never inherits generic materials or makes a missing surface look ready', () => {
   const progress = prismaticSurfaceProgress();
   assert.equal(progress.required, 268);
-  assert.equal(progress.ready, 14);
+  assert.equal(progress.ready, 15);
   assert.equal(packAvailability('sv08.5').ready, false);
   assert.match(packAvailability('sv08.5').detail, /card-specific foil surfaces/);
   assert.equal(packAvailability('sv01').ready, true);
@@ -146,7 +146,7 @@ test('nonfoil cards remain pack-only and deferred reverses preserve their identi
 
 test('authored regular holo resolves only its exact printing and preserves a foil-only picker', () => {
   const entries = prismaticPickerCards();
-  assert.deepEqual(entries.map(card => card.id), ['005', '013', '022', '025', '029', '033', '040', '059', '116', '117', '119', '128', '129', '131'].map(n => `pokemon:sv08.5-${n}:holo`));
+  assert.deepEqual(entries.map(card => card.id), ['005', '013', '022', '025', '029', '033', '040', '059', '116', '117', '119', '128', '129', '131', '133'].map(n => `pokemon:sv08.5-${n}:holo`));
   const card = entries.find(card => card.id === 'pokemon:sv08.5-059:holo')!;
   assert.equal(card.pickerHidden, false);
   assert.equal(card.profile, 'prismatic_regular_holo');
@@ -211,11 +211,11 @@ test('all six ACE SPEC printings use individual coverage and no invented relief'
   assert.equal(hashes.size, 6, 'Different devices must not share a single foil mask');
 });
 
-test('Atticus full-art coverage is implemented without presenting unfinished etching as a ready printing', () => {
+test('Atticus has six authored PNG channels and only its exact printing is enabled', () => {
   const profile = prismaticProfiles.find(profile => profile.id === 'prismatic_fullart_texture')!;
   assert.ok(profile);
   assert.equal(profile.labOnly, true);
-  assert.equal(profile.status, 'reference-pending');
+  assert.equal(profile.status, 'development');
   assert.equal(profile.structure.field, 'plain');
   assert.equal(profile.structure.engraving, 0);
   assert.equal(profile.structure.patternRelief, 0);
@@ -225,9 +225,9 @@ test('Atticus full-art coverage is implemented without presenting unfinished etc
   assert.equal(profile.mapSettings?.embossStrength, 0, 'Do not differentiate full relief twice');
   const evidence = JSON.parse(readFileSync(new URL('maps/133-holo-evidence.json', path), 'utf8'));
   assert.equal(evidence.cardId, 'sv08.5-133');
-  assert.equal(evidence.status, 'coverage-only');
-  assert.equal(evidence.rendererReady, false);
-  assert.equal(evidence.references.length, 9);
+  assert.equal(evidence.status, 'directional-reconstruction');
+  assert.equal(evidence.rendererReady, true);
+  assert.equal(evidence.references.length, 12);
   for (const [file, hash] of Object.entries(evidence.maps)) {
     assert.equal(createHash('sha256').update(readFileSync(new URL(`maps/${file}`, path))).digest('hex'), hash);
   }
@@ -235,8 +235,13 @@ test('Atticus full-art coverage is implemented without presenting unfinished etc
     const photo = new URL(`../research/prismatic-evolutions/photos/${reference.file}`, import.meta.url);
     assert.equal(createHash('sha256').update(readFileSync(photo)).digest('hex'), reference.sha256);
   }
-  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-foil.png', '133-holo-protection.png']);
+  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-direction.png', '133-holo-foil.png', '133-holo-height.png', '133-holo-normal.png', '133-holo-protection.png', '133-holo-roughness.png']);
   assert.ok(!existsSync(new URL('maps/133-holo-foil.svg', path)), 'Full-art coverage must ship as a raster PNG');
-  assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-133'), 'holo', []), PrismaticSurfaceUnavailable);
-  assert.ok(!prismaticPickerCards().some(card => card.pokemon?.id === 'sv08.5-133'));
+  const atticus = pokemonDefinition(prismaticCard('sv08.5-133'), 'holo', []);
+  assert.equal(atticus.mapSettings?.normalScale, 1);
+  assert.equal(atticus.mapSettings?.embossStrength, 0);
+  assert.equal(atticus.profile, 'prismatic_fullart_texture');
+  assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-132'), 'holo', []), PrismaticSurfaceUnavailable);
+  assert.ok(prismaticPickerCards().some(card => card.pokemon?.id === 'sv08.5-133'));
+  assert.match(evidence.limitations, /approximations/);
 });

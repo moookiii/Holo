@@ -1,9 +1,8 @@
 # Exact-card etching authoring
 
 `etched_maps.py` compiles **individually traced ridges**, in registered print
-coordinates, into the existing renderer's six map channels. It does not yet
-ship a finished Prismatic etched card. The current photographs still leave
-unresolved regions; those cards remain unavailable to the renderer.
+coordinates, into the existing renderer's six map channels. The strict tracing workflow remains available for exact ridge reconstruction.
+Atticus now uses the separate photo-guided regional reconstruction described below.
 
 The inputs are a JSON trace document plus separate authored grayscale PNGs for
 foil coverage, print protection, and surface-region labels. Photographs and card
@@ -98,3 +97,21 @@ and calibrated depth, and checks that skin/eye normals remain flat. Its PNGs
 and lighting studies live in `research/prismatic-evolutions/relief/133-eye`.
 This is an explicit regional workflow under the revised user instruction;
 it does not mark full-card photographic evidence complete or unlock Atticus.
+
+
+## Complete Atticus surface
+
+The user's follow-up requested completing Atticus using the existing photographs
+and reasonable inferred directions instead of pixel-perfect ridge matching.
+`create-atticus-surface.py` now compiles the full card from the explicit boundaries
+and regional guide curves in `atticus-surface-regions.json`. It differentiates each
+continuous regional relief before clipping so ink outlines do not become embossing.
+The gray waist is smooth; skin, eye interior, fingertips and rule-panel interior
+remain protected. The two eye foil islands use the previously authored maps.
+All six production maps are PNG. There is no shader noise, sparkle or second
+emboss pass. The evidence manifest records inferred spacing and depth honestly;
+this workflow does not claim the strict individual-line evidence gate was met.
+
+Regenerate in order: `create-fullart-coverage.py`,
+`create-atticus-eye-relief.py`, then `create-atticus-surface.py`.
+Only Atticus 133/holo is registered; other full arts remain gated independently.

@@ -3,8 +3,8 @@
 This is an **incomplete surface implementation**, with a complete local retail
 catalog and registered pack recipe. The pack browser lists the set and explicitly
 keeps opening unavailable until the in-scope foil surfaces are finished. There
-are currently **14 of 268 authored foil printings** registered: all eight Eeveelution
-regular holos (005, 013, 022, 025, 029, 033, 040, 059), and all six ACE SPEC cards.
+are currently **15 of 268 authored foil printings** registered: all eight Eeveelution
+regular holos (005, 013, 022, 025, 029, 033, 040, 059), all six ACE SPEC cards, and Atticus 133 full art.
 The etched/ball/premium surface pass is still outstanding.
 
 ## Catalog and pack integration
@@ -94,21 +94,21 @@ Rebuild the 1200Ã—1650 coverage/protection PNGs and hashed evidence manifests wi
 `python scripts/prismatic/create-ace-maps.py`. Paths are in
 `scripts/prismatic/ace-regions.json`; they describe ink coverage, never relief.
 
-`prismatic_fullart_texture` is now implemented as a Lab-only candidate, with
+`prismatic_fullart_texture` is now implemented for Atticus; kept out of unrelated cards’ default material menus, with
 restrained foil under colored ink and no procedural texture/glints. Authored
 normals supply all relief; authored directions follow that surface without
 generic facet replacement. Optical constants remain calibration values, not
 measurements. Atticus 133 has its own raster foil PNG, print-protection PNG and
-nine-photo evidence manifest, including the user-provided directional photograph.
+twelve-photo evidence manifest, including the user-provided directional photograph.
 Skin, eye interior, fingertips, typography and the printed Supporter interior
 are protected; the eyebrow and upper lashes have separate foil islands within
 the face. Its etched clothing stays on the foil sheet. Full-art masks export
 as antialiased 1200x1650 grayscale PNGs, without SVG assets.
-These are **coverage-only assets**, not a completed textured printing: registration
-still requires the exact height, normal, direction and roughness maps and visual
-acceptance. Rebuild with `python scripts/prismatic/create-fullart-coverage.py`.
+Atticus now supplies all six PNG material channels. Rebuild coverage, eye relief,
+and full-card relief in that order using the three authoring scripts documented
+in `scripts/prismatic/ETCHING.md`.
 The local authoring view is `research/prismatic-evolutions/atticus-133-review.html`.
-It compares the same print coordinates across eight registered photographs,
+It compares the same print coordinates across eleven registered photographs,
 including the user's directional image. Move over the card to position the
 detail view, then change the photograph. Rebuild those comparison assets with
 `python scripts/prismatic/register-references.py 133`. The feature registration
@@ -182,6 +182,15 @@ automated gallery descriptions and app grading claims are not treated as proof.
 Each photo was visually inspected. No uploaded photo pixels, glare or printed
 illustration contours have been converted into guessed height maps.
 
-Remaining work: finish exact-card multi-angle evidence, author the remaining 254 foil
+Remaining work: finish exact-card multi-angle evidence, author the remaining 253 foil
 surfaces (including 216 textured printings), calibrate the distinct profiles,
 compare rendered tilts against references, and then enable pack opening.
+
+
+Atticus 133/131 now has a complete photo-guided directional reconstruction and
+is enabled in the holo picker and printing resolver. Six PNG material channels
+preserve the protected face and printed details, with separate regional flow on
+clothing, gloves, forest and rim. Ridge placement and calibrated depth are
+approximations under the revised user direction, not exact microscopic tracing.
+Current authored foil count: 15/268. Other missing set surfaces still gate complete
+pack availability; this change does not implement standard SV reverse holo.
