@@ -1,0 +1,657 @@
+{
+  "cardId": "sv08.5-133",
+  "variant": "holo",
+  "status": "partial-regional-reconstruction",
+  "rendererReady": false,
+  "authoring": "User-authorized inference of eyebrow/lash directional flow from existing exact-card photos. Curved ridges are clipped to separately authored foil islands. Positions, spacing and calibrated depth are approximate; no per-ridge photographic match is claimed.",
+  "depthCalibration": "Restrained 1.5 micrometre ridges and 0.55 micrometre valleys are rendering calibration, not measured physical depth.",
+  "references": [
+    {
+      "photo": "atticus-133-user-01.png",
+      "sha256": "5bc7c7cfbd5087ba5b83b35d984085cf838d2e17ffd74aa9de3f34f5608a21ae"
+    },
+    {
+      "photo": "atticus-133-g.webp",
+      "sha256": "b2f32a47420d90f2d9ce4821e55ccdd6df7286321afcf556a121f03408aceeed"
+    },
+    {
+      "photo": "atticus-133-j.webp",
+      "sha256": "32c6b78bef19b4f9b8ca94a672a73db420c17368f9308edc270f006d3031a298"
+    }
+  ],
+  "spec": {
+    "version": 1,
+    "mapSize": [
+      1200,
+      1650
+    ],
+    "coordinates": [
+      600,
+      825
+    ],
+    "dimensionsCm": [
+      6.3,
+      8.8
+    ],
+    "heightRangeMicrons": 4,
+    "regions": [
+      {
+        "label": 1,
+        "name": "Eyebrow longitudinal flow",
+        "kind": "etched",
+        "roughness": 0.39,
+        "lines": [
+          {
+            "points": [
+              [
+                370,
+                191.6
+              ],
+              [
+                378,
+                190.6
+              ],
+              [
+                386,
+                192.6
+              ],
+              [
+                394,
+                196.0
+              ],
+              [
+                403,
+                200.79999999999998
+              ],
+              [
+                417,
+                210.2
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                370,
+                192.8
+              ],
+              [
+                378,
+                191.8
+              ],
+              [
+                386,
+                193.8
+              ],
+              [
+                394,
+                197.20000000000002
+              ],
+              [
+                403,
+                202.0
+              ],
+              [
+                417,
+                211.4
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                370,
+                194
+              ],
+              [
+                378,
+                193
+              ],
+              [
+                386,
+                195
+              ],
+              [
+                394,
+                198.4
+              ],
+              [
+                403,
+                203.2
+              ],
+              [
+                417,
+                212.6
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                370,
+                195.2
+              ],
+              [
+                378,
+                194.2
+              ],
+              [
+                386,
+                196.2
+              ],
+              [
+                394,
+                199.6
+              ],
+              [
+                403,
+                204.39999999999998
+              ],
+              [
+                417,
+                213.79999999999998
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                370,
+                196.4
+              ],
+              [
+                378,
+                195.4
+              ],
+              [
+                386,
+                197.4
+              ],
+              [
+                394,
+                200.8
+              ],
+              [
+                403,
+                205.6
+              ],
+              [
+                417,
+                215.0
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                370,
+                197.6
+              ],
+              [
+                378,
+                196.6
+              ],
+              [
+                386,
+                198.6
+              ],
+              [
+                394,
+                202.0
+              ],
+              [
+                403,
+                206.79999999999998
+              ],
+              [
+                417,
+                216.2
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          }
+        ]
+      },
+      {
+        "label": 2,
+        "name": "Upper lid and lashes curved flow",
+        "kind": "etched",
+        "roughness": 0.39,
+        "lines": [
+          {
+            "points": [
+              [
+                357,
+                216.8
+              ],
+              [
+                367,
+                211.10000000000002
+              ],
+              [
+                375,
+                208.10000000000002
+              ],
+              [
+                383,
+                206.60000000000002
+              ],
+              [
+                391,
+                206.8
+              ],
+              [
+                399,
+                209.8
+              ],
+              [
+                406,
+                214.8
+              ],
+              [
+                414,
+                221.8
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                218
+              ],
+              [
+                367,
+                212.3
+              ],
+              [
+                375,
+                209.3
+              ],
+              [
+                383,
+                207.8
+              ],
+              [
+                391,
+                208
+              ],
+              [
+                399,
+                211
+              ],
+              [
+                406,
+                216
+              ],
+              [
+                414,
+                223
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                219.2
+              ],
+              [
+                367,
+                213.5
+              ],
+              [
+                375,
+                210.5
+              ],
+              [
+                383,
+                209.0
+              ],
+              [
+                391,
+                209.2
+              ],
+              [
+                399,
+                212.2
+              ],
+              [
+                406,
+                217.2
+              ],
+              [
+                414,
+                224.2
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                220.4
+              ],
+              [
+                367,
+                214.70000000000002
+              ],
+              [
+                375,
+                211.70000000000002
+              ],
+              [
+                383,
+                210.20000000000002
+              ],
+              [
+                391,
+                210.4
+              ],
+              [
+                399,
+                213.4
+              ],
+              [
+                406,
+                218.4
+              ],
+              [
+                414,
+                225.4
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                221.6
+              ],
+              [
+                367,
+                215.9
+              ],
+              [
+                375,
+                212.9
+              ],
+              [
+                383,
+                211.4
+              ],
+              [
+                391,
+                211.6
+              ],
+              [
+                399,
+                214.6
+              ],
+              [
+                406,
+                219.6
+              ],
+              [
+                414,
+                226.6
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                222.8
+              ],
+              [
+                367,
+                217.10000000000002
+              ],
+              [
+                375,
+                214.10000000000002
+              ],
+              [
+                383,
+                212.60000000000002
+              ],
+              [
+                391,
+                212.8
+              ],
+              [
+                399,
+                215.8
+              ],
+              [
+                406,
+                220.8
+              ],
+              [
+                414,
+                227.8
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                224
+              ],
+              [
+                367,
+                218.3
+              ],
+              [
+                375,
+                215.3
+              ],
+              [
+                383,
+                213.8
+              ],
+              [
+                391,
+                214
+              ],
+              [
+                399,
+                217
+              ],
+              [
+                406,
+                222
+              ],
+              [
+                414,
+                229
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                225.2
+              ],
+              [
+                367,
+                219.5
+              ],
+              [
+                375,
+                216.5
+              ],
+              [
+                383,
+                215.0
+              ],
+              [
+                391,
+                215.2
+              ],
+              [
+                399,
+                218.2
+              ],
+              [
+                406,
+                223.2
+              ],
+              [
+                414,
+                230.2
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                226.4
+              ],
+              [
+                367,
+                220.70000000000002
+              ],
+              [
+                375,
+                217.70000000000002
+              ],
+              [
+                383,
+                216.20000000000002
+              ],
+              [
+                391,
+                216.4
+              ],
+              [
+                399,
+                219.4
+              ],
+              [
+                406,
+                224.4
+              ],
+              [
+                414,
+                231.4
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          },
+          {
+            "points": [
+              [
+                357,
+                227.6
+              ],
+              [
+                367,
+                221.9
+              ],
+              [
+                375,
+                218.9
+              ],
+              [
+                383,
+                217.4
+              ],
+              [
+                391,
+                217.6
+              ],
+              [
+                399,
+                220.6
+              ],
+              [
+                406,
+                225.6
+              ],
+              [
+                414,
+                232.6
+              ]
+            ],
+            "halfWidthMicrons": 40,
+            "ridgeMicrons": 1.5,
+            "valleyMicrons": 0.55,
+            "relativeGratingPeriod": 1
+          }
+        ]
+      }
+    ]
+  },
+  "maps": {
+    "direction.png": "bdf85d0526193fd4dd6cddb7ed188191d4ca9580f4d4a2bc768c67111d147cad",
+    "foil.png": "018fdc8904143ab1b8876702ba60f74537b192921a4197862bafa3ea22984ff2",
+    "height.png": "4252030b4bdbe092d5908deff2dd20e290d2655b2754a17ef05b0c7f9eab85e1",
+    "normal.png": "61dae119b6940e0a3fdd6beea30d74ffa701887c3b97f0c6b27c01d1dc48592b",
+    "protection.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
+    "regions.png": "ed9a7b015fd3cb076ab572c33f0e518969cf6cd78278f048002775557ffe98a3",
+    "roughness.png": "4bf3718867cf51e3189cb6cd30015ae2fd42a66c16572bfc261944d203fabf02"
+  }
+}

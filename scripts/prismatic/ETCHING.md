@@ -85,3 +85,16 @@ Run the synthetic geometry checks with
 `python -m unittest discover -s scripts/prismatic -p test_etched_maps.py`.
 These fixtures validate physical scale, ridge/valley normals, coordinate signs,
 finite trace extents and evidence gating. They are not Pokémon maps or evidence.
+
+## Atticus regional reconstruction
+
+On 2026-09-24 the user authorized inferring eyebrow and lash direction from
+existing references without pixel-perfect ridge correspondence. Run
+`python scripts/prismatic/create-atticus-eye-relief.py` to author these two
+foil islands. Curved regional line families are clipped to the authored PNG
+coverage; print brightness never supplies height. This partial reconstruction
+uses the existing numeric ridge/valley compiler, documents approximate spacing
+and calibrated depth, and checks that skin/eye normals remain flat. Its PNGs
+and lighting studies live in `research/prismatic-evolutions/relief/133-eye`.
+This is an explicit regional workflow under the revised user instruction;
+it does not mark full-card photographic evidence complete or unlock Atticus.

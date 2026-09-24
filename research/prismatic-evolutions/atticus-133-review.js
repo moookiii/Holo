@@ -85,3 +85,10 @@ try {
   traceNote.hidden = false;
   traceNote.textContent = error.message;
 }
+
+const eyeLight = document.querySelector('#eye-light');
+eyeLight.addEventListener('change', () => {
+  if (['left', 'right', 'top'].includes(eyeLight.value)) {
+    document.querySelector('#eye-relief-preview').src = `./relief/133-eye/preview-${eyeLight.value}.png`;
+  }
+});
