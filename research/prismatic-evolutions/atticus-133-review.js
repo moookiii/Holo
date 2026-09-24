@@ -64,9 +64,10 @@ try {
       || draft.status !== 'draft-observations' || draft.lineworkReviewed !== false) {
     throw new Error('Draft trace identity or review status does not match');
   }
-  const region = draft.regions.find(region => region.id === 'extended-glove-palm');
+  const region = draft.regions.find(region => region.id === (draft.focusRegion ?? 'extended-glove-palm'));
   if (!region?.lines.length) throw new Error('Glove observations unavailable');
-  traceNote.textContent = `${region.lines.length} draft segments in cyan; yellow dots mark their ends. Traced from your directional photo. Individual ridge correspondence in the other photos is still unverified. These lines are an inspection guide, not a relief map.`;
+  const lineCount = draft.regions.reduce((count, region) => count + region.lines.length, 0);
+  traceNote.textContent = `${lineCount} draft segments in cyan across the glove palm and pointing finger; yellow dots mark their ends. Palm observations use your directional photo; finger observations use close-up J. Individual ridge correspondence between photos is still unverified. These lines are an inspection guide, not a relief map.`;
   traceToggle.disabled = false;
   traceToggle.addEventListener('click', () => {
     const visible = guides[0].hidden;

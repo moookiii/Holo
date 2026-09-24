@@ -24,6 +24,11 @@
       "photo": "atticus-133-b.webp",
       "sha256": "bdcc75e3559eae0218bb6940cf7ef5cb0a3000650faff8a25de55f6c78693863",
       "observed": "Independent exposure separates the printed green fold from the much finer diagonal surface linework. Some centerlines remain too dark to match one-to-one."
+    },
+    {
+      "photo": "atticus-133-j.webp",
+      "sha256": "32c6b78bef19b4f9b8ca94a672a73db420c17368f9308edc270f006d3031a298",
+      "observed": "Upper close-up is the primary view for finite ridge-center observations on the pointing glove. Individual bright ridge/dark valley pairs curve toward the lower edge; no continuation is drawn through the black silhouette. The independent user view confirms this regional bend but residual registration error prevents claiming exact per-line phase correspondence."
     }
   ],
   "regions": [
@@ -37,7 +42,7 @@
         320
       ],
       "primaryPhoto": "atticus-133-user-01.png",
-      "review": "Primary-view traces only. Broad flow is corroborated; individual ridge correspondence and precise centers remain pending. Registered-photo residuals are comparable to ridge spacing, so do not infer subpixel physical precision.",
+      "review": "Primary-view traces only. Broad flow is corroborated; individual ridge correspondence and precise centers remain pending. Registered-photo residuals are comparable to ridge spacing, so do not infer subpixel physical precision. Close-up J now separates additional palm ridge/valley pairs; its local print registration differs from the user view, so the existing center observations still require line-by-line review.",
       "lines": [
         {
           "id": "glove-palm-01",
@@ -276,6 +281,237 @@
           "photo": "atticus-133-user-01.png"
         }
       ]
+    },
+    {
+      "id": "pointing-glove",
+      "name": "Extended glove, pointing finger",
+      "bounds": [
+        77,
+        203,
+        124,
+        229
+      ],
+      "primaryPhoto": "atticus-133-j.webp",
+      "review": "Eight finite primary-view observations in J, ending before the lower printed outline. The user photo corroborates the curved flow, but its changed reflection and local registration offset leave exact ridge identity unresolved. These are draft center observations, not measured spacing, width, depth or complete finger coverage.",
+      "lines": [
+        {
+          "id": "glove-pointing-01",
+          "points": [
+            [
+              85.7,
+              204
+            ],
+            [
+              84.9,
+              208
+            ],
+            [
+              83.3,
+              212
+            ],
+            [
+              81.3,
+              216
+            ],
+            [
+              78.9,
+              219
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-02",
+          "points": [
+            [
+              90.8,
+              204.7
+            ],
+            [
+              89.8,
+              208.8
+            ],
+            [
+              88.2,
+              213
+            ],
+            [
+              86.3,
+              217
+            ],
+            [
+              83.9,
+              221
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-03",
+          "points": [
+            [
+              95.9,
+              205.4
+            ],
+            [
+              94.9,
+              209.6
+            ],
+            [
+              93.3,
+              213.9
+            ],
+            [
+              91.5,
+              218.3
+            ],
+            [
+              89.3,
+              222.4
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-04",
+          "points": [
+            [
+              101.1,
+              206.1
+            ],
+            [
+              100.0,
+              210.4
+            ],
+            [
+              98.5,
+              214.8
+            ],
+            [
+              96.6,
+              219.1
+            ],
+            [
+              94.5,
+              223.4
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-05",
+          "points": [
+            [
+              106.3,
+              207.1
+            ],
+            [
+              105.2,
+              211.5
+            ],
+            [
+              103.6,
+              215.8
+            ],
+            [
+              101.9,
+              220.1
+            ],
+            [
+              99.6,
+              224.4
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-06",
+          "points": [
+            [
+              111.6,
+              208.0
+            ],
+            [
+              110.5,
+              212.5
+            ],
+            [
+              109.0,
+              216.8
+            ],
+            [
+              107.2,
+              221.1
+            ],
+            [
+              105.0,
+              225.4
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-07",
+          "points": [
+            [
+              116.8,
+              209.0
+            ],
+            [
+              115.7,
+              213.5
+            ],
+            [
+              114.4,
+              217.9
+            ],
+            [
+              112.6,
+              222.3
+            ],
+            [
+              110.5,
+              226.5
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        },
+        {
+          "id": "glove-pointing-08",
+          "points": [
+            [
+              122.1,
+              210.1
+            ],
+            [
+              121.1,
+              214.5
+            ],
+            [
+              119.7,
+              218.9
+            ],
+            [
+              118.1,
+              223.3
+            ],
+            [
+              116.0,
+              227.5
+            ]
+          ],
+          "status": "needs-cross-photo-review",
+          "photo": "atticus-133-j.webp"
+        }
+      ]
     }
-  ]
+  ],
+  "focusRegion": "pointing-glove"
 }

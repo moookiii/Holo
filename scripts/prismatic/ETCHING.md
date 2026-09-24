@@ -47,15 +47,24 @@ Run `python scripts/prismatic/etched_maps.py path/to/traces.json path/to/output`
 The output includes foil, protection, height, normal, direction and roughness
 PNGs plus an evidence/hash manifest. Export alone does not register the card.
 
-Atticus's first finite glove observations are in
+Atticus's finite glove observations are in
 `research/prismatic-evolutions/traces/133-holo-draft.json`. These are explicitly
-unreviewed observations from the user's directional photograph; complementary
-views confirm the regional flow but not each ridge's identity. Rebuild the
+unreviewed observations: eight palm segments from the user's directional
+photograph and eight pointing-finger segments from upper close-up J. The
+independent views confirm regional flow but not each ridge's identity. Rebuild the
 transparent PNG comparison guide with `python scripts/prismatic/create-trace-guide.py`.
 The Atticus review page can toggle this guide over any registered photograph.
 Endpoints are visible, and no unseen continuation is generated. This guide is
 research-only: it supplies no relief depth, surface normals or renderer material
 and does not bypass the complete-printing evidence requirement above.
+
+Exact-card close-ups can declare `registrationBounds` in print coordinates in
+`references.json`. Registration still requires at least 24 matched print
+landmarks, coverage in all four quarters of that rectangle, and the same error
+threshold. The rectangle must lie wholly inside the source photograph. Outside
+it the comparison image is transparent and the review clips its overlays; a
+partial photograph cannot certify missing parts of the card. J/K come from the
+same specimen and photo session as overview I, not three independent specimens.
 
 Normals use centimetre-scaled surface derivatives with OpenGL +Y up. Direction
 RG uses the existing double-angle, unoriented grating convention; the grating
