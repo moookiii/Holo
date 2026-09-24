@@ -1,5 +1,6 @@
 """Acceptance checks for the delivered Atticus surface, not synthetic fixtures."""
 from pathlib import Path
+import json
 import unittest
 import numpy as np
 from PIL import Image
@@ -33,6 +34,20 @@ class AtticusSurfaceTests(unittest.TestCase):
                 self.assertGreater(int(patch.max())-int(patch.min()),15)
         normal=self.maps['normal'].astype(float)/127.5-1
         self.assertLess(float(np.max(np.abs(np.linalg.norm(normal,axis=2)-1))),.015)
+
+    def test_marked_material_boundaries_do_not_spill_into_forest(self):
+        # Clean-front coordinates just outside the user's marked contours.
+        # These test the delivered raster, including region overwrite order.
+        regions=json.loads((ROOT/'scripts/prismatic/atticus-surface-regions.json').read_text())['regions']
+        names={i:r['name'] for i,r in enumerate(regions,2)}
+        labels=np.asarray(Image.open(ROOT/'research/prismatic-evolutions/relief/133-regions.png'))
+        for point in [(145,205),(244,201),(65,311),(97,324),(143,303),(177,356),(515,430),(480,463)]:
+            x,y=point
+            with self.subTest(point=point):
+                self.assertEqual(names[int(labels[y*2,x*2])],'Continuous forest background')
+        for point,expected in [((334,348),'Torso pink cloth'),((478,373),'Cloth face mask')]:
+            x,y=point
+            self.assertEqual(names[int(labels[y*2,x*2])],expected)
 
 
 if __name__=='__main__':unittest.main()
