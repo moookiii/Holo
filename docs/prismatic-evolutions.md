@@ -100,6 +100,16 @@ textured entries also require height, normal, direction and roughness maps.
 The normal existing card renderer/CPU map pipeline will consume those assets.
 No random relief or generic etching is added.
 
+`scripts/prismatic/etched_maps.py` now compiles explicit, individually traced
+ridges into registered height, normal, direction and roughness maps alongside
+foil/print masks. Export requires complete exact-printing evidence, complementary
+photo hashes per region and corroborating photos per line. The compiler never
+extracts height from art pixels, repeats a synthetic line pattern, or fills gaps.
+Its synthetic geometry tests cover physical scale, signs, finite trace extents,
+print/relief separation and evidence gating. See
+`scripts/prismatic/ETCHING.md` for the authoring contract. No incomplete etched
+printing is enabled by this tooling; exact-card tracing and visual review remain.
+
 ## Physical photo review
 
 `research/prismatic-evolutions/references.json` records the inspected eBay
@@ -126,6 +136,10 @@ Observed physical evidence, not a claim of complete reconstruction:
 - Amarys 132: [detailed front](https://www.ebay.com/itm/206564829195) and
   [physical specimen](https://www.ebay.com/itm/177305439260) reveal some flowing
   lines, but the second image has insufficient card pixels for reconstruction.
+  Two stronger raking-light fronts from [this specimen](https://www.ebay.com/itm/257583806646)
+  and [this complementary view](https://www.ebay.com/itm/257590740464) resolve
+  much more of the sky, cliffs, uniform and hair. Fine skin/hand response and
+  shadowed lower regions still require confirmation before complete tracing.
 - Amarys 170: [full front](https://www.ebay.com/itm/198494110771) gives partial
   SIR evidence; it cannot supply missing structure for Amarys 132 or other SIRs.
 - Umbreon 161: [full front and corner photographs](https://www.ebay.com/itm/407237468690)
