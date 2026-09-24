@@ -21,8 +21,10 @@ for entry in references['photos']:
     data = path.read_bytes()
     with Image.open(path) as image:
         dimensions = list(image.size)
-    photos.append({**entry, 'listingUrl': f"https://www.ebay.com/itm/{entry['listing']}",
-        'imageUrl': f"https://i.ebayimg.com/images/g/{entry['imageKey']}/s-l1600.webp",
+    provenance = ({'listingUrl': f"https://www.ebay.com/itm/{entry['listing']}",
+                   'imageUrl': f"https://i.ebayimg.com/images/g/{entry['imageKey']}/s-l1600.webp"}
+                  if 'listing' in entry else {'source': entry['source']})
+    photos.append({**entry, **provenance,
         'dimensions': dimensions, 'sha256': hashlib.sha256(data).hexdigest()})
 
 inventory = []
@@ -45,7 +47,7 @@ for card in cards.values():
             'remaining': review['remaining'] if review else 'Exact-printing directional photographs have not yet been collected and reviewed.'})
 assert len(inventory) == 216
 assert len({photo['file'] for photo in photos}) == len(photos)
-untracked = {p.name for p in (RESEARCH / 'photos').glob('*.webp')} - {photo['file'] for photo in photos}
+untracked = {p.name for p in (RESEARCH / 'photos').iterdir() if p.suffix.lower() in ('.webp', '.png', '.jpg', '.jpeg')} - {photo['file'] for photo in photos}
 assert not untracked, f'Photos without provenance: {untracked}'
 (RESEARCH / 'audit.json').write_text(json.dumps({'inspectedOn': references['inspectedOn'],
     'photos': photos, 'texturedPrintings': inventory}, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')

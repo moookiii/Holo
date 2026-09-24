@@ -25,6 +25,11 @@ for number, regions in DATA['cards'].items():
     for region in regions['opaqueRegions']:
         path = ET.SubElement(svg, 'path', d=region['path'], fill='black')
         ET.SubElement(path, 'title').text = region['name']
+    # Small transmissive features can sit inside a protected area. Keep these
+    # explicit and card-specific; never infer foil from dark artwork pixels.
+    for region in regions.get('foilIslands', []):
+        path = ET.SubElement(svg, 'path', d=region['path'], fill='white')
+        ET.SubElement(path, 'title').text = region['name']
     ET.indent(svg, space='  ')
     output = ASSETS / 'maps'
     foil_path = output / f'{number}-holo-foil.svg'
@@ -52,8 +57,10 @@ for number, regions in DATA['cards'].items():
         photo = PHOTOS[filename]
         assert photo['cardId'] == f'sv08.5-{number}' and photo['variant'] == 'holo'
         assert photo['assessment'] == 'partial-surface'
-        evidence.append({'file': filename, 'listing': f'https://www.ebay.com/itm/{photo["listing"]}',
-                         'image': f'https://i.ebayimg.com/images/g/{photo["imageKey"]}/s-l1600.webp',
+        provenance = ({'listing': f'https://www.ebay.com/itm/{photo["listing"]}',
+                       'image': f'https://i.ebayimg.com/images/g/{photo["imageKey"]}/s-l1600.webp'}
+                      if 'listing' in photo else {'source': photo['source']})
+        evidence.append({'file': filename, **provenance,
                          'sha256': hashlib.sha256((ROOT / 'research/prismatic-evolutions/photos' / filename).read_bytes()).hexdigest(),
                          'observed': photo['notes']})
     manifest = {'cardId': f'sv08.5-{number}', 'variant': 'holo', 'profile': regions['profile'],
@@ -61,6 +68,7 @@ for number, regions in DATA['cards'].items():
                 'references': evidence, 'authoring': regions['observed'], 'remaining': regions['remaining'],
                 'limitations': 'Coverage reconstruction from still photos. No etching map, measured grating constant or completed surface is claimed.',
                 'opaqueRegions': [r['name'] for r in regions['opaqueRegions']],
+                'foilIslands': [{key: r[key] for key in ('name', 'observed')} for r in regions.get('foilIslands', [])],
                 'maps': {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (foil_path, protection_path)}}
     (output / f'{number}-holo-evidence.json').write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')
     print(f'{number} {regions["name"]}: foil/protection implemented; etched surface remains pending')

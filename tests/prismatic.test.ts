@@ -227,7 +227,7 @@ test('Atticus full-art coverage is implemented without presenting unfinished etc
   assert.equal(evidence.cardId, 'sv08.5-133');
   assert.equal(evidence.status, 'coverage-only');
   assert.equal(evidence.rendererReady, false);
-  assert.equal(evidence.references.length, 4);
+  assert.equal(evidence.references.length, 8);
   for (const [file, hash] of Object.entries(evidence.maps)) {
     assert.equal(createHash('sha256').update(readFileSync(new URL(`maps/${file}`, path))).digest('hex'), hash);
   }
