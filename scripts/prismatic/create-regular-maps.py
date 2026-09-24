@@ -7,6 +7,8 @@ is limited to explicitly authored printed-petal rectangles, never the whole art.
 from pathlib import Path
 import hashlib
 import json
+import subprocess
+import tempfile
 import xml.etree.ElementTree as ET
 import numpy as np
 from PIL import Image
@@ -36,7 +38,11 @@ for number, regions in DATA['cards'].items():
     ET.SubElement(svg, 'path', d=EVOLUTION, fill='black')
     output = ASSETS / 'maps'
     ET.indent(svg, space='  ')
-    (output / f'{number}-holo-foil.svg').write_text(ET.tostring(svg, encoding='unicode') + '\n', encoding='utf-8')
+    foil_path = output / f'{number}-holo-foil.png'
+    with tempfile.TemporaryDirectory() as temporary:
+        vector_path = Path(temporary) / 'coverage.svg'
+        vector_path.write_text(ET.tostring(svg, encoding='unicode') + '\n', encoding='utf-8')
+        subprocess.run(['magick', '-background', 'black', str(vector_path), '-type', 'Grayscale', '-depth', '8', str(foil_path)], check=True)
 
     front = np.array(Image.open(ASSETS / f'{number}.png').convert('RGBA').convert('RGB'), dtype=np.float32)
     protection = np.zeros(front.shape[:2], dtype=np.uint8)
@@ -48,7 +54,7 @@ for number, regions in DATA['cards'].items():
     Image.fromarray(protection).resize((1200, 1650), Image.Resampling.LANCZOS).save(output / f'{number}-holo-protection.png')
     photos = [p for p in REFERENCES['photos'] if p['cardId'] == f'sv08.5-{number}' and p['variant'] == 'holo' and p['assessment'] == 'partial-surface']
     assert photos, f'Missing exact-card evidence: {number}'
-    files = [f'{number}-holo-foil.svg', f'{number}-holo-protection.png']
+    files = [foil_path.name, f'{number}-holo-protection.png']
     evidence = {'cardId': f'sv08.5-{number}', 'variant': 'holo', 'textured': False,
         'front': f'https://assets.tcgdex.net/en/sv/sv08.5/{number}/high.png',
         'references': [{'listing': f'https://www.ebay.com/itm/{p["listing"]}', 'image': f'https://i.ebayimg.com/images/g/{p["imageKey"]}/s-l1600.webp', 'observed': p['notes']} for p in photos],

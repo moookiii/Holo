@@ -4,9 +4,21 @@
   "textured": false,
   "front": "https://assets.tcgdex.net/en/sv/sv08.5/059/high.png",
   "references": [
-    {"listing": "https://www.ebay.com/itm/227253131069", "image": "https://i.ebayimg.com/images/g/ka8AAeSwSEVpsxwZ/s-l1600.webp", "observed": "Physical sleeved front: horizontal foil in picture background and outer silver rim; smooth opaque subject, evolution portrait, framing and rules."},
-    {"listing": "https://www.ebay.com/itm/398408327707", "image": "https://i.ebayimg.com/images/g/6sQAAeSw7ydqrZG1/s-l1600.webp", "observed": "Independent full front supports rim/picture placement. Lower-contrast image is not used to infer texture or additional foil."}
+    {
+      "listing": "https://www.ebay.com/itm/227253131069",
+      "image": "https://i.ebayimg.com/images/g/ka8AAeSwSEVpsxwZ/s-l1600.webp",
+      "observed": "Physical sleeved front: horizontal foil in picture background and outer silver rim; smooth opaque subject, evolution portrait, framing and rules."
+    },
+    {
+      "listing": "https://www.ebay.com/itm/398408327707",
+      "image": "https://i.ebayimg.com/images/g/6sQAAeSw7ydqrZG1/s-l1600.webp",
+      "observed": "Independent full front supports rim/picture placement. Lower-contrast image is not used to infer texture or additional foil."
+    }
   ],
   "authoring": "Vector coverage traced against the 600x825 TCGdex master. Subject exclusion is specific to Umbreon 059. Geometry is never used as height or normal data. Footer protection preserves tiny opaque copyright print on the silver rim.",
-  "limitations": "Optical response reconstructed from still photographs; moving-reference calibration remains pending. No physical depth or grating period has been measured."
+  "limitations": "Optical response reconstructed from still photographs; moving-reference calibration remains pending. No physical depth or grating period has been measured.",
+  "maps": {
+    "059-holo-foil.png": "0d8a33302c75946a3c4a2025f860efdc73c9f9719fca62e21a4c1b5d14c5d93c",
+    "059-holo-protection.png": "f89eb88cdbf7ae0660fff35a80c52ab4665b841e061830e711aa020ee982b35b"
+  }
 }
