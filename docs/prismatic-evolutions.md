@@ -3,8 +3,9 @@
 This is an **incomplete surface implementation**, with a complete local retail
 catalog and registered pack recipe. The pack browser lists the set and explicitly
 keeps opening unavailable until the in-scope foil surfaces are finished. There
-are currently **7 of 268 authored foil printings** registered: Umbreon 059 regular
-holo and all six ACE SPEC cards. The etched/ball/premium surface pass is still outstanding.
+are currently **10 of 268 authored foil printings** registered: Leafeon 005,
+Flareon 013, Vaporeon 022 and Umbreon 059 regular holos, and all six ACE SPEC cards.
+The etched/ball/premium surface pass is still outstanding.
 
 ## Catalog and pack integration
 
@@ -17,7 +18,7 @@ SHA-256 records are in `public/cards/pokemon/prismatic-evolutions/`. Rebuild wit
 | --- | ---: | ---: | --- |
 | Common | 46 | — | Nonfoil front ready; pack only |
 | Uncommon | 33 | — | Nonfoil front ready; pack only |
-| Rare | 21 | — | Umbreon 059 authored; 20 picture/border masks pending |
+| Rare | 21 | — | 005, 013, 022 and 059 authored; 17 picture/border masks pending |
 | Double Rare ex | 25 | — | Exact ex/Tera foil regions pending |
 | ACE SPEC | 6 | — | Individual object, internal foil-window and text masks authored |
 | Ultra Rare full-art Trainers | 12 | — | Photo evidence and authored relief pending |
@@ -46,7 +47,8 @@ and transparency through lossless WebP conversion.
 The full catalog is not inserted in the picker. Prismatic nonfoil pulls and
 deferred standard reverses are hidden there while remaining inspectable by pack
 identity. Only exact authored foil entries enter the picker through
-`prismaticPickerCards()`; currently those are Umbreon 059 regular holo and the six ACE SPEC cards.
+`prismaticPickerCards()`; currently those are the four authored regular holos and
+the six ACE SPEC cards.
 
 ## Standard reverse remains deferred
 
@@ -65,6 +67,12 @@ individual subject/background/rim mask plus opaque footer protection. The
 evolution portrait, framing and rules are excluded. Still-photo reconstruction
 does not claim measured optical constants; moving-reference calibration remains
 pending. Its source/region manifest is `maps/059-holo-evidence.json`.
+Leafeon 005, Flareon 013 and Vaporeon 022 each have separate subject contours;
+Leafeon's printed flower petals are protected, Flareon's foreground flames have
+their own foil openings, and Vaporeon's overlapping bubbles transmit the sheet.
+Their source/region manifests accompany the maps. Rebuild these three with
+`python scripts/prismatic/create-regular-maps.py`; the photographed stage-one
+frame is shared, while each silhouette is authored in `regular-regions.json`.
 
 `prismatic_ace_spec` uses the existing horizontal diamond optical sheet with
 zero raised relief and zero sparkle glints. Separate maps for Max Rod 116,
@@ -131,6 +139,6 @@ automated gallery descriptions and app grading claims are not treated as proof.
 Each photo was visually inspected. No uploaded photo pixels, glare or printed
 illustration contours have been converted into guessed height maps.
 
-Remaining work: finish exact-card multi-angle evidence, author the remaining 261 foil
+Remaining work: finish exact-card multi-angle evidence, author the remaining 258 foil
 surfaces (including 216 textured printings), calibrate the distinct profiles,
 compare rendered tilts against references, and then enable pack opening.
