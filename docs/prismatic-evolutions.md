@@ -99,7 +99,7 @@ restrained foil under colored ink and no procedural texture/glints. Authored
 normals supply all relief; authored directions follow that surface without
 generic facet replacement. Optical constants remain calibration values, not
 measurements. Atticus 133 has its own raster foil PNG, print-protection PNG and
-eight-photo evidence manifest, including the user-provided directional photograph.
+nine-photo evidence manifest, including the user-provided directional photograph.
 Skin, eye interior, fingertips, typography and the printed Supporter interior
 are protected; the eyebrow and upper lashes have separate foil islands within
 the face. Its etched clothing stays on the foil sheet. Full-art masks export
@@ -108,7 +108,7 @@ These are **coverage-only assets**, not a completed textured printing: registrat
 still requires the exact height, normal, direction and roughness maps and visual
 acceptance. Rebuild with `python scripts/prismatic/create-fullart-coverage.py`.
 The local authoring view is `research/prismatic-evolutions/atticus-133-review.html`.
-It compares the same print coordinates across seven registered photographs,
+It compares the same print coordinates across eight registered photographs,
 including the user's directional image. Move over the card to position the
 detail view, then change the photograph. Rebuild those comparison assets with
 `python scripts/prismatic/register-references.py 133`. The feature registration
