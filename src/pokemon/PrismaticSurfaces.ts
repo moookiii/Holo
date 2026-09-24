@@ -25,7 +25,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     mapSettings: { embossStrength: 0, normalScale: 0 },
     evidence: `${PRISMATIC_ASSETS}/maps/${number}-holo-evidence.json`,
   } satisfies PrismaticSurface])),
-  ...Object.fromEntries(['005', '013', '022', '059'].map(number => [`sv08.5-${number}:holo`, {
+  ...Object.fromEntries(['005', '013', '022', '025', '059'].map(number => [`sv08.5-${number}:holo`, {
     profile: 'prismatic_regular_holo',
     maps: { foil: `${PRISMATIC_ASSETS}/maps/${number}-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/${number}-holo-protection.png` },
     layout: { artwork: [49 / 600, 94 / 825, 552 / 600, 389 / 825], innerFrame: [23 / 600, 23 / 825, 577 / 600, 802 / 825] },
