@@ -19,6 +19,8 @@ export interface FoilLayer {
     crossing?: number;
     /** How closely the grating follows the manufactured facet's tilted surface. */
     facetCoupling?: number;
+    /** Project even a uniform sheet axis onto the card's authored etched normals. */
+    followsAuthoredNormals?: boolean;
   };
   structure: { field: 'radial' | 'symbol-foil' | PatternKind; engraving: number; scale: number; relief: number; facetTilt?: number; patternRelief?: number; normalVariance?: number;
     motif?: MotifSpec;

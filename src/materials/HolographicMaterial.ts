@@ -26,6 +26,7 @@ interface OpticalRegion {
   pattern: Node<'float'>;
   /** Artist-authored grating axes lie in the authored relief's tangent plane. */
   followsAuthoredSurface?: boolean;
+  uniformAuthoredSurface?: boolean;
   inkTransmission?: Node<'vec3'>;
   image?: Node<'vec3'>;
   imageDepth?: Node<'float'>;
@@ -268,6 +269,11 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       { coverage: secondary, optics: this.secondaryOptics, seed: seed + 8191, field: this.secondaryFieldTextureNode, details: this.secondaryReliefTextureNode, pattern: this.patternTextureNode.g, followsAuthoredSurface: !!cardMaps?.secondaryDirection && cardMaps.hasNormal },
       { coverage: stamp, optics: this.stampOptics, seed: seed + 16381, field: this.stampFieldTextureNode, details: this.stampReliefTextureNode, pattern: this.patternTextureNode.b, followsAuthoredSurface: !!cardMaps?.stampDirection && cardMaps.hasNormal },
     ];
+    this.regions.forEach((region, i) => {
+      const layer = [profile, profile.secondary, profile.stamp][i];
+      region.uniformAuthoredSurface = !!layer?.diffraction.followsAuthoredNormals;
+      region.followsAuthoredSurface ||= region.uniformAuthoredSurface && !!cardMaps?.hasNormal;
+    });
     for (const region of this.regions) {
       // The parallel foil lies beneath colored ink. Its reflected light must
       // pass through that ink instead of adding an unfiltered white veil over it.
@@ -391,6 +397,13 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.stampFieldTextureNode.value = this.cardMaps?.stampDirection ?? maps.stamp?.direction ?? this.neutralField;
     this.stampReliefTextureNode.value = maps.stamp?.relief ?? this.neutralRelief;
     this.optics.apply(profile); this.secondaryOptics.apply(profile.secondary); this.stampOptics.apply(profile.stamp);
+    const layers = [profile, profile.secondary, profile.stamp];
+    const axes = [this.cardMaps?.direction, this.cardMaps?.secondaryDirection, this.cardMaps?.stampDirection];
+    this.regions?.forEach((region, i) => {
+      region.uniformAuthoredSurface = !!layers[i]?.diffraction.followsAuthoredNormals;
+      const follows = !!this.cardMaps?.hasNormal && (!!axes[i] || region.uniformAuthoredSurface);
+      if (!!region.followsAuthoredSurface !== follows) { region.followsAuthoredSurface = follows; this.needsUpdate = true; }
+    });
     if (previousFeatures !== this.opticalFeatureKey()) this.needsUpdate = true;
     this.physicalGain.value = 1;
     const settings = { ...this.cardMaps, ...profile.mapSettings };
@@ -424,7 +437,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.surfaceControls.hasExtendedFoil.value = maps.hasExtendedFoil ? 1 : 0;
     const authored = [maps.direction, maps.secondaryDirection, maps.stampDirection];
     this.regions.forEach((region, i) => {
-      const follows = !!authored[i] && maps.hasNormal;
+      const follows = (!!authored[i] || !!region.uniformAuthoredSurface) && maps.hasNormal;
       if (!!region.followsAuthoredSurface !== follows) { region.followsAuthoredSurface = follows; this.needsUpdate = true; }
     });
   }

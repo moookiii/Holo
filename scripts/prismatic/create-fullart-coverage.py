@@ -9,7 +9,7 @@ import json
 import re
 import numpy as np
 from PIL import Image, ImageDraw
-from scipy.ndimage import maximum_filter, binary_fill_holes
+from scipy.ndimage import maximum_filter, binary_fill_holes, label, binary_dilation
 
 ROOT = Path(__file__).resolve().parents[2]
 ASSETS = ROOT / 'public/cards/pokemon/prismatic-evolutions'
@@ -69,14 +69,28 @@ for number, regions in DATA['cards'].items():
         darkness = rgb[y0:y1, x0:x1].max(axis=2)
         protection[y0:y1, x0:x1] = np.maximum(protection[y0:y1, x0:x1], np.clip((155-darkness)/110, 0, 1))
     for x0, y0, x1, y1 in regions['outlinedGlyphRegions']:
+        # Include ascenders above the old row bounds; derive outlines only from
+        # isolated dark glyph cores, never from pale artwork across a text row.
+        y0=max(0,y0-5); y1=min(825,y1+3)
         patch = rgb[y0:y1, x0:x1]
         white = np.clip((patch.min(axis=2)-185)/55, 0, 1)
         dark = patch.max(axis=2) < 105
-        # White glyph outlines enclose their black printed core. Retain the
-        # enclosed ink and immediate edge, not every dark artwork pixel in a row.
-        enclosed = binary_fill_holes(white > .45)
-        core = dark & (enclosed | (maximum_filter(white, size=3) > .6))
-        protection[y0:y1, x0:x1] = np.maximum(protection[y0:y1, x0:x1], np.maximum(white, core))
+        components,count=label(dark)
+        core=np.zeros(dark.shape,dtype=bool)
+        for component in range(1,count+1):
+            candidate=components==component
+            cy,cx=np.nonzero(candidate)
+            if len(cx)<2 or cx.max()-cx.min()>22 or cy.max()-cy.min()>24:
+                continue
+            rim=binary_dilation(candidate,iterations=2) & ~candidate
+            # Printed black letters have a bright outline around most of their
+            # perimeter. Dark forest and clothing edges do not.
+            if float(np.mean(white[rim]>.1)) < .35:
+                continue
+            core|=candidate
+        outline=white*(maximum_filter(core,size=5)>0)
+        glyph=np.maximum(outline,binary_fill_holes((outline>.2)|core))
+        protection[y0:y1, x0:x1] = np.maximum(protection[y0:y1, x0:x1], glyph)
     protection_path = output / f'{number}-holo-protection.png'
     Image.fromarray(np.rint(np.clip(protection, 0, 1)*255).astype(np.uint8)).resize((1200, 1650), Image.Resampling.LANCZOS).save(protection_path)
 

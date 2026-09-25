@@ -20,9 +20,9 @@ export const prismaticProfiles: HolographicProfile[] = [{
 }, {
   id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'development', labOnly: true,
   description: 'Scarlet & Violet full-art Trainer foil under colored ink. A uniform sheet direction drives diffraction, while card-specific PNG height and normal maps supply photo-guided etched relief. Ridge placement and depth are reconstructed approximations. Atticus 133 is authored. Other full arts still need their own maps.',
-  diffraction: { period: 1.18, bandwidth: .048, strength: .32, secondaryOrder: .08, direction: 0, crossWidth: .40, facetCoupling: 0 },
+  diffraction: { period: 1.18, bandwidth: .032, strength: .48, secondaryOrder: .04, direction: -.55, crossWidth: .22, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
-  surface: { metalness: .70, roughness: .34, laminate: .12, laminateRoughness: .34, foilReflectance: .04, sheen: 0, inkTransmission: 1 },
+  surface: { metalness: .70, roughness: .34, laminate: .06, laminateRoughness: .26, foilReflectance: .025, sheen: 0, inkTransmission: 1 },
   mapSettings: { normalScale: 1.35, embossStrength: 0, roughnessMode: 'absolute' },
 }];
