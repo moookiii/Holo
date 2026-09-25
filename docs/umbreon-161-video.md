@@ -1,15 +1,19 @@
 # Umbreon ex 161/131
 
 The picker entry `pokemon:sv08.5-161:holo` uses `prismatic_sir_texture`
-(Prismatic · SIR etched holo). Six registered 1800 × 2475 PNGs provide foil
+(Prismatic · SIR etched holo). Seven registered 1800 × 2475 PNGs provide foil
 coverage, ink protection, height, normals, absolute roughness and a separate
-crown/gem microdiamond mask. Normal-driven
+crown/gem microdiamond mask and a separate body mask. Normal-driven
 reflection and diffraction respond to the existing card tilt and studio lights.
 The gem finish uses short square microcuts with staggered rows, varied facet
 inclinations and pixel-area filtering. Individual flashes are selected by light
 and viewing angle over a restrained spectral base. It does not use the repeating
 pyramidal normal atlas, which read as grain and a regular grid in the studio.
-The curved background and character keep their original optical layer.
+The body, ear and tail use shallow rounded micro-indentations in the authored
+height and normal PNGs. No body sparkle layer is applied. The three
+user-provided bright/medium/dark close-ups are retained as `body-bright.png`,
+`body-medium.png` and `body-dark.png`. Their hashes are in `bodyReferences`.
+Dimple spacing and depth are visual estimates from those references.
 
 The original surface reference is the user-supplied
 `2026-09-24 17-52-17-00.00.09.028-00.00.33.805.mp4` (24.823 seconds).

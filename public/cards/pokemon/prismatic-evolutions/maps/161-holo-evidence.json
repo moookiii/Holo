@@ -51,13 +51,31 @@
     2475
   ],
   "maps": {
-    "161-holo-foil.png": "ac4b22d69cd4d0d7ae6bb02f9a73e66a91cc9d8e45351a413ab1edaf06ec6172",
+    "161-holo-foil.png": "9302736b0f5c1c537910195bb6fad118b29a497acd6e7ae9e390466bbed2d41d",
     "161-holo-protection.png": "32fe105335ceb1d5dd0fb71d77b7ff6c2eea8d0ede800e9377545ba1e6fc2661",
-    "161-holo-height.png": "0f8524a9753f71da9e984d801bc668cf5466980634f939318bf845f3f226a10d",
-    "161-holo-normal.png": "bae5b66abd1e94d8455538ced1b950a52c754c6372e2d1d39b5519f7af9c0189",
-    "161-holo-roughness.png": "67e7c5e5344437bb174483b19ba52cc378afa46ad72ee64ba8a98b832edc5cb1",
-    "161-holo-secondary-foil.png": "94d3878c782a7c7d52c2dc9627083a2596b19c0e0a6edf230a74e6e9c1e0d067"
+    "161-holo-height.png": "0d8171cced6463c751649b88159805ccb0323cf7de5c60e2984d3abb88451f4d",
+    "161-holo-normal.png": "d24523bf401d7680a74fbd4afcd8e1b1c613b2e6aa365a41593f6a8dab7ae718",
+    "161-holo-roughness.png": "9b8af78111531da16b81e11b2910ccd52eeb419cc33b8e52856e602a533b0413",
+    "161-holo-secondary-foil.png": "94d3878c782a7c7d52c2dc9627083a2596b19c0e0a6edf230a74e6e9c1e0d067",
+    "161-holo-body.png": "a825e78d9dd63827c636bde4d123b1585a43fedac1ab17eca4c737b3e422d45b"
   },
+  "bodyReferences": [
+    {
+      "file": "body-bright.png",
+      "sha256": "5ee47394d9043395ccd58cfe9b2c7892290e4efe44ac10d355abb0bddf4a435d",
+      "role": "User close-up: fine body texture in bright light"
+    },
+    {
+      "file": "body-medium.png",
+      "sha256": "e5f59b8a41212adf7e8f97c3de236bbfc9ed687aa2b7b493a63ca21760bb6d1d",
+      "role": "User close-up: intermediate body texture response"
+    },
+    {
+      "file": "body-dark.png",
+      "sha256": "dc34b64a7a3a0bde2f58a2e89b269b1c50c707e5a777cd8587523b9c4838f780",
+      "role": "User close-up: subdued body texture in low light"
+    }
+  ],
   "finishReferences": [
     {
       "file": "microdiamond-reference.png",

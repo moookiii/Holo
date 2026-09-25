@@ -43,6 +43,15 @@ test('Umbreon SIR uses registered surface assets and user-authorized finish refe
   assert.equal(profile.secondary?.structure.field, 'plain');
   assert.equal(profile.secondary?.glints.microdiamond, true);
   assert.equal(profile.secondary?.structure.facetTilt, 0);
+  assert.equal(card.maps?.stamp, undefined);
+  assert.equal(profile.stamp, undefined);
+  const bodyBytes = readFileSync(new URL('maps/161-holo-body.png', path));
+  assert.equal(createHash('sha256').update(bodyBytes).digest('hex'), evidence.maps['161-holo-body.png']);
+  assert.equal(evidence.bodyReferences.length, 3);
+  for (const reference of evidence.bodyReferences) {
+    const bytes = readFileSync(new URL(`../research/prismatic-evolutions/umbreon-video/${reference.file}`, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), reference.sha256);
+  }
   assert.ok(card.maps?.secondaryFoil?.endsWith('161-holo-secondary-foil.png'));
   const gemBytes = readFileSync(new URL('maps/161-holo-secondary-foil.png', path));
   assert.equal(gemBytes.readUInt32BE(16), 1800);

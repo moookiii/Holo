@@ -24,8 +24,8 @@ SUBJECT_POINTS = [
     (249,236),(239,250),(248,279),(252,286),(257,291),(261,294),
     (263,298),(264,302),(263.5,309),(262.5,317),(261.4,325),
     (259.9,332),(257.5,338),(255.3,345),(254,352),(252.5,359),
-    (250.4,366),(247.6,373),(244.6,380),(241.4,387),(238.3,393),
-    (235.5,402),(234,409),(236,430),(241,444),
+    (251.6,366),(250.2,373),(249.1,380),(249.1,387),(248.4,393),
+    (245.3,397),(240.8,402),(236,409),(236,430),(241,444),
     (246,453),(250,466),(247,471),(243,476),(242,480),(245,483),
     (251,483),(259,478),(269,474),(284,474),(298,476),(310,475),
     (320,477),(331,479),(343,482),(355,486),(358,484),(358,480),
@@ -100,6 +100,22 @@ def polygon(points):
     im = Image.new('L', (W, H))
     ImageDraw.Draw(im).polygon([(round(x*S), round(y*S)) for x, y in points], fill=255)
     return np.asarray(im.filter(ImageFilter.GaussianBlur(1.2)), dtype=np.float32)/255
+
+
+def body_texture(x, y):
+    """Estimated shallow embossed dimples, evaluated before silhouette clipping.
+
+    Rounded manufactured geometry; neither print brightness nor noise is used
+    as height. Spacing/depth are visual estimates from the three body close-ups.
+    """
+    pitch = 1.35
+    row = np.floor(y/pitch)
+    u = x/pitch + .5*(row % 2)
+    col = np.floor(u)
+    a = u-col-.5-.17*np.sin(row*1.7+col*2.3)
+    b = y/pitch-row-.5-.15*np.sin(col*1.3-row*2.1)
+    radius = np.sqrt((a/.46)**2+(b/.39)**2)
+    return -2.3*np.maximum(0,1-radius*radius)**2
 
 
 def build(video=None):
@@ -190,6 +206,12 @@ def build(video=None):
     # Differentiate physical grooves before applying opaque ink. Differentiating
     # the protection mask would introduce a false raised/dark rim around letters.
     gy,gx = np.gradient(relief,1/S,1/S)
+    body_relief = body_texture(x,y)
+    by,bx = np.gradient(body_relief,1/S,1/S)
+    body = subject*(1-gems)
+    gx = gx*(1-body)+bx*body
+    gy = gy*(1-body)+by*body
+    relief = relief*(1-body)+body_relief*body
     gx *= (1-protection)*(1-gems)
     gy *= (1-protection)*(1-gems)
     relief *= (1-protection)*(1-gems)
@@ -199,7 +221,8 @@ def build(video=None):
     rough = .35 + .07*subject + .04*moon + .13*protection + .022*rough_wave*(1-protection)
     rough = rough*(1-gems) + .27*gems
     arrays = {'foil':foil,'protection':protection,'height':.5+relief*.19,
-              'normal':normal*.5+.5,'roughness':rough,'secondary-foil':gems}
+              'normal':normal*.5+.5,'roughness':rough,'secondary-foil':gems,
+              'body':subject*(1-gems)}
     maps = {}
     for name,array in arrays.items():
         file = OUT/f'161-holo-{name}.png'
@@ -211,6 +234,10 @@ def build(video=None):
                     rendererReady=True,textured=True,referencePolicy='Original video guides the body and ornament. User-supplied crown/gem and edge detail images guide the added microdiamond and rim finishes.',
                     video=video_evidence,
                     references=references,mapSize=[W,H],maps=maps,
+                    bodyReferences=[dict(file=name,sha256=hashlib.sha256((REF/name).read_bytes()).hexdigest(),role=role)
+                                    for name,role in [('body-bright.png','User close-up: fine body texture in bright light'),
+                                                      ('body-medium.png','User close-up: intermediate body texture response'),
+                                                      ('body-dark.png','User close-up: subdued body texture in low light')]],
                     finishReferences=[dict(file=name,sha256=hashlib.sha256((REF/name).read_bytes()).hexdigest(),role=role)
                                       for name,role in [('microdiamond-reference.png','User-authorized shared crown and gem finish from another card'),
                                                         ('edge-reference.png','User-authorized Prismatic edge etching detail'),
