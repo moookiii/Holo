@@ -37,6 +37,13 @@ curved background ornament, lower concentric fans, reflective perimeter and
 opaque rules panels. Curve spacing, relief depth and material parameters are
 visual approximations; the recording cannot resolve every original incision.
 
+The later `etched-ink-direct-light.jpg` reference guides an ink-colored metallic
+reflection on the authored die walls. A narrow light/view half-vector lobe follows
+the PNG normals and registered print color. It is evaluated only for direct
+lights, including area-light width, and fades outside the reflected-light angle.
+The effect adds no environment or ambient contribution. Its strength and angular
+width are estimates from the supplied photograph.
+
 The annotated review corrections extend the character mask along the right
 chest and both toe tips, preserving the open gap and pink gem below the ear.
 All six engraved medallions have individual centers, semiaxes and rotations

@@ -28,6 +28,7 @@ interface OpticalRegion {
   followsAuthoredSurface?: boolean;
   uniformAuthoredSurface?: boolean;
   inkTransmission?: Node<'vec3'>;
+  inkReflection?: Node<'vec3'>;
   image?: Node<'vec3'>;
   imageDepth?: Node<'float'>;
 }
@@ -150,7 +151,17 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
       const printFilter = mix(vec3(1), region.inkTransmission!, u.inkTransmission);
-      const conventional = spectral.mul(u.spectralGain).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter);
+      const conventional = spectral.mul(u.spectralGain).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
+      // Only direct illumination can reveal metallic printed die walls. The
+      // authored normals select the ridges; no color/noise-derived relief or
+      // ambient term is introduced. Integrate the source's angular footprint.
+      const half = momentum.normalize();
+      const inkBroadening = halfVariance.mul(150).add(1);
+      const inkLobe = foilNormal.dot(half).max(0).pow(float(150).div(inkBroadening)).div(inkBroadening);
+      const directAlignment = geometryNormal.dot(half).smoothstep(.90, .98);
+      const ridge = foilNormal.sub(geometryNormal).length().smoothstep(.008, .075);
+      conventional.addAssign(region.inkReflection!.mul(inkLobe, directAlignment, ridge,
+        u.etchedInkSheen, u.neutralGain, incident, visible, region.pattern));
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
         .mul(region.coverage, data.lightColor as Node<'vec3'>));
     });
@@ -278,6 +289,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       // The parallel foil lies beneath colored ink. Its reflected light must
       // pass through that ink instead of adding an unfiltered white veil over it.
       region.inkTransmission = correctedPrint.max(0).sqrt().mul(.94).add(.06);
+      region.inkReflection = correctedPrint.max(0).sqrt();
       region.image = hologramImage(this.printTextureNode, this.hologramTextureNode, region.optics);
       region.imageDepth = this.hologramTextureNode.b;
     }
@@ -464,4 +476,3 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   }
   override dispose() { this.neutralField.dispose(); this.neutralRelief.dispose(); this.neutralWhite.dispose(); this.neutralHologram.dispose(); super.dispose(); }
 }
-

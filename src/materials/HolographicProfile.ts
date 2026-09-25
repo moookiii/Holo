@@ -40,6 +40,8 @@ export interface FoilLayer {
     sheen?: number;
     /** Amount of foil reflection filtered by the registered printed ink colors. */
     inkTransmission?: number;
+    /** Ink-colored reflection on authored etched ridges, from direct lights only. */
+    etchedInkSheen?: number;
     /** Thin-film interference, independent of the etched diffraction grating. Thickness is nm. */
     iridescence?: number; filmIOR?: number; filmMin?: number; filmMax?: number; pearlBody?: number;
     /** Absorbing finish on the foil substrate; printed regions keep their color. */

@@ -9,7 +9,7 @@ export const prismaticProfiles: HolographicProfile[] = [{
   diffraction: { period: 1.16, bandwidth: .048, strength: .48, secondaryOrder: .065, direction: -.48, crossWidth: .42, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
-  surface: { metalness: .74, roughness: .32, laminate: .12, laminateRoughness: .27, foilReflectance: .055, sheen: 0, inkTransmission: .86 },
+  surface: { metalness: .74, roughness: .32, laminate: .12, laminateRoughness: .27, foilReflectance: .055, sheen: 0, inkTransmission: .86, etchedInkSheen: 1.4 },
   mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
   secondary: {
     diffraction: { period: 1.1, bandwidth: .045, strength: .34, secondaryOrder: .07, direction: -.48, crossWidth: .42, crossing: .18, facetCoupling: 0 },
