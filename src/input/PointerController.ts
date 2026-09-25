@@ -10,11 +10,11 @@ export class PointerController {
   private from = new Vector3();
   private to = new Vector3();
   private turn = new Quaternion();
-  private identity = new Quaternion();
   private clickStart = new Vector2();
   private clickDistance = 0;
+  private translating = false;
   private disposeHandlers: (() => void)[] = [];
-  constructor(private element: HTMLElement, private motion: CardMotion, private onClick?: (x: number, y: number) => void) {
+  constructor(private element: HTMLElement, private motion: CardMotion, private onClick?: (x: number, y: number) => void, private onTranslate?: (dx: number, dy: number) => void) {
     const on = <K extends keyof HTMLElementEventMap>(name: K, handler: (e: HTMLElementEventMap[K]) => void, options?: AddEventListenerOptions) => {
       element.addEventListener(name, handler, options);
       this.disposeHandlers.push(() => element.removeEventListener(name, handler));
@@ -24,6 +24,7 @@ export class PointerController {
       if (e.button !== 0) return;
       element.setPointerCapture(e.pointerId);
       this.pointers.set(e.pointerId, new Vector2(e.clientX, e.clientY));
+      if (this.pointers.size === 1) this.translating = e.shiftKey;
       this.motion.dragging = true; this.motion.halt();
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
       this.clickStart.copy(this.previous); this.clickDistance = this.pointers.size > 1 ? 100 : 0;
@@ -46,9 +47,13 @@ export class PointerController {
         if (this.pinchDistance > 0) this.motion.targetZoom = Math.max(0.58, Math.min(1.9, this.motion.targetZoom * this.pinchDistance / d));
         this.pinchDistance = d; return;
       }
+      if (this.translating) {
+        this.onTranslate?.(e.clientX - this.previous.x, e.clientY - this.previous.y);
+        this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
+        return;
+      }
       this.project(this.previous.x, this.previous.y, this.from); this.project(e.clientX, e.clientY, this.to);
       this.turn.setFromUnitVectors(this.from, this.to);
-      if (e.shiftKey) this.turn.slerpQuaternions(this.identity, this.turn, .25);
       this.motion.applyRotation(this.turn, Math.max(.001, Math.min(.05, (e.timeStamp - this.lastTime) / 1000)));
       this.follow(e.clientX, e.clientY);
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
@@ -64,7 +69,8 @@ export class PointerController {
         this.motion.dragging = false; element.classList.remove('dragging');
         if (e.timeStamp - this.lastTime > 80 || e.type === 'pointercancel') this.motion.velocity.set(0, 0, 0);
         if (e.pointerType === 'touch' || e.type === 'pointercancel') this.motion.setHover(0, 0);
-        if (click) this.onClick?.(e.clientX, e.clientY);
+        if (click && !this.translating) this.onClick?.(e.clientX, e.clientY);
+        this.translating = false;
       }
     };
     on('pointerup', release); on('pointercancel', release); on('lostpointercapture', release);

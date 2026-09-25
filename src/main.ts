@@ -52,6 +52,11 @@ async function start() {
     const rect = container.getBoundingClientRect();
     clickRay.setFromCamera(new Vector2((x - rect.left) / rect.width * 2 - 1, 1 - (y - rect.top) / rect.height * 2), camera);
     if (card && clickRay.intersectObject(card, false).length) motion.requestFlip();
+  }, (dx, dy) => {
+    if (!card) return;
+    const unitsPerPixel = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360) / container.clientHeight;
+    card.position.x += dx * unitsPerPixel;
+    card.position.y -= dy * unitsPerPixel;
   });
   const setMode = (mode: InteractionMode) => {
     pointer.setMode(mode);
@@ -239,8 +244,10 @@ async function start() {
     if (generation !== loadGeneration || disposed) { candidate.dispose(); return; }
     // Transfer ownership only after textures, manufacturing fields and GPU programs are ready.
     ++profileGeneration;
+    const previousPosition = card?.position.clone();
     activeCard?.dispose();
     activeCard = candidate; definition = next; card = candidate.mesh;
+    if (previousPosition) card.position.copy(previousPosition);
     card.quaternion.copy(motion.orientation); scene.add(card);
     activeProfile = next.profile; ui?.selectProfile(activeProfile); ui?.selectCard(id);
     } finally {
@@ -290,7 +297,7 @@ async function start() {
   };
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
-    flip: () => motion.requestFlip(), reset: () => motion.reset(),
+    flip: () => motion.requestFlip(), reset: () => { motion.reset(); card.position.set(0, 0, 0); },
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { void browsePacks().catch(showError); },
@@ -350,7 +357,7 @@ async function start() {
     },
     material: () => card.material[0] as HolographicMaterial,
     pose: (yaw: number, pitch: number, roll = 0) => motion.setPose(yaw * Math.PI / 180, pitch * Math.PI / 180, roll * Math.PI / 180),
-    flip: () => motion.requestFlip(), reset: () => motion.reset(),
+    flip: () => motion.requestFlip(), reset: () => { motion.reset(); card.position.set(0, 0, 0); },
     zoom: (value: number) => { motion.zoom = value; motion.targetZoom = value; },
     setCard, setProfile, setMode, profiles, cards,
     stats: () => ({ backend: renderer.backend.constructor.name, card: definition.id, profile: activeProfile, mode: motion.mode, frameMs: frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length, frames: frameTimes.length, triangles: renderer.info.render.triangles, quaternion: motion.orientation.toArray(), zoom: motion.zoom, factory: factory.stats(), cpuPreparation: cpuPreparation.stats(), preparedPack: preparedPack ? { seed: preparedPack.seed, cardIds: [...preparedPack.cards.keys()] } : undefined, packMetrics }),
