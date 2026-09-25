@@ -18,6 +18,20 @@ export interface PrismaticSurface {
 // Populate only after the per-printing photo, map and rendered-tilt review.
 // No generic Mirage/rainbow-etched fallback may stand in for a missing surface.
 const surfaces: Readonly<Record<string, PrismaticSurface>> = {
+  'sv08.5-150:holo': {
+    profile: 'prismatic_sir_texture',
+    maps: {
+      foil: `${PRISMATIC_ASSETS}/maps/150-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/150-holo-protection.png`,
+      height: `${PRISMATIC_ASSETS}/maps/150-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/150-holo-normal.png`,
+      roughness: `${PRISMATIC_ASSETS}/maps/150-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/150-holo-secondary-foil.png`,
+    },
+    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
+    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
+    profileOverrides: { surface: { metalness: .58, laminate: .07, foilReflectance: .035, etchedInkSheen: 1.1 }, secondary: {
+      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
+    } },
+    evidence: `${PRISMATIC_ASSETS}/maps/150-holo-evidence.json`,
+  },
   'sv08.5-167:holo': {
     profile: 'prismatic_sir_texture',
     maps: {
