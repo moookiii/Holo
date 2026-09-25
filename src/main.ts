@@ -41,7 +41,7 @@ async function start() {
   const cpuPreparation = new CardCpuPreparation(profiles);
   const { assets, maps: mapLoader } = factory;
   const cards = [...builtInCards, ...prismaticPickerCards()];
-  const initialCard = cards.find(card => card.id === 'pikachu-vmax-vivid-voltage') ?? cards[0];
+  const initialCard = cards.find(card => card.id === 'pokemon:sv08.5-161:holo') ?? cards[0];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);
   startupMark('environmentReady');
