@@ -151,17 +151,17 @@ def build(video=None):
                      (432,270),(408,304),(378,307),(398,270),(405,230),(377,197),(345,190),
                      (310,203),(292,240),(267,238),(282,195),(246,182),(219,197),(202,227),
                      (197,258),(173,248),(159,216)])
-    lower = polygon([(95,537),(209,520),(300,527),(384,518),(507,542),(477,651),(408,688),
-                     (301,710),(192,689),(116,651)])
-    # Visible moon rays, petal-following scallops and concentric lower fans.
+    # One continuous phase carries the curved engraving through the lower fan.
+    # Switching to a second center at its boundary left a foil-free-looking arc.
     dx, dy = x-298, (y-235)*.94
     theta = np.arctan2(dy, dx)
     radius = np.hypot(dx, dy)
-    petal_phase = radius + 8*np.sin(theta*12) + 3*np.sin(theta*24)
-    lower_phase = np.hypot((x-300)*.86, (y-498)*1.05) + 5*np.sin(np.arctan2(y-498,x-300)*18)
-    phase = petal_phase*(1-lower) + lower_phase*lower
+    # Keep the scallop influence below the radial slope. Larger angular offsets
+    # cancel the radial gradient in two sectors and form long, flat stretch bands.
+    petal_phase = radius + np.sin(theta*12) + .3*np.sin(theta*24)
+    phase = petal_phase
     # Shallow grooves, interrupted by the smooth crystal subject and moon.
-    amplitude = .68*inner*(1-.86*subject)*(1-.63*moon)*(1-.50*crown)
+    amplitude = .84*inner*(1-.86*subject)*(1-.63*moon)*(1-.50*crown)
     relief = amplitude*np.sin(phase*2*np.pi/1.45)
     # The moon has much finer, mostly upright incisions in the close-up.
     relief = relief*(1-moon*.82) + .13*moon*(1-subject)*np.sin((x+.14*y)*2*np.pi/1.9)
@@ -215,7 +215,7 @@ def build(video=None):
     gx *= (1-protection)*(1-gems)
     gy *= (1-protection)*(1-gems)
     relief *= (1-protection)*(1-gems)
-    normal = np.stack([-gx*.055, gy*.055, np.ones_like(gx)],axis=2)
+    normal = np.stack([-gx*.065, gy*.065, np.ones_like(gx)],axis=2)
     normal /= np.linalg.norm(normal,axis=2,keepdims=True)
     foil = (.90*inner + .98*(1-inner))*(1-.48*subject)*(1-.12*moon)
     rough = .35 + .07*subject + .04*moon + .13*protection + .022*rough_wave*(1-protection)
