@@ -21,10 +21,11 @@ export class PointerController {
     };
     on('pointerdown', e => {
       if (!this.enabled) return;
-      if (e.button !== 0) return;
+      if (e.button !== 0 && e.button !== 1) return;
+      if (e.button === 1) e.preventDefault();
       element.setPointerCapture(e.pointerId);
       this.pointers.set(e.pointerId, new Vector2(e.clientX, e.clientY));
-      if (this.pointers.size === 1) this.translating = e.shiftKey;
+      if (this.pointers.size === 1) this.translating = e.shiftKey || e.button === 1;
       this.motion.dragging = true; this.motion.halt();
       this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
       this.clickStart.copy(this.previous); this.clickDistance = this.pointers.size > 1 ? 100 : 0;
@@ -74,6 +75,7 @@ export class PointerController {
       }
     };
     on('pointerup', release); on('pointercancel', release); on('lostpointercapture', release);
+    on('auxclick', e => { if (e.button === 1) e.preventDefault(); });
     on('pointerleave', () => { if (!this.motion.dragging) this.motion.setHover(0, 0); });
     on('wheel', e => {
       if (!this.enabled) return;
