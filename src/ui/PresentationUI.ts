@@ -91,7 +91,13 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
   const matchesSearch = (card: CardDefinition) => !searchQuery || [card.title, card.set, card.number, card.franchise].some(value => value.toLocaleLowerCase().includes(searchQuery));
-  const pickerPriority = ['pokemon:sv08.5-161:holo', 'pikachu-vmax-vivid-voltage', 'pokemon:sv08.5-133:holo', 'nocturne', 'lugia-neo-genesis'];
+  const pickerPriority = [
+    'pokemon:sv08.5-161:holo',
+    'pokemon:sv08.5-146:holo',
+    'pokemon:sv08.5-167:holo',
+    'pokemon:sv08.5-150:holo',
+    'pikachu-vmax-vivid-voltage', 'pokemon:sv08.5-133:holo', 'nocturne', 'lugia-neo-genesis',
+  ];
   const drawCards = () => {
     grid.replaceChildren();
     const visibleCards = cardsForFinish().filter(card => (selectedCategory === 'All' || card.franchise === selectedCategory) && matchesSearch(card));
