@@ -12,10 +12,10 @@ export const prismaticProfiles: HolographicProfile[] = [{
   surface: { metalness: .74, roughness: .32, laminate: .12, laminateRoughness: .27, foilReflectance: .055, sheen: 0, inkTransmission: .86 },
   mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
   secondary: {
-    diffraction: { period: 1.1, bandwidth: .032, strength: .72, secondaryOrder: .10, direction: 0, crossWidth: .32, crossing: .5, facetCoupling: 1 },
-    structure: { field: 'diamond', scale: 620, engraving: .12, relief: 0, patternRelief: 0, facetTilt: .55, reflectionCoupling: .18, normalVariance: .35 },
-    glints: { density: 1, scale: 620, sharpness: 280, strength: 9, spread: .24, ordered: true },
-    surface: { metalness: .76, roughness: .27, laminate: .10, laminateRoughness: .24, foilReflectance: .055, inkTransmission: .82 },
+    diffraction: { period: 1.1, bandwidth: .045, strength: .34, secondaryOrder: .07, direction: -.48, crossWidth: .42, crossing: .18, facetCoupling: 0 },
+    structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
+    glints: { density: .88, scale: 490, sharpness: 170, strength: 12, spread: .46, microdiamond: true },
+    surface: { metalness: .76, roughness: .27, laminate: .10, laminateRoughness: .24, foilReflectance: .055, inkTransmission: .72 },
   },
 }, {
   id: 'prismatic_regular_holo', name: 'Prismatic · Regular holo', family: 'Pokémon', status: 'development',

@@ -5,8 +5,10 @@ The picker entry `pokemon:sv08.5-161:holo` uses `prismatic_sir_texture`
 coverage, ink protection, height, normals, absolute roughness and a separate
 crown/gem microdiamond mask. Normal-driven
 reflection and diffraction respond to the existing card tilt and studio lights.
-The gem finish uses densely ordered pyramidal facets and two crossing grating
-directions, with fixed microscopic glints selected by light and viewing angle.
+The gem finish uses short square microcuts with staggered rows, varied facet
+inclinations and pixel-area filtering. Individual flashes are selected by light
+and viewing angle over a restrained spectral base. It does not use the repeating
+pyramidal normal atlas, which read as grain and a regular grid in the studio.
 The curved background and character keep their original optical layer.
 
 The original surface reference is the user-supplied
@@ -19,6 +21,10 @@ by the user, guide the microdiamond crown/gem finish and shallow curved rim
 engraving. They are retained as `microdiamond-reference.png` and
 `edge-reference.png` beside the video frames and hashed separately in the
 evidence manifest. The continuous edge grooves wrap all four border strips.
+The later `microdiamond-closeup-reference.png` guides the short square flashes;
+the user's 3.6-second `firefox_7532_{;10}.mp4` was reviewed to diagnose the previous
+studio appearance. Facet size, inclination distribution and brightness remain
+visual calibrations rather than measured manufacturing parameters.
 The existing clean card front remains unchanged and supplies
 registration and printed-text protection only.
 

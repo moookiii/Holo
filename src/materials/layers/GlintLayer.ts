@@ -10,9 +10,11 @@ export interface GlintUniforms {
   spread: Node<'float'>;
   aspect?: Node<'float'>;
   ordered?: Node<'float'>;
+  microdiamond?: boolean;
 }
 
 export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number) {
+  if (settings.microdiamond) return microdiamondGlints(lightDirection, settings, seed);
   const ordered = settings.ordered ?? float(0);
   const point = uv().mul(vec2(settings.aspect ?? float(.716), 1));
   const lattice = mix(point, vec2(point.x.add(point.y), point.y.sub(point.x)), ordered).mul(settings.scale);
@@ -32,4 +34,31 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
   const half = lightDirection.add(positionViewDirection).normalize();
   const angular = normal.dot(half).max(0).pow(settings.sharpness);
   return vec3(1, 0.97, 0.91).mul(spot, integratedArea, occupied, angular, settings.strength);
+}
+
+/** Registered microscopic square cuts: their positions and inclinations are
+ * fixed in card space. Light selects individual flashes. Pixel-area integration
+ * preserves tiny facets without aliasing them into a coarse diamond grid. */
+function microdiamondGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number) {
+  const p = uv().mul(vec2(settings.aspect ?? float(.716), 1)).mul(settings.scale);
+  const row = p.y.floor();
+  const lattice = p.add(vec2(stableHash(vec2(row, 7), seed + 311).mul(.8), 0));
+  const cell = lattice.floor();
+  const r = stableHash(cell, seed), s = stableHash(cell, seed + 31);
+  const t = stableHash(cell, seed + 83);
+  const center = vec2(r, s).sub(.5).mul(.24).add(.5);
+  const local = lattice.fract().sub(center);
+  const size = vec2(t.mul(.10).add(.16), r.mul(.09).add(.15));
+  const pixel = lattice.fwidth().max(.001);
+  const overlap = local.add(pixel.mul(.5)).min(size)
+    .sub(local.sub(pixel.mul(.5)).max(size.negate())).max(0).div(pixel);
+  const resolved = pixel.x.max(pixel.y).smoothstep(.7, 1.7).oneMinus();
+  const shape = mix(size.x.mul(size.y, 4), overlap.x.mul(overlap.y), resolved);
+  const normal = normalView.add(tangentView.mul(r.sub(.5).mul(settings.spread, 2)))
+    .add((bitangentView as unknown as Node<'vec3'>).mul(s.sub(.5).mul(settings.spread, 2))).normalize();
+  const half = lightDirection.add(positionViewDirection).normalize();
+  const angular = normal.dot(half).max(0).pow(settings.sharpness);
+  const occupied = smoothstep(settings.density, settings.density.add(.008), t).oneMinus();
+  // Broad low-energy metal remains between isolated bright microcut flashes.
+  return vec3(1, .99, .96).mul(shape, occupied, angular, settings.strength);
 }

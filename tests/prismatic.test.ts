@@ -40,15 +40,15 @@ test('Umbreon SIR uses registered surface assets and user-authorized finish refe
   const profile = prismaticProfiles.find(profile => profile.id === card.profile)!;
   assert.equal(profile.diffraction.followsAuthoredNormals, true);
   assert.equal(profile.glints.strength, 0);
-  assert.equal(profile.secondary?.structure.field, 'diamond');
-  assert.equal(profile.secondary?.glints.ordered, true);
-  assert.equal(profile.secondary?.diffraction.crossing, .5);
+  assert.equal(profile.secondary?.structure.field, 'plain');
+  assert.equal(profile.secondary?.glints.microdiamond, true);
+  assert.equal(profile.secondary?.structure.facetTilt, 0);
   assert.ok(card.maps?.secondaryFoil?.endsWith('161-holo-secondary-foil.png'));
   const gemBytes = readFileSync(new URL('maps/161-holo-secondary-foil.png', path));
   assert.equal(gemBytes.readUInt32BE(16), 1800);
   assert.equal(gemBytes.readUInt32BE(20), 2475);
   assert.equal(createHash('sha256').update(gemBytes).digest('hex'), evidence.maps['161-holo-secondary-foil.png']);
-  assert.equal(evidence.finishReferences.length, 2);
+  assert.equal(evidence.finishReferences.length, 3);
   for (const reference of evidence.finishReferences) {
     const bytes = readFileSync(new URL(`../research/prismatic-evolutions/umbreon-video/${reference.file}`, import.meta.url));
     assert.equal(createHash('sha256').update(bytes).digest('hex'), reference.sha256);

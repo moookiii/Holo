@@ -30,7 +30,9 @@ export interface FoilLayer {
     /** Angular selection of crossed groups of fixed microcuts. */
     gridStrength?: number; gridScale?: number; gridTravel?: number; gridWidth?: number;
   };
-  glints: { density: number; scale: number; sharpness: number; strength: number; spread: number; ordered?: boolean; };
+  glints: { density: number; scale: number; sharpness: number; strength: number; spread: number; ordered?: boolean;
+    /** Short square microcuts with independent, fixed facet inclinations. */
+    microdiamond?: boolean; };
   surface: { metalness: number; roughness: number; laminate: number; laminateRoughness: number; anisotropy?: number; foilReflectance?: number;
     /** Pattern amplitude modulates roughness independently of its color response. */
     patternRoughness?: number;
