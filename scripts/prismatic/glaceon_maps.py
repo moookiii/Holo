@@ -49,6 +49,17 @@ APPENDAGES=[
  # Small printed bridge between the haunch and the tail, partly under text.
  [(200,538),(207,537),(215,541),(215,548),(208,554),(200,552),(198,547)],
 ]
+# Registered from the user's red removal annotation (card offset 22,268;
+# displayed at 1.5 times the clean front). These are background openings.
+BODY_EXCLUSIONS=[
+ [(332,469.3),(326,469.3),(319.3,473.3),(310,486.7),(310.7,490),
+  (318,492.7),(322.7,499.3),(321.3,521.3),(316,540.7),(310.7,548.7),
+  (312,552),(328,546.7),(361.3,544),(361.3,541.3),(352,532),
+  (348,524.7),(348.7,519.3),(353.3,512),(352.7,508.7),(354.7,504.7),
+  (359.3,500.7),(359.3,498),(350.7,495.3),(342,488),(335.3,478)],
+ [(273.3,339.3),(273.3,344.7),(275.3,346),(278.7,353.3),
+  (279.3,360),(282,364),(284.7,364),(279.3,345.3),(276,339.3)],
+]
 GEMS=[
  [(128,230),(137,227),(146,239),(151,257),(147,276),(138,278),(128,257),(123,241)],
  [(143,244),(155,238),(170,249),(177,269),(173,281),(163,288),(151,281),(142,263)],
@@ -90,6 +101,7 @@ def build():
     rgb=np.asarray(front,np.float32)/255
     gems=np.maximum.reduce([poly(p) for p in GEMS])
     body=np.maximum.reduce([poly(p) for p in [BODY,*APPENDAGES]])*(1-gems)
+    body*=1-np.maximum.reduce([poly(p) for p in BODY_EXCLUSIONS])
     for cx,cy,rx,ry in DIAMONDS:
         gems=np.maximum(gems,poly([(cx,cy-ry),(cx+rx,cy),(cx,cy+ry),(cx-rx,cy)]))
     # These printed stars have concave sides and asymmetric tips.
