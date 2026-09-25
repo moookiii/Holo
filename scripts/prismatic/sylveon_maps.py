@@ -25,13 +25,9 @@ def build():
     yy,xx=np.mgrid[:H,:W].astype(np.float32); x=(xx+.5)/S; y=(yy+.5)/S
     front=Image.open(ROOT/'public/cards/pokemon/prismatic-evolutions/156.png').convert('RGB').resize((W,H))
     rgb=np.asarray(front,np.float32)/255
-    def smooth(points):
-        p=np.array(points,dtype=np.float32)
-        for _ in range(2):
-            q=np.roll(p,-1,axis=0)
-            p=np.stack([.85*p+.15*q,.15*p+.85*q],axis=1).reshape(-1,2)
-        return p
-    body=np.maximum.reduce([poly(smooth(p)) for p in BODY_PARTS])
+    # Registered from the user's corrected green boundary, retaining all
+    # three ribbon openings. The authored PNG follows the stroke center.
+    body=np.asarray(Image.open(ROOT/'scripts/prismatic/sylveon-body-trace.png').convert('L'),np.float32)/255
     gems=np.maximum.reduce([poly(p) for p in GEMS]); body*=1-gems
     silver=np.asarray(Image.open(REF/'silver-microdiamond.png').convert('L').resize((W,H)),np.float32)/255
     # The supplied shared frame fits this printing; ex lettering sits at the same position.

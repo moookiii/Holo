@@ -7,8 +7,9 @@ the clean local front supplied contour coordinates. The supplied silver mask
 is retained unchanged in research and registered to Sylveon's shorter ex title.
 
 Body contours cover the ears, face, bow, legs, tail and four ribbon paths.
-Two restrained subdivision passes smooth the outlines before rasterization.
-Ribbon openings retain background material. Crown crystals and individual
+The user's corrected green outline is registered directly to the clean front
+in `scripts/prismatic/sylveon-body-trace.png`, with antialiased boundaries.
+Three ribbon openings retain background material. Crown crystals and individual
 gem tips have separate microdiamond coverage, leaving the forehead textured.
 The upper and middle right microdiamond field is softly bounded and retains
 the underlying relief. Text protection follows glyphs and smooth rule panels.
