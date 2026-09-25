@@ -211,7 +211,7 @@ test('all six ACE SPEC printings use individual coverage and no invented relief'
   assert.equal(hashes.size, 6, 'Different devices must not share a single foil mask');
 });
 
-test('Atticus has six authored PNG channels and only its exact printing is enabled', () => {
+test('Atticus has five authored PNG channels and only its exact printing is enabled', () => {
   const profile = prismaticProfiles.find(profile => profile.id === 'prismatic_fullart_texture')!;
   assert.ok(profile);
   assert.equal(profile.labOnly, true);
@@ -235,10 +235,10 @@ test('Atticus has six authored PNG channels and only its exact printing is enabl
     const photo = new URL(`../research/prismatic-evolutions/photos/${reference.file}`, import.meta.url);
     assert.equal(createHash('sha256').update(readFileSync(photo)).digest('hex'), reference.sha256);
   }
-  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-direction.png', '133-holo-foil.png', '133-holo-height.png', '133-holo-normal.png', '133-holo-protection.png', '133-holo-roughness.png']);
+  assert.deepEqual(Object.keys(evidence.maps).sort(), ['133-holo-foil.png', '133-holo-height.png', '133-holo-normal.png', '133-holo-protection.png', '133-holo-roughness.png']);
   assert.ok(!existsSync(new URL('maps/133-holo-foil.svg', path)), 'Full-art coverage must ship as a raster PNG');
   const atticus = pokemonDefinition(prismaticCard('sv08.5-133'), 'holo', []);
-  assert.equal(atticus.mapSettings?.normalScale, 1);
+  assert.equal(atticus.mapSettings?.normalScale, 1.35);
   assert.equal(atticus.mapSettings?.embossStrength, 0);
   assert.equal(atticus.profile, 'prismatic_fullart_texture');
   assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-132'), 'holo', []), PrismaticSurfaceUnavailable);

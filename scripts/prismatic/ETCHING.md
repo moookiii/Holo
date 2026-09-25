@@ -108,7 +108,9 @@ and regional guide curves in `atticus-surface-regions.json`. It differentiates e
 continuous regional relief before clipping so ink outlines do not become embossing.
 The gray waist is smooth; skin, eye interior, fingertips and rule-panel interior
 remain protected. The two eye foil islands use the previously authored maps.
-All six production maps are PNG. There is no shader noise, sparkle or second
+All five production maps are PNG. The foil uses a uniform diffraction direction;
+regional guide curves control physical relief only. Atticus uses normal strength
+1.35. There is no shader noise, sparkle or second
 emboss pass. The evidence manifest records inferred spacing and depth honestly;
 this workflow does not claim the strict individual-line evidence gate was met.
 

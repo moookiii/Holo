@@ -32,7 +32,6 @@ def build():
     label = np.asarray(labels).copy()
     height = np.zeros((h,w),np.float32)
     normal = np.zeros((h,w,3),np.float32); normal[:,:,2]=1
-    direction = np.zeros((h,w,4),np.float32)
     roughness = np.full((h,w),.39,np.float32)
 
     def assign(mask, phase, depth, rough):
@@ -44,10 +43,7 @@ def build():
         gy,gx = np.gradient(relief,88000/h,63000/w)
         nn=np.stack([-gx,gy,np.ones_like(gx)],axis=2)
         nn/=np.linalg.norm(nn,axis=2,keepdims=True)
-        py,px=np.gradient(phase)
-        angle=np.arctan2(-py,px)
         height[mask]=relief[mask];normal[mask]=nn[mask]
-        direction[mask]=np.stack([np.cos(2*angle)*.5+.5,np.sin(2*angle)*.5+.5,np.full_like(x,1/3),np.ones_like(x)],axis=2)[mask]
         roughness[mask]=rough
 
     assign(label==1,phase,1.6,.36)
@@ -66,17 +62,15 @@ def build():
     eye=ROOT/'research/prismatic-evolutions/relief/133-eye'
     eye_mask=np.asarray(Image.open(eye/'foil.png'))>0
     protected=(foil==0)|(protection>=200)
-    height[protected]=0;normal[protected]=[0,0,1];direction[protected]=0;roughness[protected]=.48
+    height[protected]=0;normal[protected]=[0,0,1];roughness[protected]=.48
     height[eye_mask]=(np.asarray(Image.open(eye/'height.png'),dtype=float)[eye_mask]/255-.5)*8
     normal[eye_mask]=np.asarray(Image.open(eye/'normal.png'),dtype=float)[eye_mask]/127.5-1
-    direction[eye_mask]=np.asarray(Image.open(eye/'direction.png'),dtype=float)[eye_mask]/255
     roughness[eye_mask]=.39
     byte=lambda a:np.rint(np.clip(a,0,1)*255).astype(np.uint8)
-    maps={'height':byte(.5+height/8),'normal':byte(normal*.5+.5),'direction':byte(direction),'roughness':byte(roughness)}
+    maps={'height':byte(.5+height/8),'normal':byte(normal*.5+.5),'roughness':byte(roughness)}
     for name,a in maps.items(): Image.fromarray(a).save(OUT/f'133-holo-{name}.png',optimize=True)
     assert np.all(maps['normal'][protected & ~eye_mask]==[128,128,255])
     assert np.all(maps['height'][protected & ~eye_mask]==128)
-    assert np.all(maps['direction'][protected & ~eye_mask,3]==0)
     # Region overview is for authoring inspection only, not a material channel.
     Image.fromarray(label).save(ROOT/'research/prismatic-evolutions/relief/133-regions.png')
     evidence=json.loads((OUT/'133-holo-evidence.json').read_text())
@@ -89,10 +83,11 @@ def build():
         authoring=spec['authoring'],remaining='',
         limitations='Photo-guided full-card reconstruction; ridge positions and 1.5–2.2 micrometre relief are calibrated approximations, not pixel-exact or measured physical geometry.',
         regions=spec['regions'],depthCalibration='1.5–2.2 micrometre rounded crests with shallow valleys; no procedural shader emboss or sparkle.')
+    evidence['maps'].pop('133-holo-direction.png', None)
     for name in ['foil','protection',*maps]:
         p=OUT/f'133-holo-{name}.png';evidence['maps'][p.name]=hashlib.sha256(p.read_bytes()).hexdigest()
     (OUT/'133-holo-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n')
-    print('Atticus: complete regional reconstruction; six PNG material maps, protected ink flat')
+    print('Atticus: complete regional reconstruction; five PNG material maps and uniform diffraction direction')
 
 
 if __name__=='__main__': build()

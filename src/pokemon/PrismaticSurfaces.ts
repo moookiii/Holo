@@ -23,10 +23,10 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     maps: {
       foil: `${PRISMATIC_ASSETS}/maps/133-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/133-holo-protection.png`,
       height: `${PRISMATIC_ASSETS}/maps/133-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/133-holo-normal.png`,
-      direction: `${PRISMATIC_ASSETS}/maps/133-holo-direction.png`, roughness: `${PRISMATIC_ASSETS}/maps/133-holo-roughness.png`,
+      roughness: `${PRISMATIC_ASSETS}/maps/133-holo-roughness.png`,
     },
     layout: { artwork: [23/600,112/825,577/600,802/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
+    mapSettings: { normalScale: 1.35, embossStrength: 0, roughnessMode: 'absolute' },
     evidence: `${PRISMATIC_ASSETS}/maps/133-holo-evidence.json`,
   },
   ...Object.fromEntries(['116', '117', '119', '128', '129', '131'].map(number => [`sv08.5-${number}:holo`, {
@@ -62,7 +62,7 @@ export function prismaticSurface(id: string, variant: PrintVariant): PrismaticSu
   const surface = surfaces[prismaticSurfaceKey(id, variant)];
   if (!surface) throw new PrismaticSurfaceUnavailable(id, variant);
   if (surface.profile !== printing.profileId || !surface.maps.foil || !surface.maps.protection || !surface.evidence
-    || (printing.textured && (!surface.maps.height || !surface.maps.normal || !surface.maps.direction || !surface.maps.roughness))) {
+    || (printing.textured && (!surface.maps.height || !surface.maps.normal || !surface.maps.roughness))) {
     throw new Error(`Incomplete authored surface: ${id}:${variant}`);
   }
   return surface;

@@ -12,14 +12,13 @@ MAPS=ROOT/'public/cards/pokemon/prismatic-evolutions/maps'
 class AtticusSurfaceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.maps={n:np.asarray(Image.open(MAPS/f'133-holo-{n}.png')) for n in ['foil','protection','normal','height','direction','roughness']}
+        cls.maps={n:np.asarray(Image.open(MAPS/f'133-holo-{n}.png')) for n in ['foil','protection','normal','height','roughness']}
 
     def test_protected_ink_has_no_relief(self):
         eye=np.asarray(Image.open(ROOT/'research/prismatic-evolutions/relief/133-eye/foil.png'))>0
         protected=((self.maps['foil']==0)|(self.maps['protection']>=200)) & ~eye
         self.assertTrue(np.all(self.maps['normal'][protected]==[128,128,255]))
         self.assertTrue(np.all(self.maps['height'][protected]==128))
-        self.assertTrue(np.all(self.maps['direction'][protected,3]==0))
 
     def test_smooth_waist_and_eye_interior(self):
         for x,y in [(380,235),(365,520),(350,540),(365,755)]:
