@@ -75,6 +75,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
       const wasHidden = panel.hidden === true; close(); panel.hidden = !wasHidden;
       root.querySelector(`#${name}-toggle`)!.setAttribute('aria-expanded', String(wasHidden));
       root.classList.toggle('open', wasHidden);
+      if (name === 'card' && wasHidden) root.querySelector<HTMLInputElement>('#card-search')!.focus();
     };
   });
   let selectedFinish: CardFinish = 'all';
