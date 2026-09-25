@@ -5,7 +5,7 @@ import type { HolographicProfile } from '../HolographicProfile';
  */
 export const prismaticProfiles: HolographicProfile[] = [{
   id: 'prismatic_sir_texture', name: 'Prismatic · SIR etched holo', family: 'Pokémon', status: 'development',
-  description: 'Umbreon ex 161/131: fine curved background and edge etching, restrained crystal-body reflection, and separately masked microdiamond crown and gems. Exact-card PNG normals redirect the sheet reflection; printed rules remain protected.',
+  description: 'Prismatic Eeveelution ex: card-specific curved background and edge etching, textured crystal bodies, and separately masked microdiamond regions. Exact-card PNG normals redirect the sheet reflection; printed rules remain protected.',
   diffraction: { period: 1.16, bandwidth: .048, strength: .48, secondaryOrder: .065, direction: -.48, crossWidth: .42, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },

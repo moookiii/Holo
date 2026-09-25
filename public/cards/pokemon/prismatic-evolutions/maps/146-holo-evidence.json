@@ -1,0 +1,38 @@
+{
+  "cardId": "sv08.5-146",
+  "variant": "holo",
+  "status": "photo-guided-reconstruction",
+  "rendererReady": true,
+  "textured": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "146-holo-foil.png": "e8aebbec98eb2217d271c3f9cab31f5578003695c4d1cf1da1291d100bd2eb05",
+    "146-holo-protection.png": "5b87423cd5f31ada8f521d51fc3c52c2cd2558999874a2757d7eafed5e5bf497",
+    "146-holo-height.png": "37126f037b0e92c269413d2de1a4542bbe736e5523bf44777538cb6cbaa64d47",
+    "146-holo-normal.png": "aa6cbc770416a7bcc371acdfcb0de021f2b356b2035c1311501e8f0d09628ce3",
+    "146-holo-roughness.png": "0c09e6444a0ad12c0fa21bdac48dbdc0ed871ceb87b21bd6b95c8fc5173a6936",
+    "146-holo-secondary-foil.png": "c27fabe7a899fc8582a46a143bd3f0bcdd719a3d27d321d7e3e7f8859c719ca3",
+    "146-holo-body.png": "05840ca2aa86034282d496f2964d5ca001a4d24b9b2cd8934d4c24f4d3cef567",
+    "146-holo-gems.png": "2f690852d99eb29be938d956516ea958f6e49bcc11d332d89e34a78938652f05",
+    "146-holo-silver.png": "80719df2e45f5c74bd13770da1b925c0409247880e77f9d08b4acf73150c159e"
+  },
+  "references": [
+    {
+      "file": "cutout-master.webp",
+      "sha256": "cf0eadb4f7bd336ca6e0f60e0e89ae6c98962a5ead390d1236cfa94910a4a95d"
+    },
+    {
+      "file": "etching-master.webp",
+      "sha256": "4a0e3cdb369f736d6839eee8b3989c9359549476dac835666d4a19029c9d1982"
+    },
+    {
+      "file": "silver-microdiamond.png",
+      "sha256": "e823b17b0f2723b0c362b2cf1f5db3870d6f18c139444b60363960a83dce6e8c"
+    }
+  ],
+  "referencePolicy": "Etching master defines groove flow; cutout master defines character coverage. Clean local front supplies registration only. User silver microdiamond PNG supplies trim coverage, registered separately for ex lettering.",
+  "limitations": "Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief."
+}

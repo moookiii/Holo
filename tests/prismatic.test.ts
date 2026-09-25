@@ -13,6 +13,29 @@ import { prismaticProfiles } from '../src/materials/profiles/prismatic.ts';
 import { packAvailability } from '../src/pokemon/availability.ts';
 
 const path = new URL('../public/cards/pokemon/prismatic-evolutions/', import.meta.url);
+test('Flareon SIR has independently authored maps and the supplied reference mask', () => {
+  const card = prismaticPickerCards().find(card => card.pokemon?.id === 'sv08.5-146')!;
+  assert.ok(card);
+  assert.equal(card.profile, 'prismatic_sir_texture');
+  assert.equal(card.pickerHidden, false);
+  assert.equal(card.mapSettings?.embossStrength, 0);
+  const evidence = JSON.parse(readFileSync(new URL('maps/146-holo-evidence.json', path), 'utf8'));
+  assert.equal(evidence.cardId, 'sv08.5-146');
+  for (const channel of ['foil', 'protection', 'normal', 'height', 'roughness', 'secondaryFoil'] as const) {
+    assert.match(card.maps![channel]!, /146-holo-.*\.png$/);
+  }
+  for (const [file, hash] of Object.entries(evidence.maps)) {
+    const bytes = readFileSync(new URL(`maps/${file}`, path));
+    assert.equal(bytes.readUInt32BE(16), 1800);
+    assert.equal(bytes.readUInt32BE(20), 2475);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), hash);
+  }
+  assert.equal(evidence.references.length, 3);
+  for (const ref of evidence.references) {
+    const bytes = readFileSync(new URL(`../research/prismatic-evolutions/flareon-146/${ref.file}`, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), ref.sha256);
+  }
+});
 test('Umbreon SIR uses registered surface assets and user-authorized finish references', () => {
   const card = prismaticPickerCards().find(card => card.pokemon?.id === 'sv08.5-161')!;
   assert.ok(card);
@@ -159,7 +182,7 @@ test('ordinary-pack collation preserves real slots, independent ball hits, all r
 test('Prismatic never inherits generic materials or makes a missing surface look ready', () => {
   const progress = prismaticSurfaceProgress();
   assert.equal(progress.required, 268);
-  assert.equal(progress.ready, 16);
+  assert.equal(progress.ready, 17);
   assert.equal(packAvailability('sv08.5').ready, false);
   assert.match(packAvailability('sv08.5').detail, /card-specific foil surfaces/);
   assert.equal(packAvailability('sv01').ready, true);
@@ -198,7 +221,7 @@ test('nonfoil cards remain pack-only and deferred reverses preserve their identi
 
 test('authored regular holo resolves only its exact printing and preserves a foil-only picker', () => {
   const entries = prismaticPickerCards();
-  assert.deepEqual(entries.map(card => card.id), ['005', '013', '022', '025', '029', '033', '040', '059', '116', '117', '119', '128', '129', '131', '133', '161'].map(n => `pokemon:sv08.5-${n}:holo`));
+  assert.deepEqual(entries.map(card => card.id), ['005', '013', '022', '025', '029', '033', '040', '059', '116', '117', '119', '128', '129', '131', '133', '146', '161'].map(n => `pokemon:sv08.5-${n}:holo`));
   const card = entries.find(card => card.id === 'pokemon:sv08.5-059:holo')!;
   assert.equal(card.pickerHidden, false);
   assert.equal(card.profile, 'prismatic_regular_holo');
