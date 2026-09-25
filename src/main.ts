@@ -49,6 +49,7 @@ async function start() {
   const motion = new CardMotion(initialMode);
   const resetPositionStart = new Vector3();
   let resetPositionElapsed = -1;
+  const worldUnitsPerPixel = (depth: number) => 2 * depth * Math.tan(camera.fov * Math.PI / 360) / container.clientHeight;
   const clickRay = new Raycaster();
   const pointer = new PointerController(container, motion, (x, y) => {
     const rect = container.getBoundingClientRect();
@@ -56,11 +57,16 @@ async function start() {
     if (card && clickRay.intersectObject(card, false).length) motion.requestFlip();
   }, (dx, dy) => {
     if (!card) return;
-    resetPositionElapsed = -1;
-    const unitsPerPixel = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360) / container.clientHeight;
+    const unitsPerPixel = worldUnitsPerPixel(camera.position.z - card.position.z);
     card.position.x += dx * unitsPerPixel;
     card.position.y -= dy * unitsPerPixel;
-  });
+  }, rect => {
+    if (!card) return new Vector2(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    const unitsPerPixel = worldUnitsPerPixel(camera.position.z - card.position.z);
+    if (unitsPerPixel <= 0) return new Vector2(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    return new Vector2(rect.left + rect.width / 2 + (card.position.x - camera.position.x) / unitsPerPixel,
+      rect.top + rect.height / 2 - (card.position.y - camera.position.y) / unitsPerPixel);
+  }, () => { resetPositionElapsed = -1; });
   const setMode = (mode: InteractionMode) => {
     pointer.setMode(mode);
     try { localStorage.setItem('holo:interaction-mode', mode); } catch { /* Restricted storage does not affect controls. */ }

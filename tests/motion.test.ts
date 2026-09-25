@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Quaternion, Vector3 } from 'three/webgpu';
 import { CardMotion, Y_AXIS, Z_AXIS } from '../src/input/Motion.ts';
+import { hoverFromCardCenter } from '../src/input/HoverCoordinates.ts';
 
 const closeOrientation = (a: Quaternion, b: Quaternion, epsilon = 1e-6) => assert.ok(a.angleTo(b) < epsilon, `orientation differs by ${a.angleTo(b)} radians`);
 const advance = (motion: CardMotion, seconds: number, hz = 120) => { for (let i = 0; i < Math.round(seconds * hz); i++) motion.update(1 / hz); };
@@ -90,6 +91,17 @@ test('Tilt moves the edge in the mouse direction away from the viewer', () => {
   assert.ok(new Vector3(0, -1, 0).applyQuaternion(motion.orientation).z < -.19, 'bottom edge recedes for a downward pointer');
   motion.setHover(0, -1); advance(motion, 1.4);
   assert.ok(new Vector3(0, 1, 0).applyQuaternion(motion.orientation).z < -.19, 'top edge recedes for an upward pointer');
+});
+
+test('hover is measured from the moved card and has room for a stronger far-side tilt', () => {
+  const rect = { left: 0, top: 0, width: 1000, height: 800 };
+  const pointer = { x: 950, y: 400 };
+  const centered = hoverFromCardCenter(pointer.x, pointer.y, rect, new Vector3(500, 400, 0));
+  const moved = hoverFromCardCenter(pointer.x, pointer.y, rect, new Vector3(700, 400, 0));
+  assert.ok(moved.x < centered.x, 'moving the card toward the pointer reduces its rightward tilt');
+  const farLeft = hoverFromCardCenter(0, 400, rect, new Vector3(700, 400, 0));
+  const motion = new CardMotion(); motion.setHover(farLeft.x, farLeft.y); advance(motion, 1);
+  assert.ok(motion.hover.y < -.3, 'a pointer far left of the moved card produces more leftward tilt');
 });
 
 test('interrupting reset with a drag or flip continues from the visible pose', () => {

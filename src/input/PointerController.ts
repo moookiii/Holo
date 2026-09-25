@@ -1,5 +1,6 @@
 import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
 import type { CardMotion, InteractionMode } from './Motion';
+import { hoverFromCardCenter } from './HoverCoordinates';
 
 export class PointerController {
   private enabled = true;
@@ -14,7 +15,7 @@ export class PointerController {
   private clickDistance = 0;
   private translating = false;
   private disposeHandlers: (() => void)[] = [];
-  constructor(private element: HTMLElement, private motion: CardMotion, private onClick?: (x: number, y: number) => void, private onTranslate?: (dx: number, dy: number) => void) {
+  constructor(private element: HTMLElement, private motion: CardMotion, private onClick?: (x: number, y: number) => void, private onTranslate?: (dx: number, dy: number) => void, private cardCenter?: (rect: DOMRect) => Vector2, private onDragStart?: () => void) {
     const on = <K extends keyof HTMLElementEventMap>(name: K, handler: (e: HTMLElementEventMap[K]) => void, options?: AddEventListenerOptions) => {
       element.addEventListener(name, handler, options);
       this.disposeHandlers.push(() => element.removeEventListener(name, handler));
@@ -23,6 +24,7 @@ export class PointerController {
       if (!this.enabled) return;
       if (e.button !== 0 && e.button !== 1) return;
       if (e.button === 1) e.preventDefault();
+      this.onDragStart?.();
       element.setPointerCapture(e.pointerId);
       this.pointers.set(e.pointerId, new Vector2(e.clientX, e.clientY));
       if (this.pointers.size === 1) this.translating = e.shiftKey || e.button === 1;
@@ -50,6 +52,7 @@ export class PointerController {
       }
       if (this.translating) {
         this.onTranslate?.(e.clientX - this.previous.x, e.clientY - this.previous.y);
+        this.follow(e.clientX, e.clientY);
         this.previous.set(e.clientX, e.clientY); this.lastTime = e.timeStamp;
         return;
       }
@@ -70,6 +73,10 @@ export class PointerController {
         this.motion.dragging = false; element.classList.remove('dragging');
         if (e.timeStamp - this.lastTime > 80 || e.type === 'pointercancel') this.motion.velocity.set(0, 0, 0);
         if (e.pointerType === 'touch' || e.type === 'pointercancel') this.motion.setHover(0, 0);
+        else {
+          const rect = element.getBoundingClientRect();
+          if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) this.motion.setHover(0, 0);
+        }
         if (click && !this.translating) this.onClick?.(e.clientX, e.clientY);
         this.translating = false;
       }
@@ -88,11 +95,13 @@ export class PointerController {
   setMode(mode: InteractionMode) { this.motion.setMode(mode); this.element.dataset.mode = 'combined'; }
   setEnabled(enabled: boolean) {
     this.enabled = enabled;
-    if (!enabled) { this.pointers.clear(); this.motion.dragging = false; this.motion.velocity.set(0, 0, 0); this.element.classList.remove('dragging'); }
+    if (!enabled) { this.pointers.clear(); this.translating = false; this.motion.dragging = false; this.motion.velocity.set(0, 0, 0); this.motion.setHover(0, 0); this.element.classList.remove('dragging'); }
   }
   private follow(x: number, y: number) {
     const rect = this.element.getBoundingClientRect();
-    this.motion.setHover((x - rect.left - rect.width / 2) / (rect.width * .42), (y - rect.top - rect.height / 2) / (rect.height * .42));
+    const center = this.cardCenter?.(rect) ?? new Vector2(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    const hover = hoverFromCardCenter(x, y, rect, center);
+    this.motion.setHover(hover.x, hover.y);
   }
   private project(x: number, y: number, target: Vector3) {
     const rect = this.element.getBoundingClientRect(), radius = Math.min(rect.width, rect.height) * .42;

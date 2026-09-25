@@ -74,9 +74,10 @@ export class CardMotion {
   setHover(x: number, y: number) {
     if (this.precise) { this.hoverTarget.set(0, 0, 0); return; }
     if (this.resetting) return;
-    const px = Math.max(-1, Math.min(1, x)), py = Math.max(-1, Math.min(1, y));
+    const px = Math.max(-1.5, Math.min(1.5, x)), py = Math.max(-1.5, Math.min(1.5, y));
+    const rollX = Math.max(-1, Math.min(1, px)), rollY = Math.max(-1, Math.min(1, py));
     // Recede the edge in the pointer's direction: right -> right edge back; down -> bottom edge back.
-    this.hoverTarget.set(py * .20, px * .24, -px * py * .065);
+    this.hoverTarget.set(py * .20, px * .24, -rollX * rollY * .065);
   }
   update(dt: number) {
     dt = Math.max(0, Math.min(dt, 0.05));
