@@ -1,12 +1,12 @@
 import './styles.css';
 import { startupMark, startupTiming, startupPipelines } from './rendering/LoadTiming';
-import { Raycaster, Vector2 } from 'three/webgpu';
+import { Raycaster, Vector2, Vector3 } from 'three/webgpu';
 import { createRenderer } from './rendering/StudioRenderer';
 import { StudioLighting } from './lighting/StudioLighting';
 import { cards as builtInCards, type CardDefinition } from './card/CardDefinition';
 import { CardFactory } from './card/CardFactory';
 import type { CardInstance } from './card/CardInstance';
-import { CardMotion, type InteractionMode } from './input/Motion';
+import { CardMotion, smootherstep, type InteractionMode } from './input/Motion';
 import { PointerController } from './input/PointerController';
 import { createUI } from './ui/PresentationUI';
 import { HolographicMaterial } from './materials/HolographicMaterial';
@@ -47,6 +47,8 @@ async function start() {
   startupMark('environmentReady');
   const initialMode: InteractionMode = 'combined';
   const motion = new CardMotion(initialMode);
+  const resetPositionStart = new Vector3();
+  let resetPositionElapsed = -1;
   const clickRay = new Raycaster();
   const pointer = new PointerController(container, motion, (x, y) => {
     const rect = container.getBoundingClientRect();
@@ -54,6 +56,7 @@ async function start() {
     if (card && clickRay.intersectObject(card, false).length) motion.requestFlip();
   }, (dx, dy) => {
     if (!card) return;
+    resetPositionElapsed = -1;
     const unitsPerPixel = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360) / container.clientHeight;
     card.position.x += dx * unitsPerPixel;
     card.position.y -= dy * unitsPerPixel;
@@ -65,6 +68,11 @@ async function start() {
   let definition = initialCard;
   let activeCard: CardInstance;
   let card: CardInstance['mesh'];
+  const resetCard = () => {
+    motion.reset();
+    resetPositionStart.copy(card.position);
+    resetPositionElapsed = 0;
+  };
   let loadGeneration = 0;
   let profileGeneration = 0;
   let requestedCardId = definition.id;
@@ -297,7 +305,7 @@ async function start() {
   };
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
-    flip: () => motion.requestFlip(), reset: () => { motion.reset(); card.position.set(0, 0, 0); },
+    flip: () => motion.requestFlip(), reset: resetCard,
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { void browsePacks().catch(showError); },
@@ -315,6 +323,11 @@ async function start() {
     if (pack) pack.update(dt);
     else {
       motion.update(dt); card.quaternion.copy(motion.orientation);
+      if (resetPositionElapsed >= 0) {
+        resetPositionElapsed = Math.min(0.65, resetPositionElapsed + Math.max(0, Math.min(dt, 0.05)));
+        card.position.copy(resetPositionStart).multiplyScalar(1 - smootherstep(resetPositionElapsed / 0.65));
+        if (resetPositionElapsed === 0.65) resetPositionElapsed = -1;
+      }
       camera.position.z = framingDistance(definition.dimensions, motion.orientation, camera.aspect, camera.fov, container.clientHeight) * motion.zoom;
       camera.position.y = -0.06;
     }
@@ -357,7 +370,7 @@ async function start() {
     },
     material: () => card.material[0] as HolographicMaterial,
     pose: (yaw: number, pitch: number, roll = 0) => motion.setPose(yaw * Math.PI / 180, pitch * Math.PI / 180, roll * Math.PI / 180),
-    flip: () => motion.requestFlip(), reset: () => { motion.reset(); card.position.set(0, 0, 0); },
+    flip: () => motion.requestFlip(), reset: resetCard,
     zoom: (value: number) => { motion.zoom = value; motion.targetZoom = value; },
     setCard, setProfile, setMode, profiles, cards,
     stats: () => ({ backend: renderer.backend.constructor.name, card: definition.id, profile: activeProfile, mode: motion.mode, frameMs: frameTimes.reduce((a, b) => a + b, 0) / frameTimes.length, frames: frameTimes.length, triangles: renderer.info.render.triangles, quaternion: motion.orientation.toArray(), zoom: motion.zoom, factory: factory.stats(), cpuPreparation: cpuPreparation.stats(), preparedPack: preparedPack ? { seed: preparedPack.seed, cardIds: [...preparedPack.cards.keys()] } : undefined, packMetrics }),
