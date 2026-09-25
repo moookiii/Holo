@@ -1,0 +1,46 @@
+{
+  "cardId": "sv08.5-167",
+  "variant": "holo",
+  "status": "photo-guided-reconstruction",
+  "rendererReady": true,
+  "textured": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "167-holo-foil.png": "a36478eee2eba65854074d4676058fe7e7ab8da1fc7631884dc83476afac0c31",
+    "167-holo-protection.png": "d99b101febe53f48fb735e706670387ea111742894965c88f6d4ff0a51d5b3e5",
+    "167-holo-height.png": "3c78b841b9009a96066aa5cb3eea9c62237cb0014365607485f73bbd4f31d9d5",
+    "167-holo-normal.png": "26efb0f6ab746e2eca4560e4872d4d5d6e9084bb6b153970da7aa5390927b114",
+    "167-holo-roughness.png": "ab0785744dabd4e02854be7e9a1892994faec29fdb76f6f3826cd77748a5d143",
+    "167-holo-secondary-foil.png": "ed1152726d2ea5c42706419763ebcef7ed9cf7da2f6ea8613834021fbe9ee1d6",
+    "167-holo-body.png": "fe5882af4a5169a72f340fdb7507a406a7091b7bd0efb561f21e2e663efe4005",
+    "167-holo-gems.png": "baff83c90c75c9c5a769f3c65340b0c953d9d8d4bf0dfc585b1254a91e16f7bf",
+    "167-holo-silver.png": "498756ca2ed6884b01f3092cd82429a457c016fe1027732983074d2103cff6ad"
+  },
+  "references": [
+    {
+      "file": "crown-closeup.png",
+      "sha256": "034c8819bb64cd344f9c909bd10b5142c747d661b76e957103f860ebbd78a8be"
+    },
+    {
+      "file": "cutout-master.webp",
+      "sha256": "fc3dad50fdfc77a2649ead6dd777bc360a1744194ab7675d0d2f640171866df8"
+    },
+    {
+      "file": "etching-master-1.jpg",
+      "sha256": "35e861ba8631300fb172b3eac70b506c56df85f6e8f13acc9300885985fbfc0e"
+    },
+    {
+      "file": "etching-master-2.jpg",
+      "sha256": "4390b39281ed674fe9b418d8c91a53e9264b6848a2aa80f0d383a64b056305e9"
+    },
+    {
+      "file": "silver-microdiamond.png",
+      "sha256": "e823b17b0f2723b0c362b2cf1f5db3870d6f18c139444b60363960a83dce6e8c"
+    }
+  ],
+  "referencePolicy": "Two user etching masters guide flower-following lines; the cutout master identifies Eevee. Crown close-up guides continuous microdiamond coverage, eyes and diamond ornaments. Shared user PNG is adapted to Basic trim with one retreat symbol.",
+  "limitations": "Incision spacing, depth, hidden continuation and material constants are estimates from the supplied photos. The clean front is registration only; no brightness or noise is used as height."
+}
