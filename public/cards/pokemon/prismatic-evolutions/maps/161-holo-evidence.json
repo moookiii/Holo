@@ -4,7 +4,7 @@
   "status": "video-guided-reconstruction",
   "rendererReady": true,
   "textured": true,
-  "referencePolicy": "Only the supplied video informs etching and holo.",
+  "referencePolicy": "Original video guides the body and ornament. User-supplied crown/gem and edge detail images guide the added microdiamond and rim finishes.",
   "video": {
     "file": "2026-09-24 17-52-17-00.00.09.028-00.00.33.805.mp4",
     "sha256": "d123f27bf3c1bcbd7f542166d628276128909bd3639a6419e638925eca066bb9"
@@ -53,14 +53,27 @@
   "maps": {
     "161-holo-foil.png": "082c66a8ce1e0d602f82e95e3483ab512ae6031a29813b9771a0c9bd65833b31",
     "161-holo-protection.png": "6c72513bfa4ffe2f8ed4202216ab887d1a6cf86dd639dcc611630103fe926399",
-    "161-holo-height.png": "63686a48630ef01f381cecf8a12be518da9b3330a0e11540b26c853fa2c3e9fc",
-    "161-holo-normal.png": "0a7464039b87d7988914f7957d3c4a0ad3ef11410b67f539ea61b6527db6762c",
-    "161-holo-roughness.png": "e30f5d6080e90449b5f20218bf6fc2795c24d9f486d596f6001de92c68f523a8"
+    "161-holo-height.png": "74df8164252d434b4e61b537074d721f5cc0360dcf961a0c3e99d2c54a4b4fa9",
+    "161-holo-normal.png": "0807f1087e43f99ec691ea9c78fc7a5d7042fb9aff73e22439af82b2dc7c1070",
+    "161-holo-roughness.png": "2a0dc3c485d8554cbb00d44f449eccdd1a71f3313e11506d5ee3b5efe61ad1fb",
+    "161-holo-secondary-foil.png": "94d3878c782a7c7d52c2dc9627083a2596b19c0e0a6edf230a74e6e9c1e0d067"
   },
+  "finishReferences": [
+    {
+      "file": "microdiamond-reference.png",
+      "sha256": "f6e003826434ad89c8e051a24495e4dd9ce799cf0deb35282f0557a08586dad3",
+      "role": "User-authorized shared crown and gem finish from another card"
+    },
+    {
+      "file": "edge-reference.png",
+      "sha256": "9932919d6bd09de22a063478112021c997bae8f7dadd262d941f217021d08772",
+      "role": "User-authorized Prismatic edge etching detail"
+    }
+  ],
   "registrationCorrections": "User annotations: filled chest and toe-tip silhouette gaps; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O and removed mask-induced normal edges.",
   "observations": [
     "0\u201316s: full-face rainbow sweep, reflective rim, protected white rules panels.",
     "18\u201324s: fine curved background grooves, upright moon lines, subdued crystal subject, lower concentric ornament."
   ],
-  "limitations": "Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only; no other surface reference is used."
+  "limitations": "Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only. The two later user-supplied detail images inform only the added crown/gem and rim finishes."
 }

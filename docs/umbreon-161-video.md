@@ -1,17 +1,25 @@
 # Umbreon ex 161/131
 
 The picker entry `pokemon:sv08.5-161:holo` uses `prismatic_sir_texture`
-(Prismatic · SIR etched holo). Five registered 1800 × 2475 PNGs provide foil
-coverage, ink protection, height, normals and absolute roughness. Normal-driven
+(Prismatic · SIR etched holo). Six registered 1800 × 2475 PNGs provide foil
+coverage, ink protection, height, normals, absolute roughness and a separate
+crown/gem microdiamond mask. Normal-driven
 reflection and diffraction respond to the existing card tilt and studio lights.
-There are no independent sparkle particles or animated texture coordinates.
+The gem finish uses densely ordered pyramidal facets and two crossing grating
+directions, with fixed microscopic glints selected by light and viewing angle.
+The curved background and character keep their original optical layer.
 
-The sole surface reference is the user-supplied
+The original surface reference is the user-supplied
 `2026-09-24 17-52-17-00.00.09.028-00.00.33.805.mp4` (24.823 seconds).
 Seven lossless portrait crops, with timestamps and hashes, are retained under
 `research/prismatic-evolutions/umbreon-video/`. The public evidence manifest
 records the video hash and every delivered map hash. Earlier research photos
-were not used. The existing clean card front remains unchanged and supplies
+were not used. Two subsequently supplied detail images, explicitly authorized
+by the user, guide the microdiamond crown/gem finish and shallow curved rim
+engraving. They are retained as `microdiamond-reference.png` and
+`edge-reference.png` beside the video frames and hashed separately in the
+evidence manifest. The continuous edge grooves wrap all four border strips.
+The existing clean card front remains unchanged and supplies
 registration and printed-text protection only.
 
 The reconstruction separates the subdued crystal body, finer moon incisions,

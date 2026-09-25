@@ -13,7 +13,7 @@ import { prismaticProfiles } from '../src/materials/profiles/prismatic.ts';
 import { packAvailability } from '../src/pokemon/availability.ts';
 
 const path = new URL('../public/cards/pokemon/prismatic-evolutions/', import.meta.url);
-test('Umbreon SIR uses complete video-only surface assets and enters the picker', () => {
+test('Umbreon SIR uses registered surface assets and user-authorized finish references', () => {
   const card = prismaticPickerCards().find(card => card.pokemon?.id === 'sv08.5-161')!;
   assert.ok(card);
   assert.equal(card.profile, 'prismatic_sir_texture');
@@ -40,6 +40,19 @@ test('Umbreon SIR uses complete video-only surface assets and enters the picker'
   const profile = prismaticProfiles.find(profile => profile.id === card.profile)!;
   assert.equal(profile.diffraction.followsAuthoredNormals, true);
   assert.equal(profile.glints.strength, 0);
+  assert.equal(profile.secondary?.structure.field, 'diamond');
+  assert.equal(profile.secondary?.glints.ordered, true);
+  assert.equal(profile.secondary?.diffraction.crossing, .5);
+  assert.ok(card.maps?.secondaryFoil?.endsWith('161-holo-secondary-foil.png'));
+  const gemBytes = readFileSync(new URL('maps/161-holo-secondary-foil.png', path));
+  assert.equal(gemBytes.readUInt32BE(16), 1800);
+  assert.equal(gemBytes.readUInt32BE(20), 2475);
+  assert.equal(createHash('sha256').update(gemBytes).digest('hex'), evidence.maps['161-holo-secondary-foil.png']);
+  assert.equal(evidence.finishReferences.length, 2);
+  for (const reference of evidence.finishReferences) {
+    const bytes = readFileSync(new URL(`../research/prismatic-evolutions/umbreon-video/${reference.file}`, import.meta.url));
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), reference.sha256);
+  }
   assert.throws(() => pokemonDefinition(prismaticCard('sv08.5-160'), 'holo', []), PrismaticSurfaceUnavailable);
 });
 

@@ -1,4 +1,4 @@
-"""Umbreon 161 surface reconstruction from the user-supplied tilt video only.
+"""Umbreon 161 surface reconstruction from the user's video and finish details.
 
 The existing clean front is used for registration and ink protection, never for
 height extraction. Curve spacing/depth are calibrated approximations of the
@@ -43,6 +43,46 @@ ROSETTES = [
     (77.3,655.4,17.8,30.1,25), (519.2,657.0,17.8,29.6,-24),
 ]
 
+# Individually registered floating gems and crown shards. The clear moon gaps
+# between jewels are deliberately absent from this secondary material mask.
+GEM_POLYGONS = [
+    [(159,186),(169,169),(176,162),(185,165),(185,188),(174,200),(160,195)],
+    [(185,159),(200,144),(219,151),(233,156),(225,179),(210,190),(192,183),(181,177)],
+    [(233,148),(253,137),(269,146),(269,168),(251,185),(230,176),(227,169)],
+    [(288,147),(309,139),(328,153),(323,176),(301,187),(286,173)],
+    [(345,160),(367,154),(382,173),(378,193),(354,199),(338,182)],
+    [(390,184),(409,177),(421,199),(417,219),(400,224),(386,205)],
+    [(421,204),(433,204),(442,220),(441,237),(429,246),(420,241),(416,220)],
+    [(433,246),(436,260),(435,267),(427,265),(425,251)],
+    [(417,248),(429,247),(428,277),(424,284),(415,291),(407,283),(410,264)],
+    [(400,260),(411,268),(416,282),(404,300),(394,307),(383,293),(384,276)],
+    [(369,268),(381,281),(375,298),(363,305),(351,292),(352,279)],
+    [(319,274),(329,285),(341,297),(322,308),(310,295),(313,282)],
+    [(211,245),(225,240),(237,254),(233,271),(216,279),(205,266)],
+    [(179,229),(197,224),(204,238),(200,254),(185,260),(176,248),(176,237)],
+    [(164,201),(178,207),(180,222),(177,236),(173,242),(160,235),(159,219)],
+    [(159,193),(171,199),(169,219),(164,223),(155,219),(154,207)],
+    # Crown base and the separate crystal points rising into the moon.
+    [(255,179),(269,193),(266,171),(276,196),(284,187),(291,185),
+     (300,198),(316,188),(329,176),(321,198),(335,195),(332,209),
+     (349,206),(326,224),(349,220),(329,232),(328,239),(315,246),
+     (306,236),(291,228),(278,230),(266,235),(251,235),(260,225),
+     (255,229),(255,213),(266,207)],
+    [(245,234),(262,229),(275,216),(287,214),(299,222),(311,224),(312,238),
+     (300,231),(290,227),(280,231),(271,233),(260,234)],
+    [(257,215),(268,207),(268,218),(260,225),(255,229)],
+    [(270,207),(276,200),(277,214),(270,222)],
+    [(280,222),(287,211),(293,209),(291,222),(286,228)],
+    [(296,221),(307,213),(305,229),(298,235)],
+    [(308,230),(316,217),(316,232),(310,241)],
+    [(316,235),(326,228),(324,239),(316,245)],
+    [(273,196),(268,181),(280,192),(281,202)],
+    [(293,199),(290,182),(303,188),(308,182),(308,196),(299,203)],
+    [(313,205),(322,186),(330,181),(328,199)],
+    [(319,218),(335,209),(347,207),(333,217)],
+    [(320,231),(338,225),(347,220),(340,230)],
+]
+
 
 def ellipse_radius(x, y, spec):
     cx, cy, rx, ry, degrees = spec
@@ -78,6 +118,8 @@ def build(video):
     x, y = (xx+.5)/S, (yy+.5)/S
     inner = polygon([(23,24),(578,24),(578,803),(23,803)])
     subject = polygon(SUBJECT_POINTS)
+    gems = np.maximum.reduce([polygon(points) for points in GEM_POLYGONS])
+    gems *= 1-subject  # A hanging jewel passes behind the ear.
     moon = polygon([(188,165),(239,140),(301,138),(357,153),(404,191),(430,237),
                     (420,283),(387,316),(340,341),(288,353),(236,335),(198,303),(173,263),(164,217)])
     crown = polygon([(173,164),(214,142),(261,138),(306,137),(362,153),(403,185),(438,231),
@@ -109,6 +151,13 @@ def build(video):
         ring_phase = rr*spec[2]*2*np.pi/1.45
         relief = relief*(1-weight) + .58*np.sin(ring_phase)*weight
         rough_wave = rough_wave*(1-weight) + np.cos(ring_phase)*weight
+    # Continuous fine curved engraving across all four border strips, including
+    # corners. Only the rim receives this field; no discontinuous side tiles.
+    edge = 1-inner
+    edge_phase = .56*x + .34*y + 8*np.sin(.044*y+.018*x) + 4*np.cos(.061*x-.023*y)
+    edge_wave = edge_phase*2*np.pi/1.35
+    relief = relief*inner + .48*np.sin(edge_wave)*edge
+    rough_wave = rough_wave*inner + np.cos(edge_wave)*edge
     # Protection follows only printed lettering inside manually bounded text zones.
     front = np.asarray(Image.open(ROOT/'public/cards/pokemon/prismatic-evolutions/161.png').convert('RGB').resize((W,H)), dtype=np.float32)/255
     white_ink = (front.min(axis=2)>.66) & ((front.max(axis=2)-front.min(axis=2))<.19)
@@ -125,28 +174,32 @@ def build(video):
     # Differentiate physical grooves before applying opaque ink. Differentiating
     # the protection mask would introduce a false raised/dark rim around letters.
     gy,gx = np.gradient(relief,1/S,1/S)
-    gx *= 1-protection
-    gy *= 1-protection
-    relief *= 1-protection
+    gx *= (1-protection)*(1-gems)
+    gy *= (1-protection)*(1-gems)
+    relief *= (1-protection)*(1-gems)
     normal = np.stack([-gx*.055, gy*.055, np.ones_like(gx)],axis=2)
     normal /= np.linalg.norm(normal,axis=2,keepdims=True)
     foil = (.90*inner + .98*(1-inner))*(1-.48*subject)*(1-.12*moon)
     rough = .35 + .07*subject + .04*moon + .13*protection + .022*rough_wave*(1-protection)
+    rough = rough*(1-gems) + .27*gems
     arrays = {'foil':foil,'protection':protection,'height':.5+relief*.19,
-              'normal':normal*.5+.5,'roughness':rough}
+              'normal':normal*.5+.5,'roughness':rough,'secondary-foil':gems}
     maps = {}
     for name,array in arrays.items():
         file = OUT/f'161-holo-{name}.png'
         Image.fromarray(np.rint(np.clip(array,0,1)*255).astype(np.uint8)).save(file)
         maps[file.name] = hashlib.sha256(file.read_bytes()).hexdigest()
     evidence = dict(cardId='sv08.5-161',variant='holo',status='video-guided-reconstruction',
-                    rendererReady=True,textured=True,referencePolicy='Only the supplied video informs etching and holo.',
+                    rendererReady=True,textured=True,referencePolicy='Original video guides the body and ornament. User-supplied crown/gem and edge detail images guide the added microdiamond and rim finishes.',
                     video=dict(file=video.name,sha256=hashlib.sha256(video.read_bytes()).hexdigest()),
                     references=references,mapSize=[W,H],maps=maps,
+                    finishReferences=[dict(file=name,sha256=hashlib.sha256((REF/name).read_bytes()).hexdigest(),role=role)
+                                      for name,role in [('microdiamond-reference.png','User-authorized shared crown and gem finish from another card'),
+                                                        ('edge-reference.png','User-authorized Prismatic edge etching detail')]],
                     registrationCorrections='User annotations: filled chest and toe-tip silhouette gaps; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O and removed mask-induced normal edges.',
                     observations=['0–16s: full-face rainbow sweep, reflective rim, protected white rules panels.',
                                   '18–24s: fine curved background grooves, upright moon lines, subdued crystal subject, lower concentric ornament.'],
-                    limitations='Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only; no other surface reference is used.')
+                    limitations='Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only. The two later user-supplied detail images inform only the added crown/gem and rim finishes.')
     (OUT/'161-holo-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf8')
 
 
