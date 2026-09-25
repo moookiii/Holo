@@ -18,6 +18,40 @@ REF = ROOT / 'research/prismatic-evolutions/umbreon-video'
 W, H = 1800, 2475
 S = W / 600
 
+# Registered to the 600 x 825 print. Keep the moon-side gap below the ear open;
+# the chest and toe tips are separate parts of the actual character silhouette.
+SUBJECT_POINTS = [
+    (249,236),(239,250),(248,279),(260,297),(255,322),(250,344),
+    (246,362),(238,377),(234,393),(233,409),(236,430),(241,444),
+    (246,453),(250,466),(247,471),(243,476),(242,480),(245,483),
+    (251,483),(259,478),(269,474),(284,474),(298,476),(310,475),
+    (320,477),(331,479),(343,482),(355,486),(358,484),(358,480),
+    (355,476),(349,472),(340,468),(349,458),(356,444),(366,434),
+    (380,420),(392,380),(404,339),(382,358),(366,381),(358,391),
+    (346,385),(341,373),(335,361),(329,348),(323,334),(316,320),
+    (311,307),(308,294),(307,282),(311,274),(314,261),(318,269),
+    (323,278),(330,286),(339,295),(349,301),(361,307),(374,312),
+    (379,315),(356,285),(330,257),(306,241),
+    (307,229),(287,218),(269,229),
+]
+
+# Center, short/long semiaxes and rotation in image coordinates. The lower
+# medallions lean in opposite directions; an axis-aligned ellipse cannot fit.
+ROSETTES = [
+    (86.0,365.8,17.6,17.3,0), (512.8,365.8,17.7,17.6,0),
+    (237.1,558.9,21.5,28.0,27), (358.8,558.9,21.7,28.5,-27),
+    (77.3,655.4,17.8,30.1,25), (519.2,657.0,17.8,29.6,-24),
+]
+
+
+def ellipse_radius(x, y, spec):
+    cx, cy, rx, ry, degrees = spec
+    angle = np.deg2rad(degrees)
+    dx, dy = x-cx, y-cy
+    u = dx*np.cos(angle) + dy*np.sin(angle)
+    v = -dx*np.sin(angle) + dy*np.cos(angle)
+    return np.hypot(u/rx, v/ry)
+
 
 def polygon(points):
     im = Image.new('L', (W, H))
@@ -43,10 +77,7 @@ def build(video):
     yy, xx = np.mgrid[:H, :W].astype(np.float32)
     x, y = (xx+.5)/S, (yy+.5)/S
     inner = polygon([(23,24),(578,24),(578,803),(23,803)])
-    subject = polygon([(249,236),(239,250),(248,279),(260,297),(255,348),(249,398),(246,455),
-                       (256,479),(324,479),(356,462),(380,420),(404,339),(382,358),(358,391),
-                       (331,390),(324,361),(307,321),(304,278),(329,299),(379,318),(356,285),
-                       (330,257),(306,241),(307,229),(287,218),(269,229)])
+    subject = polygon(SUBJECT_POINTS)
     moon = polygon([(188,165),(239,140),(301,138),(357,153),(404,191),(430,237),
                     (420,283),(387,316),(340,341),(288,353),(236,335),(198,303),(173,263),(164,217)])
     crown = polygon([(173,164),(214,142),(261,138),(306,137),(362,153),(403,185),(438,231),
@@ -68,17 +99,22 @@ def build(video):
     # The moon has much finer, mostly upright incisions in the close-up.
     relief = relief*(1-moon*.82) + .13*moon*(1-subject)*np.sin((x+.14*y)*2*np.pi/1.9)
     # Small engraved rosettes observed in the side and lower ornaments.
-    for cx, cy, rx, ry in [(86,367,19,19),(515,367,19,19),(239,552,19,25),
-                            (359,558,22,23),(78,655,20,30),(523,655,20,30)]:
-        rr = np.sqrt(((x-cx)/rx)**2+((y-cy)/ry)**2)
-        weight = np.clip((1.12-rr)*8,0,1)
-        relief = relief*(1-weight) + .58*np.sin(rr*rx*2*np.pi/2.5)*weight
+    rough_wave = np.cos(phase*2*np.pi/1.45)
+    for spec in ROSETTES:
+        rr = ellipse_radius(x, y, spec)
+        # Feather inward at the printed gold perimeter, without a circular halo
+        # outside the ornament. Roughness and normals share the same ring phase.
+        weight = np.clip((1-rr)/.075,0,1)
+        weight = weight*weight*(3-2*weight)
+        ring_phase = rr*spec[2]*2*np.pi/1.45
+        relief = relief*(1-weight) + .58*np.sin(ring_phase)*weight
+        rough_wave = rough_wave*(1-weight) + np.cos(ring_phase)*weight
     # Protection follows only printed lettering inside manually bounded text zones.
     front = np.asarray(Image.open(ROOT/'public/cards/pokemon/prismatic-evolutions/161.png').convert('RGB').resize((W,H)), dtype=np.float32)/255
     white_ink = (front.min(axis=2)>.66) & ((front.max(axis=2)-front.min(axis=2))<.19)
     zones = np.zeros((H,W), dtype=np.float32)
     for x0,y0,x1,y1 in [(110,27,557,74),(186,479,403,514),(26,512,520,539),
-                         (500,475,558,511),(181,583,287,615),(25,611,562,639),
+                         (500,475,558,511),(181,574,287,615),(25,611,562,639),
                          (25,712,558,738),(29,753,190,799)]:
         zones[int(y0*S):int(y1*S),int(x0*S):int(x1*S)] = 1
     protection = cv2.dilate((white_ink*zones).astype(np.float32),np.ones((3,3),np.uint8))*.96
@@ -86,12 +122,16 @@ def build(video):
                    [(224,740),(561,740),(581,761),(574,790),(552,799),(224,798),(205,779),(209,757)],
                    [(23,63),(75,52),(104,76),(102,123),(79,150),(35,150),(16,119)]]:
         protection = np.maximum(protection,polygon(points)*.98)
-    relief *= 1-protection
+    # Differentiate physical grooves before applying opaque ink. Differentiating
+    # the protection mask would introduce a false raised/dark rim around letters.
     gy,gx = np.gradient(relief,1/S,1/S)
+    gx *= 1-protection
+    gy *= 1-protection
+    relief *= 1-protection
     normal = np.stack([-gx*.055, gy*.055, np.ones_like(gx)],axis=2)
     normal /= np.linalg.norm(normal,axis=2,keepdims=True)
     foil = (.90*inner + .98*(1-inner))*(1-.48*subject)*(1-.12*moon)
-    rough = .35 + .07*subject + .04*moon + .13*protection + .022*np.cos(phase*2*np.pi/1.45)
+    rough = .35 + .07*subject + .04*moon + .13*protection + .022*rough_wave*(1-protection)
     arrays = {'foil':foil,'protection':protection,'height':.5+relief*.19,
               'normal':normal*.5+.5,'roughness':rough}
     maps = {}
@@ -103,6 +143,7 @@ def build(video):
                     rendererReady=True,textured=True,referencePolicy='Only the supplied video informs etching and holo.',
                     video=dict(file=video.name,sha256=hashlib.sha256(video.read_bytes()).hexdigest()),
                     references=references,mapSize=[W,H],maps=maps,
+                    registrationCorrections='User annotations: filled chest and toe-tip silhouette gaps; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O and removed mask-induced normal edges.',
                     observations=['0–16s: full-face rainbow sweep, reflective rim, protected white rules panels.',
                                   '18–24s: fine curved background grooves, upright moon lines, subdued crystal subject, lower concentric ornament.'],
                     limitations='Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only; no other surface reference is used.')

@@ -19,6 +19,13 @@ curved background ornament, lower concentric fans, reflective perimeter and
 opaque rules panels. Curve spacing, relief depth and material parameters are
 visual approximations; the recording cannot resolve every original incision.
 
+The annotated review corrections extend the character mask along the right
+chest and both toe tips, preserving the open gap and pink gem below the ear.
+All six engraved medallions have individual centers, semiaxes and rotations
+registered to the printed ornaments. Ring roughness shares the same alignment.
+Onyx protection includes the full upper curve of the O; normal calculation
+precedes ink masking so lettering does not acquire artificial embossed edges.
+
 Regenerate with:
 
 ```powershell
