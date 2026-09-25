@@ -21,8 +21,11 @@ S = W / 600
 # Registered to the 600 x 825 print. Keep the moon-side gap below the ear open;
 # the chest and toe tips are separate parts of the actual character silhouette.
 SUBJECT_POINTS = [
-    (249,236),(239,250),(248,279),(260,297),(255,322),(250,344),
-    (246,362),(238,377),(234,393),(233,409),(236,430),(241,444),
+    (249,236),(239,250),(248,279),(252,286),(257,291),(261,294),
+    (263,298),(264,302),(263.5,309),(262.5,317),(261.4,325),
+    (259.9,332),(257.5,338),(255.3,345),(254,352),(252.5,359),
+    (250.4,366),(247.6,373),(244.6,380),(241.4,387),(238.3,393),
+    (235.5,402),(234,409),(236,430),(241,444),
     (246,453),(250,466),(247,471),(243,476),(242,480),(245,483),
     (251,483),(259,478),(269,474),(284,474),(298,476),(310,475),
     (320,477),(331,479),(343,482),(355,486),(358,484),(358,480),
@@ -196,7 +199,7 @@ def build(video):
                     finishReferences=[dict(file=name,sha256=hashlib.sha256((REF/name).read_bytes()).hexdigest(),role=role)
                                       for name,role in [('microdiamond-reference.png','User-authorized shared crown and gem finish from another card'),
                                                         ('edge-reference.png','User-authorized Prismatic edge etching detail')]],
-                    registrationCorrections='User annotations: filled chest and toe-tip silhouette gaps; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O and removed mask-induced normal edges.',
+                    registrationCorrections='User annotations: filled right chest and toe-tip silhouette gaps; tightened the left neck/chest boundary to restore the adjacent background etching; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O and removed mask-induced normal edges.',
                     observations=['0–16s: full-face rainbow sweep, reflective rim, protected white rules panels.',
                                   '18–24s: fine curved background grooves, upright moon lines, subdued crystal subject, lower concentric ornament.'],
                     limitations='Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only. The two later user-supplied detail images inform only the added crown/gem and rim finishes.')
