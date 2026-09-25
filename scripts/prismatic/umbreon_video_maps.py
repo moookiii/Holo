@@ -102,21 +102,27 @@ def polygon(points):
     return np.asarray(im.filter(ImageFilter.GaussianBlur(1.2)), dtype=np.float32)/255
 
 
-def build(video):
+def build(video=None):
     OUT.mkdir(parents=True, exist_ok=True)
     REF.mkdir(parents=True, exist_ok=True)
-    cap = cv2.VideoCapture(str(video))
-    references = []
-    for t in [1, 4, 8, 12, 18, 20, 22]:
-        cap.set(cv2.CAP_PROP_POS_MSEC, t*1000)
-        ok, frame = cap.read()
-        if not ok:
-            raise ValueError(f'Missing video frame at {t}s')
-        file = REF / f'{t:02d}s.png'
-        # Lossless portrait crop; no contrast, lighting or sharpening edits.
-        cv2.imwrite(str(file), frame[:, 650:1260])
-        references.append(dict(file=file.name, seconds=t, sha256=hashlib.sha256(file.read_bytes()).hexdigest()))
-    cap.release()
+    if video is None:
+        previous = json.loads((OUT/'161-holo-evidence.json').read_text(encoding='utf8'))
+        video_evidence = previous['video']
+        references = previous['references']
+    else:
+        cap = cv2.VideoCapture(str(video))
+        references = []
+        for t in [1, 4, 8, 12, 18, 20, 22]:
+            cap.set(cv2.CAP_PROP_POS_MSEC, t*1000)
+            ok, frame = cap.read()
+            if not ok:
+                raise ValueError(f'Missing video frame at {t}s')
+            file = REF / f'{t:02d}s.png'
+            # Lossless portrait crop; no contrast, lighting or sharpening edits.
+            cv2.imwrite(str(file), frame[:, 650:1260])
+            references.append(dict(file=file.name, seconds=t, sha256=hashlib.sha256(file.read_bytes()).hexdigest()))
+        cap.release()
+        video_evidence = dict(file=video.name,sha256=hashlib.sha256(video.read_bytes()).hexdigest())
     yy, xx = np.mgrid[:H, :W].astype(np.float32)
     x, y = (xx+.5)/S, (yy+.5)/S
     inner = polygon([(23,24),(578,24),(578,803),(23,803)])
@@ -165,14 +171,21 @@ def build(video):
     front = np.asarray(Image.open(ROOT/'public/cards/pokemon/prismatic-evolutions/161.png').convert('RGB').resize((W,H)), dtype=np.float32)/255
     white_ink = (front.min(axis=2)>.66) & ((front.max(axis=2)-front.min(axis=2))<.19)
     zones = np.zeros((H,W), dtype=np.float32)
-    for x0,y0,x1,y1 in [(110,27,557,74),(186,479,403,514),(26,512,520,539),
+    for x0,y0,x1,y1 in [(110,27,578,74),(186,479,403,514),(26,512,520,539),
                          (500,475,558,511),(181,574,287,615),(25,611,562,639),
-                         (25,712,558,738),(29,753,190,799)]:
+                         (25,712,558,738),(29,753,190,799),
+                         (176,774,201,800)]:  # Both collector stars, including the right tip.
         zones[int(y0*S):int(y1*S),int(x0*S):int(x1*S)] = 1
     protection = cv2.dilate((white_ink*zones).astype(np.float32),np.ones((3,3),np.uint8))*.96
     for points in [[(107,95),(552,95),(529,135),(124,135),(103,119)],
                    [(224,740),(561,740),(581,761),(574,790),(552,799),(224,798),(205,779),(209,757)],
-                   [(23,63),(75,52),(104,76),(102,123),(79,150),(35,150),(16,119)]]:
+                   [(23,63),(75,52),(104,76),(102,123),(79,150),(35,150),(16,119)],
+                   # The collector stars have gold centers that the white-ink
+                   # threshold misses; trace each opaque printed shape.
+                   [(173,776),(176,782),(182,782),(178,787),(179,793),
+                    (173,790),(167,793),(168,788),(163,784),(170,783)],
+                   [(187,780),(190,786),(195,788),(191,792),(192,797),
+                    (186,794),(181,796),(182,791),(178,788),(184,786)]]:
         protection = np.maximum(protection,polygon(points)*.98)
     # Differentiate physical grooves before applying opaque ink. Differentiating
     # the protection mask would introduce a false raised/dark rim around letters.
@@ -190,16 +203,19 @@ def build(video):
     maps = {}
     for name,array in arrays.items():
         file = OUT/f'161-holo-{name}.png'
-        Image.fromarray(np.rint(np.clip(array,0,1)*255).astype(np.uint8)).save(file)
+        temporary = file.with_name(f'{file.stem}.tmp.png')
+        Image.fromarray(np.rint(np.clip(array,0,1)*255).astype(np.uint8)).save(temporary)
+        temporary.replace(file)
         maps[file.name] = hashlib.sha256(file.read_bytes()).hexdigest()
     evidence = dict(cardId='sv08.5-161',variant='holo',status='video-guided-reconstruction',
                     rendererReady=True,textured=True,referencePolicy='Original video guides the body and ornament. User-supplied crown/gem and edge detail images guide the added microdiamond and rim finishes.',
-                    video=dict(file=video.name,sha256=hashlib.sha256(video.read_bytes()).hexdigest()),
+                    video=video_evidence,
                     references=references,mapSize=[W,H],maps=maps,
                     finishReferences=[dict(file=name,sha256=hashlib.sha256((REF/name).read_bytes()).hexdigest(),role=role)
                                       for name,role in [('microdiamond-reference.png','User-authorized shared crown and gem finish from another card'),
-                                                        ('edge-reference.png','User-authorized Prismatic edge etching detail')]],
-                    registrationCorrections='User annotations: filled right chest and toe-tip silhouette gaps; tightened the left neck/chest boundary to restore the adjacent background etching; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O and removed mask-induced normal edges.',
+                                                        ('edge-reference.png','User-authorized Prismatic edge etching detail'),
+                                                        ('microdiamond-closeup-reference.png','Later user close-up: short square flashes rather than uniform grain')]],
+                    registrationCorrections='User annotations: filled right chest and toe-tip silhouette gaps; tightened the left neck/chest boundary to restore the adjacent background etching; fitted all six medallions with registered rotated ellipses; extended Onyx ink protection above the O; completed the top energy icon and both collector stars; removed mask-induced normal edges.',
                     observations=['0–16s: full-face rainbow sweep, reflective rim, protected white rules panels.',
                                   '18–24s: fine curved background grooves, upright moon lines, subdued crystal subject, lower concentric ornament.'],
                     limitations='Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only. The two later user-supplied detail images inform only the added crown/gem and rim finishes.')
@@ -208,5 +224,5 @@ def build(video):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('video',type=Path)
+    parser.add_argument('video',type=Path,nargs='?',help='Original video; omit to reuse recorded evidence and reference frames')
     build(parser.parse_args().video)
