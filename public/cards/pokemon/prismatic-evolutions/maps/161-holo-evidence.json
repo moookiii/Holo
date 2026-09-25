@@ -1,0 +1,65 @@
+{
+  "cardId": "sv08.5-161",
+  "variant": "holo",
+  "status": "video-guided-reconstruction",
+  "rendererReady": true,
+  "textured": true,
+  "referencePolicy": "Only the supplied video informs etching and holo.",
+  "video": {
+    "file": "2026-09-24 17-52-17-00.00.09.028-00.00.33.805.mp4",
+    "sha256": "d123f27bf3c1bcbd7f542166d628276128909bd3639a6419e638925eca066bb9"
+  },
+  "references": [
+    {
+      "file": "01s.png",
+      "seconds": 1,
+      "sha256": "4d0a905a166788448a271792adfd86daed80652624c335e0857059b8c50d798b"
+    },
+    {
+      "file": "04s.png",
+      "seconds": 4,
+      "sha256": "dc1bcd4ad085aacb7429e8aabb1906a40e8fab1143ffa111fda7a213bbc5ea9b"
+    },
+    {
+      "file": "08s.png",
+      "seconds": 8,
+      "sha256": "e4e230f46729108d4c4940dadb523cdf0689c5be507f1ac6767950e7cadec497"
+    },
+    {
+      "file": "12s.png",
+      "seconds": 12,
+      "sha256": "8091aa2c79664bcf3c2ea7a03a3df418ffc336ec1a1c063cb10fa3c4eced0f22"
+    },
+    {
+      "file": "18s.png",
+      "seconds": 18,
+      "sha256": "1a9e58352343c5c3df29c96833813419750fdbee82d358f8f4c777c87effdd44"
+    },
+    {
+      "file": "20s.png",
+      "seconds": 20,
+      "sha256": "cce83c63c1c771ecad232f20d78c0d3e5826b36cbe2d8d2d73c910b4a2abf9b7"
+    },
+    {
+      "file": "22s.png",
+      "seconds": 22,
+      "sha256": "fe4345cccfa1a64b2c9d72248bb59a183a6c35f717a48b34cc779c966c6ab372"
+    }
+  ],
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "161-holo-foil.png": "c1854d34a04f1dfe07ed1267b30ab505f394c530675235c19f8e96503612bc45",
+    "161-holo-protection.png": "624f785be5fe1e9536a2318c6c548d3786b3c149b270a191d3c69c0e7704986f",
+    "161-holo-height.png": "370c295fcfd1538f1a9c62daa73d3e093d31c10c3a9533579bbc35e832b1c04d",
+    "161-holo-normal.png": "f8f6750a1a514229f4e37ba92302b5f2d629a07bc05316a8317aaa06c75c40e1",
+    "161-holo-roughness.png": "4182093edaecd034c076b87632d59b1a00445c5599ccd84b21a944ee8dc8b238"
+  },
+  "observations": [
+    "0\u201316s: full-face rainbow sweep, reflective rim, protected white rules panels.",
+    "18\u201324s: fine curved background grooves, upright moon lines, subdued crystal subject, lower concentric ornament."
+  ],
+  "limitations": "Curve spacing, groove depth and optical constants are calibrated approximations. The video does not resolve every individual manufacturing incision. Clean front is retained for print and registration only; no other surface reference is used."
+}
