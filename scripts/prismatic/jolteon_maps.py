@@ -69,6 +69,11 @@ def build():
     # transition is an estimate, feathered without following print brightness.
     right=poly([(351,535),(578,517),(578,709),(407,709),(383,645),(335,586)])
     right=cv2.GaussianBlur(right,(0,0),14)*(1-body)*(1-gems)*(1-protection)*.82
+    # The pale diagonal slash is etched foil, not microdiamond material.
+    # Clip after feathering the surrounding field to keep this printed edge crisp.
+    diagonal_bar=poly([(267,548),(306,570),(578,736),
+                       (531,746),(246,565)])
+    right*=1-diagonal_bar
     smooth_micro=np.maximum(gems,silver)*(1-protection)*(1-energy)
     secondary=np.maximum(smooth_micro,right)*(1-energy)
     inner=poly([(23,24),(577,24),(577,801),(23,801)])
