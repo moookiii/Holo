@@ -1,6 +1,6 @@
 import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
 import type { CardMotion, InteractionMode } from './Motion';
-import { hoverFromCardCenter } from './HoverCoordinates';
+import { hoverFromCardCenter, projectAroundCardCenter } from './HoverCoordinates';
 
 export class PointerController {
   private enabled = true;
@@ -104,10 +104,9 @@ export class PointerController {
     this.motion.setHover(hover.x, hover.y);
   }
   private project(x: number, y: number, target: Vector3) {
-    const rect = this.element.getBoundingClientRect(), radius = Math.min(rect.width, rect.height) * .42;
-    const px = (x - rect.left - rect.width / 2) / radius, py = (rect.top + rect.height / 2 - y) / radius;
-    const d = px * px + py * py;
-    return target.set(px, py, d <= .5 ? Math.sqrt(1 - d) : .5 / Math.sqrt(d)).normalize();
+    const rect = this.element.getBoundingClientRect();
+    const center = this.cardCenter?.(rect) ?? new Vector2(rect.left + rect.width / 2, rect.top + rect.height / 2);
+    return projectAroundCardCenter(x, y, rect, center, target);
   }
   private distance() { const p = [...this.pointers.values()]; return p[0].distanceTo(p[1]); }
   dispose() { this.disposeHandlers.forEach(f => f()); }

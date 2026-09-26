@@ -1,8 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Quaternion, Vector3 } from 'three/webgpu';
+import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
 import { CardMotion, Y_AXIS, Z_AXIS } from '../src/input/Motion.ts';
-import { hoverFromCardCenter } from '../src/input/HoverCoordinates.ts';
+import { hoverFromCardCenter, projectAroundCardCenter } from '../src/input/HoverCoordinates.ts';
 
 const closeOrientation = (a: Quaternion, b: Quaternion, epsilon = 1e-6) => assert.ok(a.angleTo(b) < epsilon, `orientation differs by ${a.angleTo(b)} radians`);
 const advance = (motion: CardMotion, seconds: number, hz = 120) => { for (let i = 0; i < Math.round(seconds * hz); i++) motion.update(1 / hz); };
@@ -113,4 +113,16 @@ test('interrupting reset with a drag or flip continues from the visible pose', (
   motion.reset(); advance(motion, .25);
   const visibleAgain = motion.orientation.clone(); motion.requestFlip(); motion.update(0);
   closeOrientation(motion.orientation, visibleAgain);
+});
+
+test('drag rotation stays identical when the card and drag are moved together', () => {
+  const rect = { width: 1000, height: 800 };
+  const rotation = (center: Vector2) => {
+    const from = projectAroundCardCenter(center.x, center.y, rect, center, new Vector3());
+    const to = projectAroundCardCenter(center.x + 100, center.y, rect, center, new Vector3());
+    return new Quaternion().setFromUnitVectors(from, to);
+  };
+  const centered = rotation(new Vector2(500, 400));
+  closeOrientation(centered, rotation(new Vector2(750, 250)));
+  assert.ok(centered.y > 0 && Math.abs(centered.z) < 1e-12, 'a horizontal center drag rotates without unintended roll');
 });
