@@ -82,15 +82,17 @@ def build():
     # Differentiate continuous fields before material clipping.
     def slope(h):
         gy,gx=np.gradient(h,1/S,1/S); return gx,gy
-    phase=.52*x+.80*y+8*np.sin(.014*x-.009*y)+3*np.sin(.026*y)
-    height=.60*np.sin(phase*2*np.pi/1.45); gx,gy=slope(height)
-    # Upper-right grooves bend around the crown rather than following the
-    # printed lightning bolts. The lower-left field curves into the burst.
-    for cx,cy,rx,ry in [(353,170,175,155),(130,470,175,200)]:
-        radius=np.hypot(x-cx,(y-cy)*rx/ry)
-        h=.60*np.sin(radius*2*np.pi/1.45)
-        hx,hy=slope(h); w=.65*np.exp(-np.power(radius/(rx*1.4),4))
-        gx=gx*(1-w)+hx*w; gy=gy*(1-w)+hy*w; height=height*(1-w)+h*w
+    # A single continuous phase avoids crossing independent ridge families.
+    # Broad bends follow the crown-side sweep and lower-left burst in the photo;
+    # pitch and depth are estimates at this photograph's resolution.
+    phase=.52*x+.80*y
+    phase+=32*np.exp(-((x-353)/175)**2-((y-170)/155)**2)
+    phase-=28*np.exp(-((x-130)/175)**2-((y-470)/200)**2)
+    height=.95*np.sin(phase*2*np.pi/1.9)
+    gx,gy=slope(height)
+    # Increase background relief only. Body, crystal, trim and energy response
+    # are assigned independently below and retain their original strengths.
+    gx*=1.55; gy*=1.55
     field_body=body_texture(x,y)*.50
     edge=.50*np.sin((.52*x+.31*y+7*np.sin(.035*y+.014*x))*2*np.pi/1.35)
     ex,ey=slope(edge); gx=gx*inner+ex*(1-inner); gy=gy*inner+ey*(1-inner)
@@ -109,13 +111,16 @@ def build():
     active=(1-smooth_micro)*(1-protection)
     gx*=active; gy*=active; height*=active
     normal=np.stack([-gx*.065,gy*.065,np.ones_like(gx)],2); normal/=np.linalg.norm(normal,axis=2,keepdims=True)
-    rough=(.35+.055*body)*(1-secondary)+.27*secondary
+    rough=(.30+.105*body)*(1-secondary)+.27*secondary
     foil=(.92*inner+.98*(1-inner))*(1-.40*body)
     arrays={'foil':foil,'protection':protection,'height':.5+height*.19,'normal':normal*.5+.5,
       'roughness':rough,'secondary-foil':secondary,'body':body,'gems':gems,'silver':silver,'right-microdiamond':right,'energy-discs':energy}
     hashes={}
     for name,data in arrays.items():
-        path=OUT/f'153-holo-{name}.png'; Image.fromarray(np.rint(np.clip(data,0,1)*255).astype(np.uint8)).save(path)
+        path=OUT/f'153-holo-{name}.png'
+        pixels=np.rint(np.clip(data,0,1)*255).astype(np.uint8)
+        if not path.exists() or not np.array_equal(np.asarray(Image.open(path)),pixels):
+            Image.fromarray(pixels).save(path)
         hashes[path.name]=hashlib.sha256(path.read_bytes()).hexdigest()
     for name,mask,color in [('body',body,(255,0,160)),('microdiamond',secondary,(0,255,140)),('protection',protection,(40,80,255))]:
         overlay=rgb*(1-mask[...,None]*.48)+np.array(color)/255*mask[...,None]*.48
@@ -123,6 +128,7 @@ def build():
     evidence=dict(cardId='sv08.5-153',variant='holo',status='photo-guided-reconstruction',rendererReady=True,textured=True,
       mapSize=[W,H],maps=hashes,references=[dict(file=p.name,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(REF.iterdir())],
       referencePolicy='Exact-card etching-master.jpg guides relief and bottom-right diamond coverage. User colored outlines define body and crystals. Supplied energy crops guide concentric icon relief. Clean front supplies registration only; shared silver mask is registered to title and retreat cost.',
+      reliefMethod='Single continuous curved background phase, differentiated before clipping; no superimposed crossing ridge fields. Original body, crystal boundaries and concentric attack-energy fields retained.',
       limitations='Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief.')
     (OUT/'153-holo-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n')
 
