@@ -122,6 +122,22 @@ export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yu
     notes: '600 × 825 first-edition scan. Subject and printed layout retained; the masked background foil is reconstructed to remove baked illumination. Optical reconstruction awaits moving-reference comparison.',
   },
 }, {
+  id: 'umbreon-gx-sm1-154', title: 'Umbreon GX', franchise: 'Pokémon',
+  set: 'Sun & Moon Base · Rainbow Secret Rare', number: '154/149', dimensions: DIMENSIONS.standard,
+  front: '/cards/umbreon-gx-sm1-154/front.png', back: '/cards/pokemon/back.jpg',
+  layout: { artwork: [0, 0, 1, 1], innerFrame: [.025, .02, .975, .98] },
+  profile: 'pokemon-sm-rainbow-triangles', seed: 2017154,
+  mapSettings: { roughnessMode: 'absolute', embossStrength: 0, normalScale: 1 },
+  maps: {
+    foil: '/cards/umbreon-gx-sm1-154/foil.png', protection: '/cards/umbreon-gx-sm1-154/protection.png',
+    height: '/cards/umbreon-gx-sm1-154/height.png', normal: '/cards/umbreon-gx-sm1-154/normal.png',
+    roughness: '/cards/umbreon-gx-sm1-154/roughness.png',
+  },
+  source: {
+    image: 'https://assets.tcgdex.net/en/sm/sm1/154/high.png', metadata: 'https://api.tcgdex.net/v2/en/cards/sm1-154',
+    notes: 'Unmodified TCGdex print. Exact-card user photos supply registered groove geometry and light-response references. Triangle axes, body contours, wavy trim, energy circles and smooth GX backdrop are authored independently; no photographed lighting becomes height. Depth and obscured continuation are estimates. See docs/umbreon-gx-sm1-154.md.',
+  },
+}, {
   id: 'pikachu-vmax-vivid-voltage', title: 'Pikachu VMAX', franchise: 'Pokémon',
   set: 'Vivid Voltage · Rainbow Rare', number: '188/185', dimensions: DIMENSIONS.standard,
   front: '/cards/pikachu-vmax-vivid-voltage/front.png', back: '/cards/pokemon/back.jpg',
