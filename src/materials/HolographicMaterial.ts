@@ -1,3 +1,4 @@
+import { inspection } from '../lighting/inspection';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, Texture, DataTexture, Vector3, RGBAFormat, UnsignedByteType, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
@@ -63,7 +64,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
   private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
     for (const [regionIndex, region] of this.regions.entries()) If(region.optics.enabled.greaterThan(0), () => {
       const u = region.optics;
-      const light = data.lightDirection as Node<'vec3'>;
+      const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       // Build only the optical model this region uses. TSL assignments and
       // conditional blocks are emitted even when their final value is unused.
       if (this.crossedShaders[regionIndex]) {
@@ -165,6 +166,13 @@ class HolographicLightingModel extends PhysicalLightingModel {
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
         .mul(region.coverage, data.lightColor as Node<'vec3'>));
     });
+  }
+  override finish(builder: NodeBuilder) {
+    super.finish(builder);
+    const context = builder.context as LightingContext & { outgoingLight: Node<'vec3'> };
+    // Approximate a rotating CPL: retain diffuse print while rejecting polarized reflection.
+    const diffuse = (context.reflectedLight.directDiffuse as Node<'vec3'>).add(context.reflectedLight.indirectDiffuse as Node<'vec3'>);
+    (context.outgoingLight as Node<'vec3'>).assign(mix(diffuse, context.outgoingLight as Node<'vec3'>, inspection.polarizer));
   }
   override indirectDiffuse(builder: NodeBuilder) {
     super.indirectDiffuse(builder);

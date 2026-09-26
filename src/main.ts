@@ -312,7 +312,7 @@ async function start() {
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
     flip: () => motion.requestFlip(), reset: resetCard,
-    card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset),
+    card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset), lighting,
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { void browsePacks().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
@@ -328,6 +328,7 @@ async function start() {
     const now = performance.now(); const dt = (now - last) / 1000; last = now;
     if (pack) pack.update(dt);
     else {
+      lighting.update(dt);
       motion.update(dt); card.quaternion.copy(motion.orientation);
       if (resetPositionElapsed >= 0) {
         resetPositionElapsed = Math.min(0.65, resetPositionElapsed + Math.max(0, Math.min(dt, 0.05)));

@@ -1,7 +1,8 @@
 import type { CardDefinition } from '../card/CardDefinition';
-import type { LightPreset } from '../lighting/StudioLighting';
+import { lightPresets, type StudioLighting, type LightPreset } from '../lighting/StudioLighting';
 
 interface ViewerActions {
+  lighting: StudioLighting;
   flip: () => void;
   reset: () => void;
   light: (preset: LightPreset) => void;
@@ -170,11 +171,50 @@ image.loading = 'lazy';
   };
   refreshCards();
   const lightPanel = root.querySelector('#light-panel')!;
-  (['Studio', 'Strip', 'Soft', 'Low key'] as LightPreset[]).forEach((preset, i) => {
+  const modes = document.createElement('div'); modes.className = 'light-modes'; lightPanel.append(modes);
+  const note = document.createElement('p'); note.className = 'light-note';
+  const settings = document.createElement('div'); settings.className = 'light-settings';
+  const descriptions: Partial<Record<LightPreset, string>> = {
+    Blacklight: 'Violet-light simulation; UV fluorescence is not measured.',
+    'Holo skim': 'Sweep the foil response while keeping printed artwork lighting steady.',
+    Polarizer: 'Approximate CPL rotation: reduce reflected glare on holographic fronts.',
+    Skim: 'A low, narrow source reveals surface relief.',
+  };
+  const rows: { element: HTMLElement; modes?: LightPreset[] }[] = [];
+  const slider = (label: string, key: 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle', min: number, max: number, step: number, unit: string, only?: LightPreset[]) => {
+    const row = document.createElement('label'); row.className = 'light-setting';
+    const caption = document.createElement('span'); caption.textContent = label;
+    const value = document.createElement('output');
+    const input = document.createElement('input'); input.type = 'range'; input.min = String(min); input.max = String(max); input.step = String(step); input.value = String(actions.lighting[key]);
+    input.setAttribute('aria-label', label);
+    const sync = () => { value.value = `${Number(input.value).toFixed(step < 1 ? 1 : 0)}${unit}`; };
+    input.oninput = () => { actions.lighting[key] = Number(input.value); sync(); }; sync();
+    row.append(caption, value, input); settings.append(row); rows.push({ element: row, modes: only });
+    return input;
+  };
+  const directional: LightPreset[] = ['Moving light', 'Skim', 'Spotlight', 'Right light'];
+  const azimuth = slider('Light position', 'azimuth', -85, 85, 1, '°', directional);
+  const elevation = slider('Light elevation', 'elevation', -30, 75, 1, '°', directional);
+  slider('Intensity', 'intensity', 0, 2, .1, '×');
+  slider('Sweep speed', 'speed', .1, 2, .1, '×', ['Moving light', 'Skim', 'Holo skim']);
+  slider('Filter rotation', 'filterAngle', 0, 180, 1, '°', ['Polarizer']);
+  const pause = document.createElement('button'); pause.className = 'light-pause';
+  const syncPause = () => { pause.textContent = actions.lighting.playing ? 'Pause sweep' : 'Play sweep'; pause.setAttribute('aria-pressed', String(actions.lighting.playing)); };
+  pause.onclick = () => { actions.lighting.playing = !actions.lighting.playing; syncPause(); }; syncPause();
+  settings.append(pause); rows.push({ element: pause, modes: ['Moving light', 'Skim', 'Holo skim'] });
+  const refresh = (preset: LightPreset) => {
+    note.textContent = descriptions[preset] ?? 'Adjust the light without moving the card.';
+    rows.forEach(row => { row.element.hidden = !!row.modes && !row.modes.includes(preset); });
+    azimuth.value = String(actions.lighting.azimuth); elevation.value = String(actions.lighting.elevation);
+    [azimuth, elevation].forEach(input => { input.previousElementSibling!.textContent = `${input.value}°`; });
+  };
+  lightPresets.forEach((preset, i) => {
     const button = document.createElement('button'); button.textContent = preset; button.className = i === 0 ? 'selected' : '';
-    button.onclick = () => { actions.light(preset); lightPanel.querySelectorAll('button').forEach(b => b.classList.toggle('selected', b === button)); close(); };
-    lightPanel.append(button);
+    button.setAttribute('aria-pressed', String(i === 0));
+    button.onclick = () => { actions.light(preset); modes.querySelectorAll('button').forEach(b => { b.classList.toggle('selected', b === button); b.setAttribute('aria-pressed', String(b === button)); }); refresh(preset); };
+    modes.append(button);
   });
+  lightPanel.append(note, settings); refresh('Studio');
   const outside = (e: PointerEvent) => { if (!root.contains(e.target as HTMLElement)) close(); };
   const keyboard = (e: KeyboardEvent) => {
     if (root.inert) return;
