@@ -1,0 +1,48 @@
+{
+  "cardId": "sv08.5-153",
+  "variant": "holo",
+  "status": "photo-guided-reconstruction",
+  "rendererReady": true,
+  "textured": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "153-holo-foil.png": "7f4ce13ae1d94b99c2a54a4de3b26d3ec1ce6fc39489f59671fc360873d0256d",
+    "153-holo-protection.png": "e34c874e29aea3dee09fc1ea70d054fec3ca7a7ac5396a995b4a7fbf62b364bd",
+    "153-holo-height.png": "2413826ffeba554f73513a0b42ec749d7f5b91d75b1d569513e3039dd590b247",
+    "153-holo-normal.png": "4d2213598234a5470937cfa18afd30b803cc213782e6ccfe0e905d986c49b4c4",
+    "153-holo-roughness.png": "a14be6b3852976409a0402c13d9d99ce60e7496eef836483304314ddd46ab53c",
+    "153-holo-secondary-foil.png": "09c01a5f4c9a0e289cf0e16bfe413216cbec5c7caa35baae3cfea2d0ecfd456b",
+    "153-holo-body.png": "6408d4f097ca4cb61b2150e9769a6cc2721cb1031a6eba5c9efef204707fd25d",
+    "153-holo-gems.png": "9c3217927460e8645a484250fcecc9b9a40f53aa89d64e5081b0d48c050e0dac",
+    "153-holo-silver.png": "7744f00095e383bfa67466df7b363b8a6b05ad315d8f966476c26f55fab37a69",
+    "153-holo-right-microdiamond.png": "76a869cc46bf934c6f8c26f6e71cefb233b5e3e6f4691659da4b40523ca3a000",
+    "153-holo-energy-discs.png": "3b1704a3fe58ed8d2b53d1ce177a95958c9c61e7c77bcf29da26b82743ac8173"
+  },
+  "references": [
+    {
+      "file": "energy-first.png",
+      "sha256": "4e09add6f67f85e28f76cb4fa7b0831ef85d8c7998e1c7ffeb4dedefbe6ab16a"
+    },
+    {
+      "file": "energy-second.png",
+      "sha256": "6f9f5234100e899828d1f87c28a795d90d2bcf58e0cdabf1c3e500b827e781ea"
+    },
+    {
+      "file": "etching-master.jpg",
+      "sha256": "0edfee29909424553d0d3ea614180cf1c93a9d57ce34af703bf8238027dc30bc"
+    },
+    {
+      "file": "outlined-front.png",
+      "sha256": "e1ff6eafdcafe9938cf3c5213b46e5651668b13e117ee67a186054b5cdf90a00"
+    },
+    {
+      "file": "silver-microdiamond.png",
+      "sha256": "e823b17b0f2723b0c362b2cf1f5db3870d6f18c139444b60363960a83dce6e8c"
+    }
+  ],
+  "referencePolicy": "Exact-card etching-master.jpg guides relief and bottom-right diamond coverage. User colored outlines define body and crystals. Supplied energy crops guide concentric icon relief. Clean front supplies registration only; shared silver mask is registered to title and retreat cost.",
+  "limitations": "Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief."
+}
