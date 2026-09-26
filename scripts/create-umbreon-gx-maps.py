@@ -54,71 +54,48 @@ glyph=np.zeros_like(gwhite)
 for c in cc:
  if cv2.contourArea(c)>4: cv2.drawContours(glyph,[c],-1,255,cv2.FILLED)
 protection=np.maximum(protection,cv2.dilate(glyph,np.ones((3,3),np.uint8))/255)
+# White lettering on the smooth dark banners is protected by its glyphs,
+# never by a filled text-row rectangle.
+for a,b,c,d in [(190,598,410,629),(221,770,561,802)]:
+ glyphs=np.zeros((H,W),np.uint8)
+ glyphs[b*S:d*S,a*S:c*S]=np.uint8(white[b*S:d*S,a*S:c*S])*255
+ protection=np.maximum(protection,cv2.dilate(glyphs,np.ones((3,3),np.uint8))/255)
+# Rebuild the four small footer words from their printed letter colors. The
+# general dark/white keyline pass loses their soft gray or blue antialiasing.
+# Tight bounds and a subpixel edge keep gaps and counters open.
+for a,b,c,d,kind in [(15,723,81,740,'dark'),(397,722,450,742,'dark'),
+                      (498,764,544,781,'light'),(24,803,111,816,'copyright')]:
+ y0,y1=b*S,d*S; x0,x1=a*S,c*S
+ rgb=front[y0:y1,x0:x1]; hi=rgb.max(2); lo=rgb.min(2)
+ luminance=rgb@np.array([.2126,.7152,.0722],np.float32)
+ if kind=='light': letters=(lo>.60)&(hi-lo<.23)
+ else: letters=(luminance<(.45 if kind=='copyright' else .52))&(hi-lo<(.23 if kind=='copyright' else .22))
+ radius=2 if kind=='copyright' else 1
+ glyphs=cv2.dilate(np.uint8(letters)*255,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(radius*2+1,radius*2+1)))
+ protection[y0:y1,x0:x1]=cv2.GaussianBlur(glyphs,(0,0),.55)/255
 # Smooth GX title and rule backdrops retain their reflective substrate.
 smooth=np.maximum.reduce([gxbar,rule,eye,portrait])
-# Use the photo ONLY to recover geometric groove-axis regions; brightness and
-# photographic highlights never become height. Quantize the three background
-# groove families, simplify their contours, then re-engrave periodic lines.
-axes=np.radians([90,30,150]); accumulated=np.zeros((3,H,W),np.float32)
-for reference in ['registered-photo.png','registered-angle.png']:
- photo=cv2.imread(str(REVIEW/reference),cv2.IMREAD_GRAYSCALE).astype(np.float32)/255
- photo=photo-cv2.GaussianBlur(photo,(0,0),7)
- dx=cv2.Sobel(photo,cv2.CV_32F,1,0,ksize=3); dy=cv2.Sobel(photo,cv2.CV_32F,0,1,ksize=3)
- jxx=cv2.GaussianBlur(dx*dx,(0,0),8); jyy=cv2.GaussianBlur(dy*dy,(0,0),8); jxy=cv2.GaussianBlur(dx*dy,(0,0),8)
- theta=.5*np.arctan2(2*jxy,jxx-jyy)
- coherence=np.sqrt((jxx-jyy)**2+4*jxy*jxy)/(jxx+jyy+1e-7)
- accumulated+=np.stack([np.cos(2*(theta-a)) for a in axes])*coherence
-labels=np.argmax(accumulated,axis=0).astype(np.uint8)
-labels=cv2.medianBlur(labels,21)
-# Reconstruct a planar triangle mesh from the corners of the measured
-# orientation regions. This removes photographic specks and curved/noisy
-# boundaries while retaining photo-derived junction locations.
-from scipy.spatial import Delaunay
-corners=[]
-for k in range(3):
- raw=(labels==k).astype(np.uint8)*255
- contours,_=cv2.findContours(raw,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
- for c in contours:
-  area=cv2.contourArea(c)
-  if area<500 or area>12000: continue
-  approx=cv2.approxPolyDP(c,max(5,cv2.arcLength(c,True)*.035),True)
-  corners.extend(approx[:,0,:].tolist())
-# Snap repeated observations of each junction to the same print-plane point.
-points=np.asarray(corners,np.float32)
-from scipy.spatial import cKDTree
-used=np.zeros(len(points),bool); vertices=[]
-tree=cKDTree(points)
-for i,q in enumerate(points):
- if used[i]: continue
- group=tree.query_ball_point(q,15); used[group]=True
- vertices.append(points[group].mean(0))
-# Obscured areas get only regular continuation; visible junctions remain measured.
-for py in range(0,H+80,80):
- for px in range(0,W+80,80):
-  if tree.query((px,py))[0]>70: vertices.append([px,py])
-vertices=np.array(vertices)
-triangulation=Delaunay(vertices)
-region_labels=np.zeros((H,W),np.uint8)
-polygons=[]
-for simplex in triangulation.simplices:
- pts=np.rint(vertices[simplex]).astype(np.int32)
- center=pts.mean(0); cx,cy=np.clip(center.astype(int),[0,0],[W-1,H-1])
- # Majority orientation over the triangle interior, rejecting boundary gradients.
- samples=[]
- for u,v in [(.33,.33),(.2,.2),(.6,.2),(.2,.6)]:
-  q=pts[0]*u+pts[1]*v+pts[2]*(1-u-v)
-  sx,sy=np.clip(q.astype(int),[0,0],[W-1,H-1]); samples.append(labels[sy,sx])
- k=int(np.bincount(samples,minlength=3).argmax())
- cv2.fillConvexPoly(region_labels,pts,k)
- polygons.append({'axis':k,'points':(pts/S).round(2).tolist()})
+# Equal equilateral triangles alternate tip-up / tip-down on a fixed lattice.
+# The complementary photo resolves nested triangular ridges, not irregular
+# Voronoi/Delaunay facets. Distance to the nearest edge makes each nested cut
+# meet continuously at its corners. Pitch/phase are photo-guided estimates.
+side=36.0; altitude=side*np.sqrt(3)/2; pitch=1.65
+u=(x-8)/side-(y-12)/(2*altitude); v=(y-12)/altitude
+fu=u-np.floor(u); fv=v-np.floor(v); up=(fu+fv)<1
+bary=np.stack([np.where(up,fu,1-fu),np.where(up,fv,1-fv),np.where(up,1-fu-fv,fu+fv-1)])
+distance=bary.min(0)*altitude
+height=.72*np.cos(distance*2*np.pi/pitch)
+# Differentiate the continuous field before applying any printed-region mask.
+nx,ny=slope(height)
+region_labels=np.argmin(bary,axis=0)
 weights=np.stack([(region_labels==k).astype(np.float32) for k in range(3)])
-weights/=np.maximum(weights.sum(0),1)
-height=np.zeros((H,W),np.float32); nx=height.copy(); ny=height.copy()
-for k,angle in enumerate(axes):
- phase=x*np.cos(angle)+y*np.sin(angle)
- h=.86*np.sin(phase*2*np.pi/2.05)
- hx,hy=slope(h); w=weights[k]
- height+=h*w; nx+=hx*w; ny+=hy*w
+polygons=[]
+for row in range(-1,int(H/S/altitude)+2):
+ for col in range(-int(H/S/altitude)//2-2,int(W/S/side)+2):
+  a=np.array([8+side*(col+row/2),12+altitude*row]); b=a+[side,0]; c=a+[side/2,altitude]; d=a+[side*1.5,altitude]
+  for pts in [np.array([a,b,c]),np.array([b,d,c])]:
+   if pts[:,0].max()<0 or pts[:,0].min()>W/S or pts[:,1].max()<0 or pts[:,1].min()>H/S: continue
+   polygons.append({'points':pts.tolist()})
 # Photo-guided body flow: tall longitudinal curves bend around the eye, cheek,
 # shoulder and haunch. Fine grooves remain continuous inside each body region.
 phase=x+28*np.sin((y-250)/83)+15*np.sin(y/48)+24*np.exp(-((x-135)/75)**2-((y-227)/56)**2)
@@ -153,5 +130,5 @@ colors=np.array([[255,180,70],[60,180,255],[190,60,225]])/255
 viz=np.einsum('khw,kc->hwc',weights,colors); vis=(1-body)*(1-smooth)*(1-protection)
 Image.fromarray(np.uint8(np.clip(front*(1-vis[...,None]*.65)+viz*vis[...,None]*.65,0,1)*255)).resize((900,1238)).save(REVIEW/'triangle-axes.png')
 (REF/'traced-groove-regions.json').write_text(json.dumps(polygons))
-manifest={'card':'sm1-154','source':'https://assets.tcgdex.net/en/sm/sm1/154/high.png','maps':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in OUT.glob('*.png')},'method':'Two-view registered photo groove-axis geometry, re-engraved with periodic continuous fields. No photographed brightness becomes height. Body and bars are traced in TCGdex print coordinates.','estimates':'Groove depth, subpixel pitch, obscured triangle boundaries and body continuation are inferred; photographed groove directions guide reconstruction.'}
+manifest={'card':'sm1-154','source':'https://assets.tcgdex.net/en/sm/sm1/154/high.png','maps':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in OUT.glob('*.png')},'method':'Congruent interlaced equilateral triangles with nested continuous grooves, reconstructed from complementary photographs. No photographed brightness becomes height. Body and bars are traced in TCGdex print coordinates.','estimates':'Triangle side (36 print pixels), lattice phase, groove pitch (1.65 print pixels), depth and obscured body continuation are estimates guided by the photographs.'}
 (OUT/'source.json').write_text(json.dumps(manifest,indent=2)+'\n')
