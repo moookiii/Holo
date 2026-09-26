@@ -2,7 +2,7 @@ from pathlib import Path
 import re, json, hashlib
 import numpy as np,cv2
 from PIL import Image,ImageDraw,ImageFilter
-from umbreon_gx_geometry import BODY,EAR,EAR_RING,TAIL,TAIL_RING,REAR_EAR,EYE,GX,RULE,BARS
+from umbreon_gx_geometry import BODY,LEG_GAP,EAR,EAR_RING,TAIL,TAIL_RING,REAR_EAR,EYE,GX,RULE,BARS
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'public/cards/umbreon-gx-sm1-154'; REF=ROOT/'research/umbreon-gx-sm1-154'; REVIEW=ROOT/'artifacts/umbreon-gx-sm1-154'
 W,H,S=1800,2475,3
 y,x=np.mgrid[:H,:W].astype(np.float32)/S
@@ -25,7 +25,8 @@ def mask(path):
 
 def slope(h):
  gy,gx=np.gradient(h,1/S,1/S); return gx,gy
-body=mask(BODY); gxbar=mask(GX); rule=mask(RULE); bars=np.maximum.reduce([mask(p) for p in BARS]); eye=mask(EYE)
+body=mask(BODY)*(1-mask(LEG_GAP))
+gxbar=mask(GX); rule=mask(RULE); bars=np.maximum.reduce([mask(p) for p in BARS]); eye=mask(EYE)
 front=np.asarray(Image.open(OUT/'front.png').convert('RGB').resize((W,H)),np.float32)/255
 # Independent glyph protection. Only dark connected strokes with white keylines,
 # bounded by known typography regions, are allowed to protect print.
@@ -33,7 +34,7 @@ zones=np.zeros((H,W),np.float32)
 for a,b,c,d in [(99,18,279,57),(423,18,535,64),(89,65,218,83),(9,23,85,49),
  (184,365,280,403),(527,365,580,403),(31,403,572,432),(31,429,148,452),
  (184,474,390,507),(525,472,579,507),(31,511,575,536),(31,535,574,559),(31,558,265,584),
- (29,640,573,667),(29,666,302,690),(16,721,345,745),(394,721,449,746),
+ (16,721,345,745),(394,721,449,746),
  (23,757,162,815)]: zones[b*S:d*S,a*S:c*S]=1
 black=(front.max(2)<.30).astype(np.uint8)
 white=(front.min(2)>.73)&(front.max(2)-front.min(2)<.2)
@@ -46,14 +47,19 @@ filled=np.zeros((H,W),np.uint8); cv2.drawContours(filled,cs,-1,255,cv2.FILLED)
 protection=np.maximum(ink,filled/255)
 portrait=mask('M12 58 L35 48 L70 49 L86 66 L84 104 L66 124 L31 123 L12 106 Z')
 protection=np.maximum(protection,portrait)
-# Isolate the blue/orange GX effect glyphs by their enclosed white keylines.
-gz=np.zeros((H,W),np.uint8); gz[640*S:690*S,29*S:575*S]=1
-gwhite=(white*gz).astype(np.uint8)*255
-cc,_=cv2.findContours(gwhite,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
-glyph=np.zeros_like(gwhite)
-for c in cc:
- if cv2.contourArea(c)>4: cv2.drawContours(glyph,[c],-1,255,cv2.FILLED)
-protection=np.maximum(protection,cv2.dilate(glyph,np.ones((3,3),np.uint8))/255)
+# GX effect type has blue ink and a white printed keyline. Protect their actual
+# pixels without filling white contours, which joins letters and hides etching
+# in the gaps (especially around "Energy from" and "your").
+for a,b,c,d in [(29,640,573,667),(29,666,302,690)]:
+ y0,y1=b*S,d*S; x0,x1=a*S,c*S
+ rgb=front[y0:y1,x0:x1]; red,green,blue=rgb.transpose(2,0,1)
+ blue_ink=(blue>red+.15)&(blue>green+.05)&(blue>.32)&(red<.55)&(green<.50)
+ white_keyline=(rgb.min(2)>.72)&(rgb.max(2)-rgb.min(2)<.2)
+ near_ink=cv2.dilate(np.uint8(blue_ink),cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(7,7)))>0
+ glyph=np.uint8(blue_ink|(white_keyline&near_ink))*255
+ glyph=cv2.morphologyEx(glyph,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
+ glyph=cv2.dilate(glyph,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
+ protection[y0:y1,x0:x1]=np.maximum(protection[y0:y1,x0:x1],cv2.GaussianBlur(glyph,(0,0),.55)/255)
 # White lettering on the smooth dark banners is protected by its glyphs,
 # never by a filled text-row rectangle.
 for a,b,c,d in [(190,598,410,629),(221,770,561,802)]:
