@@ -10,7 +10,7 @@ export class StudioLighting {
   readonly strip = new DirectionalLight(0xe7f0ff, 1.4);
   readonly back = new DirectionalLight(0xffffff, 1.1);
   readonly fill = new HemisphereLight(0xffffff, 0x777777, 0.65);
-  readonly spot = new SpotLight(0xfff5e6, 650, 0, .16, .65, 2);
+  readonly spot = new SpotLight(0xfff5e6, 0, 0, .16, .65, 2);
   preset: LightPreset = 'Studio';
   azimuth = -30;
   elevation = 35;
@@ -25,7 +25,7 @@ export class StudioLighting {
     RectAreaLightNode.setLTC(areaLightTables);
     this.key.position.set(-7, 9, 12); this.strip.position.set(9, 1, 8); this.back.position.set(-5, 4, -12);
     this.key.lookAt(0, 0, 0);
-    this.spot.position.set(0, 2, 12); this.spot.visible = false;
+    this.spot.position.set(0, 2, 12);
     scene.add(this.key, this.strip, this.back, this.fill, this.spot, this.spot.target);
   }
   async createEnvironment(renderer: WebGPURenderer) {
@@ -71,7 +71,7 @@ export class StudioLighting {
     this.key.height = p === 'Soft' ? 11 : p === 'Skim' ? 8 : 2.5;
     this.key.position.set(-7, 9, 12); this.strip.position.set(9, 1, 8);
     this.back.intensity = 1.1;
-    this.spot.visible = p === 'Spotlight';
+    // Keep the light list stable: intensity is a uniform, visibility rebuilds card pipelines.
     // Smooth reversals without lingering at the dim ends of any animated sweep.
     const sweepMotion = Math.asin(.97 * Math.sin(this.phase * .65)) / Math.asin(.97);
     if (p === 'Moving light' || p === 'Right light' || p === 'Skim' || p === 'Spotlight') {
@@ -95,7 +95,7 @@ export class StudioLighting {
     this.key.lookAt(0, 0, 0);
     this.key.intensity *= this.intensity; this.strip.intensity *= this.intensity;
     this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
-    this.scene.environmentIntensity *= this.intensity; this.spot.intensity = 650 * this.intensity;
+    this.scene.environmentIntensity *= this.intensity; this.spot.intensity = p === 'Spotlight' ? 650 * this.intensity : 0;
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
     inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
     inspection.polarizer.value = p === 'Polarizer' ? .15 + .85 * Math.cos(this.filterAngle * Math.PI / 180) ** 2 : 1;
