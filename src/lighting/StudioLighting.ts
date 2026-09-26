@@ -81,7 +81,15 @@ export class StudioLighting {
       const sweepSpan = Math.min(50, 70 - Math.abs(sweepCenter));
       const angle = (p === 'Moving light' || p === 'Skim' ? sweepCenter + sweepMotion * sweepSpan : this.azimuth) * Math.PI / 180;
       const elevation = this.elevation * Math.PI / 180;
-      this.key.position.set(Math.sin(angle) * 14, Math.sin(elevation) * 14, Math.cos(angle) * Math.cos(elevation) * (p === 'Skim' ? 2 : 14));
+      if (p === 'Skim') {
+        // Orbit outside the card at constant distance. Compressing only Z brings
+        // the tall emitter through the card and creates a pointed near-field flare.
+        const radius = 16;
+        this.key.position.set(Math.sin(angle) * Math.cos(elevation) * radius,
+          Math.sin(elevation) * radius, Math.cos(angle) * Math.cos(elevation) * radius);
+      } else {
+        this.key.position.set(Math.sin(angle) * 14, Math.sin(elevation) * 14, Math.cos(angle) * Math.cos(elevation) * 14);
+      }
       this.strip.intensity = .15;
       this.spot.position.copy(this.key.position);
     }
