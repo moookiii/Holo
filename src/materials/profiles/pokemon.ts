@@ -3,12 +3,12 @@ import type { HolographicProfile } from '../HolographicProfile';
 /** Optical reconstructions stay in development until compared against moving, multi-light references. */
 export const pokemonProfiles: HolographicProfile[] = [{
   id: 'pokemon-sm-rainbow-triangles', name: 'Sun & Moon GX · Engraved triangles', family: 'Pokémon', status: 'development',
-  description: 'Umbreon GX 154/149: registered triangle groove families, flowing body striae, wavy silver trim and circular energy etching. A smooth GX attack backdrop interrupts the relief. Reflections use the authored ridge normals and printed rainbow ink.',
-  diffraction: { period: 1.16, bandwidth: .044, strength: .65, secondaryOrder: .09, direction: -.48, crossWidth: .30, facetCoupling: 0, followsAuthoredNormals: true },
+  description: 'Umbreon GX 154/149: equal interlaced triangles with nested grooves, flowing body striae, wavy silver trim and circular energy etching. A smooth GX attack backdrop interrupts the relief. Reflections use the authored ridge normals and printed rainbow ink.',
+  diffraction: { period: 1.16, bandwidth: .044, strength: .5, secondaryOrder: .04, direction: -.48, crossWidth: .36, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
-  surface: { metalness: .78, roughness: .32, laminate: .045, laminateRoughness: .3, foilReflectance: .045, inkTransmission: .92, etchedInkSheen: 1.65 },
-  mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
+  surface: { metalness: .78, roughness: .32, laminate: .025, laminateRoughness: .3, foilReflectance: .018, inkTransmission: .8, etchedInkSheen: .55, substrateDarkening: .1, inkDensity: 1.7, substrateReflection: .16 },
+  mapSettings: { normalScale: .6, embossStrength: 0, roughnessMode: 'absolute' },
 }, {
   id: 'pokemon-rainbow-etched', name: 'Rainbow Rare · Etched', family: 'Pokémon', status: 'reference-pending',
   description: 'Sword & Shield Rainbow Rare: fine engraved full-card foil, directional body striae, granular backing and shallow silhouette relief. Card-authored maps register the grating and surface to the print; reflected wavelengths follow the light, view and etched normals.',

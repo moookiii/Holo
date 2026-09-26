@@ -38,10 +38,12 @@ export interface ProfileFields { primary?: PatternTextures; secondary?: PatternT
 class HolographicLightingModel extends PhysicalLightingModel {
   constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>, private crossedShaders: boolean[], private physicalGain: Node<'float'>) { super(true, false, true, true); }
   private substrateReflection() {
-    // Starlight assigns most incident energy to the microprism response below.
-    // Reserve a small share for the smooth print/backing and laminate response;
-    // evaluating both at full strength washes out the colored cuts at the key.
-    return this.regions.reduce<Node<'float'>>((weight, region, i) => this.crossedShaders[i] ? weight.sub(region.coverage.mul(.91)) : weight, float(1)).max(.09);
+    // Reserve the configured share for the smooth backing response. Counting
+    // full substrate reflection plus etched diffraction washes out lit ridges.
+    // Protected printing is outside region.coverage and retains its response.
+    return this.regions.reduce<Node<'float'>>((weight, region, i) => weight.sub(region.coverage.mul(
+      this.crossedShaders[i] ? float(.91) : region.optics.substrateReflection.oneMinus()
+    )), float(1)).max(.09);
   }
   override direct(data: LightingModelDirectInput, builder: NodeBuilder) {
     // Substrate and clearcoat are evaluated once, regardless of the number of foil regions.
@@ -296,8 +298,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     for (const region of this.regions) {
       // The parallel foil lies beneath colored ink. Its reflected light must
       // pass through that ink instead of adding an unfiltered white veil over it.
-      region.inkTransmission = correctedPrint.max(0).sqrt().mul(.94).add(.06);
-      region.inkReflection = correctedPrint.max(0).sqrt();
+      const ink = correctedPrint.max(0).pow(region.optics.inkDensity.mul(.5));
+      region.inkTransmission = ink.mul(.94).add(.06);
+      region.inkReflection = ink;
       region.image = hologramImage(this.printTextureNode, this.hologramTextureNode, region.optics);
       region.imageDepth = this.hologramTextureNode.b;
     }
@@ -314,6 +317,10 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.colorNode = mix(this.colorNode, vec3(.42, .44, .43), watermark.mul(.36));
     const absorption = primary.mul(this.optics.substrateDarkening).add(secondary.mul(this.secondaryOptics.substrateDarkening)).add(stamp.mul(this.stampOptics.substrateDarkening));
     this.colorNode = this.colorNode.mul(absorption.mul(.94).oneMinus());
+    // Beer-Lambert ink absorption: greater optical density deepens reflected
+    // color without painting a rainbow or changing protected print shapes.
+    const inkDensity = mix(mix(mix(float(1), this.optics.inkDensity, primary), this.secondaryOptics.inkDensity, secondary), this.stampOptics.inkDensity, stamp);
+    this.colorNode = this.colorNode.max(0).pow(inkDensity);
     const imageCoverage = primary.mul(this.optics.imageHologram).add(secondary.mul(this.secondaryOptics.imageHologram)).add(stamp.mul(this.stampOptics.imageHologram));
     this.colorNode = mix(this.colorNode, vec3(.25, .27, .28), imageCoverage.clamp(0, 1));
     if (this.nameRecess) this.colorNode = this.colorNode.mul(this.nameRecess.occlusion);

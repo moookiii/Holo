@@ -23,4 +23,13 @@ test('Umbreon GX uses the TCGdex 154/149 front and independent registered relief
   assert.equal(profile.glints.strength, 0);
   assert.equal(card.mapSettings?.embossStrength, 0);
   assert.ok(profile.surface.etchedInkSheen! > 0);
+  const triangles = JSON.parse(readFileSync('research/umbreon-gx-sm1-154/traced-groove-regions.json', 'utf8')) as { points: [number, number][] }[];
+  assert.ok(triangles.length > 300);
+  for (const { points } of triangles) {
+    const edges = points.map(([x, y], i) => {
+      const [xx, yy] = points[(i + 1) % 3];
+      return Math.hypot(x - xx, y - yy);
+    });
+    assert.ok(edges.every(edge => Math.abs(edge - 36) < .01), 'the background repeats congruent triangles');
+  }
 });

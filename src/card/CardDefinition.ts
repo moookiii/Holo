@@ -127,7 +127,7 @@ export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yu
   front: '/cards/umbreon-gx-sm1-154/front.png', back: '/cards/pokemon/back.jpg',
   layout: { artwork: [0, 0, 1, 1], innerFrame: [.025, .02, .975, .98] },
   profile: 'pokemon-sm-rainbow-triangles', seed: 2017154,
-  mapSettings: { roughnessMode: 'absolute', embossStrength: 0, normalScale: 1 },
+  mapSettings: { roughnessMode: 'absolute', embossStrength: 0, normalScale: .6 },
   maps: {
     foil: '/cards/umbreon-gx-sm1-154/foil.png', protection: '/cards/umbreon-gx-sm1-154/protection.png',
     height: '/cards/umbreon-gx-sm1-154/height.png', normal: '/cards/umbreon-gx-sm1-154/normal.png',

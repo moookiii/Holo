@@ -93,6 +93,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
   const matchesSearch = (card: CardDefinition) => !searchQuery || [card.title, card.set, card.number, card.franchise].some(value => value.toLocaleLowerCase().includes(searchQuery));
   const pickerPriority = [
+    'umbreon-gx-sm1-154',
     'pokemon:sv08.5-161:holo',
     'pokemon:sv08.5-146:holo',
     'pokemon:sv08.5-167:holo',
@@ -103,6 +104,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     grid.replaceChildren();
     const visibleCards = cardsForFinish().filter(card => (selectedCategory === 'All' || card.franchise === selectedCategory) && matchesSearch(card));
     visibleCards.sort((a, b) => {
+      if (a.id === pickerPriority[0] || b.id === pickerPriority[0]) return Number(b.id === pickerPriority[0]) - Number(a.id === pickerPriority[0]);
       if (a.imported !== b.imported) return Number(b.imported) - Number(a.imported);
       const priorityA = pickerPriority.indexOf(a.id);
       const priorityB = pickerPriority.indexOf(b.id);

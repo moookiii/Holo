@@ -40,6 +40,10 @@ export interface FoilLayer {
     sheen?: number;
     /** Amount of foil reflection filtered by the registered printed ink colors. */
     inkTransmission?: number;
+    /** Optical density of the printed ink; 1 preserves the source transmission. */
+    inkDensity?: number;
+    /** Share retained by the broad substrate reflection beneath authored foil. */
+    substrateReflection?: number;
     /** Ink-colored reflection on authored etched ridges, from direct lights only. */
     etchedInkSheen?: number;
     /** Thin-film interference, independent of the etched diffraction grating. Thickness is nm. */

@@ -19,6 +19,10 @@ in rich-color-reference.png. Lattice phase, depth and hidden continuation remain
 estimates. Geometry is saved in traced-groove-regions.json for inspection.
 Photo brightness and highlights are never copied into height or color maps.
 
+A local inner-leg opening is traced against the clean front so background
+triangles stop at the leg while the foreground grooves continue through the
+paw. The GX bar still covers the hidden part of this contour.
+
 Smooth authored contours separate the head, long ear, ear ring, rear ear,
 tail, tail ring, torso and feet. Periodic curved relief follows the observed
 body flow. Silver bars and border use wavy cuts. Attack energies use concentric
@@ -29,7 +33,7 @@ All runtime masks are 1800x2475 PNGs. Normals are derived before region clipping
 Foil coverage, glyph protection, height, normals and roughness remain separate.
 The dedicated pokemon-sm-rainbow-triangles material projects a uniform foil
 grating onto the authored normals; ink-colored direct-light highlights reveal
-the grooves. Substrate absorption and restrained neutral reflection preserve
+the grooves. Printed-ink optical density and restrained neutral substrate reflection preserve
 color contrast; the stronger spectral response remains driven by light and
 authored normals. Extra emboss, procedural engraving, random sparkle and unrelated
 facet noise are disabled.
