@@ -1,0 +1,41 @@
+{
+  "cardId": "sv08.5-155",
+  "variant": "holo",
+  "status": "photo-guided-reconstruction",
+  "rendererReady": true,
+  "textured": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "155-holo-foil.png": "af48dee2fc1399d3d7181b592924bf55ef0e0ed66a6ac53aa3af882a8518ccfa",
+    "155-holo-protection.png": "e4071050c8218bcf3019f728f5da80e64ebd4445207ed084cdd72c0e6cad5c82",
+    "155-holo-height.png": "e4a19470a5cc52a33bc84ed40c8d67e64e312561c9339e14ac7d2c9ec6c18806",
+    "155-holo-normal.png": "9a8b6b0a6b737f430b7e619442b99562c5190b0d44a00a6311d03c9ac0a3bb17",
+    "155-holo-roughness.png": "437e29a4d06f56f0b73e37c6e12047155e351ecf881e31547e67203201fc3d67",
+    "155-holo-secondary-foil.png": "12cb51f9e4d14f647e4644b260f7ad7a6c47633ba041d3419a208cf512dcde29",
+    "155-holo-body.png": "bb02b0d39f30a8b4bd26a258da7bc03172018585100ef0439daa1b80cd6580b5",
+    "155-holo-gems.png": "8bc8ef4830076e66ba5df8d0f7e84883fcd294ed5111867b2a0ca4b8850ba831",
+    "155-holo-silver.png": "079dc41c386d1c9e2924551e7ef38e136ba7895c39a0a733e3aee9c33527e9f9",
+    "155-holo-right-microdiamond.png": "23bbee6b966c135d47f26d342cc86d31e5c24a89f566fd166a7bcf5719865064",
+    "155-holo-energy-discs.png": "9871ebd7612ee6eecc1341c4beeca72fa6a1ac527af4006553855cac89b3f747"
+  },
+  "references": [
+    {
+      "file": "etching-master.jpg",
+      "sha256": "9dcb3dec5575786180bd6a053d0795716cea604e67585004b078096a0a4b4b35"
+    },
+    {
+      "file": "outlined-front.png",
+      "sha256": "72676edfb7574186204915139cbfb1c885a5a311aea278b0c635c88da5923b97"
+    },
+    {
+      "file": "silver-microdiamond.png",
+      "sha256": "e823b17b0f2723b0c362b2cf1f5db3870d6f18c139444b60363960a83dce6e8c"
+    }
+  ],
+  "referencePolicy": "Exact-card etching-master.jpg guides curved floral relief and upper-right diamond coverage. User colored outlines define body and crystals. Supplied energy crops guide concentric icon relief. Clean front supplies registration only; shared silver mask is registered to title and retreat cost.",
+  "reliefMethod": "Single continuous curved background phase, differentiated before clipping; no superimposed crossing ridge fields. Body and crystal boundaries follow the supplied colored outline; six concentric attack-energy fields are centered on the print.",
+  "limitations": "Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief."
+}
