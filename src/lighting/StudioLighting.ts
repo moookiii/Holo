@@ -51,15 +51,15 @@ export class StudioLighting {
   }
   setPreset(preset: LightPreset) {
     this.preset = preset; this.phase = 0; this.applied = '';
-    this.azimuth = preset === 'Right light' ? 65 : -30;
+    this.azimuth = preset === 'Right light' ? 65 : preset === 'Moving light' || preset === 'Skim' ? -15 : -30;
     this.elevation = preset === 'Skim' ? 8 : 35;
     this.update(0);
   }
   update(dt: number) {
-    if (this.playing) this.phase += Math.min(Math.max(dt, 0), .05) * this.speed;
     const p = this.preset;
-    const signature = [p, this.azimuth, this.elevation, this.intensity, this.filterAngle].join(':');
     const animated = p === 'Moving light' || p === 'Skim' || p === 'Holo skim';
+    if (this.playing) this.phase += Math.min(Math.max(dt, 0), .05) * this.speed * (animated ? 1.25 : 1);
+    const signature = [p, this.azimuth, this.elevation, this.intensity, this.filterAngle].join(':');
     if (signature === this.applied && !animated) return;
     this.applied = signature;
     const values = { Studio: [130, 1.4, .65, .7], Strip: [25, 3.5, .4, .6], Soft: [9.2, .3, 1.2, 1.1], 'Low key': [40, 1.8, .16, .28] };
@@ -72,14 +72,24 @@ export class StudioLighting {
     this.key.position.set(-7, 9, 12); this.strip.position.set(9, 1, 8);
     this.back.intensity = 1.1;
     this.spot.visible = p === 'Spotlight';
+    // Smooth reversals without lingering at the dim ends of any animated sweep.
+    const sweepMotion = Math.asin(.97 * Math.sin(this.phase * .65)) / Math.asin(.97);
     if (p === 'Moving light' || p === 'Right light' || p === 'Skim' || p === 'Spotlight') {
-      const angle = (this.azimuth + (p === 'Moving light' ? Math.sin(this.phase * .65) * 75 : p === 'Skim' ? Math.sin(this.phase * .65) * 65 : 0)) * Math.PI / 180;
+      // A rounded triangle spends less time at the sweep's dim endpoints than a sine.
+      // Keep both sweeping sources in front, including after position adjustments.
+      const sweepCenter = Math.max(-55, Math.min(55, this.azimuth));
+      const sweepSpan = Math.min(50, 70 - Math.abs(sweepCenter));
+      const angle = (p === 'Moving light' || p === 'Skim' ? sweepCenter + sweepMotion * sweepSpan : this.azimuth) * Math.PI / 180;
       const elevation = this.elevation * Math.PI / 180;
       this.key.position.set(Math.sin(angle) * 14, Math.sin(elevation) * 14, Math.cos(angle) * Math.cos(elevation) * (p === 'Skim' ? 2 : 14));
       this.strip.intensity = .15;
       this.spot.position.copy(this.key.position);
     }
-    if (p === 'Skim') { this.key.intensity = 95; this.fill.intensity = .25; this.scene.environmentIntensity = .22; }
+    if (p === 'Moving light') {
+      this.key.width = 1.8; this.key.height = 3;
+      this.strip.intensity = .7; this.fill.intensity = .85; this.scene.environmentIntensity = .75;
+    }
+    if (p === 'Skim') { this.key.intensity = 95; this.strip.intensity = .5; this.fill.intensity = .55; this.scene.environmentIntensity = .42; }
     if (p === 'Blacklight') { this.key.intensity = 90; this.strip.intensity = 2; this.fill.intensity = .08; this.scene.environmentIntensity = .08; this.back.intensity = .1; }
     if (p === 'Spotlight') { this.key.intensity = 0; this.strip.intensity = 0; this.fill.intensity = .12; this.scene.environmentIntensity = .12; }
     this.key.lookAt(0, 0, 0);
@@ -87,7 +97,7 @@ export class StudioLighting {
     this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
     this.scene.environmentIntensity *= this.intensity; this.spot.intensity = 650 * this.intensity;
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
-    inspection.sweepDirection.value.set(Math.sin(this.phase * .65) * .95, .12, .3).normalize();
+    inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
     inspection.polarizer.value = p === 'Polarizer' ? .15 + .85 * Math.cos(this.filterAngle * Math.PI / 180) ** 2 : 1;
   }
   dispose() { this.environment?.dispose(); }
