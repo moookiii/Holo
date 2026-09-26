@@ -9,14 +9,16 @@ The main photograph is projectively registered to the 600x825 front with SIFT
 and RANSAC (257 inliers in the first photo, 151 in the complementary angle). Registration
 is retained as a research transform, not baked into the front artwork.
 
-The background uses a congruent equilateral lattice with alternating upright
-and inverted triangles. Nested triangular grooves follow the minimum distance
-to each triangle edge; the resulting height field is continuous at shared
-edges. This replaces the irregular photo-segmented mesh, which mistook lighting
-boundaries for changes in the die pattern. The triangle side is 36 print pixels
-and groove spacing is 1.65 print pixels, estimated from the complementary close-up
-in rich-color-reference.png. Lattice phase, depth and hidden continuation remain
-estimates. Geometry is saved in traced-groove-regions.json for inspection.
+The background uses a congruent equilateral lattice with interlaced triangles. Each complete triangle contains parallel grooves in
+one of three directions; neighboring cells use different groove directions.
+This follows the angled photo's intact light and dark triangular reflections.
+Nested triangular cuts incorrectly divided each cell into three parts and made
+neighboring parts appear as diamonds. Normals are derived from each continuous
+groove field before clipping to a triangle, avoiding raised cell outlines.
+The triangles point left/right on a lattice rotated 30 degrees. Their side is
+30 print pixels and groove spacing is 2.3 print pixels;
+spacing, lattice phase, depth and hidden continuation remain estimates.
+Geometry and cell directions are saved in traced-groove-regions.json.
 Photo brightness and highlights are never copied into height or color maps.
 
 A local inner-leg opening is traced against the clean front so background

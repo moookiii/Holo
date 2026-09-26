@@ -30,6 +30,6 @@ test('Umbreon GX uses the TCGdex 154/149 front and independent registered relief
       const [xx, yy] = points[(i + 1) % 3];
       return Math.hypot(x - xx, y - yy);
     });
-    assert.ok(edges.every(edge => Math.abs(edge - 36) < .01), 'the background repeats congruent triangles');
+    assert.ok(edges.every(edge => Math.abs(edge - 30) < .01), 'the background repeats congruent triangles');
   }
 });

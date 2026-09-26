@@ -3,7 +3,7 @@ import type { HolographicProfile } from '../HolographicProfile';
 /** Optical reconstructions stay in development until compared against moving, multi-light references. */
 export const pokemonProfiles: HolographicProfile[] = [{
   id: 'pokemon-sm-rainbow-triangles', name: 'Sun & Moon GX · Engraved triangles', family: 'Pokémon', status: 'development',
-  description: 'Umbreon GX 154/149: equal interlaced triangles with nested grooves, flowing body striae, wavy silver trim and circular energy etching. A smooth GX attack backdrop interrupts the relief. Reflections use the authored ridge normals and printed rainbow ink.',
+  description: 'Umbreon GX 154/149: equal interlaced triangles with alternating parallel grooves, flowing body striae, wavy silver trim and circular energy etching. A smooth GX attack backdrop interrupts the relief. Reflections use the authored ridge normals and printed rainbow ink.',
   diffraction: { period: 1.16, bandwidth: .044, strength: .5, secondaryOrder: .04, direction: -.48, crossWidth: .36, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
