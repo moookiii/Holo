@@ -73,19 +73,28 @@ def build():
     smooth_micro=np.maximum(gems,silver)*(1-protection)*(1-energy)
     secondary=np.maximum(smooth_micro,right)*(1-energy)
     inner=poly([(23,24),(577,24),(577,801),(23,801)])
-    # The reference resolves sweeping nested curves through the left flowers
-    # and lower foliage. A continuous warped radial field models that flow;
-    # exact groove spacing and hidden continuation are estimates.
+    # Photo-guided local contour centers: upper-left flower, foliage beside
+    # the body, lower flowers and bottom-right stones. A smooth distance union
+    # lets contour families flow into saddles rather than overlapping grooves.
+    # Centers, pitch/depth and obscured continuation remain estimates.
     def slope(h):
         gy,gx=np.gradient(h,1/S,1/S); return gx,gy
-    dx=x-115; dy=(y-335)*.78
-    radius=np.sqrt(dx*dx+dy*dy+36)
-    angle=np.arctan2(dy,dx)
-    phase=radius+9*np.sin(angle*3)*np.minimum(radius/80,1)
-    phase+=8*np.sin(y*.025)+5*np.sin(x*.028+y*.011)
-    height=.95*np.sin(phase*2*np.pi/1.9)
+    fields=[]
+    for cx,cy,stretch,turn in [(65,209,.90,.25),(62,318,1.12,-.3),
+      (158,402,1.25,.5),(192,548,.95,-.2),(369,430,1.22,-.55),
+      (491,363,1.05,.4),(475,554,.90,.3),(498,681,1.12,-.3),
+      (300,675,.95,.5),(72,674,1.16,-.5)]:
+        dx=x-cx;dy=y-cy
+        u=dx*np.cos(turn)+dy*np.sin(turn)
+        v=(-dx*np.sin(turn)+dy*np.cos(turn))*stretch
+        fields.append(np.sqrt(u*u+v*v+9))
+    distances=np.stack(fields)
+    nearest=distances.min(0)
+    phase=nearest-13*np.log(np.exp(-(distances-nearest)/13).sum(0))
+    phase+=2.4*np.sin(.075*x+.022*y)+1.6*np.sin(.062*y-.018*x)
+    height=1.05*np.sin(phase*2*np.pi/1.75)
     gx,gy=slope(height)
-    gx*=1.35;gy*=1.35
+    gx*=1.5;gy*=1.5
     field_body=body_texture(x,y)*.50
     edge=.50*np.sin((.52*x+.31*y+7*np.sin(.035*y+.014*x))*2*np.pi/1.35)
     ex,ey=slope(edge); gx=gx*inner+ex*(1-inner); gy=gy*inner+ey*(1-inner)
@@ -120,8 +129,8 @@ def build():
         Image.fromarray(np.uint8(np.clip(overlay,0,1)*255)).resize((900,1238)).save(REVIEW/f'{name}-overlay.png')
     evidence=dict(cardId='sv08.5-155',variant='holo',status='photo-guided-reconstruction',rendererReady=True,textured=True,
       mapSize=[W,H],maps=hashes,references=[dict(file=p.name,sha256=hashlib.sha256(p.read_bytes()).hexdigest()) for p in sorted(REF.iterdir())],
-      referencePolicy='Exact-card etching-master.jpg guides curved floral relief and upper-right diamond coverage. User colored outlines define body and crystals. Supplied energy crops guide concentric icon relief. Clean front supplies registration only; shared silver mask is registered to title and retreat cost.',
-      reliefMethod='Single continuous curved background phase, differentiated before clipping; no superimposed crossing ridge fields. Body and crystal boundaries follow the supplied colored outline; six concentric attack-energy fields are centered on the print.',
+      referencePolicy='Exact-card etching-master.jpg guides curved floral relief and upper-right diamond coverage. User colored outlines define body and crystals. Concentric icon relief follows the established attack-energy treatment. Clean front supplies registration only; shared silver mask is registered to title and retreat cost.',
+      reliefMethod='Local photo-guided flowing contour families joined through a smooth distance field, differentiated before clipping; relief covers both sides of the body and lower-right field. Body and crystal boundaries follow the supplied colored outline; six concentric attack-energy fields are centered on the print.',
       limitations='Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief.')
     (OUT/'155-holo-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n')
 
