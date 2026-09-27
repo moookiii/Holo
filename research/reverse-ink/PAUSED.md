@@ -1,5 +1,9 @@
 # Paused checkpoint — 2026-09-23
 
+Resumed 2026-09-27. This file records the historical pause; current results and
+remaining inaccuracies are in `review/full-card/README.md`. Eleven full-card
+candidate exports now exist, but no completed masters have been approved.
+
 Paused at the user's request before the new full-card builder was run.
 
 - Source selection is committed: one reference per family.

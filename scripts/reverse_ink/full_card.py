@@ -121,7 +121,13 @@ def compile_family(family):
     parts += ['</g></mask></defs>', f'<g clip-path="url(#{family}-observed)"><rect width="630" height="880" fill="currentColor" mask="url(#{family}-network)"/></g>', '</svg>']
     outlines = prefix + [f'<defs><clipPath id="bounds">{regions}</clipPath></defs>', '<g clip-path="url(#bounds)" fill="none" stroke-width=".65" stroke="#ff2b68" fill-rule="evenodd">']
     def outlined(collection):
-        return ''.join(f'<path d="{d}"'+(' stroke="#a96700" stroke-dasharray="2 1.5"' if 'interpolat' in e else '')+'/>' for d,e,_ in collection)
+        def style(evidence):
+            if 'unvalidated' in evidence:
+                return ' stroke="#5b59c7" stroke-dasharray="3 2"'
+            if 'interpolat' in evidence:
+                return ' stroke="#a96700" stroke-dasharray="2 1.5"'
+            return ''
+        return ''.join(f'<path d="{d}"{style(e)}/>' for d,e,_ in collection)
     outlines += [f'<g transform="{body_transform}">', outlined(body+surrounding), wheel,
                  ''.join(f'<path d="{d}"/>' for d in small), '</g>', outlined(perimeter), '</g></svg>']
     out = DATA / f'review/full-card/{family}'
@@ -137,6 +143,7 @@ def compile_family(family):
                   coordinate_system=[630,880], observed_envelope=bounds, unknown_regions=spec['unknown_regions'],
                   body_opening_count=len(body), perimeter_opening_count=len(perimeter),
                   interpolation=[ident for _,e,ident in body+surrounding+perimeter if 'interpolat' in e],
+                  unvalidated_perimeter=[ident for _,e,ident in perimeter if 'unvalidated' in e],
                   limitations=spec['notes'], photo_resampling='Review downsample only; geometry uses full-card normalized source coordinates.')
     (out/'review.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8',newline='\n')
     return report

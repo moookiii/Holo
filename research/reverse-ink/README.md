@@ -1,5 +1,12 @@
 # Scarlet & Violet printed reverse ink — Step 1
 
+**Latest continuation (2026-09-27):** one selected photo per family, eleven
+full-card SVG/transparent PNG candidates, and a complete comparison gallery are
+in [`review/full-card/`](review/full-card/README.md). The middle-body work has
+been exported in a full-card frame with perimeter drafts, but visual review
+found unresolved perimeter seeds and body inaccuracies. These are not finished
+masters. See that checkpoint for reproduction and per-family findings.
+
 This research library is isolated from the renderer. It contains no foil,
 shaders, runtime card application, pack logic, TCGdex integration, or protection
 masks. All 11 families are tracked independently: Grass, Fire, Water, Lightning,

@@ -2,7 +2,7 @@
   "family": "water",
   "source": "squirtle",
   "status": "unvalidated-full-card-candidate",
-  "geometry_sha256": "328186824194b44ea076597d6a8ac446e87b295c60bb52a53368e52f8b5da598",
+  "geometry_sha256": "3c0c0c0e67270b042850fec1863a65fd70eafa5c9fcf0112200cfc5f8c05b9e8",
   "coordinate_system": [
     630,
     880
@@ -45,7 +45,7 @@
     }
   ],
   "body_opening_count": 26,
-  "perimeter_opening_count": 32,
+  "perimeter_opening_count": 31,
   "interpolation": [
     "water-cell-08",
     "water-cell-09",
@@ -57,12 +57,28 @@
     "water-cell-17",
     "water-cell-22",
     "water-repeat-02",
-    "water-repeat-08",
+    "water-repeat-03",
+    "water-repeat-08"
+  ],
+  "unvalidated_perimeter": [
     "header-left",
+    "header-left-bottom",
     "header-name-left",
     "header-name-middle",
     "header-name-right",
+    "header-chip",
+    "header-taper",
+    "header-upright",
+    "left-side-upper",
+    "left-side-mid",
+    "left-side-low",
+    "left-side-bottom",
     "left-side-end",
+    "right-side-upper",
+    "right-side-chip",
+    "right-side-middle",
+    "right-side-lower",
+    "right-side-bottom",
     "footer-center-cell",
     "footer-center-chip",
     "footer-bottom-center",
@@ -70,18 +86,21 @@
     "footer-right-bottom",
     "footer-far-right",
     "footer-small-right",
-    "footer-left-edge",
     "header-type-fragment",
+    "header-top-fragment",
+    "left-side-type-fragment",
+    "right-side-type-fragment",
     "footer-small-type",
     "footer-right-type"
   ],
   "limitations": [
-    "PAUSED BEFORE VALIDATION: new contours and perimeter placements are layout seeds, not recovered or approved geometry. Source-adapted shared perimeter seeds especially require individual photo review. Do not promote into masters.",
+    "Visual review 2026-09-27: perimeter seeds are not validated recovered contours. Blue dashed boundaries identify these unresolved paths. Body contours and glyph shapes remain first-pass candidates; no master approval.",
     "One selected source is the review target. The previously measured common wheel is retained.",
     "Sparse body polygons and source-adapted perimeter fragments are a first pass. Header/name, divider and footer continuations are lower-confidence interpolations, identified per path.",
     "Small repeated glyphs reuse the component shape; their rotation and scale remain estimates. No period is tiled into the illustration.",
     "Body uses wheel coordinates; perimeter uses normalized outer-card coordinates. Small registration disagreement can remain at their junction.",
-    "Apparent single-color estimates are not calibrated pigment reflectance or physical opacity."
+    "Apparent single-color estimates are not calibrated pigment reflectance or physical opacity.",
+    "Lower-left water-repeat-03 corrected against Squirtle: curl points upper-right and oval lies lower-left. Continuation through weakness divider remains estimated."
   ],
   "photo_resampling": "Review downsample only; geometry uses full-card normalized source coordinates."
 }

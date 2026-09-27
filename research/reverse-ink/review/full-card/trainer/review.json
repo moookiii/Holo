@@ -2,7 +2,7 @@
   "family": "trainer",
   "source": "helix-fossil",
   "status": "unvalidated-full-card-candidate",
-  "geometry_sha256": "ce202c292deefbec5c5acb4cd07d003c30b9c85e4c084bbda7e9ec25bbb7a181",
+  "geometry_sha256": "bbe2e484d3a39a2723cf18628ec8d43f07b7da92d08033eac3f3869135ba501a",
   "coordinate_system": [
     630,
     880
@@ -73,11 +73,23 @@
     "trainer-cell-15",
     "trainer-cell-20",
     "trainer-repeat-02",
-    "trainer-repeat-08",
-    "left-side-end"
+    "trainer-repeat-08"
+  ],
+  "unvalidated_perimeter": [
+    "left-side-upper",
+    "left-side-mid",
+    "left-side-low",
+    "left-side-bottom",
+    "left-side-end",
+    "right-side-upper",
+    "right-side-chip",
+    "right-side-middle",
+    "right-side-lower",
+    "right-side-bottom",
+    "trainer-left-footer"
   ],
   "limitations": [
-    "PAUSED BEFORE VALIDATION: new contours and perimeter placements are layout seeds, not recovered or approved geometry. Source-adapted shared perimeter seeds especially require individual photo review. Do not promote into masters.",
+    "Visual review 2026-09-27: perimeter seeds are not validated recovered contours. Blue dashed boundaries identify these unresolved paths. Body contours and glyph shapes remain first-pass candidates; no master approval.",
     "One selected source is the review target. The previously measured common wheel is retained.",
     "Sparse body polygons and source-adapted perimeter fragments are a first pass. Header/name, divider and footer continuations are lower-confidence interpolations, identified per path.",
     "Small repeated glyphs reuse the component shape; their rotation and scale remain estimates. No period is tiled into the illustration.",

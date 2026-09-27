@@ -67,6 +67,9 @@ def register(family):
         return cv2.remap(field,(p[:,0]*scale).astype('float32')[:,None],(p[:,1]*scale).astype('float32')[:,None],cv2.INTER_LINEAR).ravel()
     reports=[]
     for glyph in spec['body_glyphs']:
+        if glyph.get('registration_locked'):
+            reports.append({'id': glyph['id'], 'status': 'manual-registration-preserved'})
+            continue
         initial=np.array([*glyph['center'],glyph['scale'],glyph['rotation']],float)
         # The clipping/window is fixed by the seed; moving toward text cannot
         # improve a score just by changing the denominator of visible samples.
