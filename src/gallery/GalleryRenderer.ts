@@ -1,5 +1,5 @@
 import { DataArrayTexture, DynamicDrawUsage, InstancedMesh, LinearFilter, MeshPhysicalNodeMaterial, Object3D, PlaneGeometry, SRGBColorSpace, Vector3, type PerspectiveCamera, type Scene } from 'three/webgpu';
-import { float, instanceIndex, normalMap, normalViewGeometry, positionViewDirection, texture, uniform, uv, varying, vec2, vec3 } from 'three/tsl';
+import { instanceIndex, normalMap, normalViewGeometry, positionViewDirection, texture, uniform, uv, varying, vec2, vec3 } from 'three/tsl';
 import type { Node } from 'three/webgpu';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { inspection } from '../lighting/inspection';
@@ -24,7 +24,9 @@ export class GalleryRenderer {
   uploads = 0;
   constructor(scene: Scene) {
     this.arrays[0].colorSpace = SRGBColorSpace;
-    const coord = vec2(uv().x, uv().y.oneMinus()), layer = varying(float(instanceIndex));
+    // Integer varyings are flat. Interpolated float indices can round just
+    // below an integer and accidentally sample the preceding array layer.
+    const coord = vec2(uv().x, uv().y.oneMinus()), layer = varying(instanceIndex);
     const art = texture(this.arrays[0], coord).depth(layer);
     const optical = texture(this.arrays[1], coord).depth(layer);
     const authored = normalMap(texture(this.arrays[2], coord).depth(layer).rgb) as unknown as Node<'vec3'>;

@@ -93,7 +93,7 @@ export class Gallery {
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
       const values = [...new Set(this.options.cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => a.localeCompare(b));
-      select.replaceChildren(new Option(`All ${facet.label.toLowerCase()}s`, ''), ...values.map(value => new Option(value, value)));
+      select.replaceChildren(new Option(`Any ${facet.label.toLowerCase()}`, ''), ...values.map(value => new Option(value, value)));
       select.value = this.query[facet.key] ?? '';
     }
     this.applyFilters(false); this.search.focus({ preventScroll: true });

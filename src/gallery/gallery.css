@@ -17,8 +17,8 @@
 .gallery-viewport { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-color: #40392a #080808; touch-action: pan-y; outline-offset: -3px; }
 .gallery-content { position: relative; }
 .gallery-card { position: absolute; padding: 0; text-align: left; border-radius: 6px; }
-.gallery-card-name { display: block; margin-top: calc(var(--card-height) + 13px); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.gallery-card-detail { display: block; font-size: 10px; margin-top: 5px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gallery-card-name { position: absolute; top: calc(var(--card-height) + 13px); left: 0; right: 0; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.gallery-card-detail { position: absolute; top: calc(var(--card-height) + 32px); left: 0; right: 0; font-size: 10px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .gallery-placeholder { position: absolute; inset: 0 0 auto; height: var(--card-height); display: grid; place-content: center; color: #777; background: #101010; border: 1px solid #242424; border-radius: 8px; font-size: 11px; }
 .gallery-card.is-ready .gallery-placeholder { visibility: hidden; }
 .gallery-status { position: absolute; left: 50%; bottom: 20px; transform: translateX(-50%); background: #101010ee; border-radius: 6px; font-size: 12px; padding: 12px 18px; pointer-events: none; }
