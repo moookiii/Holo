@@ -4,6 +4,7 @@ import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from '../assets/M
 import type { FoilLayer, HolographicProfile } from '../materials/HolographicProfile';
 import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { FieldData, PatternSpec } from '../materials/patterns/ManufacturingField';
+import { prepareCardPreview, PREVIEW_BYTES, type CardPreview } from './CardPreviewPreparation';
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
 export interface PreparedMapsCpu {
@@ -151,6 +152,30 @@ class CpuMapCache {
 }
 
 export class CardCpuPreparation {
+  private previews = new Map<string, CardPreview>();
+  private readonly previewBudget = 24 * 1024 * 1024;
+  async preparePreview(card: CardDefinition, signal: AbortSignal) {
+    signal.throwIfAborted();
+    if (this.disposed) throw new Error('CPU preparation disposed');
+    const key = JSON.stringify([card.id, card.front, card.maps, card.profile, card.profileOverrides, card.mapSettings]);
+    const cached = this.previews.get(key);
+    if (cached) { this.previews.delete(key); this.previews.set(key, cached); return cached; }
+    const preview = await prepareCardPreview(card, signal);
+    signal.throwIfAborted();
+    if (this.disposed) throw new Error('CPU preparation disposed');
+    this.previews.set(key, preview);
+    while (this.previews.size * PREVIEW_BYTES > this.previewBudget) this.previews.delete(this.previews.keys().next().value!);
+    return preview;
+  }
+  /** Reuse pack preparation only when the complete definition is compatible. */
+  async cached(card: CardDefinition): Promise<PreparedCardCpu | undefined> {
+    const profile = resolveCardProfile(card), aspect = card.dimensions.width / card.dimensions.height;
+    const key = JSON.stringify([card.id, profile.id, this.mapKey(card, profile, aspect, profile.watermark === 'quarter-century')]);
+    const pending = this.cache.get(key);
+    if (!pending) return undefined;
+    const value = await pending.catch(() => undefined);
+    return value && JSON.stringify(value.definition) === JSON.stringify(card) ? value : undefined;
+  }
   private assets = new CpuAssetCache();
   // No idle pack-worker startup competes with the first card's workers.
   private patterns?: CpuPatternCache;
@@ -229,6 +254,6 @@ export class CardCpuPreparation {
     })().catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
-  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0 }; }
-  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.maps?.dispose(); this.cache.clear(); }
+  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, previewBytes: this.previews.size * PREVIEW_BYTES, previewBudget: this.previewBudget }; }
+  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
 }
