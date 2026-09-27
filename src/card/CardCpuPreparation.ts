@@ -211,10 +211,17 @@ export class CardCpuPreparation {
     this.missCount++;
     if (!this.cache.has(key)) this.cache.set(key, (async () => {
       signal.throwIfAborted();
+      const frontReady = card.frontFallback
+        ? this.assets.image(card.front, AbortSignal.any([signal, AbortSignal.timeout(8_000)])).catch(error => {
+          if (signal.aborted) throw error;
+          console.warn(`Using local front fallback for ${card.id}`, error);
+          return this.assets.image(card.frontFallback!, signal);
+        })
+        : this.assets.image(card.front, signal);
       const mapsReady = (async () => { const started = performance.now(); try { return await this.prepareMaps(card, profile, aspect, anniversary, signal); } finally { this.mapMs += performance.now() - started; } })();
       const print = profile.id === 'print-only';
       const [front, back, maps, primary, secondary, stamp] = await Promise.all([
-        this.assets.image(card.front, signal), this.assets.image(card.back, signal), mapsReady,
+        frontReady, this.assets.image(card.back, signal), mapsReady,
         print ? undefined : this.prepareLayer(profile, card, card.seed, signal, card.maps?.motif), print ? undefined : this.prepareLayer(profile.secondary, card, card.seed + 8191, signal, card.maps?.secondaryMotif), print ? undefined : this.prepareLayer(profile.stamp, card, card.seed + 16381, signal, card.maps?.stampMotif),
       ]);
       signal.throwIfAborted();

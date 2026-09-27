@@ -79,6 +79,8 @@ export interface CardDefinition {
   number: string;
   dimensions: CardDimensions;
   front: string;
+  /** Local front used if a preferred remote front cannot be fetched. */
+  frontFallback?: string;
   back: string;
   /** Normalized image rectangle [left, top, right, bottom], before UV Y inversion. */
   backCrop?: [number, number, number, number];
