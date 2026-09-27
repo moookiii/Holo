@@ -1,0 +1,45 @@
+{
+  "cardId": "sv08.5-144",
+  "variant": "holo",
+  "status": "photo-guided-reconstruction",
+  "rendererReady": true,
+  "textured": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "144-holo-foil.png": "b409456b85af3e274fca42097342d76c948ebecdfcd59eaaff887ed2cf195260",
+    "144-holo-protection.png": "035cd9e9fa740a09d0ae2d95a61d35ff18036fae1d818d94c0d70db5c97940b6",
+    "144-holo-height.png": "b98fef7d3441d45f0c5ffdc2a438b4491ed28fb3e623d63e29c79f6f2ae2f695",
+    "144-holo-normal.png": "36b61328e146049539a88b629ce631284d97c4c499cc5996b70cb126f8e9f1a7",
+    "144-holo-roughness.png": "d825c45404d819e64616a971a5b5ed40a2c91f65346dbcf83036ff3e3003cd13",
+    "144-holo-secondary-foil.png": "196bc22847b37cb652f4cef624f684c98708ff9de9420b03745858aaaf879ad7",
+    "144-holo-body.png": "8d299e5d16844be8b6d6bea6855ea833f568344ae92805321736ca172e656c4f",
+    "144-holo-gems.png": "7218bf408829638b5990e16604ef80c5628ec72a92dd3c4506ed21d773d146b6",
+    "144-holo-silver.png": "5392b765ca41e33e043754406e749c98d344589477bc45193ec46388919b1dc8",
+    "144-holo-right-microdiamond.png": "26ec34c368a7a9e32e21fb28329a75d3ce36a1805c400eb00c62fe25dfea9992",
+    "144-holo-energy-discs.png": "aa5a73e8f8778bd7ba328276280e9f975d3957ed3a5540a5728999931f7b1d29"
+  },
+  "references": [
+    {
+      "file": "body-reference.webp",
+      "sha256": "dfab27664c535753fffdfd88c327caf4c37fbafda5cd7e6b47e453e95a55d0de"
+    },
+    {
+      "file": "etching-master.jpg",
+      "sha256": "6aa6104d7c8c8c508c4c5942308e84689302fab760a729b3d254787d4784f5ad"
+    },
+    {
+      "file": "outlined-front.png",
+      "sha256": "0830ea73b2f3101c0c74ce1b5369ff54da23e0cbb2aef58516df060bd4c86ea1"
+    },
+    {
+      "file": "silver-microdiamond.png",
+      "sha256": "e823b17b0f2723b0c362b2cf1f5db3870d6f18c139444b60363960a83dce6e8c"
+    }
+  ],
+  "referencePolicy": "Exact-card etching-master.jpg guides curved foliage relief; the complementary body photograph resolves character coverage. User red outlines define crystals; body curves are traced against the clean front and checked against the body photograph. Concentric icon relief follows the established attack-energy treatment. Clean front supplies registration only; shared silver mask is registered to title and retreat cost.",
+  "reliefMethod": "Local photo-guided flowing contour families joined through a smooth distance field, differentiated before clipping; relief covers the foliage around the body and through the lower card. Crystal boundaries follow the supplied red outline; body contours follow the clean print and reference photo; five concentric attack-energy fields are centered on the print.",
+  "limitations": "Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief."
+}
