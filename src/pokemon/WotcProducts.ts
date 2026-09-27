@@ -27,6 +27,19 @@ export const wotcRecipes: readonly PokemonRecipe[] = [
         { weight: 1 / 3, rarities: ['Holo Rare'], variant: 'holo', cardIds: Array.from({ length: 16 }, (_, i) => `base2-${i + 1}`) },
       ] },
     ] },
+  { id: 'base3-english-retail', version: '1', setId: 'base3', era: 'base',
+    boosterIds: ['lapras', 'aerodactyl', 'zapdos'],
+    requiredCardIds: Array.from({ length: 62 }, (_, i) => `base3-${i + 1}`),
+    sources: ['https://api.tcgdex.net/v2/en/sets/base3', 'https://www.pojo.com/pokemon-fossil-expansion-set-price-guide/'],
+    note: '1999 Fossil · 7 commons + 3 uncommons + 1 rare · no Energy or reverse slot · estimated 1-in-3 holo rate; uniform cards within each rarity pool.',
+    slots: [
+      { id: 'common', count: 7, unique: true, outcomes: [{ weight: 1, rarities: ['Common'], variant: 'normal' }] },
+      { id: 'uncommon', count: 3, unique: true, outcomes: [{ weight: 1, rarities: ['Uncommon'], variant: 'normal' }] },
+      { id: 'rare', count: 1, outcomes: [
+        { weight: 2 / 3, rarities: ['Rare'], variant: 'normal', cardIds: Array.from({ length: 15 }, (_, i) => `base3-${i + 16}`) },
+        { weight: 1 / 3, rarities: ['Holo Rare'], variant: 'holo', cardIds: Array.from({ length: 15 }, (_, i) => `base3-${i + 1}`) },
+      ] },
+    ] },
 ];
 
 /** Wrapper identity is cosmetic; it never changes a product's card odds. */

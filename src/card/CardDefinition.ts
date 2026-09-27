@@ -1,3 +1,4 @@
+import { fossilDefinitions } from './FossilCards.ts';
 import type { CardProfileOverrides } from '../materials/HolographicProfile';
 import { nonHoloCards } from './NonHoloCards.ts';
 import { holoBulkCards } from './HoloBulkCards.ts';
@@ -106,7 +107,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, {
+export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',

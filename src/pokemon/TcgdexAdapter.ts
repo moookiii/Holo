@@ -1,3 +1,4 @@
+import { FOSSIL_SET_ID, fossilCard, fossilSet } from './FossilCatalog.ts';
 import TCGdex from '@tcgdex/sdk';
 import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './types.ts';
 import { boundedMap, pause } from './requests.ts';
@@ -64,11 +65,19 @@ export class TcgdexAdapter {
         sets.splice(Math.max(0, sets.findIndex(set => set.id === 'base1') + 1), 0,
           { id: JUNGLE_SET_ID, name: jungleSet.name, logo: jungleSet.logo });
       }
+      if (seriesId === 'base') {
+        const fossil = sets.findIndex(set => set.id === FOSSIL_SET_ID);
+        if (fossil >= 0) sets.splice(fossil, 1);
+        sets.splice(sets.findIndex(set => set.id === JUNGLE_SET_ID) + 1, 0,
+          { id: FOSSIL_SET_ID, name: fossilSet.name, logo: fossilSet.logo });
+      }
       return sets;
     });
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === FOSSIL_SET_ID) return { ...fossilSet, series: { ...fossilSet.series },
+        cardIds: [...fossilSet.cardIds], boosters: fossilSet.boosters.map(booster => ({ ...booster })) };
       if (id === JUNGLE_SET_ID) return { ...jungleSet, series: { ...jungleSet.series },
         cardIds: [...jungleSet.cardIds], boosters: jungleSet.boosters.map(booster => ({ ...booster })) };
       if (id === PRISMATIC_SET_ID) return { ...prismaticSet, series: { ...prismaticSet.series },
@@ -83,6 +92,8 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === FOSSIL_SET_ID) return fossilCard(id);
+      if (id.startsWith(`${FOSSIL_SET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === JUNGLE_SET_ID) return jungleCard(id);
       if (id.startsWith(`${JUNGLE_SET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === PRISMATIC_SET_ID) return prismaticCard(id);
