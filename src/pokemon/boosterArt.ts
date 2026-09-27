@@ -1,4 +1,5 @@
 import type { PokemonBooster } from './types.ts';
+import { wotcWrappers } from './WotcProducts.ts';
 
 const designs: Record<string, readonly string[]> = {
   sv01: ['gyarados', 'koraidon', 'miraidon', 'partners'],
@@ -17,8 +18,10 @@ const designs: Record<string, readonly string[]> = {
 /** TCGdex currently omits English booster metadata for these products. */
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
-  if (setId === 'base1') return ['blastoise', 'charizard', 'venusaur'].map(design => ({ id: design,
-    name: `${design[0].toUpperCase()}${design.slice(1)} booster`, front: `${base}base1-${design}.${design === 'venusaur' ? 'png' : 'jpg'}`, back: `${base}base1-back.jpg` }));
+  const product = wotcWrappers[setId];
+  if (product) return product.designs.map(design => ({ id: design.id,
+    name: `${design.id[0].toUpperCase()}${design.id.slice(1)} booster${design.front ? '' : ' · artwork pending'}`,
+    front: design.front ? `${base}${design.front}` : undefined, frontBounds: design.frontBounds, back: `${base}${product.back}` }));
   if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp`, back: `${base}sv03.5-back.png` }];
   return designs[setId]?.map(design => ({ id: design,
     name: `${design.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} booster`,

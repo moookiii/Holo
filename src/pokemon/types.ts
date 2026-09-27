@@ -5,7 +5,11 @@ export const printVariantLabel = (variant: PrintVariant): string => ({
   'pokeball-reverse': 'Poké Ball reverse holo', 'masterball-reverse': 'Master Ball reverse holo',
 })[variant];
 export interface CatalogEntry { id: string; name: string; logo?: string; }
-export interface PokemonBooster extends CatalogEntry { front?: string; back?: string; }
+export interface PokemonBooster extends CatalogEntry {
+  front?: string; back?: string;
+  /** Normalized source crop [left, top, right, bottom] for photographed wrappers. */
+  frontBounds?: [number, number, number, number];
+}
 export interface PokemonSet extends CatalogEntry {
   series: CatalogEntry; era: string; releaseDate: string; cardIds: string[]; boosters: PokemonBooster[];
 }

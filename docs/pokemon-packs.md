@@ -4,7 +4,7 @@ TCGdex stays behind `src/pokemon/TcgdexAdapter.ts`. One English SDK client lazil
 
 ## Supported recipes and evidence
 
-Twelve English sets have explicit recipes. Scarlet & Violet (`sv01`) through Destined Rivals (`sv10`) account for eleven of them, excluding special expansions whose extra replacement pools still need separate modelling. They share a reusable SV slot structure with separate measured rarity probabilities; Temporal Forces through Surging Sparks add an ACE SPEC replacement in the first reverse slot. Base Set has its own recipe below. No other set inherits these recipes. Pocket, promos and other eras can be browsed but cannot open until audited recipes are added.
+Supported English products have explicit recipes. Base Set and Jungle use reusable WotC product definitions; Jungle details and deferred holo cutouts are documented in [jungle.md](jungle.md). Scarlet & Violet (`sv01`) through Destined Rivals (`sv10`) use their audited slot definitions. They share a reusable SV slot structure with separate measured rarity probabilities; Temporal Forces through Surging Sparks add an ACE SPEC replacement in the first reverse slot. Base Set has its own recipe below. No other set inherits these recipes. Pocket, promos and other eras can be browsed but cannot open until audited recipes are added.
 
 ### 1999 English Base Set (`base1`)
 
@@ -14,7 +14,7 @@ The explicit `base1-english-retail` version 1 recipe has eleven physical cards: 
 
 TCGdex lists 102 `base1` cards but labels both holo and non-holo rare cards `Rare`. The adapter normalizes the holo-only rare printing to `Holo Rare`; ordinary rare cards remain `Rare`. TCGdex category `Energy` and energy type `Normal` distinguish the six in-set Basic Energy cards from Double Colorless Energy, which is category `Energy`, type `Special`, rarity `Uncommon` and remains eligible for an uncommon slot. Missing required outcome pools stop preparation. [TCGdex's card model](https://tcgdex.dev/rest) supplies the metadata; [Bulbagarden's Base Set catalog](https://bulbapedia.bulbagarden.net/wiki/Base_Set_(TCG)) independently lists the original set. Base Set Machamp `base1-8` is excluded from the holo booster pool because it was distributed in starter products; [PokéBeach's Base Set deck history](https://www.pokebeach.com/tcg/base-set/theme-decks) documents that exception.
 
-Normal Base Set pulls use `print-only`. Other Base Set holo rares temporarily use the existing `pokemon-galaxy-star` profile and generic coverage fallback. Accurate holo coverage is left for a dedicated Astra High material pass; this recipe adds no traced or shared cutout masks. `base1-4` holo retains the pre-existing exact authored `charizard-base-set` mapping. No other card inherits those maps. TCGdex currently returns no `base1` booster objects, so `localBoosterArt()` supplies three genuine English Blastoise, Charizard and Venusaur long-pack scans through the existing aspect-aware wrapper pipeline. Sources are in `public/packs/pokemon/SOURCES.md`.
+Normal Base Set pulls use `print-only`. Its 16 authored holo prints resolve through the shared exact-print WotC registry to their existing `pokemon-base-set-star` profile and individual masks. Jungle prints use the same registry, with their cutouts deferred by the user. TCGdex currently returns no `base1` booster objects, so `localBoosterArt()` supplies three genuine English Blastoise, Charizard and Venusaur long-pack scans through the existing aspect-aware wrapper pipeline. Sources are in `public/packs/pokemon/SOURCES.md`.
 
 Sources:
 

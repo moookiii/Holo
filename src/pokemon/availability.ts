@@ -8,6 +8,8 @@ import { prismaticSurfaceProgress } from './PrismaticSurfaces.ts';
 export function packAvailability(setId: string): { ready: boolean; label: string; detail: string } {
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
+  if (setId === 'base2') return { ready: true, label: 'Opening available · holo cutouts pending',
+    detail: 'Jungle holo pulls retain their original card fronts; animated foil awaits the next cutout pass.' };
   if (setId === PRISMATIC_SET_ID && !prismaticSurfaceProgress().complete) return {
     ready: false, label: 'Surface reconstruction in progress',
     detail: 'The complete Prismatic Evolutions checklist and pack recipe are loaded. Opening awaits the card-specific foil surfaces.',

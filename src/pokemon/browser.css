@@ -11,6 +11,8 @@
 .pokemon-pack-tile:disabled { opacity: .6; cursor: default; }
 .pokemon-pack-tile img { width: 100%; height: 170px; object-fit: contain; }
 .pokemon-pack-tile.pokemon-booster img { height: 310px; }
+.pokemon-wrapper-crop { --wrapper-aspect: .59; display: block; position: relative; overflow: hidden; height: 310px; width: calc(310px * var(--wrapper-aspect)); max-width: 100%; }
+@media (max-width: 560px) { .pokemon-wrapper-crop { height: 230px; width: calc(230px * var(--wrapper-aspect)); } }
 .pokemon-pack-tile strong { font-size: 15px; font-weight: 500; }
 .pokemon-pack-tile small { font-size: 11px; color: #a8b2c3; line-height: 1.6; }
 .pokemon-open { grid-column: 1 / -1; min-height: 52px; background: #d5deeb; color: #121924; }

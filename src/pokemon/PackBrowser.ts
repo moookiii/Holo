@@ -127,9 +127,19 @@ export class PackBrowser {
     const set = this.selection.set!; this.body.replaceChildren();
     const recipe = recipeFor(set.id);
     const availability = packAvailability(set.id);
-    this.status.textContent = availability.ready && recipe ? `Choose a booster. ${recipe.note}` : availability.detail;
+    this.status.textContent = availability.ready && recipe ? `Choose a booster. ${recipe.note} ${availability.detail}`.trim() : availability.detail;
     set.boosters.forEach(booster => {
       const button = this.button(booster.name, () => this.choose(booster), booster.front ?? fallbackWrapper(set), booster.front ? undefined : 'Set artwork fallback');
+      if (booster.frontBounds) {
+        const img = button.querySelector('img')!, frame = document.createElement('span');
+        const [left, top, right, bottom] = booster.frontBounds;
+        frame.className = 'pokemon-wrapper-crop'; img.replaceWith(frame); frame.append(img);
+        const size = () => frame.style.setProperty('--wrapper-aspect', String(img.naturalWidth * (right - left) / (img.naturalHeight * (bottom - top))));
+        img.addEventListener('load', size, { once: true }); if (img.complete && img.naturalWidth) size();
+        Object.assign(img.style, { position: 'absolute', maxWidth: 'none', objectFit: 'fill',
+          width: `${100 / (right - left)}%`, height: `${100 / (bottom - top)}%`,
+          left: `${-100 * left / (right - left)}%`, top: `${-100 * top / (bottom - top)}%` });
+      }
       button.classList.add('pokemon-booster'); button.disabled = !availability.ready;
       button.setAttribute('aria-pressed', String(this.selection.booster?.id === booster.id));
     });

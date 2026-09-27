@@ -1,6 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import type { PokemonCard, PrintVariant } from './types.ts';
-import { baseSetAuthoredIds, baseSetCards } from '../card/BaseSetCards.ts';
+import { wotcPrinting } from '../card/WotcCards.ts';
 import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
 import { prismaticDefinition, prismaticProfile } from './PrismaticSurfaces.ts';
 
@@ -16,7 +16,8 @@ const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
 export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string {
   if (card.setId === PRISMATIC_SET_ID) return prismaticProfile(card.id, variant);
   if (variant === 'normal') return 'print-only';
-  if (variant === 'holo' && card.setId === 'base1' && baseSetAuthoredIds[card.id]) return 'pokemon-base-set-star';
+  const wotc = wotcPrinting(card.id, variant);
+  if (wotc) return wotc.profile;
   const foil = card.foil?.[variant]?.toLowerCase() ?? '';
   if (foil.includes('cosmos')) return 'pokemon-cosmos';
   if (foil.includes('galaxy')) return 'pokemon-galaxy-star';
@@ -44,10 +45,8 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
       pokemon: { ...card, variant, materialProfile: 'print-only', ...(variant === 'reverse' ? { treatmentStatus: 'deferred' as const } : {}) } };
   }
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
-  const baseId = variant === 'holo' && card.setId === 'base1' ? baseSetAuthoredIds[card.id] : undefined;
-  const exact = existing.find(c => c.id === (baseId ?? authored[card.id]?.[variant]))
-    // Authored Base Set masks must also survive callers with a smaller library.
-    ?? (baseId ? baseSetCards.find(c => c.id === baseId) : undefined);
+  const wotc = wotcPrinting(card.id, variant);
+  const exact = existing.find(c => c.id === (wotc?.id ?? authored[card.id]?.[variant])) ?? wotc;
   const profile = exact?.profile ?? pokemonProfile(card, variant);
   const fullArt = card.era === 'sv' && ['Illustration Rare', 'Special Illustration Rare', 'Ultra Rare', 'Hyper Rare'].includes(card.rarity);
   const fullArtBasic = fullArt && variant === 'holo' && card.category === 'Pokemon' && !card.evolveFrom;
@@ -63,7 +62,8 @@ export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, exis
         ? '/cards/pokemon/sv-trainer-artwork.png' : undefined;
   const id = `pokemon:${card.id}:${variant}`;
   const metadata = { ...card, variant, materialProfile: profile };
-  if (exact) return { ...exact, id, pokemon: metadata, number: `${card.localId} · ${card.rarity} · ${variant}` };
+  if (exact) return { ...exact, id, pokemon: { ...metadata, ...(exact.pokemon?.treatmentStatus ? { treatmentStatus: exact.pokemon.treatmentStatus } : {}) },
+    number: `${card.localId} · ${card.rarity} · ${variant}${exact.pokemon?.treatmentStatus === 'deferred' ? ' · cutouts pending' : ''}` };
   return { id, title: card.name, franchise: 'Pokémon', set: card.setName, number: `${card.localId} · ${card.rarity} · ${variant}`,
     dimensions: DIMENSIONS.standard, front: card.front ?? '', back: '/cards/pokemon/back.jpg', profile, seed: 1741,
     pokemon: metadata,

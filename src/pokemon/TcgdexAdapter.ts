@@ -3,6 +3,7 @@ import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './type
 import { boundedMap, pause } from './requests.ts';
 import { localBoosterArt } from './boosterArt.ts';
 import { PRISMATIC_SET_ID, prismaticCard, prismaticSet } from './PrismaticCatalog.ts';
+import { JUNGLE_SET_ID, jungleCard, jungleSet } from './JungleCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -57,11 +58,19 @@ export class TcgdexAdapter {
       if (!serie) throw new Error('This series is unavailable.');
       const sets = serie.sets.map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
+      if (seriesId === 'base') {
+        const jungle = sets.findIndex(set => set.id === JUNGLE_SET_ID);
+        if (jungle >= 0) sets.splice(jungle, 1);
+        sets.splice(Math.max(0, sets.findIndex(set => set.id === 'base1') + 1), 0,
+          { id: JUNGLE_SET_ID, name: jungleSet.name, logo: jungleSet.logo });
+      }
       return sets;
     });
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === JUNGLE_SET_ID) return { ...jungleSet, series: { ...jungleSet.series },
+        cardIds: [...jungleSet.cardIds], boosters: jungleSet.boosters.map(booster => ({ ...booster })) };
       if (id === PRISMATIC_SET_ID) return { ...prismaticSet, series: { ...prismaticSet.series },
         cardIds: [...prismaticSet.cardIds], boosters: prismaticSet.boosters.map(booster => ({ ...booster })) };
       const set = await client.set.get(id);
@@ -74,6 +83,8 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === JUNGLE_SET_ID) return jungleCard(id);
+      if (id.startsWith(`${JUNGLE_SET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === PRISMATIC_SET_ID) return prismaticCard(id);
       if (id.startsWith(`${PRISMATIC_SET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       const card = await client.card.get(id);
@@ -90,8 +101,8 @@ export class TcgdexAdapter {
         if (!v.foil) foil[type] = ''; // Ordinary printing takes precedence over e.g. tin Cosmos.
       }
       if (!variants.length) throw new Error(`Print variants missing for ${id}.`);
-      // Base Set holo and non-holo rare cards share the TCGdex "Rare" label.
-      const rarity = set.id === 'base1' && card.rarity === 'Rare' && variants.includes('holo') && !variants.includes('normal') ? 'Holo Rare' : titleCase(card.rarity);
+      // Early WotC numbered holo-only rares share TCGdex's "Rare" label.
+      const rarity = set.era === 'base' && card.rarity === 'Rare' && variants.includes('holo') && !variants.includes('normal') ? 'Holo Rare' : titleCase(card.rarity);
       return { id: card.id, localId: card.localId, name: card.name, setId: set.id, setName: set.name,
         seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity, category: card.category, energyType: card.energyType, variants, foil, evolveFrom: card.evolveFrom,
         boosterIds: card.boosters?.map(b => b.id), front: card.image ? card.getImageURL('high', 'png') : undefined,
