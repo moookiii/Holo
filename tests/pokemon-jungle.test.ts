@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { jungleCards, jungleSet } from '../src/pokemon/JungleCatalog.ts';
-import { jungleDefinitions, jungleHoloProfile } from '../src/card/JungleCards.ts';
+import { jungleDefinitions, jungleHoloProfile, jungleReadyHolos } from '../src/card/JungleCards.ts';
 import { collatePokemon } from '../src/pokemon/collator.ts';
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
 import { packAvailability } from '../src/pokemon/availability.ts';
@@ -53,19 +53,27 @@ test('Jungle packs have seven unique commons, three unique uncommons and exactly
   for (const number of [1, 17, 33, 49]) assert.throws(() => collatePokemon('base2', 'flareon', 1, jungleCards.filter(c => c.localId !== String(number))), /Incomplete/);
 });
 
-test('Jungle holo cutouts are explicitly deferred without losing the separate print identities', () => {
+test('supplied Jungle cutouts activate only their exact holo prints; the remaining holos stay deferred', () => {
   assert.equal(jungleHoloProfile, 'pokemon-base-set-star');
   assert.equal(jungleDefinitions.length, 64);
   assert.equal(packAvailability('base2').ready, true);
   for (const card of jungleCards) {
     const variant = card.variants[0];
     const definition = pokemonDefinition(card, variant, []);
+    const ready = variant === 'holo' && jungleReadyHolos.has(card.localId);
     assert.equal(definition.id, `pokemon:${card.id}:${variant}`);
     assert.equal(definition.front, card.front);
-    assert.equal(definition.profile, 'print-only');
+    assert.equal(definition.profile, ready ? jungleHoloProfile : 'print-only');
     assert.equal(definition.proceduralFoil, undefined);
-    assert.equal(definition.maps, undefined);
-    assert.equal(definition.pokemon?.treatmentStatus, variant === 'holo' ? 'deferred' : undefined);
+    if (ready) {
+      for (const role of ['foil', 'protection', 'laminate'] as const) {
+        const file = definition.maps?.[role]; assert.ok(file?.endsWith('.png'));
+        const bytes = readFileSync(`public${file}`);
+        assert.equal(bytes.readUInt32BE(16), 1200); assert.equal(bytes.readUInt32BE(20), 1650);
+      }
+      assert.equal(definition.maps?.height, undefined);
+    } else assert.equal(definition.maps, undefined);
+    assert.equal(definition.pokemon?.treatmentStatus, variant === 'holo' && !ready ? 'deferred' : undefined);
     assert.throws(() => pokemonDefinition(card, variant === 'holo' ? 'normal' : 'holo', []), /Invalid/);
   }
 });

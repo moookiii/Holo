@@ -22,15 +22,22 @@ determine the contents. Wrapper artwork choices share those contents.
 `WotcCards.ts` resolves exact numbered prints for both the viewer and pack flow,
 replacing the Base Set-only lookup while preserving Base Set's authored maps.
 
-## Deferred surface work
+## Holo surfaces
 
-The user explicitly deferred all Jungle holo cutouts to the next prompt.
-The 16 holo identities still collate correctly, display their original holo
-scans and carry `treatmentStatus: deferred`. They currently render print-only
-and are labelled as cutouts pending. No Jungle masks were created, no existing
-masks were edited, and no new shader was introduced. The next pass should author
-per-card PNG coverage/protection and activate the existing
-`pokemon-base-set-star` profile named by `jungleHoloProfile`.
+The user supplied green cutout outlines for cards 1–6: Clefable, Electrode,
+Flareon, Jolteon, Kangaskhan and Mr. Mime. These now use the existing
+`pokemon-base-set-star` material in both viewer and packs. The clean TCGdex
+fronts remain visible; annotations are retained separately in
+`scripts/jungle/traces/`. `create-cutout-maps.py` fills the marker contours near
+their centerlines and rasterizes separate picture-window foil, opaque-print
+protection and laminate PNG maps at 1200 × 1650. It produces full-resolution
+colored overlays in `artifacts/jungle-cutouts/` for boundary review. No relief
+or new shader is introduced. The printed background colors are preserved.
+
+Cards 7–16 still collate as holo prints but carry `treatmentStatus: deferred`
+and render their original fronts without animated foil until their cutouts
+are supplied. The UI reports 6/16 holos ready. Non-holo rare counterparts retain
+their separate identities/fronts and remain print-only.
 
 ## Wrappers
 
@@ -47,6 +54,8 @@ same supplied back. The local Jungle logo is from TCGdex.
 `tests/pokemon-jungle.test.ts` checks all 64 identities, hashes, rarity counts,
 separate rare fronts, complete eligibility, deferred surfaces, wrappers, local
 catalog loading, missing-data rejection and 3,000 deterministic pack seeds.
+`scripts/jungle-holo-check.mjs` checks all six activated holos for live optical
+contribution, stationary stability, browser errors, and front/two tilted views.
 `scripts/jungle-browser-check.mjs` exercises selection and opening with both
 rare outcomes and checks the actual prepared card definitions and wrapper crops.
 
