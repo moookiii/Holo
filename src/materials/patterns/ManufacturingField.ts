@@ -1,3 +1,4 @@
+import { labelRegisteredStars, type StarImage } from './RegisteredStars.ts';
 import { encodeGratingAxis } from './Orientation';
 import { generatePokemonField, type PokemonPatternKind } from './PokemonPatterns';
 import { generatePokemonDirectionalField, type PokemonDirectionalKind } from './PokemonDirectionalPatterns';
@@ -23,7 +24,7 @@ function smoothNoise(x: number, y: number, seed: number) {
 }
 
 /** Encodes manufacturing geometry only. Neither texture contains spectral colors or lighting. */
-export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024): FieldData {
+export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024, starImage?: StarImage): FieldData {
   if (spec.kind === 'symbol-foil') {
     if (!spec.motif) throw new Error('Symbol foil requires a motif specification.');
     return generateMotifField(spec.seed, spec.aspect, spec.scale, height, spec.motif);
@@ -34,6 +35,8 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
   const width = Math.round(height * spec.aspect);
   const direction = new Uint8Array(width * height * 4), relief = new Uint8Array(width * height * 4);
   const seed = spec.seed;
+  const registered = spec.kind === 'base-set-star' && starImage ? starImage : undefined;
+  const starLabels = registered ? labelRegisteredStars(registered) : undefined;
   for (let iy = 0; iy < height; iy++) for (let ix = 0; ix < width; ix++) {
     let x = (ix + .5) / height, y = (iy + .5) / height;
     // The original Cosmos foil has small square optical elements inside each larger
@@ -341,25 +344,40 @@ export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legen
     } else if (spec.kind === 'base-set-star') {
       // The original fronts show unequal, narrow eight-ray flashes with a
       // compact bright core. Some flashes have longer, irregular vertical rays.
-      const sx = x * spec.scale, sy = y * spec.scale;
-      const gx = Math.floor(sx), gy = Math.floor(sy);
-      const a = sx - gx - (.24 + random(gx, gy, seed) * .52);
-      const b = sy - gy - (.24 + random(gx, gy, seed + 5) * .52);
-      const r = random(gx, gy, seed + 17), large = r > .75;
-      const radius = large ? .14 + Math.pow((r - .75) / .25, 1.2) * .12 : .008 + r * .013;
-      const spiky = large && random(gx, gy, seed + 23) > .82;
-      const da = (a + b) * Math.SQRT1_2, db = (b - a) * Math.SQRT1_2;
-      const rayWidth = spiky ? .09 : .20;
-      const rays = Math.min(
-        Math.abs(a) / radius + Math.abs(b) / (radius * rayWidth),
-        Math.abs(a) / (radius * rayWidth) + Math.abs(b) / (radius * (spiky ? 1.75 : 1.45)),
-        Math.abs(da) / (radius * (spiky ? .43 : .66)) + Math.abs(db) / (radius * (spiky ? .14 : .22)),
-        Math.abs(da) / (radius * (spiky ? .14 : .23)) + Math.abs(db) / (radius * (spiky ? .49 : .60)),
-        Math.hypot(a, b) / (radius * .23));
-      const shapeDistance = large ? rays : Math.hypot(a, b) / radius;
-      const edge = .025 + spec.scale / height / radius * .65;
-      const star = 1 - smooth(1 - edge, 1 + edge, shapeDistance);
-      const orientation = random(gx, gy, seed + 35) * Math.PI;
+      let gx = 0, gy = 0, r = 0, star = 0, orientation = 0, spiky = false;
+      if (registered && starLabels) {
+        // PNGs are registered to the full front, independent of field scale.
+        // DataTextures use bottom-up UVs; source PNGs use top-left coordinates.
+        const px = Math.min(registered.width - 1, Math.floor(x / spec.aspect * registered.width));
+        const py = Math.min(registered.height - 1, Math.floor((1 - y) * registered.height));
+        const p = py * registered.width + px;
+        star = registered.data[p] / 255;
+        gx = starLabels[p]; gy = 0;
+        r = random(gx, gy, seed + 17);
+        orientation = random(gx, gy, seed + 35) * Math.PI;
+        spiky = false;
+      } else {
+        const sx = x * spec.scale, sy = y * spec.scale;
+        gx = Math.floor(sx); gy = Math.floor(sy);
+        const a = sx - gx - (.24 + random(gx, gy, seed) * .52);
+        const b = sy - gy - (.24 + random(gx, gy, seed + 5) * .52);
+        r = random(gx, gy, seed + 17);
+        const large = r > .75;
+        const radius = large ? .14 + Math.pow((r - .75) / .25, 1.2) * .12 : .008 + r * .013;
+        spiky = large && random(gx, gy, seed + 23) > .82;
+        const da = (a + b) * Math.SQRT1_2, db = (b - a) * Math.SQRT1_2;
+        const rayWidth = spiky ? .09 : .20;
+        const rays = Math.min(
+          Math.abs(a) / radius + Math.abs(b) / (radius * rayWidth),
+          Math.abs(a) / (radius * rayWidth) + Math.abs(b) / (radius * (spiky ? 1.75 : 1.45)),
+          Math.abs(da) / (radius * (spiky ? .43 : .66)) + Math.abs(db) / (radius * (spiky ? .14 : .22)),
+          Math.abs(da) / (radius * (spiky ? .14 : .23)) + Math.abs(db) / (radius * (spiky ? .49 : .60)),
+          Math.hypot(a, b) / (radius * .23));
+        const shapeDistance = large ? rays : Math.hypot(a, b) / radius;
+        const edge = .025 + spec.scale / height / radius * .65;
+        star = 1 - smooth(1 - edge, 1 + edge, shapeDistance);
+        orientation = random(gx, gy, seed + 35) * Math.PI;
+      }
       // Broad interrupted horizontal ribbons sit beneath the stars. Correlated
       // inclinations select their highlights as the card tilts; they carry no
       // painted color, emission, relief or animation. Fine grain is subordinate.

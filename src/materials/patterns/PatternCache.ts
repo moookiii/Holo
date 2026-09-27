@@ -51,12 +51,15 @@ export class PatternCache {
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
       let motifImage;
       if (motifTexture) {
-        const canvas = document.createElement('canvas'); canvas.width = canvas.height = 512;
+        const source = motifTexture.image as HTMLImageElement;
+        const canvas = document.createElement('canvas');
+        canvas.width = spec.kind === 'base-set-star' ? source.width : 512;
+        canvas.height = spec.kind === 'base-set-star' ? source.height : 512;
         const context = canvas.getContext('2d', { willReadFrequently: true })!;
-        context.drawImage(motifTexture.image as HTMLImageElement, 0, 0, 512, 512);
-        const rgba = context.getImageData(0, 0, 512, 512).data, data = new Uint8Array(512 * 512);
+        context.drawImage(source, 0, 0, canvas.width, canvas.height);
+        const rgba = context.getImageData(0, 0, canvas.width, canvas.height).data, data = new Uint8Array(canvas.width * canvas.height);
         for (let i = 0; i < data.length; i++) data[i] = rgba[i * 4];
-        motifImage = { width: 512, height: 512, data };
+        motifImage = { width: canvas.width, height: canvas.height, data };
       }
       const id = ++this.sequence; this.requests.set(id, { resolve, reject });
       this.queue.push({ id, key, priority, message: { id, spec, motifImage }, transfers: motifImage ? [motifImage.data.buffer] : [] }); this.dispatch();

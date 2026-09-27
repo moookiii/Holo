@@ -31,7 +31,7 @@ try {
   });
   assert.equal(cards.length,16);
   await page.evaluate(()=>window.__holo.hideUI());
-  for(const card of cards) {
+  for(const card of cards.filter(c => !process.env.JUNGLE_CARD || c.id === `pokemon:base2-${process.env.JUNGLE_CARD}:holo`)) {
     await page.evaluate(async id=>{await window.__holo.setCard(id);window.__holo.pose(0,0);},card.id);
     const stats=await page.evaluate(()=>window.__holo.stats());
     assert.equal(stats.profile,'pokemon-base-set-star');

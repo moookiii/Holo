@@ -23,7 +23,7 @@ export interface CardMapPaths {
   foil?: string;
   /** Authored body/border coverage for a reverse printing; never inferred from artwork. */
   reverseFoil?: string;
-  /** Grayscale repeated symbol for CPU manufacturing; adds no GPU sampler. */
+  /** Grayscale CPU motif: repeated for symbol foil, full-front registered stars for Base Set. Adds no GPU sampler. */
   motif?: string;
   secondaryMotif?: string;
   stampMotif?: string;

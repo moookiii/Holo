@@ -21,13 +21,16 @@ const errors = [], report = [];
 page.on('pageerror', e => errors.push(e.message));
 page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
 try {
+  // The bundled Charizard fallback is the same registered front. Keep the
+  // optical regression independent of intermittent TCGdex CORS headers.
+  await page.route('https://assets.tcgdex.net/en/base/base1/4/high.png', route => route.fulfill({ path: 'public/cards/charizard-base-set/front.png', contentType: 'image/png' }));
   await page.goto(`http://127.0.0.1:5173/?backend=${backend}`);
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
   const cards = await page.evaluate(() => {
     const h=window.__holo;
     const profile=h.profiles.find(p=>p.id==='pokemon-base-set-star');
     if(profile?.name!=='Star Holo: Base Set') throw new Error('Missing named material');
-    return h.cards.filter(c=>c.profile==='pokemon-base-set-star').map(c=>({id:c.id,number:c.number,title:c.title}));
+    return h.cards.filter(c=>c.profile==='pokemon-base-set-star' && c.id.endsWith('-base-set')).map(c=>({id:c.id,number:c.number,title:c.title}));
   });
   assert.equal(cards.length,16);
   await page.evaluate(()=>window.__holo.hideUI());

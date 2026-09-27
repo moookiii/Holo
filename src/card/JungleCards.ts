@@ -15,7 +15,7 @@ export const jungleDefinitions: CardDefinition[] = jungleCards.map(card => {
     id: `pokemon:${card.id}:${holo ? 'holo' : 'normal'}`, title: card.name, franchise: 'Pokémon', set: 'Jungle', number: `${card.localId}/64${holo ? ` · Holo${pending ? ' · cutouts pending' : ''}` : ''}`,
     dimensions: { width: 6.3, height: 8.8, thickness: .032, cornerRadius: .3, bevel: .007 },
     front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 199900 + Number(card.localId),
-    ...(ready ? { maps: { foil: `${maps}-foil.png`, protection: `${maps}-protection.png`, laminate: `${maps}-laminate.png` },
+    ...(ready ? { maps: { motif: `${maps}-stars.png`, foil: `${maps}-foil.png`, protection: `${maps}-protection.png`, laminate: `${maps}-laminate.png` },
       mapSettings: { embossStrength: 0 }, substrate: { color: [0, 0, 0] as [number, number, number], printRetention: 1 } } : {}),
     layout: { artwork: [65/600, 101/825, 536/600, 423/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
     pokemon: { ...card, variant: holo ? 'holo' : 'normal', materialProfile: profile, ...(pending ? { treatmentStatus: 'deferred' as const } : {}) },

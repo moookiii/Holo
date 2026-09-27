@@ -29,7 +29,7 @@ export const baseSetCards: CardDefinition[] = baseSetSubjects.map(([title, slug,
     front: number === 4 ? 'https://assets.tcgdex.net/en/base/base1/4/high.png' : `${root}/front.png`,
     ...(number === 4 ? { frontFallback: `${root}/front.png` } : {}), back: '/cards/pokemon/back.jpg',
     profile: 'pokemon-base-set-star', seed: 1995 + number,
-    maps: { foil: `${root}/foil.png`, laminate: `${root}/laminate.png` },
+    maps: { motif: `${root}/stars.png`, foil: `${root}/foil.png`, laminate: `${root}/laminate.png` },
     layout: { artwork: [64/600, 100/825, 537/600, 423/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
     mapSettings: { embossStrength: 0 },
     // Correct the scan's median background while preserving its spatial color and rays.
