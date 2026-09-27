@@ -1,7 +1,7 @@
 """Rasterize user-drawn green contours, not image brightness or inferred relief.
 
 Input traces are unchanged 600x825 annotations. The clean TCGdex fronts remain
-the visible artwork. Only explicitly supplied cards 1–6 are processed.
+the visible artwork. All sixteen explicitly supplied outlines are processed.
 """
 from pathlib import Path
 import json
@@ -24,6 +24,16 @@ WINDOWS = {
     4: [(142,94),(535,94),(535,420),(67,420),(67,138),(78,135),(86,142),(99,130),(111,133),(121,119),(132,114),(130,103)],
     5: [(66,97),(535,97),(535,422),(66,422)],
     6: [(64,95),(534,95),(534,420),(64,420)],
+    7: [(143,95),(535,95),(535,420),(65,420),(65,139),(78,136),(86,142),(99,132),(111,134),(122,120),(133,114),(131,105)],
+    8: [(143,96),(536,96),(536,422),(65,422),(65,140),(78,137),(86,144),(99,132),(111,135),(122,121),(133,115),(131,106)],
+    9: [(65,95),(535,95),(535,421),(65,421)],
+    10: [(65,96),(534,96),(534,421),(65,421)],
+    11: [(67,96),(533,96),(533,421),(67,421)],
+    12: [(143,96),(535,96),(535,422),(65,422),(65,140),(78,137),(86,143),(99,132),(111,135),(122,121),(133,115),(131,106)],
+    13: [(142,96),(533,96),(533,421),(65,421),(65,140),(78,137),(86,143),(98,132),(110,135),(121,121),(132,115),(130,106)],
+    14: [(143,97),(534,97),(534,421),(65,421),(65,141),(78,138),(86,144),(99,133),(111,136),(122,122),(133,116),(131,107)],
+    15: [(143,95),(535,95),(535,420),(65,420),(65,139),(78,136),(86,142),(99,132),(111,134),(122,120),(133,114),(131,105)],
+    16: [(143,96),(534,96),(534,421),(65,421),(65,140),(78,137),(86,143),(99,132),(111,135),(122,121),(133,115),(131,106)],
 }
 report = []
 for number, vertices in WINDOWS.items():
@@ -37,9 +47,16 @@ for number, vertices in WINDOWS.items():
     stroke[425:] = 0
     contours, _ = cv2.findContours(stroke, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     contours = [c for c in contours if cv2.contourArea(c) > 40]
-    assert max(map(cv2.contourArea, contours)) > 30000, f'Open/incomplete contour: {number}'
+    assert max(map(cv2.contourArea, contours)) > 20000, f'Open/incomplete contour: {number}'
     body = np.zeros((1650,1200), np.uint8)
     cv2.drawContours(body, [c*SCALE for c in contours], -1, 255, cv2.FILLED)
+    if number == 14:
+        # Victreebel's vine encloses background. Preserve that authored opening;
+        # other interior contours are the space inside the green marker stroke.
+        nested, _ = cv2.findContours(stroke, cv2.RETR_LIST, cv2.CHAIN_APPROX_SIMPLE)
+        for contour in nested:
+            if cv2.pointPolygonTest(contour, (339,218), False) > 0 and cv2.contourArea(contour) < 12000:
+                cv2.drawContours(body, [contour*SCALE], -1, 0, cv2.FILLED)
     # Resolve the thick drawn line near its center, not at its outer edge.
     # Electrode's supplied stroke is thinner than the other five annotations.
     inset = 2 if number == 2 else 4

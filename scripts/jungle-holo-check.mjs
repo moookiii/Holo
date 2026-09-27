@@ -29,7 +29,7 @@ try {
     if(profile?.name!=='Star Holo: Base Set') throw new Error('Missing named material');
     return h.cards.filter(c=>c.pokemon?.setId==='base2' && c.profile==='pokemon-base-set-star').map(c=>({id:c.id,number:c.number,title:c.title}));
   });
-  assert.equal(cards.length,6);
+  assert.equal(cards.length,16);
   await page.evaluate(()=>window.__holo.hideUI());
   for(const card of cards) {
     await page.evaluate(async id=>{await window.__holo.setCard(id);window.__holo.pose(0,0);},card.id);

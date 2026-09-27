@@ -45,7 +45,7 @@ try {
     await page.getByRole('button', { name: /^Jungle Opening available/ }).click();
     await page.getByRole('button', { name: 'Flareon booster', exact: true }).waitFor();
     assert.equal(await page.locator('button.pokemon-booster').count(), 3);
-    assert.match(await page.locator('.pokemon-browser [role=status]').textContent(), /cutout pass/);
+    assert.doesNotMatch(await page.locator('.pokemon-browser [role=status]').textContent(), /cutout pass|pending/);
     await page.screenshot({ path: join(out, `${artwork}-selection.png`) });
     await page.evaluate(seed => { const original = crypto.getRandomValues.bind(crypto); crypto.getRandomValues = array => { array[0] = seed; crypto.getRandomValues = original; return array; }; }, seeds[variant]);
     await page.getByRole('button', { name: `${artwork} booster`, exact: true }).click();
@@ -55,8 +55,8 @@ try {
       return { id: card.pokemon.id, variant: card.pokemon.variant, profile: card.profile, pending: card.pokemon.treatmentStatus, maps: card.maps };
     }));
     assert.equal(pulls.length, 11); assert.equal(pulls[10].variant, variant);
-    assert.ok(pulls.every(p => p.id.startsWith('base2-') && p.profile === 'print-only' && !p.maps));
-    assert.equal(pulls[10].pending, variant === 'holo' ? 'deferred' : undefined);
+    assert.ok(pulls.every(p => p.id.startsWith('base2-') && (p.variant === 'holo' ? p.profile === 'pokemon-base-set-star' && p.maps?.protection : p.profile === 'print-only' && !p.maps)));
+    assert.equal(pulls[10].pending, undefined);
     await page.screenshot({ path: join(out, `${artwork}-sealed.png`) });
     await page.evaluate(() => { window.__holo.pack.setStage('hit'); window.__holo.pack.tick(2); });
     await page.screenshot({ path: join(out, `${artwork}-rare.png`) });

@@ -2,7 +2,7 @@ import type { CardDefinition } from './CardDefinition.ts';
 import { jungleCards, JUNGLE_ASSETS } from '../pokemon/JungleCatalog.ts';
 
 export const jungleHoloProfile = 'pokemon-base-set-star';
-export const jungleReadyHolos: ReadonlySet<string> = new Set(['1', '2', '3', '4', '5', '6']);
+export const jungleReadyHolos: ReadonlySet<string> = new Set(Array.from({ length: 16 }, (_, i) => String(i + 1)));
 
 /** Each numbered front is a distinct printing, including the non-holo rares. */
 export const jungleDefinitions: CardDefinition[] = jungleCards.map(card => {

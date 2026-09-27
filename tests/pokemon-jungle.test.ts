@@ -53,9 +53,11 @@ test('Jungle packs have seven unique commons, three unique uncommons and exactly
   for (const number of [1, 17, 33, 49]) assert.throws(() => collatePokemon('base2', 'flareon', 1, jungleCards.filter(c => c.localId !== String(number))), /Incomplete/);
 });
 
-test('supplied Jungle cutouts activate only their exact holo prints; the remaining holos stay deferred', () => {
+test('all sixteen supplied Jungle cutouts activate only their exact holo prints', () => {
   assert.equal(jungleHoloProfile, 'pokemon-base-set-star');
   assert.equal(jungleDefinitions.length, 64);
+  assert.equal(jungleReadyHolos.size, 16);
+  assert.ok(jungleDefinitions.every(card => !card.pokemon?.treatmentStatus));
   assert.equal(packAvailability('base2').ready, true);
   for (const card of jungleCards) {
     const variant = card.variants[0];
