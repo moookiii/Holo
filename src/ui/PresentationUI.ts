@@ -11,6 +11,7 @@ interface ViewerActions {
   importCard: () => void;
   removeCard: (id: string) => void;
   pack: () => void;
+  gallery: () => void;
 }
 export interface ProfileOption { id: string; name: string; family: string; labOnly?: boolean; }
 type CardFinish = 'all' | 'holo' | 'non-holo' | 'metal';
@@ -28,6 +29,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   <section id="card-panel" class="popover card-panel" aria-label="Choose card" hidden><div class="card-panel-actions"><button id="import-card">Import card</button></div><div class="card-finish-tabs" role="group" aria-label="Card finish"></div><div class="filters" role="group" aria-label="Card category"></div><div class="card-search"><input id="card-search" type="search" aria-label="Search cards" placeholder="Search cards" autocomplete="off" spellcheck="false"></div><div class="card-grid"></div><p class="card-empty" role="status" hidden>No cards match these filters.</p></section>
   <section id="light-panel" class="popover light-panel" aria-label="Choose lighting" hidden></section>`;
   const select = root.querySelector<HTMLSelectElement>('#holo-select')!;
+  const gallery = document.createElement('button'); gallery.id = 'gallery-open'; gallery.className = 'gallery-entry'; gallery.textContent = 'Gallery'; gallery.onclick = actions.gallery; root.append(gallery);
   root.querySelector<HTMLButtonElement>('#pack-open')!.onclick = actions.pack;
   let selectedCard = cards[0].id;
   let selectedProfile = cards[0].profile;

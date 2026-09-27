@@ -22,6 +22,7 @@ import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparat
 import { packIdentity, prepareExactPack, type PreparedPack } from './pack/PreparedPack';
 import type { PackBrowser } from './pokemon/PackBrowser';
 import { prismaticPickerCards } from './pokemon/PrismaticSurfaces';
+import type { Gallery } from './gallery/Gallery';
 
 async function start() {
   startupMark('modulesReady');
@@ -96,6 +97,9 @@ async function start() {
   let selectedPack: PackDefinition = getPack('archive-01');
   let packBrowser: PackBrowser | undefined;
   let browserLoading = false;
+  let gallery: Gallery | undefined;
+  let galleryOpening = false;
+  let galleryFocusFactory: CardFactory | undefined;
   const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickAt?: number; clickToGpuMs?: number; loadCompleteMs?: number; firstVisibleMs?: number; clickToReadyMs?: number; moduleLoadMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
   const cancelWarmup = () => {
@@ -106,7 +110,7 @@ async function start() {
     }
   };
   const scheduleWarmup = () => {
-    if (disposed || pack || packRequest || packBrowser || browserLoading || !ui || new URLSearchParams(location.search).has('lab')) return;
+    if (disposed || gallery?.active || galleryOpening || pack || packRequest || packBrowser || browserLoading || !ui || new URLSearchParams(location.search).has('lab')) return;
     cancelWarmup();
     const start = () => {
       warmupIdleHandle = undefined; const request = new AbortController(); warmupRequest = request;
@@ -243,7 +247,7 @@ async function start() {
       factory.setBackgroundPaused(false); scheduleWarmup();
     }
   };
-  const setCard = async (id: string) => {
+  const setCard = async (id: string, cardFactory = factory) => {
     const next = cards.find(c => c.id === id);
     if (!next) throw new Error(`Unknown card: ${id}`);
     if (disposed) return;
@@ -254,7 +258,8 @@ async function start() {
     setLoading(true, definition.id === id ? 'Loading card…' : 'Loading next card…');
     try {
     ++profileGeneration;
-    const candidate = await factory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
+    const prepared = !next.construction && cardFactory !== factory ? await cpuPreparation.cached(next) : undefined;
+    const candidate = prepared ? await cardFactory.realizeCardGpu(prepared) : await cardFactory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
     if (generation !== loadGeneration || disposed) { candidate.dispose(); return; }
     // Transfer ownership only after textures, manufacturing fields and GPU programs are ready.
     ++profileGeneration;
@@ -309,12 +314,38 @@ async function start() {
       importDialog.open();
     } finally { openingImport = false; }
   };
+  const leaveGallery = async (id = definition.id) => {
+    const focusedFactory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
+    try {
+      await setCard(id, focusedFactory);
+      if (disposed) { focusedFactory.dispose(); return; }
+      galleryFocusFactory?.dispose(); galleryFocusFactory = focusedFactory;
+      gallery?.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false; pointer.setEnabled(true);
+      card.visible = true; motion.reset(); card.position.set(0, 0, 0);
+      const entry = document.querySelector<HTMLButtonElement>('#gallery-open'); if (entry) { entry.textContent = 'Back to Gallery'; entry.focus({ preventScroll: true }); }
+    } catch (error) { focusedFactory.dispose(); throw error; }
+  };
+  const openGallery = async () => {
+    if (disposed || galleryOpening || gallery?.active || pack || packRequest || packBrowser) return;
+    galleryOpening = true; cancelWarmup(); ui?.close();
+    try {
+      if (!gallery) {
+        const { Gallery } = await import('./gallery/Gallery');
+        if (disposed) return;
+        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, open: leaveGallery, close: () => leaveGallery() });
+      }
+      if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
+      card.visible = false; pointer.setEnabled(false); viewerUI.inert = true;
+      document.body.classList.add('gallery-mode'); gallery.show();
+    } finally { galleryOpening = false; }
+  };
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
     flip: () => motion.requestFlip(), reset: resetCard,
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset), lighting,
     importCard: () => { void openImport().catch(showError); }, removeCard: id => { void removeImportedCard(id).catch(showError); },
     pack: () => { void browsePacks().catch(showError); },
+    gallery: () => { void openGallery().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
   ui.selectCard(definition.id); ui.selectProfile(activeProfile);
   const resize = () => {
@@ -326,7 +357,11 @@ async function start() {
   const frameTimes: number[] = [];
   renderer.setAnimationLoop(() => {
     const now = performance.now(); const dt = (now - last) / 1000; last = now;
-    if (pack) pack.update(dt);
+    if (gallery?.active) {
+      camera.position.set(0, 0, 30); camera.updateMatrixWorld();
+      lighting.update(dt); gallery.update(dt, container.clientWidth, container.clientHeight);
+    }
+    else if (pack) pack.update(dt);
     else {
       lighting.update(dt);
       motion.update(dt); card.quaternion.copy(motion.orientation);
@@ -352,6 +387,7 @@ async function start() {
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
     ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming, startupPipelines,
+    gallery: { open: openGallery, close: leaveGallery, stats: () => gallery?.stats(), instance: () => gallery },
     pack: {
       open: openPack, browse: browsePacks, close: closePack, reset: () => browsePacks(), setSeed: (seed: number) => { cancelWarmup(); packSeed = seed >>> 0; },
       setStage: (stage: DebugPackStage, progress = 0) => pack?.setStage(stage, progress),
@@ -394,6 +430,7 @@ async function start() {
   }
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;
+    gallery?.dispose(); galleryFocusFactory?.dispose();
     packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); lab?.dispose();
