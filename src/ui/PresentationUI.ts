@@ -140,6 +140,10 @@ image.src =
 
 image.alt = '';
 image.loading = 'lazy';
+      if (card.frontFallback) image.onerror = () => {
+        image.onerror = null;
+        image.src = `${import.meta.env.BASE_URL}${card.frontFallback!.replace(/^\/+/, '')}`;
+      };
       const name = document.createElement('span'); name.textContent = card.title;
       button.title = `${card.title} · ${card.set} · ${card.number}`;
       button.append(image, name); button.onclick = () => { actions.card(card.id); close(); };

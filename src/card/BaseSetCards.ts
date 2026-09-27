@@ -38,7 +38,7 @@ export const baseSetCards: CardDefinition[] = baseSetSubjects.map(([title, slug,
       image: number === 4 ? 'https://assets.tcgdex.net/en/base/base1/4/high.png' : `https://images.pokemontcg.io/base1/${number}_hires.png`,
       metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base1.json',
       notes: number === 4
-        ? 'TCGdex Base Set Charizard front image, served from the official TCGdex asset endpoint. Existing Charizard optical maps remain registered to the standard 600 × 825 card frame.'
+        ? 'TCGdex Base Set Charizard front image. The bundled 600 × 825 fallback is pixel-identical to the TCGdex PNG when its asset endpoint cannot load. Existing Charizard optical maps remain registered to the standard card frame.'
         : 'Unmodified 600 × 825 original English Base Set scan. Individually traced subject and foreground protection, registered 1200 × 1650 background-only foil. Early Galaxy-Star sheet; no relief or image hologram. See docs/base-set-holos.md for references, authoring and visual review.',
     },
   };

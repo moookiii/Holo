@@ -187,6 +187,15 @@ export class CardFactory {
     finally { backend.createRenderPipeline = createPipeline; }
   }
 
+  private loadFront(definition: CardDefinition): Promise<Texture> {
+    const primary = this.assets.load(definition.front, true);
+    if (!definition.frontFallback) return primary;
+    return primary.catch(error => {
+      console.warn(`Using local front fallback for ${definition.id}`, error);
+      return this.assets.load(definition.frontFallback!, true);
+    });
+  }
+
   async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false): Promise<CardInstance> {
     const check = () => {
       signal?.throwIfAborted();
@@ -197,7 +206,7 @@ export class CardFactory {
     if (profile.id === 'print-only' && !editableOptics && !definition.construction) {
       const paths = { ...definition.maps, ...profile.maps };
       const [front, back, normal, roughness, height] = await Promise.all([
-        this.assets.load(definition.front, true), this.assets.load(definition.back, true),
+        this.loadFront(definition), this.assets.load(definition.back, true),
         paths.normal ? this.assets.load(paths.normal, false) : undefined,
         paths.roughness ? this.assets.load(paths.roughness, false) : undefined,
         paths.height ? this.assets.load(paths.height, false) : undefined,
@@ -212,7 +221,7 @@ export class CardFactory {
       try { instance.mesh.frustumCulled = false; if (compile) await this.compile(instance.mesh); check(); instance.mesh.frustumCulled = true; return instance; }
       catch (error) { instance.dispose(); throw error; }
     }
-    const frontReady = this.assets.load(definition.front, true);
+    const frontReady = this.loadFront(definition);
     const reverseDefinition = definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
       construction: { ...definition.construction, frontReliefCm: definition.construction.backReliefCm },
       mapSettings: { ...definition.mapSettings, embossStrength: definition.construction.backReliefCm / .008 } } : undefined;
