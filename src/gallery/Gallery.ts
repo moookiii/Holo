@@ -10,6 +10,8 @@ import { galleryLayout } from './GalleryLayout';
 import { facets, filterCards, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
+import { profiles } from '../materials/profiles';
+import { printVariantLabel, type PrintVariant } from '../pokemon/types';
 
 interface Entry { token: number; ready: boolean; error?: string; preview?: CardPreview; pitch: number; yaw: number; }
 export class Gallery {
@@ -84,6 +86,7 @@ export class Gallery {
   private async transition(action: () => Promise<void>) {
     if (this.loading) return;
     this.loading = true; this.root.setAttribute('aria-busy', 'true'); this.status.textContent = 'Opening full-quality card…';
+    for (const request of this.requests.values()) request.abort();
     try { await action(); }
     catch (error) { this.status.textContent = error instanceof Error ? error.message : 'Unable to open card. Try again.'; }
     finally { this.loading = false; this.root.removeAttribute('aria-busy'); }
@@ -93,7 +96,8 @@ export class Gallery {
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
       const values = [...new Set(this.options.cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => a.localeCompare(b));
-      select.replaceChildren(new Option(`Any ${facet.label.toLowerCase()}`, ''), ...values.map(value => new Option(value, value)));
+      select.replaceChildren(new Option(`Any ${facet.label.toLowerCase()}`, ''), ...values.map(value => new Option(facet.key === 'finish'
+        ? profiles.find(p => p.id === value)?.name ?? printVariantLabel(value as PrintVariant) ?? value : value, value)));
       select.value = this.query[facet.key] ?? '';
     }
     this.applyFilters(false); this.search.focus({ preventScroll: true });
@@ -134,7 +138,8 @@ export class Gallery {
       }
       button.dataset.cardIndex = String(index);
       const cardHeight = this.layout.cell * card.dimensions.height / card.dimensions.width;
-      Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap)}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row}px`, width: `${this.layout.cell}px`, height: `${cardHeight + 54}px`, '--card-height': `${cardHeight}px` });
+      Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap)}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row}px`, width: `${this.layout.cell}px`, height: `${cardHeight + 54}px` });
+      button.style.setProperty('--card-height', `${cardHeight}px`);
     }
   }
   update(dt: number, width: number, height: number) {

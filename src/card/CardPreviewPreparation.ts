@@ -41,6 +41,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const hasCoverage = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic'].some(key => key in inputs);
   const packed = packMapChannels(width, height, inputs, card.imported && !hasCoverage && profile.id !== 'print-only' ? 255 : 0);
   const optical = new Uint8Array(width * height * 4), normal = new Uint8Array(optical.length);
+  if (normalSource) normal.set(normalSource);
   const art = (card.layout ?? DEFAULT_FOIL_LAYOUT).artwork;
   for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
     const i = (y * width + x) * 4;
@@ -53,7 +54,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     optical[i] = profile.id === 'print-only' ? 0 : coverage;
     optical[i + 1] = inputs.roughness || inputs.surface ? packed.surface[i + 1] : Math.round(profile.surface.roughness * 255);
     optical[i + 2] = packed.pattern[i]; optical[i + 3] = 255;
-    if (normalSource) { normal.set(normalSource.subarray(i, i + 4), i); continue; }
+    if (normalSource) continue;
     // Differentiate continuous authored height BEFORE material masking.
     const at = (xx: number, yy: number) => packed.surface[(Math.min(height - 1, Math.max(0, yy)) * width + Math.min(width - 1, Math.max(0, xx))) * 4] / 255;
     const strength = (card.mapSettings?.embossStrength ?? .25) * 4;

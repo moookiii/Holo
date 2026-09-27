@@ -334,6 +334,7 @@ async function start() {
         if (disposed) return;
         gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, open: leaveGallery, close: () => leaveGallery() });
       }
+      ++loadGeneration; ++profileGeneration; setLoading(false);
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
       card.visible = false; pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
