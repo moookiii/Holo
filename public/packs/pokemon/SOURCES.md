@@ -9,6 +9,10 @@ TCGdex returned no `base1` booster objects on 2026-09-23. The four supplied phot
 - `base1-charizard.jpg`: user-supplied photograph (`aoeuaoeuaoeuoeu.jpg`) used for the Charizard booster front.
 - `base1-venusaur.png`: user-supplied photograph (`aoeuouoeuaoeu.png`) used for the Venusaur booster front.
 
+## 1999 English Jungle
+
+- `base2-back.png`: user-supplied photograph (`codex-clipboard-59647c3b-99b0-48a0-aee2-88917291dd85.png`) used on the reverse of the Flareon, Scyther, and Wigglytuff boosters.
+
 ## Scarlet & Violet
 
 TCGdex returned no booster metadata for these English sets when validated on 2026-09-22. The original representative English wrappers remain below; the additional designs listed later are now used for random selection. The images remain Pokémon product artwork. Local WebP conversion reduces transfer size without cropping the pack edges.
