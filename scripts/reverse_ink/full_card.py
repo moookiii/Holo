@@ -74,7 +74,11 @@ def compile_family(family):
     glyphs = centered_glyph(family, records)
     if 'glyph_paths' in spec:
         glyphs = [authored_path(d) for d in spec['glyph_paths']]
-    rejected = family in ('grass', 'fire') and 'glyph_paths' not in spec
+    if 'glyph_source' in spec:
+        traced = spec['glyph_source']
+        glyphs = [transform_path(authored_path(d), np.eye(2)*traced['scale'],
+                  -np.array(traced['origin'])*traced['scale']) for d in traced['paths']]
+    rejected = family in ('grass', 'fire') and not ('glyph_paths' in spec or 'glyph_source' in spec)
     if rejected:
         raise ValueError(f'{family}: rejected glyph cannot be promoted')
     ratio = source['inner_ring_radius']/105
@@ -99,7 +103,7 @@ def compile_family(family):
     perimeter += [(glyph_d(glyphs, g['center'], g['scale'], g['rotation']), g.get('evidence','observed'), g['id']) for g in spec['perimeter_glyphs']]
     bounds = spec['visible_envelope']
     regions = ''.join(f'<rect x="{x}" y="{y}" width="{w}" height="{h}"/>' for x,y,w,h in bounds)
-    description = ('Printed network only. Full card frame; observed perimeter and body with explicitly '
+    description = ('Printed network only. Unvalidated full-card layout candidate; perimeter and body with explicitly '
                    'documented text interpolation. Blank unknown regions are not proof of absent ink. '
                    f'One selected reference: {spec["source"]}. First-pass reconstruction; see companion JSON.')
     prefix = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 630 880">',
@@ -128,7 +132,7 @@ def compile_family(family):
     # Lossless downsampled review; normalization's full resolution remains available.
     with Image.open(DATA/f'normalized/{spec["source"]}.png') as original:
         original.resize((945,1320),Image.Resampling.LANCZOS).save(out/'reference.png')
-    report = dict(family=family, source=spec['source'], status='full-card-first-pass-needs-review',
+    report = dict(family=family, source=spec['source'], status='unvalidated-full-card-candidate',
                   geometry_sha256=hashlib.sha256(spec_path.read_bytes()).hexdigest(),
                   coordinate_system=[630,880], observed_envelope=bounds, unknown_regions=spec['unknown_regions'],
                   body_opening_count=len(body), perimeter_opening_count=len(perimeter),

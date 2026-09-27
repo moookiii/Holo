@@ -1,0 +1,86 @@
+{
+  "family": "grass",
+  "source": "bulbasaur",
+  "status": "unvalidated-full-card-candidate",
+  "geometry_sha256": "578e2da1fe9df326d819be071af14f441bd7b72451a4454d61a22ba9490fa68b",
+  "coordinate_system": [
+    630,
+    880
+  ],
+  "observed_envelope": [
+    [
+      25,
+      25,
+      580,
+      59
+    ],
+    [
+      25,
+      84,
+      18,
+      359
+    ],
+    [
+      586,
+      84,
+      19,
+      359
+    ],
+    [
+      25,
+      443,
+      580,
+      412
+    ]
+  ],
+  "unknown_regions": [
+    {
+      "bounds": [
+        43,
+        84,
+        543,
+        359
+      ],
+      "reason": "Illustration and its frame conceal this region in the selected reference."
+    }
+  ],
+  "body_opening_count": 25,
+  "perimeter_opening_count": 32,
+  "interpolation": [
+    "grass-cell-08",
+    "grass-cell-09",
+    "grass-cell-11",
+    "grass-cell-12",
+    "grass-cell-13",
+    "grass-cell-14",
+    "grass-cell-15",
+    "grass-cell-22",
+    "grass-repeat-02",
+    "grass-repeat-08",
+    "header-left",
+    "header-name-left",
+    "header-name-middle",
+    "header-name-right",
+    "left-side-end",
+    "footer-center-cell",
+    "footer-center-chip",
+    "footer-bottom-center",
+    "footer-right-cell",
+    "footer-right-bottom",
+    "footer-far-right",
+    "footer-small-right",
+    "footer-left-edge",
+    "header-type-fragment",
+    "footer-small-type",
+    "footer-right-type"
+  ],
+  "limitations": [
+    "PAUSED BEFORE VALIDATION: new contours and perimeter placements are layout seeds, not recovered or approved geometry. Source-adapted shared perimeter seeds especially require individual photo review. Do not promote into masters.",
+    "One selected source is the review target. The previously measured common wheel is retained.",
+    "Sparse body polygons and source-adapted perimeter fragments are a first pass. Header/name, divider and footer continuations are lower-confidence interpolations, identified per path.",
+    "Small repeated glyphs reuse the component shape; their rotation and scale remain estimates. No period is tiled into the illustration.",
+    "Body uses wheel coordinates; perimeter uses normalized outer-card coordinates. Small registration disagreement can remain at their junction.",
+    "Apparent single-color estimates are not calibrated pigment reflectance or physical opacity."
+  ],
+  "photo_resampling": "Review downsample only; geometry uses full-card normalized source coordinates."
+}

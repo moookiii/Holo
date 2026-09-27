@@ -1,0 +1,86 @@
+{
+  "family": "lightning",
+  "source": "voltorb",
+  "status": "unvalidated-full-card-candidate",
+  "geometry_sha256": "56d148ee96ed8692695827289c74ee7ce60f10ddfaef34e3ef84606daa7205ce",
+  "coordinate_system": [
+    630,
+    880
+  ],
+  "observed_envelope": [
+    [
+      25,
+      25,
+      580,
+      59
+    ],
+    [
+      25,
+      84,
+      18,
+      359
+    ],
+    [
+      586,
+      84,
+      19,
+      359
+    ],
+    [
+      25,
+      443,
+      580,
+      412
+    ]
+  ],
+  "unknown_regions": [
+    {
+      "bounds": [
+        43,
+        84,
+        543,
+        359
+      ],
+      "reason": "Illustration and its frame conceal this region in the selected reference."
+    }
+  ],
+  "body_opening_count": 24,
+  "perimeter_opening_count": 32,
+  "interpolation": [
+    "lightning-cell-07",
+    "lightning-cell-08",
+    "lightning-cell-10",
+    "lightning-cell-11",
+    "lightning-cell-12",
+    "lightning-cell-13",
+    "lightning-cell-14",
+    "lightning-cell-21",
+    "lightning-repeat-02",
+    "lightning-repeat-08",
+    "header-left",
+    "header-name-left",
+    "header-name-middle",
+    "header-name-right",
+    "left-side-end",
+    "footer-center-cell",
+    "footer-center-chip",
+    "footer-bottom-center",
+    "footer-right-cell",
+    "footer-right-bottom",
+    "footer-far-right",
+    "footer-small-right",
+    "footer-left-edge",
+    "header-type-fragment",
+    "footer-small-type",
+    "footer-right-type"
+  ],
+  "limitations": [
+    "PAUSED BEFORE VALIDATION: new contours and perimeter placements are layout seeds, not recovered or approved geometry. Source-adapted shared perimeter seeds especially require individual photo review. Do not promote into masters.",
+    "One selected source is the review target. The previously measured common wheel is retained.",
+    "Sparse body polygons and source-adapted perimeter fragments are a first pass. Header/name, divider and footer continuations are lower-confidence interpolations, identified per path.",
+    "Small repeated glyphs reuse the component shape; their rotation and scale remain estimates. No period is tiled into the illustration.",
+    "Body uses wheel coordinates; perimeter uses normalized outer-card coordinates. Small registration disagreement can remain at their junction.",
+    "Apparent single-color estimates are not calibrated pigment reflectance or physical opacity."
+  ],
+  "photo_resampling": "Review downsample only; geometry uses full-card normalized source coordinates."
+}

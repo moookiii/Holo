@@ -1,0 +1,88 @@
+{
+  "family": "trainer",
+  "source": "helix-fossil",
+  "status": "unvalidated-full-card-candidate",
+  "geometry_sha256": "a0f33bf9ce61a4ad46e3f03b50a1cc0edf02a7f5626647d190377c5d219541f9",
+  "coordinate_system": [
+    630,
+    880
+  ],
+  "observed_envelope": [
+    [
+      25,
+      121,
+      18,
+      344
+    ],
+    [
+      586,
+      121,
+      19,
+      344
+    ],
+    [
+      25,
+      465,
+      580,
+      297
+    ],
+    [
+      25,
+      762,
+      168,
+      89
+    ]
+  ],
+  "unknown_regions": [
+    {
+      "bounds": [
+        25,
+        25,
+        580,
+        96
+      ],
+      "reason": "Opaque Trainer header; no observable ink."
+    },
+    {
+      "bounds": [
+        43,
+        121,
+        543,
+        344
+      ],
+      "reason": "Illustration conceals geometry."
+    },
+    {
+      "bounds": [
+        193,
+        762,
+        412,
+        89
+      ],
+      "reason": "Opaque Trainer rule box conceals geometry."
+    }
+  ],
+  "body_opening_count": 23,
+  "perimeter_opening_count": 11,
+  "interpolation": [
+    "trainer-cell-07",
+    "trainer-cell-08",
+    "trainer-cell-10",
+    "trainer-cell-11",
+    "trainer-cell-12",
+    "trainer-cell-15",
+    "trainer-cell-20",
+    "trainer-repeat-02",
+    "trainer-repeat-08",
+    "left-side-end"
+  ],
+  "limitations": [
+    "PAUSED BEFORE VALIDATION: new contours and perimeter placements are layout seeds, not recovered or approved geometry. Source-adapted shared perimeter seeds especially require individual photo review. Do not promote into masters.",
+    "One selected source is the review target. The previously measured common wheel is retained.",
+    "Sparse body polygons and source-adapted perimeter fragments are a first pass. Header/name, divider and footer continuations are lower-confidence interpolations, identified per path.",
+    "Small repeated glyphs reuse the component shape; their rotation and scale remain estimates. No period is tiled into the illustration.",
+    "Body uses wheel coordinates; perimeter uses normalized outer-card coordinates. Small registration disagreement can remain at their junction.",
+    "Apparent single-color estimates are not calibrated pigment reflectance or physical opacity."
+  ],
+  "photo_resampling": "Review downsample only; geometry uses full-card normalized source coordinates."
+}
