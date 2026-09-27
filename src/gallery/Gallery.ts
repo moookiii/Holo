@@ -65,7 +65,8 @@ export class Gallery {
     this.viewport.className = 'gallery-viewport'; this.viewport.tabIndex = 0; this.viewport.setAttribute('aria-label', 'Scrollable card collection');
     this.content.className = 'gallery-content'; this.viewport.append(this.content);
     this.status.className = 'gallery-status'; this.status.setAttribute('role', 'status');
-    this.root.append(header, filters, light, this.viewport, this.status); document.body.append(this.root);
+    const toolbar = document.createElement('div'); toolbar.className = 'gallery-toolbar'; toolbar.append(header, filters, light);
+    this.root.append(toolbar, this.viewport, this.status); document.body.append(this.root);
     const signal = this.abort.signal;
     this.viewport.addEventListener('scroll', () => { this.dirty = true; }, { passive: true, signal });
     this.viewport.addEventListener('pointermove', event => { if (event.pointerType !== 'touch') this.pointer = { x: event.clientX, y: event.clientY }; }, { passive: true, signal });

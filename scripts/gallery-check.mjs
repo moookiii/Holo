@@ -4,7 +4,7 @@ import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 import assert from 'node:assert/strict';
 
-const out = join(process.cwd(), 'artifacts/gallery'); await mkdir(out, { recursive: true });
+const out = join(process.cwd(), 'artifacts', process.env.GALLERY_OUTPUT || 'gallery'); await mkdir(out, { recursive: true });
 const options = { headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] };
 if (!existsSync(chromium.executablePath())) {
   const base = join(process.env.LOCALAPPDATA || '', 'ms-playwright');
