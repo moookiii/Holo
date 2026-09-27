@@ -92,6 +92,12 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const grid = root.querySelector<HTMLElement>('.card-grid')!;
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
   const matchesSearch = (card: CardDefinition) => !searchQuery || [card.title, card.set, card.number, card.franchise].some(value => value.toLocaleLowerCase().includes(searchQuery));
+  const baseSetHoloIds = cards
+    .filter(card => card.set === 'Base Set · First Edition' && card.profile === 'pokemon-base-set-star')
+    .map(card => card.id);
+  const jungleHoloIds = cards
+    .filter(card => card.set === 'Jungle' && card.pokemon?.variant === 'holo')
+    .map(card => card.id);
   const pickerPriority = [
     'umbreon-gx-sm1-154',
     'pokemon:sv08.5-161:holo',
@@ -102,7 +108,10 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     'pokemon:sv08.5-156:holo',
     'pokemon:sv08.5-155:holo',
     'pokemon:sv08.5-144:holo',
-    'pikachu-vmax-vivid-voltage', 'pokemon:sv08.5-133:holo', 'nocturne', 'lugia-neo-genesis',
+    'pikachu-vmax-vivid-voltage', 'pokemon:sv08.5-133:holo', 'nocturne',
+    ...baseSetHoloIds,
+    ...jungleHoloIds,
+    'lugia-neo-genesis',
   ];
   const drawCards = () => {
     grid.replaceChildren();
