@@ -98,6 +98,9 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     'pokemon:sv08.5-146:holo',
     'pokemon:sv08.5-167:holo',
     'pokemon:sv08.5-150:holo',
+    'pokemon:sv08.5-153:holo',
+    'pokemon:sv08.5-156:holo',
+    'pokemon:sv08.5-155:holo',
     'pikachu-vmax-vivid-voltage', 'pokemon:sv08.5-133:holo', 'nocturne', 'lugia-neo-genesis',
   ];
   const drawCards = () => {
