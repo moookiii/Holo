@@ -1,18 +1,18 @@
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { exp, float, If, instanceIndex, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, uv, varying, vec2, vec3 } from 'three/tsl';
+import { exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
-import { PREVIEW_PARAMETER_COLUMNS } from '../card/PreviewOptics';
+
 
 interface Region { mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; }
 
 /** Uses the viewer's wavelength response and grating momentum under actual
  * incident light. Foil energy enters directSpecular, never the printed color. */
 class GalleryLightingModel extends PhysicalLightingModel {
-  constructor(private regions: Region[]) { super(true, false, true, true); }
+  constructor(private regions: Region[]) { super(true, false, true, false); }
   private backing() {
     return this.regions.reduce<Node<'float'>>((weight, r) => weight.sub(r.mask.mul(r.parameters[5].y.oneMinus())), float(1)).max(.09);
   }
@@ -30,7 +30,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       [width.sub(direction.mul(width.dot(direction))).div(distance), height.sub(direction.mul(height.dot(direction))).div(distance)]);
   }
   private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
-    for (const r of this.regions) If(r.mask.greaterThan(.001), () => {
+    for (const r of this.regions) {
       const [diffraction, axis, structure, , surface, behavior] = r.parameters;
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
@@ -62,7 +62,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const ink = mix(vec3(1), r.ink, surface.z);
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(silver).add(vec3(1, .985, .96).mul(sheen))
         .mul(incident, visible, ink, r.mask, data.lightColor as Node<'vec3'>));
-    });
+    }
   }
   override indirectSpecular(builder: NodeBuilder) {
     super.indirectSpecular(builder);
@@ -84,12 +84,12 @@ class GalleryLightingModel extends PhysicalLightingModel {
 
 export class GalleryMaterial extends MeshPhysicalNodeMaterial {
   private regions: Region[];
-  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, capacity: number) {
+  constructor(arrays: DataArrayTexture[], parameterTexture: Texture) {
     super({ clearcoat: .2, clearcoatRoughness: .34, roughness: .48, metalness: .015, envMapIntensity: .65, alphaTest: .5 });
     this.name = 'Gallery shared optical material';
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
     const image = (index: number) => texture(arrays[index], coord).depth(layer);
-    const param = (column: number) => texture(parameterTexture, vec2((column + .5) / PREVIEW_PARAMETER_COLUMNS, float(layer).add(.5).div(capacity)));
+    const param = (column: number) => textureLoad(parameterTexture, ivec2(column, layer.toInt()));
     const print = image(0).rgb, masks = image(1), normal = image(2);
     const weights = [masks.r, masks.g, masks.b];
     this.regions = weights.map((mask, index) => ({ mask, field: image(3 + index), detail: image(6 + index),

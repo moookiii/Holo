@@ -72,7 +72,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     }
     for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
       const i = (y * width + x) * 4;
-      const source = generated ? (Math.min(generated.height - 1, Math.floor(y / height * generated.height)) * generated.width + Math.min(generated.width - 1, Math.floor(x / width * generated.width))) * 4 : 0;
+      const source = generated ? (Math.min(generated.height - 1, Math.floor((height - 1 - y) / height * generated.height)) * generated.width + Math.min(generated.width - 1, Math.floor(x / width * generated.width))) * 4 : 0;
       for (let c = 0; c < 4; c++) {
         field[i + c] = authored?.[i + c] ?? generated?.direction[source + c] ?? [255, 128, 85, 255][c];
         detail[i + c] = generated?.relief[source + c] ?? 128;

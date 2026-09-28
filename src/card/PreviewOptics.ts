@@ -8,6 +8,11 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   const parameters = new Float32Array(PREVIEW_PARAMETER_COLUMNS * 4);
   const set = (column: number, values: number[]) => parameters.set(values, column * 4);
   [profile, profile.secondary, profile.stamp].forEach((layer, index) => {
+    set(index * 8, [1.25, .05, 0, 0]);
+    set(index * 8 + 1, [0, .4, 0, 0]);
+    set(index * 8 + 4, [0, 0, 0, 1]);
+    set(index * 8 + 5, [0, 1, 0, 1]);
+    set(index * 8 + 6, [0, 0, 0, 1.5]);
     if (!layer) return;
     const d = layer.diffraction, s = layer.structure, f = layer.surface;
     const disabled = new Set(layer.disabledMechanisms), enabled = layer.enabled !== false && profile.id !== 'print-only';

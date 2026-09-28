@@ -5,7 +5,7 @@ import { PREVIEW_PARAMETER_COLUMNS } from '../card/PreviewOptics';
 import { GalleryMaterial } from './GalleryMaterial';
 import { GALLERY_CAPACITY } from './GalleryLayout';
 
-/** One instanced draw, one material graph and three fixed-size texture arrays.
+/** One instanced draw, one material graph and nine fixed-size texture arrays.
  * Array layers update independently; scrolling never uploads the whole atlas. */
 export class GalleryRenderer {
   readonly capacity = GALLERY_CAPACITY;
@@ -24,7 +24,7 @@ export class GalleryRenderer {
     this.arrays[0].colorSpace = SRGBColorSpace;
     this.parameterTexture.minFilter = this.parameterTexture.magFilter = NearestFilter;
     this.parameterTexture.needsUpdate = true;
-    this.material = new GalleryMaterial(this.arrays, this.parameterTexture, this.capacity);
+    this.material = new GalleryMaterial(this.arrays, this.parameterTexture);
     this.mesh = new InstancedMesh(new PlaneGeometry(1, 1), this.material, this.capacity);
     this.mesh.name = 'Gallery visible cards'; this.mesh.instanceMatrix.setUsage(DynamicDrawUsage);
     this.mesh.frustumCulled = false; this.mesh.visible = false; scene.add(this.mesh);
