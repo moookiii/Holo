@@ -1,15 +1,17 @@
 import type { Node } from 'three/webgpu';
 import { uv, vec2, vec3, float, exp, mix, normalView, positionViewDirection } from 'three/tsl';
-import type { OpticalUniforms } from '../OpticalUniforms';
 import { stableHash } from './PatternLayer';
 import { spectrum } from './DiffractionLayer';
+
+type CrossedFacetOptics = Record<'aspect' | 'facetTilt' | 'scale' | 'spread' | 'sharpness' | 'period' | 'bandwidth' | 'secondary' | 'glintStrength' | 'sparkleGain' | 'strength' | 'spectralGain', Node<'float'>>;
 
 /** Crossed embossed microprisms. Geometry lives in card UVs; only the BRDF
  * depends on the emitter/view. Correlated inclinations produce broken glints,
  * never a translated mask or a periodically illuminated macro grid. */
 export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitangent: Node<'vec3'>,
-  normal: Node<'vec3'>, field: Node<'vec4'>, details: Node<'vec4'>, u: OpticalUniforms, seed: number,
+  normal: Node<'vec3'>, field: Node<'vec4'>, details: Node<'vec4'>, u: CrossedFacetOptics, seed: number | Node<'float'>,
   footprint?: [Node<'vec3'>, Node<'vec3'>]) {
+  const seedNode = typeof seed === 'number' ? float(seed) : seed;
   const p = uv().mul(vec2(u.aspect, 1));
   const momentum = light.add(positionViewDirection).toVar();
   const half = momentum.normalize().toVar();
@@ -28,10 +30,10 @@ export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitang
     const lattice = point.mul(u.scale).mul(vec2(.38, 1.43));
     // Offset each row independently: short facets never line up into a tiled lattice.
     const row = lattice.y.floor();
-    const shifted = lattice.add(vec2(stableHash(vec2(row, 9), seed + 311), 0)).toVar();
+    const shifted = lattice.add(vec2(stableHash(vec2(row, 9), seedNode.add(311)), 0)).toVar();
     const cell = shifted.floor();
-    const r = stableHash(cell, seed + (vertical ? 491 : 127)).toVar();
-    const s = stableHash(cell, seed + (vertical ? 617 : 283)).toVar();
+    const r = stableHash(cell, seedNode.add(vertical ? 491 : 127)).toVar();
+    const s = stableHash(cell, seedNode.add(vertical ? 617 : 283)).toVar();
     const local = shifted.fract().sub(vec2(.5, s.sub(.5).mul(.32).add(.5)));
     const size = vec2(r.mul(.21).add(.25), s.mul(.085).add(.075));
     const pixel = lattice.fwidth().max(.001).toVar();
@@ -71,3 +73,4 @@ export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitang
   }
   return result;
 }
+

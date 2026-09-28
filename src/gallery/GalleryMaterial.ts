@@ -2,6 +2,7 @@ import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture,
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
 import { exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
+import { crossedFacets } from '../materials/layers/CrossedFacetLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
@@ -65,8 +66,15 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const broadening = halfVariance.mul(r.glint.z).add(1);
       const sparkle = microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.div(broadening),
         strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a);
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen))
-        .mul(incident, visible, ink, r.mask, data.lightColor as Node<'vec3'>));
+      // Evaluate derivatives continuously, then select the per-instance optical model.
+      const cuts = crossedFacets(light, tangentView, bitangent, geometric, r.field, r.detail, {
+        aspect: r.glintSurface.y, facetTilt: structure.y, scale: r.glintSurface.w.max(1), spread: r.glintSurface.x,
+        sharpness: r.glint.z, period: diffraction.x, bandwidth: diffraction.y, secondary: diffraction.w,
+        glintStrength: r.glint.w, sparkleGain: float(1), strength: diffraction.z, spectralGain: float(1),
+      }, r.glintSurface.z, footprint).mul(r.field.a, r.sparkle, r.ink);
+      const conventional = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(mix(conventional, cuts, r.glintSurface.w.greaterThan(0).select(1, 0))
+        .mul(r.mask, data.lightColor as Node<'vec3'>));
     }
   }
   override indirectSpecular(builder: NodeBuilder) {
@@ -76,7 +84,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
     for (const r of this.regions) {
       const backing = mix(float(1), mix(float(.18), float(1), r.field.a), r.parameters[5].w);
       (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign((context.radiance as Node<'vec3'>)
-        .mul(r.mask, r.parameters[4].x, backing, mix(vec3(1), r.ink, r.parameters[4].z)));
+        .mul(r.mask, r.parameters[4].x, backing, mix(vec3(1), r.ink, r.parameters[4].z.max(r.glintSurface.w.greaterThan(0).select(1, 0)))));
     }
   }
   override finish(builder: NodeBuilder) {

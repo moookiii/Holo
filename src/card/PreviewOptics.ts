@@ -23,13 +23,13 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
       d.followsAuthoredNormals || [card.maps?.direction, card.maps?.secondaryDirection, card.maps?.stampDirection][index] ? 1 : 0]);
     set(base + 3, [f.metalness, f.roughness, disabled.has('laminate') ? 0 : f.laminate, f.laminateRoughness]);
     set(base + 4, [disabled.has('reflection') ? 0 : f.foilReflectance ?? 0, disabled.has('reflection') ? 0 : f.sheen ?? 0, f.inkTransmission ?? 0, f.inkDensity ?? 1]);
-    set(base + 5, [f.substrateDarkening ?? 0, f.substrateReflection ?? 1,
+    set(base + 5, [f.substrateDarkening ?? 0, s.field === 'starlight' ? .09 : f.substrateReflection ?? 1,
       ['plain', 'satin', 'e-reader', 'sheen', 'water-web', 'mirage'].includes(s.field) ? 0 : 1, s.field === 'radial' ? 0 : 1]);
     set(base + 6, [s.normalVariance ?? 0, f.patternRoughness ?? 0, disabled.has('film') ? 0 : f.iridescence ?? 0, f.filmIOR ?? 1.5]);
     set(base + 7, [f.filmMin ?? 200, f.filmMax ?? 600, f.pearlBody ?? 0, enabled ? 1 : 0]);
     const g = layer.glints;
-    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && g.microdiamond && !disabled.has('sparkle') ? g.strength : 0]);
-    set(29 + index * 2, [g.spread, card.dimensions.width / card.dimensions.height, card.seed + [0, 8191, 16381][index], 0]);
+    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && (g.microdiamond || s.field === 'starlight') && !disabled.has('sparkle') ? g.strength : 0]);
+    set(29 + index * 2, [g.spread, card.dimensions.width / card.dimensions.height, card.seed + [0, 8191, 16381][index], s.field === 'starlight' ? s.scale : 0]);
   });
   set(24, [...(card.substrate?.color ?? [.27, .31, .30]), card.substrate ? 1 - card.substrate.printRetention : .1]);
   set(25, [...(card.substrate?.backgroundColor ?? [0, 0, 0]), card.substrate?.backgroundColor ? 1 : 0]);
