@@ -20,6 +20,7 @@ export class Gallery {
   private content = document.createElement('div');
   private count = document.createElement('p');
   private status = document.createElement('p');
+  private tools = document.createElement('details');
   private search = document.createElement('input');
   private filters = new Map<string, HTMLSelectElement>();
   readonly query: GalleryQuery = { search: '' };
@@ -63,10 +64,14 @@ export class Gallery {
     const light = document.createElement('details'); light.className = 'gallery-light';
     const summary = document.createElement('summary'); summary.textContent = 'Lighting';
     const controls = document.createElement('div'); this.refreshLighting = galleryLightingControls(controls, options.lighting); light.append(summary, controls);
+    const tools = this.tools; tools.className = 'gallery-tools'; tools.open = true;
+    const toolsSummary = document.createElement('summary'); toolsSummary.textContent = 'Filters & lighting';
+    const toolsContent = document.createElement('div'); toolsContent.append(filters, light);
+    tools.append(toolsSummary, toolsContent);
     this.viewport.className = 'gallery-viewport'; this.viewport.tabIndex = 0; this.viewport.setAttribute('aria-label', 'Scrollable card collection');
     this.content.className = 'gallery-content'; this.viewport.append(this.content);
     this.status.className = 'gallery-status'; this.status.setAttribute('role', 'status');
-    const toolbar = document.createElement('div'); toolbar.className = 'gallery-toolbar'; toolbar.append(header, filters, light);
+    const toolbar = document.createElement('div'); toolbar.className = 'gallery-toolbar'; toolbar.append(header, tools);
     this.root.append(toolbar, this.viewport, this.status); document.body.append(this.root);
     const signal = this.abort.signal;
     this.viewport.addEventListener('scroll', () => { this.dirty = true; }, { passive: true, signal });
@@ -103,7 +108,7 @@ export class Gallery {
         ? profiles.find(p => p.id === value)?.name ?? printVariantLabel(value as PrintVariant) ?? value : value, value)));
       select.value = this.query[facet.key] ?? '';
     }
-    this.applyFilters(false); this.search.focus({ preventScroll: true });
+    this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
   }
   hide() {
     this.active = false; this.root.hidden = true; this.graphics.mesh.visible = false; this.pointer = undefined;
