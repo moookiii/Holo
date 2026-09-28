@@ -15,6 +15,7 @@ interface ViewerActions {
 }
 export interface ProfileOption { id: string; name: string; family: string; labOnly?: boolean; }
 type CardFinish = 'all' | 'holo' | 'non-holo' | 'metal';
+export const FIRST_PICKER_CARD_ID = 'umbreon-gx-sm1-154';
 const icon = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
 export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: ProfileOption[], actions: ViewerActions, development = false) {
   root.innerHTML = `<a class="lab-entry" href="?lab=1">Holo Lab ↗</a><button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button><nav class="controls" aria-label="Card controls">
@@ -101,7 +102,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     .filter(card => card.set === 'Jungle' && card.pokemon?.variant === 'holo')
     .map(card => card.id);
   const pickerPriority = [
-    'umbreon-gx-sm1-154',
+    FIRST_PICKER_CARD_ID,
     'pokemon:sv08.5-161:holo',
     'pokemon:sv08.5-146:holo',
     'pokemon:sv08.5-167:holo',

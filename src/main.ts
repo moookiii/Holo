@@ -8,7 +8,7 @@ import { CardFactory } from './card/CardFactory';
 import type { CardInstance } from './card/CardInstance';
 import { CardMotion, smootherstep, type InteractionMode } from './input/Motion';
 import { PointerController } from './input/PointerController';
-import { createUI } from './ui/PresentationUI';
+import { createUI, FIRST_PICKER_CARD_ID } from './ui/PresentationUI';
 import { HolographicMaterial } from './materials/HolographicMaterial';
 import { framingDistance } from './camera/Framing';
 import { profiles } from './materials/profiles';
@@ -42,7 +42,7 @@ async function start() {
   const cpuPreparation = new CardCpuPreparation(profiles);
   const { assets, maps: mapLoader } = factory;
   const cards = [...builtInCards, ...prismaticPickerCards()];
-  const initialCard = cards.find(card => card.id === 'pokemon:sv08.5-161:holo') ?? cards[0];
+  const initialCard = cards.find(card => card.id === FIRST_PICKER_CARD_ID) ?? cards[0];
   const lighting = new StudioLighting(scene);
   await lighting.createEnvironment(renderer);
   startupMark('environmentReady');
