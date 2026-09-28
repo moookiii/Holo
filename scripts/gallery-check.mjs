@@ -66,7 +66,7 @@ try {
     await page.locator('.gallery-card').first().click();
     await page.waitForFunction(() => !window.__holo.gallery.stats()?.active, null, { timeout: 90000 });
     await snapshot(`focused-${i}`);
-    await page.getByRole('button', { name: 'Back to Gallery', exact: true }).click();
+    await page.getByRole('button', { name: 'Gallery', exact: true }).click();
     await page.waitForFunction(() => window.__holo.gallery.stats()?.active);
     await page.waitForTimeout(500); await snapshot(`returned-${i}`);
   }
@@ -83,7 +83,7 @@ try {
   });
   assert.ok(visibleIndex); await page.locator(`[data-card-index="${visibleIndex}"]`).click();
   await page.waitForFunction(() => !window.__holo.gallery.stats()?.active, null, { timeout: 90000 });
-  await page.getByRole('button', { name: 'Back to Gallery', exact: true }).click();
+  await page.getByRole('button', { name: 'Gallery', exact: true }).click();
   await page.waitForTimeout(500);
   assert.equal((await snapshot('scroll-restored')).gallery.scrollTop, savedScroll);
   await page.getByRole('button', { name: 'Back to viewer', exact: true }).click();
@@ -91,7 +91,7 @@ try {
   await page.evaluate(async () => { await window.__holo.pack.open('archive-01'); });
   await snapshot('pack-open');
   await page.evaluate(() => window.__holo.pack.close());
-  await page.getByRole('button', { name: 'Back to Gallery', exact: true }).click();
+  await page.getByRole('button', { name: 'Gallery', exact: true }).click();
   // Synthetic metadata stresses the real DOM/rendering boundary without new assets.
   await page.evaluate(async () => {
     const h = window.__holo, original = [...h.cards];

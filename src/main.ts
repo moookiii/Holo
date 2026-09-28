@@ -323,7 +323,7 @@ async function start() {
       galleryFocusFactory?.dispose(); galleryFocusFactory = focusedFactory;
       gallery?.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false; pointer.setEnabled(true);
       card.visible = true; motion.reset(); card.position.set(0, 0, 0);
-      const entry = document.querySelector<HTMLButtonElement>('#gallery-open'); if (entry) { entry.textContent = 'Back to Gallery'; entry.focus({ preventScroll: true }); }
+      document.querySelector<HTMLButtonElement>('#gallery-open')?.focus({ preventScroll: true });
     } catch (error) { focusedFactory.dispose(); throw error; }
   };
   const openGallery = async () => {
