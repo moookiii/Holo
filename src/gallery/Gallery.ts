@@ -61,9 +61,8 @@ export class Gallery {
     }
     const clear = document.createElement('button'); clear.textContent = 'Clear filters';
     clear.onclick = () => { this.search.value = this.query.search = ''; for (const facet of facets) { delete this.query[facet.key]; this.filters.get(facet.key)!.value = ''; } this.applyFilters(); }; filters.append(clear);
-    const light = document.createElement('details'); light.className = 'gallery-light';
-    const summary = document.createElement('summary'); summary.textContent = 'Lighting';
-    const controls = document.createElement('div'); this.refreshLighting = galleryLightingControls(controls, options.lighting); light.append(summary, controls);
+    const light = document.createElement('div'); light.className = 'gallery-light';
+    this.refreshLighting = galleryLightingControls(light, options.lighting);
     const tools = this.tools; tools.className = 'gallery-tools'; tools.open = true;
     const toolsSummary = document.createElement('summary'); toolsSummary.textContent = 'Filters & lighting';
     const toolsContent = document.createElement('div'); toolsContent.append(filters, light);

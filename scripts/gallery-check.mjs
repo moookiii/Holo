@@ -55,7 +55,6 @@ try {
     assert.ok(state.gallery.domCards <= 48); assert.ok(state.cpu.previewBytes <= state.cpu.previewBudget);
     assert.equal(state.memory.texturesSize, report.snapshots.find(s => s.label === 'initial').memory.texturesSize);
   }
-  await page.getByText('Lighting', { exact: true }).first().click();
   await page.getByRole('combobox', { name: 'Gallery lighting' }).selectOption('Blacklight'); await page.waitForTimeout(500);
   await page.screenshot({ path: join(out, 'blacklight.png') });
   await page.getByRole('combobox', { name: 'Gallery lighting' }).selectOption('Moving light'); await page.waitForTimeout(800);

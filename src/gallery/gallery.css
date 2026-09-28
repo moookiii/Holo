@@ -15,9 +15,7 @@
 .gallery label { display: grid; gap: 6px; color: #888; font-size: 10px; }
 .gallery select { height: 34px; max-width: 200px; min-width: 100px; padding: 0 24px 0 9px; border: 1px solid #242424; border-radius: 5px; background: #101010; }
 .gallery input[type=search] { width: 210px; height: 34px; padding: 0 10px; font: inherit; font-size: 12px; background: #101010; border: 1px solid #2b2b2b; color: #ddd; border-radius: 5px; }
-.gallery-light { background: #080808; padding: 0 40px 12px; }
-.gallery-light summary { cursor: pointer; font-size: 11px; color: #b4a17b; width: max-content; }
-.gallery-light > div { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; padding-top: 12px; }
+.gallery-light { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; background: #080808; padding: 0 40px 12px; }
 .gallery-light input { max-width: 110px; accent-color: #b4a17b; }
 .gallery-viewport { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-color: #40392a #080808; touch-action: pan-y; outline-offset: -3px; }
 .gallery-content { position: relative; }
