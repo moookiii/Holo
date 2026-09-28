@@ -1,12 +1,13 @@
 """Register visible optical motifs to unchanged TCGdex fronts.
 
 This measures printed dots, NOT height or relief. Local contrast proposes
-islands inside existing background coverage; PNG review overlays expose every
-accepted outline. Retain scanned circle irregularity and gaps rather than
-substituting ideal circles or distributing motifs procedurally.
+centers and radii inside existing background coverage. Draw filled, antialiased
+circles at those measured locations. Scan noise never defines their perimeter
+or punches holes inside a dot; subject protection stays in its separate map.
 """
 from pathlib import Path
 import json
+import sys
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw
@@ -17,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 ASSETS = ROOT/'public/cards/pokemon/base-set-2'
 REVIEW = ROOT/'artifacts/base-set-2/cosmos-registration'
 REVIEW.mkdir(parents=True,exist_ok=True)
+saved = {} if '--remeasure' in sys.argv else {int(r['card'].split('-')[1]):r['motifs'] for r in json.loads((ROOT/'scripts/base-set-2/cosmos-registration.json').read_text())}
 report=[]; tiles=[]
 for n in range(1,21):
     front=np.array(Image.open(ASSETS/f'{n}.png').convert('RGB'))
@@ -25,34 +27,45 @@ for n in range(1,21):
     allowed=(foil>127)&(protection<180)
     safe=cv2.erode(allowed.astype(np.uint8),np.ones((3,3),np.uint8))>0
     intensity=np.max(front.astype(np.float32),axis=2)/255
-    blobs=blob_log(intensity,min_sigma=.65,max_sigma=9,num_sigma=22,threshold=.027,overlap=.45)
-    mask=np.zeros((825,600),np.uint8); dots=[]
+    blobs = [(d['center'][1],d['center'][0],d['radius']/2**.5) for d in saved[n]] if n in saved else blob_log(intensity,min_sigma=.65,max_sigma=9,num_sigma=22,threshold=.027,overlap=.45)
+    mask=np.zeros((1650,1200),np.float32); dots=[]
     derivatives={}
     for cy,cx,sigma in blobs:
         x0,y0=int(round(cx)),int(round(cy))
-        if not safe[y0,x0]:continue
-        if sigma not in derivatives:
-            derivatives[sigma]=[gaussian_filter(intensity,sigma,order=order) for order in [(0,2),(2,0),(1,1)]]
-        xx,yy,xy=[v[y0,x0] for v in derivatives[sigma]]
-        eig=np.linalg.eigvalsh([[xx,xy],[xy,yy]])
-        if eig[1]>=0 or eig[1]/eig[0]<.22:continue
+        if n not in saved:
+            if not safe[y0,x0]:continue
+            if sigma not in derivatives:
+                derivatives[sigma]=[gaussian_filter(intensity,sigma,order=order) for order in [(0,2),(2,0),(1,1)]]
+            xx,yy,xy=[v[y0,x0] for v in derivatives[sigma]]
+            eig=np.linalg.eigvalsh([[xx,xy],[xy,yy]])
+            if eig[1]>=0 or eig[1]/eig[0]<.22:continue
         radius=float(sigma*2**.5)
+        if n in saved:
+            sample=next(d for d in saved[n] if d['center']==[cx,cy] and abs(d['radius']-radius)<.001)
+            pixels=sample['pixels']
         left=max(0,int(cx-radius*2-2));right=min(600,int(cx+radius*2+3))
         top=max(0,int(cy-radius*2-2));bottom=min(825,int(cy+radius*2+3))
-        gy,gx=np.mgrid[top:bottom,left:right];distance=np.hypot(gx-cx,gy-cy)
-        roi=front[top:bottom,left:right].astype(float)
-        annulus=(distance>radius*1.55)&(distance<radius*2.1)
-        if not annulus.any():continue
-        ground=np.median(roi[annulus],axis=0)
-        delta=np.max(roi-ground,axis=2)
-        peak=float(np.max(delta[distance<max(1,radius*.5)]))
-        if peak<25:continue
-        shape=(distance<radius*1.3)&(delta>max(12,peak*.32))&allowed[top:bottom,left:right]
-        if shape.sum()<2:continue
-        mask[top:bottom,left:right][shape]=255
-        dots.append({'center':[round(float(cx),3),round(float(cy),3)],'radius':round(radius,3),'pixels':int(shape.sum())})
-    # Preserve measured perimeters, with subpixel antialiasing at delivery size.
-    image=Image.fromarray(mask).resize((1200,1650),Image.Resampling.LANCZOS)
+        if n not in saved:
+            gy,gx=np.mgrid[top:bottom,left:right];distance=np.hypot(gx-cx,gy-cy)
+            roi=front[top:bottom,left:right].astype(float)
+            annulus=(distance>radius*1.55)&(distance<radius*2.1)
+            if not annulus.any():continue
+            ground=np.median(roi[annulus],axis=0)
+            delta=np.max(roi-ground,axis=2)
+            peak=float(np.max(delta[distance<max(1,radius*.5)]))
+            if peak<25:continue
+            pixels=int(((distance<radius*1.3)&(delta>max(12,peak*.32))&allowed[top:bottom,left:right]).sum())
+        # Sparse bright specks on a broad printed ray are not a large orb.
+        if pixels/(np.pi*radius*radius)<.45:continue
+        # Contrast confirms a candidate only; it must never become a cutout.
+        # LoG's sqrt(2)*sigma is the measured disk radius in source pixels.
+        gy2,gx2=np.mgrid[top*2:bottom*2,left*2:right*2]
+        distance2=np.hypot((gx2+.5)/2-(cx+.5),(gy2+.5)/2-(cy+.5))
+        disk=np.clip((radius-distance2)*2+.5,0,1)
+        region=mask[top*2:bottom*2,left*2:right*2]
+        np.maximum(region,disk,out=region)
+        dots.append({'center':[round(float(cx),3),round(float(cy),3)],'radius':round(radius,3),'pixels':pixels})
+    image=Image.fromarray(np.rint(mask*255).astype(np.uint8))
     image.save(ASSETS/f'maps/{n}-cosmos.png',optimize=True)
     preview=np.array(Image.fromarray(front).resize((1200,1650)))
     contours,_=cv2.findContours((np.array(image)>127).astype(np.uint8),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)

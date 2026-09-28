@@ -89,6 +89,7 @@ test('registered Cosmos preserves exact dot support and top-down registration ac
   for(let y=0;y<64;y++)for(let x=0;x<64;x++) {
     const i=(y*64+x)*4,expected=image.data[Math.floor((63-y)/8)*8+Math.floor(x/8)]>0;
     assert.equal(a.direction[i+3]>40,expected);assert.equal(c.direction[i+3]>40,expected);
+    if(expected) assert.equal(a.direction[i+3],190,'Filled dots have a uniform response without grain or interior holes');
     assert.equal(a.relief[i+2],128);
   }
   const missing=generateBaseSet2Cosmos(spec,64);

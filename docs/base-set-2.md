@@ -55,22 +55,26 @@ limit precision; source cutout quirks remain inherited.
 
 All 20 holos use `pokemon-base-set-2-cosmos` / `base-set-2-cosmos`, independently
 of Base/Jungle/Fossil starlight and the generic later Cosmos profiles.
-`register-cosmos.py` measures 9,003 visible dot/orb candidates in the exact
-TCGdex artwork using multiscale blob positions and local colored boundaries,
+`register-cosmos.py` measures visible dot/orb candidates in the exact
+TCGdex artwork using multiscale blob centers and radii,
 restricted by existing foil/protection. The delivered `*-cosmos.png` files are
 **filled motifs**, not cutouts. Pink outlines exist only in diagnostic overlays.
 The dot maps never subtract from foil coverage or subject protection.
+The default generation reuses recorded measurements; `--remeasure` repeats
+detection from the fronts. Sparse highlights on broad printed rays are rejected
+before drawing circles.
 
-Each motif keeps its measured location, footprint, irregular edge and internal
-gaps. `cosmos-registration.json` records source-space centers and radii.
+Each motif is a filled antialiased circle at its measured location and radius.
+Brightness is used only to confirm a dot, never to trace a ragged perimeter or
+cut holes inside it. `cosmos-registration.json` records source-space centers and radii.
 The runtime samples these PNGs in full-card coordinates, with the image-to-UV
 vertical flip handled once. Seed changes optical orientation, not placement or
 size; the scale control cannot redistribute the dots. No procedural dots are
 added when a motif image is absent. Both viewer and pack preparation preserve
 the full-resolution motif input.
 
-The material gives each connected dot a stable optical orientation and subtle
-fixed internal granularity. It has no procedural star rays, imposed spiral,
+The material gives each connected dot a stable optical orientation and smooth
+interior response. It has no procedural star rays, imposed spiral,
 random sparkle, emboss, etched relief or reverse treatment. Clean fronts remain
 byte-identical; foil optics, motifs and protection are separate assets.
 

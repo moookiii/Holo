@@ -2,9 +2,9 @@ import { encodeGratingAxis } from './Orientation.ts';
 import { labelRegisteredStars, type StarImage } from './RegisteredStars.ts';
 import type { FieldData, PatternSpec } from './ManufacturingField.ts';
 
-/** Early English Base Set 2 optics on the exact scan's authored dot islands.
- * Source PNG defines all positions, sizes, outlines and gaps. Seed changes
- * optical orientation only; no generated circles, later-era swirl or relief.
+/** Early English Base Set 2 optics on filled circles measured from the scan.
+ * Source PNG defines dot centers and radii. Seed changes optical orientation
+ * only; no scattered extra dots, later-era swirl or relief.
  */
 export function generateBaseSet2Cosmos(spec: PatternSpec, height: number, image?: StarImage): FieldData {
   const width = Math.round(height * spec.aspect);
@@ -33,16 +33,13 @@ export function generateBaseSet2Cosmos(spec: PatternSpec, height: number, image?
         (random(id, 41) - .5) * 42, (random(id, 53) - .5) * 42];
       optical.set(id, values);
     }
-    // Fixed optical cells never change the measured silhouette or add sparkle.
-    const cellX = Math.floor(ix / height * 720), cellY = Math.floor(iy / height * 720);
-    const cell = (Math.imul(cellX ^ spec.seed, 374761393) ^ Math.imul(cellY, 668265263)) >>> 0;
-    const grain = .72 + (cell % 101) / 360;
+    // A dot has one continuous optical response, without noisy interior cells.
     direction[i] = shape ? Math.round(values[0]) : 255;
     direction[i + 1] = shape ? Math.round(values[1]) : 128;
     direction[i + 2] = shape ? Math.round(values[2]) : 85;
-    direction[i + 3] = Math.round(5 * (1 - shape) + shape * grain * 235);
+    direction[i + 3] = Math.round(5 * (1 - shape) + shape * 190);
     relief[i] = Math.round(128 + values[3] * shape); relief[i + 1] = Math.round(128 + values[4] * shape);
-    relief[i + 2] = 128; relief[i + 3] = Math.round(178 + shape * grain * 35);
+    relief[i + 2] = 128; relief[i + 3] = Math.round(178 + shape * 35);
   }
   return { width, height, direction, relief };
 }
