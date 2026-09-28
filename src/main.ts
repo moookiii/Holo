@@ -357,6 +357,13 @@ async function start() {
     gallery: () => { void openGallery().catch(showError); },
   }, new URLSearchParams(location.search).has('lab'));
   ui.selectCard(definition.id); ui.selectProfile(activeProfile);
+  const galleryEscape = (event: KeyboardEvent) => {
+    if (event.key !== 'Escape' || disposed || !galleryFocusFactory || gallery?.active || galleryOpening || pack || packRequest || packBrowser || browserLoading || openingImport) return;
+    if (document.querySelector('dialog[open]') || !document.querySelector<HTMLElement>('#card-panel')?.hidden || !document.querySelector<HTMLElement>('#light-panel')?.hidden) return;
+    event.preventDefault(); event.stopPropagation();
+    void openGallery().catch(showError);
+  };
+  document.addEventListener('keydown', galleryEscape, { capture: true });
   const resize = () => {
     camera.aspect = container.clientWidth / container.clientHeight; camera.updateProjectionMatrix();
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2)); renderer.setSize(container.clientWidth, container.clientHeight);
@@ -442,7 +449,7 @@ async function start() {
     gallery?.dispose(); galleryFocusFactory?.dispose();
     packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
-    renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); lab?.dispose();
+    renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); document.removeEventListener('keydown', galleryEscape, { capture: true }); lab?.dispose();
     cpuPreparation.dispose(); factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();
     imports.forEach(imported => imported.dispose()); imports.clear();
   });

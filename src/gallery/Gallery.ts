@@ -78,7 +78,6 @@ export class Gallery {
     this.viewport.addEventListener('pointerleave', () => { this.pointer = undefined; }, { signal });
     window.addEventListener('blur', () => { this.pointer = undefined; }, { signal });
     this.root.addEventListener('keydown', event => {
-      if (event.key === 'Escape') { event.preventDefault(); void this.transition(options.close); }
       const button = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-card-index]');
       if (!button || !['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'Home', 'End'].includes(event.key)) return;
       event.preventDefault();
