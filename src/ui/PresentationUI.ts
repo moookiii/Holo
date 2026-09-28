@@ -138,6 +138,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     empty.hidden = visibleCards.length > 0;
     visibleCards.forEach(card => {
       const button = document.createElement('button'); button.className = 'card-option';
+      button.dataset.cardId = card.id;
       button.setAttribute('aria-pressed', String(card.id === selectedCard));
       const image = document.createElement('img');
 
@@ -258,7 +259,13 @@ image.loading = 'lazy';
   let hideTimer = 0;
   const wake = () => { root.classList.remove('idle'); clearTimeout(hideTimer); hideTimer = window.setTimeout(() => root.classList.add('idle'), 4500); };
   document.addEventListener('pointermove', wake); document.addEventListener('keydown', wake); document.addEventListener('pointerdown', wake); wake();
-  return { selectProfile, refreshCards, selectCard: (id: string) => { selectedCard = id; drawCards(); drawProfiles(); }, close, dispose: () => {
+  return { selectProfile, refreshCards, selectCard: (id: string) => {
+    selectedCard = id;
+    grid.querySelectorAll<HTMLButtonElement>('.card-option').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.cardId === id));
+    });
+    drawProfiles();
+  }, close, dispose: () => {
     close(); clearTimeout(hideTimer);
     document.removeEventListener('pointerdown', outside); document.removeEventListener('keydown', keyboard);
     document.removeEventListener('pointermove', wake); document.removeEventListener('keydown', wake); document.removeEventListener('pointerdown', wake);
