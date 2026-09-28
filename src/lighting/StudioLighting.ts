@@ -51,7 +51,9 @@ export class StudioLighting {
   }
   setPreset(preset: LightPreset) {
     this.preset = preset; this.phase = 0; this.applied = '';
-    this.azimuth = preset === 'Right light' ? 65 : preset === 'Moving light' || preset === 'Skim' ? -15 : -30;
+    // Center the gallery sweep so its highlight reaches both outer card columns.
+    // Skim keeps its lower, offset grazing angle for the single-card viewer.
+    this.azimuth = preset === 'Right light' ? 65 : preset === 'Moving light' ? 0 : preset === 'Skim' ? -15 : -30;
     this.elevation = preset === 'Skim' ? 8 : 35;
     this.update(0);
   }
