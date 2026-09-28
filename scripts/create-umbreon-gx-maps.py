@@ -47,19 +47,9 @@ filled=np.zeros((H,W),np.uint8); cv2.drawContours(filled,cs,-1,255,cv2.FILLED)
 protection=np.maximum(ink,filled/255)
 portrait=mask('M12 58 L35 48 L70 49 L86 66 L84 104 L66 124 L31 123 L12 106 Z')
 protection=np.maximum(protection,portrait)
-# GX effect type has blue ink and a white printed keyline. Protect their actual
-# pixels without filling white contours, which joins letters and hides etching
-# in the gaps (especially around "Energy from" and "your").
-for a,b,c,d in [(29,640,573,667),(29,666,302,690)]:
- y0,y1=b*S,d*S; x0,x1=a*S,c*S
- rgb=front[y0:y1,x0:x1]; red,green,blue=rgb.transpose(2,0,1)
- blue_ink=(blue>red+.15)&(blue>green+.05)&(blue>.32)&(red<.55)&(green<.50)
- white_keyline=(rgb.min(2)>.72)&(rgb.max(2)-rgb.min(2)<.2)
- near_ink=cv2.dilate(np.uint8(blue_ink),cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(7,7)))>0
- glyph=np.uint8(blue_ink|(white_keyline&near_ink))*255
- glyph=cv2.morphologyEx(glyph,cv2.MORPH_CLOSE,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
- glyph=cv2.dilate(glyph,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
- protection[y0:y1,x0:x1]=np.maximum(protection[y0:y1,x0:x1],cv2.GaussianBlur(glyph,(0,0),.55)/255)
+# Blue GX effect ink and its complete white keylines share the targeted repair.
+from umbreon_gx_text import protect_gx_text
+protection=protect_gx_text(front,protection,S)
 # White lettering on the smooth dark banners is protected by its glyphs,
 # never by a filled text-row rectangle.
 for a,b,c,d in [(190,598,410,629),(221,770,561,802)]:
