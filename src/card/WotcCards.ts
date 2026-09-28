@@ -1,3 +1,4 @@
+import { baseSet2Definitions } from './BaseSet2Cards.ts';
 import { fossilDefinitions } from './FossilCards.ts';
 import { baseSetCards, baseSetAuthoredIds } from './BaseSetCards.ts';
 import { jungleDefinitions } from './JungleCards.ts';
@@ -7,6 +8,7 @@ import type { PrintVariant } from '../pokemon/types.ts';
 /** Exact set + number + print lookup, shared by picker and pack preparation. */
 const prints = new Map<string, CardDefinition>([
   ...Object.entries(baseSetAuthoredIds).map(([id, authoredId]) => [`${id}:holo`, baseSetCards.find(card => card.id === authoredId)!] as const),
+  ...baseSet2Definitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...fossilDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...jungleDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
 ]);

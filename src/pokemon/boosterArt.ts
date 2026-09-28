@@ -21,7 +21,8 @@ export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const product = wotcWrappers[setId];
   if (product) return product.designs.map(design => ({ id: design.id,
     name: `${design.id[0].toUpperCase()}${design.id.slice(1)} booster${design.front ? '' : ' · artwork pending'}`,
-    front: design.front ? `${base}${design.front}` : undefined, frontBounds: design.frontBounds, back: `${base}${product.back}`, backBounds: product.backBounds }));
+    front: design.front ? `${base}${design.front}` : undefined, frontBounds: design.frontBounds,
+    back: `${base}${design.back ?? product.back}`, backBounds: design.backBounds ?? product.backBounds }));
   if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp`, back: `${base}sv03.5-back.png` }];
   return designs[setId]?.map(design => ({ id: design,
     name: `${design.split('-').map(word => word[0].toUpperCase() + word.slice(1)).join(' ')} booster`,

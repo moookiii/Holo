@@ -222,7 +222,7 @@ export class CardCpuPreparation {
   }
   private async prepareLayer(layer: FoilLayer | undefined, card: CardDefinition, seed: number, signal: AbortSignal, motifPath?: string) {
     if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain') return undefined;
-    const motif = ['symbol-foil', 'base-set-star'].includes(layer.structure.field) && motifPath ? await this.assets.image(motifPath, signal) : undefined;
+    const motif = ['symbol-foil', 'base-set-star', 'base-set-2-cosmos'].includes(layer.structure.field) && motifPath ? await this.assets.image(motifPath, signal) : undefined;
     const started = performance.now();
     try { return await (this.patterns ??= new CpuPatternCache()).get({ kind: layer.structure.field, seed, aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale,
       ...(layer.structure.motif ? { motif: layer.structure.motif } : {}), ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: card.layout } : {}) }, motif, signal); }

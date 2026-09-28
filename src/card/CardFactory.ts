@@ -48,7 +48,7 @@ export class CardFactory {
       // authored manufacturing field. Avoid generating and uploading a full
       // 1024px pair of neutral textures for them during pack preparation.
       if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain') return undefined;
-      const motif = ['symbol-foil', 'base-set-star'].includes(layer.structure.field) && motifPath ? await this.assets.load(motifPath, false) : undefined;
+      const motif = ['symbol-foil', 'base-set-star', 'base-set-2-cosmos'].includes(layer.structure.field) && motifPath ? await this.assets.load(motifPath, false) : undefined;
       const field = await patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
         ...(layer.structure.motif ? { motif: layer.structure.motif } : {}),
         ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif, priority);

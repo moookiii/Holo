@@ -35,7 +35,9 @@ test('Base Set cutouts never attach by name to a reprint or a normal printing', 
   assert.equal(pokemonDefinition(card, 'normal', cards).maps, undefined);
   const reprint = pokemonDefinition({ ...card, id: 'base4-4', setId: 'base4', variants: ['holo'] }, 'holo', cards);
   assert.notEqual(reprint.front, baseSetCards[3].front);
-  assert.equal(reprint.maps, undefined);
+  assert.equal(reprint.profile, 'pokemon-base-set-2-cosmos');
+  assert.notDeepEqual(reprint.maps, baseSetCards[3].maps);
+  assert.equal(reprint.maps?.foil, '/cards/pokemon/base-set-2/maps/4-foil.png');
 });
 
 test('the Base Set material is independent and is selected before generic era metadata', () => {

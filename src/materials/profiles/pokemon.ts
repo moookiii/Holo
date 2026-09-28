@@ -145,6 +145,13 @@ export const pokemonProfiles: HolographicProfile[] = [{
   glints: { density: .025, scale: 640, sharpness: 340, strength: 3, spread: .20 },
   surface: { metalness: .84, roughness: .26, laminate: .18, laminateRoughness: .32, foilReflectance: .30, anisotropy: .35, sheen: .95 },
 }, {
+  id: 'pokemon-base-set-2-cosmos', name: 'Cosmos: Base Set 2', family: 'Pokémon', status: 'reference-pending',
+  description: 'Early English Base Set 2 Cosmos: dots, granular orbs and open circles registered to each original front. Restrained silver response; no procedural symbol placement or embossed surface.',
+  diffraction: { period: 1.32, bandwidth: .07, strength: 1.05, secondaryOrder: .08, direction: 0, crossWidth: .48, facetCoupling: 1 },
+  structure: { field: 'base-set-2-cosmos', scale: 29, engraving: 0, relief: 0, facetTilt: .7, reflectionCoupling: .16, normalVariance: 0 },
+  glints: { density: 0, scale: 520, sharpness: 220, strength: 0, spread: .3 },
+  surface: { metalness: .76, roughness: .32, laminate: .20, laminateRoughness: .32, foilReflectance: .17, sheen: .24, inkTransmission: .42 },
+}, {
   id: 'pokemon-cosmos', name: 'Cosmos', family: 'Pokémon', status: 'reference-pending',
   description: 'Classic pixelated Cosmos: unequal circles, rosettes and a broken swirl made from small independently oriented optical cells.',
   diffraction: { period: 1.45, bandwidth: .055, strength: 1.7, secondaryOrder: .24, direction: 0, crossWidth: .42 },

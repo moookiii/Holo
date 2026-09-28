@@ -1,3 +1,4 @@
+import { BASE_SET_2_ID, baseSet2Card, baseSet2Set } from './BaseSet2Catalog.ts';
 import { FOSSIL_SET_ID, fossilCard, fossilSet } from './FossilCatalog.ts';
 import TCGdex from '@tcgdex/sdk';
 import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './types.ts';
@@ -60,22 +61,23 @@ export class TcgdexAdapter {
       const sets = serie.sets.map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'base') {
-        const jungle = sets.findIndex(set => set.id === JUNGLE_SET_ID);
-        if (jungle >= 0) sets.splice(jungle, 1);
-        sets.splice(Math.max(0, sets.findIndex(set => set.id === 'base1') + 1), 0,
-          { id: JUNGLE_SET_ID, name: jungleSet.name, logo: jungleSet.logo });
-      }
-      if (seriesId === 'base') {
-        const fossil = sets.findIndex(set => set.id === FOSSIL_SET_ID);
-        if (fossil >= 0) sets.splice(fossil, 1);
-        sets.splice(sets.findIndex(set => set.id === JUNGLE_SET_ID) + 1, 0,
-          { id: FOSSIL_SET_ID, name: fossilSet.name, logo: fossilSet.logo });
+        // Local audited sets follow release order, even if discovery is unordered.
+        let previous = 'base1';
+        for (const local of [jungleSet, fossilSet, baseSet2Set]) {
+          const old = sets.findIndex(set => set.id === local.id);
+          if (old >= 0) sets.splice(old, 1);
+          sets.splice(Math.max(0, sets.findIndex(set => set.id === previous) + 1), 0,
+            { id: local.id, name: local.name, logo: local.logo });
+          previous = local.id;
+        }
       }
       return sets;
     });
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === BASE_SET_2_ID) return { ...baseSet2Set, series: { ...baseSet2Set.series },
+        cardIds: [...baseSet2Set.cardIds], boosters: baseSet2Set.boosters.map(booster => ({ ...booster })) };
       if (id === FOSSIL_SET_ID) return { ...fossilSet, series: { ...fossilSet.series },
         cardIds: [...fossilSet.cardIds], boosters: fossilSet.boosters.map(booster => ({ ...booster })) };
       if (id === JUNGLE_SET_ID) return { ...jungleSet, series: { ...jungleSet.series },
@@ -92,6 +94,8 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === BASE_SET_2_ID) return baseSet2Card(id);
+      if (id.startsWith(`${BASE_SET_2_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === FOSSIL_SET_ID) return fossilCard(id);
       if (id.startsWith(`${FOSSIL_SET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === JUNGLE_SET_ID) return jungleCard(id);

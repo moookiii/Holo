@@ -2,6 +2,21 @@ import type { PokemonRecipe } from './recipes.ts';
 
 /** Explicit product slots; no era-wide assumption about Energy or rare prints. */
 export const wotcRecipes: readonly PokemonRecipe[] = [
+  { id: 'base4-english-retail', version: '1', setId: 'base4', era: 'base',
+    boosterIds: ['mewtwo', 'pidgeot', 'raichu', 'gyarados'],
+    requiredCardIds: Array.from({ length: 130 }, (_, i) => `base4-${i + 1}`),
+    sources: ['https://api.tcgdex.net/v2/en/sets/base4', 'https://bulbapedia.bulbagarden.net/wiki/Base_Set_2_(TCG)'],
+    note: '2000 Base Set 2 · 5 commons + 2 in-set Basic Energy + 3 uncommons + 1 rare · unlimited only · estimated 1-in-3 Cosmos holo rate; uniform cards within rarity pools.',
+    slots: [
+      { id: 'common', count: 5, unique: true, outcomes: [{ weight: 1, rarities: ['Common'], variant: 'normal', categories: ['Pokemon', 'Trainer'] }] },
+      { id: 'energy', count: 2, outcomes: [{ weight: 1, rarities: ['Common'], variant: 'normal', categories: ['Energy'], energyTypes: ['Normal'] }] },
+      { id: 'uncommon', count: 3, unique: true, outcomes: [{ weight: 1, rarities: ['Uncommon'], variant: 'normal' }] },
+      { id: 'rare', count: 1, outcomes: [
+        { weight: 2 / 3, rarities: ['Rare'], variant: 'normal' },
+        { weight: 1 / 3, rarities: ['Holo Rare'], variant: 'holo', cardIds: Array.from({ length: 20 }, (_, i) => `base4-${i + 1}`) },
+      ] },
+    ] },
+
   { id: 'base1-english-retail', version: '1', setId: 'base1', era: 'base',
     sources: ['https://www.cs.sjsu.edu/~stamp/cv/papers/pokemon.pdf', 'https://www.pokebeach.com/tcg/base-set/theme-decks'],
     note: '1999 Base Set · 5 commons + 2 in-set Basic Energy + 3 uncommons + 1 rare · no reverse · holo rate estimated at 1 in 3 packs.',
@@ -43,7 +58,14 @@ export const wotcRecipes: readonly PokemonRecipe[] = [
 ];
 
 /** Wrapper identity is cosmetic; it never changes a product's card odds. */
-export const wotcWrappers: Record<string, { back: string; backBounds?: [number, number, number, number]; designs: readonly { id: string; front?: string; frontBounds?: [number, number, number, number] }[] }> = {
+export const wotcWrappers: Record<string, { back: string; backBounds?: [number, number, number, number]; designs: readonly { id: string; front?: string; frontBounds?: [number, number, number, number]; back?: string; backBounds?: [number, number, number, number] }[] }> = {
+  base4: { back: 'base4-back.jpg', backBounds: [20/2379, 15/4080, 2350/2379, 4060/4080], designs: [
+    { id: 'mewtwo', front: 'base4-mewtwo.jpg' },
+    { id: 'pidgeot', front: 'base4-pidgeot.jpg', back: 'base4-pidgeot-back.jpg', backBounds: [61/719, 51/1200, 674/719, 1144/1200] },
+    { id: 'raichu', front: 'base4-raichu.jpg', back: 'base4-raichu-back.jpg', backBounds: [644/1824, 195/1368, 1190/1824, 1170/1368] },
+    // The back reference has a long upper crimp; use its matching short-crimp area.
+    { id: 'gyarados', front: 'base4-gyarados.jpg', back: 'base4-gyarados-back.jpg', backBounds: [360/1367, 355/1823, 996/1367, 1530/1823] },
+  ] },
   base1: { back: 'base1-back.jpg', designs: [
     { id: 'blastoise', front: 'base1-blastoise.jpg' }, { id: 'charizard', front: 'base1-charizard.jpg' }, { id: 'venusaur', front: 'base1-venusaur.png' },
   ] },
