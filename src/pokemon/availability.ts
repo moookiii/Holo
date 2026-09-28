@@ -10,7 +10,7 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
   if (setId === 'base3') return { ready: true, label: 'Opening available',
-    detail: 'Fossil includes all 62 original prints and 15 animated holos. Wrapper scans are pending.' };
+    detail: 'Fossil includes all 62 original prints and 15 animated holos, with all three original booster designs.' };
   if (setId === 'base2' && jungleReadyHolos.size < 16) return { ready: true, label: `Opening available · ${jungleReadyHolos.size}/16 holos ready`,
     detail: `${jungleReadyHolos.size} Jungle holos have animated foil; the remaining ${16-jungleReadyHolos.size} retain their original fronts until the next cutout pass.` };
   if (setId === PRISMATIC_SET_ID && !prismaticSurfaceProgress().complete) return {

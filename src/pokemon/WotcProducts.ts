@@ -52,4 +52,8 @@ export const wotcWrappers: Record<string, { back: string; designs: readonly { id
     { id: 'flareon', front: 'base2-flareon.jpg' }, { id: 'scyther', front: 'base2-scyther.jpg' },
     { id: 'wigglytuff', front: 'base2-wigglytuff.png', frontBounds: [296/1080, 114/1080, 785/1080, 965/1080] },
   ] },
+  base3: { back: 'base3-back.jpg', designs: [
+    { id: 'lapras', front: 'base3-lapras.png' }, { id: 'aerodactyl', front: 'base3-aerodactyl.png' },
+    { id: 'zapdos', front: 'base3-zapdos.png' },
+  ] },
 };

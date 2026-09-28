@@ -45,7 +45,7 @@ try {
     await page.getByRole('button', { name: /^Fossil Opening available/ }).click();
     await page.getByRole('button', { name: /^Lapras booster/ }).waitFor();
     assert.equal(await page.locator('button.pokemon-booster').count(), 3);
-    assert.match(await page.locator('.pokemon-browser [role=status]').textContent(), /cutout pass|pending/);
+    assert.match(await page.locator('.pokemon-browser [role=status]').textContent(), /15 animated holos/);
     await page.screenshot({ path: join(out, `${artwork}-selection.png`) });
     await page.evaluate(seed => { const original = crypto.getRandomValues.bind(crypto); crypto.getRandomValues = array => { array[0] = seed; crypto.getRandomValues = original; return array; }; }, seeds[variant]);
     await page.getByRole('button', { name: new RegExp(`^${artwork} booster`) }).click();
@@ -71,7 +71,7 @@ try {
       return { id: booster.id, width: wrapper.width, height: wrapper.height, printedSeals: wrapper.printedSeals };
     }));
   });
-  assert.ok(wrappers.every(w => !w.printedSeals && w.width === 7.55 && w.height === 11.8));
+  assert.ok(wrappers.every(w => w.printedSeals && w.width > 7 && w.width < 7.5 && w.height === 13));
   assert.deepEqual(errors, []);
   console.log('Wrapper framing:', wrappers);
 } catch (error) {

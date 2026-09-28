@@ -21,15 +21,15 @@ The untouched TCGdex originals guide 123 individually registered star placements
 in `scripts/wotc/star-placements.json`. No random stars or raised relief are added.
 Viewer cards and booster pulls share these maps. Non-holo prints stay print-only.
 
-Lapras, Aerodactyl and Zapdos wrapper choices currently use the existing generic
-packaging fallback, visibly labelled artwork pending. TCGdex's set response
-does not supply wrapper paths; no alternative wrapper scans or back were
-supplied for this pass. The Fossil logo is the original TCGdex logo.
+Lapras, Aerodactyl and Zapdos use the user's supplied original wrapper fronts
+and shared photographed back, copied unchanged into `public/packs/pokemon`.
+Their native front aspect ratios determine pack width. Printed seals are retained
+without adding duplicate procedural seals. The Fossil logo is from TCGdex.
 
 Validation: `tests/pokemon-fossil.test.ts` checks the complete checklist, asset
 hashes, separate prints, authored holo maps, local catalog loading and 3,000
 deterministic pack seeds. `scripts/fossil-browser-check.mjs` checks set order,
-all three pack choices, both rare outcomes, and placeholder wrapper preparation. `scripts/fossil-holo-check.mjs` checks all
+all three pack choices, both rare outcomes, and original wrapper preparation. `scripts/fossil-holo-check.mjs` checks all
 15 holos at three angles with stationary optical response.
 
 Sources: https://api.tcgdex.net/v2/en/sets/base3 and

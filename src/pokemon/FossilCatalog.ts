@@ -1,3 +1,4 @@
+import { localBoosterArt } from './boosterArt.ts';
 import { fossilRecords } from './data/fossil.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
 
@@ -16,7 +17,7 @@ export const fossilCards: readonly PokemonCard[] = fossilRecords.map(record => {
 });
 export const fossilSet: PokemonSet = {
   id: FOSSIL_SET_ID, name: 'Fossil', series: { id: 'base', name: 'Base' }, era: 'base', releaseDate: '1999-10-10',
-  logo: '/packs/pokemon/base3-logo.png', cardIds: fossilCards.map(card => card.id), boosters: ['lapras', 'aerodactyl', 'zapdos'].map(id => ({ id, name: `${id[0].toUpperCase()}${id.slice(1)} booster · artwork pending` })),
+  logo: '/packs/pokemon/base3-logo.png', cardIds: fossilCards.map(card => card.id), boosters: localBoosterArt(FOSSIL_SET_ID)!,
 };
 const byId = new Map(fossilCards.map(card => [card.id, card]));
 export function fossilCard(id: string): PokemonCard {
