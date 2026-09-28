@@ -101,6 +101,12 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const jungleHoloIds = cards
     .filter(card => card.set === 'Jungle' && card.pokemon?.variant === 'holo')
     .map(card => card.id);
+  const fossilHoloIds = cards
+    .filter(card => card.set === 'Fossil' && card.pokemon?.variant === 'holo')
+    .map(card => card.id);
+  const baseSet2HoloIds = cards
+    .filter(card => card.set === 'Base Set 2' && card.pokemon?.variant === 'holo')
+    .map(card => card.id);
   const pickerPriority = [
     FIRST_PICKER_CARD_ID,
     'pokemon:sv08.5-161:holo',
@@ -114,6 +120,8 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     'pikachu-vmax-vivid-voltage', 'pokemon:sv08.5-133:holo', 'nocturne',
     ...baseSetHoloIds,
     ...jungleHoloIds,
+    ...fossilHoloIds,
+    ...baseSet2HoloIds,
     'lugia-neo-genesis',
   ];
   const drawCards = () => {
