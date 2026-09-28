@@ -90,7 +90,7 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
     const image = (index: number) => texture(arrays[index], coord).depth(layer);
     const param = (column: number) => textureLoad(parameterTexture, ivec2(column, layer.toInt()));
-    const print = image(0).rgb, masks = image(1), normal = image(2);
+    const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), metal = artwork.a;
     const weights = [masks.r, masks.g, masks.b];
     this.regions = weights.map((mask, index) => ({ mask, field: image(3 + index), detail: image(6 + index),
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06) }));
@@ -98,9 +98,9 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
     const base = mix(mix(print, substrate.rgb, masks.r.mul(substrate.a)), print.add(substrate.rgb.sub(background.rgb).mul(masks.r, substrate.a)).max(0), background.a);
     const darkening = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
-    this.colorNode = mix(base, ink.rgb, masks.a.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
+    this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
     this.normalNode = normalMap(normal.rgb);
-    this.metalnessNode = blend(float(.015), 3, 'x').max(masks.a.mul(card.x));
+    this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
     const variance = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     this.roughnessNode = normal.a.add(variance).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');

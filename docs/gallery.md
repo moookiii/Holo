@@ -7,7 +7,7 @@ Open **Gallery** beside **Open a pack**. Search and game/set/rarity/finish/categ
 | Tier | Resources | Lifetime |
 | --- | --- | --- |
 | Inactive | CardDefinition and source URLs; optional reduced preview in the CPU LRU | 24 MiB CPU preview budget |
-| Gallery | One instanced mesh, one physical material, one 256 × 360 × 48 artwork array, eight 128 × 180 × 48 map arrays and a 32 × 48 optical parameter texture | Fixed 53,108,736 bytes (50.648 MiB) of GPU texels, plus matrices/geometry/material; matching CPU upload buffers |
+| Gallery | One instanced mesh, one physical material, one 512 × 720 × 48 artwork array, eight 128 × 180 × 48 map arrays and a 32 × 48 optical parameter texture | Fixed 106,192,896 bytes (101.273 MiB) of GPU texels, plus matrices/geometry/material; matching CPU upload buffers |
 | Focused | Existing CardFactory full-quality material, manufacturing fields, maps and physical geometry | One focused factory, disposed when returning to Gallery |
 
 Gallery reuses the existing renderer, scene, camera, environment and StudioLighting. There is no renderer, scene, lighting rig or material per gallery card. The texture-array layer index is an integer varying to prevent interpolation rounding from sampling a neighboring card.

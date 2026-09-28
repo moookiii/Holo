@@ -7,7 +7,7 @@ import type { FieldData, PatternSpec } from '../materials/patterns/Manufacturing
 import type { MotifImage } from '../materials/patterns/MotifField';
 import { previewOptics, PREVIEW_PARAMETER_COLUMNS } from './PreviewOptics';
 
-export const PREVIEW_WIDTH = 256, PREVIEW_HEIGHT = 360;
+export const PREVIEW_WIDTH = 512, PREVIEW_HEIGHT = 720;
 export const PREVIEW_MAP_WIDTH = 128, PREVIEW_MAP_HEIGHT = 180;
 export const PREVIEW_ARRAY_SIZES = [[PREVIEW_WIDTH, PREVIEW_HEIGHT], ...Array.from({ length: 8 }, () => [PREVIEW_MAP_WIDTH, PREVIEW_MAP_HEIGHT])] as const;
 export interface CardPreview { images: Uint8Array[]; parameters: Float32Array; }
@@ -15,7 +15,7 @@ export const PREVIEW_BYTES = PREVIEW_ARRAY_SIZES.reduce((sum, [w, h]) => sum + w
 type PrepareField = (spec: PatternSpec, height: number, motif?: MotifImage) => Promise<FieldData>;
 
 /** CPU-only reduced tier: same masks, layer priority and manufactured field
- * generator as focus. Fine maps are half resolution, artwork stays 256 × 360. */
+ * generator as focus. Artwork and metallic lettering retain a sharper UV grid. */
 export async function prepareCardPreview(card: CardDefinition, signal: AbortSignal, prepareField: PrepareField): Promise<CardPreview> {
   const width = PREVIEW_MAP_WIDTH, height = PREVIEW_MAP_HEIGHT;
   const read = async (path: string, w = width, h = height) => {
@@ -24,17 +24,20 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]) });
     if (!response.ok) throw new Error(`Preview unavailable (${response.status})`);
     const blob = await response.blob();
-    let image: ImageBitmap | HTMLImageElement, objectUrl: string | undefined;
+    let image: ImageBitmap;
     if (blob.type.includes('svg')) {
-      image = new Image(); objectUrl = URL.createObjectURL(blob); image.src = objectUrl;
-      try { await image.decode(); } catch (error) { URL.revokeObjectURL(objectUrl); throw error; }
+      const source = new Image(), objectUrl = URL.createObjectURL(blob); source.src = objectUrl;
+      // Rasterize at the authored aspect first. Drawing SVG directly at the
+      // atlas aspect applies preserveAspectRatio and insets the mask sides.
+      try { await source.decode(); image = await createImageBitmap(source); }
+      finally { URL.revokeObjectURL(objectUrl); }
     } else image = await createImageBitmap(blob, { resizeWidth: w, resizeHeight: h, resizeQuality: 'high' });
     try {
       signal.throwIfAborted();
       const canvas = new OffscreenCanvas(w, h), context = canvas.getContext('2d', { willReadFrequently: true })!;
       context.drawImage(image, 0, 0, w, h);
       return new Uint8Array(context.getImageData(0, 0, w, h).data);
-    } finally { if (image instanceof ImageBitmap) image.close(); if (objectUrl) URL.revokeObjectURL(objectUrl); }
+    } finally { image.close(); }
   };
   const front = await read(card.front, PREVIEW_WIDTH, PREVIEW_HEIGHT).catch(error => {
     if (signal.aborted || !card.frontFallback) throw error;
@@ -43,6 +46,11 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const profile = resolveCardProfile(card), paths = { ...resolveCoverageMaps(card), ...profile.maps };
   const settings = { ...card.mapSettings, ...profile.mapSettings };
   const parameters = previewOptics(card, profile);
+  // Keep individual metallic letter edges at artwork resolution; the small
+  // optical maps otherwise blur gold into the surrounding title panel.
+  const titleMask = paths.metallic ? await read(paths.metallic, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
+  const titleProtection = titleMask && paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
+  for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
   const inputs: Partial<Record<PackedMapKey, Uint8Array>> = {};
   const keys = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic', 'protection', 'roughness', 'surface', 'height', 'pattern', 'secondaryPattern', 'stampPattern', 'stamp', 'laminate'] as const;
   for (const key of keys) if (paths[key]) inputs[key] = await read(paths[key]!);
@@ -98,6 +106,15 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const masks = [enabled[0] ? primary * (1 - secondary) * (1 - stamp) : 0, secondary, stamp];
     for (let layer = 0; layer < 3; layer++) coverage[i + layer] = Math.round(masks[layer] * 255);
     coverage[i + 3] = Math.max(packed.coverage[i + 2], enabled[2] ? 0 : packed.surface[i + 3]);
+    {
+      // Packed coverage and nonfoil stamps can also define metallic print.
+      const fallbackMetal = titleMask ? (enabled[2] ? 0 : packed.surface[i + 3]) : coverage[i + 3];
+      for (let yy = Math.floor(y * PREVIEW_HEIGHT / height); yy < Math.floor((y + 1) * PREVIEW_HEIGHT / height); yy++)
+        for (let xx = Math.floor(x * PREVIEW_WIDTH / width); xx < Math.floor((x + 1) * PREVIEW_WIDTH / width); xx++) {
+          const alpha = (yy * PREVIEW_WIDTH + xx) * 4 + 3;
+          front[alpha] = Math.max(front[alpha], fallbackMetal);
+        }
+    }
     // Differentiation precedes clipping. Match the viewer's physical centimetres.
     const emboss = settings.embossStrength ?? .25, normalScale = profile.disabledMechanisms?.includes('relief') ? 0 : settings.normalScale ?? 1;
     let nx = normalSource ? (normalSource[i] / 255 * 2 - 1) * normalScale : (at(x - 1, y) - at(x + 1, y)) * emboss * .008 * width / (2 * card.dimensions.width);
