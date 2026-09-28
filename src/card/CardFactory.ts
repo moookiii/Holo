@@ -77,16 +77,17 @@ export class CardFactory {
         }, retain);
       releases.push(lease.release); resources.add(lease.texture); return lease.texture;
     };
-    const bytesTexture = (bytes: Uint8Array, width: number, height: number) => {
+    const bytesTexture = (bytes: Uint8Array, width: number, height: number, flipY = true) => {
       const lease = this.textures.acquire(bytes, width * height * 4 * 4 / 3, () => {
         const texture = new DataTexture(bytes, width, height, RGBAFormat, UnsignedByteType);
-        texture.flipY = true; texture.colorSpace = NoColorSpace; texture.minFilter = LinearMipmapLinearFilter;
+        texture.flipY = flipY; texture.colorSpace = NoColorSpace; texture.minFilter = LinearMipmapLinearFilter;
         texture.magFilter = LinearFilter; texture.anisotropy = 8; texture.generateMipmaps = true; texture.needsUpdate = true; return texture;
       }, retain);
       releases.push(lease.release); resources.add(lease.texture); return lease.texture;
     };
+    // Manufacturing fields already use bottom-up UV rows; image masks use top-down rows.
     const field = (data: import('../materials/patterns/ManufacturingField').FieldData | undefined): PatternTextures | undefined => data
-      ? { direction: bytesTexture(data.direction, data.width, data.height), relief: bytesTexture(data.relief, data.width, data.height) } : undefined;
+      ? { direction: bytesTexture(data.direction, data.width, data.height, false), relief: bytesTexture(data.relief, data.width, data.height, false) } : undefined;
     let instance: CardInstance | undefined;
     try {
       const front = imageTexture(prepared.front);

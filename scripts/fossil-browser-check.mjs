@@ -32,7 +32,7 @@ try {
     const { fossilCards } = await import('/src/pokemon/FossilCatalog.ts');
     const { collatePokemon } = await import('/src/pokemon/collator.ts');
     const seeds = {};
-    for (let seed = 0; seed < 100; seed++) { const variant = collatePokemon('base3', 'lapras', seed, fossilCards).pulls[10].variant; seeds[variant] ??= seed; }
+    for (let seed = 0; seed < 1000; seed++) { const pull = collatePokemon('base3', 'lapras', seed, fossilCards).pulls[10]; if (pull.variant === 'normal' || pull.card.id === 'base3-13') seeds[pull.variant] ??= seed; }
     return seeds;
   });
   for (const [artwork, variant] of [['Lapras', 'holo'], ['Aerodactyl', 'normal'], ['Zapdos', 'holo']]) {
@@ -57,8 +57,30 @@ try {
     assert.equal(pulls.length, 11); assert.equal(pulls[10].variant, variant);
     assert.ok(pulls.every(p => p.id.startsWith('base3-') && (p.variant === 'holo' ? p.profile === 'pokemon-base-set-star' && p.maps?.motif?.endsWith('-stars.png') : p.profile === 'print-only' && !p.maps)));
     assert.equal(pulls[10].pending, undefined);
+    if (variant === 'holo') {
+      assert.equal(pulls[10].id, 'base3-13');
+      const registration = await page.evaluate(async () => {
+        const mesh = window.__holo.scene.getObjectByProperty('uuid', window.__holo.pack.stats().meshIds[10]);
+        const material = mesh.material[0], field = material.fieldTextureNode.value;
+        const { width, height, data } = field.image;
+        const { default: placements } = await import('/scripts/wotc/star-placements.json');
+        return { flipped: field.flipY, reliefFlipped: material.reliefTextureNode.value.flipY,
+          coverageFlipped: material.coverageTextureNode.value.flipY,
+          peaks: placements['base3-13'].map(([x,y]) => {
+            const px = Math.floor(x / 600 * width), py = Math.floor((field.flipY ? y / 825 : 1 - y / 825) * height);
+            let peak = 0;
+            for (let dy=-2; dy<=2; dy++) for (let dx=-2; dx<=2; dx++) peak = Math.max(peak, data[((py+dy)*width+px+dx)*4+3]);
+            return peak;
+          }) };
+      });
+      assert.equal(registration.flipped, false, 'Pack manufacturing fields use bottom-up UV rows');
+      assert.equal(registration.reliefFlipped, false);
+      assert.equal(registration.coverageFlipped, true, 'Image coverage remains top-down');
+      assert.ok(registration.peaks.every(peak => peak > 150), 'All eight Muk stars align after GPU upload');
+    }
+
     await page.screenshot({ path: join(out, `${artwork}-sealed.png`) });
-    await page.evaluate(() => { window.__holo.pack.setStage('hit'); window.__holo.pack.tick(2); });
+    await page.evaluate(() => { window.__holo.pack.setStage('reveal', 10); window.__holo.pack.tick(2); });
     await page.screenshot({ path: join(out, `${artwork}-rare.png`) });
     await page.evaluate(() => window.__holo.pack.close());
     console.log(`${artwork}: seed ${seeds[variant]}, ${pulls[10].id}, ${variant}`);
