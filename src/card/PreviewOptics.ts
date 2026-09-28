@@ -1,0 +1,31 @@
+import type { CardDefinition } from './CardDefinition';
+import type { HolographicProfile } from '../materials/HolographicProfile';
+
+export const PREVIEW_PARAMETER_COLUMNS = 32;
+/** Same per-print optical controls as the viewer, packed for one shared shader.
+ * Eight RGBA texels per layer; final rows describe ink/substrate and surface. */
+export function previewOptics(card: CardDefinition, profile: HolographicProfile) {
+  const parameters = new Float32Array(PREVIEW_PARAMETER_COLUMNS * 4);
+  const set = (column: number, values: number[]) => parameters.set(values, column * 4);
+  [profile, profile.secondary, profile.stamp].forEach((layer, index) => {
+    if (!layer) return;
+    const d = layer.diffraction, s = layer.structure, f = layer.surface;
+    const disabled = new Set(layer.disabledMechanisms), enabled = layer.enabled !== false && profile.id !== 'print-only';
+    const base = index * 8;
+    set(base, [d.period, d.bandwidth, enabled && !disabled.has('diffraction') ? d.strength : 0, d.secondaryOrder]);
+    set(base + 1, [d.direction, d.crossWidth, d.crossing ?? 0, d.facetCoupling ?? 0]);
+    set(base + 2, [s.engraving, disabled.has('relief') ? 0 : s.facetTilt ?? 0, s.reflectionCoupling ?? 1,
+      d.followsAuthoredNormals || [card.maps?.direction, card.maps?.secondaryDirection, card.maps?.stampDirection][index] ? 1 : 0]);
+    set(base + 3, [f.metalness, f.roughness, disabled.has('laminate') ? 0 : f.laminate, f.laminateRoughness]);
+    set(base + 4, [disabled.has('reflection') ? 0 : f.foilReflectance ?? 0, disabled.has('reflection') ? 0 : f.sheen ?? 0, f.inkTransmission ?? 0, f.inkDensity ?? 1]);
+    set(base + 5, [f.substrateDarkening ?? 0, f.substrateReflection ?? 1,
+      ['plain', 'satin', 'e-reader', 'sheen', 'water-web', 'mirage'].includes(s.field) ? 0 : 1, s.field === 'radial' ? 0 : 1]);
+    set(base + 6, [s.normalVariance ?? 0, f.patternRoughness ?? 0, disabled.has('film') ? 0 : f.iridescence ?? 0, f.filmIOR ?? 1.5]);
+    set(base + 7, [f.filmMin ?? 200, f.filmMax ?? 600, f.pearlBody ?? 0, enabled ? 1 : 0]);
+  });
+  set(24, [...(card.substrate?.color ?? [.27, .31, .30]), card.substrate ? 1 - card.substrate.printRetention : .1]);
+  set(25, [...(card.substrate?.backgroundColor ?? [0, 0, 0]), card.substrate?.backgroundColor ? 1 : 0]);
+  set(26, [...(profile.metallicInk?.color ?? [1, 1, 1]), profile.metallicInk?.color ? 1 : 0]);
+  set(27, [profile.metallicInk?.metalness ?? .8, profile.metallicInk?.roughness ?? .28, card.dimensions.width / card.dimensions.height, profile.id === 'print-only' ? 1 : 0]);
+  return parameters;
+}

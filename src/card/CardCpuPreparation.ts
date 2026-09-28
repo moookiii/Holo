@@ -5,6 +5,7 @@ import type { FoilLayer, HolographicProfile } from '../materials/HolographicProf
 import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { FieldData, PatternSpec } from '../materials/patterns/ManufacturingField';
 import { prepareCardPreview, PREVIEW_BYTES, type CardPreview } from './CardPreviewPreparation';
+import type { MotifImage } from '../materials/patterns/MotifField';
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
 export interface PreparedMapsCpu {
@@ -95,6 +96,15 @@ class CpuPatternCache {
   private sequence = 0;
   private pending = new Map<number, { resolve: (field: FieldData) => void; reject: (error: Error) => void }>();
   private cache = new Map<string, Promise<FieldData>>();
+  preview(spec: PatternSpec, height: number, motifImage?: MotifImage) {
+    // Preview fields are immediately consumed by the bounded preview cache.
+    // Never retain another unbounded cache of manufactured gallery fields.
+    const id = ++this.sequence;
+    return new Promise<FieldData>((resolve, reject) => {
+      this.pending.set(id, { resolve, reject });
+      this.worker.postMessage({ id, spec, height, motifImage }, motifImage ? [motifImage.data.buffer] : []);
+    });
+  }
   constructor() {
     this.worker.onmessage = (event: MessageEvent<{ id: number; field?: FieldData; error?: string }>) => {
       const task = this.pending.get(event.data.id); if (!task) return;
@@ -152,6 +162,7 @@ class CpuMapCache {
 }
 
 export class CardCpuPreparation {
+  private previewPatterns?: CpuPatternCache;
   private previews = new Map<string, CardPreview>();
   private readonly previewBudget = 24 * 1024 * 1024;
   async preparePreview(card: CardDefinition, signal: AbortSignal) {
@@ -160,7 +171,7 @@ export class CardCpuPreparation {
     const key = JSON.stringify([card.id, card.front, card.maps, card.profile, card.profileOverrides, card.mapSettings]);
     const cached = this.previews.get(key);
     if (cached) { this.previews.delete(key); this.previews.set(key, cached); return cached; }
-    const preview = await prepareCardPreview(card, signal);
+    const preview = await prepareCardPreview(card, signal, (spec, height, motif) => (this.previewPatterns ??= new CpuPatternCache()).preview(spec, height, motif));
     signal.throwIfAborted();
     if (this.disposed) throw new Error('CPU preparation disposed');
     this.previews.set(key, preview);
@@ -255,5 +266,5 @@ export class CardCpuPreparation {
     return this.cache.get(key)!;
   }
   stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, previewBytes: this.previews.size * PREVIEW_BYTES, previewBudget: this.previewBudget }; }
-  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
+  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewPatterns?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
 }
