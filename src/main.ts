@@ -33,6 +33,7 @@ async function start() {
   const setLoading = (visible: boolean, label = 'Loading studio…') => {
     loadingLabel.textContent = label;
     loading.hidden = !visible;
+    loading.setAttribute('aria-label', label);
     loading.setAttribute('aria-hidden', String(!visible));
   };
   setLoading(true);
@@ -328,17 +329,24 @@ async function start() {
   const openGallery = async () => {
     if (disposed || galleryOpening || gallery?.active || pack || packRequest || packBrowser) return;
     galleryOpening = true; cancelWarmup(); ui?.close();
+    setLoading(true, 'Opening gallery…');
     try {
+      // Give the loading wheel a frame before allocating the Gallery resources.
+      await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      if (disposed) return;
       if (!gallery) {
         const { Gallery } = await import('./gallery/Gallery');
         if (disposed) return;
         gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, open: leaveGallery, close: () => leaveGallery() });
       }
-      ++loadGeneration; ++profileGeneration; setLoading(false);
+      ++loadGeneration; ++profileGeneration;
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
       card.visible = false; pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
-    } finally { galleryOpening = false; }
+      while (!disposed && gallery.active && !gallery.openingReady) {
+        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      }
+    } finally { galleryOpening = false; setLoading(false); }
   };
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
