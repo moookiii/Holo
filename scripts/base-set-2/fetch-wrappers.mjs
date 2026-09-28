@@ -2,7 +2,8 @@ import { writeFile, readFile } from 'node:fs/promises';
 import {createHash} from 'node:crypto';
 const assets = [
 ['pidgeot.jpg','https://archives.bulbagarden.net/media/upload/e/e7/Base_Set_2_Booster_Pidgeot.jpg'],
-['raichu.jpg','https://archives.bulbagarden.net/media/upload/f/fe/Base_Set_2_Booster_Raichu.jpg'],
+// The complete Raichu front was supplied by the user; keep the committed file.
+['raichu.jpg',null],
 ['gyarados.jpg','https://archives.bulbagarden.net/media/upload/9/9d/Base_Set_2_Booster_Gyarados.jpg'],
 ['mewtwo.jpg','https://archives.bulbagarden.net/media/upload/5/5f/Base_Set_2_Booster_Mewtwo.jpg'],
 ['logo.png','https://assets.tcgdex.net/en/base/base4/logo.png'],
@@ -16,7 +17,8 @@ for (const [name,url] of assets) {
  const file=`public/packs/pokemon/base4-${name}`;
  let bytes;
  if(process.argv.includes('--manifest-only'))bytes=await readFile(file);
- else {const res=await fetch(url);if(!res.ok)throw Error(`${res.status} ${url}`);bytes=Buffer.from(await res.arrayBuffer());await writeFile(file,bytes);}
- manifest.push({file,url,sha256:createHash('sha256').update(bytes).digest('hex')});
+ else if(url) {const res=await fetch(url);if(!res.ok)throw Error(`${res.status} ${url}`);bytes=Buffer.from(await res.arrayBuffer());await writeFile(file,bytes);}
+ else bytes=await readFile(file);
+ manifest.push({file,...(url ? {url} : {source:'user-supplied complete Raichu wrapper front'}),sha256:createHash('sha256').update(bytes).digest('hex')});
 }
 await writeFile('scripts/base-set-2/wrapper-sources.json',JSON.stringify(manifest,null,2)+'\n');

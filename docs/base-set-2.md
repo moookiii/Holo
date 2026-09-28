@@ -27,7 +27,9 @@ design does not alter the random stream.
 
 All four genuine Mewtwo, Pidgeot, Raichu and Gyarados fronts and matching-color
 back photographs are local. `scripts/base-set-2/wrapper-sources.json` records
-URLs and hashes. `fetch-wrappers.mjs` reproduces them. Per-design `back` and
+sources and hashes. The complete Raichu front, including both silver crimps, was
+supplied by the user and is retained by `fetch-wrappers.mjs` when remote assets
+are refreshed. Per-design `back` and
 `backBounds` extend the existing shared product definition. Back photographs
 are cropped by the existing cached wrapper path; Gyarados's long upper crimp
 is cropped to the short-crimp front. These are photographs of different packs,
