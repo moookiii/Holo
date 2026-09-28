@@ -43,7 +43,7 @@ export const wotcRecipes: readonly PokemonRecipe[] = [
 ];
 
 /** Wrapper identity is cosmetic; it never changes a product's card odds. */
-export const wotcWrappers: Record<string, { back: string; designs: readonly { id: string; front?: string; frontBounds?: [number, number, number, number] }[] }> = {
+export const wotcWrappers: Record<string, { back: string; backBounds?: [number, number, number, number]; designs: readonly { id: string; front?: string; frontBounds?: [number, number, number, number] }[] }> = {
   base1: { back: 'base1-back.jpg', designs: [
     { id: 'blastoise', front: 'base1-blastoise.jpg' }, { id: 'charizard', front: 'base1-charizard.jpg' }, { id: 'venusaur', front: 'base1-venusaur.png' },
   ] },
@@ -52,7 +52,7 @@ export const wotcWrappers: Record<string, { back: string; designs: readonly { id
     { id: 'flareon', front: 'base2-flareon.jpg' }, { id: 'scyther', front: 'base2-scyther.jpg' },
     { id: 'wigglytuff', front: 'base2-wigglytuff.png', frontBounds: [296/1080, 114/1080, 785/1080, 965/1080] },
   ] },
-  base3: { back: 'base3-back.jpg', designs: [
+  base3: { back: 'base3-back.jpg', backBounds: [40/1098, 35/1893, 1059/1098, 1858/1893], designs: [
     { id: 'lapras', front: 'base3-lapras.png' }, { id: 'aerodactyl', front: 'base3-aerodactyl.png' },
     { id: 'zapdos', front: 'base3-zapdos.png' },
   ] },

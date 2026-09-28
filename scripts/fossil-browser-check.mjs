@@ -90,12 +90,16 @@ try {
     const { fossilSet } = await import('/src/pokemon/FossilCatalog.ts');
     return Promise.all(fossilSet.boosters.map(async booster => {
       const wrapper = await prepareWrapper(fossilSet, booster, new AbortController().signal);
-      return { id: booster.id, width: wrapper.width, height: wrapper.height, printedSeals: wrapper.printedSeals };
+      return { id: booster.id, width: wrapper.width, height: wrapper.height, printedSeals: wrapper.printedSeals, backBounds: booster.backBounds, back: wrapper.back };
     }));
   });
-  assert.ok(wrappers.every(w => w.printedSeals && w.width > 7 && w.width < 7.5 && w.height === 13));
+  assert.ok(wrappers.every(w => w.printedSeals && w.width > 7 && w.width < 7.5 && w.height === 13 && w.backBounds));
+  for (const wrapper of wrappers) {
+    const edges = await page.evaluate(src => new Promise(resolve => { const image = new Image(); image.onload = () => { const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height; const ctx = canvas.getContext('2d'); ctx.drawImage(image,0,0); const pixels = ctx.getImageData(0,Math.floor(image.height/2),image.width,1).data; resolve([0,image.width-1].map(x => Array.from(pixels.slice(x*4,x*4+3)))); }; image.src=src; }), wrapper.back);
+    assert.ok(edges.every(rgb => Math.max(...rgb)>55), `${wrapper.id} back has an empty side margin`);
+  }
   assert.deepEqual(errors, []);
-  console.log('Wrapper framing:', wrappers);
+  console.log('Wrapper framing:', wrappers.map(({back, ...summary}) => summary));
 } catch (error) {
   await page.screenshot({ path: join(out, 'failure.png') });
   console.error(error, errors); process.exitCode = 1;

@@ -46,9 +46,9 @@ async function decoded(url: string, signal: AbortSignal) {
   }
 }
 /** Preserve every edge of the product shot, then match the physical film to it. */
-async function wrapperSide(url: string | undefined, fallback: string, signal: AbortSignal, aspect?: number, bounds?: [number, number, number, number]): Promise<PreparedWrapperSide> {
+async function wrapperSide(url: string | undefined, fallback: string, signal: AbortSignal, aspect?: number, bounds?: [number, number, number, number], cover = false): Promise<PreparedWrapperSide> {
   if (!url) return { image: fallback, aspect: aspect ?? 512 / 800, loaded: false };
-  const key = `${url}:${aspect ?? 'native'}:${bounds?.join(',') ?? 'full'}`;
+  const key = `${url}:${aspect ?? 'native'}:${bounds?.join(',') ?? 'full'}:${cover}`;
   if (artworkCache.has(key)) return artworkCache.get(key)!;
   try {
     const bitmap = await decoded(url, signal);
@@ -59,7 +59,7 @@ async function wrapperSide(url: string | undefined, fallback: string, signal: Ab
       const fittedAspect = aspect ?? sourceWidth / sourceHeight;
       const canvas = document.createElement('canvas'); canvas.width = Math.round(800 * fittedAspect); canvas.height = 800;
       const ctx = canvas.getContext('2d')!; ctx.fillStyle = '#151c26'; ctx.fillRect(0, 0, canvas.width, canvas.height);
-      const scale = Math.min(canvas.width / sourceWidth, canvas.height / sourceHeight);
+      const scale = (cover ? Math.max : Math.min)(canvas.width / sourceWidth, canvas.height / sourceHeight);
       const w = sourceWidth * scale, h = sourceHeight * scale;
       ctx.drawImage(bitmap, bitmap.width * left, bitmap.height * top, sourceWidth, sourceHeight, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
       const result = { image: canvas.toDataURL('image/png'), aspect: fittedAspect, loaded: true };
@@ -71,7 +71,7 @@ async function wrapperSide(url: string | undefined, fallback: string, signal: Ab
 }
 export async function prepareWrapper(set: PokemonSet, booster: PokemonBooster, signal: AbortSignal) {
   const front = await wrapperSide(booster.front, fallbackWrapper(set), signal, undefined, booster.frontBounds);
-  const back = await wrapperSide(booster.back, fallbackWrapper(set, true, front.aspect), signal, front.aspect);
+  const back = await wrapperSide(booster.back, fallbackWrapper(set, true, front.aspect), signal, front.aspect, booster.backBounds, !!booster.backBounds);
   signal.throwIfAborted();
   const height = front.loaded ? 13 : 11.8;
   return { front: front.image, back: back.image, ink: wrapperInk, backInk: wrapperInk,

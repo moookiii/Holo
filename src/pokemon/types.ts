@@ -9,6 +9,7 @@ export interface PokemonBooster extends CatalogEntry {
   front?: string; back?: string;
   /** Normalized source crop [left, top, right, bottom] for photographed wrappers. */
   frontBounds?: [number, number, number, number];
+  backBounds?: [number, number, number, number];
 }
 export interface PokemonSet extends CatalogEntry {
   series: CatalogEntry; era: string; releaseDate: string; cardIds: string[]; boosters: PokemonBooster[];

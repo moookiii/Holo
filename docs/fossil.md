@@ -23,7 +23,8 @@ Viewer cards and booster pulls share these maps. Non-holo prints stay print-only
 
 Lapras, Aerodactyl and Zapdos use the user's supplied original wrapper fronts
 and shared photographed back, copied unchanged into `public/packs/pokemon`.
-Their native front aspect ratios determine pack width. Printed seals are retained
+Their native front aspect ratios determine pack width. The shared back crops the
+black photo margin and fills the wrapper width. Printed seals are retained
 without adding duplicate procedural seals. The Fossil logo is from TCGdex.
 
 Validation: `tests/pokemon-fossil.test.ts` checks the complete checklist, asset
