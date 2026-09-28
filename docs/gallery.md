@@ -24,7 +24,7 @@ Focus checks `CardCpuPreparation.cached` for a complete compatible prepared card
 
 Previews retain the source aspect ratio, authored coverage/protection, roughness, and authored normals or continuous height-derived normals. Normal derivatives are computed before coverage clipping. A shared angle-dependent spectrum provides a reduced foil response, while StudioLighting provides actual direct/environment illumination, moving light and blacklight. Gallery intentionally omits expensive manufacturing textures, image holograms, secondary grating detail, microglitter and displaced metal geometry; those return in focus. This is a gallery approximation, not the reference optical renderer.
 
-`GalleryMotion` exposes radius, strength, falloff and damping. Defaults use a 520-pixel influence radius. Frame-rate-independent damping and capped elapsed time prevent a tab resume from snapping cards. `GalleryLighting` exposes only controls relevant to the selected existing preset.
+`GalleryMotion` exposes radius, strength, falloff and damping. Defaults use a 360-pixel influence radius and 0.65-radian strength, giving a noticeable tilt across nearby cards while ending at the shorter boundary. Frame-rate-independent damping and capped elapsed time prevent a tab resume from snapping cards. `GalleryLighting` exposes only controls relevant to the selected existing preset.
 
 ## Verification
 

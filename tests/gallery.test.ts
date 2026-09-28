@@ -31,8 +31,10 @@ test('stale uploads cannot replace an evicted card; recently needed slots surviv
 test('a cursor influences neighboring cards, smoothly returns and respects distance', () => {
   assert.ok(influence(-180, 40).yaw < 0);
   assert.ok(influence(180, 40).yaw > 0);
-  assert.equal(influence(600, 0).yaw, 0);
-  assert.ok(Math.abs(influence(519.99, 0).yaw) < .00001);
+  assert.ok(influence(180, 0).yaw > .15);
+  assert.ok(influence(300, 0).yaw > 0);
+  assert.equal(influence(360, 0).yaw, 0);
+  assert.ok(Math.abs(influence(359.99, 0).yaw) < .00001);
   let value = .2;
   for (let i = 0; i < 90; i++) value = damp(value, 0, 1 / 60);
   assert.ok(value < .000001);
