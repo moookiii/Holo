@@ -55,8 +55,8 @@ try {
       return { id: card.pokemon.id, variant: card.pokemon.variant, profile: card.profile, pending: card.pokemon.treatmentStatus, maps: card.maps };
     }));
     assert.equal(pulls.length, 11); assert.equal(pulls[10].variant, variant);
-    assert.ok(pulls.every(p => p.id.startsWith('base3-') && p.profile === 'print-only' && !p.maps));
-    assert.equal(pulls[10].pending, variant === 'holo' ? 'deferred' : undefined);
+    assert.ok(pulls.every(p => p.id.startsWith('base3-') && (p.variant === 'holo' ? p.profile === 'pokemon-base-set-star' && p.maps?.motif?.endsWith('-stars.png') : p.profile === 'print-only' && !p.maps)));
+    assert.equal(pulls[10].pending, undefined);
     await page.screenshot({ path: join(out, `${artwork}-sealed.png`) });
     await page.evaluate(() => { window.__holo.pack.setStage('hit'); window.__holo.pack.tick(2); });
     await page.screenshot({ path: join(out, `${artwork}-rare.png`) });

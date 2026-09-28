@@ -25,7 +25,7 @@ for key, stars in DATA.items():
         folder = ROOT / ('public/cards/charizard-base-set' if n == 4 else f'public/cards/pokemon/base-set/{SLUGS[n-1]}')
         front, target = folder / 'front.png', folder / 'stars.png'
     else:
-        folder = ROOT / 'public/cards/pokemon/jungle'
+        folder = ROOT / f"public/cards/pokemon/{'fossil' if series == 'base3' else 'jungle'}"
         front, target = folder / f'{n}.png', folder / f'maps/{n}-stars.png'
     # Four samples per delivered pixel; PNG masks are 1200x1650.
     scale = 4

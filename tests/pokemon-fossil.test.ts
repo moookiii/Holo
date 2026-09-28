@@ -24,14 +24,22 @@ test('Fossil has 62 exact original fronts with separate holo and non-holo rare p
   assert.equal(fossilCards[61].name,'Mysterious Fossil');
 });
 
-test('Fossil holos remain deferred in picker and packs with no substitute foil or star maps', () => {
+test('Fossil holos use authored PNG masks and registered stars in picker and packs', () => {
   assert.equal(fossilDefinitions.length,62);
   assert.equal(packAvailability('base3').ready,true);
   for(const c of fossilCards) {
     const variant=c.variants[0],d=pokemonDefinition(c,variant,[]);
-    assert.equal(d.profile,'print-only'); assert.equal(pokemonProfile(c,variant),'print-only');
-    assert.equal(d.pokemon?.treatmentStatus,variant==='holo'?'deferred':undefined);
-    assert.equal(d.maps,undefined);assert.equal(d.proceduralFoil,undefined);
+    const profile=variant==='holo'?'pokemon-base-set-star':'print-only';
+    assert.equal(d.profile,profile); assert.equal(pokemonProfile(c,variant),profile);
+    assert.equal(d.pokemon?.treatmentStatus,undefined);
+    if(variant==='holo') {
+      for(const suffix of ['foil','protection','laminate','stars']) {
+        const bytes=readFileSync(`public/cards/pokemon/fossil/maps/${c.localId}-${suffix}.png`);
+        assert.equal(bytes.readUInt32BE(16),1200);assert.equal(bytes.readUInt32BE(20),1650);
+      }
+      assert.equal(d.maps?.motif,`/cards/pokemon/fossil/maps/${c.localId}-stars.png`);
+    } else assert.equal(d.maps,undefined);
+    assert.equal(d.proceduralFoil,undefined);
     assert.equal(d.front,c.front);
   }
 });

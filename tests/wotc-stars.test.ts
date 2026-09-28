@@ -3,13 +3,14 @@ import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { baseSetCards } from '../src/card/BaseSetCards.ts';
+import { fossilDefinitions } from '../src/card/FossilCards.ts';
 import { jungleDefinitions } from '../src/card/JungleCards.ts';
 import { labelRegisteredStars } from '../src/materials/patterns/RegisteredStars.ts';
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
 
-test('all 32 WotC holos have distinct full-front PNG star maps, including pack pulls', () => {
-  const definitions = [...baseSetCards, ...jungleDefinitions.filter(c => c.profile === 'pokemon-base-set-star')];
-  assert.equal(definitions.length, 32);
+test('all 47 WotC holos have distinct full-front PNG star maps, including pack pulls', () => {
+  const definitions = [...baseSetCards, ...fossilDefinitions.filter(c => c.profile === 'pokemon-base-set-star'), ...jungleDefinitions.filter(c => c.profile === 'pokemon-base-set-star')];
+  assert.equal(definitions.length, 47);
   const hashes = new Set<string>();
   for (const card of definitions) {
     assert.match(card.maps!.motif!, /stars\.png$/);
@@ -19,13 +20,13 @@ test('all 32 WotC holos have distinct full-front PNG star maps, including pack p
     hashes.add(createHash('sha256').update(bytes).digest('hex'));
     if (card.pokemon) assert.equal(pokemonDefinition(card.pokemon, 'holo', []).maps?.motif, card.maps!.motif);
   }
-  assert.equal(hashes.size, 32, 'different scans must not share a scattered star pattern');
+  assert.equal(hashes.size, 47, 'different scans must not share a scattered star pattern');
   assert.ok(jungleDefinitions.filter(c => c.profile === 'print-only').every(c => !c.maps?.motif));
 });
 
 test('Electrode registers all eight printed stars, including its lower-right star', () => {
   const placements = JSON.parse(readFileSync('scripts/wotc/star-placements.json', 'utf8'));
-  assert.equal(Object.keys(placements).length, 32);
+  assert.equal(Object.keys(placements).length, 47);
   assert.equal(placements['base2-2'].length, 8);
   assert.ok(placements['base2-2'].some(([x,y]: number[]) => x === 500 && y === 374));
 });

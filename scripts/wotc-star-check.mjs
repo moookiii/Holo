@@ -54,7 +54,7 @@ try {
     }
     return results;
   },placements);
-  assert.equal(fieldChecks.length,32);
+  assert.equal(fieldChecks.length,47);
   for(const r of fieldChecks){assert.equal(r.missed,0,r.key);assert.equal(r.stray,0,r.key);assert.equal(r.raised,0,r.key);}
   await page.evaluate(async()=>{const h=window.__holo;h.hideUI();await h.setCard('pokemon:base2-2:holo');h.pose(0,0);});
   const response=[];

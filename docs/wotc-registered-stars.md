@@ -1,6 +1,6 @@
-# Registered Base Set and Jungle stars
+# Registered Base Set, Jungle and Fossil stars
 
-All sixteen Base Set and sixteen Jungle holo fronts have separate 1200 × 1650
+All sixteen Base Set, sixteen Jungle and fifteen Fossil holo fronts have separate 1200 × 1650
 grayscale PNG star maps. `scripts/wotc/star-placements.json` records each center
 and horizontal/vertical radius in the clean front's 600 × 825 coordinates.
 `python scripts/wotc/create-star-maps.py` rebuilds them and writes review overlays
@@ -25,12 +25,12 @@ is introduced. Depth remains flat.
 
 Validation:
 
-- `tests/wotc-stars.test.ts`: 32 unique PNGs, exact-print pack reuse, Electrode's
+- `tests/wotc-stars.test.ts`: 47 unique PNGs, exact-print pack reuse, Electrode's
   eight stars, Jolteon's two faint left-side stars, connected ray identity.
 - `scripts/wotc-star-check.mjs`: all authored centers receive optical amplitude,
   no scattered stars outside the maps, flat depth, and live reflections at all
   eight Electrode stars under four lighting presets.
-- Base Set and Jungle browser checks: all 32 holos, front/left/right poses and
+- Base Set, Jungle and Fossil browser checks: all 47 holos, front/left/right poses and
   stationary optical response. Base Set's browser test serves the bundled
   pixel-identical Charizard front to avoid dependence on remote CORS headers.
 
