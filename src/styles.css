@@ -1,6 +1,7 @@
 :root { color-scheme: dark; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #c8c8c8; background: #050505; font-synthesis: none; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
-.gallery-entry { position: absolute; top: 26px; right: 190px; pointer-events: auto; padding: 10px 12px; border: 1px solid #28231b; border-radius: 6px; font-size: 11px; color: #b4a17b; background: #0c0c0c; }
-@media(max-width: 600px) { .gallery-entry { top: 15px; right: 165px; } }
+.top-actions { position: absolute; top: max(26px, env(safe-area-inset-top)); right: max(30px, env(safe-area-inset-right)); display: flex; align-items: stretch; gap: 8px; pointer-events: auto; }
+.top-actions > * { display: flex; align-items: center; justify-content: center; min-height: 38px; padding: 10px 12px; border: 1px solid #28231b; border-radius: 6px; color: #b4a17b; background: #0c0c0c; font-size: 11px; line-height: 1; text-decoration: none; white-space: nowrap; transition: color 180ms, border-color 240ms; }
+.top-actions > *:hover { color: #d5b676; border-color: #675334; }
 * { box-sizing: border-box; }
 html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; }
 button, select { font: inherit; color: inherit; }
@@ -117,9 +118,8 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .lab-fields output { color: #c8a45b; font-variant-numeric: tabular-nums; }
 .lab-fields input { width: 100%; grid-column: 1 / -1; accent-color: #b89960; height: 10px; }
 
-.pack-entry { position: absolute; top: max(26px, env(safe-area-inset-top)); right: 30px; display: flex; gap: 9px; align-items: center; pointer-events: auto; font-size: 11px; letter-spacing: .03em; color: #b4a17b; padding: 10px 12px; border: 1px solid #28231b; border-radius: 6px; background: #0c0c0c; transition: opacity 240ms, border-color 240ms; }
+.pack-entry { gap: 9px; letter-spacing: .03em; }
 .pack-entry svg { width: 16px; height: 18px; }
-.pack-entry:hover { border-color: #675334; }
 #ui { transition: opacity 280ms; }
 .pack-mode #ui { opacity: 0; pointer-events: none; }
 .pack-mode .material-lab { display: none; }
@@ -138,7 +138,6 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .pack-action:disabled { cursor: default; border-color: transparent; color: #81775f; }
 .pack-load-cancel { margin-top: 12px; font-size: 12px; color: #a99a7e; padding: 12px; }
 .pack-load-cancel[hidden] { display: none; }
-@media (max-width: 600px) { .lab-entry { left: 16px; top: max(15px, env(safe-area-inset-top)); } .pack-entry { top: max(15px, env(safe-area-inset-top)); right: 16px; } .pack-header { padding: max(15px, env(safe-area-inset-top)) 20px 0; } .pack-footer { bottom: max(22px, env(safe-area-inset-bottom)); } }
+@media (max-width: 600px) { .top-actions { top: max(15px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); gap: 5px; } .top-actions > * { padding-inline: 9px; font-size: 10px; } .pack-entry { gap: 6px; } .pack-header { padding: max(15px, env(safe-area-inset-top)) 20px 0; } .pack-footer { bottom: max(22px, env(safe-area-inset-bottom)); } }
 @media (prefers-reduced-motion: reduce) { #ui, .pack-entry, .pack-action { transition: none; } }
 
-.lab-entry { position: absolute; left: 25px; top: max(26px, env(safe-area-inset-top)); color: #897750; font-size: 11px; text-decoration: none; pointer-events: auto; }
