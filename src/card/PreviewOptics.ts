@@ -1,7 +1,7 @@
 import type { CardDefinition } from './CardDefinition';
 import type { HolographicProfile } from '../materials/HolographicProfile';
 
-export const PREVIEW_PARAMETER_COLUMNS = 32;
+export const PREVIEW_PARAMETER_COLUMNS = 34;
 /** Same per-print optical controls as the viewer, packed for one shared shader.
  * Eight RGBA texels per layer; final rows describe ink/substrate and surface. */
 export function previewOptics(card: CardDefinition, profile: HolographicProfile) {
@@ -27,6 +27,9 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
       ['plain', 'satin', 'e-reader', 'sheen', 'water-web', 'mirage'].includes(s.field) ? 0 : 1, s.field === 'radial' ? 0 : 1]);
     set(base + 6, [s.normalVariance ?? 0, f.patternRoughness ?? 0, disabled.has('film') ? 0 : f.iridescence ?? 0, f.filmIOR ?? 1.5]);
     set(base + 7, [f.filmMin ?? 200, f.filmMax ?? 600, f.pearlBody ?? 0, enabled ? 1 : 0]);
+    const g = layer.glints;
+    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && g.microdiamond && !disabled.has('sparkle') ? g.strength : 0]);
+    set(29 + index * 2, [g.spread, card.dimensions.width / card.dimensions.height, card.seed + [0, 8191, 16381][index], 0]);
   });
   set(24, [...(card.substrate?.color ?? [.27, .31, .30]), card.substrate ? 1 - card.substrate.printRetention : .1]);
   set(25, [...(card.substrate?.backgroundColor ?? [0, 0, 0]), card.substrate?.backgroundColor ? 1 : 0]);

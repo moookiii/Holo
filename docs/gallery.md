@@ -7,7 +7,7 @@ Open **Gallery** beside **Open a pack**. Search and game/set/rarity/finish/categ
 | Tier | Resources | Lifetime |
 | --- | --- | --- |
 | Inactive | CardDefinition and source URLs; optional reduced preview in the CPU LRU | 24 MiB CPU preview budget |
-| Gallery | One instanced mesh, one physical material, one 512 × 720 × 48 artwork array, eight 128 × 180 × 48 map arrays and a 32 × 48 optical parameter texture | Fixed 106,192,896 bytes (101.273 MiB) of GPU texels, plus matrices/geometry/material; matching CPU upload buffers |
+| Gallery | One instanced mesh, one physical material, one 512 × 720 × 48 artwork array, eight 128 × 180 × 48 map arrays and a 34 × 48 optical parameter texture | Fixed 106,194,432 bytes (101.275 MiB) of GPU texels, plus matrices/geometry/material; matching CPU upload buffers |
 | Focused | Existing CardFactory full-quality material, manufacturing fields, maps and physical geometry | One focused factory, disposed when returning to Gallery |
 
 Gallery reuses the existing renderer, scene, camera, environment and StudioLighting. There is no renderer, scene, lighting rig or material per gallery card. The texture-array layer index is an integer varying to prevent interpolation rounding from sampling a neighboring card.
@@ -22,7 +22,7 @@ Focus checks `CardCpuPreparation.cached` for a complete compatible prepared card
 
 ## Preview appearance
 
-Previews retain the source aspect ratio, authored coverage/protection, roughness, and authored normals or continuous height-derived normals. Normal derivatives are computed before coverage clipping. Primary, secondary and stamp regions retain separate coverage, seeded manufacturing fields and optical parameters. The shared material uses the viewer wavelength response with actual direct/area lights and environment illumination, including moving light and blacklight. Gallery still approximates relief and omits image holograms, microglitter and displaced metal geometry; those return in focus. This is a gallery approximation, not the reference optical renderer.
+Previews retain the source aspect ratio, authored coverage/protection, roughness, and authored normals or continuous height-derived normals. Normal derivatives are computed before coverage clipping. Primary, secondary and stamp regions retain separate coverage, seeded manufacturing fields and optical parameters. The shared material uses the viewer wavelength response with actual direct/area lights and environment illumination, including moving light and blacklight. Registered microdiamond glints reuse the viewer calculation, per-card seeds and per-layer controls, with sparkle and foil masks limiting their coverage. Gallery still approximates relief and omits image holograms, other microglitter and displaced metal geometry; those return in focus. This is a gallery approximation, not the reference optical renderer.
 
 `GalleryMotion` exposes radius, strength, falloff and damping. Defaults use a 360-pixel influence radius and 0.60-radian strength, giving a noticeable tilt across nearby cards while ending at the shorter boundary. Frame-rate-independent damping and capped elapsed time prevent a tab resume from snapping cards. `GalleryLighting` exposes only controls relevant to the selected existing preset.
 

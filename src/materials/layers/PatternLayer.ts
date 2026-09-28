@@ -28,6 +28,6 @@ export function radialStructure(scale: Node<'float'>, angleOffset: Node<'float'>
   return { direction: vec2(cos(angle), sin(angle)), engraving, radius, phase: sectorPhase, resolved };
 }
 
-export function stableHash(cell: Node<'vec2'>, seed: number) {
+export function stableHash(cell: Node<'vec2'>, seed: number | Node<'float'>) {
   return fract(sin(cell.dot(vec2(127.1, 311.7)).add(seed)).mul(43758.5453));
 }

@@ -39,13 +39,14 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
 /** Registered microscopic square cuts: their positions and inclinations are
  * fixed in card space. Light selects individual flashes. Pixel-area integration
  * preserves tiny facets without aliasing them into a coarse diamond grid. */
-function microdiamondGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number) {
+export function microdiamondGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>) {
+  const offsetSeed = (offset: number) => typeof seed === 'number' ? seed + offset : seed.add(offset);
   const p = uv().mul(vec2(settings.aspect ?? float(.716), 1)).mul(settings.scale);
   const row = p.y.floor();
-  const lattice = p.add(vec2(stableHash(vec2(row, 7), seed + 311).mul(.8), 0));
+  const lattice = p.add(vec2(stableHash(vec2(row, 7), offsetSeed(311)).mul(.8), 0));
   const cell = lattice.floor();
-  const r = stableHash(cell, seed), s = stableHash(cell, seed + 31);
-  const t = stableHash(cell, seed + 83);
+  const r = stableHash(cell, seed), s = stableHash(cell, offsetSeed(31));
+  const t = stableHash(cell, offsetSeed(83));
   const center = vec2(r, s).sub(.5).mul(.24).add(.5);
   const local = lattice.fract().sub(center);
   const size = vec2(t.mul(.10).add(.16), r.mul(.09).add(.15));

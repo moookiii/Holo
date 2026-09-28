@@ -52,7 +52,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const titleProtection = titleMask && paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
   const inputs: Partial<Record<PackedMapKey, Uint8Array>> = {};
-  const keys = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic', 'protection', 'roughness', 'surface', 'height', 'pattern', 'secondaryPattern', 'stampPattern', 'stamp', 'laminate'] as const;
+  const keys = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic', 'protection', 'roughness', 'surface', 'height', 'pattern', 'secondaryPattern', 'stampPattern', 'stamp', 'laminate', 'sparkle'] as const;
   for (const key of keys) if (paths[key]) inputs[key] = await read(paths[key]!);
   const normalSource = paths.normal ? await read(paths.normal) : undefined;
   const hasCoverage = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic'].some(key => key in inputs);
@@ -135,6 +135,9 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     if (mode === 'absolute') roughness = packed.surface[i + 1] / 255;
     if (mode === 'offset') roughness += (packed.surface[i + 1] - 128) / 255 * .35;
     normal[i + 3] = Math.round(Math.max(.045, Math.min(1, roughness)) * 255);
+    // Metallic coverage lives in artwork alpha; use the freed channel for
+    // sparkle protection without repurposing the film-thickness detail map.
+    coverage[i + 3] = packed.surface[i + 2];
   }
   return { images: [front, coverage, normal, ...fields, ...details], parameters };
 }

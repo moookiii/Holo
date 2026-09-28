@@ -3,11 +3,12 @@ import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
 import { exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { spectrum } from '../materials/layers/DiffractionLayer';
+import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
 
 
-interface Region { mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; }
+interface Region { mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; }
 
 /** Uses the viewer's wavelength response and grating momentum under actual
  * incident light. Foil energy enters directSpecular, never the printed color. */
@@ -60,7 +61,11 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const sheen = n.dot(half).max(0).pow(24).mul(surface.y, r.field.a);
       const incident = n.dot(light).max(0), visible = n.dot(positionViewDirection).max(0).sqrt();
       const ink = mix(vec3(1), r.ink, surface.z);
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(silver).add(vec3(1, .985, .96).mul(sheen))
+      const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
+      const broadening = halfVariance.mul(r.glint.z).add(1);
+      const sparkle = microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.div(broadening),
+        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a);
+      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen))
         .mul(incident, visible, ink, r.mask, data.lightColor as Node<'vec3'>));
     }
   }
@@ -93,6 +98,7 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), metal = artwork.a;
     const weights = [masks.r, masks.g, masks.b];
     this.regions = weights.map((mask, index) => ({ mask, field: image(3 + index), detail: image(6 + index),
+      glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06) }));
     const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => this.regions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
