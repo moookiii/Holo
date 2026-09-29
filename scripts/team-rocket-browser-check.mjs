@@ -50,7 +50,7 @@ try {
     await page.getByRole('button',{name:/^Team Rocket Opening available/}).click();
     const button=page.getByRole('button',{name:`${design} booster · ${edition}`,exact:true});await button.waitFor();
     assert.equal(await page.locator('button.pokemon-booster').count(),8);
-    assert.match(await page.locator('.pokemon-browser [role=status]').textContent(),/intentionally deferred/);
+    assert.match(await page.locator('.pokemon-browser [role=status]').textContent(),/18 holos with registered foil/);
     await page.screenshot({path:join(out,'selection.png')});
     await page.evaluate(seed=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=a=>{a[0]=seed;crypto.getRandomValues=original;return a;};},seeds[outcome]);
     await button.click();await page.waitForFunction(()=>window.__holo.pack.stats().state==='PackReady',null,{timeout:120000});
@@ -59,8 +59,9 @@ try {
       return {id:d.pokemon.id,edition:d.pokemon.edition,variant:d.pokemon.variant,front:d.front,number:d.number,profile:d.profile,pending:d.pokemon.treatmentStatus,maps:d.maps,procedural:d.proceduralFoil};
     }));
     assert.equal(pulls.length,11);
-    assert.ok(pulls.every(p=>p.edition===(edition==='Unlimited'?'unlimited':'first-edition')&&p.profile==='print-only'&&!p.maps&&!p.procedural));
-    assert.ok(pulls.every(p=>p.variant==='holo'?p.pending==='deferred':p.pending===undefined));
+    assert.ok(pulls.every(p=>p.edition===(edition==='Unlimited'?'unlimited':'first-edition')&&!p.procedural));
+    assert.ok(pulls.every(p=>p.pending===undefined));
+    assert.ok(pulls.every(p=>p.variant==='holo'?p.profile===(p.id==='base5-15'?'pokemon-team-rocket-trainer':'pokemon-base-set-2-cosmos')&&p.maps?.protection:p.profile==='print-only'&&!p.maps));
     if(outcome==='secret'){assert.equal(pulls[10].id,'base5-83');assert.match(pulls[10].number,/83\/82/);}
     else assert.equal(pulls[10].variant,outcome);
     const label=`${design.replaceAll(' ','-')}-${edition.replaceAll(' ','-')}`;

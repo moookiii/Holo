@@ -36,21 +36,34 @@ test('Team Rocket has 83 exact numbered identities, separate rare counterparts, 
   }
 });
 
-test('both editions preserve exact fronts and deferred holo identities without any foil assets or procedural fallback',()=>{
+test('both editions preserve exact fronts and resolve authored holo maps without procedural fallback',()=>{
   assert.equal(teamRocketDefinitions.length,166);
   assert.equal(new Set(teamRocketDefinitions.map(d=>d.id)).size,166);
   for(const d of teamRocketDefinitions) {
     const card=d.pokemon!, resolved=pokemonDefinition(card,card.variant,[]);
     assert.equal(resolved.id,d.id);assert.equal(resolved.front,d.front);
     assert.equal(resolved.number,d.number);assert.match(d.number,/\/82/);
-    assert.equal(resolved.profile,'print-only');assert.equal(pokemonProfile(card,card.variant),'print-only');
-    assert.equal(resolved.pokemon?.treatmentStatus,card.variant==='holo'?'deferred':undefined);
-    for(const key of ['maps','proceduralFoil','profileOverrides'] as const) assert.equal(resolved[key],undefined);
+    const profile=card.variant==='normal'?'print-only':card.localId==='15'?'pokemon-team-rocket-trainer':'pokemon-base-set-2-cosmos';
+    assert.equal(resolved.profile,profile);assert.equal(pokemonProfile(card,card.variant),profile);
+    assert.equal(resolved.pokemon?.treatmentStatus,undefined);
+    for(const key of ['proceduralFoil','profileOverrides'] as const) assert.equal(resolved[key],undefined);
+    if(card.variant==='holo') {
+      assert.ok(d.maps?.foil && d.maps?.protection);
+      assert.equal(d.mapSettings?.embossStrength,0);
+      assert.equal(d.maps?.height,undefined);assert.equal(d.maps?.normal,undefined);
+      assert.equal(!!d.maps?.direction,card.localId==='15');
+      assert.equal(!!d.maps?.motif,card.localId!=='15');
+      for(const path of Object.values(d.maps!)) {
+        assert.ok(path.endsWith('.png') && path.includes(`-${card.edition}-`));
+        const bytes=readFileSync(`public${path}`);
+        assert.equal(bytes.readUInt32BE(16),1200);assert.equal(bytes.readUInt32BE(20),1650);
+      }
+    } else assert.equal(d.maps,undefined);
     assert.ok(existsSync(`public${d.front}`));
     assert.equal(d.front,card.editionFronts![card.edition!]);
     assert.throws(()=>pokemonDefinition(card,'reverse',[]),/Invalid/);
   }
-  assert.ok(!existsSync('public/cards/pokemon/team-rocket/maps'));
+
 });
 
 test('local Team Rocket selection exposes four wrapper designs in each edition with no metadata requests',async()=>{

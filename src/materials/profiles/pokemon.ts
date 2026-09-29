@@ -152,6 +152,13 @@ export const pokemonProfiles: HolographicProfile[] = [{
   glints: { density: 0, scale: 520, sharpness: 220, strength: 0, spread: .3 },
   surface: { metalness: .76, roughness: .32, laminate: .20, laminateRoughness: .32, foilReflectance: .17, sheen: .24, inkTransmission: .42 },
 }, {
+  id: 'pokemon-team-rocket-trainer', name: 'Here Comes Team Rocket! foil', family: 'Pokémon', status: 'reference-pending',
+  description: 'Registered fine directional rays and granular foil inside the R, guided by the original front and supplied physical-card photograph. Optical direction and intensity estimates only; no Cosmos dots or relief.',
+  diffraction: { period: 1.30, bandwidth: .075, strength: .9, secondaryOrder: .06, direction: 0, crossWidth: .50, facetCoupling: 0 },
+  structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
+  glints: { density: 0, scale: 520, sharpness: 220, strength: 0, spread: .3 },
+  surface: { metalness: .76, roughness: .31, laminate: .20, laminateRoughness: .32, foilReflectance: .17, sheen: .24, inkTransmission: .42 },
+}, {
   id: 'pokemon-cosmos', name: 'Cosmos', family: 'Pokémon', status: 'reference-pending',
   description: 'Classic pixelated Cosmos: unequal circles, rosettes and a broken swirl made from small independently oriented optical cells.',
   diffraction: { period: 1.45, bandwidth: .055, strength: 1.7, secondaryOrder: .24, direction: 0, crossWidth: .42 },

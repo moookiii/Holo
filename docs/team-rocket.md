@@ -22,7 +22,7 @@ TCGdex supplies the unmodified stamped 1st Edition scans. Face to Face Games'
 edition-specific catalog supplies the original Unlimited scans. These are
 separate source images; no stamps were painted, removed or synthesized.
 Scan resolution, wear, color balance and captured foil highlights vary.
-Holo fronts retain their photographed highlights while dynamic foil is deferred.
+Holo fronts retain their photographed highlights beneath the registered dynamic optics.
 
 The four wrapper designs in each edition come from Loose Packs' product
 photographs. Their empty transparent margins are trimmed offline and large
@@ -64,35 +64,60 @@ the card numbers. Wrapper designs and editions use the same rarity stream;
 edition selects the correct fronts and participates in the resolved identity.
 Other sets' seed streams and print rules are unchanged.
 
-## Holo work intentionally deferred
+## Registered holo treatment
 
-All 18 holo identities (17 standard plus Dark Raichu), in both editions, use
-`print-only` with `treatmentStatus: 'deferred'`. They remain genuine holo pulls
-in pack data; they are never rerolled or replaced with non-holo counterparts.
-The selector and card labels state that holo visuals are pending.
+All 18 holos in both editions now have separate PNG foil-window and print
+protection maps. The user's annotated fronts are retained in
+`scripts/team-rocket/traces/`. `create-holo-maps.py` fills those supplied
+contours, closes Charizard's wing at the artwork frame, preserves enclosed
+background gaps, and registers printed subject features to each Unlimited
+scan. Registration uses RANSAC on printed subject features, not foil dots;
+median inlier errors are below 0.9 pixels at the 600 x 825 working size.
+These residuals describe image registration, not contour precision.
 
-No Team Rocket shader profile, foil-window mask, subject cutout, protection
-map, Cosmos dots, procedural motif or relief was created. There is no Team
-Rocket `maps` directory, and no generic foil fallback is attached.
+Seventeen holo identities reuse the corrected **Base Set 2 Cosmos** profile.
+`register-cosmos.py` measures blob centers and radii in each edition's own
+front, confirms round local features, and rasterizes filled antialiased
+circles at 1200 x 1650. `cosmos-registration.json` stores every center/radius;
+`cosmos-corrections.json` records visually reviewed large orbs and rejected
+printed features. Scan noise cannot become a ragged perimeter or punch holes
+inside a dot. The motif PNG is independent of both artwork and protection.
+No additional runtime detector, GPU sampler, random dot layer or relief is
+introduced. The existing worker/cache/preparation paths are reused.
 
-For the later pass, use the stable `pokemon:base5-N:FINISH:EDITION` definitions
-in `TeamRocketCards.ts`. Each exact print can receive the existing
-`CardDefinition.maps` fields (`foil`, `protection`, `motif`, etc.), a supplied
-material profile and card-specific settings. Remove its deferred status when
-its authored treatment is ready. Edition scans have different registrations,
-so shared assets must be checked against both fronts before reuse.
+**Here Comes Team Rocket! #15** uses a dedicated profile with optical-only
+direction PNGs. The user's angled photo establishes reflective fine rays,
+the granular counter inside the R, and narrow exposed gaps below the R and
+beside Jessie. Directions and contrast come from those details on each clean
+scan; no Cosmos dots or synthetic embossed height are assigned. This is an
+optical estimate from a single angled photograph, not measured physical
+microstructure or a complete angular calibration.
+
+Run `create-holo-maps.py`, `register-cosmos.py`, and
+`register-trainer-foil.py` to reproduce PNG assets and review overlays.
+`register-cosmos.py --remeasure` repeats detection plus recorded corrections;
+the default renders saved coordinates. Python requires Pillow, NumPy,
+OpenCV, SciPy and scikit-image. This preprocessing is offline only.
+
+Limitations: scans contain baked lighting, and Unlimited image quality varies.
+Only visibly resolved dots can be registered; faint or obscured motifs are
+not invented. In particular, Unlimited Dark Weezing has very few resolvable
+dots and Rainbow Energy has a soft low-resolution scan. The direction and
+brightness response of #15 remains an estimate pending moving references.
 
 ## Validation
 
 - `pokemon-team-rocket.test.ts`: all identities and counterpart pairs, both
-  edition-front manifests, 166 distinct definitions, no invented holo assets,
+  edition-front manifests, 166 distinct definitions, edition-specific PNG maps and profile dispatch,
   local catalog, eight wrappers, 9,000 deterministic packs, all 83 outcomes,
   configured 1/90 secret weight, observed distribution and incomplete-pool rejection.
 - `team-rocket-browser-check.mjs`: set order and selection, all eight wrapper
   choices, 11-card preparation, tear/open/reveal, correct edition fronts,
   standard holo/non-holo outcomes, and Dark Raichu in both editions. All pass.
-- Production build and 36 targeted Team Rocket / early-set / collation / CPU
-  preparation tests pass.
+- Production build and targeted Team Rocket / early-set / collation / CPU
+  preparation tests cover the integration.
+- `team-rocket-holo-review.mjs` captures all 36 holo prints at three poses
+  under Studio and Strip lights for visual inspection.
 - `team-rocket-performance.mjs` compares Base Set 2 with both Team Rocket
   editions in the same browser. Reports are saved under
   `artifacts/team-rocket-performance/`; this is a local device comparison,
@@ -102,3 +127,10 @@ Checklist/print references:
 [TCGdex](https://api.tcgdex.net/v2/en/sets/base5),
 [Team Rocket set reference](https://bulbapedia.bulbagarden.net/wiki/Team_Rocket_(TCG)),
 [PSA's pack composition reference](https://www.psacard.com/articles/articleview/9247/public/locales).
+
+Local post-holo measurement: viewer median 5.6 ms for Base Set 2 and both
+Team Rocket editions; opening medians 5.6–5.7 ms. Team Rocket preparation
+was 5.7–6.0 s versus 9.1 s for the baseline in this run. One Unlimited tear
+p95 was 13.9 ms versus baseline 10.3 ms; remaining Rocket stage p95 values
+were 6.9–7.6 ms. No sustained frame-time regression was observed. These
+short device-specific samples include scheduling variability.
