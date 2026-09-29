@@ -18,7 +18,7 @@ type CardFinish = 'all' | 'holo' | 'non-holo' | 'metal';
 export const FIRST_PICKER_CARD_ID = 'umbreon-gx-sm1-154';
 const icon = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
 export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: ProfileOption[], actions: ViewerActions, development = false) {
-  root.innerHTML = `<nav class="top-actions" aria-label="Viewer destinations"><button id="lab-open" class="lab-entry">Holo Lab</button><button id="gallery-open" class="gallery-entry">Gallery</button><button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button></nav><nav class="controls" aria-label="Card controls">
+  root.innerHTML = `<a class="artifact-entry" href="${import.meta.env.BASE_URL}artifacts">Artifacts ↗</a><nav class="top-actions" aria-label="Viewer destinations"><button id="lab-open" class="lab-entry">Holo Lab</button><button id="gallery-open" class="gallery-entry">Gallery</button><button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button></nav><nav class="controls" aria-label="Card controls">
     <button id="card-toggle" class="text-control" aria-expanded="false" aria-controls="card-panel">Card ${icon('<path d="m8 10 4 4 4-4"/>')}</button>
     <div class="select-wrap"><select id="holo-select" aria-label="Holographic treatment"></select>${icon('<path d="m8 10 4 4 4-4"/>')}</div>
     <div class="divider"></div>

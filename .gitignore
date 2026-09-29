@@ -3,3 +3,9 @@ dist/
 artifacts/
 *.log
 .DS_Store
+
+# Source and reference assets for the artifact viewer (captures remain ignored).
+!src/artifacts/
+!src/artifacts/**
+!public/artifacts/
+!public/artifacts/**
