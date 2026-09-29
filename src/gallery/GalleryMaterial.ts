@@ -63,7 +63,9 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const ink = mix(vec3(1), r.ink, surface.z);
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const broadening = halfVariance.mul(r.glint.z).add(1);
-      const sparkle = microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.div(broadening),
+      // Absent foil layers have zeroed glint parameters. Keep pow(0, 0)
+      // out of their angular response: NaN survives a later zero mask.
+      const sparkle = microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.max(1).div(broadening),
         strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a);
       const contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(contribution.mul(r.mask, data.lightColor as Node<'vec3'>));

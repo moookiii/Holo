@@ -28,6 +28,8 @@ Previews retain the source aspect ratio, authored coverage/protection, roughness
 
 ## Verification
 
+Run `node scripts/gallery-tilt-check.mjs` for outer-column tilt and neutral-return checks on WebGL. Set `GALLERY_BROWSER=firefox` to exercise Firefox. This samples the lower printed area of every complete card at several pointer positions, catching black wedges from undefined shader math in absent foil layers.
+
 Run `npm run build`, `npm test`, and (with the dev server on port 5173) `node scripts/gallery-check.mjs`. Set `GALLERY_QUERY=?backend=webgl` and `GALLERY_OUTPUT=gallery-webgl` to test fallback separately. The browser check records screenshots, actual renderer resource counters and frame averages in `artifacts/gallery/report.json`.
 
 Run `node scripts/gallery-holo-check.mjs` for Jungle holo screenshots and actual artwork visibility assertions under Studio, Moving light and Blacklight on either backend. The browser regression covers the repository collection; three repeated collection traversals; multi-card tilt and neutral return; intersecting filters; moving/blacklight presets; three full-quality focus/demotion cycles including metal; restoring a nonzero scroll position; opening a pack after Gallery; a synthetic 10,563-card collection; and mobile layout. Unit tests traverse 10,000 entries across phone, desktop, 4K and unusually tall viewports, and test stale-load tokens.
