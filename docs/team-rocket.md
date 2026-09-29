@@ -10,11 +10,11 @@ error, prerelease and W-stamp promotions are not retail outcomes here.
 
 ## Editions and assets
 
-Both Unlimited and 1st Edition have all 83 exact fronts and distinct viewer
+The gallery and pack opener expose all 83 exact 1st Edition fronts and distinct viewer
 IDs. `TeamRocketCatalog.ts` holds card identity and edition fronts;
 `TeamRocketCards.ts` resolves exact number, finish and edition. The four
 Gyarados, Giovanni, Jessie & James, and combined Team Rocket wrappers appear
-in both editions, with eight selectable photographed fronts. Edition labels
+as four selectable 1st Edition photographed fronts. Edition labels
 are present in the wrapper selector, card number labels and print metadata.
 The collator validates edition-front completeness before producing a pack.
 
@@ -24,7 +24,7 @@ separate source images; no stamps were painted, removed or synthesized.
 Scan resolution, wear, color balance and captured foil highlights vary.
 Holo fronts retain their photographed highlights beneath the registered dynamic optics.
 
-The four wrapper designs in each edition come from Loose Packs' product
+The four exposed 1st Edition wrapper designs come from Loose Packs' product
 photographs. Their empty transparent margins are trimmed offline and large
 photographs are reduced to at most 1000 × 1400 for efficient decoding. Both
 silver crimps are retained. A genuine English Team Rocket back photograph is
@@ -66,7 +66,7 @@ Other sets' seed streams and print rules are unchanged.
 
 ## Registered holo treatment
 
-All 18 holos in both editions now have separate PNG foil-window and print
+All 18 exposed 1st Edition holos have separate PNG foil-window and print
 protection maps. The user's annotated fronts are retained in
 `scripts/team-rocket/traces/`. `create-holo-maps.py` fills those supplied
 contours, closes Charizard's wing at the artwork frame, preserves enclosed
@@ -107,19 +107,19 @@ brightness response of #15 remains an estimate pending moving references.
 
 ## Validation
 
-- `pokemon-team-rocket.test.ts`: all identities and counterpart pairs, both
-  edition-front manifests, 166 distinct definitions, edition-specific PNG maps and profile dispatch,
-  local catalog, eight wrappers, 9,000 deterministic packs, all 83 outcomes,
+- `pokemon-team-rocket.test.ts`: all identities and counterpart pairs, the
+  1st Edition front manifest, 83 distinct definitions, edition-specific PNG maps and profile dispatch,
+  local catalog, four wrappers, 9,000 deterministic packs, all 83 outcomes,
   configured 1/90 secret weight, observed distribution and incomplete-pool rejection.
-- `team-rocket-browser-check.mjs`: set order and selection, all eight wrapper
+- `team-rocket-browser-check.mjs`: set order and selection, all four wrapper
   choices, 11-card preparation, tear/open/reveal, correct edition fronts,
-  standard holo/non-holo outcomes, and Dark Raichu in both editions. All pass.
+  standard holo/non-holo outcomes, and 1st Edition Dark Raichu. All pass.
 - Production build and targeted Team Rocket / early-set / collation / CPU
   preparation tests cover the integration.
 - `team-rocket-holo-review.mjs` captures all 36 holo prints at three poses
   under Studio and Strip lights for visual inspection.
-- `team-rocket-performance.mjs` compares Base Set 2 with both Team Rocket
-  editions in the same browser. Reports are saved under
+- `team-rocket-performance.mjs` compares Base Set 2 with Team Rocket 1st Edition
+  in the same browser. Reports are saved under
   `artifacts/team-rocket-performance/`; this is a local device comparison,
   not a guarantee for every device.
 

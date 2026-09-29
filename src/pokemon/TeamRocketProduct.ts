@@ -1,7 +1,7 @@
 import type { PokemonRecipe } from './recipes.ts';
 import type { PrintEdition } from './types.ts';
 
-export const teamRocketEditions: readonly PrintEdition[] = ['unlimited', 'first-edition'];
+export const teamRocketEditions: readonly PrintEdition[] = ['first-edition'];
 const designs = [
   { id: 'gyarados', name: 'Gyarados' }, { id: 'giovanni', name: 'Giovanni' },
   { id: 'jessie-james', name: 'Jessie & James' }, { id: 'team-rocket', name: 'Team Rocket' },

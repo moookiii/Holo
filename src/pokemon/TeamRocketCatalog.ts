@@ -7,16 +7,15 @@ export const TEAM_ROCKET_ID = 'base5';
 export const teamRocketCards: readonly PokemonCard[] = teamRocketRecords.map(record => {
   const n = Number(record.localId), holo = n <= 17 || n === 83;
   const editionFronts = {
-    unlimited: `/cards/pokemon/team-rocket/unlimited/${n}.jpg`,
     'first-edition': `/cards/pokemon/team-rocket/${record.front}`,
   };
   return { ...record, setId: TEAM_ROCKET_ID, setName: 'Team Rocket', seriesId: 'base', seriesName: 'Base', era: 'base',
     rarity: n === 83 ? 'Secret Rare' : holo ? 'Holo Rare' : record.rarity,
     // TCGdex omits energyType for the holo Rainbow Energy print (#17).
     ...(record.category === 'Energy' ? { energyType: 'Special' } : {}),
-    variants: [holo ? 'holo' : 'normal'], edition: 'unlimited', editionFronts,
+    variants: [holo ? 'holo' : 'normal'], edition: 'first-edition', editionFronts,
     boosterIds: teamRocketWrapper.designs.map(d => d.id),
-    front: editionFronts.unlimited, thumbnail: editionFronts.unlimited };
+    front: editionFronts['first-edition'], thumbnail: editionFronts['first-edition'] };
 });
 export const teamRocketSet: PokemonSet = {
   id: TEAM_ROCKET_ID, name: 'Team Rocket', series: { id: 'base', name: 'Base' }, era: 'base', releaseDate: '2000-04-24',

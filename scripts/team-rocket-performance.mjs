@@ -34,7 +34,7 @@ const frames = async () => page.evaluate(async()=>{
 try {
  await page.goto('http://127.0.0.1:5173/?backend=webgl');
  await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:90000});
- for(const [set,art,id,card] of [['Base Set 2','Mewtwo','base4','pokemon:base4-13:holo'],['Team Rocket','Gyarados booster · Unlimited','base5','pokemon:base5-83:holo:unlimited'],['Team Rocket','Gyarados booster · 1st Edition','base5','pokemon:base5-83:holo:first-edition']]) {
+ for(const [set,art,id,card] of [['Base Set 2','Mewtwo','base4','pokemon:base4-13:holo'],['Team Rocket','Gyarados booster · 1st Edition','base5','pokemon:base5-83:holo:first-edition']]) {
   const field=[];
   await page.evaluate(async card=>{await window.__holo.setCard(card);window.__holo.pose(14,-8);},card);
   const viewer=await frames();
@@ -46,7 +46,7 @@ try {
    const {collatePokemon}=await import('/src/pokemon/collator.ts');
    const {baseSet2Cards}=await import('/src/pokemon/BaseSet2Catalog.ts');
    const {teamRocketCards}=await import('/src/pokemon/TeamRocketCatalog.ts');
-   for(let seed=0;seed<1000;seed++)if(collatePokemon(id,id==='base4'?'mewtwo':'gyarados-unlimited',seed,id==='base4'?baseSet2Cards:teamRocketCards).pulls[10].variant==='holo')return seed;
+   for(let seed=0;seed<1000;seed++)if(collatePokemon(id,id==='base4'?'mewtwo':'gyarados-first-edition',seed,id==='base4'?baseSet2Cards:teamRocketCards).pulls[10].variant==='holo')return seed;
   },id);
   await page.evaluate(seed=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=a=>{a[0]=seed;crypto.getRandomValues=original;return a;};},seed);
   const start=Date.now();await page.getByRole('button',{name:new RegExp(`^${art}${id==='base4'?' booster':''}$`)}).click();

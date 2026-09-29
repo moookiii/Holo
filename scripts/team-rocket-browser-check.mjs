@@ -33,14 +33,14 @@ try {
     const { collatePokemon } = await import('/src/pokemon/collator.ts');
     const found = {};
     for (let seed=0; seed<5000; seed++) {
-      const p=collatePokemon('base5','gyarados-unlimited',seed,teamRocketCards).pulls[10];
+      const p=collatePokemon('base5','gyarados-first-edition',seed,teamRocketCards).pulls[10];
       const key=p.card.id==='base5-83'?'secret':p.variant;found[key]??=seed;
       if(Object.keys(found).length===3)break;
     }
     return found;
   });
-  const cases=[['Gyarados','Unlimited','secret'],['Giovanni','Unlimited','normal'],['Jessie & James','Unlimited','holo'],['Team Rocket','Unlimited','holo'],
-    ['Gyarados','1st Edition','holo'],['Giovanni','1st Edition','secret'],['Jessie & James','1st Edition','normal'],['Team Rocket','1st Edition','holo']];
+  const cases=[['Gyarados','1st Edition','secret'],['Giovanni','1st Edition','normal'],
+    ['Jessie & James','1st Edition','holo'],['Team Rocket','1st Edition','holo']];
   for(const [design,edition,outcome] of cases) {
     await page.evaluate(()=>window.__holo.pack.browse());
     await page.getByRole('button',{name:/Pokémon/}).click();await page.getByRole('button',{name:/^Base$/}).click();
@@ -49,7 +49,7 @@ try {
     assert.equal(names.indexOf('Team Rocket'),names.indexOf('Base Set 2')+1);
     await page.getByRole('button',{name:/^Team Rocket Opening available/}).click();
     const button=page.getByRole('button',{name:`${design} booster · ${edition}`,exact:true});await button.waitFor();
-    assert.equal(await page.locator('button.pokemon-booster').count(),8);
+    assert.equal(await page.locator('button.pokemon-booster').count(),4);
     assert.match(await page.locator('.pokemon-browser [role=status]').textContent(),/18 holos with registered foil/);
     await page.screenshot({path:join(out,'selection.png')});
     await page.evaluate(seed=>{const original=crypto.getRandomValues.bind(crypto);crypto.getRandomValues=a=>{a[0]=seed;crypto.getRandomValues=original;return a;};},seeds[outcome]);
@@ -59,7 +59,7 @@ try {
       return {id:d.pokemon.id,edition:d.pokemon.edition,variant:d.pokemon.variant,front:d.front,number:d.number,profile:d.profile,pending:d.pokemon.treatmentStatus,maps:d.maps,procedural:d.proceduralFoil};
     }));
     assert.equal(pulls.length,11);
-    assert.ok(pulls.every(p=>p.edition===(edition==='Unlimited'?'unlimited':'first-edition')&&!p.procedural));
+    assert.ok(pulls.every(p=>p.edition==='first-edition'&&!p.procedural));
     assert.ok(pulls.every(p=>p.pending===undefined));
     assert.ok(pulls.every(p=>p.variant==='holo'?p.profile===(p.id==='base5-15'?'pokemon-team-rocket-trainer':'pokemon-base-set-2-cosmos')&&p.maps?.protection:p.profile==='print-only'&&!p.maps));
     if(outcome==='secret'){assert.equal(pulls[10].id,'base5-83');assert.match(pulls[10].number,/83\/82/);}
