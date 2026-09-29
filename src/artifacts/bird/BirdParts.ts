@@ -50,10 +50,13 @@ export class BirdParts {
 
   private acrylic(roughness: number, transmission = .84) {
     const material = new MeshPhysicalMaterial({
-      color: '#f0f5ef', roughness, metalness: 0, transmission,
-      thickness: .035, ior: 1.46, transparent: true, opacity: .96,
-      depthWrite: false, side: DoubleSide, clearcoat: 1, clearcoatRoughness: .1,
-      envMapIntensity: 1.7,
+      color: '#727872', roughness, metalness: 0, transmission: 0,
+      // Clear pressed sheets use sharp alpha transmission; frosted mode uses
+      // rough volume transmission. This avoids refracting other shell panels.
+      thickness: .035, ior: 1.46, transparent: true, opacity: 1 - transmission,
+      depthWrite: false, side: DoubleSide, forceSinglePass: true,
+      clearcoat: 1, clearcoatRoughness: .1,
+      envMapIntensity: 5,
       attenuationColor: '#d9ede0', attenuationDistance: 12,
     });
     material.userData.clearRoughness = roughness;
@@ -181,9 +184,10 @@ export class BirdParts {
   inspect(root: Group, mode: Inspection) {
     root.traverse(object => { if (object instanceof Mesh && object.userData.inspectionShell) object.visible = mode !== 'hidden'; });
     for (const material of this.shellMaterials) {
+      material.color.set(mode === 'frosted' ? '#f0f5ef' : '#727872');
       material.roughness = mode === 'frosted' ? .48 : material.userData.clearRoughness;
-      material.transmission = mode === 'frosted' ? Math.min(.86, material.userData.clearTransmission) : material.userData.clearTransmission;
-      material.opacity = .96; // Frosting is a rough transmission response, not opacity.
+      material.transmission = mode === 'frosted' ? Math.min(.86, material.userData.clearTransmission) : 0;
+      material.opacity = mode === 'frosted' ? .96 : 1 - material.userData.clearTransmission;
       material.clearcoat = mode === 'frosted' ? .05 : 1;
     }
   }
