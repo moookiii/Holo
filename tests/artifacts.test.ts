@@ -1,8 +1,9 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { Mesh, MeshPhysicalMaterial } from 'three/webgpu';
+import { Mesh, MeshPhysicalMaterial, Raycaster, Vector3 } from 'three/webgpu';
 import { buildBird } from '../src/artifacts/RoboticBird.ts';
 import { artifacts } from '../src/artifacts/registry.ts';
+import { shellDepth } from '../src/artifacts/bird/BirdEnvelope.ts';
 
 test('bird fulfills registry assembly contract and batches repeated components', () => {
   const bird = buildBird();
@@ -32,4 +33,45 @@ test('inspection restores shell and disposal releases every rendered resource', 
   let disposed = 0;
   for (const resource of resources) resource.addEventListener('dispose', () => disposed++);
   bird.dispose(); assert.equal(disposed, resources.size);
+});
+
+test('populated boards, drive train and harness remain inside the assembled shell', () => {
+  const bird = buildBird();
+  bird.root.updateMatrixWorld(true);
+  const point = new Vector3();
+  try {
+    for (const id of ['boards', 'boards-back', 'boards-core', 'mechanics', 'wires', 'wires-back']) {
+      bird.groups.get(id)!.traverse(object => {
+        if (!(object instanceof Mesh)) return;
+        const positions = object.geometry.attributes.position;
+        for (let i = 0; i < positions.count; i++) {
+          point.fromBufferAttribute(positions, i).applyMatrix4(object.matrixWorld);
+          assert.ok(Math.abs(point.z) <= shellDepth(point.x, point.y, .015) + .001,
+            `${id} protrudes through the shell at ${point.toArray()}`);
+        }
+      });
+    }
+  } finally { bird.dispose(); }
+});
+
+test('lower head has acrylic cheeks and a closed chin behind the beak', () => {
+  const bird = buildBird();
+  bird.root.updateMatrixWorld(true);
+  const panels: Mesh[] = [];
+  bird.groups.get('head')!.traverse(object => {
+    if (object instanceof Mesh && object.material instanceof MeshPhysicalMaterial) panels.push(object);
+  });
+  const ray = new Raycaster();
+  try {
+    for (const [x, y] of [[1.83, 1.30], [2.1, 1.40], [2.28, 1.43]]) {
+      for (const sign of [-1, 1]) {
+        ray.set(new Vector3(x, y, sign * 3), new Vector3(0, 0, -sign));
+        const hits = ray.intersectObjects(panels, false);
+        assert.ok(hits.length && sign * hits[0].point.z > .03, `Missing cheek at ${x}, ${y}, ${sign}`);
+      }
+      ray.set(new Vector3(x, -1, 0), new Vector3(0, 1, 0));
+      const hits = ray.intersectObjects(panels, false);
+      assert.ok(hits.length && hits[0].point.y < y, `Missing underside at ${x}`);
+    }
+  } finally { bird.dispose(); }
 });

@@ -1,6 +1,7 @@
-import type { Group } from 'three/webgpu';
+import { CatmullRomCurve3, Vector3, type Group } from 'three/webgpu';
 import { BirdParts, type P } from './BirdParts.ts';
 import type { Electronics } from './BirdElectronics.ts';
+import { insetCable } from './BirdEnvelope.ts';
 
 export function buildHarness(parts: BirdParts, groups: Map<string,Group>, electronics: Electronics) {
   const m=parts.m;
@@ -11,12 +12,15 @@ export function buildHarness(parts: BirdParts, groups: Map<string,Group>, electr
       const start=[...a.ports[fromPort]] as P,end=[...b.ports[toPort]] as P;
       start[0]+=separation;end[0]+=separation;
       const points=route.map((p,j)=>[p[0]+separation*.5+Math.sin(j*1.7+seed)*.009,p[1]+separation,p[2]+Math.sin(j+seed)*separation*.4] as P);
-      parts.tube(group,[a.point(start),...points,b.point(end)],radius,m[color],48);
+      const path = new CatmullRomCurve3([a.point(start), ...points, b.point(end)].map(p => new Vector3(...p)), false, 'centripetal');
+      const routed = path.getPoints(64).map(p => insetCable(p.toArray() as P, radius + .055));
+      routed[0] = a.point(start); routed[routed.length - 1] = b.point(end);
+      parts.tube(group,routed,radius,m[color],64);
       // Heat shrink strain relief follows each board socket's outgoing cable.
       for(const [mount,local] of [[a,start],[b,end]] as const){const p=mount.point(local),q=mount.point([local[0],local[1],local[2]-.04]);parts.rod(group,p,q,radius*1.14,m.black);}
     }
     // A purposeful saddle clamp midway along each bundle.
-    if(route.length>2){const p=route[Math.floor(route.length/2)];parts.box(group,p,[.065,count*radius*2.6,.054],m.ceramic);parts.screw(group,[p[0],p[1],p[2]+.039],.017,.06);}
+    if(route.length>2){const p=insetCable(route[Math.floor(route.length/2)], radius + .09);parts.box(group,p,[.065,count*radius*2.6,.054],m.ceramic);parts.screw(group,[p[0],p[1],p[2]+.039],.017,.06);}
   }
   // Broad visible routes avoid the central gear faces and follow the shell rim.
   connect('wires','main-processor',1,'head-camera',0,[[-.28,.89,.62],[.18,1.00,.56],[.66,1.16,.43],[1.19,1.29,.29]],3,.022,'pink',1);

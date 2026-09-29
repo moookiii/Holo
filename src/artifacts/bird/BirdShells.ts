@@ -1,31 +1,8 @@
 import { CatmullRomCurve3, Group, Vector3 } from 'three/webgpu';
 import { BirdParts, ref, type P, type XY } from './BirdParts.ts';
 
-// Cross sections traced against the reference silhouette. Z widths are authored
-// estimates: the source is a single side photograph, not a dimensional survey.
-const torso = [
-  [-1.86, -.26, -.69, .20], [-1.5, .08, -.77, .43],
-  [-1.08, .43, -.82, .64], [-.58, .82, -.84, .81],
-  [-.02, 1.12, -.8, .86], [.52, 1.28, -.66, .80],
-  [.99, 1.39, -.38, .66], [1.39, 1.51, .10, .5],
-  [1.69, 1.65, .61, .37], [1.89, 1.73, 1.14, .28],
-];
-const head = [
-  [.99, 1.38, 1.17, .20], [1.20, 1.77, 1.25, .35],
-  [1.5, 2.00, 1.33, .44], [1.83, 2.04, 1.39, .46],
-  [2.12, 1.94, 1.43, .35], [2.35, 1.69, 1.46, .16],
-  [2.43, 1.53, 1.48, .055],
-];
-function interpolate(stations: number[][], u: number, component: number) {
-  const q = Math.min(.999999, Math.max(0, u)) * (stations.length - 1), i = Math.floor(q), t = q - i;
-  const a = stations[Math.max(0, i - 1)][component], b = stations[i][component];
-  const c = stations[Math.min(stations.length - 1, i + 1)][component], d = stations[Math.min(stations.length - 1, i + 2)][component];
-  return .5 * (2 * b + (c - a) * t + (2 * a - 5 * b + 4 * c - d) * t * t + (-a + 3 * b - 3 * c + d) * t * t * t);
-}
-function section(stations: number[][], u: number, angle: number) {
-  const x = interpolate(stations, u, 0), top = interpolate(stations, u, 1), bottom = interpolate(stations, u, 2), width = interpolate(stations, u, 3);
-  return new Vector3(x, (top + bottom) / 2 + (top - bottom) / 2 * Math.sin(angle), width * Math.cos(angle));
-}
+import { torso, head, section } from './BirdEnvelope.ts';
+
 function panel(parts: BirdParts, group: Group, stations: number[][], u0: number, u1: number, a0: number, a1: number, satin = false) {
   const sample = (u: number, v: number) => section(stations, u0 + (u1 - u0) * u, a0 + (a1 - a0) * v);
   parts.surface(group, sample, 40, 24, .019, satin);
@@ -74,11 +51,7 @@ export function buildShells(parts: BirdParts, groups: Map<string, Group>) {
   panel(parts, skull, head, 0, 1, Math.PI / 2, Math.PI * 1.5);
   cap(skull, head, 0);
   cap(skull, head, 1);
-  // A formed throat overlaps the chest and lower skull instead of leaving a gap.
-  panel(parts, skull, [
-    [1.55,1.51,.93,.35], [1.76,1.55,1.12,.31],
-    [1.96,1.58,1.29,.26], [2.18,1.58,1.39,.21],
-  ], 0, 1, Math.PI, 2 * Math.PI, true);
+  // The lower cheek is part of the closed skull loft and meets the bill root.
   for (const sign of [-1, 1]) {
     for (const p of [ref(1108, 116, sign * .31), ref(1298, 171, sign * .17), ref(1160, 247, sign * .33)]) parts.screw(skull, p, .024, .06, sign);
     // The newer reference has a compact formed-metal bill, with a real lower jaw.
@@ -105,7 +78,7 @@ export function buildShells(parts: BirdParts, groups: Map<string, Group>) {
       parts.cylinder(wing, p, .056, .055, acrylicSatin);
       parts.screw(wing, [p[0], p[1], p[2] + sign * .036], .025, .085, sign);
     }
-    parts.tube(wing, [ref(1018, 323, sign * .79), ref(945, 443, sign * .92), ref(782, 518, sign * .96), ref(548, 581, sign * .62), ref(307, 621, sign * .29)], .012, acrylicSatin, 64);
+    parts.tube(wing, [ref(1018, 323, sign * .79), ref(945, 443, sign * .92), ref(782, 518, sign * .96), ref(548, 581, sign * .62), ref(307, 621, sign * .29)], .010, parts.m.acrylicEdge, 64);
   }
 
   const tail = groups.get('tail')!;

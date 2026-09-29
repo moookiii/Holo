@@ -1,5 +1,6 @@
 import { Group, Vector3 } from 'three/webgpu';
 import { BirdParts, ref, type P, type XY } from './BirdParts.ts';
+import { shellDepth } from './BirdEnvelope.ts';
 
 function gear(parts: BirdParts, group: Group, at: P, radius: number, teeth: number, sign = 1) {
   const outline: XY[] = [];
@@ -17,7 +18,8 @@ function gear(parts: BirdParts, group: Group, at: P, radius: number, teeth: numb
   parts.cylinder(group,[at[0],at[1],face+sign*.06],radius*.13,.10,parts.m.brass,6);
   parts.screw(group,[at[0],at[1],face+sign*.11],radius*.11,.06,sign);
   for(const fraction of [.35,.75,.79])parts.ring(group,[at[0],at[1],face-sign*.005],radius*fraction,.0028,parts.m.copper);
-  parts.rod(group,[at[0],at[1],-.54],[at[0],at[1],.61],radius*.115,parts.m.steel);
+  const halfAxle = Math.min(.55, shellDepth(at[0], at[1], .07));
+  parts.rod(group,[at[0],at[1],-halfAxle],[at[0],at[1],halfAxle],radius*.115,parts.m.steel);
 }
 
 function motor(parts: BirdParts, group: Group, at: P, rotation: P, length: number) {
@@ -35,8 +37,8 @@ function motor(parts: BirdParts, group: Group, at: P, rotation: P, length: numbe
 export function buildMechanics(parts: BirdParts, groups: Map<string,Group>) {
   const g=groups.get('mechanics')!,m=parts.m;
   // Open aluminium chassis follows the rounded body and spans its full depth.
-  for(const z of [-.48,.48]) {
-    parts.plate(g,[[-1.57,-.40],[-1.45,-.51],[-.74,-.61],[.45,-.60],[.98,-.15],[1.4,.65],[1.31,.73],[.86,-.04],[.40,-.47],[-.69,-.48]],z,.032,m.aluminium,[],.007);
+  for(const z of [-.28,.28]) {
+    parts.plate(g,[[-1.37,-.40],[-1.32,-.48],[-.74,-.58],[.45,-.55],[.94,-.10],[1.30,.65],[1.24,.69],[.86,-.04],[.40,-.47],[-.69,-.48]],z,.032,m.aluminium,[],.007);
     parts.plate(g,[[-1.22,-.21],[-1.12,-.14],[-.58,.45],[.11,.81],[.74,1.03],[.76,.94],[.06,.70],[-.47,.34]],z,.025,m.steel,[],.003);
     for(const [x,y] of [[-1.37,-.40],[-.69,-.51],[.37,-.50],[.94,-.02],[.25,.79]]){
       parts.cylinder(g,[x,y,z],.05,.07,m.brass,6);
@@ -44,24 +46,25 @@ export function buildMechanics(parts: BirdParts, groups: Map<string,Group>) {
     }
   }
   for(const [x,y] of [[-1.37,-.41],[-.68,-.51],[.35,-.51],[.84,.10],[.10,.79]]) {
-    parts.rod(g,[x,y,-.5],[x,y,.5],.025,m.aluminium);
-    for(const z of [-.44,.44])parts.ring(g,[x,y,z],.042,.008,m.brass);
+    const depth = Math.min(.43, shellDepth(x, y, .10));
+    parts.rod(g,[x,y,-depth],[x,y,depth],.025,m.aluminium);
+    for(const z of [-depth+.025,depth-.025])parts.ring(g,[x,y,z],.042,.008,m.brass);
   }
   // Distinct large intermeshing wheels, selected from the newer reference.
   gear(parts,g,[.23,.26,.51],.43,42);
   gear(parts,g,[-.01,-.32,.49],.235,26);
   gear(parts,g,[.80,.62,.26],.29,32);
-  gear(parts,g,[1.32,1.18,.33],.245,30);
+  gear(parts,g,[1.32,1.18,.22],.23,30);
   gear(parts,g,[-.61,-.31,.25],.20,24);
   gear(parts,g,[.12,.30,-.51],.36,36,-1);
-  gear(parts,g,[.61,-.18,-.45],.24,26,-1);
+  gear(parts,g,[.61,-.10,-.37],.24,26,-1);
   gear(parts,g,[-.56,.21,-.35],.20,24,-1);
   // Side-frame bearings behind the main wheels, with open windows.
-  for(const z of [-.36,.36]) {
+  for(const z of [-.30,.30]) {
     parts.plate(g,[[-.32,-.60],[.50,-.53],[.93,.39],[.70,.70],[.18,.78],[-.32,.33]],z,.04,m.acrylicSatin,[[.23,.26,.27],[.0,-.28,.12],[.63,.38,.11]],.008);
   }
   motor(parts,g,[-.83,-.23,0],[0,Math.PI/2,0],.45);
-  motor(parts,g,[.67,-.36,-.1],[0,.20,0],.48);
+  motor(parts,g,[.61,-.21,-.1],[0,.20,0],.48);
   // A worm-drive carriage and coil spring below the tail root.
   parts.rod(g,[-1.47,-.40,.18],[-.79,-.26,.18],.026,m.steel);
   const coil:P[]=[];

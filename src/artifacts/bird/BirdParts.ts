@@ -38,7 +38,7 @@ export class BirdParts {
     whiteWire: this.material('#d0c8ad', .02, .48),
     acrylic: this.acrylic(.075),
     acrylicSatin: this.acrylic(.12),
-    acrylicEdge: this.acrylic(.18, .30),
+    acrylicEdge: this.acrylic(.18, .65),
     lens: this.material('#071514', .52, .12),
   };
 
@@ -48,10 +48,10 @@ export class BirdParts {
     return material;
   }
 
-  private acrylic(roughness: number, transmission = .96) {
+  private acrylic(roughness: number, transmission = .84) {
     const material = new MeshPhysicalMaterial({
       color: '#f0f5ef', roughness, metalness: 0, transmission,
-      thickness: .024, ior: 1.46, transparent: true, opacity: .96,
+      thickness: .035, ior: 1.46, transparent: true, opacity: .96,
       depthWrite: false, side: DoubleSide, clearcoat: 1, clearcoatRoughness: .1,
       envMapIntensity: 1.7,
       attenuationColor: '#d9ede0', attenuationDistance: 12,
