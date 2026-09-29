@@ -104,16 +104,16 @@ export function buildElectronics(parts: BirdParts, groups: Map<string,Group>): E
   // Reference side: oblique shoulder memory, center processor, tall chest driver.
   add('shoulder-memory','boards',ref(593,429,.43),[.13,-.12,.52],.72,.31,2,'memory');
   add('main-processor','boards',ref(684,383,.68),[-.11,.10,-.12],.65,.83,3);
-  add('chest-driver','boards',ref(1076,489,.48),[.12,-.30,-.53],.69,.98,4,'driver');
+  add('chest-driver','boards',ref(995,446,.34),[.06,-.16,-.38],.53,.76,4,'driver');
   // Different component layout and angle on the unseen side, not a mirror.
   add('rear-controller','boards-back',ref(890,386,-.52),[.10,Math.PI-.12,.30],.92,.96,7);
-  add('rear-power','boards-back',ref(1032,469,-.42),[-.12,Math.PI+.20,-.30],.53,.85,9,'driver');
+  add('rear-power','boards-back',ref(990,454,-.34),[-.08,Math.PI+.12,-.28],.47,.69,9,'driver');
   add('rear-tail-interface','boards-back',ref(674,534,-.39),[0,Math.PI,.38],.64,.49,11);
   // Depth-wise shelves put populated faces in the dorsal and frontal views too.
-  add('dorsal-bus','boards-core',ref(831,326,0),[-Math.PI/2+.18,.1,.39],1.18,.82,5);
+  add('dorsal-bus','boards-core',ref(835,365,0),[-Math.PI/2+.10,.06,.20],.90,.65,5);
   add('central-interface','boards-core',ref(833,469,-.035),[.10,.17,-.12],.76,.61,6);
   add('belly-power','boards-core',ref(933,598,-.04),[Math.PI/2-.30,.08,.28],.83,.74,8,'driver');
-  add('sternum-interface','boards-core',[1.07,.15,0],[0,Math.PI/2,-.16],.66,.61,13);
+  add('sternum-interface','boards-core',[.98,.36,0],[0,Math.PI/2,-.12],.56,.49,13);
   add('neck-interface','head-electronics',[1.43,1.01,0],[.08,Math.PI/2,.05],.46,.41,14,'sensor');
   add('head-camera','head-electronics',ref(1193,152,.20),[-.03,.05,-.05],.62,.44,10,'sensor');
   add('head-controller','head-electronics',ref(1175,155,-.23),[.04,Math.PI,.10],.49,.38,12,'sensor');

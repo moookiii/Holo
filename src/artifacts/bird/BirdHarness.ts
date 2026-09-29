@@ -19,9 +19,9 @@ export function buildHarness(parts: BirdParts, groups: Map<string,Group>, electr
     if(route.length>2){const p=route[Math.floor(route.length/2)];parts.box(group,p,[.065,count*radius*2.6,.054],m.ceramic);parts.screw(group,[p[0],p[1],p[2]+.039],.017,.06);}
   }
   // Broad visible routes avoid the central gear faces and follow the shell rim.
-  connect('wires','main-processor',1,'head-camera',0,[[.24,1.10,.75],[.80,1.23,.56],[1.32,1.38,.38]],3,.022,'pink',1);
+  connect('wires','main-processor',1,'head-camera',0,[[-.28,.89,.62],[.18,1.00,.56],[.66,1.16,.43],[1.19,1.29,.29]],3,.022,'pink',1);
   connect('wires','main-processor',0,'chest-driver',1,[[-.13,.60,.85],[.15,.67,.82],[.60,.34,.77],[.83,.03,.74]],3,.024,'pink',3);
-  connect('wires','head-camera',0,'chest-driver',1,[[1.57,1.27,.40],[1.42,.86,.52],[1.23,.42,.63]],2,.026,'greenWire',5);
+  connect('wires','head-camera',0,'chest-driver',1,[[1.57,1.30,.27],[1.31,1.03,.32],[1.03,.69,.43]],2,.026,'greenWire',5);
   connect('wires','chest-driver',0,'shoulder-memory',0,[[.82,-.53,.70],[.40,-.65,.71],[-.27,-.65,.68],[-.73,-.40,.61],[-.91,-.06,.57]],3,.023,'pink',7);
   connect('wires','shoulder-memory',0,'central-interface',0,[[-1.15,-.06,.58],[-1.07,-.30,.53],[-.67,-.25,.56],[-.39,.05,.49]],2,.014,'greenWire',9);
   connect('wires','chest-driver',0,'belly-power',0,[[.80,-.48,.52],[.38,-.68,.40],[.13,-.64,.14]],2,.018,'greenWire',2);

@@ -58,7 +58,7 @@ export function buildMechanics(parts: BirdParts, groups: Map<string,Group>) {
   gear(parts,g,[-.56,.21,-.35],.20,24,-1);
   // Side-frame bearings behind the main wheels, with open windows.
   for(const z of [-.36,.36]) {
-    parts.plate(g,[[-.32,-.60],[.50,-.53],[.93,.39],[.70,.70],[.18,.78],[-.32,.33]],z,.04,m.aluminium,[[.23,.26,.27],[.0,-.28,.12],[.63,.38,.11]],.008);
+    parts.plate(g,[[-.32,-.60],[.50,-.53],[.93,.39],[.70,.70],[.18,.78],[-.32,.33]],z,.04,m.acrylicSatin,[[.23,.26,.27],[.0,-.28,.12],[.63,.38,.11]],.008);
   }
   motor(parts,g,[-.83,-.23,0],[0,Math.PI/2,0],.45);
   motor(parts,g,[.67,-.36,-.1],[0,.20,0],.48);

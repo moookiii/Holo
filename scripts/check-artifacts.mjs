@@ -14,6 +14,12 @@ await page.waitForTimeout(1800);await page.screenshot({path:'artifacts/bird-revi
 await page.getByLabel('Exploded view',{exact:true}).fill('65');await page.waitForTimeout(1500);await page.screenshot({path:'artifacts/bird-review/exploded.png'});
 await page.getByLabel('Shell',{exact:true}).selectOption('hidden');await page.getByLabel('Lighting',{exact:true}).selectOption('Rim');await page.waitForTimeout(800);await page.screenshot({path:'artifacts/bird-review/hidden.png'});
 await page.getByRole('button',{name:'Reset view'}).click();await page.waitForTimeout(1500);
+// The registry currently contains one artifact: exercise its selection lifecycle
+// without inventing another user-facing specimen.
+await page.getByLabel('Exploded view',{exact:true}).fill('40');
+await page.getByLabel('Shell',{exact:true}).selectOption('hidden');
+await page.getByLabel('Choose artifact',{exact:true}).dispatchEvent('change');
+await page.waitForTimeout(1800);
 assert.equal(await page.getByLabel('Exploded view',{exact:true}).inputValue(),'0');
 assert.equal(await page.getByLabel('Shell',{exact:true}).inputValue(),'clear');
 await page.getByRole('button',{name:'Fullscreen ⛶',exact:true}).click();

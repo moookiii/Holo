@@ -60,11 +60,25 @@ export function buildShells(parts: BirdParts, groups: Map<string, Group>) {
       parts.screw(side, [p[0], p[1], p[2] + sign * .025], .027, .09, sign);
     }
   }
-  panel(parts, groups.get('shell-dorsal')!, torso, .015, .97, 1.025, Math.PI - 1.025, true);
-  panel(parts, groups.get('shell-belly')!, torso, .02, .80, Math.PI + 1.025, 2 * Math.PI - 1.025, true);
+  panel(parts, groups.get('shell-dorsal')!, torso, 0, 1, 1.025, Math.PI - 1.025, true);
+  panel(parts, groups.get('shell-belly')!, torso, 0, 1, Math.PI + 1.025, 2 * Math.PI - 1.025, true);
+  // Close the loft ends: edge walls alone only close panel thickness, not the body.
+  const cap = (group: Group, stations: number[][], u: number) => {
+    const center = section(stations, u, 0).add(section(stations, u, Math.PI)).multiplyScalar(.5);
+    parts.surface(group, (r, v) => center.clone().lerp(section(stations, u, v * Math.PI * 2), r), 12, 64, .019, true);
+  };
+  cap(groups.get('shell-belly')!, torso, 0);
+  cap(groups.get('shell-belly')!, torso, 1);
   const skull = groups.get('head')!;
   panel(parts, skull, head, 0, 1, -Math.PI / 2, Math.PI / 2);
   panel(parts, skull, head, 0, 1, Math.PI / 2, Math.PI * 1.5);
+  cap(skull, head, 0);
+  cap(skull, head, 1);
+  // A formed throat overlaps the chest and lower skull instead of leaving a gap.
+  panel(parts, skull, [
+    [1.55,1.51,.93,.35], [1.76,1.55,1.12,.31],
+    [1.96,1.58,1.29,.26], [2.18,1.58,1.39,.21],
+  ], 0, 1, Math.PI, 2 * Math.PI, true);
   for (const sign of [-1, 1]) {
     for (const p of [ref(1108, 116, sign * .31), ref(1298, 171, sign * .17), ref(1160, 247, sign * .33)]) parts.screw(skull, p, .024, .06, sign);
     // The newer reference has a compact formed-metal bill, with a real lower jaw.

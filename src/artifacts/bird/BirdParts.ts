@@ -38,7 +38,7 @@ export class BirdParts {
     whiteWire: this.material('#d0c8ad', .02, .48),
     acrylic: this.acrylic(.075),
     acrylicSatin: this.acrylic(.12),
-    acrylicEdge: this.acrylic(.16, .42),
+    acrylicEdge: this.acrylic(.18, .30),
     lens: this.material('#071514', .52, .12),
   };
 
@@ -48,12 +48,11 @@ export class BirdParts {
     return material;
   }
 
-  private acrylic(roughness: number, transmission = .96) {
+  private acrylic(roughness: number, transmission = 1) {
     const material = new MeshPhysicalMaterial({
       color: '#f0f5ef', roughness, metalness: 0, transmission,
-      thickness: .024, ior: 1.46, transparent: true, opacity: .96,
-      depthWrite: false, side: DoubleSide, clearcoat: 1, clearcoatRoughness: .1,
-      envMapIntensity: 1.7,
+      thickness: .024, ior: 1.46, transparent: true, opacity: .92,
+      depthWrite: false, side: DoubleSide, clearcoat: .35, clearcoatRoughness: .12,
       attenuationColor: '#d9ede0', attenuationDistance: 12,
     });
     material.userData.clearRoughness = roughness;
@@ -182,9 +181,9 @@ export class BirdParts {
     root.traverse(object => { if (object instanceof Mesh && object.userData.inspectionShell) object.visible = mode !== 'hidden'; });
     for (const material of this.shellMaterials) {
       material.roughness = mode === 'frosted' ? .48 : material.userData.clearRoughness;
-      material.transmission = mode === 'frosted' ? .86 : material.userData.clearTransmission;
-      material.opacity = .96; // Frosting is a rough transmission response, not opacity.
-      material.clearcoat = mode === 'frosted' ? .05 : 1;
+      material.transmission = mode === 'frosted' ? Math.min(.86, material.userData.clearTransmission) : material.userData.clearTransmission;
+      material.opacity = .92; // Frosting is a rough transmission response, not opacity.
+      material.clearcoat = mode === 'frosted' ? .05 : .35;
     }
   }
 
