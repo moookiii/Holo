@@ -1,8 +1,7 @@
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { exp, float, If, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
-import { crossedFacets } from '../materials/layers/CrossedFacetLayer';
+import { exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
@@ -66,16 +65,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const broadening = halfVariance.mul(r.glint.z).add(1);
       const sparkle = microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.div(broadening),
         strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a);
-      const contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink).toVar();
-      // Only Starlight cards enter the crossed-facet path. Evaluating it for
-      // every card and mixing by zero can still propagate undefined GPU values.
-      If(r.glintSurface.w.greaterThan(0), () => {
-        contribution.assign(crossedFacets(light, tangentView, bitangent, geometric, r.field, r.detail, {
-          aspect: r.glintSurface.y, facetTilt: structure.y, scale: r.glintSurface.w.max(1), spread: r.glintSurface.x,
-          sharpness: r.glint.z, period: diffraction.x, bandwidth: diffraction.y, secondary: diffraction.w,
-          glintStrength: r.glint.w, sparkleGain: float(1), strength: diffraction.z, spectralGain: float(1),
-        }, r.glintSurface.z, footprint).mul(r.field.a, r.sparkle, r.ink));
-      });
+      const contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(contribution.mul(r.mask, data.lightColor as Node<'vec3'>));
     }
   }
