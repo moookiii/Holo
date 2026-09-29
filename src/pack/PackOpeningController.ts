@@ -258,9 +258,7 @@ export class PackOpeningController {
     this.tearFinishAnnounced = true; this.audio.playTearFinish();
   }
   private beginTear(volume = 1) {
-    // The tear is a presentation boundary: settle any freely handled pack back
-    // toward its authored, camera-facing pose for a clear opening and reveal.
-    this.packMotion.reset(); this.state.transition('Tear'); this.audio.playTearStart(volume);
+    this.packMotion.halt(); this.state.transition('Tear'); this.audio.playTearStart(volume);
   }
   private next() {
     if (this.state.value === 'HitReveal' && this.state.elapsed < (this.media.matches ? .4 : 1.8)) return;
@@ -307,6 +305,8 @@ export class PackOpeningController {
         this.autoTear = false; this.presentation.wrapper.tearPath.end();
         this.audio.fadeCrinkles(.045);
         this.announceTearFinish(); this.audio.playStripRelease();
+        // Keep the held angle through the rip, then settle upright for the cards.
+        this.handling = false; this.packMotion.dragging = false; this.packMotion.reset();
         this.state.transition('OpenWrapper'); this.start = undefined;
       }
       if (this.state.value === 'OpenWrapper' && this.mouth.value > .998) {
