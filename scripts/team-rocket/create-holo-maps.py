@@ -43,6 +43,13 @@ for n in ([int(v) for v in sys.argv[1:]] or NUMBERS):
         for gap in [[(104,301),(116,305),(132,319),(137,345),(129,346),(128,367),(123,353),(111,345),(95,340)],
                     [(535,342),(551,348),(551,367),(528,358)]]:
             cv2.fillPoly(body,[np.array(gap,np.int32)*2],0)
+    if n==83:
+        # The tail is a narrow loop, not an opaque leaf. Its enclosed area
+        # shows the original foil background; retain both printed tail edges.
+        tail_gap=[(400,238),(414,219),(438,195),(463,176),(487,161),
+                  (506,154),(516,154),(521,158),(520,165),(510,177),
+                  (491,192),(466,208),(440,223),(414,239),(403,244)]
+        cv2.fillPoly(body,[np.array(tail_gap,np.int32)*2],0)
     body=cv2.erode(body,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(5,5)))
     body=np.array(Image.fromarray(body).filter(ImageFilter.GaussianBlur(.45)))
     if n in [15,16]: vertices=[(56,190),(551,190),(551,459),(56,459)]
@@ -86,5 +93,3 @@ if sys.argv[1:] and registration.exists():
     report=[r for r in json.loads(registration.read_text()) if (r['number'],r['edition']) not in keys]+report
 registration.write_text(json.dumps(report,indent=2)+'\n',encoding='utf8')
 print([(r['number'],r['edition'],round(r['medianResidual'],2)) for r in report])
-
-
