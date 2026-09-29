@@ -9,7 +9,8 @@ test('bird fulfills registry assembly contract and batches repeated components',
   assert.deepEqual([...bird.groups.keys()].sort(), artifacts[0].explodedGroups.map(g => g.id).sort());
   let meshes = 0;
   bird.root.traverse(object => { if (object instanceof Mesh) meshes++; });
-  assert.ok(meshes < 100, `Expected batched geometry, got ${meshes} meshes`);
+  assert.ok(meshes < 150, `Expected batched geometry across sixteen assemblies, got ${meshes} meshes`);
+  assert.ok(bird.root.userData.geometryStats.triangles < 700_000);
   bird.dispose();
 });
 
