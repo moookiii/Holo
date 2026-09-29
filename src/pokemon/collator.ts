@@ -7,6 +7,8 @@ function hash(text: string) { let n = 2166136261; for (const c of text) n = Math
 export function collatePokemon(setId: string, boosterId: string, seed: number, cards: readonly PokemonCard[], recipe: PokemonRecipe | undefined = recipeFor(setId)): ResolvedPokemonPack {
   if (!recipe || recipe.setId !== setId) throw new Error(`Opening is not supported for ${setId}: no validated recipe.`);
   if (recipe.boosterIds && !recipe.boosterIds.includes(boosterId)) throw new Error('This booster has no validated recipe.');
+  const edition = recipe.boosterEditions?.[boosterId];
+  if (recipe.boosterEditions && !edition) throw new Error('Missing booster edition.');
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('Invalid pack seed');
   const pool = cards.filter(c => c.setId === setId && c.era === recipe.era && (!c.boosterIds || c.boosterIds.includes(boosterId))).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   if (new Set(pool.map(c => c.id)).size !== pool.length) throw new Error('Duplicate card metadata');
@@ -14,6 +16,7 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
     throw new Error(`Incomplete ${setId} checklist. Retry metadata before opening.`);
   }
   const energyCards = recipe.energyCards ?? basicEnergyCards;
+  if (edition && pool.some(card => !card.editionFronts?.[edition])) throw new Error(`Incomplete ${edition} fronts.`);
   // Cosmetic art variants have identical eligible pools and therefore identical pulls.
   const eligibilityKey = [...pool, ...(recipe.slots.some(slot => slot.pool === 'energy' || slot.pool === 'set-and-energy') ? energyCards : [])].map(c => `${c.id}:${[...c.variants].sort().join(',')}:${c.rarity}:${c.category ?? ''}:${c.energyType ?? ''}`).join('|');
   const random = randomSequence(hash(`${seed}:${setId}:${recipe.id}:${recipe.version}:${eligibilityKey}`));
@@ -29,11 +32,11 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
       let roll = random(); const selected = outcomes.find(o => (roll -= o.weight) < 0) ?? outcomes.at(-1)!;
       const available = selected.pool.filter(c => !slot.unique || !used.has(c.id));
       const card = available[Math.floor(random() * available.length)]; used.add(card.id);
-      const snapshot = Object.freeze({ ...card, variants: Object.freeze([...card.variants]) as unknown as PokemonCard['variants'], boosterIds: card.boosterIds ? Object.freeze([...card.boosterIds]) as unknown as string[] : undefined, foil: Object.freeze({ ...card.foil }) });
+      const snapshot = Object.freeze({ ...card, ...(edition ? { edition, front: card.editionFronts![edition], thumbnail: card.editionFronts![edition] } : {}), variants: Object.freeze([...card.variants]) as unknown as PokemonCard['variants'], boosterIds: card.boosterIds ? Object.freeze([...card.boosterIds]) as unknown as string[] : undefined, foil: Object.freeze({ ...card.foil }), ...(card.editionFronts ? { editionFronts: Object.freeze({ ...card.editionFronts }) } : {}) });
       pulls.push(Object.freeze({ card: snapshot, variant: selected.variant, slot: `${slot.id}:${i + 1}` }));
     }
   }
   if (pulls.length < 1 || pulls.length > 12) throw new Error('Unsupported physical pack size');
-  const identity = JSON.stringify(['pokemon', setId, boosterId, recipe.id, recipe.version, seed, pulls.map(p => [p.card.id, p.variant, p.slot])]);
+  const identity = JSON.stringify(['pokemon', setId, boosterId, recipe.id, recipe.version, seed, pulls.map(p => [p.card.id, p.variant, p.slot, ...(p.card.edition ? [p.card.edition] : [])])]);
   return Object.freeze({ type: 'pokemon', setId, boosterId, seed, eligibilityKey, recipeId: recipe.id, recipeVersion: recipe.version, pulls: Object.freeze(pulls), identity });
 }

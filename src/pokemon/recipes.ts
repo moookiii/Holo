@@ -1,5 +1,5 @@
 import { wotcRecipes } from './WotcProducts.ts';
-import type { PokemonCard, PrintVariant } from './types.ts';
+import type { PokemonCard, PrintVariant, PrintEdition } from './types.ts';
 import { prismaticRecipe } from './PrismaticRecipe.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
@@ -7,6 +7,8 @@ export interface PackSlot { id: string; count: number; outcomes: readonly SlotOu
 export interface PokemonRecipe {
   id: string; version: string; setId: string; era: string; slots: readonly PackSlot[];
   boosterIds?: readonly string[]; sources: readonly string[]; note: string;
+  /** Explicit edition per product wrapper; no edition inference from set era. */
+  boosterEditions?: Readonly<Record<string, PrintEdition>>;
   /** Audited local pools reject incomplete metadata instead of biasing odds. */
   requiredCardIds?: readonly string[];
   /** Product-specific Energy finishes; never added to another set's energy pool. */

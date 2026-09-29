@@ -1,11 +1,14 @@
 /** Plain application data. SDK models never cross this boundary. */
 export type PrintVariant = 'normal' | 'reverse' | 'holo' | 'pokeball-reverse' | 'masterball-reverse';
+export type PrintEdition = 'unlimited' | 'first-edition';
+export const editionLabel = (edition: PrintEdition) => edition === 'first-edition' ? '1st Edition' : 'Unlimited';
 export const printVariantLabel = (variant: PrintVariant): string => ({
   normal: 'Non-holo', reverse: 'Standard reverse holo', holo: 'Holo',
   'pokeball-reverse': 'Poké Ball reverse holo', 'masterball-reverse': 'Master Ball reverse holo',
 })[variant];
 export interface CatalogEntry { id: string; name: string; logo?: string; }
 export interface PokemonBooster extends CatalogEntry {
+  edition?: PrintEdition;
   front?: string; back?: string;
   /** Normalized source crop [left, top, right, bottom] for photographed wrappers. */
   frontBounds?: [number, number, number, number];
@@ -15,6 +18,8 @@ export interface PokemonSet extends CatalogEntry {
   series: CatalogEntry; era: string; releaseDate: string; cardIds: string[]; boosters: PokemonBooster[];
 }
 export interface PokemonCard {
+  edition?: PrintEdition;
+  editionFronts?: Partial<Record<PrintEdition, string>>;
   id: string; localId: string; name: string; setId: string; setName: string;
   seriesId: string; seriesName: string; era: string; rarity: string;
   category?: string;

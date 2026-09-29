@@ -1,3 +1,4 @@
+import { TEAM_ROCKET_ID, teamRocketCard, teamRocketSet } from './TeamRocketCatalog.ts';
 import { BASE_SET_2_ID, baseSet2Card, baseSet2Set } from './BaseSet2Catalog.ts';
 import { FOSSIL_SET_ID, fossilCard, fossilSet } from './FossilCatalog.ts';
 import TCGdex from '@tcgdex/sdk';
@@ -63,7 +64,7 @@ export class TcgdexAdapter {
       if (seriesId === 'base') {
         // Local audited sets follow release order, even if discovery is unordered.
         let previous = 'base1';
-        for (const local of [jungleSet, fossilSet, baseSet2Set]) {
+        for (const local of [jungleSet, fossilSet, baseSet2Set, teamRocketSet]) {
           const old = sets.findIndex(set => set.id === local.id);
           if (old >= 0) sets.splice(old, 1);
           sets.splice(Math.max(0, sets.findIndex(set => set.id === previous) + 1), 0,
@@ -76,6 +77,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === TEAM_ROCKET_ID) return { ...teamRocketSet, series: { ...teamRocketSet.series }, cardIds: [...teamRocketSet.cardIds], boosters: teamRocketSet.boosters.map(b => ({ ...b })) };
       if (id === BASE_SET_2_ID) return { ...baseSet2Set, series: { ...baseSet2Set.series },
         cardIds: [...baseSet2Set.cardIds], boosters: baseSet2Set.boosters.map(booster => ({ ...booster })) };
       if (id === FOSSIL_SET_ID) return { ...fossilSet, series: { ...fossilSet.series },
@@ -94,6 +96,8 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === TEAM_ROCKET_ID) return teamRocketCard(id);
+      if (id.startsWith(`${TEAM_ROCKET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === BASE_SET_2_ID) return baseSet2Card(id);
       if (id.startsWith(`${BASE_SET_2_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === FOSSIL_SET_ID) return fossilCard(id);

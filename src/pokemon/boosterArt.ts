@@ -1,4 +1,4 @@
-import type { PokemonBooster } from './types.ts';
+import { editionLabel, type PokemonBooster } from './types.ts';
 import { wotcWrappers } from './WotcProducts.ts';
 
 const designs: Record<string, readonly string[]> = {
@@ -20,7 +20,8 @@ export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
   const product = wotcWrappers[setId];
   if (product) return product.designs.map(design => ({ id: design.id,
-    name: `${design.id[0].toUpperCase()}${design.id.slice(1)} booster${design.front ? '' : ' · artwork pending'}`,
+    name: `${design.name ?? design.id[0].toUpperCase()+design.id.slice(1)} booster${design.edition ? ' · '+editionLabel(design.edition) : ''}${design.front ? '' : ' · artwork pending'}`,
+    ...(design.edition ? { edition: design.edition } : {}),
     front: design.front ? `${base}${design.front}` : undefined, frontBounds: design.frontBounds,
     back: `${base}${design.back ?? product.back}`, backBounds: design.backBounds ?? product.backBounds }));
   if (setId === 'sv03.5') return [{ id: 'featured', name: 'Featured booster', front: `${base}sv03.5.webp`, back: `${base}sv03.5-back.png` }];

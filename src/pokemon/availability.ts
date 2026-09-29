@@ -9,6 +9,8 @@ import { jungleReadyHolos } from '../card/JungleCards.ts';
 export function packAvailability(setId: string): { ready: boolean; label: string; detail: string } {
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
+  if (setId === 'base5') return { ready: true, label: 'Opening available · holo visuals pending',
+    detail: '83 cards · 1st Edition and Unlimited. Holo pulls retain their original scans; animated holo visuals are intentionally deferred.' };
   if (setId === 'base4') return { ready: true, label: 'Opening available',
     detail: 'Base Set 2 includes all 130 unlimited prints, 20 Cosmos holos and four original booster designs.' };
   if (setId === 'base3') return { ready: true, label: 'Opening available',
