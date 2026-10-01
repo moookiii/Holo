@@ -35,7 +35,10 @@ TCGdex.fetch = async (url, init) => {
 class PermanentCatalogError extends Error {}
 const client = new TCGdex('en');
 const image = (path?: string) => path ? /\.(png|webp|jpe?g)$/i.test(path) ? path : `${path}.webp` : undefined;
-const localSetLogo = (setId: string) => setId === 'sv05' ? `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/sv05-logo.png` : undefined;
+const localSetLogo = (setId: string) => {
+  const logo = setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : undefined;
+  return logo ? `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/${logo}` : undefined;
+};
 const titleCase = (value: string) => value.replace(/\b\w/g, c => c.toUpperCase());
 
 export class TcgdexAdapter {
