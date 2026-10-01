@@ -48,3 +48,5 @@ After manually editing body.png or protection.png, run
 `python scripts/create-umbreon-gx-maps.py --normal-only` to refresh normal.png
 from those PNGs while preserving all other maps. Ear and tail relief is clipped
 to the edited body silhouette; source.json refreshes the input and normal hashes.
+Use `python scripts/create-umbreon-gx-maps.py --derived-only` to refresh normal,
+height, and roughness together from the edited masks and update their hashes.
