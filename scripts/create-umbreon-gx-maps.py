@@ -1,11 +1,20 @@
 from pathlib import Path
-import re, json, hashlib
+import re, json, hashlib, argparse
 import numpy as np,cv2
 from PIL import Image,ImageDraw,ImageFilter
 from umbreon_gx_geometry import BODY,LEG_GAP,EAR,EAR_RING,TAIL,TAIL_RING,REAR_EAR,EYE,GX,RULE,BARS
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'public/cards/umbreon-gx-sm1-154'; REF=ROOT/'research/umbreon-gx-sm1-154'; REVIEW=ROOT/'artifacts/umbreon-gx-sm1-154'
 W,H,S=1800,2475,3
+parser=argparse.ArgumentParser()
+parser.add_argument('--normal-only',action='store_true',help='Rebuild normal.png using the edited body and protection PNGs without overwriting other maps.')
+args=parser.parse_args()
 y,x=np.mgrid[:H,:W].astype(np.float32)/S
+
+def read_mask(name):
+ im=Image.open(OUT/(name+'.png')).convert('RGBA')
+ if im.size!=(W,H): raise ValueError(f'{name}.png must be {W}x{H}')
+ rgba=np.asarray(im,np.float32)/255
+ return np.asarray(im.convert('L'),np.float32)/255*rgba[:,:,3]
 
 def path_points(path):
  t=re.findall(r'[MLQCZ]|-?\d*\.?\d+',path); i=0; out=[]; p=np.zeros(2)
@@ -26,6 +35,7 @@ def mask(path):
 def slope(h):
  gy,gx=np.gradient(h,1/S,1/S); return gx,gy
 body=mask(BODY)*(1-mask(LEG_GAP))
+if args.normal_only: body=read_mask('body')
 gxbar=mask(GX); rule=mask(RULE); bars=np.maximum.reduce([mask(p) for p in BARS]); eye=mask(EYE)
 front=np.asarray(Image.open(OUT/'front.png').convert('RGB').resize((W,H)),np.float32)/255
 # Independent glyph protection. Only dark connected strokes with white keylines,
@@ -112,7 +122,9 @@ h=.93*np.sin(phase*2*np.pi/2.25); hx,hy=slope(h)
 nx=nx*(1-body)+hx*body; ny=ny*(1-body)+hy*body; height=height*(1-body)+h*body
 for path,phase,pitch in [(EAR,.57*x+.82*y,2.15),(EAR_RING,x+11*np.sin(y/39),2.25),(REAR_EAR,y+8*np.sin(x/35),2.1),
  (TAIL,np.hypot((x-431)*.9,y-228),2.2),(TAIL_RING,y+9*np.sin(x/35),2.15)]:
- region=mask(path); h=.93*np.sin(phase*2*np.pi/pitch); hx,hy=slope(h)
+ region=mask(path)
+ if args.normal_only: region*=body
+ h=.93*np.sin(phase*2*np.pi/pitch); hx,hy=slope(h)
  nx=nx*(1-region)+hx*region; ny=ny*(1-region)+hy*region; height=height*(1-region)+h*region
 # Silver trim is a wave engraving; the outer edge carries the same finish.
 rim=1-mask('M21 14 L579 14 L588 25 L589 798 L577 813 L22 813 L10 800 L10 25 Z')
@@ -126,8 +138,16 @@ for cx,cy,r in [(46,382,17),(46,488,17),(82,488,17),(117,488,17),(46,612,17),(81
  nx=nx*(1-region)+hx*region; ny=ny*(1-region)+hy*region; height=height*(1-region)+h*region
  # Central energy symbols remain opaque but rings retain relief.
  protection=np.maximum(protection,region*black)
+if args.normal_only: protection=read_mask('protection')
 active=1-protection; nx*=active; ny*=active; height*=active
 normal=np.stack([-nx*.16,ny*.16,np.ones_like(nx)],axis=2); normal/=np.linalg.norm(normal,axis=2,keepdims=True)
+if args.normal_only:
+ Image.fromarray(np.uint8(np.clip(normal*.5+.5,0,1)*255)).save(OUT/'normal.png')
+ manifest=json.loads((OUT/'source.json').read_text())
+ for name in ('body.png','protection.png','normal.png'):
+  manifest['maps'][name]=hashlib.sha256((OUT/name).read_bytes()).hexdigest()
+ (OUT/'source.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ raise SystemExit(0)
 rough=.32+.035*body-.025*wave; rough=rough*(1-smooth)+.23*smooth
 foil=np.ones((H,W),np.float32)*.97
 arrays={'body':body,'bars':wave,'gx-smooth':gxbar*(1-energy),'energy':energy,'foil':foil,'protection':protection,'height':.5+height*.22,'normal':normal*.5+.5,'roughness':rough}
