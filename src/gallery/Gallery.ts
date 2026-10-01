@@ -55,11 +55,19 @@ export class Gallery {
     for (const facet of facets) {
       const label = document.createElement('label'); label.textContent = facet.label;
       const select = document.createElement('select'); select.setAttribute('aria-label', facet.label);
-      select.onchange = () => { this.query[facet.key] = select.value; this.applyFilters(); };
+      select.onchange = () => {
+        if (select.value) this.query[facet.key] = select.value;
+        else delete this.query[facet.key];
+        this.refreshFacetOptions(); this.applyFilters();
+      };
       this.filters.set(facet.key, select); label.append(select); filters.append(label);
     }
     const clear = document.createElement('button'); clear.textContent = 'Clear filters';
-    clear.onclick = () => { this.search.value = this.query.search = ''; for (const facet of facets) { delete this.query[facet.key]; this.filters.get(facet.key)!.value = ''; } this.applyFilters(); }; filters.append(clear);
+    clear.onclick = () => {
+      this.search.value = this.query.search = '';
+      for (const facet of facets) delete this.query[facet.key];
+      this.refreshFacetOptions(); this.applyFilters();
+    }; filters.append(clear);
     const light = document.createElement('div'); light.className = 'gallery-light';
     this.refreshLighting = galleryLightingControls(light, options.lighting);
     const tools = this.tools; tools.className = 'gallery-tools'; tools.open = true;
@@ -97,14 +105,22 @@ export class Gallery {
   }
   show() {
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
+    this.refreshFacetOptions();
+    this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
+  }
+  private refreshFacetOptions() {
+    let cards: readonly CardDefinition[] = this.options.cards;
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
-      const values = [...new Set(this.options.cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => a.localeCompare(b));
+      const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => a.localeCompare(b));
+      const selected = this.query[facet.key] ?? '';
+      if (selected && !values.includes(selected)) delete this.query[facet.key];
       select.replaceChildren(new Option(`Any ${facet.label.toLowerCase()}`, ''), ...values.map(value => new Option(facet.key === 'finish'
         ? profiles.find(p => p.id === value)?.name ?? printVariantLabel(value as PrintVariant) ?? value : value, value)));
       select.value = this.query[facet.key] ?? '';
+      const active = this.query[facet.key];
+      if (active) cards = cards.filter(card => facet.value(card) === active);
     }
-    this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
   }
   hide() {
     this.active = false; this.root.hidden = true; this.graphics.mesh.visible = false; this.pointer = undefined;
