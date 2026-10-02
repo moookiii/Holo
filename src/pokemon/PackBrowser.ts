@@ -100,7 +100,9 @@ export class PackBrowser {
     void this.run('Loading series…', async request => {
       const series = await pokemonCatalog.series(request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a series. Supported sets are marked Opening available.';
-      series.sort((a, b) => Number(b.id === 'sv') - Number(a.id === 'sv')).forEach(s => this.button(s.name, () => { this.selection.series = s; this.sets(); }, s.logo));
+      // TCGdex lists eras oldest first, but its undated miscellaneous group is first.
+      // Keep the source chronology and place that group after the dated series.
+      series.sort((a, b) => Number(a.id === 'misc') - Number(b.id === 'misc')).forEach(s => this.button(s.name, () => { this.selection.series = s; this.sets(); }, s.logo));
     }, () => this.series());
   }
   private sets() {
