@@ -40,12 +40,12 @@ hashes, PNG dimensions, full-front layout, and deterministic top-down registrati
 lighting; use `HOLO_BROWSER_URL` and `REVIEW_SUFFIX` for the WebGPU comparison.
 Review artifacts are saved under `artifacts/ancient-mew*`.
 
-The reverse now uses its own `pokemon-ancient-mew-back` profile and full-face
-PNG coverage/direction maps. A uniform grating supplies coherent color travel;
+The reverse now uses its own `pokemon-ancient-mew-back` profile and registered
+PNG coverage/direction maps. Foil covers the gold print and all eight gem faces;
+the navy artwork stays matte. A uniform grating supplies coherent color travel;
 its axis and pitch are estimates from the supplied reverse rotation. Random
 grating grains are removed: the unchanged source scan already contains grain.
-Gold receives full foil coverage and a polished reflection, while navy ink and
-colored energy medallions attenuate the response. The standard viewer
+Gold and gems receive full foil coverage and a polished reflection. The standard viewer
 and CPU-prepared card paths both honor this independent reverse material.
 Regenerate with `python scripts/ancient-mew/author-back.py`; inspect with
 `node scripts/ancient-mew-back-review.mjs`.

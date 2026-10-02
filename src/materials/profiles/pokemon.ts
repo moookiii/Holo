@@ -187,7 +187,7 @@ export const pokemonProfiles: HolographicProfile[] = [{
   },
 }, {
   id: 'pokemon-ancient-mew-back', name: 'Ancient Mew reverse foil', family: 'Pokémon', status: 'curated',
-  description: 'Continuous reverse foil with polished gold color travel and subdued navy ink, guided by the supplied rotating card video. No added granular pattern.',
+  description: 'Registered reverse foil on gold print and gems, with matte navy artwork. Guided by the supplied rotating card video; no added granular pattern.',
   diffraction: { period: 1.5, bandwidth: .055, strength: 2.7, secondaryOrder: .12, direction: 0, crossWidth: .65, facetCoupling: 0 },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, facetTilt: 0, reflectionCoupling: 0 },
   glints: { density: 0, scale: 500, sharpness: 200, strength: 0, spread: .4 },
