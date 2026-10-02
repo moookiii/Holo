@@ -97,7 +97,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   const empty = root.querySelector<HTMLElement>('.card-empty')!;
   const matchesSearch = (card: CardDefinition) => !searchQuery || [card.title, card.set, card.number, card.franchise].some(value => value.toLocaleLowerCase().includes(searchQuery));
   const baseSetHoloIds = cards
-    .filter(card => card.set === 'Base Set · First Edition' && card.profile === 'pokemon-base-set-star')
+    .filter(card => card.set === 'Base Set' && card.profile === 'pokemon-base-set-star')
     .map(card => card.id);
   const jungleHoloIds = cards
     .filter(card => card.set === 'Jungle' && card.pokemon?.variant === 'holo')

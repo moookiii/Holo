@@ -24,7 +24,7 @@ export const baseSetCards: CardDefinition[] = baseSetSubjects.map(([title, slug,
   const number = index + 1;
   const root = number === 4 ? '/cards/charizard-base-set' : `/cards/pokemon/base-set/${slug}`;
   return {
-    id: `${slug}-base-set`, title, franchise: 'Pokémon', set: 'Base Set · First Edition', number: `${number}/102`,
+    id: `${slug}-base-set`, title, franchise: 'Pokémon', set: 'Base Set', number: `${number}/102 · 1st Edition`,
     dimensions: { width: 6.3, height: 8.8, thickness: .032, cornerRadius: .3, bevel: .007 },
     front: number === 4 ? 'https://assets.tcgdex.net/en/base/base1/4/high.png' : `${root}/front.png`,
     ...(number === 4 ? { frontFallback: `${root}/front.png` } : {}), back: '/cards/pokemon/back.jpg',

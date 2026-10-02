@@ -37,7 +37,7 @@ const pokemonSetReleaseOrder = [
 ];
 const pokemonSetReleaseRank = new Map(pokemonSetReleaseOrder.map((name, index) => [name, index]));
 
-function gallerySetName(card: CardDefinition) {
+export function gallerySetName(card: CardDefinition) {
   if (card.franchise !== 'Pokémon') return card.set;
   return card.pokemon?.setName ?? pokemonSetAliases[card.set] ?? card.set;
 }
@@ -52,6 +52,22 @@ export function compareGallerySetNames(a: string, b: string) {
   return a.localeCompare(b);
 }
 
+const franchiseOrder: Readonly<Record<CardDefinition['franchise'], number>> = {
+  'Pokémon': 0, 'Yu-Gi-Oh!': 1, 'Magic: The Gathering': 2, 'Original': 3,
+};
+const cardNumber = (card: CardDefinition) => Number.parseInt(card.pokemon?.localId ?? card.number, 10) || Number.POSITIVE_INFINITY;
+
+function compareGalleryCards(a: CardDefinition, b: CardDefinition) {
+  const gameOrder = franchiseOrder[a.franchise] - franchiseOrder[b.franchise];
+  if (gameOrder) return gameOrder;
+  if (a.franchise !== 'Pokémon') return 0;
+  const setOrder = compareGallerySetNames(gallerySetName(a), gallerySetName(b));
+  if (setOrder) return setOrder;
+  const numberOrder = cardNumber(a) - cardNumber(b);
+  if (numberOrder) return numberOrder;
+  return Number(!!b.pokemon) - Number(!!a.pokemon) || a.id.localeCompare(b.id);
+}
+
 export const facets = [
   { key: 'game', label: 'Game', value: (c: CardDefinition) => c.franchise },
   { key: 'set', label: 'Set', value: gallerySetName },
@@ -62,6 +78,6 @@ export const facets = [
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
   const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return cards.filter(card => words.every(word => `${card.title} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
-    && facets.every(facet => !query[facet.key] || facet.value(card) === query[facet.key]));
+  return cards.filter(card => words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
+    && facets.every(facet => !query[facet.key] || facet.value(card) === query[facet.key])).sort(compareGalleryCards);
 }

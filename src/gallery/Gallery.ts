@@ -7,7 +7,7 @@ import type { StudioLighting } from '../lighting/StudioLighting';
 import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
 import { galleryLayout } from './GalleryLayout';
-import { compareGallerySetNames, facets, filterCards, type GalleryQuery } from './GalleryQuery';
+import { compareGallerySetNames, facets, filterCards, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
 import { profiles } from '../materials/profiles';
@@ -149,9 +149,9 @@ export class Gallery {
       let button = this.buttons.get(card.id);
       if (!button) {
         button = document.createElement('button'); button.className = 'gallery-card';
-        button.setAttribute('aria-label', `Open ${card.title}, ${card.set}, ${card.number}`);
+        button.setAttribute('aria-label', `Open ${card.title}, ${gallerySetName(card)}, ${card.number}`);
         const name = document.createElement('span'); name.className = 'gallery-card-name'; name.textContent = card.title;
-        const detail = document.createElement('span'); detail.className = 'gallery-card-detail'; detail.textContent = `${card.set} · ${card.number}`;
+        const detail = document.createElement('span'); detail.className = 'gallery-card-detail'; detail.textContent = `${gallerySetName(card)} · ${card.number}`;
         const placeholder = document.createElement('span'); placeholder.className = 'gallery-placeholder'; placeholder.textContent = 'Loading…';
         button.append(placeholder, name, detail);
         button.onclick = () => { const entry = this.entries.get(item.slot); if (entry?.error) { entry.error = undefined; return; } void this.transition(() => this.options.open(card.id)); };

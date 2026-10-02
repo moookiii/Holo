@@ -10,16 +10,18 @@ const pokemon = [
   ['nidoran-m', 'Nidoran ♂', '55/102'], ['onix', 'Onix', '56/102'], ['pikachu', 'Pikachu', '58/102'], ['poliwag', 'Poliwag', '59/102'],
   ['ponyta', 'Ponyta', '60/102'], ['sandshrew', 'Sandshrew', '62/102'], ['squirtle', 'Squirtle', '63/102'], ['staryu', 'Staryu', '65/102'],
   ['voltorb', 'Voltorb', '67/102'], ['weedle', 'Weedle', '69/102'],
-  ['butterfree', 'Butterfree', '33/Jungle'], ['dodrio', 'Dodrio', '34/Jungle'], ['gloom', 'Gloom', '35/Jungle'], ['lickitung', 'Lickitung', '36/Jungle'],
-  ['marowak', 'Marowak', '37/Jungle'], ['nidorina', 'Nidorina', '38/Jungle'], ['parasect', 'Parasect', '39/Jungle'], ['persian', 'Persian', '40/Jungle'],
-  ['primeape', 'Primeape', '41/Jungle'], ['rapidash', 'Rapidash', '42/Jungle'], ['rhydon', 'Rhydon', '43/Jungle'], ['seaking', 'Seaking', '44/Jungle'],
-  ['tauros', 'Tauros', '45/Jungle'], ['weepinbell', 'Weepinbell', '46/Jungle'], ['bellsprout', 'Bellsprout', '47/Jungle'], ['cubone', 'Cubone', '48/Jungle'],
-  ['eevee', 'Eevee', '49/Jungle'], ['exeggcute', 'Exeggcute', '50/Jungle'], ['goldeen', 'Goldeen', '51/Jungle'], ['jigglypuff', 'Jigglypuff', '52/Jungle'],
-  ['mankey', 'Mankey', '53/Jungle'], ['meowth', 'Meowth', '54/Jungle'], ['nidoran-f', 'Nidoran ♀', '55/Jungle'], ['oddish', 'Oddish', '56/Jungle'],
-  ['rhyhorn', 'Rhyhorn', '58/Jungle'], ['spearow', 'Spearow', '59/Jungle'], ['venonat', 'Venonat', '60/Jungle'],
-  ['geodude', 'Geodude', 'Fossil'], ['golbat', 'Golbat', 'Fossil'], ['golduck', 'Golduck', 'Fossil'], ['grimer', 'Grimer', 'Fossil'],
-  ['kabuto', 'Kabuto', 'Fossil'], ['krabby', 'Krabby', 'Fossil'], ['omanyte', 'Omanyte', 'Fossil'],
+  ['butterfree', 'Butterfree', '33/64'], ['dodrio', 'Dodrio', '34/64'], ['gloom', 'Gloom', '35/64'], ['lickitung', 'Lickitung', '36/64'],
+  ['marowak', 'Marowak', '37/64'], ['nidorina', 'Nidorina', '38/64'], ['parasect', 'Parasect', '39/64'], ['persian', 'Persian', '40/64'],
+  ['primeape', 'Primeape', '41/64'], ['rapidash', 'Rapidash', '42/64'], ['rhydon', 'Rhydon', '43/64'], ['seaking', 'Seaking', '44/64'],
+  ['tauros', 'Tauros', '45/64'], ['weepinbell', 'Weepinbell', '46/64'], ['bellsprout', 'Bellsprout', '47/64'], ['cubone', 'Cubone', '48/64'],
+  ['eevee', 'Eevee', '49/64'], ['exeggcute', 'Exeggcute', '50/64'], ['goldeen', 'Goldeen', '51/64'], ['jigglypuff', 'Jigglypuff', '52/64'],
+  ['mankey', 'Mankey', '53/64'], ['meowth', 'Meowth', '54/64'], ['nidoran-f', 'Nidoran ♀', '55/64'], ['oddish', 'Oddish', '56/64'],
+  ['rhyhorn', 'Rhyhorn', '58/64'], ['spearow', 'Spearow', '59/64'], ['venonat', 'Venonat', '60/64'],
+  ['geodude', 'Geodude', '47/62'], ['golbat', 'Golbat', '34/62'], ['golduck', 'Golduck', '35/62'], ['grimer', 'Grimer', '48/62'],
+  ['kabuto', 'Kabuto', '50/62'], ['krabby', 'Krabby', '51/62'], ['omanyte', 'Omanyte', '52/62'],
 ] as const;
+
+const pokemonSetBySize: Readonly<Record<string, string>> = { '102': 'Base Set', '64': 'Jungle', '62': 'Fossil' };
 
 const yugioh = [
   ['kuriboh', 'Kuriboh'], ['mystical-elf', 'Mystical Elf'], ['celtic-guardian', 'Celtic Guardian'], ['giant-soldier-of-stone', 'Giant Soldier of Stone'],
@@ -58,7 +60,7 @@ const magic = [
 export const nonHoloCards: CardDefinition[] = [
   ...pokemon.map(([slug, title, number], index) => ({
     id: `common-pokemon-${slug}`, title, franchise: 'Pokémon' as const,
-    set: 'Base Set · Non-holo', number, dimensions: standard,
+    set: pokemonSetBySize[number.split('/')[1]], number, dimensions: standard,
     front: `/cards/non-holo/pokemon/${slug}.png`, back: '/cards/pokemon/back.jpg', profile: 'print-only', seed: 6100 + index,
   })),
   ...yugioh.map(([slug, title], index) => ({
