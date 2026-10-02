@@ -41,3 +41,7 @@ for number, entry in json.loads(MANIFEST.read_text()).items():
     yy,xx = np.where(effective>.5)
     assert (xx.min(),yy.min(),xx.max()+1,yy.max()+1) == (left,top,right,bottom), number
     print(f'{number}: {crop} -> {(left,top,right,bottom)}')
+
+# Preserve the user-authored evolution-box correction on every regeneration.
+import runpy
+runpy.run_path(str(Path(__file__).with_name("fix-evolution-badges.py")))

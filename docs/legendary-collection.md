@@ -79,3 +79,12 @@ All 19 effective mask extents are checked during generation. Colored overlays
 are saved under `artifacts/lc-window-registration`; the browser smoke check
 includes Dark Dragonite, Dark Vaporeon and Gengar. Regenerate these registered
 maps after changing any source cutout. The reverse-holo maps are independent.
+
+### User-corrected evolution badge
+
+`traces/evolution-badge.png` preserves the exact 160x106 crop at (130,194)
+from the user's GIMP correction to Dark Blastoise's registered protection.
+`fix-evolution-badges.py` applies that contour to coverage and protection on
+the 16 evolved regular holos (all except Articuno, Hitmonlee and Zapdos).
+The registration generator invokes this correction automatically. The small
+badge neighborhood is updated independently of the remaining subject cutout.
