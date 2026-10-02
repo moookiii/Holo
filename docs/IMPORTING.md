@@ -92,7 +92,7 @@ Stamp foil takes priority over secondary foil, which takes priority over primary
 
 For a nonfoil scan used as the print source, optional `substrate.backgroundColor: [r, g, b]` specifies the original paper's linear reflectance. The material removes its transmitted contribution and inserts `substrate.color` through the primary coverage mask. This avoids pale antialiased text fringes produced by a simple gray mix. It requires a corresponding ink-transmission mask; do not supply arbitrary paper values for an already reflective scan. Existing substrate behavior is unchanged when this field is absent.
 
-The `e-reader` field is a shallow continuous sheet with fine grain and broad reflection. `legendary-fireworks` uses denser fine broken rays inside large radial fields. Both are development reconstructions; their card-specific masks determine reverse coverage.
+The `e-reader` field is a shallow continuous sheet with fine grain and broad reflection. `legendary-fireworks` uses overlapping small radial fields with short, laterally irregular cuts and a separate fine staggered microcut layer. Its profile favors neutral silver reflection over diffraction; fragment inclinations still select highlights during tilt. Both are development reconstructions; their card-specific masks determine reverse coverage.
 
 Grating direction is an **axis**, encoded using twice the angle: `R = 0.5 + 0.5 cos(2θ)`, `G = 0.5 + 0.5 sin(2θ)`. This lets opposite but physically equivalent axes filter correctly. The material adds its configured direction angle. `B` encodes a spacing multiplier, `0.5 + 1.5 B`, applied to the profile's period in micrometres. `A` controls manufactured-pattern amplitude. Directions remain attached to card UVs.
 

@@ -34,11 +34,11 @@ export const pokemonProfiles: HolographicProfile[] = [{
   surface: { metalness: .79, roughness: .32, patternRoughness: -.06, laminate: .17, laminateRoughness: .35, foilReflectance: .10, sheen: .03 },
 }, {
   id: 'pokemon-legendary-reverse', name: 'Legendary reverse', family: 'Pokémon', status: 'reference-pending',
-  description: 'Legendary Collection reverse: large overlapping radial fields composed of dense, fine broken foil cuts. Local fragments exchange spectral and silver reflections above the body and border; printed letters retain their own protection.',
-  diffraction: { period: 1.29, bandwidth: .043, strength: 2.8, secondaryOrder: .12, direction: 0, crossWidth: .41, facetCoupling: 1 },
-  structure: { field: 'legendary-fireworks', scale: 4.7, engraving: .08, relief: 0, facetTilt: 1.35, reflectionCoupling: .55, normalVariance: .4 },
-  glints: { density: .009, scale: 760, sharpness: 310, strength: 1.2, spread: .40 },
-  surface: { metalness: .82, roughness: .27, laminate: .18, laminateRoughness: .32, foilReflectance: .08, sheen: 0 },
+  description: 'Legendary Collection reverse: overlapping small fireworks embedded in dense broken microcuts on a bright silver sheet. Fixed fragment inclinations exchange neutral reflections and restrained spectral flashes during tilt; card-authored coverage protects artwork and print.',
+  diffraction: { period: 1.29, bandwidth: .043, strength: 1.35, secondaryOrder: .07, direction: 0, crossWidth: .41, facetCoupling: 1 },
+  structure: { field: 'legendary-fireworks', scale: 6.8, engraving: 0, relief: 0, facetTilt: 1.2, reflectionCoupling: .55, normalVariance: .28 },
+  glints: { density: 0, scale: 760, sharpness: 310, strength: 0, spread: .40 },
+  surface: { metalness: .82, roughness: .31, patternRoughness: -.055, laminate: .14, laminateRoughness: .32, foilReflectance: .20, sheen: .10 },
 }, {
   id: 'pokemon-e-reader', name: 'E-reader reverse', family: 'Pokémon', status: 'reference-pending',
   description: 'Early reverse foil: a nearly planar metallic sheet beneath body ink, with subtle directional grain and broad light-selected spectral reflections. The card supplies an explicit reverse mask protecting artwork and e-reader rails.',

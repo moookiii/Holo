@@ -47,7 +47,7 @@ test('smooth directional films have continuous sheet normals without tile seams 
 
 test('manufactured Pokémon sheets preserve physical pattern scale across card aspect ratios', () => {
   // A wider card exposes more of the same sheet; it must not stretch/reseed it.
-  for (const [kind, scale] of [['legendary-fireworks', 4.7], ['fireworks', 8.2], ['crosshatch', 270], ['ace-spec', 440]] as const) {
+  for (const [kind, scale] of [['legendary-fireworks', 6.8], ['fireworks', 8.2], ['crosshatch', 270], ['ace-spec', 440]] as const) {
     const narrow = generatePokemonField(kind, 1999, .70, scale, 256);
     const wide = generatePokemonField(kind, 1999, .82, scale, 256);
     for (let y = 0; y < narrow.height; y++) {
@@ -56,5 +56,20 @@ test('manufactured Pokémon sheets preserve physical pattern scale across card a
       assert.deepEqual(narrow.relief.subarray(y * narrow.width * 4, (y + 1) * narrow.width * 4),
         wide.relief.subarray(y * wide.width * 4, (y * wide.width + narrow.width) * 4));
     }
+  }
+});
+
+test('Legendary reverse has a dense fixed cut field without physical emboss', () => {
+  for (const seed of [2002074, 1999]) {
+    const field = generatePokemonField('legendary-fireworks', seed, 6.3 / 8.8, 6.8, 1024);
+    let cuts = 0;
+    for (let i = 0; i < field.direction.length; i += 4) {
+      if (field.direction[i + 3] > 50) cuts++;
+      assert.equal(field.relief[i + 2], 128, 'optical cuts must not introduce raised relief');
+    }
+    assert.ok(cuts / (field.width * field.height) > .35, 'sparse isolated fireworks leave too much quiet foil');
+    const repeat = generatePokemonField('legendary-fireworks', seed, 6.3 / 8.8, 6.8, 1024);
+    assert.deepEqual(field.direction, repeat.direction, 'cuts must remain fixed between preparations');
+    assert.deepEqual(field.relief, repeat.relief);
   }
 });

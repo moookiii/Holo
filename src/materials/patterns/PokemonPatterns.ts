@@ -25,7 +25,8 @@ export function generatePokemonField(kind: PokemonPatternKind, seed: number, asp
       const phase = random(gx, gy, seed + 601);
       centers.set(`${gx},${gy}`, { x: gx + .2 + random(gx, gy, seed + 607) * .6,
         y: gy + .2 + random(gx, gy, seed + 613) * .6, phase,
-        rays: legendary ? 110 + Math.floor(phase * 55) : 38 + Math.floor(phase * 25), radius: .52 + random(gx, gy, seed + 617) * .31, cell: gx + gy * 71 });
+        rays: legendary ? 100 + Math.floor(phase * 65) : 38 + Math.floor(phase * 25),
+        radius: legendary ? .86 + random(gx, gy, seed + 617) * .14 : .52 + random(gx, gy, seed + 617) * .31, cell: gx + gy * 71 });
     }
     for (let gy = 0; gy <= Math.floor(scale); gy++) for (let gx = 0; gx < columns; gx++) {
       const neighbors: Burst[] = [];
@@ -36,29 +37,46 @@ export function generatePokemonField(kind: PokemonPatternKind, seed: number, asp
   for (let iy = 0; iy < height; iy++) for (let ix = 0; ix < width; ix++) {
     const x = (ix + .5) / height, y = (iy + .5) / height;
     let angle = 0, spacing = 1, amplitude = .02, nx = 0, ny = 0, grain = .5;
+    if (legendary) {
+      // Fine, staggered die cuts fill the gaps between rosettes. These are
+      // fixed optical cells, not animated sparkle or noise-derived height.
+      // Their scale is independent of the larger burst spacing.
+      const row = Math.floor(y * 720), u = x * 640 + random(row, 0, seed + 671);
+      const col = Math.floor(u), fx = u - col, fy = y * 720 - row;
+      const chip = random(col, row, seed + 673);
+      const aa = 360 / height;
+      const cut = (1 - smooth(.23, .23 + aa, Math.abs(fx - .5)))
+        * (1 - smooth(.16, .16 + aa, Math.abs(fy - .5))) * (.08 + chip * .16);
+      amplitude = .035 + cut;
+      angle = (chip - .5) * .6; spacing = .94 + chip * .16;
+      nx = (chip - .5) * .09;
+      ny = (random(col, row, seed + 679) - .5) * .09;
+      grain = .46 + chip * .38;
+    }
     if (fireworks) {
       const u = x * scale, v = y * scale, gx = Math.floor(u), gy = Math.floor(v), aa = scale / height;
       // Whole neighboring bursts overlap; a cell boundary must never clip a ray.
       for (const c of neighborhoods[gy * columns + gx]) {
-        const dx = u - c.x, dy = v - c.y, radius = Math.hypot(dx, dy);
+        const dx = u - c.x, dy = v - c.y, radius = Math.sqrt(dx * dx + dy * dy);
         if (radius > c.radius || radius < .04) continue;
         const theta = Math.atan2(dy, dx);
         // Curved polar rays split into unequal pieces: tiny metal cuts, not a
         // solid star. Each segment has a persistent grating and inclination.
         const polar = ((theta / TAU + c.phase + 2 + radius * .045) % 1) * c.rays;
-        const ray = Math.floor(polar), across = (polar - ray - .5) * radius * TAU / c.rays;
+        const ray = Math.floor(polar);
         const r = random(ray, c.cell, seed + 631);
-        const along = radius * (legendary ? 38 + r * 37 : 14 + r * 17) + r * 9, segment = Math.floor(along);
+        const along = radius * (legendary ? 45 + r * 45 : 14 + r * 17) + r * 9, segment = Math.floor(along);
         const chip = random(ray * 53 + segment, c.cell, seed + 641);
-        const halfWidth = (legendary ? .0017 + radius * .005 : .004 + radius * .013) * (.55 + r * .8);
+        const across = (polar - ray - .5 + (legendary ? (chip - .5) * .65 : 0)) * radius * TAU / c.rays;
+        const halfWidth = (legendary ? .0028 + radius * .006 : .004 + radius * .013) * (.55 + r * .8);
         const stroke = 1 - smooth(halfWidth - aa * .55, halfWidth + aa * .55, Math.abs(across));
         const broken = smooth(.08, .19, along - segment) * (1 - smooth(.50 + chip * .31, .93, along - segment));
-        const start = .05 + r * .17, end = c.radius * (.65 + r * .35);
+        const start = .05 + r * .17, end = c.radius * (legendary ? .84 + r * .16 : .65 + r * .35);
         const envelope = smooth(start, start + .075, radius) * (1 - smooth(end * .77, end, radius));
         const cut = stroke * broken * envelope * (.28 + chip * .72) * (chip > .18 ? 1 : .08);
         if (cut > amplitude) {
           amplitude = cut;
-          const sector = (ray + .5) / c.rays * TAU - c.phase * TAU;
+          const sector = (ray + .5) / c.rays * TAU - c.phase * TAU + (legendary ? (chip - .5) * .42 : 0);
           angle = sector + Math.PI / 2;
           spacing = .90 + c.phase * .22 + (chip - .5) * .055;
           const slope = legendary ? .07 + radius * .28 + (chip - .5) * .30 : .10 + radius * .22 + (chip - .5) * .21;
