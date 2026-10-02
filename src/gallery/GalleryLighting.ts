@@ -6,9 +6,9 @@ export function galleryLightingControls(root: HTMLElement, lighting: StudioLight
   for (const preset of lightPresets) select.add(new Option(preset, preset));
   select.value = lighting.preset;
   label.append(select); root.append(label);
-  const settings: { key: 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle'; label: HTMLLabelElement; input: HTMLInputElement }[] = [];
+  const settings: { key: 'elevation' | 'intensity' | 'speed' | 'filterAngle'; label: HTMLLabelElement; input: HTMLInputElement }[] = [];
   for (const [key, title, min, max, step] of [
-    ['azimuth', 'Direction', -75, 75, 1], ['elevation', 'Elevation', 5, 80, 1], ['intensity', 'Intensity', .1, 2, .05], ['speed', 'Speed', 0, 2, .1], ['filterAngle', 'Polarizer', 0, 90, 1],
+    ['elevation', 'Elevation', 5, 80, 1], ['intensity', 'Intensity', .1, 2, .05], ['speed', 'Speed', 0, 2, .1], ['filterAngle', 'Polarizer', 0, 90, 1],
   ] as const) {
     const label = document.createElement('label'); label.textContent = title;
     const input = document.createElement('input'); input.type = 'range'; input.min = String(min); input.max = String(max); input.step = String(step); input.value = String(lighting[key]); input.setAttribute('aria-label', `Gallery light ${title.toLowerCase()}`);
