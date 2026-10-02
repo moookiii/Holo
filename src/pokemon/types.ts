@@ -16,6 +16,8 @@ export interface PokemonBooster extends CatalogEntry {
 }
 export interface PokemonSet extends CatalogEntry {
   series: CatalogEntry; era: string; releaseDate: string; cardIds: string[]; boosters: PokemonBooster[];
+  /** Printed set mark, when a local registered asset is available. */
+  symbol?: string;
 }
 export interface PokemonCard {
   edition?: PrintEdition;

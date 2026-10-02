@@ -3,6 +3,7 @@ import { gymChallengeDefinitions } from './GymChallengeCards.ts';
 import { gymHeroesDefinitions } from './GymHeroesCards.ts';
 import { teamRocketDefinitions } from './TeamRocketCards.ts';
 import { baseSet2Definitions } from './BaseSet2Cards.ts';
+import { legendaryCollectionDefinitions } from './LegendaryCollectionCards.ts';
 import { fossilDefinitions } from './FossilCards.ts';
 import type { CardProfileOverrides } from '../materials/HolographicProfile';
 import { nonHoloCards } from './NonHoloCards.ts';
@@ -115,7 +116,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [ancientMewCard, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...wizardsPromoDefinitions, {
+export const cards: CardDefinition[] = [ancientMewCard, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...legendaryCollectionDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
@@ -178,21 +179,6 @@ export const cards: CardDefinition[] = [ancientMewCard, ...nonHoloCards, ...holo
     image: 'https://images.pokemontcg.io/sv2/135_hires.png',
     metadata: 'https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/sv02/135/',
     notes: 'Unmodified 734 × 1021 source. Regular Paldea Evolved Mirage printing, distinct from reverse-holo and promotional Cosmos variants. Authored artwork/subject and silver-border masks are estimates; multi-angle physical matching remains pending.',
-  },
-}, {
-  id: 'eevee-legendary-reverse', title: 'Eevee', franchise: 'Pokémon',
-  set: 'Legendary Collection · Reverse holo', number: '74/110', dimensions: DIMENSIONS.standard,
-  layout: { artwork: [55/600, 86/825, 546/600, 436/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
-  front: '/cards/eevee-legendary-reverse/front.png', back: '/cards/pokemon/back.jpg',
-  coverageMode: 'reverse',
-  maps: { reverseFoil: '/cards/eevee-legendary-reverse/reverse-foil.svg', protection: '/cards/eevee-legendary-reverse/protection.png', laminate: '/cards/eevee-legendary-reverse/laminate.svg' },
-  frontBorderColor: [.579, .579, .579],
-  substrate: { color: [.32, .33, .34], backgroundColor: [.672, .672, .672], printRetention: 0 },
-  profile: 'pokemon-legendary-reverse', seed: 2002074,
-  source: {
-    image: 'https://images.pokemontcg.io/base6/74_hires.png',
-    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base6.json',
-    notes: 'Unmodified 600 × 825 nonfoil print image supplies artwork and lettering. The Legendary Collection reverse finish and silver outer border are reconstructed separately from physical-card photographs. Estimated coverage and optics await moving-reference matching.',
   },
 }, {
   id: 'charizard-expedition-reverse', title: 'Charizard', franchise: 'Pokémon',

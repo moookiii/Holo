@@ -3,6 +3,7 @@ import { gymChallengeDefinitions } from './GymChallengeCards.ts';
 import { gymHeroesDefinitions } from './GymHeroesCards.ts';
 import { teamRocketDefinitions } from './TeamRocketCards.ts';
 import { baseSet2Definitions } from './BaseSet2Cards.ts';
+import { legendaryCollectionDefinitions } from './LegendaryCollectionCards.ts';
 import { fossilDefinitions } from './FossilCards.ts';
 import { baseSetCards, baseSetAuthoredIds } from './BaseSetCards.ts';
 import { jungleDefinitions } from './JungleCards.ts';
@@ -17,6 +18,7 @@ const prints = new Map<string, CardDefinition>([
   ...teamRocketDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}:${card.pokemon!.edition}`, card] as const),
   ...Object.entries(baseSetAuthoredIds).map(([id, authoredId]) => [`${id}:holo`, baseSetCards.find(card => card.id === authoredId)!] as const),
   ...baseSet2Definitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
+  ...legendaryCollectionDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...fossilDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...jungleDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
 ]);

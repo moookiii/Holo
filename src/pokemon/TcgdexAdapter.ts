@@ -3,6 +3,7 @@ import { GYM_HEROES_ID, gymHeroesCard, gymHeroesSet } from './GymHeroesCatalog.t
 import { TEAM_ROCKET_ID, teamRocketCard, teamRocketSet } from './TeamRocketCatalog.ts';
 import { BASE_SET_2_ID, baseSet2Card, baseSet2Set } from './BaseSet2Catalog.ts';
 import { FOSSIL_SET_ID, fossilCard, fossilSet } from './FossilCatalog.ts';
+import { LEGENDARY_COLLECTION_ID, legendaryCollectionCard, legendaryCollectionSet } from './LegendaryCollectionCatalog.ts';
 import TCGdex from '@tcgdex/sdk';
 import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './types.ts';
 import { boundedMap, pause } from './requests.ts';
@@ -63,6 +64,7 @@ export class TcgdexAdapter {
   }
   sets(seriesId: string, signal: AbortSignal): Promise<CatalogEntry[]> {
     return this.read(`series:${seriesId}`, signal, async () => {
+      if (seriesId === 'lc') return [{ id: LEGENDARY_COLLECTION_ID, name: legendaryCollectionSet.name, logo: legendaryCollectionSet.logo }];
       const serie = await client.serie.get(seriesId);
       if (!serie) throw new Error('This series is unavailable.');
       const sets = serie.sets
@@ -100,6 +102,7 @@ export class TcgdexAdapter {
       if (id === GYM_CHALLENGE_ID) return { ...gymChallengeSet, series: { ...gymChallengeSet.series }, cardIds: [...gymChallengeSet.cardIds], boosters: gymChallengeSet.boosters.map(b => ({ ...b })) };
       if (id === GYM_HEROES_ID) return { ...gymHeroesSet, series: { ...gymHeroesSet.series }, cardIds: [...gymHeroesSet.cardIds], boosters: gymHeroesSet.boosters.map(b => ({ ...b })) };
       if (id === TEAM_ROCKET_ID) return { ...teamRocketSet, series: { ...teamRocketSet.series }, cardIds: [...teamRocketSet.cardIds], boosters: teamRocketSet.boosters.map(b => ({ ...b })) };
+      if (id === LEGENDARY_COLLECTION_ID) return { ...legendaryCollectionSet, series: { ...legendaryCollectionSet.series }, cardIds: [...legendaryCollectionSet.cardIds], boosters: legendaryCollectionSet.boosters.map(b => ({ ...b })) };
       if (id === BASE_SET_2_ID) return { ...baseSet2Set, series: { ...baseSet2Set.series },
         cardIds: [...baseSet2Set.cardIds], boosters: baseSet2Set.boosters.map(booster => ({ ...booster })) };
       if (id === FOSSIL_SET_ID) return { ...fossilSet, series: { ...fossilSet.series },
@@ -128,6 +131,8 @@ export class TcgdexAdapter {
       if (set.id === GYM_HEROES_ID) return gymHeroesCard(id);
       if (id.startsWith(`${GYM_HEROES_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === TEAM_ROCKET_ID) return teamRocketCard(id);
+      if (set.id === LEGENDARY_COLLECTION_ID) return legendaryCollectionCard(id);
+      if (id.startsWith(`${LEGENDARY_COLLECTION_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (id.startsWith(`${TEAM_ROCKET_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === BASE_SET_2_ID) return baseSet2Card(id);
       if (id.startsWith(`${BASE_SET_2_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);

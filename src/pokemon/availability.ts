@@ -16,6 +16,8 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (setId === 'gym2') return { ready: true, label: 'Opening available', detail: '132 cards · 1st Edition · 20 registered Cosmos holos and four original booster designs.' };
   if (setId === 'base5') return { ready: true, label: 'Opening available',
     detail: '83 cards · 1st Edition. 18 holos with registered foil, including secret rare Dark Raichu.' };
+  if (setId === 'lc') return { ready: true, label: 'Opening available',
+    detail: '110 English unlimited cards · 19 regular holos · one guaranteed reverse holo · four booster designs.' };
   if (setId === 'base4') return { ready: true, label: 'Opening available',
     detail: 'Base Set 2 includes all 130 unlimited prints, 20 Cosmos holos and four original booster designs.' };
   if (setId === 'base3') return { ready: true, label: 'Opening available',
