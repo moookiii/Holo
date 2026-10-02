@@ -1,3 +1,4 @@
+import { GYM_CHALLENGE_ID, gymChallengeCard, gymChallengeSet } from './GymChallengeCatalog.ts';
 import { GYM_HEROES_ID, gymHeroesCard, gymHeroesSet } from './GymHeroesCatalog.ts';
 import { TEAM_ROCKET_ID, teamRocketCard, teamRocketSet } from './TeamRocketCatalog.ts';
 import { BASE_SET_2_ID, baseSet2Card, baseSet2Set } from './BaseSet2Catalog.ts';
@@ -80,12 +81,16 @@ export class TcgdexAdapter {
         const index = sets.findIndex(s => s.id === GYM_HEROES_ID);
         if (index >= 0) sets.splice(index, 1);
         sets.unshift({ id: GYM_HEROES_ID, name: gymHeroesSet.name, logo: gymHeroesSet.logo });
+        const challenge = sets.findIndex(s => s.id === GYM_CHALLENGE_ID);
+        if (challenge >= 0) sets.splice(challenge, 1);
+        sets.splice(1, 0, { id: GYM_CHALLENGE_ID, name: gymChallengeSet.name, logo: gymChallengeSet.logo });
       }
       return sets;
     });
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === GYM_CHALLENGE_ID) return { ...gymChallengeSet, series: { ...gymChallengeSet.series }, cardIds: [...gymChallengeSet.cardIds], boosters: gymChallengeSet.boosters.map(b => ({ ...b })) };
       if (id === GYM_HEROES_ID) return { ...gymHeroesSet, series: { ...gymHeroesSet.series }, cardIds: [...gymHeroesSet.cardIds], boosters: gymHeroesSet.boosters.map(b => ({ ...b })) };
       if (id === TEAM_ROCKET_ID) return { ...teamRocketSet, series: { ...teamRocketSet.series }, cardIds: [...teamRocketSet.cardIds], boosters: teamRocketSet.boosters.map(b => ({ ...b })) };
       if (id === BASE_SET_2_ID) return { ...baseSet2Set, series: { ...baseSet2Set.series },
@@ -106,6 +111,11 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === GYM_CHALLENGE_ID) {
+        if (!id.startsWith(`${GYM_CHALLENGE_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return gymChallengeCard(id);
+      }
+      if (id.startsWith(`${GYM_CHALLENGE_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === GYM_HEROES_ID) return gymHeroesCard(id);
       if (id.startsWith(`${GYM_HEROES_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === TEAM_ROCKET_ID) return teamRocketCard(id);

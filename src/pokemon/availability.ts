@@ -10,6 +10,7 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
   if (setId === 'gym1') return { ready: true, label: 'Opening available', detail: '132 cards · 1st Edition · 19 registered Cosmos holos and four original booster designs.' };
+  if (setId === 'gym2') return { ready: true, label: 'Opening available', detail: '132 cards · 1st Edition · 20 registered Cosmos holos and four original booster designs.' };
   if (setId === 'base5') return { ready: true, label: 'Opening available',
     detail: '83 cards · 1st Edition. 18 holos with registered foil, including secret rare Dark Raichu.' };
   if (setId === 'base4') return { ready: true, label: 'Opening available',
