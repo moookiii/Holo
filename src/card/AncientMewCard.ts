@@ -5,6 +5,8 @@ export const ancientMewCard: CardDefinition = {
   dimensions:{width:6.3,height:8.8,thickness:.032,cornerRadius:.3,bevel:.007},
   front:'/cards/ancient-mew/front.jpeg',back:'/cards/ancient-mew/back.jpeg',
   profile:'pokemon-ancient-mew',seed:2000,
+  backProfile:'pokemon-ancient-mew-back',
+  backMaps:{foil:'/cards/ancient-mew/back-foil.png',direction:'/cards/ancient-mew/back-direction.png'},
   layout:{artwork:[0,0,1,1],innerFrame:[0,0,1,1]},
   maps:{foil:'/cards/ancient-mew/foil.png',protection:'/cards/ancient-mew/protection.png',motif:'/cards/ancient-mew/flakes.png'},
   mapSettings:{embossStrength:0}, substrate:{color:[.012,.006,.02],printRetention:.26},

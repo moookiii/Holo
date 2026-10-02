@@ -1,3 +1,4 @@
+import { getProfile } from '../materials/profiles/index';
 import type { CardDefinition, CardMapPaths } from './CardDefinition';
 import { resolveCoverageMaps } from '../assets/CardCoverage';
 import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from '../assets/MapPacking';
@@ -291,7 +292,7 @@ export class CardCpuPreparation {
   async prepare(card: CardDefinition, signal: AbortSignal): Promise<PreparedCardCpu> {
     if (this.disposed) throw new Error('CPU preparation disposed');
     const profile = resolveCardProfile(card), aspect = card.dimensions.width / card.dimensions.height, anniversary = profile.watermark === 'quarter-century';
-    const key = JSON.stringify([card.id, profile.id, this.mapKey(card, profile, aspect, anniversary)]);
+    const key = JSON.stringify([card.id, profile.id, this.mapKey(card, profile, aspect, anniversary), card.backProfile, card.backMaps]);
     if (this.cache.has(key)) { this.hitCount++; return this.cache.get(key)!; }
     this.missCount++;
     if (!this.cache.has(key)) this.cache.set(key, (async () => {
@@ -310,7 +311,8 @@ export class CardCpuPreparation {
         print ? undefined : this.prepareLayer(profile, card, card.seed, signal, card.maps?.motif), print ? undefined : this.prepareLayer(profile.secondary, card, card.seed + 8191, signal, card.maps?.secondaryMotif), print ? undefined : this.prepareLayer(profile.stamp, card, card.seed + 16381, signal, card.maps?.stampMotif),
       ]);
       signal.throwIfAborted();
-      return { definition: card, profile, front, back, maps, fields: { primary, secondary, stamp }, preparedAt: performance.now() };
+      const backMaps = card.backProfile ? await this.prepareMaps({ ...card, front: card.back, maps: card.backMaps }, getProfile(card.backProfile), aspect, false, signal) : undefined;
+      return { definition: card, profile, front, back, maps, backMaps, fields: { primary, secondary, stamp }, preparedAt: performance.now() };
     })().catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }

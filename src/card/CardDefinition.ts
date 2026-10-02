@@ -110,6 +110,8 @@ export interface CardDefinition {
   /** Two-sided cast metal; dimensions.thickness is the base slab, relief is additional centimetres. */
   construction?: { kind: 'metal'; frontReliefCm: number; backReliefCm: number; };
   backMaps?: CardMapPaths;
+  /** Optional foil on a printed reverse, independent of the front treatment. */
+  backProfile?: string;
   layout?: CardLayout;
 }
 

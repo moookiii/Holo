@@ -1,3 +1,4 @@
+import { getProfile } from '../materials/profiles/index';
 import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
 import { AssetManager } from '../assets/AssetManager';
 import { startupMark } from '../rendering/LoadTiming';
@@ -129,7 +130,16 @@ export class CardFactory {
         holo.setProfile(profile, fields); holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); material = holo;
         this.gpuStats.holoMaterials++;
       }
-      const reverse = createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
+      let reverse: Material = createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
+      if (prepared.backMaps && definition.backProfile) {
+        const source = prepared.backMaps, packed = source.packed!;
+        const maps: CardMaterialMaps = { ...source, secondaryDirection: undefined, stampDirection: undefined, coverage: bytesTexture(packed.coverage,packed.width,packed.height), surface: bytesTexture(packed.surface,packed.width,packed.height), pattern: bytesTexture(packed.pattern,packed.width,packed.height), normal: this.assets.flatNormal, direction: source.direction ? imageTexture(source.direction,false) : undefined };
+        const backProfile = getProfile(definition.backProfile);
+        reverse.dispose();
+        const foil = new HolographicMaterial(back,maps.coverage,maps.surface,definition.seed,backProfile,undefined,maps);
+        foil.setProfile(backProfile,{}); foil.setAspect(definition.dimensions.width/definition.dimensions.height,definition.dimensions.height);
+        reverse = foil;
+      }
       const materials = [material, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
       this.gpuStats.materialCreationMs += performance.now() - materialStarted;
       instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => {
@@ -223,7 +233,8 @@ export class CardFactory {
       catch (error) { instance.dispose(); throw error; }
     }
     const frontReady = this.loadFront(definition);
-    const reverseDefinition = definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
+    const reverseProfile = definition.backProfile ? getProfile(definition.backProfile) : profile;
+    const reverseDefinition = definition.backProfile ? { ...definition, front: definition.back, maps: definition.backMaps } : definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
       construction: { ...definition.construction, frontReliefCm: definition.construction.backReliefCm },
       mapSettings: { ...definition.mapSettings, embossStrength: definition.construction.backReliefCm / .008 } } : undefined;
     const [front, back, maps, fields, backMaps] = await Promise.all([
@@ -260,9 +271,9 @@ export class CardFactory {
       definition.substrate, maps, definition.frontBorderColor, yugioh, yugioh);
     holo.setProfile(profile, fields);
     holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height);
-    const reverse = backMaps ? new HolographicMaterial(back, backMaps.coverage, backMaps.surface, definition.seed, profile, undefined, backMaps)
+    const reverse = backMaps ? new HolographicMaterial(back, backMaps.coverage, backMaps.surface, definition.seed, reverseProfile, undefined, backMaps)
       : createPrintMaterial(back, this.assets.black, yugioh ? { clearcoat: .18, clearcoatRoughness: .38 } : undefined, definition.backCrop);
-    if (reverse instanceof HolographicMaterial) { reverse.setProfile(profile, fields); reverse.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); }
+    if (reverse instanceof HolographicMaterial) { reverse.setProfile(reverseProfile, definition.backProfile ? {} : fields); reverse.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); }
     const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined)];
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);

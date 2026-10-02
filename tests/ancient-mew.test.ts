@@ -10,6 +10,12 @@ test('Ancient Mew preserves both source images and full-front authored PNG cover
  for(const name of ['front.jpeg','back.jpeg'])assert.equal(createHash('sha256').update(readFileSync(`public/cards/ancient-mew/${name}`)).digest('hex'),sources[name].sha256);
  assert.deepEqual(ancientMewCard.layout?.artwork,[0,0,1,1]);
  assert.equal(ancientMewCard.profile,'pokemon-ancient-mew');
+ assert.equal(ancientMewCard.backProfile,'pokemon-ancient-mew-back');
+ for(const path of Object.values(ancientMewCard.backMaps!)) {
+  const png=readFileSync(`public${path}`);
+  assert.equal(png.subarray(1,4).toString(),'PNG');
+  assert.equal(png.readUInt32BE(16),1501);assert.equal(png.readUInt32BE(20),2095);
+ }
  assert.equal(ancientMewCard.mapSettings?.embossStrength,0);
  for(const path of Object.values(ancientMewCard.maps!)){
   const png=readFileSync(`public${path}`);
