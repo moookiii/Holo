@@ -7,8 +7,8 @@ TCGdex uses `lc`; Pokémon TCG API uses `base6` for this set.
 
 ## Artwork protection and regular foil
 
-Existing PNG cutouts are referenced directly, with no modifications to their
-source sets:
+Existing PNG cutouts are reused through LC-specific affine registration, with
+no modifications to their source sets:
 
 | LC numbers | Reused artwork protection |
 | --- | --- |
@@ -65,3 +65,17 @@ The LC tests verify all 110 numbers, 220 definitions, cutout reuse, independent
 LC motifs, asset resolution, catalog/gallery inclusion and deterministic
 11-card packs for every wrapper. The browser check exercises normal pack
 selection/opening and renders Dark Vaporeon and Gengar.
+
+## Regular holo artwork-window registration
+
+The inherited source windows differ from the LC scan windows, especially the
+Team Rocket-derived holos. `holo-registration.json` records source paths and
+LC artwork bounds in 600x825 coordinates. `register-holo-windows.py` registers
+coverage and protection together into LC-only PNGs, preserving the existing
+subject contours and badge exclusions. Moving only coverage would leave the
+old outside-window protection blocking the new edge strips.
+
+All 19 effective mask extents are checked during generation. Colored overlays
+are saved under `artifacts/lc-window-registration`; the browser smoke check
+includes Dark Dragonite, Dark Vaporeon and Gengar. Regenerate these registered
+maps after changing any source cutout. The reverse-holo maps are independent.

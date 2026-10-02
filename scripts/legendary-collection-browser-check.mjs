@@ -42,7 +42,7 @@ try {
   await page.evaluate(() => { window.__holo.pack.setStage('reveal', 10); window.__holo.pack.tick(2); });
   await page.screenshot({ path: join(out, 'pack-reverse.png') });
   await page.evaluate(() => window.__holo.pack.close());
-  for (const number of [9, 11]) {
+  for (const number of [5, 9, 11]) {
     await page.evaluate(async n => { await window.__holo.setCard(`pokemon:lc-${n}:holo`); window.__holo.pose(8, -12); }, number);
     await page.waitForTimeout(1500);
     await page.screenshot({ path: join(out, `holo-${number}.png`) });
@@ -53,4 +53,3 @@ try {
   await page.screenshot({ path: join(out, 'failure.png') });
   console.error(error, errors); process.exitCode = 1;
 } finally { await browser.close(); }
-

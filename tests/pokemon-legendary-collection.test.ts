@@ -35,7 +35,7 @@ test('LC retail checklist and independent print definitions are complete', () =>
 test('LC holo cutouts reuse registered source paths and two traced subjects use LC-only PNGs', () => {
   assert.equal(Object.keys(legendaryCollectionReusedHoloMaps).length, 17);
   for (const [number, maps] of Object.entries(legendaryCollectionReusedHoloMaps)) {
-    assert.equal(wotcPrinting(`lc-${number}`, 'holo')?.maps?.foil, maps.foil);
+    assert.equal(wotcPrinting(`lc-${number}`, 'holo')?.maps?.foil, `/cards/pokemon/legendary-collection/maps/${number}-registered-foil.png`);
     for (const path of Object.values(maps)) if (path) assert.ok(existsSync(`public${path}`), path);
   }
   for (let number = 1; number <= 19; number++) {
@@ -47,7 +47,7 @@ test('LC holo cutouts reuse registered source paths and two traced subjects use 
     const definition = wotcPrinting(`lc-${number}`, 'holo')!;
     assert.equal(definition.profile, 'pokemon-base-set-star');
     for (const path of Object.values(definition.maps!)) if (path) {
-      assert.match(path, new RegExp(`/legendary-collection/maps/${number}-holo-.*\\.png$`));
+      assert.match(path, new RegExp(`/legendary-collection/maps/${number}-(?:holo|registered)-.*\\.png$`));
       assert.ok(existsSync(`public${path}`), path);
     }
   }
