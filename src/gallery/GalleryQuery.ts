@@ -57,6 +57,46 @@ const franchiseOrder: Readonly<Record<CardDefinition['franchise'], number>> = {
 };
 const cardNumber = (card: CardDefinition) => Number.parseInt(card.pokemon?.localId ?? card.number, 10) || Number.POSITIVE_INFINITY;
 
+function pokemonPrintKey(card: CardDefinition) {
+  if (card.franchise !== 'Pokémon' || card.imported) return;
+  const localId = card.pokemon?.localId ?? card.number.match(/^[^\s/·]+/)?.[0];
+  if (!localId) return;
+  const number = /^\d+$/.test(localId) ? String(Number(localId)) : localId;
+  const variant = card.pokemon?.variant ?? (/reverse/i.test(`${card.set} ${card.number}`) ? 'reverse'
+    : card.profile === 'print-only' ? 'normal' : 'holo');
+  return `${gallerySetName(card)}|${number}|${variant}`;
+}
+
+function printEdition(card: CardDefinition) {
+  return card.pokemon?.edition ?? (/\b(?:1st|First) Edition\b/i.test(`${card.set} ${card.number}`) ? 'first-edition' : 'unlimited');
+}
+
+function masterPriority(card: CardDefinition) {
+  if (card.maps && !card.pokemon) return 5; // Authored standalone surface.
+  if (gallerySetName(card) === 'Base Set' && card.id.startsWith('common-pokemon-')) return 4;
+  if (card.pokemon) return 3; // Audited set printing over an archive copy.
+  if (!card.id.startsWith('common-pokemon-')) return 2;
+  return 1;
+}
+
+/** Show one master for duplicate assets while retaining distinct print editions and finishes. */
+export function galleryMasterCards(cards: readonly CardDefinition[]) {
+  const groups = new Map<string, CardDefinition[]>();
+  const masters = new Set<CardDefinition>();
+  for (const card of cards) {
+    const key = pokemonPrintKey(card);
+    if (!key) { masters.add(card); continue; }
+    const group = groups.get(key) ?? [];
+    const duplicate = group.findIndex(existing => printEdition(existing) === printEdition(card)
+      || (!!existing.front && existing.front === card.front));
+    if (duplicate < 0) group.push(card);
+    else if (masterPriority(card) > masterPriority(group[duplicate])) group[duplicate] = card;
+    groups.set(key, group);
+  }
+  for (const group of groups.values()) for (const card of group) masters.add(card);
+  return cards.filter(card => masters.has(card));
+}
+
 function compareGalleryCards(a: CardDefinition, b: CardDefinition) {
   const gameOrder = franchiseOrder[a.franchise] - franchiseOrder[b.franchise];
   if (gameOrder) return gameOrder;
@@ -78,6 +118,6 @@ export const facets = [
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
   const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return cards.filter(card => words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
+  return galleryMasterCards(cards).filter(card => words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
     && facets.every(facet => !query[facet.key] || facet.value(card) === query[facet.key])).sort(compareGalleryCards);
 }

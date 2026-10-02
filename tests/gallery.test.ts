@@ -4,7 +4,11 @@ import { GalleryResidency } from '../src/gallery/GalleryResidency.ts';
 import { galleryLayout } from '../src/gallery/GalleryLayout.ts';
 import { influence, damp } from '../src/gallery/GalleryMotion.ts';
 import { filterCards } from '../src/gallery/GalleryQuery.ts';
+import { baseSetCards } from '../src/card/BaseSetCards.ts';
+import { nonHoloCards } from '../src/card/NonHoloCards.ts';
+import { pokemonDefinition } from '../src/pokemon/materials.ts';
 import type { CardDefinition } from '../src/card/CardDefinition.ts';
+import type { PokemonCard, PrintVariant } from '../src/pokemon/types.ts';
 
 test('10,000 cards remain inside the slot budget over repeated traversal and resizes', () => {
   const residency = new GalleryResidency(48);
@@ -51,4 +55,22 @@ test('facets intersect with search without inventing missing rarity/category', (
   assert.equal(filterCards(cards, { search: '', category: 'Pokemon' }).length, 1);
   assert.equal(filterCards(cards, { search: '', game: 'Yu-Gi-Oh!', set: 'Neo' }).length, 0);
   assert.equal(filterCards(cards, { search: '' }).length, 3);
+});
+
+test('pack copies of Base Set cards resolve to one gallery master per printing', () => {
+  const archive = nonHoloCards.find(card => card.id === 'common-pokemon-bulbasaur')!;
+  const authored = baseSetCards.find(card => card.id === 'alakazam-base-set')!;
+  const pull = (localId: string, name: string, rarity: string, variant: PrintVariant): PokemonCard => ({
+    id: `base1-${localId}`, localId, name, setId: 'base1', setName: 'Base Set',
+    seriesId: 'base', seriesName: 'Base', era: 'base', rarity, category: 'Pokemon', variants: [variant],
+  });
+  const generatedNormal = pokemonDefinition(pull('44', 'Bulbasaur', 'Common', 'normal'), 'normal', [archive, authored]);
+  const generatedHolo = pokemonDefinition(pull('1', 'Alakazam', 'Holo Rare', 'holo'), 'holo', [archive, authored]);
+  const cards = [generatedNormal, generatedHolo, archive, authored];
+  assert.deepEqual(filterCards(cards, { search: '', game: 'Pokémon', set: 'Base Set' }).map(card => card.id),
+    ['alakazam-base-set', 'common-pokemon-bulbasaur']);
+
+  const unlimitedHolo: CardDefinition = { ...generatedHolo, id: 'unlimited-alakazam', front: '/different-print.png',
+    pokemon: { ...generatedHolo.pokemon!, edition: 'unlimited' } };
+  assert.equal(filterCards([...cards, unlimitedHolo], { search: '', set: 'Base Set' }).length, 3);
 });
