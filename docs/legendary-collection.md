@@ -39,10 +39,12 @@ Review overlays are written to `artifacts/legendary-collection-cutouts`.
 
 All 110 use the current `pokemon-legendary-reverse` / `legendary-fireworks`
 implementation. Category-specific PNG coverage excludes the illustration
-window; per-card protection estimates preserve printed ink. The existing
-Eevee front, protection and definition identity are retained. Reverse foil
-appearance and refinement of ink protection are deferred to the dedicated
-visual pass. No reverse shader tuning is part of this change.
+window; per-card protection preserves printed ink. The existing Eevee front
+and definition identity are retained; its protection now uses the LC output.
+The completed reverse-mask pass uses the user's evolution/banner masters,
+preserved text and reviewed solid energy discs across the set. Selected
+first-19 top-strip coverage corrections are documented in
+`legendary-reverse-protection.md`. No reverse shader tuning is part of this change.
 
 ## Products and assets
 

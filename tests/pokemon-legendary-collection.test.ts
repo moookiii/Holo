@@ -63,7 +63,7 @@ test('every LC reverse protects the illustration with PNG coverage', () => {
     assert.ok(existsSync(`public${reverse.maps!.protection}`));
   }
   assert.equal(wotcPrinting('lc-74', 'reverse')?.id, 'eevee-legendary-reverse');
-  assert.equal(wotcPrinting('lc-74', 'reverse')?.maps?.protection, '/cards/eevee-legendary-reverse/protection.png');
+  assert.equal(wotcPrinting('lc-74', 'reverse')?.maps?.protection, '/cards/pokemon/legendary-collection/maps/74-reverse-protection.png');
 });
 
 test('LC holo rares use artwork-clean fronts only for their reverse prints', () => {
