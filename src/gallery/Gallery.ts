@@ -41,6 +41,7 @@ export class Gallery {
   private disposed = false;
   private reduced = matchMedia('(prefers-reduced-motion: reduce)');
   active = false;
+  openingReady = false;
   loading = false;
   constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; open: (id: string) => Promise<void>; close: () => Promise<void> }) {
     this.graphics = new GalleryRenderer(options.scene);
@@ -104,6 +105,7 @@ export class Gallery {
     finally { this.loading = false; this.root.removeAttribute('aria-busy'); }
   }
   show() {
+    this.openingReady = false;
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
     this.refreshFacetOptions();
     this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
@@ -169,6 +171,7 @@ export class Gallery {
     const rect = this.viewport.getBoundingClientRect();
     this.graphics.hideAll();
     let uploaded = false;
+    let waitingForVisibleCard = false;
     for (const item of this.assigned) {
       const entry = this.entries.get(item.slot)!, button = this.buttons.get(item.id)!;
       if (entry.preview && !uploaded) { this.graphics.upload(item.slot, entry.preview); entry.preview = undefined; entry.ready = true; uploaded = true; }
@@ -178,6 +181,8 @@ export class Gallery {
       const cardHeight = this.layout.cell * card.dimensions.height / card.dimensions.width;
       const x = rect.left + this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + this.layout.cell / 2;
       const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.viewport.scrollTop + cardHeight / 2;
+      if (y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom && !entry.ready && !entry.error)
+        waitingForVisibleCard = true;
       const target = this.pointer && !this.reduced.matches ? influence(this.pointer.x - x, this.pointer.y - y, this.tilt) : { pitch: 0, yaw: 0 };
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
       if (entry.ready && y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom)
@@ -194,6 +199,7 @@ export class Gallery {
     // Zero-sized instances need no shader. Defer first compilation until an
     // actual preview can be drawn, so opening the controls stays responsive.
     this.graphics.mesh.visible = this.graphics.stats().visible > 0;
+    this.openingReady = !waitingForVisibleCard;
   }
   stats() { return { ...this.graphics.stats(), active: this.active, filtered: this.filtered.length, domCards: this.buttons.size, pending: this.requests.size, failed: [...this.entries.values()].filter(e => e.error).length, tilted: [...this.entries.values()].filter(e => Math.abs(e.pitch) + Math.abs(e.yaw) > .001).length, scrollTop: this.viewport.scrollTop }; }
   dispose() { this.disposed = true; this.hide(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }

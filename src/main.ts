@@ -343,8 +343,9 @@ async function start() {
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
       card.visible = false; pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
-      // The Gallery shows its own per-card loading placeholders. Don't keep
-      // the full-screen spinner up for slow preview fetches or shader warmup.
+      while (!disposed && gallery.active && !gallery.openingReady) {
+        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+      }
     } finally { galleryOpening = false; setLoading(false); }
   };
   await setCard(definition.id);
