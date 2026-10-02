@@ -106,7 +106,13 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06) }));
     const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => this.regions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
-    const basePrint = print;
+    // Match the focus renderer's neutral border before removing paper light.
+    // Keep the original print available for optical ink transmission.
+    const border = param(35), frame = param(36);
+    const insideFrame = coord.x.sub(frame.x).min(frame.z.sub(coord.x))
+      .min(coord.y.sub(frame.y)).min(frame.w.sub(coord.y)).smoothstep(0, .001);
+    const borderVariation = print.dot(vec3(.2126, .7152, .0722)).div(.01444).sub(1).mul(.28).add(1).clamp(.84, 1.16);
+    const basePrint = mix(print, border.rgb.mul(borderVariation), insideFrame.oneMinus().mul(border.a));
     const base = mix(mix(basePrint, substrate.rgb, primary.mul(substrate.a)), basePrint.add(substrate.rgb.sub(background.rgb).mul(primary, substrate.a)).max(0), background.a);
     const darkening = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
     this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
@@ -114,7 +120,8 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     this.normalNode = normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
     const variance = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
-    this.roughnessNode = normal.a.add(variance).clamp(.045, 1);
+    const patternRoughness = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
+    this.roughnessNode = normal.a.add(variance).add(patternRoughness).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
     this.iridescenceNode = blend(float(0), 6, 'z');
