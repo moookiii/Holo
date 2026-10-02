@@ -376,7 +376,7 @@ async function start() {
     const now = performance.now(); const dt = (now - last) / 1000; last = now;
     if (gallery?.active) {
       camera.position.set(0, 0, 30); camera.updateMatrixWorld();
-      lighting.update(dt); gallery.update(dt, container.clientWidth, container.clientHeight);
+      lighting.update(dt, true); gallery.update(dt, container.clientWidth, container.clientHeight);
     }
     else if (pack) pack.update(dt);
     else {

@@ -69,7 +69,7 @@ export class StudioLighting {
     this.elevation = preset === 'Skim' ? 8 : 35;
     this.update(0);
   }
-  update(dt: number) {
+  update(dt: number, gallery = false) {
     const p = this.preset;
     const animated = p === 'Moving light' || p === 'Skim' || p === 'Holo skim';
     if (this.playing) this.phase += Math.min(Math.max(dt, 0), .05) * this.speed * (animated ? 1.25 : 1);
@@ -91,8 +91,11 @@ export class StudioLighting {
     if (p === 'Moving light' || p === 'Skim' || p === 'Spotlight') {
       // A rounded triangle spends less time at the sweep's dim endpoints than a sine.
       // Keep both sweeping sources in front, including after position adjustments.
-      const sweepCenter = Math.max(-55, Math.min(55, this.azimuth));
-      const sweepSpan = Math.min(50, 70 - Math.abs(sweepCenter));
+      // The gallery spans a wider field than one card. Extend Skim's right
+      // endpoint while retaining its existing reach across the left column.
+      const gallerySkim = gallery && p === 'Skim';
+      const sweepCenter = Math.max(-55, Math.min(55, this.azimuth + (gallerySkim ? 10 : 0)));
+      const sweepSpan = Math.min(gallerySkim ? 60 : 50, 70 - Math.abs(sweepCenter));
       const angle = (p === 'Moving light' || p === 'Skim' ? sweepCenter + sweepMotion * sweepSpan : this.azimuth) * Math.PI / 180;
       const elevation = this.elevation * Math.PI / 180;
       if (p === 'Skim') {
