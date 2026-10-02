@@ -13,7 +13,7 @@ export const gymChallengeDefinitions: CardDefinition[] = gymChallengeCards.map(c
     front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 210001 + Number(card.localId),
     ...(holo ? { maps: { motif: `${maps}-cosmos.png`, foil: `${maps}-foil.png`, protection: `${maps}-protection.png` },
       mapSettings: { embossStrength: 0 }, substrate: { color: [0, 0, 0] as [number, number, number], printRetention: 1 } } : {}),
-    layout: { artwork: card.category === 'Trainer' ? [56/600,193/825,551/600,460/825] : [65/600,98/825,534/600,(card.localId === '14' ? 356 : 421)/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
+    layout: { artwork: card.category === 'Trainer' ? [56/600,190/825,551/600,460/825] : [65/600,98/825,534/600,(card.localId === '14' ? 356 : 421)/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
     pokemon: { ...card, variant: holo ? 'holo' : 'normal', materialProfile: profile },
     source: { image: card.localId === '107' ? card.front! : `https://assets.tcgdex.net/en/gym/gym2/${card.localId}/high.png`,
       metadata: `https://api.tcgdex.net/v2/en/cards/${card.id}`,

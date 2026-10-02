@@ -57,7 +57,7 @@ for n in range(1,21):
  # Center ordinary outline strokes; preserve the width of painted lightning.
  if n not in [6,11]:body=cv2.erode(body,cv2.getStructuringElement(cv2.MORPH_ELLIPSE,(3,3)))
  body=np.array(Image.fromarray(body).filter(ImageFilter.GaussianBlur(.6)))
- vertices=[(56,193),(551,193),(551,460),(56,460)] if n>=17 else [(65,98),(534,98),(534,356 if n==14 else 421),(65,356 if n==14 else 421)]
+ vertices=[(56,190),(551,190),(551,460),(56,460)] if n>=17 else [(65,98),(534,98),(534,356 if n==14 else 421),(65,356 if n==14 else 421)]
  window=np.zeros_like(body);cv2.fillPoly(window,[np.array(vertices,np.int32)*2],255)
  if n in [1,2,3,4,5,6,7,8,9,11,12,13,16]:
   badge=[(65,96),(139,96),(128,113),(126,123),(114,126),(111,135),(99,132),(88,143),(79,134),(65,141)]
