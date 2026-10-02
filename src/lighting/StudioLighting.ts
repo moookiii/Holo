@@ -30,11 +30,13 @@ export class StudioLighting {
     this.key.lookAt(0, 0, 0);
     this.spot.position.set(0, 2, 12);
     scene.add(this.key, this.strip, this.back, this.fill, this.spot, this.spot.target);
+    this.spot.visible = false;
     this.ring.forEach((segment, index) => {
       const angle = index * Math.PI / 3;
       segment.position.set(Math.cos(angle) * 2.15, Math.sin(angle) * 2.15, 13);
       segment.lookAt(0, 0, 0);
       segment.rotateZ(angle + Math.PI / 2);
+      segment.visible = false;
       scene.add(segment);
     });
   }
@@ -117,7 +119,8 @@ export class StudioLighting {
     this.key.intensity *= this.intensity; this.strip.intensity *= this.intensity;
     this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
     this.scene.environmentIntensity *= this.intensity; this.spot.intensity = p === 'Spotlight' ? 650 * this.intensity : 0;
-    this.ring.forEach(segment => { segment.intensity = p === 'Ring light' ? 14 * this.intensity : 0; });
+    this.spot.visible = p === 'Spotlight';
+    this.ring.forEach(segment => { segment.visible = p === 'Ring light'; segment.intensity = p === 'Ring light' ? 14 * this.intensity : 0; });
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
     inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
     inspection.polarizer.value = p === 'Polarizer' ? .15 + .85 * Math.cos(this.filterAngle * Math.PI / 180) ** 2 : 1;
