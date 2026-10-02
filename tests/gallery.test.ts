@@ -5,6 +5,7 @@ import { galleryLayout } from '../src/gallery/GalleryLayout.ts';
 import { influence, damp } from '../src/gallery/GalleryMotion.ts';
 import { filterCards } from '../src/gallery/GalleryQuery.ts';
 import { baseSetCards } from '../src/card/BaseSetCards.ts';
+import { ancientMewCard } from '../src/card/AncientMewCard.ts';
 import { nonHoloCards } from '../src/card/NonHoloCards.ts';
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
 import type { CardDefinition } from '../src/card/CardDefinition.ts';
@@ -55,6 +56,10 @@ test('facets intersect with search without inventing missing rarity/category', (
   assert.equal(filterCards(cards, { search: '', category: 'Pokemon' }).length, 1);
   assert.equal(filterCards(cards, { search: '', game: 'Yu-Gi-Oh!', set: 'Neo' }).length, 0);
   assert.equal(filterCards(cards, { search: '' }).length, 3);
+});
+
+test('authored Ancient Mew appears under the Pokémon Holo finish', () => {
+  assert.deepEqual(filterCards([ancientMewCard], { search: '', game: 'Pokémon', finish: 'holo' }).map(card => card.id), ['ancient-mew']);
 });
 
 test('pack copies of Base Set cards resolve to one gallery master per printing', () => {

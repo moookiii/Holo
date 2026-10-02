@@ -113,7 +113,7 @@ export const facets = [
   { key: 'game', label: 'Game', value: (c: CardDefinition) => c.franchise },
   { key: 'set', label: 'Set', value: gallerySetName },
   { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.pokemon?.rarity },
-  { key: 'finish', label: 'Finish', value: (c: CardDefinition) => c.pokemon?.variant ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.profile) },
+  { key: 'finish', label: 'Finish', value: (c: CardDefinition) => c.pokemon?.variant ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.franchise === 'Pokémon' ? 'holo' : c.profile) },
   { key: 'category', label: 'Category', value: (c: CardDefinition) => c.pokemon?.category },
 ] as const;
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
