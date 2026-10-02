@@ -117,8 +117,16 @@ export const facets = [
   { key: 'category', label: 'Category', value: (c: CardDefinition) => c.pokemon?.category },
 ] as const;
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
+
+function matchesFacet(card: CardDefinition, facet: typeof facets[number], selected: string) {
+  const value = facet.value(card);
+  if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'holo')
+    return value === 'holo' || value === 'reverse' || value === 'pokeball-reverse' || value === 'masterball-reverse';
+  return value === selected;
+}
+
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
   const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return galleryMasterCards(cards).filter(card => !card.pickerHidden && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
-    && facets.every(facet => !query[facet.key] || facet.value(card) === query[facet.key])).sort(compareGalleryCards);
+    && facets.every(facet => !query[facet.key] || matchesFacet(card, facet, query[facet.key]!))).sort(compareGalleryCards);
 }
