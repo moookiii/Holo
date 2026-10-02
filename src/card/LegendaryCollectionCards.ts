@@ -45,8 +45,8 @@ export const legendaryCollectionDefinitions: CardDefinition[] = legendaryCollect
       : 'LC-specific holo subject cutout rasterized from the user-supplied green contour; manually registered star motif. Source-set non-holo maps remain unchanged.'
       : 'English unlimited retail numbered LC front; reverse printing is a separate definition.' };
   const regular: CardDefinition = {
-    id: `pokemon:${card.id}:${holo ? 'holo' : 'normal'}`, title: card.name, franchise: 'PokÃ©mon', set: card.setName,
-    number: `${number}/110 Â· ${holo ? 'Holo' : 'Non-holo'}`, dimensions,
+    id: `pokemon:${card.id}:${holo ? 'holo' : 'normal'}`, title: card.name, franchise: 'Pokémon', set: card.setName,
+    number: `${number}/110 · ${holo ? 'Holo' : 'Non-holo'}`, dimensions,
     front: card.front!, back: '/cards/pokemon/back.jpg', profile: regularProfile, seed: 2002000 + number,
     ...(regularMaps ? { maps: regularMaps, mapSettings: { embossStrength: 0 }, substrate: { color: [0, 0, 0] as [number, number, number], printRetention: 1 } } : {}),
     layout: { artwork: [55/600, 86/825, 547/600, 437/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
