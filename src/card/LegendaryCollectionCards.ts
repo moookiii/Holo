@@ -33,14 +33,20 @@ export const legendaryCollectionDefinitions: CardDefinition[] = legendaryCollect
     motif: `${base}/${number}-holo-stars.png`, laminate: `${base}/${number}-holo-laminate.png`,
   } : undefined;
   const regularProfile = holo ? 'pokemon-base-set-star' : 'print-only';
-  const regularMaps = holo ? { ...(reusedHoloMaps[number] ?? lcHoloMaps), motif: `${base}/${number}-holo-stars.png` } : undefined;
+  const sourceMaps = reusedHoloMaps[number] ?? lcHoloMaps;
+  const regularMaps = holo ? {
+    foil: `${base}/${number}-registered-foil.png`,
+    ...(sourceMaps?.protection ? { protection: `${base}/${number}-registered-protection.png` } : {}),
+    ...(sourceMaps?.laminate && number !== 6 && number !== 9 ? { laminate: `${base}/${number}-registered-laminate.png` } : {}),
+    motif: `${base}/${number}-holo-stars.png`,
+  } : undefined;
   const source = { image: `https://assets.tcgdex.net/en/lc/lc/${number}/high.png`, metadata: `https://api.tcgdex.net/v2/en/cards/lc-${number}`,
-    notes: holo ? reusedHoloMaps[number] ? 'LC print with registered source-set artwork cutout reused by path. Vintage holo profile; LC print differences remain separate.'
+    notes: holo ? reusedHoloMaps[number] ? 'LC print with existing source-set artwork cutout affinely registered to the LC artwork boundary; source masks unchanged. Vintage holo profile; LC print differences remain separate.'
       : 'LC-specific holo subject cutout rasterized from the user-supplied green contour; manually registered star motif. Source-set non-holo maps remain unchanged.'
       : 'English unlimited retail numbered LC front; reverse printing is a separate definition.' };
   const regular: CardDefinition = {
-    id: `pokemon:${card.id}:${holo ? 'holo' : 'normal'}`, title: card.name, franchise: 'Pokémon', set: card.setName,
-    number: `${number}/110 · ${holo ? 'Holo' : 'Non-holo'}`, dimensions,
+    id: `pokemon:${card.id}:${holo ? 'holo' : 'normal'}`, title: card.name, franchise: 'PokÃ©mon', set: card.setName,
+    number: `${number}/110 Â· ${holo ? 'Holo' : 'Non-holo'}`, dimensions,
     front: card.front!, back: '/cards/pokemon/back.jpg', profile: regularProfile, seed: 2002000 + number,
     ...(regularMaps ? { maps: regularMaps, mapSettings: { embossStrength: 0 }, substrate: { color: [0, 0, 0] as [number, number, number], printRetention: 1 } } : {}),
     layout: { artwork: [55/600, 86/825, 547/600, 437/825], innerFrame: [23/600, 22/825, 578/600, 803/825] },
