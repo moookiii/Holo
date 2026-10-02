@@ -1,7 +1,7 @@
 import type { CardDefinition } from './CardDefinition';
 import type { HolographicProfile } from '../materials/HolographicProfile';
 
-export const PREVIEW_PARAMETER_COLUMNS = 34;
+export const PREVIEW_PARAMETER_COLUMNS = 35;
 /** Same per-print optical controls as the viewer, packed for one shared shader.
  * Eight RGBA texels per layer; final rows describe ink/substrate and surface. */
 export function previewOptics(card: CardDefinition, profile: HolographicProfile) {
@@ -17,7 +17,8 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     const d = layer.diffraction, s = layer.structure, f = layer.surface;
     const disabled = new Set(layer.disabledMechanisms), enabled = layer.enabled !== false && profile.id !== 'print-only';
     const base = index * 8;
-    set(base, [d.period, d.bandwidth, enabled && !disabled.has('diffraction') ? d.strength : 0, d.secondaryOrder]);
+    const previewStrength = s.field === 'legendary-fireworks' ? .65 : 1;
+    set(base, [d.period, d.bandwidth, enabled && !disabled.has('diffraction') ? d.strength * previewStrength : 0, d.secondaryOrder]);
     set(base + 1, [d.direction, d.crossWidth, d.crossing ?? 0, d.facetCoupling ?? 0]);
     set(base + 2, [s.engraving, disabled.has('relief') ? 0 : s.facetTilt ?? 0, s.reflectionCoupling ?? 1,
       d.followsAuthoredNormals || [card.maps?.direction, card.maps?.secondaryDirection, card.maps?.stampDirection][index] ? 1 : 0]);
@@ -35,5 +36,7 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   set(25, [...(card.substrate?.backgroundColor ?? [0, 0, 0]), card.substrate?.backgroundColor ? 1 : 0]);
   set(26, [...(profile.metallicInk?.color ?? [1, 1, 1]), profile.metallicInk?.color ? 1 : 0]);
   set(27, [profile.metallicInk?.metalness ?? .8, profile.metallicInk?.roughness ?? .28, card.dimensions.width / card.dimensions.height, profile.id === 'print-only' ? 1 : 0]);
+  set(34, [card.coverageMode === 'reverse' && !!card.maps?.reverseFoil && !card.maps?.metallic ? 1 : 0,
+    profile.structure.field === 'legendary-fireworks' ? 1 : 0, 0, 0]);
   return parameters;
 }

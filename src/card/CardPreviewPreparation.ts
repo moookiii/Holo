@@ -9,7 +9,9 @@ import { previewOptics, PREVIEW_PARAMETER_COLUMNS } from './PreviewOptics';
 
 export const PREVIEW_WIDTH = 512, PREVIEW_HEIGHT = 720;
 export const PREVIEW_MAP_WIDTH = 128, PREVIEW_MAP_HEIGHT = 180;
-export const PREVIEW_ARRAY_SIZES = [[PREVIEW_WIDTH, PREVIEW_HEIGHT], ...Array.from({ length: 8 }, () => [PREVIEW_MAP_WIDTH, PREVIEW_MAP_HEIGHT])] as const;
+export const PREVIEW_FIELD_WIDTH = 256, PREVIEW_FIELD_HEIGHT = 360;
+export const PREVIEW_ARRAY_SIZES = [[PREVIEW_WIDTH, PREVIEW_HEIGHT], ...Array.from({ length: 8 }, (_, i) =>
+  i === 2 || i === 5 ? [PREVIEW_FIELD_WIDTH, PREVIEW_FIELD_HEIGHT] : [PREVIEW_MAP_WIDTH, PREVIEW_MAP_HEIGHT])] as const;
 export interface CardPreview { images: Uint8Array[]; parameters: Float32Array; }
 export const PREVIEW_BYTES = PREVIEW_ARRAY_SIZES.reduce((sum, [w, h]) => sum + w * h * 4, 0) + PREVIEW_PARAMETER_COLUMNS * 16;
 type PrepareField = (spec: PatternSpec, height: number, motif?: MotifImage) => Promise<FieldData>;
@@ -48,11 +50,17 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const profile = resolveCardProfile(card), paths = { ...resolveCoverageMaps(card), ...profile.maps };
   const settings = { ...card.mapSettings, ...profile.mapSettings };
   const parameters = previewOptics(card, profile);
+  const sharpReverse = card.coverageMode === 'reverse' && !!paths.foil && !paths.metallic;
   // Keep individual metallic letter edges at artwork resolution; the small
   // optical maps otherwise blur gold into the surrounding title panel.
   const titleMask = paths.metallic ? await read(paths.metallic, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   const titleProtection = titleMask && paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
+  if (sharpReverse) {
+    const foil = await read(paths.foil!, PREVIEW_WIDTH, PREVIEW_HEIGHT);
+    const protection = paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
+    for (let i = 0; i < front.length; i += 4) front[i + 3] = Math.round(foil[i] * (1 - (protection?.[i] ?? 0) / 255));
+  }
   const inputs: Partial<Record<PackedMapKey, Uint8Array>> = {};
   const keys = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic', 'protection', 'roughness', 'surface', 'height', 'pattern', 'secondaryPattern', 'stampPattern', 'stamp', 'laminate', 'sparkle'] as const;
   for (const key of keys) if (paths[key]) inputs[key] = await read(paths[key]!);
@@ -63,10 +71,11 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const fields: Uint8Array[] = [], details: Uint8Array[] = [];
   for (let index = 0; index < 3; index++) {
     signal.throwIfAborted();
-    const layer = layers[index], field = new Uint8Array(width * height * 4), detail = new Uint8Array(field.length);
+    const fw = index === 0 ? PREVIEW_FIELD_WIDTH : width, fh = index === 0 ? PREVIEW_FIELD_HEIGHT : height;
+    const layer = layers[index], field = new Uint8Array(fw * fh * 4), detail = new Uint8Array(field.length);
     const directionPath = [paths.direction, paths.secondaryDirection, paths.stampDirection][index];
     const motifPath = [paths.motif, paths.secondaryMotif, paths.stampMotif][index];
-    const authored = directionPath ? await read(directionPath) : undefined;
+    const authored = directionPath ? await read(directionPath, fw, fh) : undefined;
     let generated: FieldData | undefined;
     if (layer && layer.enabled !== false && profile.id !== 'print-only' && !['plain', 'radial'].includes(layer.structure.field)) {
       let motif: MotifImage | undefined;
@@ -77,17 +86,18 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
         motif = { width: mw, height: mh, data };
       }
       generated = await prepareField({ kind: layer.structure.field as PatternSpec['kind'], seed: card.seed + [0, 8191, 16381][index],
-        aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale, layout: card.layout, motif: layer.structure.motif }, height, motif);
+        aspect: card.dimensions.width / card.dimensions.height, scale: layer.structure.scale, layout: card.layout, motif: layer.structure.motif }, fh, motif);
       signal.throwIfAborted();
     }
-    for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
-      const i = (y * width + x) * 4;
-      const source = generated ? (Math.min(generated.height - 1, Math.floor((height - 1 - y) / height * generated.height)) * generated.width + Math.min(generated.width - 1, Math.floor(x / width * generated.width))) * 4 : 0;
+    for (let y = 0; y < fh; y++) for (let x = 0; x < fw; x++) {
+      const i = (y * fw + x) * 4;
+      const source = generated ? (Math.min(generated.height - 1, Math.floor((fh - 1 - y) / fh * generated.height)) * generated.width + Math.min(generated.width - 1, Math.floor(x / fw * generated.width))) * 4 : 0;
       for (let c = 0; c < 4; c++) {
         field[i + c] = authored?.[i + c] ?? generated?.direction[source + c] ?? [255, 128, 85, 255][c];
         detail[i + c] = generated?.relief[source + c] ?? 128;
       }
-      field[i + 3] = Math.round(field[i + 3] * packed.pattern[i + index] / 255);
+      const maskIndex = (Math.floor(y / fh * height) * width + Math.floor(x / fw * width)) * 4;
+      field[i + 3] = Math.round(field[i + 3] * packed.pattern[maskIndex + index] / 255);
     }
     fields.push(field); details.push(detail);
   }
@@ -108,7 +118,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const masks = [enabled[0] ? primary * (1 - secondary) * (1 - stamp) : 0, secondary, stamp];
     for (let layer = 0; layer < 3; layer++) coverage[i + layer] = Math.round(masks[layer] * 255);
     coverage[i + 3] = Math.max(packed.coverage[i + 2], enabled[2] ? 0 : packed.surface[i + 3]);
-    {
+    if (!sharpReverse) {
       // Packed coverage and nonfoil stamps can also define metallic print.
       const fallbackMetal = titleMask ? (enabled[2] ? 0 : packed.surface[i + 3]) : coverage[i + 3];
       for (let yy = Math.floor(y * PREVIEW_HEIGHT / height); yy < Math.floor((y + 1) * PREVIEW_HEIGHT / height); yy++)
@@ -124,8 +134,11 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const nz = normalSource ? normalSource[i + 2] / 255 * 2 - 1 : 1;
     for (let layer = 0; layer < 3; layer++) {
       const offset = layer * 32;
-      nx += (details[layer][i] / 255 - .5) * parameters[offset + 9] * parameters[offset + 10] * masks[layer];
-      ny += (details[layer][i + 1] / 255 - .5) * parameters[offset + 9] * parameters[offset + 10] * masks[layer];
+      // Dense LC cuts use the sharper primary field in the fragment shader.
+      if (layer === 0 && profile.structure.field === 'legendary-fireworks') continue;
+      const di = layer === 0 ? (Math.floor(y / height * PREVIEW_FIELD_HEIGHT) * PREVIEW_FIELD_WIDTH + Math.floor(x / width * PREVIEW_FIELD_WIDTH)) * 4 : i;
+      nx += (details[layer][di] / 255 - .5) * parameters[offset + 9] * parameters[offset + 10] * masks[layer];
+      ny += (details[layer][di + 1] / 255 - .5) * parameters[offset + 9] * parameters[offset + 10] * masks[layer];
     }
     const length = Math.hypot(nx, ny, nz) || 1;
     normal[i] = Math.round((nx / length * .5 + .5) * 255); normal[i + 1] = Math.round((ny / length * .5 + .5) * 255); normal[i + 2] = Math.round((nz / length * .5 + .5) * 255);

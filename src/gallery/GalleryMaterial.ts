@@ -97,17 +97,21 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
     const image = (index: number) => texture(arrays[index], coord).depth(layer);
     const param = (column: number) => textureLoad(parameterTexture, ivec2(column, layer.toInt()));
-    const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), metal = artwork.a;
-    const weights = [masks.r, masks.g, masks.b];
+    const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), preview = param(34);
+    const metal = artwork.a.mul(preview.x.oneMinus());
+    const primary = mix(masks.r, artwork.a, preview.x);
+    const weights = [primary, masks.g, masks.b];
     this.regions = weights.map((mask, index) => ({ mask, field: image(3 + index), detail: image(6 + index),
       glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06) }));
     const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => this.regions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
-    const base = mix(mix(print, substrate.rgb, masks.r.mul(substrate.a)), print.add(substrate.rgb.sub(background.rgb).mul(masks.r, substrate.a)).max(0), background.a);
+    const basePrint = mix(print, vec3(print.r.max(print.g).max(print.b)), primary.mul(preview.y));
+    const base = mix(mix(basePrint, substrate.rgb, primary.mul(substrate.a)), basePrint.add(substrate.rgb.sub(background.rgb).mul(primary, substrate.a)).max(0), background.a);
     const darkening = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
     this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
-    this.normalNode = normalMap(normal.rgb);
+    const cutSlope = image(6).rg.sub(.5).mul(param(2).y, param(2).z, primary, preview.y);
+    this.normalNode = normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
     const variance = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     this.roughnessNode = normal.a.add(variance).clamp(.045, 1);

@@ -60,7 +60,7 @@ export const legendaryCollectionDefinitions: CardDefinition[] = legendaryCollect
     back: '/cards/pokemon/back.jpg', profile: 'pokemon-legendary-reverse', seed: number === 74 ? 2002074 : 2002074 + number,
     coverageMode: 'reverse', frontBorderColor: [.579, .579, .579],
     substrate: { color: [.32, .33, .34], backgroundColor: [.672, .672, .672], printRetention: 0 },
-    maps: { reverseFoil: `${base}/reverse-${card.category?.toLowerCase() ?? 'pokemon'}-foil.png`,
+    maps: { reverseFoil: `${base}/${number}-reverse-foil.png`,
       protection: number === 74 ? '/cards/eevee-legendary-reverse/protection.png' : `${base}/${number}-reverse-protection.png`,
       ...(number === 74 ? { laminate: `${base}/74-reverse-laminate.png` } : {}) },
     layout: { artwork: card.category === 'Trainer' ? [55/600,190/825,551/600,461/825] : card.category === 'Energy'
@@ -68,7 +68,7 @@ export const legendaryCollectionDefinitions: CardDefinition[] = legendaryCollect
       innerFrame: [23/600,22/825,578/600,803/825] },
     pokemon: { ...card, variant: 'reverse', materialProfile: 'pokemon-legendary-reverse' },
     source: { ...source, notes: number === 74 ? 'Existing Eevee print and hand-registered protection reused; shared LC PNG reverse body coverage.'
-      : 'LC clean front with shared category-specific artwork exclusion and LC-specific printed-ink protection estimate. Fireworks optics deferred.' },
+      : 'LC clean front with individually registered PNG artwork exclusion and opaque printed-ink protection. Optical reconstruction, not a relief map.' },
   };
   return [regular, reverse];
 });
