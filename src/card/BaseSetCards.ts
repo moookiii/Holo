@@ -34,6 +34,11 @@ export const baseSetCards: CardDefinition[] = baseSetSubjects.map(([title, slug,
     mapSettings: { embossStrength: 0 },
     // Correct the scan's median background while preserving its spatial color and rays.
     substrate: { color: [...color], backgroundColor: [...backgroundColor], printRetention: 0 },
+    pokemon: {
+      id: `base1-${number}`, localId: String(number), name: title, setId: 'base1', setName: 'Base Set',
+      seriesId: 'base', seriesName: 'Base', era: 'base', rarity: 'Holo Rare', category: 'Pokemon',
+      variants: ['holo'], variant: 'holo', materialProfile: 'pokemon-base-set-star',
+    },
     source: {
       image: number === 4 ? 'https://assets.tcgdex.net/en/base/base1/4/high.png' : `https://images.pokemontcg.io/base1/${number}_hires.png`,
       metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/base1.json',
