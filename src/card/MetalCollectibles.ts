@@ -5,6 +5,7 @@ const face = (side: string) => ({ height: `${root}/${side}-height.png`, normal: 
 
 export const metalCollectibles: CardDefinition[] = [{
   id: 'charizard-burger-king-1999', title: 'Charizard · 23K Gold', franchise: 'Pokémon',
+  pickerHidden: true,
   set: 'Burger King · 1999 gold-plated collectible', number: '006',
   // Listed face dimensions: 1.75 × 2.75 inches. Bare slab and die heights remain estimates.
   dimensions: { width: 4.445, height: 6.985, thickness: .30, cornerRadius: .22, bevel: .045 },

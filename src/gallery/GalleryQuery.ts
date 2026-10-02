@@ -118,6 +118,6 @@ export const facets = [
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
   const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return galleryMasterCards(cards).filter(card => words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
+  return galleryMasterCards(cards).filter(card => !card.pickerHidden && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
     && facets.every(facet => !query[facet.key] || facet.value(card) === query[facet.key])).sort(compareGalleryCards);
 }
