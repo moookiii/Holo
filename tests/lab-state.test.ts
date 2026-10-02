@@ -30,7 +30,7 @@ test('layer switches and map response serialize and reset with material state', 
   state.reset(); assert.deepEqual(state.current, fixtures[0]); state.undo(); assert.equal(state.current.mapSettings?.normalScale, .4);
 });
 test('validation rejects malformed, unsafe and nonphysical data', () => {
-  for (const change of [(p: any) => p.diffraction.period = 0, (p: any) => p.surface.roughness = 'bad', (p: any) => p.structure.field = 'unknown', (p: any) => p.secondary = {}, (p: any) => p.disabledMechanisms = ['unknown']]) {
+  for (const change of [(p: any) => p.diffraction.period = 0, (p: any) => p.diffraction.followsAuthoredNormals = 'yes', (p: any) => p.surface.roughness = 'bad', (p: any) => p.structure.field = 'unknown', (p: any) => p.secondary = {}, (p: any) => p.disabledMechanisms = ['unknown']]) {
     const p = structuredClone(fixtures[0]); change(p); assert.throws(() => deserializeProfile(JSON.stringify(p)));
   }
   assert.throws(() => deserializeProfile('{"__proto__":{}}'));

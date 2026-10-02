@@ -19,7 +19,11 @@ function layer(value: unknown) {
   for (const [group, required] of Object.entries({ diffraction: ['period', 'bandwidth', 'strength', 'secondaryOrder', 'direction', 'crossWidth'], structure: ['engraving', 'scale', 'relief'], glints: ['density', 'scale', 'sharpness', 'strength', 'spread'], surface: ['metalness', 'roughness', 'laminate', 'laminateRoughness'] })) {
     object(value[group]);
     for (const key of required) if (typeof value[group][key] !== 'number') throw new Error(`Missing numeric ${group}.${key}.`);
-    for (const [key, v] of Object.entries(value[group])) if (!['field', 'motif', 'ordered'].includes(key) && typeof v !== 'number') throw new Error(`Invalid ${group}.${key}.`);
+    for (const [key, v] of Object.entries(value[group])) {
+      if (group === 'diffraction' && key === 'followsAuthoredNormals') {
+        if (typeof v !== 'boolean') throw new Error(`Invalid ${group}.${key}.`);
+      } else if (!['field', 'motif', 'ordered'].includes(key) && typeof v !== 'number') throw new Error(`Invalid ${group}.${key}.`);
+    }
   }
   if (!fields.has(value.structure.field)) throw new Error('Unsupported manufacturing field.');
   if (value.structure.field === 'symbol-foil' && !value.structure.motif) throw new Error('Symbol foil requires a motif.');

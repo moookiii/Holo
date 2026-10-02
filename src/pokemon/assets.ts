@@ -18,7 +18,7 @@ export async function usableCardFront(url: string, signal: AbortSignal, thumbnai
   signal.throwIfAborted();
   if (cardImageCache.has(url)) return cardImageCache.get(url)!;
   const originals = [url, url.replace(/\/high\.png$/, '/high.webp'), thumbnail ?? url.replace(/\/high\.png$/, '/low.webp')];
-  const candidates = [url, ...new Set(originals.map(candidate => `https://wsrv.nl/?url=${encodeURIComponent(candidate)}`))];
+  const candidates = [...new Set(originals), ...new Set(originals.map(candidate => `https://wsrv.nl/?url=${encodeURIComponent(candidate)}`))];
   for (const candidate of candidates) {
     try {
       const response = await fetch(candidate, { signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]) });
