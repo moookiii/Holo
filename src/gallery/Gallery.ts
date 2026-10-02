@@ -7,7 +7,7 @@ import type { StudioLighting } from '../lighting/StudioLighting';
 import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
 import { galleryLayout } from './GalleryLayout';
-import { facets, filterCards, type GalleryQuery } from './GalleryQuery';
+import { compareGallerySetNames, facets, filterCards, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
 import { profiles } from '../materials/profiles';
@@ -112,7 +112,8 @@ export class Gallery {
     let cards: readonly CardDefinition[] = this.options.cards;
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
-      const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => a.localeCompare(b));
+      const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
+        ? compareGallerySetNames(a, b) : a.localeCompare(b));
       const selected = this.query[facet.key] ?? '';
       if (selected && !values.includes(selected)) delete this.query[facet.key];
       select.replaceChildren(new Option(`Any ${facet.label.toLowerCase()}`, ''), ...values.map(value => new Option(facet.key === 'finish'

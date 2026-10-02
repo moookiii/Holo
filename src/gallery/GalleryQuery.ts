@@ -1,8 +1,60 @@
 import type { CardDefinition } from '../card/CardDefinition';
 
+const pokemonSetAliases: Readonly<Record<string, string>> = {
+  'Base Set · First Edition': 'Base Set',
+  'Base Set · Non-holo': 'Base Set',
+  'Burger King · 1999 gold-plated collectible': 'Burger King',
+  'EX FireRed & LeafGreen · Reverse holo': 'EX FireRed & LeafGreen',
+  'Expedition · Reverse holo': 'Expedition Base Set',
+  'Expedition Base Set · Reverse Holo': 'Expedition Base Set',
+  'Legendary Collection · Reverse holo': 'Legendary Collection',
+  'Neo Genesis · First Edition': 'Neo Genesis',
+  'Scarlet & Violet · Common': 'Scarlet & Violet',
+  'Scarlet & Violet · Uncommon': 'Scarlet & Violet',
+  'Sun & Moon Base · Rainbow Secret Rare': 'Sun & Moon Base',
+  'Vivid Voltage · Rainbow Rare': 'Vivid Voltage',
+};
+
+/** English Pokémon release order for sets represented in the collection. */
+const pokemonSetReleaseOrder = [
+  'Base Set',
+  'Jungle',
+  'Fossil',
+  'Burger King',
+  'Base Set 2',
+  'Team Rocket',
+  'Gym Heroes',
+  'Gym Challenge',
+  'Neo Genesis',
+  'Legendary Collection',
+  'Expedition Base Set',
+  'EX FireRed & LeafGreen',
+  'Sun & Moon Base',
+  'Vivid Voltage',
+  'Scarlet & Violet',
+  'Paldea Evolved',
+  'Prismatic Evolutions',
+];
+const pokemonSetReleaseRank = new Map(pokemonSetReleaseOrder.map((name, index) => [name, index]));
+
+function gallerySetName(card: CardDefinition) {
+  if (card.franchise !== 'Pokémon') return card.set;
+  return card.pokemon?.setName ?? pokemonSetAliases[card.set] ?? card.set;
+}
+
+export function compareGallerySetNames(a: string, b: string) {
+  const rankA = pokemonSetReleaseRank.get(a), rankB = pokemonSetReleaseRank.get(b);
+  if (rankA !== undefined || rankB !== undefined) {
+    if (rankA === undefined) return 1;
+    if (rankB === undefined) return -1;
+    if (rankA !== rankB) return rankA - rankB;
+  }
+  return a.localeCompare(b);
+}
+
 export const facets = [
   { key: 'game', label: 'Game', value: (c: CardDefinition) => c.franchise },
-  { key: 'set', label: 'Set', value: (c: CardDefinition) => c.set },
+  { key: 'set', label: 'Set', value: gallerySetName },
   { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.pokemon?.rarity },
   { key: 'finish', label: 'Finish', value: (c: CardDefinition) => c.pokemon?.variant ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.profile) },
   { key: 'category', label: 'Category', value: (c: CardDefinition) => c.pokemon?.category },
