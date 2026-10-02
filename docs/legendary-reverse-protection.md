@@ -14,10 +14,16 @@ card-specific corrections. The source artwork remains unchanged.
 Gallery reverse coverage uses the 512 x 720 artwork alpha channel so thin ink
 is not reduced to the 128 x 180 optical map grid. Primary grating and facet maps
 use 256 x 360; other layers retain the reduced tier. Legendary previews apply
-facet normals per fragment and use a silver body with restrained diffraction.
+facet normals per fragment and retain each card's printed type color with restrained diffraction.
 The nine-array, 48-slot gallery allocation is approximately 127 MiB.
 
 Validation: production build; 15 LC/gallery/pattern tests; live WebGL viewer
 captures for Pidgeotto, Graveler, Omanyte, Full Heal Energy and Pokemon Breeder,
 plus gallery captures for Pidgeotto, Graveler and Omanyte. Browser check:
 `node scripts/legendary-collection-reverse-check.mjs`.
+
+The evolution badge uses the contour extracted from neutral Pidgeotto stock;
+gold thresholding on fire/fighting backgrounds incorrectly selected a rectangular
+patch. Red text extraction now requires local green-channel contrast and is
+limited to lettering regions, avoiding red stock protection. Regression checks
+and viewer/gallery captures include Flareon and Rhydon.

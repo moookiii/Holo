@@ -20,7 +20,7 @@ try {
   await page.goto('http://127.0.0.1:5173/?backend=webgl');
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
   if (!process.argv.includes('--gallery-only')) {
-    for (const n of [34, 44, 57, 100, 102]) {
+    for (const n of [10, 35, 34, 44, 57, 100, 102]) {
       await page.evaluate(async n => { await window.__holo.setCard(`pokemon:lc-${n}:reverse`); window.__holo.hideUI(); window.__holo.pose(0, 0); }, n);
       await page.waitForTimeout(350);
       await page.screenshot({ path: `${out}/viewer-${n}.png` });
@@ -33,7 +33,7 @@ try {
   await page.evaluate(() => window.__holo.gallery.open());
   await page.getByLabel('Set', { exact: true }).selectOption('Legendary Collection');
   await page.getByLabel('Finish', { exact: true }).selectOption('reverse');
-  for (const name of ['Graveler', 'Pidgeotto', 'Omanyte']) {
+  for (const name of ['Flareon', 'Rhydon', 'Graveler', 'Pidgeotto', 'Omanyte']) {
     await page.getByLabel('Search gallery cards').fill(name);
     await page.waitForFunction(() => { const s = window.__holo.gallery.stats(); return s.filtered === 1 && s.visible === 1 && s.pending === 0; }, null, { timeout: 120000 });
     await page.waitForTimeout(500);
