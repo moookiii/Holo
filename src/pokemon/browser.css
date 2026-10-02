@@ -10,6 +10,7 @@
 .pokemon-pack-tile:focus-visible { outline: 2px solid #c1d0e7; outline-offset: 4px; }
 .pokemon-pack-tile:disabled { opacity: .6; cursor: default; }
 .pokemon-pack-tile img { width: 100%; height: 170px; object-fit: contain; }
+.pokemon-pack-tile.pokemon-booster { justify-content: flex-start; }
 .pokemon-pack-tile.pokemon-booster img { height: 310px; }
 .pokemon-pack-tile.pokemon-promo-card { padding: 12px; gap: 8px; }
 .pokemon-pack-tile.pokemon-promo-card img { height: 180px; }
