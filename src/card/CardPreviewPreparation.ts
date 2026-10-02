@@ -16,7 +16,8 @@ type PrepareField = (spec: PatternSpec, height: number, motif?: MotifImage) => P
 
 /** CPU-only reduced tier: same masks, layer priority and manufactured field
  * generator as focus. Artwork and metallic lettering retain a sharper UV grid. */
-export async function prepareCardPreview(card: CardDefinition, signal: AbortSignal, prepareField: PrepareField): Promise<CardPreview> {
+export async function prepareCardPreview(card: CardDefinition, signal: AbortSignal, prepareField: PrepareField,
+  decodeSvg?: (blob: Blob, width: number, height: number) => Promise<Uint8Array>): Promise<CardPreview> {
   const width = PREVIEW_MAP_WIDTH, height = PREVIEW_MAP_HEIGHT;
   const read = async (path: string, w = width, h = height) => {
     signal.throwIfAborted();
@@ -24,6 +25,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]) });
     if (!response.ok) throw new Error(`Preview unavailable (${response.status})`);
     const blob = await response.blob();
+    if (blob.type.includes('svg') && decodeSvg) return decodeSvg(blob, w, h);
     let image: ImageBitmap;
     if (blob.type.includes('svg')) {
       const source = new Image(), objectUrl = URL.createObjectURL(blob); source.src = objectUrl;

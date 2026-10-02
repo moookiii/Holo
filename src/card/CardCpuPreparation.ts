@@ -4,7 +4,7 @@ import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from '../assets/M
 import type { FoilLayer, HolographicProfile } from '../materials/HolographicProfile';
 import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { FieldData, PatternSpec } from '../materials/patterns/ManufacturingField';
-import { prepareCardPreview, PREVIEW_BYTES, type CardPreview } from './CardPreviewPreparation';
+import { PREVIEW_BYTES, type CardPreview } from './CardPreviewPreparation';
 import type { MotifImage } from '../materials/patterns/MotifField';
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
@@ -96,15 +96,6 @@ class CpuPatternCache {
   private sequence = 0;
   private pending = new Map<number, { resolve: (field: FieldData) => void; reject: (error: Error) => void }>();
   private cache = new Map<string, Promise<FieldData>>();
-  preview(spec: PatternSpec, height: number, motifImage?: MotifImage) {
-    // Preview fields are immediately consumed by the bounded preview cache.
-    // Never retain another unbounded cache of manufactured gallery fields.
-    const id = ++this.sequence;
-    return new Promise<FieldData>((resolve, reject) => {
-      this.pending.set(id, { resolve, reject });
-      this.worker.postMessage({ id, spec, height, motifImage }, motifImage ? [motifImage.data.buffer] : []);
-    });
-  }
   constructor() {
     this.worker.onmessage = (event: MessageEvent<{ id: number; field?: FieldData; error?: string }>) => {
       const task = this.pending.get(event.data.id); if (!task) return;
@@ -132,6 +123,64 @@ class CpuPatternCache {
     return this.cache.get(key)!;
   }
   dispose() { this.worker.terminate(); for (const task of this.pending.values()) task.reject(new Error('CPU pattern cache disposed')); this.pending.clear(); this.cache.clear(); }
+}
+
+class CpuPreviewWorker {
+  private worker = new Worker(new URL('./card-preview.worker.ts', import.meta.url), { type: 'module' });
+  private sequence = 0;
+  private pending = new Map<number, { resolve: (preview: CardPreview) => void; reject: (error: Error) => void }>();
+  constructor() {
+    this.worker.onmessage = (event: MessageEvent<{ type: string; id: number; svgId?: number; blob?: Blob; width?: number; height?: number; preview?: CardPreview; error?: string }>) => {
+      const message = event.data;
+      if (message.type === 'svg' && message.blob && message.svgId !== undefined) {
+        void this.decodeSvg(message.blob, message.width!, message.height!).then(pixels => {
+          this.worker.postMessage({ type: 'svg-result', id: message.id, svgId: message.svgId, pixels }, [pixels.buffer]);
+        }).catch(error => this.worker.postMessage({ type: 'svg-result', id: message.id, svgId: message.svgId, error: String(error) }));
+        return;
+      }
+      const task = this.pending.get(message.id);
+      if (!task) return;
+      this.pending.delete(message.id);
+      if (message.type === 'ready' && message.preview) task.resolve(message.preview);
+      else task.reject(new Error(message.error ?? 'Preview worker failed'));
+    };
+    this.worker.onerror = event => {
+      for (const task of this.pending.values()) task.reject(new Error(event.message));
+      this.pending.clear();
+    };
+  }
+  private async decodeSvg(blob: Blob, width: number, height: number) {
+    const url = URL.createObjectURL(blob), image = new Image();
+    try {
+      image.src = url;
+      await image.decode();
+      const canvas = new OffscreenCanvas(width, height), context = canvas.getContext('2d', { willReadFrequently: true })!;
+      context.drawImage(image, 0, 0, width, height);
+      return new Uint8Array(context.getImageData(0, 0, width, height).data);
+    } finally { URL.revokeObjectURL(url); }
+  }
+  prepare(card: CardDefinition, signal: AbortSignal) {
+    signal.throwIfAborted();
+    const id = ++this.sequence;
+    return new Promise<CardPreview>((resolve, reject) => {
+      const cancel = () => {
+        this.pending.delete(id);
+        this.worker.postMessage({ type: 'cancel', id });
+        reject(signal.reason ?? new DOMException('Aborted', 'AbortError'));
+      };
+      this.pending.set(id, {
+        resolve: preview => { signal.removeEventListener('abort', cancel); resolve(preview); },
+        reject: error => { signal.removeEventListener('abort', cancel); reject(error); },
+      });
+      signal.addEventListener('abort', cancel, { once: true });
+      this.worker.postMessage({ type: 'prepare', id, card });
+    });
+  }
+  dispose() {
+    this.worker.terminate();
+    for (const task of this.pending.values()) task.reject(new Error('Preview worker disposed'));
+    this.pending.clear();
+  }
 }
 
 class CpuMapCache {
@@ -162,7 +211,7 @@ class CpuMapCache {
 }
 
 export class CardCpuPreparation {
-  private previewPatterns?: CpuPatternCache;
+  private previewWorker?: CpuPreviewWorker;
   private previews = new Map<string, CardPreview>();
   private readonly previewBudget = 24 * 1024 * 1024;
   async preparePreview(card: CardDefinition, signal: AbortSignal) {
@@ -171,7 +220,7 @@ export class CardCpuPreparation {
     const key = JSON.stringify([card.id, card.front, card.maps, card.profile, card.profileOverrides, card.mapSettings]);
     const cached = this.previews.get(key);
     if (cached) { this.previews.delete(key); this.previews.set(key, cached); return cached; }
-    const preview = await prepareCardPreview(card, signal, (spec, height, motif) => (this.previewPatterns ??= new CpuPatternCache()).preview(spec, height, motif));
+    const preview = await (this.previewWorker ??= new CpuPreviewWorker()).prepare(card, signal);
     signal.throwIfAborted();
     if (this.disposed) throw new Error('CPU preparation disposed');
     this.previews.set(key, preview);
@@ -266,5 +315,5 @@ export class CardCpuPreparation {
     return this.cache.get(key)!;
   }
   stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, previewBytes: this.previews.size * PREVIEW_BYTES, previewBudget: this.previewBudget }; }
-  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewPatterns?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
+  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewWorker?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
 }
