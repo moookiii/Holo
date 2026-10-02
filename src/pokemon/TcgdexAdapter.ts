@@ -64,7 +64,9 @@ export class TcgdexAdapter {
     return this.read(`series:${seriesId}`, signal, async () => {
       const serie = await client.serie.get(seriesId);
       if (!serie) throw new Error('This series is unavailable.');
-      const sets = serie.sets.map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
+      const sets = serie.sets
+        .filter(s => seriesId !== 'base' || !['Wizards Black Star Promos', 'W Promotional'].includes(s.name))
+        .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'base') {
         // Local audited sets follow release order, even if discovery is unordered.
