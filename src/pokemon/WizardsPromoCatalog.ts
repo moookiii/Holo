@@ -1,3 +1,4 @@
+import { wizardsMoviePromoRecords } from './data/wizards-movie-promos.generated.ts';
 import { wizardsPromoRecords } from './data/wizards-promos.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
 
@@ -5,7 +6,7 @@ export const WIZARDS_PROMO_ID = 'basep';
 export const WIZARDS_PROMO_ASSETS = '/cards/pokemon/wizards-promos';
 
 /** Phase 1's numbered ordinary prints. Further finishes belong in separate subsets. */
-export const wizardsPromoCards: readonly PokemonCard[] = wizardsPromoRecords.map(record => ({
+export const wizardsOrdinaryPromoCards: readonly PokemonCard[] = wizardsPromoRecords.map(record => ({
   ...record,
   setId: WIZARDS_PROMO_ID, setName: 'Wizards Black Star Promos',
   seriesId: 'base', seriesName: 'Base', era: 'base', rarity: 'Promo',
@@ -13,6 +14,19 @@ export const wizardsPromoCards: readonly PokemonCard[] = wizardsPromoRecords.map
   front: `${WIZARDS_PROMO_ASSETS}/${record.front}`,
   thumbnail: `${WIZARDS_PROMO_ASSETS}/${record.front}`,
 }));
+
+/** Numbered movie distribution, kept separate from the ordinary print subset. */
+export const wizardsMoviePromoCards: readonly PokemonCard[] = wizardsMoviePromoRecords.map(record => ({
+  ...record, types: [...record.types],
+  setId: WIZARDS_PROMO_ID, setName: 'Wizards Black Star Promos',
+  seriesId: 'base', seriesName: 'Base', era: 'base', rarity: 'Promo',
+  variants: ['normal'], boosterIds: [],
+  front: `${WIZARDS_PROMO_ASSETS}/${record.front}`,
+  thumbnail: `${WIZARDS_PROMO_ASSETS}/${record.front}`,
+}));
+export const wizardsMoviePromoIds = new Set(wizardsMoviePromoCards.map(card => card.id));
+export const wizardsPromoCards: readonly PokemonCard[] = [...wizardsOrdinaryPromoCards, ...wizardsMoviePromoCards]
+  .sort((a, b) => Number(a.localId) - Number(b.localId));
 
 export const wizardsPromoSet: PokemonSet = {
   id: WIZARDS_PROMO_ID, name: 'Wizards Black Star Promos',

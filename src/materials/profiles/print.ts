@@ -8,3 +8,10 @@ export const printOnly: HolographicProfile = {
   glints: { density: 0, scale: 1, sharpness: 100, strength: 0, spread: 0 },
   surface: { metalness: 0, roughness: .48, laminate: .45, laminateRoughness: .25 },
 };
+
+/** Coated print with localized, non-diffractive gold lettering. */
+export const firstMovieGold: HolographicProfile = {
+  ...printOnly, id: 'pokemon-first-movie-gold', name: 'First Movie gold stamp', family: 'Pokémon',
+  description: 'Wizards First Movie upright gold lettering over ordinary printed artwork.',
+  metallicInk: { color: [.83, .51, .13], roughness: .24, metalness: .96 },
+};

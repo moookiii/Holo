@@ -126,7 +126,7 @@ export class PackBrowser {
       const cards = await pokemonCatalog.cards(set, request.signal);
       if (!this.task.current(request)) return;
       this.selection.set = set;
-      this.status.textContent = `${cards.length} ordinary non-holo promos · choose a card to view.`;
+      this.status.textContent = `${cards.length} promo cards · choose a card to view.`;
       for (const card of cards) {
         const button = this.button(`#${card.localId} · ${card.name}`, () => {
           if (this.disposed) return;
@@ -136,7 +136,7 @@ export class PackBrowser {
             this.root.showModal();
             this.status.textContent = error instanceof Error ? error.message : 'Unable to open this card.';
           });
-        }, card.thumbnail, 'Wizards Black Star Promo · Non-holo');
+        }, card.thumbnail, Number(card.localId) >= 2 && Number(card.localId) <= 5 ? 'First Movie · Gold stamp' : 'Wizards Black Star Promo · Non-holo');
         button.classList.add('pokemon-promo-card');
       }
     }, () => this.promoCards());
