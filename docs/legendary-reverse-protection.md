@@ -28,6 +28,13 @@ coverage for cards 20-110 is unchanged.
 The compositor writes individual colored overlays, six full-set contact sheets,
 and a registration report to `artifacts/lc-rework`. Green marks protection;
 magenta marks the foil exclusion boundary. Source fronts remain unchanged.
+Set-icon placement is separately registered in
+`reverse-set-icon-registration.json`. All 110 icons were reviewed at 4x against
+their fronts. The 97 displaced Pokemon icons move 0-6 pixels left and 1-4
+pixels up, matching their printed positions. Alakazam and Dark Blastoise retain
+the original master position; Energy and Trainer icons retain their existing
+scan-registered protection. The compositor clears the old icon before placing
+the shifted copy, without translating the banner or artwork-frame protection.
 All 110 overlays were reviewed. Pixel checks verified retained text, unclipped
 masters, solid circle interiors, and unchanged coverage outside the selected
 top strips. Live WebGL captures cover Dark Persian, Alakazam, Flareon, Hypno,

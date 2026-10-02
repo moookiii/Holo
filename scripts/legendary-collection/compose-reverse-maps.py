@@ -29,6 +29,20 @@ def circle_layer(circles):
     return layer
 
 
+def registered_master(master, offset, source_rect):
+    """Move only the set icon; keep the banner and frame pixels in place."""
+    dx, dy = offset
+    if dx == 0 and dy == 0:
+        return master
+    x0, y0, x1, y1 = source_rect
+    result = master.copy()
+    icon = master[y0:y1, x0:x1].copy()
+    result[y0:y1, x0:x1] = 0
+    target = result[y0+dy:y1+dy, x0+dx:x1+dx]
+    np.maximum(target, icon, out=target)
+    return result
+
+
 def main():
     REVIEW.mkdir(parents=True, exist_ok=True)
     corrections = json.loads((HERE / 'reverse-foil-corrections.json').read_text())['cards']
@@ -41,13 +55,16 @@ def main():
     rows = json.loads((HERE / 'reverse-protection-registration.json').read_text())['cards']
     masters = {name: np.array(Image.open(INPUTS / f'{name}-master.png').convert('L'))
                for name in ('basic', 'evolved')}
+    icons = json.loads((HERE / 'reverse-set-icon-registration.json').read_text())
     report = []
     for row in rows:
         number = row['number']
         text = np.array(Image.open(INPUTS / f'{number}-text.png').convert('L'))
         protection = text.copy()
         if row['master']:
-            protection = np.maximum(protection, masters[row['master']])
+            master = registered_master(masters[row['master']],
+                                       icons['offsets'][str(number)], icons['sourceRect'])
+            protection = np.maximum(protection, master)
         protection = np.maximum(protection, circle_layer(row['circles']))
         # Never clip protection against foil: that cut the evolution medallion
         # in half where it overlaps the illustration. These are separate maps.
