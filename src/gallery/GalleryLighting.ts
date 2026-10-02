@@ -19,7 +19,7 @@ export function galleryLightingControls(root: HTMLElement, lighting: StudioLight
   const update = () => {
     select.value = lighting.preset;
     const moving = ['Moving light', 'Skim', 'Holo skim'].includes(lighting.preset);
-    const direct = ['Moving light', 'Skim', 'Right light', 'Spotlight'].includes(lighting.preset);
+    const direct = ['Moving light', 'Skim', 'Spotlight'].includes(lighting.preset);
     for (const { key, label, input } of settings) {
       input.value = String(lighting[key]);
       label.hidden = key === 'speed' ? !moving : key === 'filterAngle' ? lighting.preset !== 'Polarizer' : key === 'intensity' ? false : !direct;

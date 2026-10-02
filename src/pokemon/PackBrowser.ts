@@ -128,16 +128,16 @@ export class PackBrowser {
       this.selection.set = set;
       this.status.textContent = `${cards.length} promo cards · choose a card to view.`;
       for (const card of cards) {
-        const button = this.button(`#${card.localId} · ${card.name}`, () => {
+        const button = this.button(card.id === 'basep-ancient-mew' ? 'Ancient Mew' : `#${card.localId} · ${card.name}`, () => {
           if (this.disposed) return;
           this.root.close();
-          const target = card.id === 'basep-53' ? 'ancient-mew' : `pokemon:${card.id}:normal`;
+          const target = card.id === 'basep-ancient-mew' ? 'ancient-mew' : `pokemon:${card.id}:${card.variants[0] ?? 'normal'}`;
           void this.deps.viewCard(target).then(() => this.dispose(), error => {
             if (this.disposed) return;
             this.root.showModal();
             this.status.textContent = error instanceof Error ? error.message : 'Unable to open this card.';
           });
-        }, card.thumbnail, card.id === 'basep-53' ? 'Ancient Mew · Full foil' : Number(card.localId) >= 2 && Number(card.localId) <= 5 ? 'First Movie · Gold stamp' : 'Wizards Black Star Promo · Non-holo');
+        }, card.thumbnail, card.id === 'basep-ancient-mew' ? 'Ancient Mew · Full foil' : Number(card.localId) >= 50 ? 'Wizards Black Star Promo · e-Reader layout' : Number(card.localId) >= 2 && Number(card.localId) <= 5 ? 'First Movie · Gold stamp' : card.variants.includes('holo') ? 'Wizards Black Star Promo · Holo' : 'Wizards Black Star Promo · Non-holo');
         button.classList.add('pokemon-promo-card');
       }
     }, () => this.promoCards());

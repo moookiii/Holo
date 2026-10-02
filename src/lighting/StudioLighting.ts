@@ -2,7 +2,7 @@ import { Scene, Color, DirectionalLight, SpotLight, RectAreaLight, RectAreaLight
 import { inspection } from './inspection';
 import { areaLightTables } from './AreaLightTables';
 
-export const lightPresets = ['Studio', 'Strip', 'Soft', 'Low key', 'Moving light', 'Blacklight', 'Skim', 'Holo skim', 'Spotlight', 'Right light', 'Polarizer'] as const;
+export const lightPresets = ['Studio', 'Strip', 'Soft', 'Low key', 'Moving light', 'Blacklight', 'Skim', 'Holo skim', 'Spotlight', 'Ring light', 'Polarizer'] as const;
 export type LightPreset = typeof lightPresets[number];
 
 export class StudioLighting {
@@ -11,6 +11,9 @@ export class StudioLighting {
   readonly back = new DirectionalLight(0xffffff, 1.1);
   readonly fill = new HemisphereLight(0xffffff, 0x777777, 0.65);
   readonly spot = new SpotLight(0xfff5e6, 0, 0, .16, .65, 2);
+  // Six tangent area emitters form a continuous annulus around the viewing axis.
+  // Their zero intensity outside Ring light keeps the lighting graph stable.
+  readonly ring = Array.from({ length: 6 }, () => new RectAreaLight(0xfffaf0, 0, 2.25, .7));
   preset: LightPreset = 'Studio';
   azimuth = -30;
   elevation = 35;
@@ -27,6 +30,13 @@ export class StudioLighting {
     this.key.lookAt(0, 0, 0);
     this.spot.position.set(0, 2, 12);
     scene.add(this.key, this.strip, this.back, this.fill, this.spot, this.spot.target);
+    this.ring.forEach((segment, index) => {
+      const angle = index * Math.PI / 3;
+      segment.position.set(Math.cos(angle) * 2.15, Math.sin(angle) * 2.15, 13);
+      segment.lookAt(0, 0, 0);
+      segment.rotateZ(angle + Math.PI / 2);
+      scene.add(segment);
+    });
   }
   async createEnvironment(renderer: WebGPURenderer) {
     const studio = new Scene(); studio.background = new Color(0.045, 0.045, 0.045);
@@ -53,7 +63,7 @@ export class StudioLighting {
     this.preset = preset; this.phase = 0; this.applied = '';
     // Center the gallery sweep so its highlight reaches both outer card columns.
     // Skim keeps its lower, offset grazing angle for the single-card viewer.
-    this.azimuth = preset === 'Right light' ? 65 : preset === 'Moving light' ? 0 : preset === 'Skim' ? -15 : -30;
+    this.azimuth = preset === 'Moving light' ? 0 : preset === 'Skim' ? -15 : -30;
     this.elevation = preset === 'Skim' ? 8 : 35;
     this.update(0);
   }
@@ -76,7 +86,7 @@ export class StudioLighting {
     // Keep the light list stable: intensity is a uniform, visibility rebuilds card pipelines.
     // Smooth reversals without lingering at the dim ends of any animated sweep.
     const sweepMotion = Math.asin(.97 * Math.sin(this.phase * .65)) / Math.asin(.97);
-    if (p === 'Moving light' || p === 'Right light' || p === 'Skim' || p === 'Spotlight') {
+    if (p === 'Moving light' || p === 'Skim' || p === 'Spotlight') {
       // A rounded triangle spends less time at the sweep's dim endpoints than a sine.
       // Keep both sweeping sources in front, including after position adjustments.
       const sweepCenter = Math.max(-55, Math.min(55, this.azimuth));
@@ -102,10 +112,12 @@ export class StudioLighting {
     if (p === 'Skim') { this.key.intensity = 95; this.strip.intensity = .5; this.fill.intensity = .55; this.scene.environmentIntensity = .42; }
     if (p === 'Blacklight') { this.key.intensity = 90; this.strip.intensity = 2; this.fill.intensity = .08; this.scene.environmentIntensity = .08; this.back.intensity = .1; }
     if (p === 'Spotlight') { this.key.intensity = 0; this.strip.intensity = 0; this.fill.intensity = .12; this.scene.environmentIntensity = .12; }
+    if (p === 'Ring light') { this.key.intensity = 0; this.strip.intensity = 0; this.fill.intensity = .38; this.scene.environmentIntensity = .32; }
     this.key.lookAt(0, 0, 0);
     this.key.intensity *= this.intensity; this.strip.intensity *= this.intensity;
     this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
     this.scene.environmentIntensity *= this.intensity; this.spot.intensity = p === 'Spotlight' ? 650 * this.intensity : 0;
+    this.ring.forEach(segment => { segment.intensity = p === 'Ring light' ? 14 * this.intensity : 0; });
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
     inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
     inspection.polarizer.value = p === 'Polarizer' ? .15 + .85 * Math.cos(this.filterAngle * Math.PI / 180) ** 2 : 1;

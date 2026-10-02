@@ -42,7 +42,7 @@ try {
  await page.getByRole('button',{name:/^Base$/}).click();
  await page.getByRole('button',{name:/^Wizards Black Star Promos/}).click();
  await page.getByRole('button',{name:/#4 · Pikachu/}).waitFor();
- assert.equal(await page.locator('.pokemon-promo-card').count(),38);
+ assert.equal(await page.locator('.pokemon-promo-card').count(),54);
  await page.getByRole('button',{name:/#4 · Pikachu/}).click();
  await page.waitForFunction(()=>window.__holo.stats().card==='pokemon:basep-4:normal');
  console.log(JSON.stringify({errors,results},null,2));

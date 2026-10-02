@@ -15,7 +15,7 @@ interface ViewerActions {
 }
 export interface ProfileOption { id: string; name: string; family: string; labOnly?: boolean; }
 type CardFinish = 'all' | 'holo' | 'non-holo' | 'metal';
-export const FIRST_PICKER_CARD_ID = 'umbreon-gx-sm1-154';
+export const FIRST_PICKER_CARD_ID = 'ancient-mew';
 const icon = (paths: string) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">${paths}</svg>`;
 export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: ProfileOption[], actions: ViewerActions, development = false) {
   root.innerHTML = `<a class="artifact-entry" href="${import.meta.env.BASE_URL}artifacts">Artifacts ↗</a><nav class="top-actions" aria-label="Viewer destinations"><button id="lab-open" class="lab-entry">Holo Lab</button><button id="gallery-open" class="gallery-entry">Gallery</button><button id="pack-open" class="pack-entry">${icon('<path d="M6 3h12v18H6zM6 6h12M6 18h12m-8-8 2-2 2 2-2 4z"/>')}<span>Open a pack</span></button></nav><nav class="controls" aria-label="Card controls">
@@ -211,6 +211,7 @@ image.loading = 'lazy';
     'Holo skim': 'Sweep the foil response while keeping printed artwork lighting steady.',
     Polarizer: 'Approximate CPL rotation: reduce reflected glare on holographic fronts.',
     Skim: 'A low, narrow source reveals surface relief.',
+    'Ring light': 'An even ring around the viewing axis reveals foil and relief.',
   };
   const rows: { element: HTMLElement; modes?: LightPreset[] }[] = [];
   const slider = (label: string, key: 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle', min: number, max: number, step: number, unit: string, only?: LightPreset[]) => {
@@ -224,7 +225,7 @@ image.loading = 'lazy';
     row.append(caption, value, input); settings.append(row); rows.push({ element: row, modes: only });
     return input;
   };
-  const directional: LightPreset[] = ['Moving light', 'Skim', 'Spotlight', 'Right light'];
+  const directional: LightPreset[] = ['Moving light', 'Skim', 'Spotlight'];
   const azimuth = slider('Light position', 'azimuth', -85, 85, 1, '°', directional);
   const elevation = slider('Light elevation', 'elevation', -30, 75, 1, '°', directional);
   slider('Intensity', 'intensity', 0, 2, .1, '×');
