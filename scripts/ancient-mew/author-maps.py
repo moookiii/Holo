@@ -65,7 +65,17 @@ for i in range(1,count):
  entries.append({'center':centers[i].tolist(),'bounds':[int(x),int(y),int(bw),int(bh)],'pixels':int(area)})
 motif = cv2.GaussianBlur(motif,(3,3),.45)
 motif[protection>128]=0
-for name,data in [('foil',foil),('protection',protection),('flakes',motif)]:
+gold=protection.copy();gold[outline==0]=0
+foil=np.uint8(foil.astype(float)*(1-gold.astype(float)/255))
+protection=255-outline
+# Gold is translucent printing over its own foil response, not an exclusion.
+y,x=np.mgrid[0:h,0:w];angle=.35+.12*np.sin(y/h*6+x/w*2)
+direction=np.zeros((h,w,4),np.uint8)
+direction[:,:,0]=np.uint8((np.cos(angle*2)*.5+.5)*255)
+direction[:,:,1]=np.uint8((np.sin(angle*2)*.5+.5)*255)
+direction[:,:,2]=85;direction[:,:,3]=180
+Image.fromarray(direction).save(OUT/'gold-direction.png')
+for name,data in [('foil',foil),('gold-foil',gold),('protection',protection),('flakes',motif)]:
  Image.fromarray(data).save(OUT/f'{name}.png',optimize=True)
 alpha=protection.astype(float)/255*.55
 overlay=np.uint8(rgb*(1-alpha[:,:,None])+np.array([0,230,240])*alpha[:,:,None])

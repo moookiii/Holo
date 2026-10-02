@@ -174,11 +174,17 @@ export const pokemonProfiles: HolographicProfile[] = [{
   surface: { metalness: .88, roughness: .2, laminate: .35, laminateRoughness: .22, foilReflectance: .32 },
 }, {
   id: 'pokemon-ancient-mew', name: 'Ancient Mew: registered foil', family: 'Pokémon', status: 'curated',
-  description: 'Full-front Ancient Mew foil: scan-registered rosettes, stepped flecks and irregular reflective shapes with independent angular color. Gold glyphs remain protected. Tuned from the supplied moving reference; no etching.',
-  diffraction: { period: 1.48, bandwidth: .038, strength: 3.5, secondaryOrder: .22, direction: 0, crossWidth: .72, facetCoupling: 1 },
+  description: 'Purple-dominant Ancient Mew foil with registered rosettes and restrained angular color flashes. Warm gold printing reflects independently. Tuned from the supplied moving reference; no etching.',
+  diffraction: { period: 1.48, bandwidth: .045, strength: 1.45, secondaryOrder: .08, direction: 0, crossWidth: .72, facetCoupling: 1 },
   structure: { field: 'ancient-mew', scale: 1, engraving: 0, relief: 0, facetTilt: 1.25, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 500, sharpness: 200, strength: 0, spread: .4 },
-  surface: { metalness: .82, roughness: .34, laminate: .12, laminateRoughness: .32, foilReflectance: .10, sheen: 0, inkTransmission: .08 },
+  surface: { metalness: .82, roughness: .34, laminate: .12, laminateRoughness: .32, foilReflectance: .14, sheen: 0, inkTransmission: .85 },
+  secondary: {
+    diffraction: { period: 1.5, bandwidth: .055, strength: .55, secondaryOrder: .08, direction: 0, crossWidth: .65, facetCoupling: 0 },
+    structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, facetTilt: 0, reflectionCoupling: 0 },
+    glints: { density: 0, scale: 500, sharpness: 200, strength: 0, spread: .4 },
+    surface: { metalness: .78, roughness: .3, laminate: .16, laminateRoughness: .3, foilReflectance: .14, sheen: 0, inkTransmission: .9 },
+  },
 }, {
   id: 'pokemon-ancient-mew-back', name: 'Ancient Mew reverse foil', family: 'Pokémon', status: 'curated',
   description: 'Continuous reverse foil with polished gold color travel and subdued navy ink, guided by the supplied rotating card video. No added granular pattern.',

@@ -8,8 +8,8 @@ export const ancientMewCard: CardDefinition = {
   backProfile:'pokemon-ancient-mew-back',
   backMaps:{foil:'/cards/ancient-mew/back-foil.png',direction:'/cards/ancient-mew/back-direction.png'},
   layout:{artwork:[0,0,1,1],innerFrame:[0,0,1,1]},
-  maps:{foil:'/cards/ancient-mew/foil.png',protection:'/cards/ancient-mew/protection.png',motif:'/cards/ancient-mew/flakes.png'},
-  mapSettings:{embossStrength:0}, substrate:{color:[.012,.006,.02],printRetention:.26},
+  maps:{secondaryFoil:'/cards/ancient-mew/gold-foil.png',secondaryDirection:'/cards/ancient-mew/gold-direction.png',foil:'/cards/ancient-mew/foil.png',protection:'/cards/ancient-mew/protection.png',motif:'/cards/ancient-mew/flakes.png'},
+  mapSettings:{embossStrength:0}, substrate:{color:[.065,.022,.10],printRetention:.4},
   source:{image:'/cards/ancient-mew/front.jpeg',metadata:'/cards/ancient-mew/sources.json',
-    notes:'Unchanged user front and reverse. Full-front registered irregular foil silhouettes, separate gold-print protection, and dedicated optics tuned from the supplied tilt video. No etched relief. See docs/ancient-mew.md.'},
+    notes:'Unchanged user front and reverse. Full-front registered irregular foil silhouettes, independent translucent gold-ink foil, and dedicated optics tuned from the supplied tilt video. No etched relief. See docs/ancient-mew.md.'},
 };

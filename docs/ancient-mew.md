@@ -10,6 +10,13 @@ bright flashes, and readable gold foreground. Its resolution does not establish
 individual microscopic grating angles; those optical parameters are estimates.
 The source scan already contains photographed lighting and bright flecks.
 
+The front's violet substrate and ink-filtered foil now keep the purple body
+dominant across tilts, with reduced diffraction strength and second-order color.
+The registered flakes still respond to moving light. Gold printing uses its own
+PNG coverage and direction maps with a restrained, warm foil response, rather
+than broad rainbow bands. Color and transmission are visual estimates from the
+reference video, compared against the supplied Firefox recording.
+
 The dedicated `pokemon-ancient-mew` profile uses the `ancient-mew` manufacturing
 field, not the Base Set star generator, a Cosmos pass, or a modern etched field.
 Its 2,046 registered silhouettes retain irregular rosettes, stepped flecks,
@@ -17,11 +24,12 @@ small dots and larger clusters from this front. Each island has a fixed grating
 axis, spacing, and optical inclination; light and card movement change the
 response. There is no time-based noise or added random sparkle overlay.
 
-Three independent 1510 × 2110 PNGs supply full-face foil coverage, gold-print
-protection, and flake shapes. The foil reaches the header, side spaces, rules,
-and lower symbol region as well as the illustration. Gold chroma and measured
-printed band contours protect glyph strokes, Mew's outline, borders, and symbols.
-Letter counters and Mew's dark body remain open. No height map or etched relief
+Independent 1510 × 2110 PNGs supply purple foil coverage, gold foil coverage,
+gold grating direction, outer-edge protection, and flake shapes. The foil reaches
+the header, side spaces, rules, and lower symbol region as well as the illustration.
+Gold chroma and measured printed band contours separate glyph strokes, Mew's
+outline, borders, and symbols from the purple foil. Letter counters and Mew's
+dark body remain in the purple region. No height map or etched relief
 is generated. The optical inclination data redirects diffraction only; it does
 not perturb the physical surface normals.
 
