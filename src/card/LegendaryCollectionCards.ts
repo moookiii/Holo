@@ -49,7 +49,8 @@ export const legendaryCollectionDefinitions: CardDefinition[] = legendaryCollect
   const reverse: CardDefinition = {
     id: number === 74 ? 'eevee-legendary-reverse' : `pokemon:${card.id}:reverse`,
     title: card.name, franchise: 'Pokémon', set: card.setName, number: `${number}/110 · Reverse holo`, dimensions,
-    front: number === 74 ? '/cards/eevee-legendary-reverse/front.png' : card.front!,
+    front: number === 74 ? '/cards/eevee-legendary-reverse/front.png'
+      : holo ? `/cards/pokemon/legendary-collection/${number}-reverse.png` : card.front!,
     back: '/cards/pokemon/back.jpg', profile: 'pokemon-legendary-reverse', seed: number === 74 ? 2002074 : 2002074 + number,
     coverageMode: 'reverse', frontBorderColor: [.579, .579, .579],
     substrate: { color: [.32, .33, .34], backgroundColor: [.672, .672, .672], printRetention: 0 },

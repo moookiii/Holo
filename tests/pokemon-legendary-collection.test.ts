@@ -66,6 +66,19 @@ test('every LC reverse protects the illustration with PNG coverage', () => {
   assert.equal(wotcPrinting('lc-74', 'reverse')?.maps?.protection, '/cards/eevee-legendary-reverse/protection.png');
 });
 
+test('LC holo rares use artwork-clean fronts only for their reverse prints', () => {
+  for (let number = 1; number <= 19; number++) {
+    const base = `/cards/pokemon/legendary-collection/${number}`;
+    assert.equal(wotcPrinting(`lc-${number}`, 'holo')?.front, `${base}.png`);
+    assert.equal(wotcPrinting(`lc-${number}`, 'reverse')?.front, `${base}-reverse.png`);
+  }
+  for (let number = 20; number <= 110; number++) {
+    if (number === 74) continue;
+    assert.equal(wotcPrinting(`lc-${number}`, 'reverse')?.front,
+      `/cards/pokemon/legendary-collection/${number}.png`);
+  }
+});
+
 test('LC appears in catalog, gallery and deterministic retail pack flow', async () => {
   const signal = new AbortController().signal;
   assert.deepEqual(await pokemonCatalog.set('lc', signal), legendaryCollectionSet);
