@@ -172,4 +172,11 @@ export const pokemonProfiles: HolographicProfile[] = [{
   structure: { field: 'cosmos-hd', scale: 29, engraving: .05, relief: 0, facetTilt: .7 },
   glints: { density: .055, scale: 410, sharpness: 240, strength: 10, spread: .5 },
   surface: { metalness: .88, roughness: .2, laminate: .35, laminateRoughness: .22, foilReflectance: .32 },
+}, {
+  id: 'pokemon-ancient-mew', name: 'Ancient Mew: registered foil', family: 'Pokémon', status: 'curated',
+  description: 'Full-front Ancient Mew foil: scan-registered rosettes, stepped flecks and irregular reflective shapes with independent angular color. Gold glyphs remain protected. Tuned from the supplied moving reference; no etching.',
+  diffraction: { period: 1.48, bandwidth: .038, strength: 3.5, secondaryOrder: .22, direction: 0, crossWidth: .72, facetCoupling: 1 },
+  structure: { field: 'ancient-mew', scale: 1, engraving: 0, relief: 0, facetTilt: 1.25, reflectionCoupling: 0, normalVariance: 0 },
+  glints: { density: 0, scale: 500, sharpness: 200, strength: 0, spread: .4 },
+  surface: { metalness: .82, roughness: .34, laminate: .12, laminateRoughness: .32, foilReflectance: .10, sheen: 0, inkTransmission: .08 },
 }];

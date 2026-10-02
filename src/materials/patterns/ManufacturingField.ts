@@ -1,3 +1,4 @@
+import { generateAncientMew } from './AncientMew.ts';
 import { generateBaseSet2Cosmos } from './BaseSet2Cosmos.ts';
 import { labelRegisteredStars, type StarImage } from './RegisteredStars.ts';
 import { encodeGratingAxis } from './Orientation';
@@ -7,7 +8,7 @@ import { generatePokemonFacetField, type PokemonFacetKind } from './PokemonFacet
 import { generateMotifField, type MotifSpec } from './MotifField';
 import { DEFAULT_FOIL_LAYOUT, type CardLayout } from '../../card/CardDefinition';
 
-export type PatternKind = PokemonFacetKind | PokemonDirectionalKind | PokemonPatternKind | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'base-set-star' | 'base-set-2-cosmos' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
+export type PatternKind = PokemonFacetKind | PokemonDirectionalKind | PokemonPatternKind | 'ancient-mew' | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'base-set-star' | 'base-set-2-cosmos' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
 export interface PatternSpec { kind: PatternKind | 'symbol-foil'; seed: number; aspect: number; scale: number; layout?: CardLayout; motif?: MotifSpec; }
 export interface FieldData { width: number; height: number; direction: Uint8Array; relief: Uint8Array; }
 const TAU = Math.PI * 2;
@@ -25,7 +26,8 @@ function smoothNoise(x: number, y: number, seed: number) {
 }
 
 /** Encodes manufacturing geometry only. Neither texture contains spectral colors or lighting. */
-export function generateField(spec: PatternSpec, height = ['symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024, starImage?: StarImage): FieldData {
+export function generateField(spec: PatternSpec, height = ['ancient-mew', 'symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024, starImage?: StarImage): FieldData {
+  if (spec.kind === 'ancient-mew') return generateAncientMew(spec, height, starImage);
   if (spec.kind === 'base-set-2-cosmos') return generateBaseSet2Cosmos(spec, height, starImage);
   if (spec.kind === 'symbol-foil') {
     if (!spec.motif) throw new Error('Symbol foil requires a motif specification.');

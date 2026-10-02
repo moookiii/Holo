@@ -1,3 +1,4 @@
+import { ancientMewCard } from './AncientMewCard.ts';
 import { gymChallengeDefinitions } from './GymChallengeCards.ts';
 import { gymHeroesDefinitions } from './GymHeroesCards.ts';
 import { teamRocketDefinitions } from './TeamRocketCards.ts';
@@ -112,7 +113,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...wizardsPromoDefinitions, {
+export const cards: CardDefinition[] = [ancientMewCard, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',

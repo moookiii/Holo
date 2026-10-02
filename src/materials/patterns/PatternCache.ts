@@ -53,7 +53,7 @@ export class PatternCache {
       if (motifTexture) {
         const source = motifTexture.image as HTMLImageElement;
         const canvas = document.createElement('canvas');
-        const registered = spec.kind === 'base-set-star' || spec.kind === 'base-set-2-cosmos';
+        const registered = spec.kind === 'ancient-mew' || spec.kind === 'base-set-star' || spec.kind === 'base-set-2-cosmos';
         canvas.width = registered ? source.width : 512;
         canvas.height = registered ? source.height : 512;
         const context = canvas.getContext('2d', { willReadFrequently: true })!;
