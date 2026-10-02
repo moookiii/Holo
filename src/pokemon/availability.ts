@@ -2,11 +2,14 @@ import { recipeFor } from './recipes.ts';
 import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
 import { prismaticSurfaceProgress } from './PrismaticSurfaces.ts';
 import { jungleReadyHolos } from '../card/JungleCards.ts';
+import { WIZARDS_PROMO_ID, wizardsPromoCards } from './WizardsPromoCatalog.ts';
 
 /** Collation support and render readiness are independent. Never reroll away
  * from cards with missing surfaces or silently substitute another material.
  */
 export function packAvailability(setId: string): { ready: boolean; label: string; detail: string } {
+  if (setId === WIZARDS_PROMO_ID) return { ready: false, label: `Browse ${wizardsPromoCards.length} promos`,
+    detail: 'Choose an individual promo card. These cards were distributed outside booster packs.' };
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
   if (setId === 'gym1') return { ready: true, label: 'Opening available', detail: '132 cards · 1st Edition · 19 registered Cosmos holos and four original booster designs.' };

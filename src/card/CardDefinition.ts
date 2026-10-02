@@ -10,6 +10,7 @@ import { yugiohTopCards } from './YugiohTopCards.ts';
 import { metalCollectibles } from './MetalCollectibles.ts';
 import { baseSetCards } from './BaseSetCards.ts';
 import { jungleDefinitions } from './JungleCards.ts';
+import { wizardsPromoDefinitions } from './WizardsPromoCards.ts';
 
 export type Franchise = 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
 export interface CardLayout {
@@ -111,7 +112,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, {
+export const cards: CardDefinition[] = [...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',

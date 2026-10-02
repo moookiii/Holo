@@ -18,6 +18,7 @@ const pokemonSetAliases: Readonly<Record<string, string>> = {
 /** English Pokémon release order for sets represented in the collection. */
 const pokemonSetReleaseOrder = [
   'Base Set',
+  'Wizards Black Star Promos',
   'Jungle',
   'Fossil',
   'Burger King',

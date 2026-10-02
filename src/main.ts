@@ -206,6 +206,7 @@ async function start() {
         prepare: (definition, seed, definitions, signal, progress) => prepareExactPack(definition, seed, definitions, signal,
           (card, signal) => cpuPreparation.prepare(card, signal), progress),
         open: prepared => openPack(prepared.definition.id, prepared),
+        viewCard: id => setCard(id),
         close: () => { packBrowser = undefined; if (!pack && !packRequest) pointer.setEnabled(true); scheduleWarmup(); },
       });
     } finally { browserLoading = false; if (!packBrowser && !pack) pointer.setEnabled(true); }

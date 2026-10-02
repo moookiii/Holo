@@ -9,6 +9,7 @@ import { boundedMap, pause } from './requests.ts';
 import { localBoosterArt } from './boosterArt.ts';
 import { PRISMATIC_SET_ID, prismaticCard, prismaticSet } from './PrismaticCatalog.ts';
 import { JUNGLE_SET_ID, jungleCard, jungleSet } from './JungleCatalog.ts';
+import { WIZARDS_PROMO_ID, wizardsPromoCard, wizardsPromoSet } from './WizardsPromoCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -65,7 +66,7 @@ export class TcgdexAdapter {
       const serie = await client.serie.get(seriesId);
       if (!serie) throw new Error('This series is unavailable.');
       const sets = serie.sets
-        .filter(s => seriesId !== 'base' || !['Wizards Black Star Promos', 'W Promotional'].includes(s.name))
+        .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'base') {
@@ -78,6 +79,9 @@ export class TcgdexAdapter {
             { id: local.id, name: local.name, logo: local.logo });
           previous = local.id;
         }
+        const promo = sets.findIndex(set => set.id === WIZARDS_PROMO_ID);
+        if (promo >= 0) sets.splice(promo, 1);
+        sets.push({ id: WIZARDS_PROMO_ID, name: wizardsPromoSet.name, logo: undefined });
       }
       if (seriesId === 'gym') {
         const index = sets.findIndex(s => s.id === GYM_HEROES_ID);
@@ -92,6 +96,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === WIZARDS_PROMO_ID) return { ...wizardsPromoSet, series: { ...wizardsPromoSet.series }, cardIds: [...wizardsPromoSet.cardIds], boosters: [] };
       if (id === GYM_CHALLENGE_ID) return { ...gymChallengeSet, series: { ...gymChallengeSet.series }, cardIds: [...gymChallengeSet.cardIds], boosters: gymChallengeSet.boosters.map(b => ({ ...b })) };
       if (id === GYM_HEROES_ID) return { ...gymHeroesSet, series: { ...gymHeroesSet.series }, cardIds: [...gymHeroesSet.cardIds], boosters: gymHeroesSet.boosters.map(b => ({ ...b })) };
       if (id === TEAM_ROCKET_ID) return { ...teamRocketSet, series: { ...teamRocketSet.series }, cardIds: [...teamRocketSet.cardIds], boosters: teamRocketSet.boosters.map(b => ({ ...b })) };
@@ -113,6 +118,8 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === WIZARDS_PROMO_ID) return wizardsPromoCard(id);
+      if (id.startsWith(`${WIZARDS_PROMO_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === GYM_CHALLENGE_ID) {
         if (!id.startsWith(`${GYM_CHALLENGE_ID}-`)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return gymChallengeCard(id);

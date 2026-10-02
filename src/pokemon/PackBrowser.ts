@@ -11,11 +11,13 @@ import { boundedMap, SelectionTask } from './requests';
 import type { CatalogEntry, PokemonBooster, PokemonCard, PokemonSet } from './types';
 import { pokemonDefinition } from './materials';
 import { fallbackWrapper, prepareWrapper, usableCardFront } from './assets';
+import { WIZARDS_PROMO_ID } from './WizardsPromoCatalog';
 
 export interface PackBrowserDependencies {
   definitions: readonly CardDefinition[];
   prepare: (definition: PackDefinition, seed: number, cards: readonly CardDefinition[], signal: AbortSignal, progress: (done: number, total: number) => void) => Promise<PreparedPack>;
   open: (pack: PreparedPack) => Promise<void>;
+  viewCard: (id: string) => Promise<void>;
   close: () => void;
 }
 export class PackBrowser {
@@ -29,7 +31,7 @@ export class PackBrowser {
   private prepared?: PreparedPack;
   private metadata?: PokemonCard[];
   private retry?: () => void;
-  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' = 'type';
+  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' = 'type';
   private disposed = false;
   constructor(private deps: PackBrowserDependencies) {
     this.root.className = 'pokemon-browser'; this.root.setAttribute('aria-label', 'Choose a pack');
@@ -112,9 +114,32 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => this.boosters(set.id), set.logo,
+      sets.sort((a, b) => Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.logo,
         packAvailability(set.id).label));
     }, () => this.sets());
+  }
+  private promoCards() {
+    this.step = 'cards'; this.selection.booster = undefined;
+    this.screen('Wizards Black Star Promos', 'Choose an individual promo card. No booster pack is opened.');
+    void this.run('Loading promo cards…', async request => {
+      const set = await pokemonCatalog.set(WIZARDS_PROMO_ID, request.signal);
+      const cards = await pokemonCatalog.cards(set, request.signal);
+      if (!this.task.current(request)) return;
+      this.selection.set = set;
+      this.status.textContent = `${cards.length} ordinary non-holo promos · choose a card to view.`;
+      for (const card of cards) {
+        const button = this.button(`#${card.localId} · ${card.name}`, () => {
+          if (this.disposed) return;
+          this.root.close();
+          void this.deps.viewCard(`pokemon:${card.id}:normal`).then(() => this.dispose(), error => {
+            if (this.disposed) return;
+            this.root.showModal();
+            this.status.textContent = error instanceof Error ? error.message : 'Unable to open this card.';
+          });
+        }, card.thumbnail, 'Wizards Black Star Promo · Non-holo');
+        button.classList.add('pokemon-promo-card');
+      }
+    }, () => this.promoCards());
   }
   private boosters(id: string) {
     this.step = 'boosters'; this.selection.set = undefined; this.selection.booster = undefined; this.metadata = undefined;
@@ -193,6 +218,7 @@ export class PackBrowser {
   }
   private goBack() {
     switch (this.step) {
+      case 'cards': this.sets(); break;
       case 'boosters': this.sets(); break;
       case 'sets': this.series(); break;
       case 'series': case 'archive': this.types(); break;
