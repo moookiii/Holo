@@ -2,6 +2,15 @@ import { wizardsMoviePromoRecords } from './data/wizards-movie-promos.generated.
 import { wizardsPromoRecords } from './data/wizards-promos.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
 
+const ancientMewPromo: PokemonCard = {
+  id: 'basep-53', localId: '53', name: 'Ancient Mew',
+  setId: 'basep', setName: 'Wizards Black Star Promos',
+  seriesId: 'base', seriesName: 'Base', era: 'base', rarity: 'Promo',
+  category: 'Pokemon', stage: 'Basic', types: ['Psychic'],
+  variants: ['holo'], boosterIds: [],
+  front: '/cards/ancient-mew/front.jpeg', thumbnail: '/cards/ancient-mew/front.jpeg',
+};
+
 export const WIZARDS_PROMO_ID = 'basep';
 export const WIZARDS_PROMO_ASSETS = '/cards/pokemon/wizards-promos';
 
@@ -25,7 +34,7 @@ export const wizardsMoviePromoCards: readonly PokemonCard[] = wizardsMoviePromoR
   thumbnail: `${WIZARDS_PROMO_ASSETS}/${record.front}`,
 }));
 export const wizardsMoviePromoIds = new Set(wizardsMoviePromoCards.map(card => card.id));
-export const wizardsPromoCards: readonly PokemonCard[] = [...wizardsOrdinaryPromoCards, ...wizardsMoviePromoCards]
+export const wizardsPromoCards: readonly PokemonCard[] = [...wizardsOrdinaryPromoCards, ...wizardsMoviePromoCards, ancientMewPromo]
   .sort((a, b) => Number(a.localId) - Number(b.localId));
 
 export const wizardsPromoSet: PokemonSet = {

@@ -131,12 +131,13 @@ export class PackBrowser {
         const button = this.button(`#${card.localId} · ${card.name}`, () => {
           if (this.disposed) return;
           this.root.close();
-          void this.deps.viewCard(`pokemon:${card.id}:normal`).then(() => this.dispose(), error => {
+          const target = card.id === 'basep-53' ? 'ancient-mew' : `pokemon:${card.id}:normal`;
+          void this.deps.viewCard(target).then(() => this.dispose(), error => {
             if (this.disposed) return;
             this.root.showModal();
             this.status.textContent = error instanceof Error ? error.message : 'Unable to open this card.';
           });
-        }, card.thumbnail, Number(card.localId) >= 2 && Number(card.localId) <= 5 ? 'First Movie · Gold stamp' : 'Wizards Black Star Promo · Non-holo');
+        }, card.thumbnail, card.id === 'basep-53' ? 'Ancient Mew · Full foil' : Number(card.localId) >= 2 && Number(card.localId) <= 5 ? 'First Movie · Gold stamp' : 'Wizards Black Star Promo · Non-holo');
         button.classList.add('pokemon-promo-card');
       }
     }, () => this.promoCards());
