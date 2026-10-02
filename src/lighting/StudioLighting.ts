@@ -94,8 +94,8 @@ export class StudioLighting {
       // The gallery spans a wider field than one card. Extend Skim's right
       // endpoint while retaining its existing reach across the left column.
       const gallerySkim = gallery && p === 'Skim';
-      const sweepCenter = Math.max(-55, Math.min(55, this.azimuth + (gallerySkim ? 10 : 0)));
-      const sweepSpan = Math.min(gallerySkim ? 60 : 50, 70 - Math.abs(sweepCenter));
+      const sweepCenter = Math.max(-55, Math.min(55, this.azimuth + (gallerySkim ? 15 : 0)));
+      const sweepSpan = Math.min(gallerySkim ? 65 : 50, 70 - Math.abs(sweepCenter));
       const angle = (p === 'Moving light' || p === 'Skim' ? sweepCenter + sweepMotion * sweepSpan : this.azimuth) * Math.PI / 180;
       const elevation = this.elevation * Math.PI / 180;
       if (p === 'Skim') {
