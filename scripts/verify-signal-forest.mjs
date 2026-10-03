@@ -24,7 +24,7 @@ try {
     page.on('console', m => { if (m.type() === 'error') errors.push(m.text()); });
     await page.goto(`http://127.0.0.1:5173/?backend=${backend}`);
     await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
-    await page.waitForFunction(() => window.__holo.gallery.instance()?.openingReady, null, { timeout: 120000 });
+    await page.waitForFunction(() => window.__holo?.gallery.instance()?.openingReady, null, { timeout: 120000 });
     await page.evaluate(() => window.__holo.gallery.close('nocturne'));
     await page.evaluate(() => window.__holo.setMode('rotate'));
     for (const id of ['signal-arbor', 'recursive-gate']) {
