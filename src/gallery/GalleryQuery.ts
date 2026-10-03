@@ -38,25 +38,39 @@ const pokemonSetReleaseOrder = [
 ];
 const pokemonSetReleaseRank = new Map(pokemonSetReleaseOrder.map((name, index) => [name, index]));
 
-/** TCG set codes and release order for the Yu-Gi-Oh! prints in this collection. */
+/** TCG release dates for the Yu-Gi-Oh! prints in this collection. */
 const yugiohSets = [
-  ['IGAS', 'Ignition Assault'], ['DAMA', 'Dawn of Majesty'],
-  ['MP22', "2022 Tin of the Pharaoh's Gods"], ['BLMR', 'Battles of Legend: Monstrous Revenge'],
-  ['AGOV', 'Age of Overlord'], ['RA01', '25th Anniversary Rarity Collection'],
-  ['RA02', '25th Anniversary Rarity Collection II'], ['INFO', 'The Infinite Forbidden'],
-  ['MP24', '25th Anniversary Tin: Dueling Mirrors'], ['ROTA', 'Rage of the Abyss'],
-  ['RA03', 'Quarter Century Bonanza'], ['DUAD', "Duelist's Advance"],
-  ['MP25', '2025 Mega-Pack Tin'], ['BPRO', 'Burst Protocol'],
-  ['MZMU', 'Maze of Muertos'], ['RA05', 'Rarity Collection 5'],
-  ['BLZD', 'Blazing Dominion'], ['UP01', 'Ultimate Tournament Pack 1'],
-  ['CORI', 'Chaos Origins'],
+  ['LOB', 'Legend of Blue Eyes White Dragon', '2002-03-08'],
+  ['LDK2', 'Legendary Decks II', '2016-10-06'],
+  ['LED6', 'Legendary Duelists: Magical Hero', '2020-01-16'],
+  ['IGAS', 'Ignition Assault', '2020-01-30'],
+  ['DAMA', 'Dawn of Majesty', '2021-08-12'],
+  ['MP22', "2022 Tin of the Pharaoh's Gods", '2022-09-14'],
+  ['BLMR', 'Battles of Legend: Monstrous Revenge', '2023-06-22'],
+  ['AGOV', 'Age of Overlord', '2023-10-19'],
+  ['RA01', '25th Anniversary Rarity Collection', '2023-11-02'],
+  ['RA02', '25th Anniversary Rarity Collection II', '2024-05-23'],
+  ['INFO', 'The Infinite Forbidden', '2024-07-18'],
+  ['MP24', '25th Anniversary Tin: Dueling Mirrors', '2024-09-19'],
+  ['ROTA', 'Rage of the Abyss', '2024-10-10'],
+  ['RA03', 'Quarter Century Bonanza', '2024-11-07'],
+  ['SDWD', 'Structure Deck: Blue-Eyes White Destiny', '2025-02-13'],
+  ['DUAD', "Duelist's Advance", '2025-07-03'],
+  ['MP25', '2025 Mega-Pack Tin', '2025-09-04'],
+  ['BPRO', 'Burst Protocol', '2026-02-05'],
+  ['MZMU', 'Maze of Muertos', '2026-02-19'],
+  ['RA05', 'Rarity Collection 5', '2026-04-09'],
+  ['BLZD', 'Blazing Dominion', '2026-05-07'],
+  ['UP01', 'Ultimate Tournament Pack 1', '2026-06-18'],
+  ['CORI', 'Chaos Origins', '2026-07-02'],
+  ['LAVD', 'Legendary Arc-V Decks', '2026-08-06'],
 ] as const;
-const yugiohSetNames = new Map<string, string>(yugiohSets);
-const yugiohSetReleaseRank = new Map<string, number>(yugiohSets.map(([, name], index) => [name, index]));
+const yugiohSetNames = new Map<string, string>(yugiohSets.map(([code, name]) => [code, name]));
+const yugiohSetReleaseDates = new Map<string, string>(yugiohSets.map(([, name, date]) => [name, date]));
 
 export function gallerySetName(card: CardDefinition) {
   if (card.franchise === 'Yu-Gi-Oh!') {
-    const code = card.number.match(/^([A-Z0-9]+)-EN\d+/)?.[1];
+    const code = card.number.match(/^([A-Z0-9]+)-(?:EN[A-Z0-9]+|\d{3})$/)?.[1];
     return (code && yugiohSetNames.get(code)) || card.set;
   }
   if (card.franchise !== 'Pokémon') return card.set;
@@ -64,8 +78,13 @@ export function gallerySetName(card: CardDefinition) {
 }
 
 export function compareGallerySetNames(a: string, b: string) {
-  const rankA = pokemonSetReleaseRank.get(a) ?? yugiohSetReleaseRank.get(a);
-  const rankB = pokemonSetReleaseRank.get(b) ?? yugiohSetReleaseRank.get(b);
+  const dateA = yugiohSetReleaseDates.get(a), dateB = yugiohSetReleaseDates.get(b);
+  if (dateA || dateB) {
+    if (!dateA) return 1;
+    if (!dateB) return -1;
+    return dateA.localeCompare(dateB) || a.localeCompare(b);
+  }
+  const rankA = pokemonSetReleaseRank.get(a), rankB = pokemonSetReleaseRank.get(b);
   if (rankA !== undefined || rankB !== undefined) {
     if (rankA === undefined) return 1;
     if (rankB === undefined) return -1;

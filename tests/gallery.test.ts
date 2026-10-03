@@ -10,6 +10,8 @@ import { nonHoloCards } from '../src/card/NonHoloCards.ts';
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
 import type { CardDefinition } from '../src/card/CardDefinition.ts';
 import type { PokemonCard, PrintVariant } from '../src/pokemon/types.ts';
+import { lobCards } from '../src/yugioh/sets/LegendOfBlueEyesCatalog.ts';
+import { yugiohDefinition } from '../src/yugioh/materials.ts';
 
 test('10,000 cards remain inside the slot budget over repeated traversal and resizes', () => {
   const residency = new GalleryResidency(48);
@@ -64,14 +66,24 @@ test('authored Ancient Mew appears under the Pokémon Holo finish', () => {
 
 test('Yu-Gi-Oh! prints group by release and sort by set then card number', () => {
   const cards = [
+    { id: 'oldest', title: 'Dragon', franchise: 'Yu-Gi-Oh!', set: 'User supplied · SDK-style Ultra', number: 'LDK2-ENK0L' },
     { id: 'late', title: 'C', franchise: 'Yu-Gi-Oh!', set: 'CORI-EN061 · Starlight Rare', number: 'CORI-EN061' },
     { id: 'second', title: 'B', franchise: 'Yu-Gi-Oh!', set: 'BLZD-EN024 · Ultra Rare', number: 'BLZD-EN024' },
     { id: 'first', title: 'A', franchise: 'Yu-Gi-Oh!', set: 'BLZD-EN010 · Secret Rare', number: 'BLZD-EN010' },
   ] as CardDefinition[];
-  assert.equal(gallerySetName(cards[1]), 'Blazing Dominion');
-  assert.deepEqual(filterCards(cards, { search: '', game: 'Yu-Gi-Oh!' }).map(card => card.id), ['first', 'second', 'late']);
+  assert.equal(gallerySetName(cards[2]), 'Blazing Dominion');
+  assert.deepEqual(filterCards(cards, { search: '', game: 'Yu-Gi-Oh!' }).map(card => card.id), ['oldest', 'first', 'second', 'late']);
   assert.deepEqual(filterCards(cards, { search: '', set: 'Blazing Dominion', rarity: 'Secret Rare' }).map(card => card.id), ['first']);
   assert.deepEqual(filterCards(cards, { search: 'BLZD-EN024' }).map(card => card.id), ['second']);
+});
+
+test('the full LOB first edition catalog appears first in the Yu-Gi-Oh! gallery', () => {
+  const lob = lobCards.map(yugiohDefinition);
+  assert.equal(lob.length, 126);
+  assert.equal(new Set(lob.map(gallerySetName)).size, 1);
+  assert.equal(gallerySetName(lob[0]), 'Legend of Blue Eyes White Dragon');
+  assert.deepEqual(filterCards(lob, { search: '', game: 'Yu-Gi-Oh!', set: 'Legend of Blue Eyes White Dragon' }).map(card => card.number),
+    lob.map(card => card.number));
 });
 
 test('pack copies of Base Set cards resolve to one gallery master per printing', () => {
