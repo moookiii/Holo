@@ -18,7 +18,8 @@ export async function startArtifacts() {
   const stage=host.querySelector<HTMLElement>('.artifact-stage')!;
   const status=host.querySelector<HTMLElement>('.artifact-status')!;
   const loading=document.querySelector<HTMLElement>('#loading')!;
-  loading.querySelector('.loading-label')!.textContent='Assembling artifact…';
+  loading.querySelector('.loading-label')!.textContent='Loading artifact';
+  loading.setAttribute('aria-label','Loading artifact');
   const renderer=new WebGPURenderer({antialias:true,forceWebGL:new URLSearchParams(location.search).get('backend')==='webgl'});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.75)); renderer.toneMapping=NeutralToneMapping;renderer.toneMappingExposure=1.15;stage.append(renderer.domElement);await renderer.init();
   const scene=new Scene();scene.background=new Color(0x000000);
