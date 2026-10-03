@@ -1,7 +1,7 @@
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { If, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3, vec4 } from 'three/tsl';
+import { If, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
@@ -32,19 +32,19 @@ class GalleryLightingModel extends PhysicalLightingModel {
       [width.sub(direction.mul(width.dot(direction))).div(distance), height.sub(direction.mul(height.dot(direction))).div(distance)]);
   }
   private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
-    // Coverage is exclusive per pixel. Select its Secret Rare parameters once,
-    // instead of compiling the full reflection kernel for all three regions.
-    const secretWeights = this.regions.map(r => r.mask.mul(r.secret.x.greaterThan(0).select(1, 0)));
-    const secretMask = secretWeights.reduce<Node<'float'>>((sum, weight) => sum.add(weight), float(0));
-    const select4 = (values: Node<'vec4'>[]) => values.reduce<Node<'vec4'>>((sum, value, index) => sum.add(value.mul(secretWeights[index])), vec4(0)).div(secretMask.max(.0001));
-    const select3 = (values: Node<'vec3'>[]) => values.reduce<Node<'vec3'>>((sum, value, index) => sum.add(value.mul(secretWeights[index])), vec3(0)).div(secretMask.max(.0001));
-    const select1 = (values: Node<'float'>[]) => values.reduce<Node<'float'>>((sum, value, index) => sum.add(value.mul(secretWeights[index])), float(0)).div(secretMask.max(.0001));
     for (const r of this.regions) {
       const [diffraction, axis, structure, , surface, behavior] = r.parameters;
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
-      If(r.secret.x.lessThanEqual(0), () => {
+      If(r.secret.x.greaterThan(0), () => {
+        const reflected = secretRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
+          scale: r.secret.x, cutAngle: r.secret.y, cutWidth: r.secret.z, facetTilt: r.secret.w,
+          aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
+          secondary: diffraction.w, angle: axis.x, crossWidth: axis.y, roughness: r.parameters[3].y,
+        }, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a, r.ink, data.lightColor as Node<'vec3'>));
+      }).Else(() => {
       const radial = radialStructure(float(95), axis.x);
       const direction = mix(radial.direction, gratingDirection(r.field.rg, axis.x), behavior.w).normalize();
       const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize();
@@ -80,23 +80,6 @@ class GalleryLightingModel extends PhysicalLightingModel {
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(contribution.mul(r.mask, data.lightColor as Node<'vec3'>));
       });
     }
-    If(secretMask.greaterThan(0), () => {
-      const secret = select4(this.regions.map(r => r.secret));
-      const diffraction = select4(this.regions.map(r => r.parameters[0]));
-      const axis = select4(this.regions.map(r => r.parameters[1]));
-      const glintSurface = select4(this.regions.map(r => r.glintSurface));
-      const surface = select4(this.regions.map(r => r.parameters[3]));
-      const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
-      const geometric = normalViewGeometry as unknown as Node<'vec3'>;
-      const bitangent = geometric.cross(tangentView).normalize();
-      const reflected = secretRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
-        scale: secret.x, cutAngle: secret.y, cutWidth: secret.z, facetTilt: secret.w,
-        aspect: glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
-        secondary: diffraction.w, angle: axis.x, crossWidth: axis.y, roughness: surface.y,
-      }, footprint);
-      (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(secretMask,
-        select1(this.regions.map(r => r.field.a)), select3(this.regions.map(r => r.ink)), data.lightColor as Node<'vec3'>));
-    });
   }
   override indirectSpecular(builder: NodeBuilder) {
     super.indirectSpecular(builder);
