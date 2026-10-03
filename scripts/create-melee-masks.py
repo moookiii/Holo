@@ -19,7 +19,8 @@ for box in [(216,130,1015,345),(470,367,808,417),(133,809,353,975),
 mask = Image.new('L', source.size)
 for y in range(source.height):
     for x in range(source.width):
-        if not regions.getpixel((x,y)) or (x-618)**2+(y-628)**2 > 587**2:
+        # Stop inside the printed label: the exposed outer silver lip is not foil.
+        if not regions.getpixel((x,y)) or (x-618)**2+(y-628)**2 > 575**2:
             continue
         r,g,b = source.getpixel((x,y))
         # Antialias coverage follows ink pixels, never the rectangular ROI.
