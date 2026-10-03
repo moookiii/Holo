@@ -48,7 +48,8 @@ function filmFields(surface: FilmSurface) {
 }
 
 /** Printed ink and metalized foil beneath a separate dielectric film lobe. */
-export function createWrapperMaterial(print: Texture, inkMask: Texture, surface: FilmSurface, printedSeals = false) {
+export function createWrapperMaterial(print: Texture, inkMask: Texture, surface: FilmSurface, printedSeals = false, exteriorFinish?: 'satin-print') {
+  const satin = exteriorFinish === 'satin-print';
   const material = new MeshPhysicalNodeMaterial({ side: DoubleSide, clearcoat: 1,
     clearcoatRoughness: .21, roughness: .34, metalness: 0, envMapIntensity: .7 });
   const f = filmFields(surface);
@@ -57,17 +58,19 @@ export function createWrapperMaterial(print: Texture, inkMask: Texture, surface:
   // Product photography already includes the crimp print. Keep its color on
   // the folded seals while the manufactured relief still shapes reflections.
   material.colorNode = printedSeals ? texture(print).rgb : mix(texture(print).rgb, vec3(.55, .58, .61), f.seal.mul(.85));
-  material.metalnessNode = foil.mul(.94);
-  material.roughnessNode = mix(float(.29), float(.43), ink)
+  // Opaque printed exteriors scatter light as dielectric ink, including white
+  // crimp seals. Aluminum belongs to the lining, not the white exterior print.
+  material.metalnessNode = satin ? float(0) : foil.mul(.94);
+  material.roughnessNode = mix(float(satin ? .54 : .29), float(satin ? .58 : .43), ink)
     .add(f.seal.mul(.09), f.broad.mul(.025), f.fine.mul(.018), f.resolved.oneMinus().mul(.008));
-  material.clearcoatNode = mix(float(.88), float(.55), f.seal);
-  material.clearcoatRoughnessNode = float(.205).add(f.seal.mul(.10), f.broad.mul(.018), f.fine.mul(.009));
+  material.clearcoatNode = mix(float(satin ? .18 : .88), float(satin ? .10 : .55), f.seal);
+  material.clearcoatRoughnessNode = float(satin ? .48 : .205).add(f.seal.mul(.10), f.broad.mul(.018), f.fine.mul(.009));
   // Modest machine-direction stretch in the foil lobe; ink stays isotropic.
   // The tangent follows deformed positions and manufacturing UV derivatives.
-  material.anisotropyNode = vec2(foil.mul(f.seal.mul(.12).add(.24)), 0);
+  material.anisotropyNode = satin ? vec2(0) : vec2(foil.mul(f.seal.mul(.12).add(.24)), 0);
   material.normalNode = surfaceNormal(surface.normal, f.substrateHeight);
   material.clearcoatNormalNode = surfaceNormal(surface.normal, f.coatingHeight);
-  material.name = 'Printed metalized film';
+  material.name = satin ? 'Satin printed wrapper' : 'Printed metalized film';
   return material;
 }
 

@@ -27,7 +27,7 @@ export function resolveMagicProduct(productId: string, seed: number) {
   const pack: PackDefinition = { id: product.id, name: product.name, category: 'Magic: The Gathering', seed, cardCount: product.packSize,
     magic: resolved, order: 'fixed', presentationOrder: resolved.presentationOrder,
     contents: resolved.pulls.map(pull => Object.freeze({ cardId: pull.cardId, rarity: 'standard' as const })),
-    wrapper: { front: `${root}/front.png`, back: `${root}/back.png`, ink: `${root}/ink.png`, backInk: `${root}/ink.png`, width: 7.5, height: 13.4, depth: 1.02, printedSeals: true } };
+    wrapper: { front: `${root}/front.png`, back: `${root}/back.png`, ink: `${root}/ink.png`, backInk: `${root}/ink.png`, width: 7.5, height: 13.4, depth: 1.02, printedSeals: true, exteriorFinish: 'satin-print' } };
   Object.freeze(pack.contents); Object.freeze(pack.wrapper); Object.freeze(pack);
   return { pack, definitions, resolved };
 }

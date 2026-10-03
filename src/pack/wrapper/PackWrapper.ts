@@ -43,8 +43,8 @@ export class PackWrapper {
       definition.wrapper.backInk ? assets.load(definition.wrapper.backInk, false) : assets.white,
     ]);
     const surface = { width: definition.wrapper.width, height: definition.wrapper.height, normal: wrapper.deformation.normal };
-    const frontMaterial = createWrapperMaterial(front, ink, surface, definition.wrapper.printedSeals),
-      backMaterial = createWrapperMaterial(back, backInk, surface, definition.wrapper.printedSeals), inside = createLiningMaterial(surface);
+    const frontMaterial = createWrapperMaterial(front, ink, surface, definition.wrapper.printedSeals, definition.wrapper.exteriorFinish),
+      backMaterial = createWrapperMaterial(back, backInk, surface, definition.wrapper.printedSeals, definition.wrapper.exteriorFinish), inside = createLiningMaterial(surface);
     wrapper.materials = [frontMaterial, backMaterial, inside];
     [frontMaterial, backMaterial, inside].forEach(material => wrapper.deformation.apply(material));
     const key = JSON.stringify([definition.wrapper.width, definition.wrapper.height, definition.wrapper.depth]);
