@@ -71,7 +71,13 @@ export interface CatalogStorage { getItem(key: string): string | null; setItem(k
 /** Injected boundaries make offline, abort, corrupt-cache and provider tests network-free. */
 export class YugiohCatalogProvider {
   private memory?: Snapshot;
-  constructor(private fetcher: typeof fetch = fetch, private storage?: CatalogStorage, private bundledUrl = '/catalog/yugioh/sets.json', private now = () => Date.now()) {}
+  private fetcher: typeof fetch;
+  private storage?: CatalogStorage;
+  private bundledUrl: string;
+  private now: () => number;
+  constructor(fetcher: typeof fetch = fetch, storage?: CatalogStorage, bundledUrl = '/catalog/yugioh/sets.json', now = () => Date.now()) {
+    this.fetcher = fetcher; this.storage = storage; this.bundledUrl = bundledUrl; this.now = now;
+  }
   private snapshot(value: unknown): Snapshot | undefined {
     if (!value || typeof value !== 'object') return;
     const s = value as Snapshot;
