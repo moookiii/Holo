@@ -134,7 +134,7 @@ export class CardFactory {
       let reverse: Material = createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, definition.seed);
       if (prepared.backMaps && definition.backProfile) {
         const source = prepared.backMaps, packed = source.packed!;
-        const maps: CardMaterialMaps = { ...source, secondaryDirection: undefined, stampDirection: undefined, coverage: bytesTexture(packed.coverage,packed.width,packed.height), surface: bytesTexture(packed.surface,packed.width,packed.height), pattern: bytesTexture(packed.pattern,packed.width,packed.height), normal: this.assets.flatNormal, direction: source.direction ? imageTexture(source.direction,false) : undefined };
+        const maps: CardMaterialMaps = { ...source, secondaryDirection: undefined, stampDirection: undefined, coverage: bytesTexture(packed.coverage,packed.width,packed.height), surface: bytesTexture(packed.surface,packed.width,packed.height), pattern: bytesTexture(packed.pattern,packed.width,packed.height), normal: source.normal ? imageTexture(source.normal, false) : this.assets.flatNormal, direction: source.direction ? imageTexture(source.direction,false) : undefined };
         const backProfile = getProfile(definition.backProfile);
         reverse.dispose();
         const foil = new HolographicMaterial(back,maps.coverage,maps.surface,definition.seed,backProfile,undefined,maps, undefined, false, physical);

@@ -73,7 +73,20 @@ try {
       // Reselecting the native material must keep the same authored normal response.
       await page.evaluate(() => window.__holo.setProfile('signal-forest-etched'));
       assert.equal(await page.evaluate(() => window.__holo.material().surfaceControls.embossStrength.value), 0);
-      report.push({ backend, id, material, errors: [...errors] });
+      // Warm the CPU cache, then enter through the real gallery focus path.
+      // hasNormal alone is insufficient: the GPU texture must not be a flat fallback.
+      const cachedNormalSizes = await page.evaluate(async id => {
+        const h = window.__holo;
+        await h.cpuPreparation.prepare(h.cards.find(c => c.id === id), new AbortController().signal);
+        await h.gallery.close(id);
+        const mesh = h.scene.getObjectByName(`card:${id}`);
+        return mesh.material.slice(0, 2).map(m => [m.normalTextureNode.value.image.width, m.normalTextureNode.value.image.height]);
+      }, id);
+      assert.deepEqual(cachedNormalSizes, [[1536, 3072], [1536, 3072]]);
+      await page.evaluate(() => { window.__holo.lighting.setPreset('Strip'); window.__holo.pose(192, -9); window.__holo.zoom(.52); });
+      await page.waitForTimeout(220);
+      await page.screenshot({ path: join(out, `${backend}-${id}-cached-back-detail.png`) });
+      report.push({ backend, id, material, cachedNormalSizes, errors: [...errors] });
       console.log(`${backend}: ${id} front/back fields, catalog, three lights and five views passed`);
     }
     assert.deepEqual(errors, []);

@@ -65,3 +65,7 @@ emboss / sparkle settings. It captures front, back, oblique, sweep, and close de
 views under Studio, Strip, and Low key lighting in `artifacts/signal-forest/live/`.
 Colored registration overlays and map contact sheets are in `artifacts/signal-forest/maps/`.
 These visual artifacts are intentionally ignored by Git.
+
+The cached GPU realization path now uploads an authored back normal rather than
+substituting the flat fallback. The browser check explicitly warms CPU preparation,
+enters through gallery focus, and verifies full-size normal textures on both faces.
