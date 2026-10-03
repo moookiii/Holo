@@ -293,7 +293,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       : procedural === 'artwork' ? inside(layout.artwork) : float(0);
     const artCoverage = mask.r.max(extended).max(genericCoverage);
     const primary = mix(artCoverage, this.hologramTextureNode.g, this.optics.imageHologram).mul(this.optics.enabled, secondary.oneMinus(), stamp.oneMinus());
-    const metal = mask.b.max(stampMask.mul(this.stampOptics.enabled.oneMinus()));
+    const metal = mask.b.mul(secondary.oneMinus()).max(stampMask.mul(this.stampOptics.enabled.oneMinus()));
     this.regions = [
       { coverage: primary, optics: this.optics, seed, field: this.fieldTextureNode, details: this.reliefTextureNode, pattern: this.patternTextureNode.r, followsAuthoredSurface: !!cardMaps?.direction && cardMaps.hasNormal },
       { coverage: secondary, optics: this.secondaryOptics, seed: seed + 8191, field: this.secondaryFieldTextureNode, details: this.secondaryReliefTextureNode, pattern: this.patternTextureNode.g, followsAuthoredSurface: !!cardMaps?.secondaryDirection && cardMaps.hasNormal },
