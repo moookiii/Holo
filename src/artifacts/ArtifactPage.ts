@@ -37,23 +37,28 @@ export async function startArtifacts() {
   const options=host.querySelector<HTMLElement>('.artifact-options')!;
   const picker=host.querySelector<HTMLSelectElement>('#artifact-picker')!;
   for(const item of artifacts)picker.add(new Option(item.name,item.id));
-  function lightPosition(){const a=lightAzimuth*Math.PI/180,e=lightElevation*Math.PI/180;key.position.set(Math.sin(a)*7*Math.cos(e),Math.sin(e)*7,Math.cos(a)*7*Math.cos(e));}
+  let broadLight=false;
+  function syncMaterialLight(){current?.updateLighting?.(key.position,key.intensity,broadLight);}
+  function lightPosition(){const a=lightAzimuth*Math.PI/180,e=lightElevation*Math.PI/180;key.position.set(Math.sin(a)*7*Math.cos(e),Math.sin(e)*7,Math.cos(a)*7*Math.cos(e));syncMaterialLight();}
   function preset(name:string){
+    broadLight=name==='Soft';
     if(name==='Soft'){key.color.set('#e4eeff');key.intensity=2;rim.intensity=1;fill.intensity=2;scene.environmentIntensity=.8;}
     else if(name==='Rim'){key.color.set('#fff0d2');key.intensity=1.2;rim.intensity=6;fill.intensity=.5;scene.environmentIntensity=.3;}
     else {key.color.set('#ffedce');key.intensity=3.5;rim.intensity=3;fill.intensity=1.4;scene.environmentIntensity=.55;}
+    syncMaterialLight();
   }
   function resetCamera(){camera.position.fromArray(definition.camera.position);controls.target.fromArray(definition.camera.target);if(stage.clientWidth/stage.clientHeight<1)camera.position.sub(controls.target).multiplyScalar(1.4).add(controls.target);controls.update();}
   function selectControl(label:string,values:string[],selected:string,change:(value:string)=>void){const wrap=document.createElement('label');wrap.className='artifact-field';const title=document.createElement('span');title.textContent=label;const select=document.createElement('select');select.setAttribute('aria-label',label);for(const value of values)select.add(new Option(value[0].toUpperCase()+value.slice(1),value));select.value=selected;select.onchange=()=>change(select.value);wrap.append(title,select);options.append(wrap);}
   function slider(label:string,min:number,max:number,value:number,change:(v:number)=>void){const wrap=document.createElement('label');wrap.className='artifact-field';const title=document.createElement('span');title.textContent=label;const output=document.createElement('output');output.textContent=String(value);const input=document.createElement('input');input.type='range';input.min=String(min);input.max=String(max);input.value=String(value);input.setAttribute('aria-label',label);input.oninput=()=>{output.value=input.value;change(Number(input.value));};wrap.append(title,output,input);options.append(wrap);}
   async function select(id:string){
-    request?.abort();const pending=new AbortController();request=pending;current?.dispose();current=undefined;origins.clear();explosion=0;options.replaceChildren();status.textContent='Assembling artifact…';
+    request?.abort();const pending=new AbortController();request=pending;current?.dispose();current=undefined;delete host.dataset.ready;origins.clear();explosion=0;options.replaceChildren();status.textContent='Assembling artifact…';
     definition=artifacts.find(a=>a.id===id)!;
     host.querySelector('h1')!.textContent=definition.name;host.querySelector('.artifact-eyebrow')!.textContent=definition.subtitle;host.querySelector('.artifact-description')!.textContent=definition.description;host.querySelector('img')!.src=definition.thumbnail;
     const cap=definition.capabilities;controls.enableRotate=cap.rotate;controls.enableZoom=cap.zoom;host.querySelector<HTMLButtonElement>('#artifact-fullscreen')!.hidden=!cap.fullscreen;
     resetCamera();preset(definition.lighting);lightAzimuth=-35;lightElevation=45;lightPosition();
     try {
       const loaded=await definition.load(pending.signal);if(disposed||pending.signal.aborted){loaded.dispose();return;}current=loaded;scene.add(loaded.root);
+      syncMaterialLight();
       for(const [id,group] of current.groups)origins.set(id,group.position.clone());
       if(cap.inspection){current.inspect(definition.inspection[0]);selectControl('Shell',definition.inspection,definition.inspection[0],v=>current?.inspect(v as Inspection));}
       if(cap.exploded){slider('Exploded view',0,100,0,v=>{explosion=v/100;});const note=document.createElement('p');note.className='artifact-control-note';note.textContent=`${definition.explodedGroups.length} assemblies · separate to inspect`;options.append(note);}

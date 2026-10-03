@@ -25,4 +25,12 @@ export const artifacts: ArtifactDefinition[] = [{
     { id: 'legs', label: 'Leg assemblies', offset: [.15, -1.15, .15] },
   ],
   load: async signal => { const { buildBird } = await import('./RoboticBird'); signal.throwIfAborted(); return buildBird(); },
+}, {
+  id: 'melee-disc', name: 'Super Smash Bros. Melee', subtitle: '02 / Nintendo GameCube · Optical disc',
+  description: 'Printed ink, clear polycarbonate and a concentric optical data layer.',
+  thumbnail: `${import.meta.env?.BASE_URL ?? '/'}artifacts/melee/front.png`,
+  camera: { position: [0, .15, 10.8], target: [0, 0, 0] }, lighting: 'Studio',
+  capabilities: { rotate: true, zoom: true, lighting: true, movableLight: true, fullscreen: true, exploded: false, inspection: false },
+  inspection: [], explodedGroups: [],
+  load: async signal => { const { loadMeleeDisc } = await import('./MeleeDisc'); return loadMeleeDisc(signal); },
 }];
