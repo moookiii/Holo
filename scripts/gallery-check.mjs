@@ -32,6 +32,8 @@ try {
   await page.goto(`http://127.0.0.1:5173/${process.env.GALLERY_QUERY || ''}`, { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
   await page.waitForFunction(() => window.__holo.gallery.stats()?.active, null, { timeout: 120000 });
+  assert.equal(await page.evaluate(() => window.__holo.scene.children.some(object => object.name.startsWith('card:'))), false,
+    'Direct Gallery startup should not create a full-quality card first');
   await page.waitForFunction(() => document.querySelector('#loading')?.hidden && window.__holo.gallery.instance()?.openingReady, null, { timeout: 120000 });
   await page.waitForFunction(() => window.__holo.gallery.stats()?.visible >= 8, null, { timeout: 60000 });
   await page.waitForTimeout(1500);

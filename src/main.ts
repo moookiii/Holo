@@ -139,10 +139,11 @@ async function start() {
     packRequest?.abort(); packRequest = undefined;
     pack?.dispose(); pack = undefined;
     factory.setBackgroundPaused(false);
-    card.visible = true; pointer.setEnabled(true); viewerUI.inert = false;
+    if (card) card.visible = true;
+    pointer.setEnabled(!!card); viewerUI.inert = false;
     document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
     if (hadPack) packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
-    scheduleWarmup();
+    if (card) scheduleWarmup(); else void openGallery().catch(showError);
     document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
   cancelPackLoad.onclick = closePack;
@@ -150,7 +151,7 @@ async function start() {
     pack?.dispose(instance); pack = undefined; packRequest = undefined;
     factory.setBackgroundPaused(false);
     ++loadGeneration; ++profileGeneration;
-    activeCard.dispose(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
+    activeCard?.dispose(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
     motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
     activeProfile = definition.profile; requestedCardId = definition.id; ui?.selectCard(definition.id); ui?.selectProfile(activeProfile);
     pointer.setEnabled(true); viewerUI.inert = false; document.body.classList.remove('pack-mode');
@@ -191,7 +192,7 @@ async function start() {
         ui?.refreshCards();
       }
       packMetrics.loadCompleteMs = performance.now() - clickStarted;
-      pack = candidate; card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
+      pack = candidate; if (card) card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
     } catch (error) {
       if (request.signal.aborted) return;
       closePack(); throw error;
@@ -353,7 +354,8 @@ async function start() {
       }
       ++loadGeneration; ++profileGeneration;
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
-      card.visible = false; pointer.setEnabled(false); viewerUI.inert = true;
+      if (card) card.visible = false;
+      pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
       while (!disposed && gallery.active && !gallery.openingReady) {
         await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
@@ -363,7 +365,8 @@ async function start() {
   const browsePacksFromGallery = async () => {
     if (!gallery?.active || packBrowser || browserLoading) return;
     gallery.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false;
-    card.visible = true; returnToGalleryFromPackBrowser = true;
+    if (card) card.visible = true;
+    returnToGalleryFromPackBrowser = true;
     try { await browsePacks(); }
     catch (error) {
       returnToGalleryFromPackBrowser = false;
@@ -371,7 +374,7 @@ async function start() {
       throw error;
     }
   };
-  await setCard(definition.id);
+  if (new URLSearchParams(location.search).has('lab')) await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
     flip: () => motion.requestFlip(), reset: resetCard,
     card: id => { void setCard(id).catch(showError); }, profile: id => { void setProfile(id).catch(showError); }, light: preset => lighting.setPreset(preset), lighting,
@@ -401,7 +404,7 @@ async function start() {
       lighting.update(dt, true); gallery.update(dt, container.clientWidth, container.clientHeight);
     }
     else if (pack) pack.update(dt);
-    else {
+    else if (card) {
       lighting.update(dt);
       motion.update(dt); card.quaternion.copy(motion.orientation);
       if (resetPositionElapsed >= 0) {
@@ -412,8 +415,9 @@ async function start() {
       camera.position.z = framingDistance(definition.dimensions, motion.orientation, camera.aspect, camera.fov, container.clientHeight) * motion.zoom;
       camera.position.y = -0.06;
     }
+    else lighting.update(dt);
     pipeline.render();
-    if (startupTiming.firstCardVisible === undefined) {
+    if (startupTiming.firstCardVisible === undefined && (gallery?.active || card?.visible)) {
       startupMark('firstCardVisible');
       requestAnimationFrame(() => { startupMark('firstCardInteractive'); scheduleWarmup(); });
     }
