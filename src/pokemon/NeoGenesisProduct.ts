@@ -2,6 +2,9 @@ import type { PokemonRecipe } from './recipes.ts';
 
 export const neoGenesisWrapper = {
   back: 'neo1-back.png',
+  // The back scan is taller than the wrapper fronts. Trim equal amounts from
+  // the end crimps so its image fills the full width of every pack design.
+  backBounds: [0, 31/1115, 1, 1084/1115] as [number, number, number, number],
   designs: [
     { id: 'typhlosion', name: 'Typhlosion', front: 'neo1-typhlosion.jpg' },
     { id: 'lugia', name: 'Lugia', front: 'neo1-lugia.webp' },
