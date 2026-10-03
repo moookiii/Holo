@@ -43,13 +43,15 @@ export class Gallery {
   active = false;
   openingReady = false;
   loading = false;
-  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; open: (id: string) => Promise<void>; close: () => Promise<void> }) {
+  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
     this.graphics = new GalleryRenderer(options.scene);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
     const header = document.createElement('header'); header.className = 'gallery-header';
     const title = document.createElement('h1'); title.textContent = 'Collection';
     const close = document.createElement('button'); close.textContent = 'Back to viewer'; close.onclick = () => { void this.transition(options.close); };
-    header.append(title, this.count, close);
+    const pack = document.createElement('button'); pack.textContent = 'Open a pack'; pack.onclick = () => { if (!this.loading) void options.pack(); };
+    const actions = document.createElement('div'); actions.className = 'gallery-header-actions'; actions.append(close, pack);
+    header.append(title, this.count, actions);
     const filters = document.createElement('div'); filters.className = 'gallery-filters';
     this.search.type = 'search'; this.search.placeholder = 'Search cards'; this.search.setAttribute('aria-label', 'Search gallery cards');
     this.search.oninput = () => { this.query.search = this.search.value; this.applyFilters(); }; filters.append(this.search);

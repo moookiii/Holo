@@ -8,7 +8,7 @@
 .gallery-header { display: flex; align-items: center; gap: 22px; padding: 25px 40px 16px; background: #080808; }
 .gallery h1 { font-size: 20px; font-weight: 450; letter-spacing: -.025em; margin: 0; }
 .gallery-header p { color: #777; font-size: 12px; margin: 0; }
-.gallery-header button { margin-left: auto; }
+.gallery-header-actions { display: flex; gap: 8px; margin-left: auto; }
 .gallery button { font-size: 12px; }
 .gallery-header button, .gallery-filters > button, .gallery-light button { padding: 9px 12px; border: 1px solid #302a20; border-radius: 6px; color: #c8ad73; background: #101010; }
 .gallery-filters { display: flex; align-items: end; flex-wrap: wrap; gap: 12px; padding: 0 40px 16px; background: #080808; }

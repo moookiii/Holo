@@ -98,6 +98,7 @@ async function start() {
   let selectedPack: PackDefinition = getPack('archive-01');
   let packBrowser: PackBrowser | undefined;
   let browserLoading = false;
+  let returnToGalleryFromPackBrowser = false;
   let gallery: Gallery | undefined;
   let galleryOpening = false;
   let galleryFocusFactory: CardFactory | undefined;
@@ -206,8 +207,18 @@ async function start() {
         prepare: (definition, seed, definitions, signal, progress) => prepareExactPack(definition, seed, definitions, signal,
           (card, signal) => cpuPreparation.prepare(card, signal), progress),
         open: prepared => openPack(prepared.definition.id, prepared),
-        viewCard: id => setCard(id),
-        close: () => { packBrowser = undefined; if (!pack && !packRequest) pointer.setEnabled(true); scheduleWarmup(); },
+        viewCard: id => { returnToGalleryFromPackBrowser = false; return setCard(id); },
+        close: () => {
+          packBrowser = undefined;
+          if (returnToGalleryFromPackBrowser && !pack && !packRequest) {
+            returnToGalleryFromPackBrowser = false;
+            void openGallery().catch(showError);
+          } else {
+            returnToGalleryFromPackBrowser = false;
+            if (!pack && !packRequest) pointer.setEnabled(true);
+            scheduleWarmup();
+          }
+        },
       });
     } finally { browserLoading = false; if (!packBrowser && !pack) pointer.setEnabled(true); }
   };
@@ -338,7 +349,7 @@ async function start() {
       if (!gallery) {
         const { Gallery } = await import('./gallery/Gallery');
         if (disposed) return;
-        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, open: leaveGallery, close: () => leaveGallery() });
+        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, open: leaveGallery, close: () => leaveGallery(), pack: browsePacksFromGallery });
       }
       ++loadGeneration; ++profileGeneration;
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
@@ -348,6 +359,17 @@ async function start() {
         await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
       }
     } finally { galleryOpening = false; setLoading(false); }
+  };
+  const browsePacksFromGallery = async () => {
+    if (!gallery?.active || packBrowser || browserLoading) return;
+    gallery.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false;
+    card.visible = true; returnToGalleryFromPackBrowser = true;
+    try { await browsePacks(); }
+    catch (error) {
+      returnToGalleryFromPackBrowser = false;
+      await openGallery();
+      throw error;
+    }
   };
   await setCard(definition.id);
   ui = createUI(document.querySelector('#ui')!, cards, profiles, {
