@@ -19,7 +19,7 @@ export class SpotlightPointer {
   }
 
   update(card?: Object3D) {
-    if (!this.hasCursor || !this.light.visible) return;
+    if (!this.hasCursor || this.light.intensity <= 0) return;
     const rect = this.element.getBoundingClientRect();
     if (!rect.width || !rect.height) return;
     this.camera.updateMatrixWorld();

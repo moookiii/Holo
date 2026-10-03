@@ -30,7 +30,6 @@ export class StudioLighting {
     this.key.lookAt(0, 0, 0);
     this.spot.position.set(0, 2, 12);
     scene.add(this.key, this.strip, this.back, this.fill, this.spot, this.spot.target);
-    this.spot.visible = false;
     this.ring.forEach((segment, index) => {
       const angle = index * Math.PI / 3;
       segment.position.set(Math.cos(angle) * 2.15, Math.sin(angle) * 2.15, 13);
@@ -85,7 +84,8 @@ export class StudioLighting {
     this.key.height = p === 'Soft' ? 11 : p === 'Skim' ? 8 : 2.5;
     this.key.position.set(-7, 9, 12); this.strip.position.set(9, 1, 8);
     this.back.intensity = 1.1;
-    // Keep the light list stable: intensity is a uniform, visibility rebuilds card pipelines.
+    // Keep the spotlight in the light graph even when off. Its intensity is a
+    // uniform; changing visibility would compile the foil shaders on first use.
     // Smooth reversals without lingering at the dim ends of any animated sweep.
     const sweepMotion = Math.asin(.97 * Math.sin(this.phase * .65)) / Math.asin(.97);
     if (p === 'Moving light' || p === 'Skim' || p === 'Spotlight') {
@@ -123,7 +123,6 @@ export class StudioLighting {
     this.key.intensity *= this.intensity; this.strip.intensity *= this.intensity;
     this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
     this.scene.environmentIntensity *= this.intensity; this.spot.intensity = p === 'Spotlight' ? 650 * this.intensity : 0;
-    this.spot.visible = p === 'Spotlight';
     this.ring.forEach(segment => { segment.visible = p === 'Ring light'; segment.intensity = p === 'Ring light' ? 14 * this.intensity : 0; });
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
     inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
