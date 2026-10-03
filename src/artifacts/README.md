@@ -9,6 +9,16 @@ Open `/artifacts` locally, or `/Holo/artifacts/` on GitHub Pages. The build emit
 
 The bird is an artistic mechanical interpretation of `public/artifacts/robotic-bird-reference.png`, not a forensic reconstruction. No photographic brightness is used as geometry.
 
+## Melee optical disc
+
+`MeleeDisc.ts` loads only when selected. The two PNG scans in `public/artifacts/melee/` are byte-identical copies of the supplied images. Each face has its own pixel-space registration, with an opposing back orientation. The model uses an 80:15:1.2 diameter/aperture/thickness ratio, closed beveled outer and hub profiles, and an actual open center. Molded-ring depth and the front ink's optical composition are estimates from the scans, which do not establish relief or material measurements.
+
+`scripts/create-melee-masks.py` authors a source-resolution PNG ink mask and an ignored colored review overlay. Coverage follows individual light-colored ink pixels within identified emblems and inscriptions. The exposed outer lip, clear hub, red background and black print are excluded. The front uses restrained masked thin-film iridescence; the reverse uses a separate concentric reflection-grating response, with overlapping visible wavelengths driven by camera and movable-key-light geometry. The reference's spectral chroma is neutralized only in the data annulus at shading time, retaining luminance detail and untouched inner-ring lettering. No timer, glitter, relief noise or procedural artwork is used.
+
+The existing Studio/Soft/Rim presets remain shared. Soft reduces and broadens the disc's key-light diffraction. For a deliberate back inspection, orbit halfway around and move Light azimuth to about 150°, elevation 25°, then sweep the azimuth. This is an analytical optical approximation, not a measured spectral BRDF. Physical materials continue to receive the full shared lighting/environment.
+
+Validation: `node --experimental-strip-types --test tests/melee-disc.test.ts` covers the aperture, scan registration and complete idempotent disposal. `node scripts/check-melee.mjs` uses a dev server at port 5182 (override `ARTIFACT_URL`) to capture front/back, moving light, tilt, all presets, thin edge, zoom, mobile framing, fullscreen and reset. It switches artifacts six times and checks that GPU geometry/texture counts stabilize. Test-only response instrumentation exposes renderer counters without adding production globals. Review images and logs go to ignored `artifacts/melee-review/`.
+
 Validation: `node --experimental-strip-types --test tests/artifacts.test.ts`. For browser capture and interaction assertions, run `node scripts/check-artifacts.mjs` against a root-base preview at port 5174, or set `ARTIFACT_URL` to the desired viewer URL. Screenshots go to ignored `artifacts/bird-review/`.
 
 ## Refinement validation

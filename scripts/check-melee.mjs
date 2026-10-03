@@ -10,6 +10,13 @@ const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console'
 const out='artifacts/melee-review';mkdirSync(out,{recursive:true});
 const ready=()=>page.waitForSelector('[data-ready="true"]',{timeout:120000});
 const shot=async name=>{await page.waitForTimeout(750);await page.screenshot({path:`${out}/${name}.png`});};
+// Test-only instrumentation of the dev response; no debug globals ship in Holo.
+await page.route('**/src/artifacts/ArtifactPage.ts*',async route=>{
+  const response=await route.fetch(),source=await response.text();
+  const instrumented=source.replace('await renderer.init();','await renderer.init(); window.__artifactRenderer = renderer;');
+  assert.notEqual(source,instrumented,'Renderer instrumentation must attach');
+  await route.fulfill({response,body:instrumented});
+});
 try {
   await page.goto(process.env.ARTIFACT_URL || 'http://127.0.0.1:5182/artifacts');await ready();
   await page.getByLabel('Choose artifact',{exact:true}).selectOption('melee-disc');await ready();
@@ -30,12 +37,19 @@ try {
   await page.getByRole('button',{name:'Fullscreen ⛶',exact:true}).click();
   assert.equal(await page.evaluate(()=>!!document.fullscreenElement),true);
   await page.getByRole('button',{name:'Exit fullscreen ⛶',exact:true}).click();
+  const memory=[];
   for(let i=0;i<3;i++)for(const id of ['robotic-bird','melee-disc']){
     await page.getByLabel('Choose artifact',{exact:true}).selectOption(id);await ready();
+    await page.waitForTimeout(150);
+    memory.push({id,...await page.evaluate(()=>({...window.__artifactRenderer.info.memory}))});
+  }
+  for(const id of ['robotic-bird','melee-disc']){
+    const samples=memory.filter(s=>s.id===id);
+    assert.deepEqual(samples[2],samples[1],`${id}: GPU resource counts must stabilize after switching`);
   }
   await page.getByRole('button',{name:'Reset view'}).click();await ready();
   assert.equal(await page.getByLabel('Light azimuth',{exact:true}).inputValue(),'-35');
   await page.setViewportSize({width:390,height:844});await page.getByRole('button',{name:'Reset view'}).click();await ready();await shot('mobile');
-  writeFileSync(`${out}/browser-report.json`,JSON.stringify({errors,artifact:await page.locator('h1').innerText(),switches:6},null,2));
+  writeFileSync(`${out}/browser-report.json`,JSON.stringify({errors,artifact:await page.locator('h1').innerText(),switches:6,memory},null,2));
   assert.deepEqual(errors,[]);console.log('Melee interactions and six artifact switches passed without browser errors.');
 } catch(error){console.log(errors);await shot('failure');throw error;} finally {await browser.close();}
