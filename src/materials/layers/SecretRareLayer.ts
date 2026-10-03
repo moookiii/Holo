@@ -22,7 +22,7 @@ export function secretRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const along = vec2(cos(u.cutAngle), sin(u.cutAngle));
   const across = vec2(along.y.negate(), along.x);
   const x = p.dot(across), y = p.dot(along);
-  const row = x.mul(u.scale), run = y.mul(u.scale).div(1.8);
+  const row = x.mul(u.scale), run = y.mul(u.scale).div(1.4);
   const rowIndex = row.floor();
   const stagger = rowIndex.mod(2).mul(.5);
   const brick = vec2(run.add(stagger).floor(), rowIndex);
