@@ -7,3 +7,5 @@ Thirteen registered PNG fields separate primary foil, opaque subject protection,
 The original die consists of curved perspective flutes converging near the corridor opening. Height comes exclusively from analytic geometry. Print pigment modulates foil coverage only. Normals are derived before material clipping and fade to flat before the protected silhouette. The uniform grating follows those authored normals. Procedural engraving, extra emboss, facet noise and sparkle are disabled. Spacing and depth are design choices, not measured physical relief.
 
 Regenerate with `python scripts/create-phantom-corridor.py [source-jpg]` (Pillow, numpy, scipy). Omitting the source uses the retained front. Browser review captures are in `artifacts/phantom-corridor-final`.
+
+The main character cutout is the user-supplied `front - Copy.jpg`, retained as lossless grayscale `subject-cutout.png`. Its decoded values and edge feathering are preserved without resizing or thresholding. Regeneration uses this PNG; all optical settings and the original front remain unchanged.

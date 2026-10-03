@@ -4,7 +4,7 @@ Run with an optional source JPG; subsequent runs use the retained front.
 from pathlib import Path
 import sys, shutil, json, hashlib
 import numpy as np
-from PIL import Image, ImageDraw, ImageFilter
+from PIL import Image, ImageFilter
 from scipy.ndimage import gaussian_filter, distance_transform_edt
 ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'public/cards/gengar-phantom-corridor'
@@ -12,11 +12,10 @@ OUT.mkdir(parents=True, exist_ok=True)
 if len(sys.argv)>1: shutil.copyfile(sys.argv[1],OUT/'front.jpg')
 front=Image.open(OUT/'front.jpg').convert('RGB')
 w,h=front.size
-# Hand-traced perimeter in 1024 x 2048 display coordinates; antialiased ink guard.
-outline=[(391,659),(418,689),(447,720),(477,767),(497,745),(515,769),(538,741),(562,706),(584,684),(594,729),(609,774),(638,752),(669,732),(650,774),(686,751),(722,728),(751,706),(775,686),(768,721),(751,767),(734,809),(717,845),(706,866),(746,840),(730,883),(776,884),(760,916),(776,906),(768,939),(777,958),(768,977),(779,992),(767,1010),(775,1028),(764,1065),(750,1098),(729,1118),(704,1115),(689,1107),(677,1125),(658,1140),(643,1155),(619,1158),(598,1163),(575,1152),(554,1158),(533,1156),(522,1174),(491,1174),(468,1199),(451,1181),(435,1183),(416,1167),(403,1145),(385,1128),(374,1102),(365,1075),(356,1045),(358,1011),(363,974),(365,950),(375,920),(371,891),(384,859),(393,820),(397,778),(389,742),(391,699)]
-mask=Image.new('L',(w*2,h*2))
-ImageDraw.Draw(mask).polygon([(round(x*w/1024*2),round(y*h/2048*2)) for x,y in outline],fill=255)
-mask=mask.resize((w,h),Image.Resampling.LANCZOS).filter(ImageFilter.MaxFilter(5)).filter(ImageFilter.GaussianBlur(.7))
+# User-supplied registered cutout, retained exactly as decoded grayscale.
+mask=Image.open(OUT/'subject-cutout.png').convert('L')
+if mask.size != (w,h):
+ raise ValueError('Subject cutout must match the source artwork dimensions')
 subject=np.asarray(mask,dtype=np.float32)/255
 
 y,x=np.mgrid[:h,:w].astype(np.float32)
@@ -50,5 +49,5 @@ edge=np.asarray(mask.filter(ImageFilter.MaxFilter(9)),dtype=float)-np.asarray(ma
 overlay=np.asarray(front).copy()
 overlay[edge>25]=[32,255,132]
 Image.fromarray(overlay).save(OUT/'boundary-review.png')
-(OUT/'source.json').write_text(json.dumps(dict(title='Gengar - Phantom Corridor',source='User-supplied 67e425ee95c5db6b79ae4cc767062698.jpg',sha256=hashlib.sha256((OUT/'front.jpg').read_bytes()).hexdigest(),size=[w,h],design='Original perspective-flute relief with uniform grating. Not a physical printing reconstruction; spacing and depth are artistic choices.',protection='Hand-traced silhouette with antialiased ink guard; eyes, teeth and body remain opaque.',maps=list(maps)),indent=2)+'\n',encoding='utf-8')
+(OUT/'source.json').write_text(json.dumps(dict(title='Gengar - Phantom Corridor',source='User-supplied 67e425ee95c5db6b79ae4cc767062698.jpg',sha256=hashlib.sha256((OUT/'front.jpg').read_bytes()).hexdigest(),size=[w,h],design='Original perspective-flute relief with uniform grating. Not a physical printing reconstruction; spacing and depth are artistic choices.',protection='User-supplied front - Copy.jpg silhouette, decoded to subject-cutout.png without resizing, thresholding or additional feathering; white protects Gengar.',maps=list(maps)),indent=2)+'\n',encoding='utf-8')
 print(f'Created {len(maps)} registered PNG maps at {w} x {h}')
