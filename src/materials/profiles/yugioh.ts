@@ -25,7 +25,7 @@ const secretArt: FoilLayer = {
 /** Estimated die parameters; exact printing calibration is documented separately. */
 const manufacturedSecret: FoilLayer = {
   diffraction: { period: 1.32, bandwidth: .032, strength: .95, secondaryOrder: .035, direction: -.72, crossWidth: .095 },
-  structure: { field: 'secret', scale: 285, cutAngle: Math.PI / 4, cutWidth: .28, engraving: 0, relief: 0, facetTilt: .075, reflectionCoupling: 0 },
+  structure: { field: 'secret', scale: 138, cutAngle: Math.PI / 4, cutWidth: .91, engraving: 0, relief: 0, facetTilt: .22, reflectionCoupling: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
   surface: { metalness: .08, roughness: .09, laminate: .12, laminateRoughness: .24, foilReflectance: .004, inkTransmission: 1 },
 };
@@ -67,7 +67,7 @@ const treatments: HolographicProfile[] = [{
 }, {
   ...manufacturedSecret, id: 'ygo-secret-early-tcg', name: 'Secret · early TCG', family: 'Yu-Gi-Oh!', status: 'reference-pending',
   description: 'Early North American TCG Secret candidate for original LOB printings. Separate from modern Secret and crossed parallel foils; measured calibration pending.',
-  structure: { ...manufacturedSecret.structure, scale: 235, cutWidth: .24, facetTilt: .055 },
+  structure: { ...manufacturedSecret.structure, scale: 120, cutWidth: .9, facetTilt: .18 },
   diffraction: { ...manufacturedSecret.diffraction, period: 1.26, strength: .82, bandwidth: .036 },
   mapSettings: { embossStrength: 0, normalScale: 0, roughnessMode: 'profile' },
   secondary: { ...stampedSecretName, diffraction: { ...stampedSecretName.diffraction, strength: 2.4 } },
