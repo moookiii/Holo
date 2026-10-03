@@ -454,6 +454,7 @@ async function start() {
     cpuPreparation.dispose(); factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();
     imports.forEach(imported => imported.dispose()); imports.clear();
   });
+  if (!new URLSearchParams(location.search).has('lab')) await openGallery();
 }
 function showError(error: unknown) {
   console.error(error);

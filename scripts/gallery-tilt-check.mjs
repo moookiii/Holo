@@ -23,7 +23,7 @@ page.on('pageerror', error => report.errors.push(String(error)));
 try {
   await page.goto('http://127.0.0.1:5173/?backend=webgl', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
-  await page.getByRole('button', { name: 'Gallery', exact: true }).click();
+  await page.waitForFunction(() => window.__holo.gallery.stats()?.active, null, { timeout: 120000 });
   await page.getByRole('combobox', { name: 'Set', exact: true }).selectOption('Jungle');
   await page.getByRole('combobox', { name: 'Finish', exact: true }).selectOption('holo');
   await page.locator('.gallery-tools summary').click();
