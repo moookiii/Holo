@@ -1,3 +1,4 @@
+import { slimeCard } from './SlimeCard.ts';
 import { dividedHeartCard } from './DividedHeartCard.ts';
 import { phantomCorridorCard } from './PhantomCorridorCard.ts';
 import { neoGenesisDefinitions } from './NeoGenesisCards.ts';
@@ -126,7 +127,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [dividedHeartCard, phantomCorridorCard, ancientMewCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...legendaryCollectionDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...wizardsPromoDefinitions, {
+export const cards: CardDefinition[] = [slimeCard, dividedHeartCard, phantomCorridorCard, ancientMewCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...legendaryCollectionDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
