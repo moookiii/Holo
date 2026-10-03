@@ -14,7 +14,7 @@ page.on('pageerror',e=>errors.push(e.stack));page.on('request',r=>requests.push(
 const snapshot=JSON.parse(await readFile('public/catalog/yugioh/sets.json','utf8'));
 await page.route('https://db.ygoprodeck.com/api/v7/cardsets.php',route=>route.fulfill({json:snapshot.records}));
 try{
-  await page.goto('http://127.0.0.1:5173/?lab');await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:120000});
+  await page.goto(`${process.env.HOLO_URL || 'http://127.0.0.1:5174'}/?lab`);await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:120000});
   await page.evaluate(()=>window.__holo.pack.browse());
   await page.getByRole('button',{name:'Yu-Gi-Oh!',exact:false}).click();
   await page.getByLabel('Search Yu-Gi-Oh! sets').waitFor();
