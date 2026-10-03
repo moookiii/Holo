@@ -38,13 +38,34 @@ const pokemonSetReleaseOrder = [
 ];
 const pokemonSetReleaseRank = new Map(pokemonSetReleaseOrder.map((name, index) => [name, index]));
 
+/** TCG set codes and release order for the Yu-Gi-Oh! prints in this collection. */
+const yugiohSets = [
+  ['IGAS', 'Ignition Assault'], ['DAMA', 'Dawn of Majesty'],
+  ['MP22', "2022 Tin of the Pharaoh's Gods"], ['BLMR', 'Battles of Legend: Monstrous Revenge'],
+  ['AGOV', 'Age of Overlord'], ['RA01', '25th Anniversary Rarity Collection'],
+  ['RA02', '25th Anniversary Rarity Collection II'], ['INFO', 'The Infinite Forbidden'],
+  ['MP24', '25th Anniversary Tin: Dueling Mirrors'], ['ROTA', 'Rage of the Abyss'],
+  ['RA03', 'Quarter Century Bonanza'], ['DUAD', "Duelist's Advance"],
+  ['MP25', '2025 Mega-Pack Tin'], ['BPRO', 'Burst Protocol'],
+  ['MZMU', 'Maze of Muertos'], ['RA05', 'Rarity Collection 5'],
+  ['BLZD', 'Blazing Dominion'], ['UP01', 'Ultimate Tournament Pack 1'],
+  ['CORI', 'Chaos Origins'],
+] as const;
+const yugiohSetNames = new Map<string, string>(yugiohSets);
+const yugiohSetReleaseRank = new Map<string, number>(yugiohSets.map(([, name], index) => [name, index]));
+
 export function gallerySetName(card: CardDefinition) {
+  if (card.franchise === 'Yu-Gi-Oh!') {
+    const code = card.number.match(/^([A-Z0-9]+)-EN\d+/)?.[1];
+    return (code && yugiohSetNames.get(code)) || card.set;
+  }
   if (card.franchise !== 'Pokémon') return card.set;
   return card.pokemon?.setName ?? pokemonSetAliases[card.set] ?? card.set;
 }
 
 export function compareGallerySetNames(a: string, b: string) {
-  const rankA = pokemonSetReleaseRank.get(a), rankB = pokemonSetReleaseRank.get(b);
+  const rankA = pokemonSetReleaseRank.get(a) ?? yugiohSetReleaseRank.get(a);
+  const rankB = pokemonSetReleaseRank.get(b) ?? yugiohSetReleaseRank.get(b);
   if (rankA !== undefined || rankB !== undefined) {
     if (rankA === undefined) return 1;
     if (rankB === undefined) return -1;
@@ -101,10 +122,12 @@ export function galleryMasterCards(cards: readonly CardDefinition[]) {
 function compareGalleryCards(a: CardDefinition, b: CardDefinition) {
   const gameOrder = franchiseOrder[a.franchise] - franchiseOrder[b.franchise];
   if (gameOrder) return gameOrder;
-  if (a.franchise !== 'Pokémon') return 0;
+  if (a.franchise !== 'Pokémon' && a.franchise !== 'Yu-Gi-Oh!') return 0;
   const setOrder = compareGallerySetNames(gallerySetName(a), gallerySetName(b));
   if (setOrder) return setOrder;
-  const numberOrder = cardNumber(a) - cardNumber(b);
+  const numberOrder = a.franchise === 'Yu-Gi-Oh!'
+    ? a.number.localeCompare(b.number, undefined, { numeric: true })
+    : cardNumber(a) - cardNumber(b);
   if (numberOrder) return numberOrder;
   return Number(!!b.pokemon) - Number(!!a.pokemon) || a.id.localeCompare(b.id);
 }
@@ -112,7 +135,7 @@ function compareGalleryCards(a: CardDefinition, b: CardDefinition) {
 export const facets = [
   { key: 'game', label: 'Game', value: (c: CardDefinition) => c.franchise },
   { key: 'set', label: 'Set', value: gallerySetName },
-  { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.pokemon?.rarity },
+  { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.pokemon?.rarity ?? (c.franchise === 'Yu-Gi-Oh!' ? c.set.match(/^[A-Z0-9]+-EN\d+ · (.+)$/)?.[1] : undefined) },
   { key: 'finish', label: 'Finish', value: (c: CardDefinition) => c.pokemon?.variant ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.franchise === 'Pokémon' ? 'holo' : c.profile) },
   { key: 'category', label: 'Category', value: (c: CardDefinition) => c.pokemon?.category },
 ] as const;

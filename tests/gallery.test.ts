@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { GalleryResidency } from '../src/gallery/GalleryResidency.ts';
 import { galleryLayout } from '../src/gallery/GalleryLayout.ts';
 import { influence, damp } from '../src/gallery/GalleryMotion.ts';
-import { filterCards } from '../src/gallery/GalleryQuery.ts';
+import { filterCards, gallerySetName } from '../src/gallery/GalleryQuery.ts';
 import { baseSetCards } from '../src/card/BaseSetCards.ts';
 import { ancientMewCard } from '../src/card/AncientMewCard.ts';
 import { nonHoloCards } from '../src/card/NonHoloCards.ts';
@@ -60,6 +60,18 @@ test('facets intersect with search without inventing missing rarity/category', (
 
 test('authored Ancient Mew appears under the Pokémon Holo finish', () => {
   assert.deepEqual(filterCards([ancientMewCard], { search: '', game: 'Pokémon', finish: 'holo' }).map(card => card.id), ['ancient-mew']);
+});
+
+test('Yu-Gi-Oh! prints group by release and sort by set then card number', () => {
+  const cards = [
+    { id: 'late', title: 'C', franchise: 'Yu-Gi-Oh!', set: 'CORI-EN061 · Starlight Rare', number: 'CORI-EN061' },
+    { id: 'second', title: 'B', franchise: 'Yu-Gi-Oh!', set: 'BLZD-EN024 · Ultra Rare', number: 'BLZD-EN024' },
+    { id: 'first', title: 'A', franchise: 'Yu-Gi-Oh!', set: 'BLZD-EN010 · Secret Rare', number: 'BLZD-EN010' },
+  ] as CardDefinition[];
+  assert.equal(gallerySetName(cards[1]), 'Blazing Dominion');
+  assert.deepEqual(filterCards(cards, { search: '', game: 'Yu-Gi-Oh!' }).map(card => card.id), ['first', 'second', 'late']);
+  assert.deepEqual(filterCards(cards, { search: '', set: 'Blazing Dominion', rarity: 'Secret Rare' }).map(card => card.id), ['first']);
+  assert.deepEqual(filterCards(cards, { search: 'BLZD-EN024' }).map(card => card.id), ['second']);
 });
 
 test('pack copies of Base Set cards resolve to one gallery master per printing', () => {
