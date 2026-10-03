@@ -1,3 +1,4 @@
+import { neoDiscoveryDefinitions } from './NeoDiscoveryCards.ts';
 import { neoGenesisDefinitions } from './NeoGenesisCards.ts';
 import { wizardsPromoDefinitions } from './WizardsPromoCards.ts';
 import { gymChallengeDefinitions } from './GymChallengeCards.ts';
@@ -13,6 +14,7 @@ import type { PrintVariant, PrintEdition } from '../pokemon/types.ts';
 
 /** Exact set + number + print lookup, shared by picker and pack preparation. */
 const prints = new Map<string, CardDefinition>([
+  ...neoDiscoveryDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}:${card.pokemon!.edition}`, card] as const),
   ...neoGenesisDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}:${card.pokemon!.edition}`, card] as const),
   ...wizardsPromoDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...gymHeroesDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}:${card.pokemon!.edition}`, card] as const),

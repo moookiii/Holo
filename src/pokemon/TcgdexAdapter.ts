@@ -1,3 +1,4 @@
+import { NEO_DISCOVERY_ID, neoDiscoveryCard, neoDiscoverySet } from './NeoDiscoveryCatalog.ts';
 import { NEO_GENESIS_ID, neoGenesisCard, neoGenesisSet } from './NeoGenesisCatalog.ts';
 import { GYM_CHALLENGE_ID, gymChallengeCard, gymChallengeSet } from './GymChallengeCatalog.ts';
 import { GYM_HEROES_ID, gymHeroesCard, gymHeroesSet } from './GymHeroesCatalog.ts';
@@ -40,7 +41,7 @@ class PermanentCatalogError extends Error {}
 const client = new TCGdex('en');
 const image = (path?: string) => path ? /\.(png|webp|jpe?g)$/i.test(path) ? path : `${path}.webp` : undefined;
 const localSetLogo = (setId: string) => {
-  const logo = setId === 'neo1' ? 'neo1-logo.png' : setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : setId === 'lc' ? 'lc-logo.png' : undefined;
+  const logo = setId === 'neo2' ? 'neo2-logo.png' : setId === 'neo1' ? 'neo1-logo.png' : setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : setId === 'lc' ? 'lc-logo.png' : undefined;
   return logo ? `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/${logo}` : undefined;
 };
 const titleCase = (value: string) => value.replace(/\b\w/g, c => c.toUpperCase());
@@ -99,6 +100,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === NEO_DISCOVERY_ID) return { ...neoDiscoverySet, series: { ...neoDiscoverySet.series }, cardIds: [...neoDiscoverySet.cardIds], boosters: neoDiscoverySet.boosters.map(b => ({ ...b })) };
       if (id === NEO_GENESIS_ID) return { ...neoGenesisSet, series: { ...neoGenesisSet.series }, cardIds: [...neoGenesisSet.cardIds], boosters: neoGenesisSet.boosters.map(b => ({ ...b })) };
       if (id === WIZARDS_PROMO_ID) return { ...wizardsPromoSet, series: { ...wizardsPromoSet.series }, cardIds: [...wizardsPromoSet.cardIds], boosters: [] };
       if (id === GYM_CHALLENGE_ID) return { ...gymChallengeSet, series: { ...gymChallengeSet.series }, cardIds: [...gymChallengeSet.cardIds], boosters: gymChallengeSet.boosters.map(b => ({ ...b })) };
@@ -123,6 +125,11 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === NEO_DISCOVERY_ID) {
+        if (!id.startsWith('neo2-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return neoDiscoveryCard(id);
+      }
+      if (id.startsWith('neo2-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === NEO_GENESIS_ID) {
         if (!id.startsWith('neo1-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return neoGenesisCard(id);
