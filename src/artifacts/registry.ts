@@ -1,7 +1,7 @@
 import type { ArtifactDefinition } from './types';
 export const artifacts: ArtifactDefinition[] = [{
   id: 'robotic-bird', name: 'Robotic bird', subtitle: '01 / Electromechanical specimen',
-  description: 'A transparent anatomy of circuits, wire and precision mechanics. A procedural interpretation of the supplied reference; unseen construction is imagined.',
+  description: 'A transparent anatomy of circuits, wire and precision mechanics.',
   thumbnail: `${import.meta.env?.BASE_URL ?? '/'}artifacts/robotic-bird-reference-02.png`,
   camera: { position: [3.75, 1.55, 8.35], target: [-.10, .10, 0] }, lighting: 'Studio',
   capabilities: { rotate: true, zoom: true, lighting: true, movableLight: true, fullscreen: true, exploded: true, inspection: true },
