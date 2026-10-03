@@ -1,0 +1,104 @@
+{
+  "title": "Divided Heart",
+  "kind": "Original full-art photo-guided optical study",
+  "source": "User-supplied codex-clipboard-1df5d0e0-f9e5-4e56-9ef8-979eb7cebe9f.png",
+  "sha256": "17ef37f733fe9c550f7eddf2eeb6b334cc262d8bba88bcfd2e25d1cfa3a705ac",
+  "cutoutSha256": "9e69cc906ed9713fc6285267479bc48e797a2bd12562f15fc1ad1503c094a690",
+  "sourceSize": [
+    736,
+    716
+  ],
+  "mapSize": [
+    1472,
+    1432
+  ],
+  "regions": [
+    {
+      "name": "shadow-wing-transverse",
+      "lines": 279,
+      "heightAmplitude": 0.105,
+      "ridgeWidthSourcePixels": 0.43,
+      "roughness": 0.35
+    },
+    {
+      "name": "halo-swept-rays",
+      "lines": 178,
+      "heightAmplitude": 0.12,
+      "ridgeWidthSourcePixels": 0.4,
+      "roughness": 0.32
+    },
+    {
+      "name": "silver-wing-crosscuts",
+      "lines": 249,
+      "heightAmplitude": 0.14,
+      "ridgeWidthSourcePixels": 0.46,
+      "roughness": 0.3
+    },
+    {
+      "name": "left-foreground-feather",
+      "lines": 176,
+      "heightAmplitude": 0.135,
+      "ridgeWidthSourcePixels": 0.43,
+      "roughness": 0.31
+    },
+    {
+      "name": "right-foreground-feather",
+      "lines": 172,
+      "heightAmplitude": 0.135,
+      "ridgeWidthSourcePixels": 0.43,
+      "roughness": 0.31
+    },
+    {
+      "name": "dark-hair-bowed-ridges",
+      "lines": 155,
+      "heightAmplitude": 0.13,
+      "ridgeWidthSourcePixels": 0.46,
+      "roughness": 0.31
+    },
+    {
+      "name": "cloth-draped-crosscuts",
+      "lines": 121,
+      "heightAmplitude": 0.16,
+      "ridgeWidthSourcePixels": 0.47,
+      "roughness": 0.32
+    },
+    {
+      "name": "heart-curved-cuts",
+      "lines": 39,
+      "heightAmplitude": 0.095,
+      "ridgeWidthSourcePixels": 0.39,
+      "roughness": 0.33
+    }
+  ],
+  "observations": [
+    "Bowed transverse dark-hair lines",
+    "Draped horizontal shirt crosscuts",
+    "Curved heart cuts",
+    "Swept halo rays",
+    "Transverse wing cuts and diagonal foreground feathers"
+  ],
+  "estimates": [
+    "Single oblique photograph; no clean front or complementary views were supplied.",
+    "All ridge depth, width, interpolated spacing, unlit line continuation and grating pitch are estimates.",
+    "The original photograph is retained byte-for-byte, including baked reflections.",
+    "Uniform grating is an original design assumption, not a measured property of the physical foil."
+  ],
+  "method": "Cubic ink contours and deterministic curved ridge families in source coordinates; continuous ridge gradients computed before region clipping. No brightness-derived or random relief.",
+  "cutout": "Retained byte-for-byte; used to register the halo and foreground wing regions. Smooth skin and golden hair are separately traced; visibly etched clothing and dark hair remain active.",
+  "maps": [
+    "foil",
+    "protection",
+    "height",
+    "normal",
+    "roughness",
+    "laminate",
+    "pattern",
+    "sparkle",
+    "metallic",
+    "secondaryFoil",
+    "stamp",
+    "direction",
+    "coverage",
+    "surface"
+  ]
+}

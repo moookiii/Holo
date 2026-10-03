@@ -1,3 +1,4 @@
+import { dividedHeartEtched } from './dividedHeart';
 import { phantomCorridor } from './phantomCorridor';
 import { originalProfiles } from './original';
 import { pokemonProfiles } from './pokemon';
@@ -7,7 +8,7 @@ import { magicProfiles } from './magic';
 import { printOnly, firstMovieGold } from './print';
 import { mintedGold } from './metal';
 import { signalForestEtched } from './signalForest';
-export const profiles = [...originalProfiles, phantomCorridor, signalForestEtched, ...pokemonProfiles, ...prismaticProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold];
+export const profiles = [...originalProfiles, dividedHeartEtched, phantomCorridor, signalForestEtched, ...pokemonProfiles, ...prismaticProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold];
 export function getProfile(id: string) {
   const profile = profiles.find(p => p.id === id);
   if (!profile) throw new Error(`Unknown foil profile: ${id}`);
