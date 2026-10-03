@@ -81,7 +81,7 @@ export class PackBrowser {
     this.screen('Open Pack', 'Choose your collection.');
     this.button('Archive', () => this.archive(), `${import.meta.env.BASE_URL}packs/archive/front.svg`, 'Holo’s studio selection');
     const pokemon = this.button('Pokémon', () => this.series(), undefined, 'Browse series, sets and boosters');
-    this.button('Yu-Gi-Oh!', () => this.yugioh(), undefined, 'Browse series, sets and boosters');
+    this.button('Yu-Gi-Oh!', () => this.yugioh(), this.yugiohArtwork(), 'Browse series, sets and boosters');
     const request = this.task.begin();
     void pokemonCatalog.series(request.signal).then(series => {
       if (!this.task.current(request) || this.step !== 'type') return;
@@ -96,6 +96,7 @@ export class PackBrowser {
       }
     }).catch(() => {});
   }
+  private yugiohArtwork() { return `${import.meta.env.BASE_URL}packs/yugioh/lob-first-edition/front.png`; }
   private yugioh() {
     this.step = 'yugioh'; this.screen('Yu-Gi-Oh! series');
     if (!this.yugiohProvider) {
@@ -106,16 +107,16 @@ export class PackBrowser {
       const result = await this.yugiohProvider!.sets(request.signal);
       if (!this.task.current(request)) return;
       this.yugiohSets = result.sets.filter(set => implementationFor(set.id)?.status === 'implemented');
-      this.status.textContent = this.yugiohSets.length ? 'Choose a series.' : 'No boosters are currently available.';
+      this.status.textContent = this.yugiohSets.length ? 'Choose a series. Supported sets are marked Opening available.' : 'No boosters are currently available.';
       for (const era of [...new Set(this.yugiohSets.map(set => set.era))].sort()) {
-        this.button(era, () => { this.yugiohEra = era; this.yugiohSetSelection(); });
+        this.button(era, () => { this.yugiohEra = era; this.yugiohSetSelection(); }, this.yugiohArtwork());
       }
     }, () => this.yugioh());
   }
   private yugiohSetSelection() {
     this.step = 'yugioh-sets'; this.screen(this.yugiohEra ?? 'Yu-Gi-Oh! sets', 'Choose a set.');
     for (const set of this.yugiohSets.filter(set => set.era === this.yugiohEra)) {
-      this.button(set.name, () => this.yugiohDetail(set), undefined, 'Opening available');
+      this.button(set.name, () => this.yugiohDetail(set), this.yugiohArtwork(), 'Opening available');
     }
   }
   private yugiohDetail(set: YugiohCatalogSet) {
@@ -123,15 +124,14 @@ export class PackBrowser {
     if (implementation?.status !== 'implemented') return;
     this.step = 'yugioh-detail'; this.screen(set.name,
       'Choose a booster. North American English · 2002 · 9 cards. Modeled pull rates; 12 card fronts use documented image fallbacks.');
-    const button = this.button('1st Edition', () => this.chooseYugioh(set, implementation.id),
-      `${import.meta.env.BASE_URL}packs/yugioh/lob-first-edition/front.png`, '2002 North American release · 9 cards');
+    const button = this.button('1st Edition', () => { button.setAttribute('aria-pressed', 'true'); this.chooseYugioh(set, implementation.id); },
+      this.yugiohArtwork());
     button.classList.add('pokemon-booster');
     button.setAttribute('aria-pressed', 'false');
   }
   private chooseYugioh(set: YugiohCatalogSet, productId: string, retainedSeed?: number) {
     const seed = retainedSeed ?? crypto.getRandomValues(new Uint32Array(1))[0];
-    this.body.querySelectorAll('button').forEach(button => button.disabled = true);
-    void this.run('Resolving exact nine-card pack…', async request => {
+    void this.run('Loading card metadata…', async request => {
       const { resolveYugiohProduct } = await import('../yugioh/products');
       if (!this.task.current(request)) return;
       const { pack, definitions } = resolveYugiohProduct(set.id, productId, seed);
