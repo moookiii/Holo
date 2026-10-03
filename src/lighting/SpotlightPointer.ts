@@ -7,6 +7,7 @@ export class SpotlightPointer {
   private ray = new Raycaster();
   private plane = new Plane(new Vector3(0, 0, 1), 0);
   private point = new Vector3();
+  private offset = new Vector3();
   private move = (event: PointerEvent) => {
     if (!event.isPrimary) return;
     this.cursor.set(event.clientX, event.clientY);
@@ -34,6 +35,9 @@ export class SpotlightPointer {
     if (hit) this.point.copy(hit.point);
     else if (!this.ray.ray.intersectPlane(this.plane, this.point)) return;
     this.light.target.position.copy(this.point);
+    // Keep the beam perpendicular to the viewing plane and at a constant
+    // distance from its target, so the footprint does not stretch at the edges.
+    this.light.position.copy(this.point).add(this.camera.getWorldDirection(this.offset).multiplyScalar(-14));
     this.light.target.updateMatrixWorld();
   }
 

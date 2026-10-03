@@ -211,6 +211,7 @@ image.loading = 'lazy';
     'Holo skim': 'Sweep the foil response while keeping printed artwork lighting steady.',
     Polarizer: 'Approximate CPL rotation: reduce reflected glare on holographic fronts.',
     Skim: 'A low, narrow source reveals surface relief.',
+    Spotlight: 'Move the cursor to position a fixed circular beam.',
     'Ring light': 'An even ring around the viewing axis reveals foil and relief.',
   };
   const rows: { element: HTMLElement; modes?: LightPreset[] }[] = [];
@@ -225,7 +226,7 @@ image.loading = 'lazy';
     row.append(caption, value, input); settings.append(row); rows.push({ element: row, modes: only });
     return input;
   };
-  const directional: LightPreset[] = ['Moving light', 'Skim', 'Spotlight'];
+  const directional: LightPreset[] = ['Moving light', 'Skim'];
   const azimuth = slider('Light position', 'azimuth', -85, 85, 1, '°', directional);
   const elevation = slider('Light elevation', 'elevation', -30, 75, 1, '°', directional);
   slider('Intensity', 'intensity', 0, 2, .1, '×');

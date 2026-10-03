@@ -28,7 +28,7 @@ export class StudioLighting {
     RectAreaLightNode.setLTC(areaLightTables);
     this.key.position.set(-7, 9, 12); this.strip.position.set(9, 1, 8); this.back.position.set(-5, 4, -12);
     this.key.lookAt(0, 0, 0);
-    this.spot.position.set(0, 2, 12);
+    this.spot.position.set(0, 0, 14);
     scene.add(this.key, this.strip, this.back, this.fill, this.spot, this.spot.target);
     this.ring.forEach((segment, index) => {
       const angle = index * Math.PI / 3;
@@ -88,7 +88,7 @@ export class StudioLighting {
     // uniform; changing visibility would compile the foil shaders on first use.
     // Smooth reversals without lingering at the dim ends of any animated sweep.
     const sweepMotion = Math.asin(.97 * Math.sin(this.phase * .65)) / Math.asin(.97);
-    if (p === 'Moving light' || p === 'Skim' || p === 'Spotlight') {
+    if (p === 'Moving light' || p === 'Skim') {
       // A rounded triangle spends less time at the sweep's dim endpoints than a sine.
       // Keep both sweeping sources in front, including after position adjustments.
       // The gallery spans a wider field than one card. Extend each sweep's
@@ -109,7 +109,6 @@ export class StudioLighting {
         this.key.position.set(Math.sin(angle) * 14, Math.sin(elevation) * 14, Math.cos(angle) * Math.cos(elevation) * 14);
       }
       this.strip.intensity = .15;
-      this.spot.position.copy(this.key.position);
     }
     if (p === 'Moving light') {
       this.key.width = 1.8; this.key.height = 3;
