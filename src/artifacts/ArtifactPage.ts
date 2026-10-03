@@ -20,7 +20,9 @@ export async function startArtifacts() {
   const loading=document.querySelector<HTMLElement>('#loading')!;
   loading.querySelector('.loading-label')!.textContent='Loading artifact';
   loading.setAttribute('aria-label','Loading artifact');
-  const renderer=new WebGPURenderer({antialias:true,forceWebGL:new URLSearchParams(location.search).get('backend')==='webgl'});
+  const requestedBackend=new URLSearchParams(location.search).get('backend');
+  const firefox=/Firefox\//.test(navigator.userAgent);
+  const renderer=new WebGPURenderer({antialias:true,forceWebGL:requestedBackend==='webgl'||(firefox&&requestedBackend!=='webgpu')});
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.75)); renderer.toneMapping=NeutralToneMapping;renderer.toneMappingExposure=1.15;stage.append(renderer.domElement);await renderer.init();
   const scene=new Scene();scene.background=new Color(0x000000);
   const camera=new PerspectiveCamera(34,1,.1,100);
