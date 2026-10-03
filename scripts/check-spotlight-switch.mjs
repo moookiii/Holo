@@ -35,14 +35,13 @@ try {
     };
   });
   const switches = [];
-  for (const preset of ['Spotlight', 'Studio', 'Ring light', 'Spotlight', 'Soft', 'Ring light']) {
+  for (const preset of ['Spotlight', 'Studio', 'Spotlight', 'Soft', 'Studio']) {
     switches.push(await page.evaluate(async preset => {
       const count = window.spotlightPipelines.length;
       const started = performance.now();
       const h = window.__holo; h.lighting.setPreset(preset);
       await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
-      return { preset, elapsedMs: performance.now() - started, pipelines: window.spotlightPipelines.slice(count), spotIntensity: h.lighting.spot.intensity,
-        ringIntensities: h.lighting.ring.map(segment => segment.intensity) };
+      return { preset, elapsedMs: performance.now() - started, pipelines: window.spotlightPipelines.slice(count), spotIntensity: h.lighting.spot.intensity };
     }, preset));
     await page.screenshot({ path: `${out}/${switches.length}-${preset}.png` });
   }
@@ -53,6 +52,5 @@ try {
   if(label !== 'before') {
     assert.ok(switches.every(s => s.pipelines.length === 0), 'Lighting switches must reuse the compiled card pipelines');
     assert.ok(switches.every(s => s.preset === 'Spotlight' ? s.spotIntensity > 0 : s.spotIntensity === 0), 'The spotlight must contribute only in its own mode');
-    assert.ok(switches.every(s => s.ringIntensities.every(intensity => s.preset === 'Ring light' ? intensity > 0 : intensity === 0)), 'The ring emitters must contribute only in Ring light');
   }
 } finally { await browser.close(); }

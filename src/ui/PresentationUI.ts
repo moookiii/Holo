@@ -212,7 +212,6 @@ image.loading = 'lazy';
     Polarizer: 'Approximate CPL rotation: reduce reflected glare on holographic fronts.',
     Skim: 'A low, narrow source reveals surface relief.',
     Spotlight: 'Move the cursor to position a fixed circular beam.',
-    'Ring light': 'An even ring around the viewing axis reveals foil and relief.',
   };
   const rows: { element: HTMLElement; modes?: LightPreset[] }[] = [];
   const slider = (label: string, key: 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle', min: number, max: number, step: number, unit: string, only?: LightPreset[]) => {

@@ -2,7 +2,7 @@ import { Scene, Color, DirectionalLight, SpotLight, RectAreaLight, RectAreaLight
 import { inspection } from './inspection';
 import { areaLightTables } from './AreaLightTables';
 
-export const lightPresets = ['Studio', 'Strip', 'Soft', 'Low key', 'Moving light', 'Blacklight', 'Skim', 'Holo skim', 'Spotlight', 'Ring light', 'Polarizer'] as const;
+export const lightPresets = ['Studio', 'Strip', 'Soft', 'Low key', 'Moving light', 'Blacklight', 'Skim', 'Holo skim', 'Spotlight', 'Polarizer'] as const;
 export type LightPreset = typeof lightPresets[number];
 
 export class StudioLighting {
@@ -11,9 +11,6 @@ export class StudioLighting {
   readonly back = new DirectionalLight(0xffffff, 1.1);
   readonly fill = new HemisphereLight(0xffffff, 0x777777, 0.65);
   readonly spot = new SpotLight(0xfff5e6, 0, 0, .16, .65, 2);
-  // Six tangent area emitters form a continuous annulus around the viewing axis.
-  // Their zero intensity outside Ring light keeps the lighting graph stable.
-  readonly ring = Array.from({ length: 6 }, () => new RectAreaLight(0xfffaf0, 0, 2.25, .7));
   preset: LightPreset = 'Studio';
   azimuth = -30;
   elevation = 35;
@@ -30,14 +27,6 @@ export class StudioLighting {
     this.key.lookAt(0, 0, 0);
     this.spot.position.set(0, 0, 14);
     scene.add(this.key, this.strip, this.back, this.fill, this.spot, this.spot.target);
-    this.ring.forEach((segment, index) => {
-      const angle = index * Math.PI / 3;
-      segment.position.set(Math.cos(angle) * 2.15, Math.sin(angle) * 2.15, 13);
-      segment.lookAt(0, 0, 0);
-      segment.rotateZ(angle + Math.PI / 2);
-      segment.visible = false;
-      scene.add(segment);
-    });
   }
   async createEnvironment(renderer: WebGPURenderer) {
     const studio = new Scene(); studio.background = new Color(0.045, 0.045, 0.045);
@@ -117,12 +106,10 @@ export class StudioLighting {
     if (p === 'Skim') { this.key.intensity = 95; this.strip.intensity = .5; this.fill.intensity = .55; this.scene.environmentIntensity = .42; }
     if (p === 'Blacklight') { this.key.intensity = 90; this.strip.intensity = 2; this.fill.intensity = .08; this.scene.environmentIntensity = .08; this.back.intensity = .1; }
     if (p === 'Spotlight') { this.key.intensity = 0; this.strip.intensity = 0; this.fill.intensity = .12; this.scene.environmentIntensity = .12; }
-    if (p === 'Ring light') { this.key.intensity = 0; this.strip.intensity = 0; this.fill.intensity = .38; this.scene.environmentIntensity = .32; }
     this.key.lookAt(0, 0, 0);
     this.key.intensity *= this.intensity; this.strip.intensity *= this.intensity;
     this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
     this.scene.environmentIntensity *= this.intensity; this.spot.intensity = p === 'Spotlight' ? 650 * this.intensity : 0;
-    this.ring.forEach(segment => { segment.visible = p === 'Ring light'; segment.intensity = p === 'Ring light' ? 14 * this.intensity : 0; });
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
     inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
     inspection.polarizer.value = p === 'Polarizer' ? .15 + .85 * Math.cos(this.filterAngle * Math.PI / 180) ** 2 : 1;

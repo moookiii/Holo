@@ -25,7 +25,7 @@ try {
   await page.goto(`http://127.0.0.1:5173/${query}`, { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
   await page.click('#light-toggle');
-  for (const mode of ['Moving light', 'Blacklight', 'Skim', 'Holo skim', 'Spotlight', 'Ring light', 'Polarizer', 'Studio']) {
+  for (const mode of ['Moving light', 'Blacklight', 'Skim', 'Holo skim', 'Spotlight', 'Polarizer', 'Studio']) {
     await page.getByRole('button', { name: mode, exact: true }).click();
     if (mode === 'Polarizer') await page.getByRole('slider', { name: 'Filter rotation' }).fill('90');
     await page.waitForTimeout(400);
