@@ -1,7 +1,9 @@
 import type { CardDefinition, CardMapPaths } from './CardDefinition';
 const root = '/cards/gengar-phantom-corridor';
+// Version every dependent texture together so cached previews cannot retain the old die.
+const mapRevision = 'c3be97c594af';
 const fields = ['coverage', 'surface', 'foil', 'protection', 'height', 'normal', 'roughness', 'laminate', 'pattern', 'sparkle', 'direction', 'metallic', 'secondaryFoil'] as const;
-const maps: CardMapPaths = Object.fromEntries(fields.map(name => [name, `${root}/${name}.png`]));
+const maps: CardMapPaths = Object.fromEntries(fields.map(name => [name, `${root}/${name}.png?v=${mapRevision}`]));
 export const phantomCorridorCard: CardDefinition = {
   id: 'gengar-phantom-corridor', title: 'Gengar · Phantom Corridor', franchise: 'Original',
   set: 'Atelier · Phantom Corridor', number: '05', seed: 2601003,
