@@ -1,0 +1,17 @@
+.yugioh-catalog { grid-column: 1 / -1; min-width: 0; }
+.yugioh-filters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 4px 0 18px; }
+.yugioh-filters label { display: grid; gap: 6px; color: #9eacbd; font-size: 11px; }
+.yugioh-filters input { flex: 1 1 230px; min-width: 150px; }
+.yugioh-filters input, .yugioh-filters select, .yugioh-catalog nav button { color: #e0e5ed; background: #1a2029; border: 1px solid #ffffff25; border-radius: 6px; padding: 10px; }
+.yugioh-results { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 12px; }
+.yugioh-set { align-items: start; text-align: left; min-height: 145px; gap: 9px; }
+.yugioh-support { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: #929eaf; }
+.yugioh-support.implemented { color: #bfdfbe; }
+.yugioh-catalog nav { display: flex; justify-content: space-between; margin-top: 18px; }
+.yugioh-catalog nav button:disabled { opacity: .4; }
+.yugioh-detail { grid-column: 1 / -1; }
+.yugioh-detail dl { display: grid; grid-template-columns: minmax(100px,160px) 1fr; gap: 10px; font-size: 13px; line-height: 1.6; }
+.yugioh-detail dt { color: #93a3b7; }.yugioh-detail dd { margin: 0; overflow-wrap: anywhere; }
+.yugioh-detail img { float: right; max-width: 150px; max-height: 260px; margin-left: 24px; }
+@media(max-width:700px) { .yugioh-results { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:450px) { .yugioh-results { grid-template-columns: 1fr; }.yugioh-detail img { float: none; margin: 0; } }

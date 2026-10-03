@@ -12,6 +12,10 @@ import type { CatalogEntry, PokemonBooster, PokemonCard, PokemonSet } from './ty
 import { pokemonDefinition } from './materials';
 import { fallbackWrapper, prepareWrapper, usableCardFront } from './assets';
 import { WIZARDS_PROMO_ID } from './WizardsPromoCatalog';
+import { YugiohCatalogProvider } from '../yugioh/catalog/provider';
+import { YugiohCatalogView } from '../yugioh/CatalogView';
+import type { YugiohCatalogSet } from '../yugioh/types';
+import { implementationFor } from '../yugioh/catalog/implementations';
 
 export interface PackBrowserDependencies {
   definitions: readonly CardDefinition[];
@@ -31,7 +35,9 @@ export class PackBrowser {
   private prepared?: PreparedPack;
   private metadata?: PokemonCard[];
   private retry?: () => void;
-  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' = 'type';
+  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' | 'yugioh' | 'yugioh-detail' = 'type';
+  private yugiohProvider?: YugiohCatalogProvider;
+  private yugiohView?: YugiohCatalogView;
   private disposed = false;
   constructor(private deps: PackBrowserDependencies) {
     this.root.className = 'pokemon-browser'; this.root.setAttribute('aria-label', 'Choose a pack');
@@ -75,6 +81,7 @@ export class PackBrowser {
     this.screen('Open Pack', 'Choose your collection.');
     this.button('Archive', () => this.archive(), `${import.meta.env.BASE_URL}packs/archive/front.svg`, 'Holo’s studio selection');
     const pokemon = this.button('Pokémon', () => this.series(), undefined, 'Browse series, sets and boosters');
+    this.button('Yu-Gi-Oh!', () => this.yugioh(), undefined, 'Browse physical sets · Legend of Blue Eyes opening available');
     const request = this.task.begin();
     void pokemonCatalog.series(request.signal).then(series => {
       if (!this.task.current(request) || this.step !== 'type') return;
@@ -88,6 +95,52 @@ export class PackBrowser {
         image.src = logo;
       }
     }).catch(() => {});
+  }
+  private yugioh(refresh = false) {
+    this.step = 'yugioh'; this.screen('Yu-Gi-Oh! catalog');
+    if (this.yugiohView && !refresh) { this.body.append(this.yugiohView.root); this.status.textContent = 'Physical TCG catalog · select a set to see its products and support.'; return; }
+    if (!this.yugiohProvider) {
+      let storage: Storage | undefined; try { storage = localStorage; } catch { /* private mode */ }
+      this.yugiohProvider = new YugiohCatalogProvider(fetch, storage, `${import.meta.env.BASE_URL}catalog/yugioh/sets.json`);
+    }
+    void this.run('Loading set catalog…', async request => {
+      const result = await this.yugiohProvider!.sets(request.signal, refresh);
+      if (!this.task.current(request)) return;
+      this.status.textContent = `${result.sets.length} catalog entries · ${result.source}${result.stale ? ' · offline snapshot' : ''} · updated ${result.fetchedAt.slice(0,10)}. OCG data is not supplied by this endpoint.`;
+      this.yugiohView = new YugiohCatalogView(result.sets, set => this.yugiohDetail(set)); this.body.append(this.yugiohView.root);
+      this.button('Refresh catalog', () => this.yugioh(true));
+    }, () => this.yugioh(true));
+  }
+  private yugiohDetail(set: YugiohCatalogSet) {
+    this.step = 'yugioh-detail'; this.screen(set.name);
+    const implementation = implementationFor(set.id), detail = document.createElement('section'), dl = document.createElement('dl');
+    detail.className = 'yugioh-detail';
+    const fields = [['Set code',set.setCode ?? 'Unknown'],['Format',set.format],['Release date',set.releaseDate ?? 'Unknown'],
+      ['Catalog card count',String(set.cardCount ?? 'Unknown')],['Release period',set.era],['Product family',`${set.productFamily} (${set.groupingBasis})`],
+      ['Holo support',implementation ? 'Opening available · explicit product below' : 'Browse only']];
+    for(const [label,value] of fields){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=label;dd.textContent=value;dl.append(dt,dd);}
+    if(implementation){const image=document.createElement('img');image.src=`${import.meta.env.BASE_URL}packs/yugioh/lob-first-edition/front.png`;image.alt='Original 2002 North American retail wrapper';detail.append(image);}
+    detail.append(dl);this.body.append(detail);
+    if (!implementation) {
+      this.status.textContent = 'Pack opening has not yet been implemented for this set. Catalog entries do not imply a supported booster product.';
+      this.button('Open Pack — not implemented', () => {}).disabled = true; return;
+    }
+    this.status.textContent = 'Choose a printing. The provider catalog includes reissues; this product contains only the original 126-card checklist.';
+    const notes=document.createElement('p');notes.textContent='North American English · 2002 · 1st Edition · 9 cards · 24 packs per box. 82 Common / 22 Rare / 10 Super / 10 Ultra / 2 Secret. 114 original-gallery scans; 12 general-image fallbacks are labeled in card provenance. Foil probabilities are an explicit simulation, not verified historical odds; no box guarantees.';detail.append(notes);
+    this.button('Open LOB · 2002 NA · 1st Edition', () => this.chooseYugioh(set, implementation.id), undefined, 'Original product · modeled collation · source limitations disclosed above');
+  }
+  private chooseYugioh(set: YugiohCatalogSet, productId: string, retainedSeed?: number) {
+    const seed = retainedSeed ?? crypto.getRandomValues(new Uint32Array(1))[0];
+    this.body.querySelectorAll('button').forEach(button => button.disabled = true);
+    void this.run('Resolving exact nine-card pack…', async request => {
+      const { resolveYugiohProduct } = await import('../yugioh/products');
+      if (!this.task.current(request)) return;
+      const { pack, definitions } = resolveYugiohProduct(set.id, productId, seed);
+      const prepared = await this.deps.prepare(pack, seed, definitions, request.signal, (done,total) => {
+        if(this.task.current(request))this.status.textContent=`Preparing exact cards · ${done} / ${total}`;
+      });
+      if(this.task.current(request))this.ready(prepared);
+    }, () => this.chooseYugioh(set, productId, seed));
   }
   private archive() {
     this.step = 'archive'; this.screen('Archive', 'Choose a studio pack.');
@@ -225,6 +278,8 @@ export class PackBrowser {
   }
   private goBack() {
     switch (this.step) {
+      case 'yugioh-detail': this.yugioh(); break;
+      case 'yugioh': this.types(); break;
       case 'cards': this.sets(); break;
       case 'boosters': this.sets(); break;
       case 'sets': this.series(); break;
