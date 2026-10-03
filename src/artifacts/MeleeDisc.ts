@@ -35,7 +35,8 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
     geometries.add(geometry); materials.add(material);
     const mesh = new Mesh(geometry,material); mesh.name=name; root.add(mesh); return mesh;
   };
-  const label = new MeshPhysicalNodeMaterial({roughness:.39,metalness:0,clearcoat:.32,clearcoatRoughness:.24});
+  const label = new MeshPhysicalNodeMaterial({roughness:.39,metalness:0,clearcoat:.12,clearcoatRoughness:.24,
+    envMapIntensity:.22,specularIntensity:.35});
   const coverage = texture(ink).r;
   label.colorNode=texture(front).rgb;
   label.metalnessNode=coverage.mul(.68);
@@ -65,7 +66,16 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
   const across=sum.dot(tangent);
   const coherence=across.div(.24).pow2().negate().exp();
   const band=(wavelength:number)=>q.sub(wavelength/.74).div(bandwidth).pow2().negate().exp();
-  const spectrum=vec3(band(.64),band(.53),band(.45));
+  // Overlapping visible wavelengths avoid three isolated RGB stripes.
+  const spectrum=vec3(.15,0,1).mul(band(.42))
+    .add(vec3(.03,.08,1).mul(band(.45)))
+    .add(vec3(0,.55,1).mul(band(.48)))
+    .add(vec3(0,1,.25).mul(band(.51)))
+    .add(vec3(.3,1,0).mul(band(.54)))
+    .add(vec3(1,.85,0).mul(band(.57)))
+    .add(vec3(1,.35,0).mul(band(.60)))
+    .add(vec3(1,.05,0).mul(band(.63)))
+    .add(vec3(.6,0,0).mul(band(.66))).mul(.55);
   const illuminated=normalWorld.dot(incoming).max(0).sqrt();
   const visible=normalWorld.dot(view).max(0).sqrt();
   data.emissiveNode=spectrum.mul(coherence).mul(illuminated).mul(visible).mul(dataMask).mul(power);
@@ -92,7 +102,7 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
   }
   let disposed=false;
   return {root,groups:new Map(),inspect:()=>{},
-    updateLighting(direction,intensity,broad){light.value.copy(direction).normalize();power.value=intensity*(broad?.12:.72);bandwidth.value=broad?.095:.045;},
+    updateLighting(direction,intensity,broad){light.value.copy(direction).normalize();power.value=intensity*(broad?.075:.42);bandwidth.value=broad?.075:.036;},
     dispose(){if(disposed)return;disposed=true;root.removeFromParent();geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());new Set([front,back,ink]).forEach(t=>t.dispose());},
   };
 }
