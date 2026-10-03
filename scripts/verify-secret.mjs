@@ -24,7 +24,7 @@ try {
   await page.waitForFunction(() => window.__holo?.lab, null, { timeout: 120000 });
   await page.evaluate(() => { const h = window.__holo; h.lab.dispose(); h.hideUI(); h.setMode('rotate'); h.lighting.playing = false; });
   const cards = ['holo-yugioh-top-solemn-judgment', 'dark-magician-girl', 'ip-masquerena'];
-  for (const id of cards) {
+  for (const id of process.env.SECRET_INTEGRATION_ONLY ? [] : cards) {
     await page.evaluate(id => window.__holo.setCard(id), id);
     for (const profile of ['ygo-secret', 'ygo-secret-early-tcg']) {
       await page.evaluate(profile => window.__holo.setProfile(profile), profile);
@@ -47,7 +47,7 @@ try {
   }
   // Adjacent captures exercise both camera/card and light travel independently.
   await page.evaluate(() => { const h = window.__holo; h.zoom(1); h.lighting.intensity = 1; h.lighting.setPreset('Moving light'); });
-  for (let frame = 0; frame < 24; frame++) {
+  for (let frame = 0; frame < (process.env.SECRET_INTEGRATION_ONLY ? 0 : 24); frame++) {
     await page.evaluate(frame => {
       const h = window.__holo; h.pose(frame < 12 ? -18 + frame * 3 : 12, -8);
       if (frame >= 12) { h.lighting.azimuth = -50 + (frame - 12) * 9; h.lighting.update(0); }

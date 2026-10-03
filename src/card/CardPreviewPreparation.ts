@@ -53,7 +53,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const sharpReverse = card.coverageMode === 'reverse' && !!paths.foil && !paths.metallic;
   // Keep individual metallic letter edges at artwork resolution; the small
   // optical maps otherwise blur gold into the surrounding title panel.
-  const titlePath = paths.metallic ?? (profile.structure.field === 'secret' ? paths.secondaryFoil : undefined);
+  const titlePath = profile.structure.field === 'secret' ? paths.secondaryFoil ?? paths.metallic : paths.metallic;
   const titleMask = titlePath ? await read(titlePath, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   const titleProtection = titleMask && paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
