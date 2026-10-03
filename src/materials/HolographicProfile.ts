@@ -23,6 +23,8 @@ export interface FoilLayer {
     followsAuthoredNormals?: boolean;
   };
   structure: { field: 'radial' | 'symbol-foil' | PatternKind; engraving: number; scale: number; relief: number; facetTilt?: number; patternRelief?: number; normalVariance?: number;
+    /** Analytic Secret Rare die: radians in +Y-up card space; fractional row coverage. */
+    cutAngle?: number; cutWidth?: number;
     motif?: MotifSpec;
     /** Fraction of the facet inclination used for aggregate specular; defaults to 1. Smooth optical films
      * can redirect diffraction without looking like deeply corrugated metal. */

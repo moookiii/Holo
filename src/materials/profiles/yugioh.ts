@@ -22,6 +22,19 @@ const secretArt: FoilLayer = {
   surface: { metalness: .75, roughness: .21, laminate: .24, laminateRoughness: .29, foilReflectance: .17 },
 };
 
+/** Estimated die parameters; exact printing calibration is documented separately. */
+const manufacturedSecret: FoilLayer = {
+  diffraction: { period: 1.32, bandwidth: .032, strength: 3.8, secondaryOrder: .035, direction: -.72, crossWidth: .13 },
+  structure: { field: 'secret', scale: 190, cutAngle: Math.PI / 4, cutWidth: .28, engraving: 0, relief: 0, facetTilt: .075, reflectionCoupling: 0 },
+  glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+  surface: { metalness: .08, roughness: .13, laminate: .16, laminateRoughness: .24, foilReflectance: .004, inkTransmission: 1 },
+};
+const stampedSecretName: FoilLayer = {
+  ...secretName,
+  diffraction: { ...secretName.diffraction, direction: .1, period: 1.25, bandwidth: .038, strength: 2.8, crossWidth: .20, secondaryOrder: .025 },
+  surface: { ...secretName.surface, metalness: .94, roughness: .12, foilReflectance: .025, laminate: .1 },
+};
+
 /** The security mark keeps an independent grating when the main finish changes. */
 const securityStamp: FoilLayer = {
   ...secretArt,
@@ -47,9 +60,17 @@ const treatments: HolographicProfile[] = [{
   description: 'Smooth artwork foil plus independently shaded gold metallic lettering. No sparkle texture in the artwork.',
   metallicInk: { color: [.83, .51, .13], roughness: .2, metalness: .96 },
 }, {
-  ...secretArt, id: 'ygo-secret', name: 'Secret', family: 'Yu-Gi-Oh!', status: 'reference-pending',
-  description: 'Aligned diagonal foil dashes in the artwork, with a separate continuous silver/rainbow grating in the name.',
-  secondary: secretName,
+  ...manufacturedSecret, id: 'ygo-secret', name: 'Secret', family: 'Yu-Gi-Oh!', status: 'reference-pending',
+  description: 'Later TCG Secret: filtered diagonal die cuts beneath printed ink, with independent stamped rainbow lettering.',
+  mapSettings: { embossStrength: 0, normalScale: 0, roughnessMode: 'profile' },
+  secondary: stampedSecretName,
+}, {
+  ...manufacturedSecret, id: 'ygo-secret-early-tcg', name: 'Secret · early TCG', family: 'Yu-Gi-Oh!', status: 'reference-pending',
+  description: 'Early North American TCG Secret candidate for original LOB printings. Separate from modern Secret and crossed parallel foils; measured calibration pending.',
+  structure: { ...manufacturedSecret.structure, scale: 155, cutWidth: .24, facetTilt: .055 },
+  diffraction: { ...manufacturedSecret.diffraction, period: 1.26, strength: 3.3, bandwidth: .036 },
+  mapSettings: { embossStrength: 0, normalScale: 0, roughnessMode: 'profile' },
+  secondary: { ...stampedSecretName, diffraction: { ...stampedSecretName.diffraction, strength: 2.4 } },
 }, {
   ...secretArt, id: 'ygo-prismatic-secret', name: 'Prismatic secret', family: 'Yu-Gi-Oh!', status: 'reference-pending',
   description: 'Orthogonal horizontal and vertical foil cuts, with coherent directional flashes and separate rainbow lettering.',

@@ -53,7 +53,8 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const sharpReverse = card.coverageMode === 'reverse' && !!paths.foil && !paths.metallic;
   // Keep individual metallic letter edges at artwork resolution; the small
   // optical maps otherwise blur gold into the surrounding title panel.
-  const titleMask = paths.metallic ? await read(paths.metallic, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
+  const titlePath = paths.metallic ?? (profile.structure.field === 'secret' ? paths.secondaryFoil : undefined);
+  const titleMask = titlePath ? await read(titlePath, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   const titleProtection = titleMask && paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
   for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
   if (sharpReverse) {
@@ -77,7 +78,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const motifPath = [paths.motif, paths.secondaryMotif, paths.stampMotif][index];
     const authored = directionPath ? await read(directionPath, fw, fh) : undefined;
     let generated: FieldData | undefined;
-    if (layer && layer.enabled !== false && profile.id !== 'print-only' && !['plain', 'radial'].includes(layer.structure.field)) {
+    if (layer && layer.enabled !== false && profile.id !== 'print-only' && !['plain', 'radial', 'secret'].includes(layer.structure.field)) {
       let motif: MotifImage | undefined;
       if (motifPath) {
         // Preserve connected star identities at the source's useful resolution.

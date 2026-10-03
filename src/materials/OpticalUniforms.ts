@@ -9,6 +9,7 @@ export class OpticalUniforms {
   crossing = uniform(0); facetCoupling = uniform(0);
   gridStrength = uniform(0); gridScale = uniform(6.4); gridTravel = uniform(14); gridWidth = uniform(.55);
   crossedFacets = uniform(0);
+  secretCuts = false; secretMode = uniform(0); cutAngle = uniform(Math.PI / 4); cutWidth = uniform(.26);
   engraving = uniform(0.64); scale = uniform(95); relief = uniform(0.24);
   density = uniform(0.22); glintScale = uniform(310); sharpness = uniform(230);
   glintStrength = uniform(13); spread = uniform(0.56);
@@ -49,6 +50,8 @@ export class OpticalUniforms {
     this.gridStrength.value = p.structure.gridStrength ?? 0; this.gridScale.value = p.structure.gridScale ?? 6.4;
     this.gridTravel.value = p.structure.gridTravel ?? 14; this.gridWidth.value = p.structure.gridWidth ?? .55;
     this.crossedFacets.value = p.structure.field === 'starlight' ? 1 : 0;
+    this.secretCuts = p.structure.field === 'secret'; this.secretMode.value = this.secretCuts ? 1 : 0;
+    this.cutAngle.value = p.structure.cutAngle ?? Math.PI / 4; this.cutWidth.value = p.structure.cutWidth ?? .26;
     this.metalness.value = p.surface.metalness; this.roughness.value = p.surface.roughness;
     this.patternRoughness.value = p.surface.patternRoughness ?? 0;
     this.laminate.value = p.surface.laminate; this.laminateRoughness.value = p.surface.laminateRoughness;

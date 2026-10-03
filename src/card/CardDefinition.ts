@@ -76,6 +76,8 @@ export const DIMENSIONS = {
 } satisfies Record<string, CardDimensions>;
 
 export interface CardDefinition {
+  /** Physical printing identity, independent of card-specific masks and catalog rarity. */
+  yugioh?: import('../materials/profiles/YugiohPrinting').YugiohPrinting;
   /** Pack pulls can be inspected without becoming entries in the card picker. */
   pickerHidden?: boolean;
   pokemon?: import('../pokemon/types').PokemonCard & { variant: import('../pokemon/types').PrintVariant; materialProfile: string; treatmentStatus?: 'deferred' };

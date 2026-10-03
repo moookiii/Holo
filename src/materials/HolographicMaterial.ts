@@ -5,6 +5,7 @@ import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNo
 import { texture, uniform, float, vec2, vec3, mix, exp, If, Fn, uv, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, tangentGeometry, bitangentView, normalMap } from 'three/tsl';
 import { masterPrism, type HolographicProfile } from './HolographicProfile';
 import { OpticalUniforms } from './OpticalUniforms';
+import { secretRareReflection } from './layers/SecretRareLayer';
 import { spectrum } from './layers/DiffractionLayer';
 import { radialStructure, gratingDirection } from './layers/PatternLayer';
 import { glints } from './layers/GlintLayer';
@@ -75,6 +76,14 @@ class HolographicLightingModel extends PhysicalLightingModel {
         const cuts = crossedFacets(light, tangentView, geometryBitangent, geometryNormal, region.field, region.details, u, region.seed, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(cuts
           .mul(region.pattern, this.sparkleCoverage, region.inkTransmission!, region.coverage, data.lightColor as Node<'vec3'>));
+        return;
+      }
+      if (u.secretCuts) {
+        const n = normalViewGeometry as unknown as Node<'vec3'>;
+        const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
+        const reflected = secretRareReflection(light, positionViewDirection, tangentView, b, n, u, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(
+          region.coverage, region.pattern, region.inkTransmission!, data.lightColor as Node<'vec3'>));
         return;
       }
       const structure = radialStructure(u.scale, u.angle, u.aspect);
@@ -310,7 +319,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const base = substrate?.backgroundColor
       ? correctedPrint.add(vec3(...substrate.color).sub(vec3(...substrate.backgroundColor)).mul(primary, 1 - substrate.printRetention)).max(0)
       : substrate ? mix(correctedPrint, vec3(...substrate.color), primary.mul(1 - substrate.printRetention))
-        : mix(correctedPrint, vec3(0.27, 0.31, 0.30), primary.mul(0.1));
+        : mix(correctedPrint, vec3(0.27, 0.31, 0.30), primary.mul(this.optics.secretMode.oneMinus(), 0.1));
     this.colorNode = mix(base, this.inkTint, metal.mul(this.inkTintStrength));
     // Ambient cavity loss only; moving direct specular still reaches the die walls.
     this.aoNode = float(1).sub(this.surfaceTextureNode.r.smoothstep(.025, .3).oneMinus().mul(this.inkRecess, metal));
@@ -482,7 +491,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints].map(Number).join('')).join('/');
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.secretCuts].map(Number).join('')).join('/');
   }
   override setupLightingModel() {
     const regions = this.regions.filter((_, i) => this.activeShaders[i]);
