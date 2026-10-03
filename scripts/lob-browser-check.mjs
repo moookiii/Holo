@@ -36,12 +36,28 @@ try{
   await page.screenshot({path:`${out}/pack.png`});
   await page.evaluate(()=>{window.__holo.pack.setStage('summary');});
   await page.waitForTimeout(1500);await page.screenshot({path:`${out}/summary.png`});
+  await page.evaluate(()=>{window.__holo.pack.select(8);window.__holo.pack.advance();});
+  await page.waitForFunction(()=>window.__holo.pack.stats().state==='Closed'&&window.__holo.stats().card.startsWith('yugioh:lob:'),null,{timeout:15000});
+  await page.screenshot({path:`${out}/inspect.png`});
+  await page.evaluate(()=>window.__holo.flip());await page.waitForTimeout(1700);await page.screenshot({path:`${out}/flip.png`});
+  await page.evaluate(()=>window.__holo.flip());await page.waitForTimeout(1700);
   await page.evaluate(()=>window.__holo.pack.close());
   await page.evaluate(()=>window.__holo.pack.browse());
   await page.getByRole('button',{name:'Archive',exact:false}).click();assert.ok(await page.locator('.pokemon-pack-tile').count()>=3);
   await page.getByRole('button',{name:'← Back',exact:true}).click();
   await page.getByRole('button',{name:'Pokémon',exact:false}).click();await page.waitForFunction(()=>document.querySelector('.pokemon-browser h2')?.textContent==='Pokémon series');
   await page.waitForTimeout(1500);await page.screenshot({path:`${out}/pokemon.png`});
+  await page.getByRole('button',{name:'Close',exact:true}).click();
+  // Review each historical finish through the same single-card renderer.
+  await page.addStyleTag({content:'.holo-lab, .lab-shell, #ui { visibility: hidden !important; }'});
+  for(const number of ['LOB-002','LOB-027','LOB-007','LOB-001','LOB-000','LOB-125']){
+    await page.evaluate(async number=>{
+      const {lobCards}=await import('/src/yugioh/sets/LegendOfBlueEyesCatalog.ts');const {yugiohDefinition}=await import('/src/yugioh/materials.ts');
+      const definition=yugiohDefinition(lobCards.find(c=>c.number===number));if(!window.__holo.cards.some(c=>c.id===definition.id))window.__holo.cards.push(definition);
+      await window.__holo.setCard(definition.id);
+    },number);
+    for(const [angle,pitch] of [[-20,8],[15,-8]]){await page.evaluate(([a,p])=>window.__holo.pose(a,p),[angle,pitch]);await page.waitForTimeout(700);await page.screenshot({path:`${out}/${number}-${angle}.png`});}
+  }
   assert.equal(errors.length,0,errors.join('\n'));
   await writeFile(`${out}/report.json`,JSON.stringify({stats,errors,cardFronts:[...new Set(requests.filter(u=>/lob-first-edition\/LOB-\d+\.jpg/.test(u)))],totalRequests:requests.length},null,2));
   console.log('LOB browser + exact 9-card WebGPU pack passed');
