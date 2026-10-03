@@ -1,3 +1,4 @@
+import type { PhysicalCardProfile } from './PhysicalCardProfile';
 import { inspection } from '../lighting/inspection';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, Texture, DataTexture, Vector3, RGBAFormat, UnsignedByteType, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
@@ -243,7 +244,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private regions: OpticalRegion[];
   private crossedShaders = [false, false, false];
   private activeShaders = [true, false, false];
-  constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false, coatedStock = false) {
+  constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false, coatedStock: boolean | PhysicalCardProfile = false) {
     super({ clearcoat: 0.72, clearcoatRoughness: 0.2, metalness: 0.5, roughness: 0.3, envMapIntensity: 0.65 });
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
     this.neutralHologram.needsUpdate = true;
@@ -255,7 +256,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.normalTextureNode = texture(cardMaps?.normal ?? this.neutralWhite);
     this.printTextureNode = texture(art); this.coverageTextureNode = texture(coverage); this.surfaceTextureNode = texture(surface);
     this.nameRecess = recessedName ? new RecessedNameLayer(this.coverageTextureNode, this.optics.aspect, this.optics.cardHeight) : undefined;
-    this.stock = coatedStock ? new StockSurfaceLayer(seed) : undefined;
+    const physical = typeof coatedStock === 'object' ? coatedStock : undefined;
+    this.stock = coatedStock && physical?.id !== 'generic-print' ? new StockSurfaceLayer(seed, undefined, physical) : undefined;
     const controls = this.surfaceControls;
     controls.hasStamp.value = cardMaps?.hasStamp ? 1 : 0; controls.hasNormal.value = cardMaps?.hasNormal ? 1 : 0;
     controls.hasExtendedFoil.value = cardMaps?.hasExtendedFoil ? 1 : 0;
@@ -354,7 +356,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const stockCoverage = metal.max(mask.g).smoothstep(.02, .12).oneMinus();
     this.clearcoatNode = (this.clearcoatNode as Node<'float'>).max(frame);
     this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>, float(.18), frame);
-    if (this.stock) {
+    if (this.stock && (!physical || physical.legacyCoating)) {
       const stockPaper = primary.max(secondary).max(stamp).oneMinus().mul(inside(layout.artwork).oneMinus(), this.stock.strength, stockCoverage);
       const stockCoat = stockPaper.mul(.42);
       this.clearcoatNode = (this.clearcoatNode as Node<'float'>).max(stockCoat);
@@ -362,11 +364,21 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       const texturedRoughness = coatingRoughness.add(this.stock.roughness.mul(.7)).pow2().add(this.stock.variance).sqrt().clamp(.14, .65);
       this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>, texturedRoughness, stockCoverage);
     }
+    if (this.stock && physical && !physical.legacyCoating) {
+      const paper = primary.max(secondary).max(stamp).max(metal).oneMinus().mul(stockCoverage);
+      this.metalnessNode = mix(this.metalnessNode as Node<'float'>, float(0), paper);
+      const paperRoughness = mix(uniform(physical.roughness), this.surfaceTextureNode.g, controls.roughnessAbsolute)
+        .add(this.surfaceTextureNode.g.sub(128 / 255).mul(.35, controls.roughnessOffset)).add(this.stock.roughness).clamp(.045, 1);
+      this.roughnessNode = mix(this.roughnessNode as Node<'float'>, paperRoughness, paper);
+      this.clearcoatNode = mix(this.clearcoatNode as Node<'float'>, uniform(physical.coatingStrength), paper);
+      const coating = uniform(physical.coatingRoughness).add(this.stock.roughness.mul(.7)).pow2().add(this.stock.variance).sqrt();
+      this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>, coating, paper);
+    }
     const heightStrength = mix(this.optics.relief.mul(primary).add(this.secondaryOptics.relief.mul(secondary)).add(this.stampOptics.relief.mul(stamp)), controls.embossStrength, controls.embossOverride);
     const baseNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
     const varnishStrength = this.optics.varnishRelief.mul(primary).add(this.secondaryOptics.varnishRelief.mul(secondary)).add(this.stampOptics.varnishRelief.mul(stamp));
     this.clearcoatNormalNode = reliefNormal(this.surfaceTextureNode.r, varnishStrength.mul(.008));
-    if (this.stock) this.clearcoatNormalNode = this.stock.normal(this.clearcoatNormalNode as Node<'vec3'>, stockCoverage.mul(.7));
+    if (this.stock) this.clearcoatNormalNode = this.stock.normal(this.clearcoatNormalNode as Node<'vec3'>, stockCoverage.mul(uniform(physical?.microNormalStrength ?? .7)).mul(physical && !physical.legacyCoating ? primary.max(secondary).max(stamp).oneMinus() : 1));
     if (this.nameRecess) this.clearcoatNormalNode = (this.clearcoatNormalNode as Node<'vec3'>).add(this.nameRecess.normal.sub(normalViewGeometry)).normalize();
     const slope = this.reliefTextureNode.rg.sub(.5).mul(this.optics.facetTilt, this.optics.reflectionCoupling, this.optics.fieldBlend, primary)
       .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.reflectionCoupling, this.secondaryOptics.fieldBlend, secondary))

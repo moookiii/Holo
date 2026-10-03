@@ -1,3 +1,4 @@
+import type { PhysicalCardProfile } from '../PhysicalCardProfile';
 import type { Node } from 'three/webgpu';
 import { Fn, positionLocal, positionViewDirection, vec2, vec3, uniform, normalViewGeometry, tangentView, tangentGeometry, mx_cell_noise_float } from 'three/tsl';
 
@@ -22,13 +23,17 @@ export class StockSurfaceLayer {
   readonly slope;
   readonly roughness;
   readonly variance;
-  constructor(seed: number, seedOffset?: Node<'vec2'>) {
+  constructor(seed: number, seedOffset?: Node<'vec2'>, profile?: PhysicalCardProfile) {
+    this.strength.value = profile?.grainStrength ?? 1;
+    this.depth.value = profile?.microreliefDepth ?? .0024;
+    const scale = uniform(profile?.grainScale ?? 52), fineScale = uniform(profile?.fineGrainScale ?? 125);
+    const variation = uniform(profile?.roughnessVariance ?? .12);
     // Continuous fields in physical centimetres; no screen coordinates, time,
     // source-image resampling, or extra GPU samplers (foil already uses sixteen).
     // Match the tangent direction on both faces (the reverse has mirrored U).
     const point = vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(seedOffset ?? vec2((seed % 97) / 7, (seed % 71) / 11));
-    const grainUV = (p: Node<'vec2'>) => vec2(p.x.mul(.8).sub(p.y.mul(.6)), p.x.mul(.6).add(p.y.mul(.8))).mul(52);
-    const fineUV = (p: Node<'vec2'>) => vec2(p.x.mul(.36).add(p.y.mul(.93295)), p.y.mul(.36).sub(p.x.mul(.93295))).mul(125);
+    const grainUV = (p: Node<'vec2'>) => vec2(p.x.mul(.8).sub(p.y.mul(.6)), p.x.mul(.6).add(p.y.mul(.8))).mul(scale);
+    const fineUV = (p: Node<'vec2'>) => vec2(p.x.mul(.36).add(p.y.mul(.93295)), p.y.mul(.36).sub(p.x.mul(.93295))).mul(fineScale);
     // Integrate away subpixel grains rather than sampling them into glitter.
     // Their slope variance becomes a broader lobe when zoomed out or edge-on.
     const visible = grainUV(point).fwidth().dot(grainUV(point).fwidth()).mul(-.65).exp();
@@ -50,11 +55,11 @@ export class StockSurfaceLayer {
       return samplePoint;
     })();
     const grain = relief(grainUV(displaced)), fine = relief(fineUV(displaced));
-    const grainSlope = vec2(grain.y.mul(.8).add(grain.z.mul(.6)), grain.z.mul(.8).sub(grain.y.mul(.6))).mul(52 * .72, visible);
-    const fineSlope = vec2(fine.y.mul(.36).sub(fine.z.mul(.93295)), fine.y.mul(.93295).add(fine.z.mul(.36))).mul(125 * .28, fineVisible);
+    const grainSlope = vec2(grain.y.mul(.8).add(grain.z.mul(.6)), grain.z.mul(.8).sub(grain.y.mul(.6))).mul(scale, .72, visible);
+    const fineSlope = vec2(fine.y.mul(.36).sub(fine.z.mul(.93295)), fine.y.mul(.93295).add(fine.z.mul(.36))).mul(fineScale, .28, fineVisible);
     this.slope = grainSlope.add(fineSlope).mul(this.depth, this.strength, -1);
-    this.roughness = grain.x.sub(.5).mul(.12, visible, this.strength);
-    this.variance = visible.pow2().oneMinus().mul(.0008).add(fineVisible.pow2().oneMinus().mul(.0006))
+    this.roughness = grain.x.sub(.5).mul(variation, visible, this.strength);
+    this.variance = visible.pow2().oneMinus().mul(.0008, scale.div(52).pow2()).add(fineVisible.pow2().oneMinus().mul(.0006, fineScale.div(125).pow2()))
       .mul(this.strength.pow2(), this.depth.div(.0012).pow2());
   }
   normal(base: Node<'vec3'>, amount: number | Node<'float'> = 1) {
