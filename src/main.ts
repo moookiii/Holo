@@ -360,7 +360,7 @@ async function start() {
       if (!gallery) {
         const { Gallery } = await import('./gallery/Gallery');
         if (disposed) return;
-        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, open: leaveGallery, close: () => leaveGallery(), pack: browsePacksFromGallery });
+        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, compile: mesh => factory.compile(mesh), open: leaveGallery, close: () => leaveGallery(), pack: browsePacksFromGallery });
       }
       ++loadGeneration; ++profileGeneration;
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }

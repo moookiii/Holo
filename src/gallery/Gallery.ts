@@ -1,5 +1,5 @@
 import './gallery.css';
-import type { PerspectiveCamera, Scene } from 'three/webgpu';
+import type { InstancedMesh, PerspectiveCamera, Scene } from 'three/webgpu';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardCpuPreparation } from '../card/CardCpuPreparation';
 import type { CardPreview } from '../card/CardPreviewPreparation';
@@ -14,7 +14,7 @@ import { gallerySkimLightY } from './GallerySkim';
 import { profiles } from '../materials/profiles';
 import { printVariantLabel, type PrintVariant } from '../pokemon/types';
 
-interface Entry { token: number; ready: boolean; error?: string; preview?: CardPreview; pitch: number; yaw: number; }
+interface Entry { token: number; ready: boolean; uploading?: boolean; error?: string; preview?: CardPreview; pitch: number; yaw: number; }
 export class Gallery {
   readonly root = document.createElement('section');
   readonly viewport = document.createElement('div');
@@ -44,8 +44,8 @@ export class Gallery {
   active = false;
   openingReady = false;
   loading = false;
-  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
-    this.graphics = new GalleryRenderer(options.scene);
+  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: InstancedMesh) => Promise<void>; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
+    this.graphics = new GalleryRenderer(options.scene, options.compile);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
     const header = document.createElement('header'); header.className = 'gallery-header';
     const title = document.createElement('h1'); title.textContent = 'Collection';
@@ -184,7 +184,14 @@ export class Gallery {
     let waitingForVisibleCard = false;
     for (const item of this.assigned) {
       const entry = this.entries.get(item.slot)!, button = this.buttons.get(item.id)!;
-      if (entry.preview && !uploaded) { this.graphics.upload(item.slot, entry.preview); entry.preview = undefined; entry.ready = true; uploaded = true; }
+      if (entry.preview && !uploaded) {
+        const preview = entry.preview; entry.preview = undefined; entry.uploading = true; uploaded = true;
+        void this.graphics.upload(item.slot, preview).then(() => {
+          if (!this.disposed && this.residency.owns(item.slot, item.token)) entry.ready = true;
+        }).catch(error => {
+          if (!this.disposed && this.residency.owns(item.slot, item.token)) entry.error = String(error);
+        }).finally(() => { entry.uploading = false; });
+      }
       button.classList.toggle('is-ready', entry.ready);
       const placeholder = button.firstElementChild!; placeholder.textContent = entry.error ? 'Preview unavailable · Retry' : 'Loading…';
       const index = Number(button.dataset.cardIndex), card = this.filtered[index];
@@ -197,7 +204,7 @@ export class Gallery {
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
       if (entry.ready && y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom)
         this.graphics.place(item.slot, x, y, this.layout.cell, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
-      if (!entry.ready && !entry.preview && !entry.error && !this.requests.has(item.slot) && this.requests.size < 2 && !this.loading) {
+      if (!entry.ready && !entry.uploading && !entry.preview && !entry.error && !this.requests.has(item.slot) && this.requests.size < 2 && !this.loading) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
           if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed) entry.preview = preview;
@@ -206,8 +213,6 @@ export class Gallery {
       }
     }
     this.graphics.updateLighting(this.options.lighting, this.options.camera);
-    // Zero-sized instances need no shader. Defer first compilation until an
-    // actual preview can be drawn, so opening the controls stays responsive.
     this.graphics.mesh.visible = this.graphics.stats().visible > 0;
     this.openingReady = !waitingForVisibleCard;
   }

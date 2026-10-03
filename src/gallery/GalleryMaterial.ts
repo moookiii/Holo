@@ -1,12 +1,13 @@
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { If, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
+import { exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
+import type { GalleryOpticalLayer } from './GalleryBatch';
 
 
 interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; }
@@ -14,7 +15,7 @@ interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'
 /** Uses the viewer's wavelength response and grating momentum under actual
  * incident light. Foil energy enters directSpecular, never the printed color. */
 class GalleryLightingModel extends PhysicalLightingModel {
-  constructor(private regions: Region[]) { super(true, false, true, false); }
+  constructor(private regions: Region[], private layers: GalleryOpticalLayer[]) { super(true, false, true, false); }
   private backing() {
     return this.regions.reduce<Node<'float'>>((weight, r) => weight.sub(r.mask.mul(r.parameters[5].y.oneMinus())), float(1)).max(.09);
   }
@@ -32,19 +33,21 @@ class GalleryLightingModel extends PhysicalLightingModel {
       [width.sub(direction.mul(width.dot(direction))).div(distance), height.sub(direction.mul(height.dot(direction))).div(distance)]);
   }
   private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
-    for (const r of this.regions) {
+    for (const [index, r] of this.regions.entries()) {
+      const layer = this.layers[index];
+      if (!layer.enabled) continue;
       const [diffraction, axis, structure, , surface, behavior] = r.parameters;
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
-      If(r.secret.x.greaterThan(0), () => {
+      if (layer.secret) {
         const reflected = secretRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
           scale: r.secret.x, cutAngle: r.secret.y, cutWidth: r.secret.z, facetTilt: r.secret.w,
           aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
           secondary: diffraction.w, angle: axis.x, crossWidth: axis.y, roughness: r.parameters[3].y,
         }, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a, r.ink, data.lightColor as Node<'vec3'>));
-      }).Else(() => {
+      } else {
       const radial = radialStructure(float(95), axis.x);
       const direction = mix(radial.direction, gratingDirection(r.field.rg, axis.x), behavior.w).normalize();
       const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize();
@@ -74,11 +77,11 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const broadening = halfVariance.mul(r.glint.z).add(1);
       // Absent foil layers have zeroed glint parameters. Keep pow(0, 0)
       // out of their angular response: NaN survives a later zero mask.
-      const sparkle = microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.max(1).div(broadening),
-        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a);
+      const sparkle = layer.glints ? microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.max(1).div(broadening),
+        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a) : vec3(0);
       const contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(contribution.mul(r.mask, data.lightColor as Node<'vec3'>));
-      });
+      }
     }
   }
   override indirectSpecular(builder: NodeBuilder) {
@@ -101,7 +104,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
 
 export class GalleryMaterial extends MeshPhysicalNodeMaterial {
   private regions: Region[];
-  constructor(arrays: DataArrayTexture[], parameterTexture: Texture) {
+  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[]) {
     super({ clearcoat: .2, clearcoatRoughness: .34, roughness: .48, metalness: .015, envMapIntensity: .65, alphaTest: .5 });
     this.name = 'Gallery shared optical material';
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
@@ -141,5 +144,5 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const edge = uv().sub(.5).abs().sub(vec2(.47, .479)).max(0).length();
     this.opacityNode = edge.lessThan(.021).select(1, 0);
   }
-  override setupLightingModel() { return new GalleryLightingModel(this.regions); }
+  override setupLightingModel() { return new GalleryLightingModel(this.regions, this.layers); }
 }
