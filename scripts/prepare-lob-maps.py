@@ -20,7 +20,7 @@ for card in rows:
     w, h = front.size
     fallback = card['source']['fidelity'] != 'original-scan'
     art = [.122, .184, .878, .697] if fallback else [.140, .216, .857, .710]
-    title = [.061, .043, .833, .097] if fallback else [.096, .073, .787, .122]
+    title = [.064, .053, .833, .097] if fallback else [.096, .073, .787, .122]
     stamp = [.918, .949, .958, .977]
     if number == 'LOB-000': art = [.148, .219, .848, .711]; title = [.096, .069, .785, .116]; stamp = [.918, .945, .971, .978]
     if number == 'LOB-015': art = [.139, .216, .865, .713]; title = [.088, .069, .795, .120]
@@ -46,11 +46,27 @@ for card in rows:
         a = np.array(crop,dtype=float)
         bg = np.array(crop.filter(ImageFilter.GaussianBlur(2.5)),dtype=float)
         # White lettering (spells/traps and secrets) vs dark recessed name ink.
-        light = card['type'] in ('Spell Card','Trap Card') or card['rarity']=='Secret Rare'
+        light = (fallback and card['type'] in ('Spell Card','Trap Card')) or card['rarity']=='Secret Rare'
         contrast = a-bg if light else bg-a
         ink = np.clip((contrast-5)/30,0,1)
         # Keep counters and antialiasing; no row-wide threshold or name-width guess.
         ink *= np.clip((a-90)/50,0,1) if light else np.clip((170-a)/70,0,1)
+        # Reject disconnected scan grain, preserving the grayscale edge of each
+        # retained letter. Tiny punctuation is retained when adjacent to letters.
+        from collections import deque
+        selected=ink>.10; seen=np.zeros(selected.shape,dtype=bool); keep=np.zeros(selected.shape,dtype=bool)
+        for yy,xx in zip(*np.nonzero(selected)):
+            if seen[yy,xx]: continue
+            queue=deque([(yy,xx)]);seen[yy,xx]=True;component=[]
+            while queue:
+                y,x=queue.popleft();component.append((y,x))
+                for dy,dx in ((-1,0),(1,0),(0,-1),(0,1),(-1,-1),(-1,1),(1,-1),(1,1)):
+                    ny,nx=y+dy,x+dx
+                    if 0<=ny<selected.shape[0] and 0<=nx<selected.shape[1] and selected[ny,nx] and not seen[ny,nx]:
+                        seen[ny,nx]=True;queue.append((ny,nx))
+            if len(component)>=max(2,round(w/180)):
+                for y,x in component: keep[y,x]=True
+        ink*=keep
         name.paste(Image.fromarray(np.uint8(ink*255)),box[:2])
         strip = Image.new('RGB',(640,110),'#171b22')
         strip.paste(front.crop((0,0,w,round(h*.145))).resize((320,68)),(0,20))
