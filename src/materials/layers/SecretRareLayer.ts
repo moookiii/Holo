@@ -28,7 +28,7 @@ export function secretRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const along = vec2(cos(u.cutAngle), sin(u.cutAngle));
   const across = vec2(along.y.negate(), along.x);
   const row = p.dot(across).mul(u.scale);
-  const run = p.dot(along).mul(u.scale, .62);
+  const run = p.dot(along).mul(u.scale, 1.4);
   const momentum = light.add(view), half = momentum.normalize();
   const axis = tangent.mul(cos(u.angle)).add(bitangent.mul(sin(u.angle)));
   const variance = (a: Node<'vec3'>) => footprint
@@ -36,7 +36,8 @@ export function secretRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   let result: Node<'vec3'> = vec3(0);
   for (let group = 0; group < 3; group++) {
     const ribbon = filteredCut(row.sub(group).div(3), u.cutWidth.div(3));
-    const segment = filteredCut(run.add(group * .381966), float(.76));
+    // Stagger the die openings rather than lining their gaps into a second grid.
+    const segment = filteredCut(run.add(row.mul(.381966)).add(group * .217), float(.54));
     // Small die inclinations select adjacent rows at different angles. These
     // are optical facet estimates, not asserted measurements of LOB relief.
     const slope = float(group - 1).mul(u.facetTilt);
