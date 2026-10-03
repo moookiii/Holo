@@ -28,7 +28,7 @@ try{
   await page.screenshot({path:`${out}/browse-only.png`});
   await page.getByRole('button',{name:'← Back',exact:true}).click();
   await page.getByLabel('Search Yu-Gi-Oh! sets').fill('LOB');
-  await page.locator('.yugioh-set').filter({hasText:'Legend of Blue Eyes White Dragon'}).first().click();
+  await page.locator('.yugioh-set').filter({hasText:'Opening available'}).click();
   await page.screenshot({path:`${out}/lob-product.png`});
   await page.getByRole('button',{name:'Open LOB · 2002 NA · 1st Edition'}).click();
   await page.waitForFunction(()=>window.__holo.pack.stats().state==='PackReady',null,{timeout:120000});
