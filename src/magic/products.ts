@@ -10,7 +10,8 @@ export const alphaProduct: MagicProduct = Object.freeze({ id: 'magic:lea:booster
   sheets: alphaSheets, slots: Object.freeze([{ id: 'common', sheet: 'common', count: 11 }, { id: 'uncommon', sheet: 'uncommon', count: 3 }, { id: 'rare', sheet: 'rare', count: 1 }]),
   presentation: Object.freeze(['common', 'uncommon', 'rare']), stripeWidths: Object.freeze([2, 3, 4, 5]), note: alphaCollationNote });
 export const magicProducts: readonly MagicProduct[] = Object.freeze([alphaProduct]);
-export const alphaArtwork = '/packs/magic/alpha/front.png';
+/** Browser product photo, independent of the opening wrapper textures. */
+export const alphaArtwork = '/packs/magic/alpha/thumbnail.png';
 export function resolveMagicProduct(productId: string, seed: number) {
   const product = magicProducts.find(p => p.id === productId);
   if (!product) throw new Error(`Unknown Magic product: ${productId}`);
