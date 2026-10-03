@@ -3,7 +3,9 @@ import type { MagicCard } from './types.ts';
 
 /** MTG dimensions, independent of Pokémon. Alpha corner/stock thickness and
  * bevel are adjustable estimates pending measured physical specimens. */
-export const ALPHA_DIMENSIONS: CardDimensions = Object.freeze({ width: 6.3, height: 8.8, thickness: .032, cornerRadius: .32, bevel: .007 });
+// The cached 672 × 936 fronts have a ~43 px corner cut. Match that silhouette
+// (~4 mm on this stock) so white scan corners cannot sit on the printed face.
+export const ALPHA_DIMENSIONS: CardDimensions = Object.freeze({ width: 6.3, height: 8.8, thickness: .032, cornerRadius: .4, bevel: .007 });
 export function magicDefinition(card: MagicCard): CardDefinition {
   return { id: card.id, title: card.name, franchise: 'Magic: The Gathering', set: card.setName, number: card.number,
     dimensions: ALPHA_DIMENSIONS, front: card.front, back: '/cards/magic/back.png', profile: 'print-only', seed: 1993000 + Number(card.number),

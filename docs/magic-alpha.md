@@ -62,7 +62,7 @@ The shared `StockSurfaceLayer` supplied by the stock work is enabled through
 than introducing a second material. Measured Alpha stock tuning remains pending.
 The full viewer restricts ordinary print-only cards to their print-only treatment.
 
-MTG has an independent 63 × 88 mm geometry definition. Alpha's 3.2 mm rounded
+MTG has an independent 63 × 88 mm geometry definition. Alpha's 4 mm rounded
 corners, 0.32 mm thickness and bevel are adjustable visual estimates, not asserted
 measurements. Original scans remain unmodified. The shared physical backside is
 `public/cards/magic/back.png`. The 15-card product uses a wrapper depth sufficient

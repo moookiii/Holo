@@ -1,4 +1,6 @@
-import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, PlaneGeometry, SRGBColorSpace, type PerspectiveCamera, type Scene } from 'three/webgpu';
+import { createGalleryCardGeometry, galleryGeometryDimensions } from './GalleryGeometry';
+import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
+import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, SRGBColorSpace, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/CardPreviewPreparation';
 import { PREVIEW_PARAMETER_COLUMNS } from '../card/PreviewOptics';
@@ -20,7 +22,8 @@ export class GalleryRenderer {
   });
   readonly mesh = new Group();
   private parameterTexture = new DataTexture(new Float32Array(PREVIEW_PARAMETER_COLUMNS * 4 * GALLERY_CAPACITY), PREVIEW_PARAMETER_COLUMNS, GALLERY_CAPACITY, RGBAFormat, FloatType);
-  private geometry = new PlaneGeometry(1, 1);
+  private geometries = new Map<string, ReturnType<typeof createGalleryCardGeometry>>();
+  private edge = createEdgeMaterial(undefined, undefined, .032 / 8.8, 8.8);
   private batches = new Map<string, Batch>();
   private slots = new Map<number, Batch>();
   private compilation = Promise.resolve();
@@ -42,11 +45,14 @@ export class GalleryRenderer {
     (this.parameterTexture.image.data as Float32Array).set(preview.parameters, slot * PREVIEW_PARAMETER_COLUMNS * 4);
     this.parameterTexture.needsUpdate = true;
     this.uploads++;
-    const layers = galleryOpticalLayers(preview.parameters), key = galleryBatchKey(layers);
+    const dimensions = galleryGeometryDimensions(preview.dimensions), geometryKey = JSON.stringify(dimensions);
+    const layers = galleryOpticalLayers(preview.parameters), key = `${galleryBatchKey(layers)}:${geometryKey}`;
     let batch = this.batches.get(key);
     if (!batch) {
       const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers);
-      const mesh = new InstancedMesh(this.geometry, material, this.capacity);
+      let geometry = this.geometries.get(geometryKey);
+      if (!geometry) { geometry = createGalleryCardGeometry(dimensions); this.geometries.set(geometryKey, geometry); }
+      const mesh = new InstancedMesh(geometry, [material, material, this.edge], this.capacity);
       mesh.name = `Gallery optics ${key}`; mesh.instanceMatrix.setUsage(DynamicDrawUsage); mesh.frustumCulled = false;
       this.clear(mesh); this.mesh.add(mesh);
       // Compile before presentation in the HDR beauty-pass context. On browsers
@@ -81,11 +87,11 @@ export class GalleryRenderer {
   place(slot: number, x: number, y: number, width: number, height: number, pitch: number, yaw: number, viewportWidth: number, viewportHeight: number, camera: PerspectiveCamera) {
     const scale = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360) / viewportHeight;
     this.transform.position.set((x - viewportWidth / 2) * scale, (viewportHeight / 2 - y) * scale, 0);
-    this.transform.rotation.set(pitch, yaw, 0); this.transform.scale.set(width * scale, height * scale, 1); this.transform.updateMatrix();
+    this.transform.rotation.set(pitch, yaw, 0); this.transform.scale.set(width * scale, height * scale, height * scale); this.transform.updateMatrix();
     const mesh = this.slots.get(slot)!.mesh;
     mesh.setMatrixAt(slot, this.transform.matrix); this.visible.add(slot); mesh.instanceMatrix.needsUpdate = true;
   }
   updateLighting(_lighting: StudioLighting, _camera: PerspectiveCamera) { /* Uses the scene's actual shared lights. */ }
   stats() { return { gpuBudgetBytes: this.capacity * PREVIEW_BYTES, gpuAllocatedBytes: this.capacity * PREVIEW_BYTES, capacity: this.capacity, visible: this.visible.size, uploads: this.uploads, materials: this.batches.size, textureArrays: this.arrays.length }; }
-  dispose() { this.disposed = true; this.mesh.removeFromParent(); for (const { mesh, material } of this.batches.values()) { mesh.dispose(); material.dispose(); } this.batches.clear(); this.slots.clear(); this.geometry.dispose(); this.arrays.forEach(t => t.dispose()); this.parameterTexture.dispose(); }
+  dispose() { this.disposed = true; this.mesh.removeFromParent(); for (const { mesh, material } of this.batches.values()) { mesh.dispose(); material.dispose(); } this.batches.clear(); this.slots.clear(); this.geometries.forEach(geometry => geometry.dispose()); this.geometries.clear(); this.edge.dispose(); this.arrays.forEach(t => t.dispose()); this.parameterTexture.dispose(); }
 }
