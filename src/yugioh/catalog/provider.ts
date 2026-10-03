@@ -76,7 +76,8 @@ export class YugiohCatalogProvider {
   private bundledUrl: string;
   private now: () => number;
   constructor(fetcher: typeof fetch = fetch, storage?: CatalogStorage, bundledUrl = '/catalog/yugioh/sets.json', now = () => Date.now()) {
-    this.fetcher = fetcher; this.storage = storage; this.bundledUrl = bundledUrl; this.now = now;
+    // Native window.fetch rejects a provider instance as its `this` receiver.
+    this.fetcher = (...args) => fetcher(...args); this.storage = storage; this.bundledUrl = bundledUrl; this.now = now;
   }
   private snapshot(value: unknown): Snapshot | undefined {
     if (!value || typeof value !== 'object') return;
