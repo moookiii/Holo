@@ -245,7 +245,9 @@ async function start() {
       const p = resolveCardProfile(definition, id);
       const generation = ++profileGeneration;
       if (!(card.material[0] instanceof HolographicMaterial) || (p.id === 'print-only' && !new URLSearchParams(location.search).has('lab'))) {
-        const candidate = await factory.create({ ...definition, profile: id, profileOverrides: id === definition.profile ? definition.profileOverrides : undefined });
+        const candidate = await factory.create({ ...definition, profile: id,
+          yugioh: id === definition.profile ? definition.yugioh : undefined,
+          profileOverrides: id === definition.profile ? definition.profileOverrides : undefined });
         if (generation !== profileGeneration || disposed) { candidate.dispose(); return; }
         candidate.mesh.position.copy(card.position); candidate.mesh.quaternion.copy(card.quaternion); candidate.mesh.scale.copy(card.scale);
         activeCard.dispose(); activeCard = candidate; card = candidate.mesh; scene.add(card);

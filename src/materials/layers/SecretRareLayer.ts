@@ -15,6 +15,7 @@ export interface SecretOptics {
   facetTilt: Node<'float'>; period: Node<'float'>; bandwidth: Node<'float'>;
   strength: Node<'float'>; secondary: Node<'float'>; angle: Node<'float'>;
   crossWidth: Node<'float'>; roughness: Node<'float'>;
+  spectralGain?: Node<'float'>; neutralGain?: Node<'float'>;
 }
 
 /** Three interleaved rows of stamped, segmented ribbons, fixed in card space.
@@ -49,12 +50,12 @@ export function secretRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
       .add(path.dFdx().pow2().add(path.dFdy().pow2()).div(12));
     const width = u.crossWidth.pow2().add(variance(groove)).sqrt();
     const aperture = exp(momentum.dot(groove).div(width).pow2().mul(-.5)).mul(u.crossWidth.div(width));
-    const color = spectrum(path, u.bandwidth, u.secondary, pathVariance).mul(aperture, u.strength);
+    const color = spectrum(path, u.bandwidth, u.secondary, pathVariance).mul(aperture, u.strength, u.spectralGain ?? float(1));
     const rough = u.roughness.max(.035).pow2();
     const halfVariance = footprint ? variance(tangent).add(variance(bitangent)).mul(.25) : float(0);
     const lobeWidth = rough.add(halfVariance);
     const silver = exp(n.dot(half).max(0).pow2().oneMinus().div(lobeWidth).mul(-.5))
-      .mul(rough.div(lobeWidth), .85);
+      .mul(rough.div(lobeWidth), .85, u.neutralGain ?? float(1));
     result = result.add(color.add(silver).mul(ribbon, segment, n.dot(light).max(0), n.dot(view).max(0).sqrt()));
   }
   return result;
