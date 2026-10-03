@@ -45,4 +45,4 @@ try{
   assert.equal(errors.length,0,errors.join('\n'));
   await writeFile(`${out}/report.json`,JSON.stringify({stats,errors,cardFronts:[...new Set(requests.filter(u=>/lob-first-edition\/LOB-\d+\.jpg/.test(u)))],totalRequests:requests.length},null,2));
   console.log('LOB browser + exact 9-card WebGPU pack passed');
-}finally{await browser.close();}
+}catch(error){await page.screenshot({path:`${out}/failure.png`});console.error(await page.locator('dialog').innerText().catch(()=>''),errors);throw error;}finally{await browser.close();}

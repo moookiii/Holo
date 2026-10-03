@@ -98,7 +98,7 @@ export class PackBrowser {
   }
   private yugioh(refresh = false) {
     this.step = 'yugioh'; this.screen('Yu-Gi-Oh! catalog');
-    if (this.yugiohView && !refresh) { this.body.append(this.yugiohView.root); this.status.textContent = 'Physical TCG catalog · select a set to see its products and support.'; return; }
+    if (this.yugiohView && !refresh) { this.body.append(this.yugiohView.root); this.button('Refresh catalog', () => this.yugioh(true)); this.status.textContent = 'Physical TCG catalog · select a set to see its products and support.'; return; }
     if (!this.yugiohProvider) {
       let storage: Storage | undefined; try { storage = localStorage; } catch { /* private mode */ }
       this.yugiohProvider = new YugiohCatalogProvider(fetch, storage, `${import.meta.env.BASE_URL}catalog/yugioh/sets.json`);
