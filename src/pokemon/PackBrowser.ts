@@ -15,6 +15,9 @@ import { WIZARDS_PROMO_ID } from './WizardsPromoCatalog';
 import { YugiohCatalogProvider } from '../yugioh/catalog/provider';
 import type { YugiohCatalogSet } from '../yugioh/types';
 import { implementationFor } from '../yugioh/catalog/implementations';
+import { magicSets } from '../magic/AlphaCatalog';
+import { magicProducts, alphaArtwork, resolveMagicProduct } from '../magic/products';
+import type { MagicSet } from '../magic/types';
 
 export interface PackBrowserDependencies {
   definitions: readonly CardDefinition[];
@@ -34,7 +37,8 @@ export class PackBrowser {
   private prepared?: PreparedPack;
   private metadata?: PokemonCard[];
   private retry?: () => void;
-  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' | 'yugioh' | 'yugioh-sets' | 'yugioh-detail' = 'type';
+  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' | 'yugioh' | 'yugioh-sets' | 'yugioh-detail' | 'magic' | 'magic-sets' | 'magic-detail' = 'type';
+  private magicSeries?: string;
   private yugiohProvider?: YugiohCatalogProvider;
   private yugiohSets: YugiohCatalogSet[] = [];
   private yugiohEra?: string;
@@ -82,6 +86,7 @@ export class PackBrowser {
     this.button('Archive', () => this.archive(), `${import.meta.env.BASE_URL}packs/archive/front.svg`, 'Holo’s studio selection');
     const pokemon = this.button('Pokémon', () => this.series(), undefined, 'Browse series, sets and boosters');
     this.button('Yu-Gi-Oh!', () => this.yugioh(), this.yugiohArtwork(), 'Browse series, sets and boosters');
+    this.button('Magic: The Gathering', () => this.magic(), this.magicArtwork(), 'Browse series, sets and boosters');
     const request = this.task.begin();
     void pokemonCatalog.series(request.signal).then(series => {
       if (!this.task.current(request) || this.step !== 'type') return;
@@ -95,6 +100,43 @@ export class PackBrowser {
         image.src = logo;
       }
     }).catch(() => {});
+  }
+  private magicArtwork() { return `${import.meta.env.BASE_URL}${alphaArtwork.replace(/^\//, '')}`; }
+  private magic() {
+    this.step = 'magic'; this.screen('Magic: The Gathering series', 'Choose a series.');
+    const series = [...new Map(magicSets.map(set => [set.series.id, set.series])).values()];
+    for (const entry of series) this.button(entry.name, () => { this.magicSeries = entry.id; this.magicSetSelection(); }, this.magicArtwork());
+  }
+  private magicSetSelection() {
+    this.step = 'magic-sets';
+    this.screen(magicSets.find(set => set.series.id === this.magicSeries)?.series.name ?? 'Magic sets', 'Choose a set.');
+    for (const set of magicSets.filter(set => set.series.id === this.magicSeries))
+      this.button(set.name, () => this.magicDetail(set), this.magicArtwork(), `${set.releaseDate.slice(0, 4)} · ${set.cards.length} cards · Opening available`);
+  }
+  private magicDetail(set: MagicSet) {
+    this.step = 'magic-detail'; this.screen(`${set.series.name} · ${set.name}`, 'Choose a booster. Original 1993 frame · black border · nonfoil.');
+    for (const product of magicProducts.filter(product => set.productIds.includes(product.id))) {
+      const button = this.button('Booster pack', () => {
+        if (this.root.getAttribute('aria-busy') === 'true') return;
+        button.setAttribute('aria-pressed', 'true'); this.chooseMagic(product.id);
+      }, this.magicArtwork(), `${product.packSize} cards · 11 common-sheet / 3 uncommon-sheet / 1 rare-sheet`);
+      button.classList.add('pokemon-booster'); button.setAttribute('aria-pressed', 'false');
+      const notes = document.createElement('details'); notes.className = 'tcg-product-notes';
+      const summary = document.createElement('summary'); summary.textContent = 'Historical collation and wrapper reference';
+      const note = document.createElement('p'); note.textContent = product.note;
+      const artNote = document.createElement('p'); artNote.textContent = 'Original wrapper reference; reverse artwork is unavailable and shown as neutral film.';
+      notes.append(summary, note, artNote); this.body.append(notes);
+    }
+  }
+  private chooseMagic(productId: string, retainedSeed?: number) {
+    const seed = retainedSeed ?? crypto.getRandomValues(new Uint32Array(1))[0];
+    void this.run('Preparing exact Alpha pack…', async request => {
+      const { pack, definitions } = resolveMagicProduct(productId, seed);
+      const prepared = await this.deps.prepare(pack, seed, definitions, request.signal, (done, total) => {
+        if (this.task.current(request)) this.status.textContent = `Preparing exact cards · ${done} / ${total}`;
+      });
+      if (this.task.current(request)) this.ready(prepared);
+    }, () => this.chooseMagic(productId, seed));
   }
   private yugiohArtwork() { return `${import.meta.env.BASE_URL}packs/yugioh/lob-first-edition/front.png`; }
   private yugioh() {
@@ -277,6 +319,9 @@ export class PackBrowser {
   }
   private goBack() {
     switch (this.step) {
+      case 'magic-detail': this.magicSetSelection(); break;
+      case 'magic-sets': this.magic(); break;
+      case 'magic': this.types(); break;
       case 'yugioh-detail': this.yugiohSetSelection(); break;
       case 'yugioh-sets': this.yugioh(); break;
       case 'yugioh': this.types(); break;

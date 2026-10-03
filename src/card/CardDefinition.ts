@@ -76,6 +76,9 @@ export const DIMENSIONS = {
 } satisfies Record<string, CardDimensions>;
 
 export interface CardDefinition {
+  magic?: import('../magic/types').MagicCard;
+  /** Shared cardstock surface controls, independent of foil treatments. */
+  stockSurface?: { strength: number; depth?: number };
   /** Physical printing identity, independent of card-specific masks and catalog rarity. */
   yugioh?: import('../materials/profiles/YugiohPrinting').YugiohPrinting;
   /** Pack pulls can be inspected without becoming entries in the card picker. */

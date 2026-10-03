@@ -26,6 +26,9 @@ import { prismaticPickerCards } from './pokemon/PrismaticSurfaces';
 import type { Gallery } from './gallery/Gallery';
 import { lobCards } from './yugioh/sets/LegendOfBlueEyesCatalog';
 import { yugiohDefinition } from './yugioh/materials';
+import { alphaCards } from './magic/AlphaCatalog';
+import { magicDefinition } from './magic/materials';
+import { resolveMagicProduct } from './magic/products';
 
 async function start() {
   startupMark('modulesReady');
@@ -45,7 +48,7 @@ async function start() {
   const factory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
   const cpuPreparation = new CardCpuPreparation(profiles);
   const { assets, maps: mapLoader } = factory;
-  const cards = [...builtInCards, ...prismaticPickerCards(), ...lobCards.map(yugiohDefinition)];
+  const cards = [...builtInCards, ...prismaticPickerCards(), ...lobCards.map(yugiohDefinition), ...alphaCards.map(magicDefinition)];
   const initialCard = cards.find(card => card.id === FIRST_PICKER_CARD_ID) ?? cards[0];
   const lighting = new StudioLighting(scene);
   const spotlightPointer = new SpotlightPointer(container, camera, lighting.spot);
@@ -124,6 +127,7 @@ async function start() {
         try {
           // Pokémon is collated by the browser only after selecting a booster.
           if (selectedPack.pokemon) return;
+          if (selectedPack.magic && selectedPack.seed !== packSeed) selectedPack = resolveMagicProduct(selectedPack.id, packSeed).pack;
           const started = performance.now(), seed = packSeed, packDefinition = selectedPack;
           const prepared = await prepareExactPack(packDefinition, seed, cards, request.signal, (card, signal) => cpuPreparation.prepare(card, signal));
           if (!request.signal.aborted && warmupRequest === request && selectedPack === packDefinition && packSeed === seed) {
@@ -164,7 +168,7 @@ async function start() {
   };
   const openPack = async (id = selectedPack.id, exact?: PreparedPack) => {
     if (disposed) return;
-    const target = exact?.definition ?? getPack(id);
+    const target = exact?.definition ?? (selectedPack.magic && selectedPack.id === id ? resolveMagicProduct(id, packSeed).pack : getPack(id));
     const seed = exact?.seed ?? packSeed;
     const cached = exact ?? (preparedPack?.identity === packIdentity(target, seed) ? preparedPack : undefined);
     if (exact && exact.identity !== packIdentity(target, seed, exact.contents)) throw new Error('Prepared pack identity changed. Select the booster again.');

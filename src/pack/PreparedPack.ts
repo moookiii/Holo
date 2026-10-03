@@ -8,7 +8,7 @@ export interface PreparedPack {
   definitions: CardDefinition[]; cards: Map<string, PreparedCardCpu>;
 }
 export function packIdentity(definition: PackDefinition, seed: number, contents = resolvePackContents(definition, seed)) {
-  return JSON.stringify([definition.id, definition.pokemon?.identity, seed, definition.wrapper, contents]);
+  return JSON.stringify([definition.id, definition.pokemon?.identity, definition.magic?.identity, seed, definition.wrapper, definition.presentationOrder, contents]);
 }
 export async function prepareExactPack(definition: PackDefinition, seed: number, definitions: readonly CardDefinition[], signal: AbortSignal,
   prepare: (card: CardDefinition, signal: AbortSignal) => Promise<PreparedCardCpu>, progress: (done: number, total: number) => void = () => {}): Promise<PreparedPack> {

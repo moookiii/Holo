@@ -4,6 +4,7 @@ import type { PackWrapper } from './wrapper/PackWrapper';
 import type { PackState } from './PackOpeningState';
 import { ease, mix, orientation } from './PackMath';
 import { randomSequence } from './PackDefinition';
+import { largePackLayout } from './PackPresentation';
 
 export interface PackPose {
   state: PackState; intro: number; tear: number; mouth: number; extract: number; settle: number;
@@ -77,6 +78,7 @@ export class PackScene {
         // Keep the fan's rotation in the screen plane. Every card face stays
         // parallel to the camera while the in-plane roll preserves the spread.
         q = orientation(0, 0, -d * (portrait ? .055 : .085));
+        if (this.cards.length > 12) { position.set(...largePackLayout(this.cards.length, portrait).position(i)); q = orientation(); }
         if (p.hover === i) { position.y += portrait ? .35 : .85; position.z += 3; }
         if (p.state === 'Inspect') {
           if (i === p.selected && this.inspectStart) {

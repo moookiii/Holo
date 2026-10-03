@@ -141,7 +141,7 @@ export function galleryMasterCards(cards: readonly CardDefinition[]) {
 function compareGalleryCards(a: CardDefinition, b: CardDefinition) {
   const gameOrder = franchiseOrder[a.franchise] - franchiseOrder[b.franchise];
   if (gameOrder) return gameOrder;
-  if (a.franchise !== 'Pokémon' && a.franchise !== 'Yu-Gi-Oh!') return 0;
+  if (a.franchise !== 'Pokémon' && a.franchise !== 'Yu-Gi-Oh!' && a.franchise !== 'Magic: The Gathering') return 0;
   const setOrder = compareGallerySetNames(gallerySetName(a), gallerySetName(b));
   if (setOrder) return setOrder;
   const numberOrder = a.franchise === 'Yu-Gi-Oh!'
@@ -154,9 +154,9 @@ function compareGalleryCards(a: CardDefinition, b: CardDefinition) {
 export const facets = [
   { key: 'game', label: 'Game', value: (c: CardDefinition) => c.franchise },
   { key: 'set', label: 'Set', value: gallerySetName },
-  { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.pokemon?.rarity ?? (c.franchise === 'Yu-Gi-Oh!' ? c.set.match(/^[A-Z0-9]+-EN\d+ · (.+)$/)?.[1] : undefined) },
+  { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.magic?.rarity ?? c.pokemon?.rarity ?? (c.franchise === 'Yu-Gi-Oh!' ? c.set.match(/^[A-Z0-9]+-EN\d+ · (.+)$/)?.[1] : undefined) },
   { key: 'finish', label: 'Finish', value: (c: CardDefinition) => c.pokemon?.variant ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.franchise === 'Pokémon' ? 'holo' : c.profile) },
-  { key: 'category', label: 'Category', value: (c: CardDefinition) => c.pokemon?.category },
+  { key: 'category', label: 'Category', value: (c: CardDefinition) => c.magic?.typeLine ?? c.pokemon?.category },
 ] as const;
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
 

@@ -20,4 +20,6 @@
 .pokemon-pack-tile small { font-size: 11px; color: #a8b2c3; line-height: 1.6; }
 .pokemon-open { grid-column: 1 / -1; min-height: 52px; background: #d5deeb; color: #121924; }
 .pokemon-open:hover { background: #eaf0f8; }
+.tcg-product-notes { grid-column: 1 / -1; color: #abb5c4; font-size: 12px; line-height: 1.7; }
+.tcg-product-notes summary { cursor: pointer; padding: 8px 0; }
 @media (max-width: 560px) { .pokemon-browser { padding: 18px; } .pokemon-browser header { gap: 10px; } .pokemon-browser h2 { font-size: 17px; } .pokemon-browser-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .pokemon-pack-tile { padding: 12px; } .pokemon-pack-tile.pokemon-booster img { height: 230px; } }

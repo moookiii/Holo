@@ -25,7 +25,8 @@ export class PrintFrontMaterial extends MeshPhysicalNodeMaterial {
     const p = vec2(uv().x, uv().y.oneMinus());
     const outsideArt = p.x.sub(rect.x).min(rect.z.sub(p.x)).min(p.y.sub(rect.y)).min(rect.w.sub(p.y)).smoothstep(0, .001).oneMinus();
     const stock = new StockSurfaceLayer(definition.seed, uniform(new Vector2((definition.seed % 97) / 7, (definition.seed % 71) / 11)));
-    stock.strength.value = definition.franchise === 'Yu-Gi-Oh!' ? 1 : 0;
+    stock.strength.value = definition.stockSurface?.strength ?? (definition.franchise === 'Yu-Gi-Oh!' ? 1 : 0);
+    if (definition.stockSurface?.depth !== undefined) stock.depth.value = definition.stockSurface.depth;
     const paper = outsideArt.mul(stock.strength);
     const coat = uniform(profile.surface.laminate), coatRoughness = uniform(profile.surface.laminateRoughness);
     this.clearcoatNode = coat.max(paper.mul(.42));

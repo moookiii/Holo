@@ -8,6 +8,9 @@ export interface PackCard {
   reveal?: 'studio-sweep';
 }
 export interface PackDefinition {
+  magic?: import('../magic/types').ResolvedMagicPack;
+  /** Permutation of generated positions; changes presentation only. */
+  presentationOrder?: readonly number[];
   pokemon?: import('../pokemon/types').ResolvedPokemonPack;
   id: string;
   name: string;
@@ -93,7 +96,7 @@ export function randomSequence(seed: number) {
   return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let n = Math.imul(seed ^ seed >>> 15, 1 | seed); n ^= n + Math.imul(n ^ n >>> 7, 61 | n); return ((n ^ n >>> 14) >>> 0) / 4294967296; };
 }
 export function resolvePackContents(pack: PackDefinition, seed: number) {
-  if (!Number.isInteger(pack.cardCount) || pack.cardCount < 1 || pack.cardCount > 12) throw new Error('A pack needs 1–12 defined cards.');
+  if (!Number.isInteger(pack.cardCount) || pack.cardCount < 1 || pack.cardCount > 15) throw new Error('A pack needs 1–15 defined cards.');
   if (pack.collation) {
     const { commonSlots, commonPool, holoPool } = pack.collation;
     if (commonSlots !== pack.cardCount - 1 || commonPool.length < commonSlots || holoPool.length < 1) throw new Error('Invalid random pack collation.');

@@ -7,6 +7,7 @@ import type { CardInstance } from '../card/CardInstance';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { framingDistance } from '../camera/Framing';
 import { PackOpeningState } from './PackOpeningState';
+import { presentPackContents, largePackLayout } from './PackPresentation';
 import { resolvePackContents, type PackDefinition, type PackCard } from './PackDefinition';
 import { PackWrapper } from './wrapper/PackWrapper';
 import { PackScene, type PackPose } from './PackScene';
@@ -91,7 +92,7 @@ export class PackOpeningController {
       cardTextureCacheMisses: 0, postCompileUploadMs: 0, textureUploads: 0, textureUploadCpuMs: 0, mipmapCalls: 0, mipmapCpuMs: 0,
       audioMs: 0, sceneConstructionMs: 0, preparedCards: 0 };
     const lookupStarted = performance.now();
-    const contents = deps.preparedContents ?? resolvePackContents(definition, seed);
+    const contents = presentPackContents(definition, deps.preparedContents ?? resolvePackContents(definition, seed));
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
     metrics.usedCpuPreparation = definitions.every(card => deps.prepared?.has(card.id));
     metrics.preparedCards = definitions.filter(card => deps.prepared?.has(card.id)).length;
@@ -332,7 +333,10 @@ export class PackOpeningController {
     if (this.pendingCardSettle >= 0 && this.presentation.cards[this.pendingCardSettle].mesh.position.x < -15.5) {
       this.audio.playCardSettle(.42); this.pendingCardSettle = -1;
     }
-    if (state === 'PackSummary') this.camera.frame(portrait ? 10.5 : this.contents.length * 3.35 + 5, portrait ? 18 : 11, -.4, 0, 3.5);
+    if (state === 'PackSummary') {
+      const layout = this.contents.length > 12 ? largePackLayout(this.contents.length, portrait) : undefined;
+      this.camera.frame(layout?.width ?? (portrait ? 10.5 : this.contents.length * 3.35 + 5), layout?.height ?? (portrait ? 18 : 11), layout ? 0 : -.4, 0, 3.5);
+    }
     else if (state === 'Inspect') {
       const card = this.presentation.cards[this.selected];
       this.camera.viewer(framingDistance(card.definition.dimensions, orientation(-.10, .025), this.deps.camera.aspect, this.deps.camera.fov, innerHeight));

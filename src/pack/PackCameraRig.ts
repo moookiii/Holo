@@ -1,5 +1,5 @@
 import { Quaternion, Vector3, type PerspectiveCamera } from 'three/webgpu';
-import { Spring } from './PackMath';
+import { Spring } from './PackMath.ts';
 
 /** Composition expressed in physical centimetres, with independent spring axes.
  * A constant lens avoids zoom punches; orientation is always a quaternion. */
@@ -10,8 +10,11 @@ export class PackCameraRig {
   private orientation = new Quaternion();
   private savedPosition = new Vector3();
   private savedOrientation = new Quaternion();
-  constructor(readonly camera: PerspectiveCamera) {}
+  private savedFar = 100;
+  readonly camera: PerspectiveCamera;
+  constructor(camera: PerspectiveCamera) { this.camera = camera; }
   begin() {
+    this.savedFar = this.camera.far;
     this.savedPosition.copy(this.camera.position); this.savedOrientation.copy(this.camera.quaternion);
     this.x.snap(this.camera.position.x); this.y.snap(this.camera.position.y); this.z.snap(this.camera.position.z);
   }
@@ -20,6 +23,9 @@ export class PackCameraRig {
     const safeY = Math.max(.65, 1 - 160 / window.innerHeight);
     this.x.target = centerX; this.y.target = centerY;
     this.z.target = Math.max(height / (2 * tan * safeY), width / (2 * tan * this.camera.aspect * .86)) + depth;
+    // Large portrait summaries can sit beyond the viewer's original far plane.
+    const far = Math.max(this.savedFar, this.z.target + Math.max(width, height));
+    if (this.camera.far !== far) { this.camera.far = far; this.camera.updateProjectionMatrix(); }
   }
   viewer(distance: number) { this.x.target = 0; this.y.target = -.06; this.z.target = distance; }
   update(dt: number, snap = false, reduced = false) {
@@ -29,5 +35,5 @@ export class PackCameraRig {
     this.camera.quaternion.slerp(this.orientation, snap ? 1 : 1 - Math.exp(-dt * 10));
     this.camera.updateMatrixWorld();
   }
-  restore() { this.camera.position.copy(this.savedPosition); this.camera.quaternion.copy(this.savedOrientation); }
+  restore() { this.camera.position.copy(this.savedPosition); this.camera.quaternion.copy(this.savedOrientation); this.camera.far = this.savedFar; this.camera.updateProjectionMatrix(); }
 }
