@@ -8,7 +8,7 @@ await mkdir('public/catalog/yugioh', { recursive: true });
 const metadata = 'https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon';
 const gallery = 'https://yugioh.fandom.com/wiki/Set_Card_Galleries:Legend_of_Blue_Eyes_White_Dragon_(TCG-NA-1E)';
 const exists = async p => access(p).then(() => true, () => false);
-const raw = JSON.parse(await readFile('research/yugioh-lob/cards.json', 'utf8'));
+const raw = await exists('research/yugioh-lob/cards.json') ? JSON.parse(await readFile('research/yugioh-lob/cards.json', 'utf8')) : await (await fetch(metadata)).json();
 const names = { 'LOB-012': 'Trial of Hell', 'LOB-070': 'Red-Eyes B. Dragon' };
 const codes = { Common: 'C', Rare: 'R', 'Super Rare': 'SR', 'Ultra Rare': 'UR', 'Secret Rare': 'ScR', 'Short Print': 'C' };
 const rows = raw.data.flatMap(c => c.card_sets.filter(s => /^LOB-\d{3}$/.test(s.set_code)).map(s => ({ c, s })))
@@ -43,11 +43,11 @@ for (const { c, s } of rows) {
   }
   const rarity = s.set_rarity === 'Short Print' ? 'Common' : s.set_rarity;
   result.push({ number, name, modernName: c.name, passcode: String(c.id).padStart(8, '0'), rarity,
-    distribution: s.set_rarity === 'Short Print' ? 'reported-short-print' : 'unclassified',
+    distribution: ['LOB-097', 'LOB-098'].includes(number) ? 'reported-super-short-print' : s.set_rarity === 'Short Print' ? 'reported-short-print' : 'unclassified',
     type: c.type, modernText: c.desc, source: { ...source, metadata }, front: `/${root.replace('public/', '')}/${number}.jpg` });
   console.log(number, source.fidelity);
 }
 await writeFile('src/yugioh/sets/lob-data.json', JSON.stringify(result, null, 2) + '\n');
-const sets = JSON.parse(await readFile('research/yugioh-lob/sets.json', 'utf8'));
+const sets = await exists('research/yugioh-lob/sets.json') ? JSON.parse(await readFile('research/yugioh-lob/sets.json', 'utf8')) : await (await fetch('https://db.ygoprodeck.com/api/v7/cardsets.php')).json();
 await writeFile('public/catalog/yugioh/sets.json', JSON.stringify({ version: 1, fetchedAt: new Date().toISOString(), records: sets }) + '\n');
 console.log('Imported', result.length, 'cards;', result.filter(c => c.source.fidelity !== 'original-scan').map(c => c.number));

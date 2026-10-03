@@ -19,7 +19,8 @@ test('LOB is the complete original numbered 126-card printing',()=>{
   assert.deepEqual(lobCards.filter(c=>c.rarity==='Secret Rare').map(c=>c.number),['LOB-000','LOB-125']);
   assert.throws(()=>validateLobCatalog([...lobCards.slice(1),lobCards[1]]));
   assert.equal(lobCards.filter(c=>c.rarity==='Common').length,82);
-  assert.equal(lobCards.filter(c=>c.distribution==='reported-short-print').length,14);
+  assert.equal(lobCards.filter(c=>c.distribution==='reported-short-print').length,12);
+  assert.deepEqual(lobCards.filter(c=>c.distribution==='reported-super-short-print').map(c=>c.number),['LOB-097','LOB-098']);
   for(const card of lobCards){assert.ok(existsSync(`public${card.front}`));assert.ok(card.source.image);assert.ok(card.printingId.includes('na-2002:first-edition'));}
 });
 test('seeded LOB packs preserve rare slot, have 9 distinct cards and no guarantees',()=>{
