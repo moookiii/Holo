@@ -87,7 +87,9 @@ export class StudioLighting {
       const sweepCenter = Math.max(-55, Math.min(55, this.azimuth + (gallerySkim ? 15 : galleryMoving ? 5 : 0)));
       const sweepSpan = Math.min(gallerySkim ? 65 : galleryMoving ? 55 : 50, 70 - Math.abs(sweepCenter));
       const angle = (p === 'Moving light' || p === 'Skim' ? sweepCenter + sweepMotion * sweepSpan : this.azimuth) * Math.PI / 180;
-      const elevation = this.elevation * Math.PI / 180;
+      // Gallery Skim sets its reflection height from the visible viewport.
+      // Keep horizontal sweep reach independent of that vertical control.
+      const elevation = (gallerySkim ? 8 : this.elevation) * Math.PI / 180;
       if (p === 'Skim') {
         // Orbit outside the card at constant distance. Compressing only Z brings
         // the tall emitter through the card and creates a pointed near-field flare.

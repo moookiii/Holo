@@ -10,6 +10,7 @@ import { galleryLayout } from './GalleryLayout';
 import { compareGallerySetNames, facets, filterCards, galleryMasterCards, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
+import { gallerySkimLightY } from './GallerySkim';
 import { profiles } from '../materials/profiles';
 import { printVariantLabel, type PrintVariant } from '../pokemon/types';
 
@@ -171,6 +172,13 @@ export class Gallery {
     if (!this.active || this.disposed) return;
     if (this.dirty) this.reconcile();
     const rect = this.viewport.getBoundingClientRect();
+    const lighting = this.options.lighting;
+    lighting.update(dt, true);
+    if (lighting.preset === 'Skim' && height > 0) {
+      const camera = this.options.camera;
+      lighting.key.position.y = gallerySkimLightY(lighting.elevation, rect.top, rect.bottom, height, camera.position.z, camera.fov, lighting.key.position.z);
+      lighting.key.lookAt(0, 0, 0);
+    }
     this.graphics.hideAll();
     let uploaded = false;
     let waitingForVisibleCard = false;
