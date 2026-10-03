@@ -49,7 +49,7 @@ try{
   await page.waitForTimeout(1500);await page.screenshot({path:`${out}/pokemon.png`});
   await page.getByRole('button',{name:'Close',exact:true}).click();
   // Review each historical finish through the same single-card renderer.
-  await page.addStyleTag({content:'.holo-lab, .lab-shell, #ui { visibility: hidden !important; }'});
+  await page.addStyleTag({content:'.hl-shell, #ui { visibility: hidden !important; }'});
   for(const number of ['LOB-002','LOB-027','LOB-007','LOB-001','LOB-000','LOB-125']){
     await page.evaluate(async number=>{
       const {lobCards}=await import('/src/yugioh/sets/LegendOfBlueEyesCatalog.ts');const {yugiohDefinition}=await import('/src/yugioh/materials.ts');
