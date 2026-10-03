@@ -38,7 +38,7 @@ export async function startArtifacts() {
   const picker=host.querySelector<HTMLSelectElement>('#artifact-picker')!;
   for(const item of artifacts)picker.add(new Option(item.name,item.id));
   let broadLight=false;
-  function syncMaterialLight(){current?.updateLighting?.(key.position,key.intensity,broadLight);}
+  function syncMaterialLight(){current?.updateLighting?.(key.position,key.intensity,broadLight,rim.position,rim.intensity);}
   function lightPosition(){const a=lightAzimuth*Math.PI/180,e=lightElevation*Math.PI/180;key.position.set(Math.sin(a)*7*Math.cos(e),Math.sin(e)*7,Math.cos(a)*7*Math.cos(e));syncMaterialLight();}
   function preset(name:string){
     broadLight=name==='Soft';

@@ -1,30 +1,26 @@
 """Source-coordinate ink mask; original scans are never modified.
 
-Only the colored/silver ink inside identified printed emblems is selected.
-White plastic, red ink, black letter interiors and gaps remain unselected.
+All bright non-red, non-black print inside the label is selected. The clear
+hub and outer silver lip remain physical plastic, outside the ink treatment.
 The front scan cannot establish ink composition; coverage is a visual estimate.
 """
 from pathlib import Path
-from PIL import Image, ImageDraw
+from PIL import Image
 
 root = Path(__file__).resolve().parents[1]
 folder = root / 'public/artifacts/melee'
 source = Image.open(folder / 'front.png').convert('RGB')
-regions = Image.new('L', source.size)
-draw = ImageDraw.Draw(regions)
-# Title, Melee wordmark, seal, GameCube, rating, and manufacturing inscriptions.
-for box in [(216,130,1015,345),(470,367,808,417),(133,809,353,975),
-            (378,830,878,947),(909,782,1047,987),(286,1020,953,1200)]:
-    draw.rectangle(box, fill=255)
 mask = Image.new('L', source.size)
 for y in range(source.height):
     for x in range(source.width):
-        # Stop inside the printed label: the exposed outer silver lip is not foil.
-        if not regions.getpixel((x,y)) or (x-618)**2+(y-628)**2 > 575**2:
+        radius2=(x-618)**2+(y-628)**2
+        # Printed annulus only: preserve the clear center and exposed outer lip.
+        if radius2 < 195**2 or radius2 > 575**2:
             continue
         r,g,b = source.getpixel((x,y))
-        # Antialias coverage follows ink pixels, never the rectangular ROI.
-        level = max(0, min(1, (min(r,g,b)-35)/105))
+        # Red print has a strong R lead; black print is too dark to be metallic.
+        red_ink = max(0, min(1, (r-max(g,b)-34)/55))
+        level = max(0, min(1, (min(r,g,b)-35)/105))*(1-red_ink)
         mask.putpixel((x,y), round(255*level))
 mask.save(folder / 'metallic-ink.png')
 review = root / 'artifacts/melee-review'

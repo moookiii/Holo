@@ -1,13 +1,15 @@
-import { chromium } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import { existsSync, readdirSync, mkdirSync, writeFileSync } from 'node:fs';
 import { join } from 'node:path';
 import assert from 'node:assert/strict';
-let executablePath=chromium.executablePath();
-if(!existsSync(executablePath)){const base=join(process.env.LOCALAPPDATA,'ms-playwright');for(const v of readdirSync(base).filter(n=>/^chromium-/.test(n)).reverse()){const p=join(base,v,'chrome-win64','chrome.exe');if(existsSync(p)){executablePath=p;break;}}}
-const browser=await chromium.launch({executablePath,headless:true,args:['--enable-unsafe-webgpu','--ignore-gpu-blocklist']});
+const engine=process.env.MELEE_BROWSER==='firefox'?firefox:chromium;
+let executablePath=engine.executablePath();
+if(engine===chromium&&!existsSync(executablePath)){const base=join(process.env.LOCALAPPDATA,'ms-playwright');for(const v of readdirSync(base).filter(n=>/^chromium-/.test(n)).reverse()){const p=join(base,v,'chrome-win64','chrome.exe');if(existsSync(p)){executablePath=p;break;}}}
+const browser=await engine.launch({executablePath,headless:true,
+  ...(engine===chromium?{args:['--enable-unsafe-webgpu','--ignore-gpu-blocklist']}:{})});
 const page=await browser.newPage({viewport:{width:1440,height:1100}});
 const errors=[];page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});
-const out='artifacts/melee-review';mkdirSync(out,{recursive:true});
+const out=engine===firefox?'artifacts/melee-review/firefox':'artifacts/melee-review/chromium';mkdirSync(out,{recursive:true});
 const ready=()=>page.waitForSelector('[data-ready="true"]',{timeout:120000});
 const shot=async name=>{await page.waitForTimeout(750);await page.screenshot({path:`${out}/${name}.png`});};
 // Test-only instrumentation of the dev response; no debug globals ship in Holo.
@@ -21,6 +23,8 @@ try {
   await page.goto(process.env.ARTIFACT_URL || 'http://127.0.0.1:5182/artifacts');await ready();
   await page.getByLabel('Choose artifact',{exact:true}).selectOption('melee-disc');await ready();
   await shot('front-studio');
+  await page.getByLabel('Light azimuth',{exact:true}).fill('90');await shot('front-light-comparison');
+  await page.getByLabel('Light azimuth',{exact:true}).fill('-35');
   const stage=page.locator('.artifact-stage');await stage.focus();
   for(let i=0;i<31;i++)await stage.press('ArrowLeft');await shot('back-studio');
   await page.getByLabel('Light azimuth',{exact:true}).fill('150');

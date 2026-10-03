@@ -30,7 +30,8 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
   const root = new Group(); root.name = 'Melee optical disc';
   const geometries = new Set<BufferGeometry>(), materials = new Set<Material>();
   const light = uniform(new Vector3(-.4,.6,.7));
-  const power = uniform(1), bandwidth = uniform(.045);
+  const rimLight = uniform(new Vector3(1,3,-4).normalize());
+  const power = uniform(1), rimPower = uniform(1), bandwidth = uniform(.045);
   const add = (name: string, geometry: BufferGeometry, material: Material) => {
     geometries.add(geometry); materials.add(material);
     const mesh = new Mesh(geometry,material); mesh.name=name; root.add(mesh); return mesh;
@@ -38,12 +39,28 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
   const label = new MeshPhysicalNodeMaterial({roughness:.39,metalness:0,clearcoat:.12,clearcoatRoughness:.24,
     envMapIntensity:.22,specularIntensity:.35});
   const coverage = texture(ink).r;
-  label.colorNode=texture(front).rgb;
-  label.metalnessNode=coverage.mul(.68);
-  label.roughnessNode=mix(float(.39),float(.26),coverage);
-  // A restrained thin-film response in the reflective printing only; no data grating.
-  label.iridescenceNode=coverage.mul(.24);
+  const frontPrint=texture(front).rgb;
+  label.metalnessNode=coverage.mul(.83);
+  label.roughnessNode=mix(float(.39),float(.19),coverage);
+  // Printed metallic ink is a thin film, distinct from the back's track grating.
+  label.iridescenceNode=coverage.mul(.62);
   label.iridescenceIOR=1.38; label.iridescenceThicknessRange=[240,340];
+  const frontView=cameraPosition.sub(positionWorld).normalize();
+  const frontCoherence=normalWorld.dot(light.add(frontView).normalize()).max(0);
+  // Small thickness variation across the printed ink gives neighboring letters
+  // slightly different interference color as light and view angles change.
+  const filmThickness=positionLocal.x.mul(.018).add(positionLocal.y.mul(.009)).add(.31);
+  const opticalPath=frontCoherence.mul(filmThickness).mul(2*Math.PI*2*1.38)
+    .add(light.dot(vec3(.82,.34,0)).mul(2.3));
+  const inkColor=vec3(
+    opticalPath.div(.64).cos().mul(.5).add(.5),
+    opticalPath.div(.53).cos().mul(.5).add(.5),
+    opticalPath.div(.45).cos().mul(.5).add(.5));
+  const frontIllumination=normalWorld.dot(light).max(0);
+  const reflectedInk=inkColor.mul(.8).add(.2);
+  label.colorNode=mix(frontPrint,reflectedInk,coverage.mul(frontIllumination).mul(.68));
+  label.emissiveNode=inkColor.mul(coverage).mul(normalWorld.dot(light).max(0))
+    .mul(power).mul(.28);
   const face=add('Printed label',discFace(DISC.hub,2.366),label);face.position.z=.036;
 
   const data = new MeshPhysicalNodeMaterial({metalness:.92,roughness:.23,clearcoat:1,clearcoatRoughness:.13});
@@ -58,27 +75,28 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
   const radial=modelWorldMatrix.mul(vec4(positionLocal.xy.normalize(),0,0)).xyz.normalize();
   const tangent=normalWorld.cross(radial).normalize();
   const view=cameraPosition.sub(positionWorld).normalize();
-  const incoming=light;
-  const sum=incoming.add(view);
   // Reflection grating equation m*lambda = pitch * (sin(theta_i)+sin(theta_o)).
   // DVD track pitch is ~0.74 micrometers. Tracks are concentric: dispersion is radial.
-  const q=sum.dot(radial).abs();
-  const across=sum.dot(tangent);
-  const coherence=across.div(.24).pow2().negate().exp();
-  const band=(wavelength:number)=>q.sub(wavelength/.74).div(bandwidth).pow2().negate().exp();
-  // Overlapping visible wavelengths avoid three isolated RGB stripes.
-  const spectrum=vec3(.15,0,1).mul(band(.42))
-    .add(vec3(.03,.08,1).mul(band(.45)))
-    .add(vec3(0,.55,1).mul(band(.48)))
-    .add(vec3(0,1,.25).mul(band(.51)))
-    .add(vec3(.3,1,0).mul(band(.54)))
-    .add(vec3(1,.85,0).mul(band(.57)))
-    .add(vec3(1,.35,0).mul(band(.60)))
-    .add(vec3(1,.05,0).mul(band(.63)))
-    .add(vec3(.6,0,0).mul(band(.66))).mul(.55);
-  const illuminated=normalWorld.dot(incoming).max(0).sqrt();
-  const visible=normalWorld.dot(view).max(0).sqrt();
-  data.emissiveNode=spectrum.mul(coherence).mul(illuminated).mul(visible).mul(dataMask).mul(power);
+  const diffraction=(incoming:typeof light, strength:typeof power)=>{
+    const sum=incoming.add(view);
+    const q=sum.dot(radial).abs();
+    const along=sum.dot(tangent);
+    const coherence=along.div(.56).pow2().negate().exp();
+    const band=(wavelength:number)=>q.sub(wavelength/.74).div(bandwidth).pow2().negate().exp();
+    // Overlapping wavelengths yield a continuous spectrum, not RGB stripes.
+    const spectrum=vec3(.15,0,1).mul(band(.42))
+      .add(vec3(.03,.08,1).mul(band(.45)))
+      .add(vec3(0,.55,1).mul(band(.48)))
+      .add(vec3(0,1,.25).mul(band(.51)))
+      .add(vec3(.3,1,0).mul(band(.54)))
+      .add(vec3(1,.85,0).mul(band(.57)))
+      .add(vec3(1,.35,0).mul(band(.60)))
+      .add(vec3(1,.05,0).mul(band(.63)))
+      .add(vec3(.6,0,0).mul(band(.66))).mul(.55);
+    return spectrum.mul(coherence).mul(normalWorld.dot(incoming).max(0).sqrt())
+      .mul(normalWorld.dot(view).max(0).sqrt()).mul(strength);
+  };
+  data.emissiveNode=diffraction(light,power).add(diffraction(rimLight,rimPower)).mul(dataMask);
   const reverse=add('Optical data layer',discFace(DISC.hub,2.366,true),data);
   reverse.rotation.y=Math.PI;reverse.position.z=-.031;
 
@@ -102,7 +120,11 @@ export function buildMeleeDisc(front: Texture, back: Texture, ink: Texture): Art
   }
   let disposed=false;
   return {root,groups:new Map(),inspect:()=>{},
-    updateLighting(direction,intensity,broad){light.value.copy(direction).normalize();power.value=intensity*(broad?.075:.42);bandwidth.value=broad?.075:.036;},
+    updateLighting(direction,intensity,broad,rimDirection,rimIntensity){
+      light.value.copy(direction).normalize();rimLight.value.copy(rimDirection).normalize();
+      power.value=intensity*(broad?.08:.48);rimPower.value=rimIntensity*(broad?.05:.25);
+      bandwidth.value=broad?.068:.045;
+    },
     dispose(){if(disposed)return;disposed=true;root.removeFromParent();geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());new Set([front,back,ink]).forEach(t=>t.dispose());},
   };
 }

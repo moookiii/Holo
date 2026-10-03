@@ -5,7 +5,7 @@ export interface ArtifactInstance {
   groups: Map<string, Object3D>;
   inspect: (mode: Inspection) => void;
   dispose: () => void;
-  updateLighting?: (direction: Vector3, intensity: number, broad: boolean) => void;
+  updateLighting?: (direction: Vector3, intensity: number, broad: boolean, rimDirection: Vector3, rimIntensity: number) => void;
 }
 export interface ArtifactDefinition {
   id: string; name: string; subtitle: string; description: string; thumbnail: string;
