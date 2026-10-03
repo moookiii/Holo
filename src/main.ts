@@ -3,6 +3,7 @@ import { startupMark, startupTiming, startupPipelines } from './rendering/LoadTi
 import { Raycaster, Vector2, Vector3 } from 'three/webgpu';
 import { createRenderer } from './rendering/StudioRenderer';
 import { StudioLighting } from './lighting/StudioLighting';
+import { SpotlightPointer } from './lighting/SpotlightPointer';
 import { cards as builtInCards, type CardDefinition } from './card/CardDefinition';
 import { CardFactory } from './card/CardFactory';
 import type { CardInstance } from './card/CardInstance';
@@ -45,6 +46,7 @@ async function start() {
   const cards = [...builtInCards, ...prismaticPickerCards()];
   const initialCard = cards.find(card => card.id === FIRST_PICKER_CARD_ID) ?? cards[0];
   const lighting = new StudioLighting(scene);
+  const spotlightPointer = new SpotlightPointer(container, camera, lighting.spot);
   await lighting.createEnvironment(renderer);
   startupMark('environmentReady');
   const initialMode: InteractionMode = 'combined';
@@ -416,6 +418,7 @@ async function start() {
       camera.position.y = -0.06;
     }
     else lighting.update(dt);
+    if (!pack) spotlightPointer.update(gallery?.active ? undefined : card);
     pipeline.render();
     if (startupTiming.firstCardVisible === undefined && (gallery?.active || card?.visible)) {
       startupMark('firstCardVisible');
@@ -476,6 +479,7 @@ async function start() {
     gallery?.dispose(); galleryFocusFactory?.dispose();
     packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
+    spotlightPointer.dispose();
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); document.removeEventListener('keydown', galleryEscape, { capture: true }); lab?.dispose();
     cpuPreparation.dispose(); factory.dispose(); lighting.dispose(); pipeline.dispose(); renderer.dispose(); ui?.dispose(); importDialog?.dispose();
     imports.forEach(imported => imported.dispose()); imports.clear();
