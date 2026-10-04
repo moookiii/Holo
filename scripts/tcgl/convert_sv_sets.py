@@ -41,12 +41,12 @@ def main():
             result=converter.convert(p,False)
             if result:print(set_id+' '+p['number']+' '+p['variant']+' converted',flush=True)
             return result
-        with ThreadPoolExecutor(max_workers=4) as pool:built=[r for r in pool.map(build,source['printings']) if r]
         # These inspection-only copies were emitted by this new set pipeline;
         # exact raw etches remain preserved and normals already encode relief.
         for p in source['printings']:
             height_path=converter.OUT/(p['number']+'-'+p['variant']+'-height.png')
             if height_path.exists():height_path.unlink()
+        with ThreadPoolExecutor(max_workers=4) as pool:built=[r for r in pool.map(build,source['printings']) if r]
         (converter.OUT/'manifest.json').write_text(json.dumps(built,indent=2)+'\n')
         source_path.write_text(json.dumps(source,indent=2)+'\n');records.extend(built)
         print(f'{set_id}: complete {len(built)} exact foil printings',flush=True)
