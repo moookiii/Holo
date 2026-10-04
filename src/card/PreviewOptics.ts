@@ -1,5 +1,6 @@
 import { resolvePhysicalCardProfile } from '../materials/PhysicalCardProfile';
-import { DEFAULT_FOIL_LAYOUT, type CardDefinition } from './CardDefinition';
+import type { CardDefinition } from './CardDefinition';
+import { DEFAULT_FOIL_LAYOUT } from './CardLayout';
 import type { HolographicProfile } from '../materials/HolographicProfile';
 
 export const PREVIEW_PARAMETER_COLUMNS = 44;

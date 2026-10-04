@@ -6,7 +6,7 @@ import { generatePokemonField, type PokemonPatternKind } from './PokemonPatterns
 import { generatePokemonDirectionalField, type PokemonDirectionalKind } from './PokemonDirectionalPatterns';
 import { generatePokemonFacetField, type PokemonFacetKind } from './PokemonFacetPatterns';
 import { generateMotifField, type MotifSpec } from './MotifField';
-import { DEFAULT_FOIL_LAYOUT, type CardLayout } from '../../card/CardDefinition';
+import { DEFAULT_FOIL_LAYOUT, type CardLayout } from '../../card/CardLayout.ts';
 
 export type PatternKind = PokemonFacetKind | PokemonDirectionalKind | PokemonPatternKind | 'ancient-mew' | 'silk' | 'crystal' | 'diamond' | 'starfield' | 'galaxy-star' | 'base-set-star' | 'base-set-2-cosmos' | 'cosmos' | 'cosmos-hd' | 'tinsel' | 'contour' | 'liquid' | 'fresnel' | 'plain' | 'satin' | 'secret' | 'prismatic-secret' | 'platinum-secret' | 'quarter-century' | 'opal' | 'cathedral' | 'lattice' | 'chrome' | 'ultimate' | 'varnish' | 'starlight' | 'collector' | 'collector-prismatic' | 'mtg-halo' | 'mtg-surge' | 'mtg-fracture';
 export interface PatternSpec { kind: PatternKind | 'symbol-foil'; seed: number; aspect: number; scale: number; layout?: CardLayout; motif?: MotifSpec; }

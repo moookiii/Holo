@@ -1,5 +1,5 @@
 import type { CardDefinition } from './CardDefinition';
-import { DEFAULT_FOIL_LAYOUT } from './CardDefinition';
+import { DEFAULT_FOIL_LAYOUT } from './CardLayout';
 import { resolveCoverageMaps } from '../assets/CardCoverage';
 import { packMapChannels, type PackedMapKey } from '../assets/MapPacking';
 import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';

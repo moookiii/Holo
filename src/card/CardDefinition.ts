@@ -24,14 +24,10 @@ import { jungleDefinitions } from './JungleCards.ts';
 import { wizardsPromoDefinitions } from './WizardsPromoCards.ts';
 import { signalForestCards } from './SignalForestCards.ts';
 import { porygonNeonCard } from './PorygonNeonCard.ts';
+import type { CardLayout } from './CardLayout';
+export { DEFAULT_FOIL_LAYOUT, type CardLayout } from './CardLayout';
 
 export type Franchise = 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
-export interface CardLayout {
-  /** Normalized rectangles in the front image, measured from its top left. */
-  artwork: [number, number, number, number];
-  innerFrame: [number, number, number, number];
-}
-export const DEFAULT_FOIL_LAYOUT: CardLayout = { artwork: [.12, .18, .88, .70], innerFrame: [.035, .023, .965, .977] };
 
 export interface CardMapPaths {
   /** Packed RGBA: primary foil, secondary foil, metallic ink, laminate. */
