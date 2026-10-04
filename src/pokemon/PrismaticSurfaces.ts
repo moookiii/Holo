@@ -1,5 +1,6 @@
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { tcglPrismaticSurfaces } from './data/prismatic-surfaces.generated.ts';
+import { prismaticEnergyPickerCards } from './PrismaticEnergySurfaces.ts';
 import { DIMENSIONS, type CardDefinition, type CardMapPaths } from '../card/CardDefinition.ts';
 import { PRISMATIC_ASSETS, prismaticCard, prismaticPrinting, prismaticPrintings } from './PrismaticCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
@@ -97,6 +98,6 @@ export function prismaticSurfaceProgress() {
 
 /** Only authored holo printings enter the picker. The full pool stays in packs. */
 export function prismaticPickerCards(): CardDefinition[] {
-  return prismaticPrintings.filter(printing => surfaces[prismaticSurfaceKey(printing.cardId, printing.variant)])
-    .map(printing => prismaticDefinition(printing.cardId, printing.variant));
+  return [...prismaticPrintings.filter(printing => surfaces[prismaticSurfaceKey(printing.cardId, printing.variant)])
+    .map(printing => prismaticDefinition(printing.cardId, printing.variant)), ...prismaticEnergyPickerCards()];
 }

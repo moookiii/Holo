@@ -3,6 +3,7 @@ import type { PokemonCard, PrintVariant } from './types.ts';
 import { wotcPrinting } from '../card/WotcCards.ts';
 import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
 import { prismaticDefinition, prismaticProfile } from './PrismaticSurfaces.ts';
+import { prismaticEnergyDefinition } from './PrismaticEnergySurfaces.ts';
 
 /** Stable identities for existing authored printings, never a name-only match. */
 const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
@@ -35,14 +36,14 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
 }
 export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[], packSetId?: string): CardDefinition {
   if (card.setId === PRISMATIC_SET_ID) return prismaticDefinition(card.id, variant);
-  // These SVE cards belong to several sets. Only Prismatic's pack context
-  // defers the reverse finish and keeps its nonfoil Energy out of the picker.
+  // SVE resources are shared by sets; this exact reverse is scoped to Prismatic.
   if (packSetId === PRISMATIC_SET_ID && card.setId === 'sve') {
     if ((variant !== 'normal' && variant !== 'reverse') || !card.variants.includes(variant)) throw new Error('Invalid Prismatic Evolutions Energy printing.');
+    if (variant === 'reverse') return prismaticEnergyDefinition(card.id);
     const definition = pokemonDefinition({ ...card, variants: ['normal'] }, 'normal', existing);
     return { ...definition, id: `pokemon:${card.id}:${variant}`, pickerHidden: true,
-      number: `${card.localId} · ${variant === 'reverse' ? 'Standard reverse holo · foil pending' : 'Non-holo'}`,
-      pokemon: { ...card, variant, materialProfile: 'print-only', ...(variant === 'reverse' ? { treatmentStatus: 'deferred' as const } : {}) } };
+      number: `${card.localId} · Non-holo`,
+      pokemon: { ...card, variant, materialProfile: 'print-only' } };
   }
   if (!card.variants.includes(variant)) throw new Error(`Invalid ${variant} printing for ${card.id}`);
   const wotc = wotcPrinting(card.id, variant, card.edition);
