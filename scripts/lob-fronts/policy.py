@@ -15,6 +15,8 @@ def assess(candidate, card, metrics):
     evidence = candidate.get('printingEvidence', {})
     observed = evidence.get('observed', {})
     reasons = []
+    if candidate.get('rejectedByUser'):
+        reasons.append('user-rejected-front')
     for field, expected in {**TARGET, 'setCode': card['number'], 'passcode': card['passcode'],
                             'name': card['name'], 'copyright': '1996 KAZUKI TAKAHASHI',
                             'layout': 'early-tcg', 'securityStamp': 'gold-bottom-right'}.items():

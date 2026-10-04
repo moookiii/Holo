@@ -15,6 +15,13 @@ class QualityGateTests(unittest.TestCase):
                   'quality': {'glare': 0, 'perspective': 0, 'cropCompleteness': 1, 'watermark': 0, 'sourceTrust': 1}}
         self.m = {'width': 1100, 'height': 1600, 'sharpness': 180}
 
+    def test_user_rejected_front_cannot_be_selected_again(self):
+        c = {**self.c, 'rejectedByUser': 'Too dark'}
+        result = assess(c, self.card, self.m)
+        self.assertFalse(result['eligible'])
+        self.assertFalse(result['provisionalEligible'])
+        self.assertIn('user-rejected-front', result['reasons'])
+
     def test_reprints_unlimited_and_foreign_prints_fail(self):
         for key, value in [('setCode', 'LOB-EN008'), ('edition', 'Unlimited'), ('generation', '25th-anniversary'),
                            ('region', 'Australia'), ('language', 'ja'), ('passcode', '00000000')]:

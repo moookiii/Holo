@@ -1,11 +1,11 @@
 {
   "summary": {
     "total": 126,
-    "exactPrintHighQuality": 1,
-    "provisionalOriginalFronts": 99,
+    "exactPrintHighQuality": 5,
+    "provisionalOriginalFronts": 95,
     "legacyFallbacks": 26,
-    "fallback": 125,
-    "manualReview": 125,
+    "fallback": 121,
+    "manualReview": 121,
     "unresolved": [
       "LOB-000",
       "LOB-001",
@@ -34,7 +34,6 @@
       "LOB-024",
       "LOB-025",
       "LOB-026",
-      "LOB-027",
       "LOB-028",
       "LOB-029",
       "LOB-030",
@@ -52,7 +51,6 @@
       "LOB-042",
       "LOB-043",
       "LOB-044",
-      "LOB-045",
       "LOB-046",
       "LOB-047",
       "LOB-048",
@@ -113,11 +111,9 @@
       "LOB-103",
       "LOB-104",
       "LOB-105",
-      "LOB-106",
       "LOB-107",
       "LOB-108",
       "LOB-109",
-      "LOB-110",
       "LOB-111",
       "LOB-112",
       "LOB-113",
@@ -222,6 +218,7 @@
       "LOB-065",
       "LOB-067",
       "LOB-069",
+      "LOB-070",
       "LOB-072",
       "LOB-073",
       "LOB-074",
@@ -7935,315 +7932,6 @@
       "schemaVersion": 2,
       "catalogIdentity": {
         "provider": "YGOPRODeck",
-        "cardId": "85639257",
-        "cardName": "Aqua Madoor",
-        "setCode": "LOB-027",
-        "rarity": "Rare",
-        "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
-      },
-      "printingIdentity": {
-        "target": {
-          "edition": "1st Edition",
-          "region": "North America",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-027"
-        },
-        "claimed": "English LOB 1st Edition; seller collection",
-        "verified": {
-          "edition": "1st Edition",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-027",
-          "passcode": "85639257",
-          "name": "Aqua Madoor",
-          "copyright": "1996 KAZUKI TAKAHASHI",
-          "layout": "early-tcg",
-          "securityStamp": "gold-bottom-right"
-        },
-        "confidence": 0.88,
-        "frontConfidence": 0.97,
-        "evidence": [
-          "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-          "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-        ],
-        "verificationStatus": "front-verified-region-unresolved",
-        "regionEvidence": {
-          "status": "inferred-shared-collection-back",
-          "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-          "path": "research/yugioh-lob/fronts/collection-back.jpg"
-        }
-      },
-      "imageProvenance": {
-        "candidateId": "LOB-027-ebay-326121140629",
-        "sourceUrl": "https://www.ebay.com/itm/326121140629",
-        "sourceSite": "eBay / The Anime and TCG Shop",
-        "originalImageUrl": "https://i.ebayimg.com/images/g/DZIAAOSwANNk5F7v/s-l1600.jpg",
-        "originalPath": "research/yugioh-lob/fronts/LOB-027/ebay-326121140629.jpg",
-        "originalResolution": [
-          960,
-          1358
-        ],
-        "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-027.png",
-        "resolution": [
-          875,
-          1275
-        ],
-        "sha256": "c40643c0ea6a57e084e34a61dac5cb2fbbc72cca28275975601df628b2f9758f",
-        "runtimeSha256": "bd8ce9d23849c9793e64de11517b10c44bdbac554aad1f5fde59d3ccbb414474",
-        "normalization": {
-          "quad": [
-            [
-              53.40999984741211,
-              17.75
-            ],
-            [
-              928.52001953125,
-              24.510000228881836
-            ],
-            [
-              950.5499877929688,
-              1331.3699951171875
-            ],
-            [
-              0.0,
-              1337.3900146484375
-            ]
-          ],
-          "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-        },
-        "upscaled": false,
-        "assetStatus": "original-print-region-review",
-        "exactPrint": false,
-        "fallback": true,
-        "quality": {
-          "width": 875,
-          "height": 1275,
-          "sharpness": 1986.959,
-          "glareProxy": 0.00035,
-          "jpegBlockProxy": 0.998,
-          "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-        },
-        "caveats": [
-          "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-          "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-        ]
-      },
-      "manualReview": {
-        "required": true,
-        "flags": [
-          "no-verified-high-quality-exact-print-source",
-          "printing-unverified:region",
-          "printing-confidence-below-gate",
-          "north-american-region-needs-individual-paired-back"
-        ]
-      },
-      "candidates": [
-        {
-          "id": "LOB-027-ebay-326121140629",
-          "setCode": "LOB-027",
-          "kind": "collector-listing",
-          "sourceSite": "eBay / The Anime and TCG Shop",
-          "sourceUrl": "https://www.ebay.com/itm/326121140629",
-          "imageUrl": "https://i.ebayimg.com/images/g/DZIAAOSwANNk5F7v/s-l1600.jpg",
-          "originalPath": "research/yugioh-lob/fronts/LOB-027/ebay-326121140629.jpg",
-          "sha256": "c40643c0ea6a57e084e34a61dac5cb2fbbc72cca28275975601df628b2f9758f",
-          "claimedPrinting": "English LOB 1st Edition; seller collection",
-          "discovery": {
-            "artworkMatches": [
-              [
-                400,
-                "LOB-027"
-              ],
-              [
-                10,
-                "LOB-049"
-              ],
-              [
-                9,
-                "LOB-055"
-              ]
-            ],
-            "notes": "ORB matching finds catalog identity only; printing review is separate."
-          },
-          "printingEvidence": {
-            "confidence": 0.88,
-            "frontConfidence": 0.97,
-            "observed": {
-              "edition": "1st Edition",
-              "generation": "original-2002",
-              "language": "en",
-              "setCode": "LOB-027",
-              "passcode": "85639257",
-              "name": "Aqua Madoor",
-              "copyright": "1996 KAZUKI TAKAHASHI",
-              "layout": "early-tcg",
-              "securityStamp": "gold-bottom-right"
-            },
-            "notes": [
-              "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-              "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-            ],
-            "regionEvidence": {
-              "status": "inferred-shared-collection-back",
-              "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-              "path": "research/yugioh-lob/fronts/collection-back.jpg"
-            }
-          },
-          "caveats": [
-            "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-            "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-          ],
-          "normalization": {
-            "quad": [
-              [
-                53.40999984741211,
-                17.75
-              ],
-              [
-                928.52001953125,
-                24.510000228881836
-              ],
-              [
-                950.5499877929688,
-                1331.3699951171875
-              ],
-              [
-                0.0,
-                1337.3900146484375
-              ]
-            ],
-            "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-          },
-          "allowRegionalReview": true,
-          "review": {
-            "reviewer": "Codex visual inspection, 2026-10-03",
-            "evidence": "Original-resolution printing strips plus complete normalized front and physical border review.",
-            "sharpness": "pass",
-            "compression": "pass",
-            "glare": "pass",
-            "reflections": "pass",
-            "perspective": "pass",
-            "sleeveObstruction": "pass",
-            "slabObstruction": "pass",
-            "cropCompleteness": "pass",
-            "borderVisibility": "pass",
-            "textReadability": "pass",
-            "cornersVisible": "pass",
-            "watermark": "pass",
-            "colorEditing": "pass",
-            "upscaling": "pass"
-          },
-          "quality": {
-            "glare": 0.02,
-            "perspective": 0.08,
-            "cropCompleteness": 1,
-            "watermark": 0,
-            "sourceTrust": 0.75
-          },
-          "reviewFlags": [
-            "north-american-region-needs-individual-paired-back"
-          ],
-          "metrics": {
-            "width": 875,
-            "height": 1275,
-            "sharpness": 1986.959,
-            "glareProxy": 0.00035,
-            "jpegBlockProxy": 0.998,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            960,
-            1358
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": true,
-            "score": 51.297,
-            "reasons": [
-              "printing-unverified:region",
-              "printing-confidence-below-gate"
-            ],
-            "priority": 4
-          }
-        },
-        {
-          "id": "LOB-027-baseline",
-          "setCode": "LOB-027",
-          "baseline": true,
-          "runtimePath": "/cards/yugioh/lob-first-edition/LOB-027.jpg",
-          "kind": "exact-scan",
-          "sourceSite": "Yu-Gi-Oh! Wiki / Fandom",
-          "sourceUrl": "https://yugioh.fandom.com/wiki/Set_Card_Galleries:Legend_of_Blue_Eyes_White_Dragon_(TCG-NA-1E)",
-          "imageUrl": "https://static.wikia.nocookie.net/yugioh/images/1/1b/AquaMadoor-LOB-NA-R-1E.jpg/revision/latest",
-          "originalPath": "public/cards/yugioh/lob-first-edition/LOB-027.jpg",
-          "sha256": "b7046ed08182a284ff7d6dbb57d5042fee2f8e66a869bd236516c1afdd205c8f",
-          "claimedPrinting": "Gallery-labeled NA 2002 1st Edition",
-          "printingEvidence": {
-            "confidence": 0,
-            "observed": {},
-            "notes": [
-              "Legacy gallery label is not pixel verification."
-            ]
-          },
-          "caveats": [
-            "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-            "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
-          ],
-          "metrics": {
-            "width": 400,
-            "height": 580,
-            "sharpness": 1637.379,
-            "glareProxy": 0.0002,
-            "jpegBlockProxy": 1.005,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            400,
-            580
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": false,
-            "score": 21.45,
-            "reasons": [
-              "printing-unverified:edition",
-              "printing-unverified:region",
-              "printing-unverified:generation",
-              "printing-unverified:language",
-              "printing-unverified:setCode",
-              "printing-unverified:passcode",
-              "printing-unverified:name",
-              "printing-unverified:copyright",
-              "printing-unverified:layout",
-              "printing-unverified:securityStamp",
-              "printing-confidence-below-gate",
-              "manual-review-required",
-              "quality-unreviewed:sharpness",
-              "quality-unreviewed:compression",
-              "quality-unreviewed:glare",
-              "quality-unreviewed:reflections",
-              "quality-unreviewed:perspective",
-              "quality-unreviewed:sleeveObstruction",
-              "quality-unreviewed:slabObstruction",
-              "quality-unreviewed:cropCompleteness",
-              "quality-unreviewed:borderVisibility",
-              "quality-unreviewed:textReadability",
-              "quality-unreviewed:cornersVisible",
-              "quality-unreviewed:watermark",
-              "quality-unreviewed:colorEditing",
-              "quality-unreviewed:upscaling",
-              "insufficient-native-resolution"
-            ],
-            "priority": 1
-          }
-        }
-      ]
-    },
-    {
-      "schemaVersion": 2,
-      "catalogIdentity": {
-        "provider": "YGOPRODeck",
         "cardId": "15401633",
         "cardName": "Kagemusha of the Blue Flame",
         "setCode": "LOB-028",
@@ -13241,321 +12929,6 @@
               "insufficient-native-resolution"
             ],
             "priority": 1
-          }
-        }
-      ]
-    },
-    {
-      "schemaVersion": 2,
-      "catalogIdentity": {
-        "provider": "YGOPRODeck",
-        "cardId": "50045299",
-        "cardName": "Dragon Capture Jar",
-        "setCode": "LOB-045",
-        "rarity": "Rare",
-        "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
-      },
-      "printingIdentity": {
-        "target": {
-          "edition": "1st Edition",
-          "region": "North America",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-045"
-        },
-        "claimed": "English LOB 1st Edition; seller collection",
-        "verified": {
-          "edition": "1st Edition",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-045",
-          "passcode": "50045299",
-          "name": "Dragon Capture Jar",
-          "copyright": "1996 KAZUKI TAKAHASHI",
-          "layout": "early-tcg",
-          "securityStamp": "gold-bottom-right"
-        },
-        "confidence": 0.88,
-        "frontConfidence": 0.97,
-        "evidence": [
-          "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-          "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-        ],
-        "verificationStatus": "front-verified-region-unresolved",
-        "regionEvidence": {
-          "status": "inferred-shared-collection-back",
-          "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-          "path": "research/yugioh-lob/fronts/collection-back.jpg"
-        }
-      },
-      "imageProvenance": {
-        "candidateId": "LOB-045-ebay-326121140629",
-        "sourceUrl": "https://www.ebay.com/itm/326121140629",
-        "sourceSite": "eBay / The Anime and TCG Shop",
-        "originalImageUrl": "https://i.ebayimg.com/images/g/i9MAAOSwinJk5F8H/s-l1600.jpg",
-        "originalPath": "research/yugioh-lob/fronts/LOB-045/ebay-326121140629.jpg",
-        "originalResolution": [
-          960,
-          1376
-        ],
-        "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-045.png",
-        "resolution": [
-          877,
-          1278
-        ],
-        "sha256": "f014e744e3c130097677cbbb3380b7ce41e77e1928f6c5430fd80092e3d9d0a3",
-        "runtimeSha256": "dab36d9c44df4813c7c0dfe4c7236ff58b15899e99eec14c2157414f0675114b",
-        "normalization": {
-          "quad": [
-            [
-              50.86000061035156,
-              26.84000015258789
-            ],
-            [
-              928.5999755859375,
-              23.639999389648438
-            ],
-            [
-              957.4400024414062,
-              1342.260009765625
-            ],
-            [
-              2.9700000286102295,
-              1360.47998046875
-            ]
-          ],
-          "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-        },
-        "upscaled": false,
-        "assetStatus": "original-print-region-review",
-        "exactPrint": false,
-        "fallback": true,
-        "quality": {
-          "width": 877,
-          "height": 1278,
-          "sharpness": 1448.477,
-          "glareProxy": 0.00024,
-          "jpegBlockProxy": 0.997,
-          "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-        },
-        "caveats": [
-          "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-          "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-        ]
-      },
-      "manualReview": {
-        "required": true,
-        "flags": [
-          "no-verified-high-quality-exact-print-source",
-          "printing-unverified:region",
-          "printing-confidence-below-gate",
-          "north-american-region-needs-individual-paired-back"
-        ]
-      },
-      "candidates": [
-        {
-          "id": "LOB-045-ebay-326121140629",
-          "setCode": "LOB-045",
-          "kind": "collector-listing",
-          "sourceSite": "eBay / The Anime and TCG Shop",
-          "sourceUrl": "https://www.ebay.com/itm/326121140629",
-          "imageUrl": "https://i.ebayimg.com/images/g/i9MAAOSwinJk5F8H/s-l1600.jpg",
-          "originalPath": "research/yugioh-lob/fronts/LOB-045/ebay-326121140629.jpg",
-          "sha256": "f014e744e3c130097677cbbb3380b7ce41e77e1928f6c5430fd80092e3d9d0a3",
-          "claimedPrinting": "English LOB 1st Edition; seller collection",
-          "discovery": {
-            "artworkMatches": [
-              [
-                450,
-                "LOB-045"
-              ],
-              [
-                9,
-                "LOB-063"
-              ],
-              [
-                8,
-                "LOB-056"
-              ]
-            ],
-            "notes": "ORB matching finds catalog identity only; printing review is separate."
-          },
-          "printingEvidence": {
-            "confidence": 0.88,
-            "frontConfidence": 0.97,
-            "observed": {
-              "edition": "1st Edition",
-              "generation": "original-2002",
-              "language": "en",
-              "setCode": "LOB-045",
-              "passcode": "50045299",
-              "name": "Dragon Capture Jar",
-              "copyright": "1996 KAZUKI TAKAHASHI",
-              "layout": "early-tcg",
-              "securityStamp": "gold-bottom-right"
-            },
-            "notes": [
-              "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-              "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-            ],
-            "regionEvidence": {
-              "status": "inferred-shared-collection-back",
-              "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-              "path": "research/yugioh-lob/fronts/collection-back.jpg"
-            }
-          },
-          "caveats": [
-            "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-            "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-          ],
-          "normalization": {
-            "quad": [
-              [
-                50.86000061035156,
-                26.84000015258789
-              ],
-              [
-                928.5999755859375,
-                23.639999389648438
-              ],
-              [
-                957.4400024414062,
-                1342.260009765625
-              ],
-              [
-                2.9700000286102295,
-                1360.47998046875
-              ]
-            ],
-            "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-          },
-          "allowRegionalReview": true,
-          "review": {
-            "reviewer": "Codex visual inspection, 2026-10-03",
-            "evidence": "Original-resolution printing strips plus complete normalized front and physical border review.",
-            "sharpness": "pass",
-            "compression": "pass",
-            "glare": "pass",
-            "reflections": "pass",
-            "perspective": "pass",
-            "sleeveObstruction": "pass",
-            "slabObstruction": "pass",
-            "cropCompleteness": "pass",
-            "borderVisibility": "pass",
-            "textReadability": "pass",
-            "cornersVisible": "pass",
-            "watermark": "pass",
-            "colorEditing": "pass",
-            "upscaling": "pass"
-          },
-          "quality": {
-            "glare": 0.02,
-            "perspective": 0.08,
-            "cropCompleteness": 1,
-            "watermark": 0,
-            "sourceTrust": 0.75
-          },
-          "reviewFlags": [
-            "north-american-region-needs-individual-paired-back"
-          ],
-          "metrics": {
-            "width": 877,
-            "height": 1278,
-            "sharpness": 1448.477,
-            "glareProxy": 0.00024,
-            "jpegBlockProxy": 0.997,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            960,
-            1376
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": true,
-            "score": 51.305,
-            "reasons": [
-              "printing-unverified:region",
-              "printing-confidence-below-gate"
-            ],
-            "priority": 4
-          }
-        },
-        {
-          "id": "LOB-045-baseline",
-          "setCode": "LOB-045",
-          "baseline": true,
-          "runtimePath": "/cards/yugioh/lob-first-edition/LOB-045.jpg",
-          "kind": "ygoprodeck",
-          "sourceSite": "YGOPRODeck",
-          "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
-          "imageUrl": "https://images.ygoprodeck.com/images/cards/50045299.jpg",
-          "originalPath": "public/cards/yugioh/lob-first-edition/LOB-045.jpg",
-          "sha256": "343750cfe5dc5056d497775b06295584b1d87e537a639f544d850b96777df778",
-          "claimedPrinting": "Generic card render; no original-print claim",
-          "printingEvidence": {
-            "confidence": 0,
-            "observed": {
-              "layout": "modern-general",
-              "edition": "absent",
-              "generation": "modern-representation",
-              "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
-              "setCode": "absent"
-            },
-            "notes": [
-              "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
-            ]
-          },
-          "caveats": [
-            "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-            "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
-            "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
-          ],
-          "metrics": {
-            "width": 813,
-            "height": 1185,
-            "sharpness": 1928.196,
-            "glareProxy": 0.01013,
-            "jpegBlockProxy": 1.108,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            813,
-            1185
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": false,
-            "score": 22.962,
-            "reasons": [
-              "printing-mismatch:edition",
-              "printing-unverified:region",
-              "printing-mismatch:generation",
-              "printing-unverified:language",
-              "printing-mismatch:setCode",
-              "printing-unverified:passcode",
-              "printing-unverified:name",
-              "printing-mismatch:copyright",
-              "printing-mismatch:layout",
-              "printing-unverified:securityStamp",
-              "printing-confidence-below-gate",
-              "manual-review-required",
-              "quality-unreviewed:sharpness",
-              "quality-unreviewed:compression",
-              "quality-unreviewed:glare",
-              "quality-unreviewed:reflections",
-              "quality-unreviewed:perspective",
-              "quality-unreviewed:sleeveObstruction",
-              "quality-unreviewed:slabObstruction",
-              "quality-unreviewed:cropCompleteness",
-              "quality-unreviewed:borderVisibility",
-              "quality-unreviewed:textReadability",
-              "quality-unreviewed:cornersVisible",
-              "quality-unreviewed:watermark",
-              "quality-unreviewed:colorEditing",
-              "quality-unreviewed:upscaling"
-            ],
-            "priority": 5
           }
         }
       ]
@@ -20324,29 +19697,38 @@
           490,
           709
         ],
-        "runtimePath": "/cards/yugioh/lob-first-edition/LOB-070.jpg",
+        "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-070.png",
         "resolution": [
-          490,
-          709
+          466,
+          677
         ],
         "sha256": "26aca082e3ae70ef7b008dcc08f9b6ab6a2e1277e7569e60330d8a45347ce33e",
-        "runtimeSha256": null,
-        "normalization": {},
+        "runtimeSha256": "6882075bd80f7416f9b057ef118bc0e7df727b6afff7a9468467ceda2cee91d3",
+        "normalization": {
+          "crop": [
+            12,
+            8,
+            478,
+            685
+          ],
+          "note": "User-requested removal of white scan/sleeve margin. Printed gray border retained; low-resolution fallback remains explicitly unverified, without upscaling."
+        },
         "upscaled": false,
         "assetStatus": "unverified-print-fallback",
         "exactPrint": false,
         "fallback": true,
         "quality": {
-          "width": 490,
-          "height": 709,
-          "sharpness": 1234.785,
-          "glareProxy": 0.00294,
-          "jpegBlockProxy": 1.104,
+          "width": 466,
+          "height": 677,
+          "sharpness": 1190.321,
+          "glareProxy": 6e-05,
+          "jpegBlockProxy": 1.107,
           "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
         },
         "caveats": [
           "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-          "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+          "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+          "White outer scan/sleeve margin cropped at native resolution; this does not improve printing verification."
         ]
       },
       "manualReview": {
@@ -20404,14 +19786,57 @@
           },
           "caveats": [
             "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-            "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+            "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+            "White outer scan/sleeve margin cropped at native resolution; this does not improve printing verification."
           ],
+          "normalization": {
+            "crop": [
+              12,
+              8,
+              478,
+              685
+            ],
+            "note": "User-requested removal of white scan/sleeve margin. Printed gray border retained; low-resolution fallback remains explicitly unverified, without upscaling."
+          },
+          "registration": {
+            "artwork": [
+              0.117253,
+              0.217535,
+              0.877489,
+              0.736979
+            ],
+            "title": [
+              0.067833,
+              0.065681,
+              0.802833,
+              0.122233
+            ],
+            "stamp": [
+              0.939528,
+              0.98204,
+              0.981588,
+              1.011363
+            ],
+            "mapCrop": {
+              "bounds": [
+                12,
+                8,
+                478,
+                685
+              ],
+              "root": "research/yugioh-lob/fronts/LOB-070/original-maps",
+              "originalSize": [
+                490,
+                709
+              ]
+            }
+          },
           "metrics": {
-            "width": 490,
-            "height": 709,
-            "sharpness": 1234.785,
-            "glareProxy": 0.00294,
-            "jpegBlockProxy": 1.104,
+            "width": 466,
+            "height": 677,
+            "sharpness": 1190.321,
+            "glareProxy": 6e-05,
+            "jpegBlockProxy": 1.107,
             "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
           },
           "originalResolution": [
@@ -20421,7 +19846,7 @@
           "assessment": {
             "eligible": false,
             "provisionalEligible": false,
-            "score": 21.773,
+            "score": 21.692,
             "reasons": [
               "printing-unverified:edition",
               "printing-unverified:region",
@@ -31008,321 +30433,6 @@
       "schemaVersion": 2,
       "catalogIdentity": {
         "provider": "YGOPRODeck",
-        "cardId": "09076207",
-        "cardName": "Armed Ninja",
-        "setCode": "LOB-106",
-        "rarity": "Rare",
-        "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
-      },
-      "printingIdentity": {
-        "target": {
-          "edition": "1st Edition",
-          "region": "North America",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-106"
-        },
-        "claimed": "English LOB 1st Edition; seller collection",
-        "verified": {
-          "edition": "1st Edition",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-106",
-          "passcode": "09076207",
-          "name": "Armed Ninja",
-          "copyright": "1996 KAZUKI TAKAHASHI",
-          "layout": "early-tcg",
-          "securityStamp": "gold-bottom-right"
-        },
-        "confidence": 0.88,
-        "frontConfidence": 0.97,
-        "evidence": [
-          "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-          "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-        ],
-        "verificationStatus": "front-verified-region-unresolved",
-        "regionEvidence": {
-          "status": "inferred-shared-collection-back",
-          "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-          "path": "research/yugioh-lob/fronts/collection-back.jpg"
-        }
-      },
-      "imageProvenance": {
-        "candidateId": "LOB-106-ebay-326121140629",
-        "sourceUrl": "https://www.ebay.com/itm/326121140629",
-        "sourceSite": "eBay / The Anime and TCG Shop",
-        "originalImageUrl": "https://i.ebayimg.com/images/g/2F4AAOSwFrZk5F-T/s-l1600.jpg",
-        "originalPath": "research/yugioh-lob/fronts/LOB-106/ebay-326121140629.jpg",
-        "originalResolution": [
-          960,
-          1364
-        ],
-        "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-106.png",
-        "resolution": [
-          876,
-          1277
-        ],
-        "sha256": "927102d4d97a579a812db208690bf378a2dbac4f58ebae7eae680e4235bce2ef",
-        "runtimeSha256": "2b882364067d76f97e12444c2afd77a920aee8cf9179338752bd5ba93055b34d",
-        "normalization": {
-          "quad": [
-            [
-              49.63999938964844,
-              24.68000030517578
-            ],
-            [
-              926.6199951171875,
-              24.889999389648438
-            ],
-            [
-              955.1599731445312,
-              1331.8199462890625
-            ],
-            [
-              2.569999933242798,
-              1351.8499755859375
-            ]
-          ],
-          "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-        },
-        "upscaled": false,
-        "assetStatus": "original-print-region-review",
-        "exactPrint": false,
-        "fallback": true,
-        "quality": {
-          "width": 876,
-          "height": 1277,
-          "sharpness": 1330.164,
-          "glareProxy": 0.00032,
-          "jpegBlockProxy": 0.998,
-          "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-        },
-        "caveats": [
-          "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-          "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-        ]
-      },
-      "manualReview": {
-        "required": true,
-        "flags": [
-          "no-verified-high-quality-exact-print-source",
-          "printing-unverified:region",
-          "printing-confidence-below-gate",
-          "north-american-region-needs-individual-paired-back"
-        ]
-      },
-      "candidates": [
-        {
-          "id": "LOB-106-ebay-326121140629",
-          "setCode": "LOB-106",
-          "kind": "collector-listing",
-          "sourceSite": "eBay / The Anime and TCG Shop",
-          "sourceUrl": "https://www.ebay.com/itm/326121140629",
-          "imageUrl": "https://i.ebayimg.com/images/g/2F4AAOSwFrZk5F-T/s-l1600.jpg",
-          "originalPath": "research/yugioh-lob/fronts/LOB-106/ebay-326121140629.jpg",
-          "sha256": "927102d4d97a579a812db208690bf378a2dbac4f58ebae7eae680e4235bce2ef",
-          "claimedPrinting": "English LOB 1st Edition; seller collection",
-          "discovery": {
-            "artworkMatches": [
-              [
-                200,
-                "LOB-106"
-              ],
-              [
-                9,
-                "LOB-029"
-              ],
-              [
-                8,
-                "LOB-077"
-              ]
-            ],
-            "notes": "ORB matching finds catalog identity only; printing review is separate."
-          },
-          "printingEvidence": {
-            "confidence": 0.88,
-            "frontConfidence": 0.97,
-            "observed": {
-              "edition": "1st Edition",
-              "generation": "original-2002",
-              "language": "en",
-              "setCode": "LOB-106",
-              "passcode": "09076207",
-              "name": "Armed Ninja",
-              "copyright": "1996 KAZUKI TAKAHASHI",
-              "layout": "early-tcg",
-              "securityStamp": "gold-bottom-right"
-            },
-            "notes": [
-              "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-              "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-            ],
-            "regionEvidence": {
-              "status": "inferred-shared-collection-back",
-              "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-              "path": "research/yugioh-lob/fronts/collection-back.jpg"
-            }
-          },
-          "caveats": [
-            "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-            "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-          ],
-          "normalization": {
-            "quad": [
-              [
-                49.63999938964844,
-                24.68000030517578
-              ],
-              [
-                926.6199951171875,
-                24.889999389648438
-              ],
-              [
-                955.1599731445312,
-                1331.8199462890625
-              ],
-              [
-                2.569999933242798,
-                1351.8499755859375
-              ]
-            ],
-            "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-          },
-          "allowRegionalReview": true,
-          "review": {
-            "reviewer": "Codex visual inspection, 2026-10-03",
-            "evidence": "Original-resolution printing strips plus complete normalized front and physical border review.",
-            "sharpness": "pass",
-            "compression": "pass",
-            "glare": "pass",
-            "reflections": "pass",
-            "perspective": "pass",
-            "sleeveObstruction": "pass",
-            "slabObstruction": "pass",
-            "cropCompleteness": "pass",
-            "borderVisibility": "pass",
-            "textReadability": "pass",
-            "cornersVisible": "pass",
-            "watermark": "pass",
-            "colorEditing": "pass",
-            "upscaling": "pass"
-          },
-          "quality": {
-            "glare": 0.02,
-            "perspective": 0.08,
-            "cropCompleteness": 1,
-            "watermark": 0,
-            "sourceTrust": 0.75
-          },
-          "reviewFlags": [
-            "north-american-region-needs-individual-paired-back"
-          ],
-          "metrics": {
-            "width": 876,
-            "height": 1277,
-            "sharpness": 1330.164,
-            "glareProxy": 0.00032,
-            "jpegBlockProxy": 0.998,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            960,
-            1364
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": true,
-            "score": 51.303,
-            "reasons": [
-              "printing-unverified:region",
-              "printing-confidence-below-gate"
-            ],
-            "priority": 4
-          }
-        },
-        {
-          "id": "LOB-106-baseline",
-          "setCode": "LOB-106",
-          "baseline": true,
-          "runtimePath": "/cards/yugioh/lob-first-edition/LOB-106.jpg",
-          "kind": "ygoprodeck",
-          "sourceSite": "YGOPRODeck",
-          "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
-          "imageUrl": "https://images.ygoprodeck.com/images/cards/9076207.jpg",
-          "originalPath": "public/cards/yugioh/lob-first-edition/LOB-106.jpg",
-          "sha256": "a99aceae58e3e16150d31c8999c5663754a5c27e44451708dd2c5d2d5f82fff7",
-          "claimedPrinting": "Generic card render; no original-print claim",
-          "printingEvidence": {
-            "confidence": 0,
-            "observed": {
-              "layout": "modern-general",
-              "edition": "absent",
-              "generation": "modern-representation",
-              "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
-              "setCode": "absent"
-            },
-            "notes": [
-              "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
-            ]
-          },
-          "caveats": [
-            "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-            "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
-            "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
-          ],
-          "metrics": {
-            "width": 813,
-            "height": 1185,
-            "sharpness": 2269.642,
-            "glareProxy": 0.00104,
-            "jpegBlockProxy": 1.086,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            813,
-            1185
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": false,
-            "score": 22.962,
-            "reasons": [
-              "printing-mismatch:edition",
-              "printing-unverified:region",
-              "printing-mismatch:generation",
-              "printing-unverified:language",
-              "printing-mismatch:setCode",
-              "printing-unverified:passcode",
-              "printing-unverified:name",
-              "printing-mismatch:copyright",
-              "printing-mismatch:layout",
-              "printing-unverified:securityStamp",
-              "printing-confidence-below-gate",
-              "manual-review-required",
-              "quality-unreviewed:sharpness",
-              "quality-unreviewed:compression",
-              "quality-unreviewed:glare",
-              "quality-unreviewed:reflections",
-              "quality-unreviewed:perspective",
-              "quality-unreviewed:sleeveObstruction",
-              "quality-unreviewed:slabObstruction",
-              "quality-unreviewed:cropCompleteness",
-              "quality-unreviewed:borderVisibility",
-              "quality-unreviewed:textReadability",
-              "quality-unreviewed:cornersVisible",
-              "quality-unreviewed:watermark",
-              "quality-unreviewed:colorEditing",
-              "quality-unreviewed:upscaling"
-            ],
-            "priority": 5
-          }
-        }
-      ]
-    },
-    {
-      "schemaVersion": 2,
-      "catalogIdentity": {
-        "provider": "YGOPRODeck",
         "cardId": "95952802",
         "cardName": "Flower Wolf",
         "setCode": "LOB-107",
@@ -32103,321 +31213,6 @@
               "insufficient-native-resolution"
             ],
             "priority": 1
-          }
-        }
-      ]
-    },
-    {
-      "schemaVersion": 2,
-      "catalogIdentity": {
-        "provider": "YGOPRODeck",
-        "cardId": "07089711",
-        "cardName": "Hane-Hane",
-        "setCode": "LOB-110",
-        "rarity": "Rare",
-        "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
-      },
-      "printingIdentity": {
-        "target": {
-          "edition": "1st Edition",
-          "region": "North America",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-110"
-        },
-        "claimed": "English LOB 1st Edition; seller collection",
-        "verified": {
-          "edition": "1st Edition",
-          "generation": "original-2002",
-          "language": "en",
-          "setCode": "LOB-110",
-          "passcode": "07089711",
-          "name": "Hane-Hane",
-          "copyright": "1996 KAZUKI TAKAHASHI",
-          "layout": "early-tcg",
-          "securityStamp": "gold-bottom-right"
-        },
-        "confidence": 0.88,
-        "frontConfidence": 0.97,
-        "evidence": [
-          "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-          "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-        ],
-        "verificationStatus": "front-verified-region-unresolved",
-        "regionEvidence": {
-          "status": "inferred-shared-collection-back",
-          "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-          "path": "research/yugioh-lob/fronts/collection-back.jpg"
-        }
-      },
-      "imageProvenance": {
-        "candidateId": "LOB-110-ebay-326121140629",
-        "sourceUrl": "https://www.ebay.com/itm/326121140629",
-        "sourceSite": "eBay / The Anime and TCG Shop",
-        "originalImageUrl": "https://i.ebayimg.com/images/g/s4EAAOSwdqpk5F-n/s-l1600.jpg",
-        "originalPath": "research/yugioh-lob/fronts/LOB-110/ebay-326121140629.jpg",
-        "originalResolution": [
-          960,
-          1364
-        ],
-        "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-110.png",
-        "resolution": [
-          875,
-          1275
-        ],
-        "sha256": "a03201199e2013037f7744744065d1fa93f9d4691662082f346c8e883b92cb6a",
-        "runtimeSha256": "6a5228f9cbf0e98430e25bdbeb5a7595b48fd840404a519780622d6fcc538909",
-        "normalization": {
-          "quad": [
-            [
-              47.189998626708984,
-              25.860000610351562
-            ],
-            [
-              922.6300048828125,
-              25.489999771118164
-            ],
-            [
-              948.52001953125,
-              1333.989990234375
-            ],
-            [
-              0.0,
-              1341.4000244140625
-            ]
-          ],
-          "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-        },
-        "upscaled": false,
-        "assetStatus": "original-print-region-review",
-        "exactPrint": false,
-        "fallback": true,
-        "quality": {
-          "width": 875,
-          "height": 1275,
-          "sharpness": 2029.076,
-          "glareProxy": 0.00157,
-          "jpegBlockProxy": 1.008,
-          "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-        },
-        "caveats": [
-          "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-          "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-        ]
-      },
-      "manualReview": {
-        "required": true,
-        "flags": [
-          "no-verified-high-quality-exact-print-source",
-          "printing-unverified:region",
-          "printing-confidence-below-gate",
-          "north-american-region-needs-individual-paired-back"
-        ]
-      },
-      "candidates": [
-        {
-          "id": "LOB-110-ebay-326121140629",
-          "setCode": "LOB-110",
-          "kind": "collector-listing",
-          "sourceSite": "eBay / The Anime and TCG Shop",
-          "sourceUrl": "https://www.ebay.com/itm/326121140629",
-          "imageUrl": "https://i.ebayimg.com/images/g/s4EAAOSwdqpk5F-n/s-l1600.jpg",
-          "originalPath": "research/yugioh-lob/fronts/LOB-110/ebay-326121140629.jpg",
-          "sha256": "a03201199e2013037f7744744065d1fa93f9d4691662082f346c8e883b92cb6a",
-          "claimedPrinting": "English LOB 1st Edition; seller collection",
-          "discovery": {
-            "artworkMatches": [
-              [
-                293,
-                "LOB-110"
-              ],
-              [
-                6,
-                "LOB-093"
-              ],
-              [
-                6,
-                "LOB-031"
-              ]
-            ],
-            "notes": "ORB matching finds catalog identity only; printing review is separate."
-          },
-          "printingEvidence": {
-            "confidence": 0.88,
-            "frontConfidence": 0.97,
-            "observed": {
-              "edition": "1st Edition",
-              "generation": "original-2002",
-              "language": "en",
-              "setCode": "LOB-110",
-              "passcode": "07089711",
-              "name": "Hane-Hane",
-              "copyright": "1996 KAZUKI TAKAHASHI",
-              "layout": "early-tcg",
-              "securityStamp": "gold-bottom-right"
-            },
-            "notes": [
-              "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-              "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
-            ],
-            "regionEvidence": {
-              "status": "inferred-shared-collection-back",
-              "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-              "path": "research/yugioh-lob/fronts/collection-back.jpg"
-            }
-          },
-          "caveats": [
-            "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-            "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
-          ],
-          "normalization": {
-            "quad": [
-              [
-                47.189998626708984,
-                25.860000610351562
-              ],
-              [
-                922.6300048828125,
-                25.489999771118164
-              ],
-              [
-                948.52001953125,
-                1333.989990234375
-              ],
-              [
-                0.0,
-                1341.4000244140625
-              ]
-            ],
-            "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
-          },
-          "allowRegionalReview": true,
-          "review": {
-            "reviewer": "Codex visual inspection, 2026-10-03",
-            "evidence": "Original-resolution printing strips plus complete normalized front and physical border review.",
-            "sharpness": "pass",
-            "compression": "pass",
-            "glare": "pass",
-            "reflections": "pass",
-            "perspective": "pass",
-            "sleeveObstruction": "pass",
-            "slabObstruction": "pass",
-            "cropCompleteness": "pass",
-            "borderVisibility": "pass",
-            "textReadability": "pass",
-            "cornersVisible": "pass",
-            "watermark": "pass",
-            "colorEditing": "pass",
-            "upscaling": "pass"
-          },
-          "quality": {
-            "glare": 0.02,
-            "perspective": 0.08,
-            "cropCompleteness": 1,
-            "watermark": 0,
-            "sourceTrust": 0.75
-          },
-          "reviewFlags": [
-            "north-american-region-needs-individual-paired-back"
-          ],
-          "metrics": {
-            "width": 875,
-            "height": 1275,
-            "sharpness": 2029.076,
-            "glareProxy": 0.00157,
-            "jpegBlockProxy": 1.008,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            960,
-            1364
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": true,
-            "score": 51.297,
-            "reasons": [
-              "printing-unverified:region",
-              "printing-confidence-below-gate"
-            ],
-            "priority": 4
-          }
-        },
-        {
-          "id": "LOB-110-baseline",
-          "setCode": "LOB-110",
-          "baseline": true,
-          "runtimePath": "/cards/yugioh/lob-first-edition/LOB-110.jpg",
-          "kind": "ygoprodeck",
-          "sourceSite": "YGOPRODeck",
-          "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
-          "imageUrl": "https://images.ygoprodeck.com/images/cards/7089711.jpg",
-          "originalPath": "public/cards/yugioh/lob-first-edition/LOB-110.jpg",
-          "sha256": "fdcf206d69598d43243fdeeae06d974c5322dd967d5be4b9635f4d6880a7cc02",
-          "claimedPrinting": "Generic card render; no original-print claim",
-          "printingEvidence": {
-            "confidence": 0,
-            "observed": {
-              "layout": "modern-general",
-              "edition": "absent",
-              "generation": "modern-representation",
-              "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
-              "setCode": "absent"
-            },
-            "notes": [
-              "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
-            ]
-          },
-          "caveats": [
-            "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-            "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
-            "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
-          ],
-          "metrics": {
-            "width": 813,
-            "height": 1185,
-            "sharpness": 2005.798,
-            "glareProxy": 0.00087,
-            "jpegBlockProxy": 1.088,
-            "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
-          },
-          "originalResolution": [
-            813,
-            1185
-          ],
-          "assessment": {
-            "eligible": false,
-            "provisionalEligible": false,
-            "score": 22.962,
-            "reasons": [
-              "printing-mismatch:edition",
-              "printing-unverified:region",
-              "printing-mismatch:generation",
-              "printing-unverified:language",
-              "printing-mismatch:setCode",
-              "printing-unverified:passcode",
-              "printing-unverified:name",
-              "printing-mismatch:copyright",
-              "printing-mismatch:layout",
-              "printing-unverified:securityStamp",
-              "printing-confidence-below-gate",
-              "manual-review-required",
-              "quality-unreviewed:sharpness",
-              "quality-unreviewed:compression",
-              "quality-unreviewed:glare",
-              "quality-unreviewed:reflections",
-              "quality-unreviewed:perspective",
-              "quality-unreviewed:sleeveObstruction",
-              "quality-unreviewed:slabObstruction",
-              "quality-unreviewed:cropCompleteness",
-              "quality-unreviewed:borderVisibility",
-              "quality-unreviewed:textReadability",
-              "quality-unreviewed:cornersVisible",
-              "quality-unreviewed:watermark",
-              "quality-unreviewed:colorEditing",
-              "quality-unreviewed:upscaling"
-            ],
-            "priority": 5
           }
         }
       ]

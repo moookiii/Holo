@@ -2,6 +2,7 @@
 No optical settings, relief or Secret Rare assets are changed. Rectangle bounds
 remain physical registration estimates; title masks use individual glyphs.
 """
+import argparse
 import json
 from pathlib import Path
 import cv2
@@ -10,10 +11,29 @@ from PIL import Image, ImageDraw, ImageFilter
 from pipeline import ROOT, PUBLIC, write_json, write_png
 
 
-def title_mask(front, bounds, metallic_silver):
+def title_mask(front, bounds, metallic_silver, solid_letters=False):
     w, h = front.size
     box = tuple(round(v * (w if i % 2 == 0 else h)) for i, v in enumerate(bounds))
     crop = front.crop(box).convert('L')
+    if solid_letters:
+        # These individually reviewed scans have a uniformly colored title plate.
+        # Segment dark letter bodies and neutral silver edging in the tight
+        # per-card glyph bounds, retaining counters and the Hane-Hane hyphen.
+        rgb = np.array(front.crop(box).filter(ImageFilter.GaussianBlur(.55)),dtype=float)
+        lum = .299*rgb[:,:,0]+.587*rgb[:,:,1]+.114*rgb[:,:,2]
+        if solid_letters == 'silver-blue':
+            coverage = ((rgb[:,:,2] > rgb[:,:,0]-12) &
+                        ((lum < 160) | ((rgb[:,:,0]-rgb[:,:,1]) < 35)))
+        else:
+            coverage = lum < (105 if solid_letters == 'dark' else 100)
+        count,labels,stats,_ = cv2.connectedComponentsWithStats(coverage.astype('uint8'),8)
+        keep = np.zeros(coverage.shape,dtype=bool)
+        for i in range(1,count):
+            if (stats[i,cv2.CC_STAT_AREA] >= 12 and stats[i,cv2.CC_STAT_HEIGHT] >= 3
+                    and stats[i,cv2.CC_STAT_WIDTH] < rgb.shape[1]*.8):
+                keep |= labels == i
+        glyphs = Image.fromarray(keep.astype('uint8')*255).filter(ImageFilter.GaussianBlur(.35))
+        result = Image.new('L',(w,h));result.paste(glyphs,box[:2]);return result
     # Smooth print dots only while extracting a mask, never in the card front.
     a = np.array(crop.filter(ImageFilter.GaussianBlur(max(.7, w/750))), dtype=float)
     bg = np.array(crop.filter(ImageFilter.GaussianBlur(w/150)), dtype=float)
@@ -43,14 +63,15 @@ def title_mask(front, bounds, metallic_silver):
     return result
 
 
-def run():
+def run(only=None):
     rows = json.loads((ROOT/'src/yugioh/sets/lob-data.json').read_text(encoding='utf-8'))
     path = ROOT/'src/yugioh/sets/lob-registration.json'
     registrations = json.loads(path.read_text(encoding='utf-8'))
+    provenance = {c['number']: json.loads((PUBLIC/f"{c['number']}.json").read_text(encoding='utf-8')) for c in rows if '/fronts/' in c['front']}
     strips = []
     changed = []
     for card in rows:
-        if '/fronts/' not in card['front']:
+        if (only and card['number'] not in only) or '/fronts/' not in card['front']:
             continue
         if card['rarity'] == 'Secret Rare':
             raise ValueError('Secret Rare registration is outside this sourcing task')
@@ -65,9 +86,26 @@ def run():
         stamp = [.918, .948, .968, .984]
         if n == 'LOB-123':
             art = [.144, .218, .855, .711]; stamp = [.929, .950, .968, .983]
+        record = provenance[n]
+        candidate = next(c for c in record['candidates'] if c['id'] == record['imageProvenance']['candidateId'])
+        authored = candidate.get('registration', {})
+        art = authored.get('artwork',art)
+        title = authored.get('title',title)
+        stamp = authored.get('stamp',stamp)
         registrations[n] = {**old, 'artwork': art, 'title': title, 'stamp': stamp,
             'sourceSize': [w, h], 'status': 'estimated-from-replacement-front',
             'front': card['front']}
+        if authored.get('mapCrop'):
+            spec = authored['mapCrop']
+            for suffix in ['foil','name','stamp']:
+                source = Image.open(ROOT/spec['root']/(suffix+'.png'))
+                if list(source.size) != spec['originalSize']:
+                    raise ValueError('Original mask size changed: '+n)
+                mask = source.crop(spec['bounds'])
+                if mask.size != front.size: raise ValueError('Crop registration mismatch: '+n)
+                write_png(PUBLIC/'maps'/f'{n}-{suffix}.png',mask)
+            changed.append(n)
+            continue
         def rectangle(bounds):
             mask = Image.new('L', (w, h))
             x0,y0,x1,y1 = [round(v*(w if i%2 == 0 else h)) for i,v in enumerate(bounds)]
@@ -78,7 +116,7 @@ def run():
         name = Image.new('L',(w,h))
         if card['rarity'] in ('Rare','Ultra Rare'):
             silver = card['rarity'] == 'Rare'
-            name = title_mask(front, title, silver)
+            name = title_mask(front, title, silver, authored.get('titleInk') if authored.get('titleMaskMethod') == 'solid-glyphs' else False)
             strip = Image.new('RGB',(1000,125),'#15191f')
             crop = (0,round(h*.055),w,round(h*.14))
             strip.paste(front.crop(crop).resize((500,75)),(0,25))
@@ -101,4 +139,7 @@ def run():
     print('Registered replacement PNG maps:',len(changed))
 
 
-if __name__ == '__main__': run()
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--cards',nargs='+',help='Regenerate only these card codes')
+    run(parser.parse_args().cards)

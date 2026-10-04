@@ -24,16 +24,16 @@ try{
   });
   assert.equal(decoded.length,126);
   await page.addStyleTag({content:'.hl-shell,#ui {visibility:hidden!important}'});
-  const samples=['LOB-002','LOB-019','LOB-027','LOB-065','LOB-078','LOB-110','LOB-116','LOB-119','LOB-123','LOB-042'];
+  const samples=['LOB-002','LOB-019','LOB-027','LOB-065','LOB-078','LOB-110','LOB-116','LOB-119','LOB-123','LOB-042','LOB-045','LOB-070','LOB-106'];
   for(const number of samples){
     const label=await page.evaluate(async number=>{
       const {lobCards}=await import('/src/yugioh/sets/LegendOfBlueEyesCatalog.ts');
       const {yugiohDefinition}=await import('/src/yugioh/materials.ts');
       const definition=yugiohDefinition(lobCards.find(c=>c.number===number));
       if(!window.__holo.cards.some(c=>c.id===definition.id))window.__holo.cards.push(definition);
-      await window.__holo.setCard(definition.id);return definition.set;
+      await window.__holo.setCard(definition.id);return {set:definition.set,fallback:lobCards.find(c=>c.number===number).source.fidelity==='general-image-fallback'};
     },number);
-    assert.equal(label.includes('Image fallback'),number!=='LOB-123');
+    assert.equal(label.set.includes('Image fallback'),label.fallback);
     for(const [yaw,pitch] of [[0,0],[-20,8],[15,-8]]){
       await page.evaluate(([yaw,pitch])=>window.__holo.pose(yaw,pitch),[yaw,pitch]);
       await page.waitForTimeout(700);await page.screenshot({path:`${out}/${number}-${yaw}.png`});

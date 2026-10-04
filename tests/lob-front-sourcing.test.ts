@@ -37,7 +37,9 @@ test('all LOB fronts separate catalog identity, printing evidence and local prov
       const bytes = readFileSync(`public${card.front}`);
       assert.equal(p.imageProvenance.runtimeSha256,createHash('sha256').update(bytes).digest('hex'));
       assert.deepEqual([bytes.readUInt32BE(16),bytes.readUInt32BE(20)],p.imageProvenance.resolution);
-      assert.ok(p.imageProvenance.resolution[0]>=650 && p.imageProvenance.resolution[1]>=1000);
+      if (card.source.assetStatus !== 'unverified-print-fallback') {
+        assert.ok(p.imageProvenance.resolution[0]>=650 && p.imageProvenance.resolution[1]>=1000);
+      }
       for (const suffix of ['foil','name','stamp']) {
         const path = `/cards/yugioh/lob-first-edition/maps/${card.number}-${suffix}.png`;
         const map = readFileSync(`public${path}`);

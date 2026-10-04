@@ -1,5 +1,7 @@
 # LOB front sourcing and black-border cleanup
 
+Later update: see [five-card revision](FIVE-CARD-REVISION.md) for the current 5 verified / 95 provisional / 26 legacy counts and the four brighter replacements plus Red-Eyes crop. The initial publication report below records the earlier sourcing pass.
+
 Completed 2026-10-03. Scope: original North American 2002 1st Edition LOB-000 through LOB-125.
 
 1. **Strategy.** YGOPRODeck remains the catalog authority. Separate candidate printing observations, reviewer evidence, image-quality checks and preserved original bytes determine visual sourcing. Seller titles, filenames and artwork matching are discovery aids only. Every front remains local at runtime.

@@ -61,3 +61,10 @@ do not run the old whole-set `prepare-lob-maps.py` on this provenance schema.
 runs the offline audit; use `--refresh-metadata` to request fresh set metadata and
 forward `--download` and/or `--apply` explicitly. Only `--apply` publishes changes. It does
 not treat YGOPRODeck fronts or gallery filenames as authoritative original scans.
+
+Per-candidate `registration` can hold inspected title/artwork/stamp bounds and
+solid glyph coverage for silver titles. `register_maps.py --cards LOB-027 LOB-045
+LOB-070 LOB-106 LOB-110` updates only selected cards. User-rejected fronts remain
+in the audit but cannot win again. A baseline normalization can publish a cropped
+low-resolution fallback PNG without promoting its quality/printing status. For
+Red-Eyes, `mapCrop` applies identical physical bounds to preserved original maps.

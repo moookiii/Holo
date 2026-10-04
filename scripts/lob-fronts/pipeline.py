@@ -190,8 +190,8 @@ def run(download=False, apply=False):
                   else 'ygoprodeck-fallback' if baseline['kind'] == 'ygoprodeck' else 'unverified-print-fallback')
         runtime = card['front']
         runtime_hash = None
-        if replacement:
-            _, im, _ = acquire(replacement, False)
+        if replacement or baseline.get('normalization'):
+            _, im, _ = acquire(replacement or baseline, False)
             runtime = f"/cards/yugioh/lob-first-edition/fronts/{card['number']}.png"
             if apply:
                 out = ROOT / ('public' + runtime)

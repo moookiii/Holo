@@ -1752,8 +1752,51 @@
       },
       "caveats": [
         "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-        "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
-      ]
+        "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+        "White outer scan/sleeve margin cropped at native resolution; this does not improve printing verification."
+      ],
+      "normalization": {
+        "crop": [
+          12,
+          8,
+          478,
+          685
+        ],
+        "note": "User-requested removal of white scan/sleeve margin. Printed gray border retained; low-resolution fallback remains explicitly unverified, without upscaling."
+      },
+      "registration": {
+        "artwork": [
+          0.117253,
+          0.217535,
+          0.877489,
+          0.736979
+        ],
+        "title": [
+          0.067833,
+          0.065681,
+          0.802833,
+          0.122233
+        ],
+        "stamp": [
+          0.939528,
+          0.98204,
+          0.981588,
+          1.011363
+        ],
+        "mapCrop": {
+          "bounds": [
+            12,
+            8,
+            478,
+            685
+          ],
+          "root": "research/yugioh-lob/fronts/LOB-070/original-maps",
+          "originalSize": [
+            490,
+            709
+          ]
+        }
+      }
     },
     {
       "id": "LOB-071-baseline",
@@ -5440,7 +5483,8 @@
       },
       "reviewFlags": [
         "north-american-region-needs-individual-paired-back"
-      ]
+      ],
+      "rejectedByUser": "Too dark; superseded by individually paired brighter PSA scans and corrected title masks."
     },
     {
       "id": "LOB-028-ebay-326121140629",
@@ -7136,7 +7180,8 @@
       },
       "reviewFlags": [
         "north-american-region-needs-individual-paired-back"
-      ]
+      ],
+      "rejectedByUser": "Too dark; superseded by individually paired brighter PSA scans and corrected title masks."
     },
     {
       "id": "LOB-046-ebay-326121140629",
@@ -11800,7 +11845,8 @@
       },
       "reviewFlags": [
         "north-american-region-needs-individual-paired-back"
-      ]
+      ],
+      "rejectedByUser": "Too dark; superseded by individually paired brighter PSA scans and corrected title masks."
     },
     {
       "id": "LOB-107-ebay-326121140629",
@@ -13390,7 +13436,8 @@
       },
       "reviewFlags": [
         "north-american-region-needs-individual-paired-back"
-      ]
+      ],
+      "rejectedByUser": "Too dark; superseded by individually paired brighter PSA scans and corrected title masks."
     },
     {
       "id": "LOB-123-face-to-face",
@@ -13928,6 +13975,395 @@
         "reviewer": "Codex visual inspection, 2026-10-03",
         "evidence": "Broad baked multicolor foil reflection; clean base art unavailable. Rejected.",
         "glare": "fail"
+      }
+    },
+    {
+      "id": "LOB-027-replacement-psa-43708884",
+      "setCode": "LOB-027",
+      "kind": "graded-archive",
+      "sourceSite": "eBay / individual PSA front and back",
+      "sourceUrl": "https://www.ebay.com/p/25043770394",
+      "imageUrl": "https://i.ebayimg.com/images/g/a6MAAOSwi2hoWa12/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-027/replacement-psa-front.jpg",
+      "sha256": "9db6e981352f7119a8c60316b852dc8d56f33a36b7d0d8a5454bbf760887c953",
+      "claimedPrinting": "2002 LOB 1st Edition, PSA 43708884",
+      "printingEvidence": {
+        "confidence": 0.95,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "region": "North America",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-027",
+          "passcode": "85639257",
+          "name": "Aqua Madoor",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Original pixels inspected: title, 1st Edition, LOB code, passcode, 1996 footer, early text and security stamp. Individual paired TCG back has matching PSA certificate 43708884."
+        ],
+        "regionEvidence": {
+          "status": "verified-individual-paired-tcg-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/bkUAAOSw4ZFoWa12/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/LOB-027/replacement-psa-back.jpg",
+          "sha256": "a5b5bde133f1f745bfc206c24053f033bb054d391f08721c3212f1273b237619"
+        }
+      },
+      "normalization": {
+        "crop": [
+          107,
+          449,
+          800,
+          1462
+        ],
+        "note": "Crop to physical gray card border only; slab excluded. Native pixels retained without color or detail enhancement."
+      },
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Complete native front/back scans and cropped front inspected; certificate matches, readable title/footer, full physical borders.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.03,
+        "perspective": 0,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.9
+      },
+      "caveats": [
+        "Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain.",
+        "Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later.",
+        "Narrow surface/slab scuff at the far-left artwork edge is retained; it does not obscure text or the title."
+      ],
+      "registration": {
+        "title": [
+          0.090909,
+          0.07305,
+          0.630592,
+          0.129319
+        ],
+        "artwork": [
+          0.119769,
+          0.206318,
+          0.877345,
+          0.730503
+        ],
+        "stamp": [
+          0.917749,
+          0.938796,
+          0.97114,
+          0.984205
+        ],
+        "titleMaskMethod": "solid-glyphs",
+        "note": "Individual printed letter bounds and artwork/stamp inspected in cropped source coordinates.",
+        "titleInk": "dark"
+      }
+    },
+    {
+      "id": "LOB-045-replacement-psa-156974937",
+      "setCode": "LOB-045",
+      "kind": "graded-archive",
+      "sourceSite": "eBay / individual PSA front and back",
+      "sourceUrl": "https://www.ebay.com/p/28043781315",
+      "imageUrl": "https://i.ebayimg.com/images/g/-9sAAeSw77hqNaHt/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-045/replacement-psa-front.jpg",
+      "sha256": "56a7caa3878bab61a2ec83521742c03c4c1cab995bc3d38a9775e976460e972c",
+      "claimedPrinting": "2002 LOB 1st Edition, PSA 156974937",
+      "printingEvidence": {
+        "confidence": 0.95,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "region": "North America",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-045",
+          "passcode": "50045299",
+          "name": "Dragon Capture Jar",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Original pixels inspected: title, 1st Edition, LOB code, passcode, 1996 footer, early text and security stamp. Individual paired TCG back has matching PSA certificate 156974937."
+        ],
+        "regionEvidence": {
+          "status": "verified-individual-paired-tcg-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/1mkAAeSwyadqNaH7/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/LOB-045/replacement-psa-back.jpg",
+          "sha256": "de6e4ddddb9e3a554fdee95009ef64423e4da0df8cf304f773b2138f540fa3ac"
+        }
+      },
+      "normalization": {
+        "crop": [
+          131,
+          441,
+          824,
+          1449
+        ],
+        "note": "Crop to physical gray card border only; slab excluded. Native pixels retained without color or detail enhancement."
+      },
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Complete native front/back scans and cropped front inspected; certificate matches, readable title/footer, full physical borders.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.03,
+        "perspective": 0,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.9
+      },
+      "caveats": [
+        "Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain.",
+        "Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later."
+      ],
+      "registration": {
+        "title": [
+          0.093795,
+          0.068452,
+          0.793651,
+          0.126984
+        ],
+        "artwork": [
+          0.121212,
+          0.196429,
+          0.881674,
+          0.725198
+        ],
+        "stamp": [
+          0.919192,
+          0.939484,
+          0.972583,
+          0.97619
+        ],
+        "titleMaskMethod": "solid-glyphs",
+        "note": "Individual printed letter bounds and artwork/stamp inspected in cropped source coordinates.",
+        "titleInk": "silver-blue"
+      }
+    },
+    {
+      "id": "LOB-106-replacement-psa-159576427",
+      "setCode": "LOB-106",
+      "kind": "graded-archive",
+      "sourceSite": "eBay / individual PSA front and back",
+      "sourceUrl": "https://www.ebay.com/p/9043778585",
+      "imageUrl": "https://i.ebayimg.com/images/g/ZIwAAeSwPAZqWkUG/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-106/replacement-psa-front.jpg",
+      "sha256": "070ac957a42eeed551137f2b51cb7266d5cf254a365537edd0305db175aac80e",
+      "claimedPrinting": "2002 LOB 1st Edition, PSA 159576427",
+      "printingEvidence": {
+        "confidence": 0.95,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "region": "North America",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-106",
+          "passcode": "09076207",
+          "name": "Armed Ninja",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Original pixels inspected: title, 1st Edition, LOB code, passcode, 1996 footer, early text and security stamp. Individual paired TCG back has matching PSA certificate 159576427."
+        ],
+        "regionEvidence": {
+          "status": "verified-individual-paired-tcg-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/Wj0AAeSwjF1qWkUG/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/LOB-106/replacement-psa-back.jpg",
+          "sha256": "4192f1323b84f8d2b77034f9b18f57940d652ab2de982a869ce964229b0c2295"
+        }
+      },
+      "normalization": {
+        "crop": [
+          132,
+          444,
+          824,
+          1453
+        ],
+        "note": "Crop to physical gray card border only; slab excluded. Native pixels retained without color or detail enhancement."
+      },
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Complete native front/back scans and cropped front inspected; certificate matches, readable title/footer, full physical borders.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.03,
+        "perspective": 0,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.9
+      },
+      "caveats": [
+        "Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain.",
+        "Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later."
+      ],
+      "registration": {
+        "title": [
+          0.092486,
+          0.071358,
+          0.570809,
+          0.12884
+        ],
+        "artwork": [
+          0.115607,
+          0.206145,
+          0.887283,
+          0.728444
+        ],
+        "stamp": [
+          0.913295,
+          0.952428,
+          0.966763,
+          0.989098
+        ],
+        "titleMaskMethod": "solid-glyphs",
+        "note": "Individual printed letter bounds and artwork/stamp inspected in cropped source coordinates.",
+        "titleInk": "silver-blue"
+      }
+    },
+    {
+      "id": "LOB-110-replacement-psa-68910206",
+      "setCode": "LOB-110",
+      "kind": "graded-archive",
+      "sourceSite": "eBay / individual PSA front and back",
+      "sourceUrl": "https://www.ebay.com/itm/306902660593",
+      "imageUrl": "https://i.ebayimg.com/images/g/ssEAAeSwEPFp7YMI/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-110/replacement-psa-front.jpg",
+      "sha256": "4b9022eb33b5ec2489797758541a416168fb01f4fae521fbaab815acd298cba1",
+      "claimedPrinting": "2002 LOB 1st Edition, PSA 68910206",
+      "printingEvidence": {
+        "confidence": 0.95,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "region": "North America",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-110",
+          "passcode": "07089711",
+          "name": "Hane-Hane",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Original pixels inspected: title, 1st Edition, LOB code, passcode, 1996 footer, early text and security stamp. Individual paired TCG back has matching PSA certificate 68910206."
+        ],
+        "regionEvidence": {
+          "status": "verified-individual-paired-tcg-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/AsQAAeSwU0pp7YMI/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/LOB-110/replacement-psa-back.jpg",
+          "sha256": "5fcbff00bcd7b56734dfde8c03096858675003f4581611eb1d57d740c4c5e114"
+        }
+      },
+      "normalization": {
+        "crop": [
+          123,
+          448,
+          824,
+          1467
+        ],
+        "note": "Crop to physical gray card border only; slab excluded. Native pixels retained without color or detail enhancement."
+      },
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Complete native front/back scans and cropped front inspected; certificate matches, readable title/footer, full physical borders.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.03,
+        "perspective": 0,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.9
+      },
+      "caveats": [
+        "Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain.",
+        "Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later."
+      ],
+      "registration": {
+        "title": [
+          0.097004,
+          0.078508,
+          0.514979,
+          0.135427
+        ],
+        "artwork": [
+          0.121255,
+          0.208047,
+          0.875892,
+          0.727184
+        ],
+        "stamp": [
+          0.917261,
+          0.932287,
+          0.968616,
+          0.976447
+        ],
+        "titleMaskMethod": "solid-glyphs",
+        "note": "Individual printed letter bounds and artwork/stamp inspected in cropped source coordinates.",
+        "titleInk": "dark"
       }
     }
   ]

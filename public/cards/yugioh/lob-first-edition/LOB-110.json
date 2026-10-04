@@ -1,19 +1,14 @@
 {
-  "image": "https://i.ebayimg.com/images/g/s4EAAOSwdqpk5F-n/s-l1600.jpg",
-  "reference": "https://www.ebay.com/itm/326121140629",
+  "image": "https://i.ebayimg.com/images/g/ssEAAeSwEPFp7YMI/s-l1600.jpg",
+  "reference": "https://www.ebay.com/itm/306902660593",
   "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
-  "fidelity": "general-image-fallback",
+  "fidelity": "original-scan",
   "layout": "early-tcg",
-  "notes": "Asset status: original-print-region-review. Manual review: required. Natural print dots, original coloration and physical wear retained; no sharpening or enhancement. Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable.",
-  "assetStatus": "original-print-region-review",
+  "notes": "Asset status: exact-print-high-quality. Manual review: complete. Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain. Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later.",
+  "assetStatus": "exact-print-high-quality",
   "manualReview": {
-    "required": true,
-    "flags": [
-      "no-verified-high-quality-exact-print-source",
-      "printing-unverified:region",
-      "printing-confidence-below-gate",
-      "north-american-region-needs-individual-paired-back"
-    ]
+    "required": false,
+    "flags": []
   },
   "provenance": "/cards/yugioh/lob-first-edition/LOB-110.json",
   "schemaVersion": 2,
@@ -33,9 +28,10 @@
       "language": "en",
       "setCode": "LOB-110"
     },
-    "claimed": "English LOB 1st Edition; seller collection",
+    "claimed": "2002 LOB 1st Edition, PSA 68910206",
     "verified": {
       "edition": "1st Edition",
+      "region": "North America",
       "generation": "original-2002",
       "language": "en",
       "setCode": "LOB-110",
@@ -45,75 +41,179 @@
       "layout": "early-tcg",
       "securityStamp": "gold-bottom-right"
     },
-    "confidence": 0.88,
+    "confidence": 0.95,
     "frontConfidence": 0.97,
     "evidence": [
-      "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
-      "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
+      "Original pixels inspected: title, 1st Edition, LOB code, passcode, 1996 footer, early text and security stamp. Individual paired TCG back has matching PSA certificate 68910206."
     ],
-    "verificationStatus": "front-verified-region-unresolved",
+    "verificationStatus": "verified",
     "regionEvidence": {
-      "status": "inferred-shared-collection-back",
-      "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
-      "path": "research/yugioh-lob/fronts/collection-back.jpg"
+      "status": "verified-individual-paired-tcg-back",
+      "imageUrl": "https://i.ebayimg.com/images/g/AsQAAeSwU0pp7YMI/s-l1600.jpg",
+      "path": "research/yugioh-lob/fronts/LOB-110/replacement-psa-back.jpg",
+      "sha256": "5fcbff00bcd7b56734dfde8c03096858675003f4581611eb1d57d740c4c5e114"
     }
   },
   "imageProvenance": {
-    "candidateId": "LOB-110-ebay-326121140629",
-    "sourceUrl": "https://www.ebay.com/itm/326121140629",
-    "sourceSite": "eBay / The Anime and TCG Shop",
-    "originalImageUrl": "https://i.ebayimg.com/images/g/s4EAAOSwdqpk5F-n/s-l1600.jpg",
-    "originalPath": "research/yugioh-lob/fronts/LOB-110/ebay-326121140629.jpg",
+    "candidateId": "LOB-110-replacement-psa-68910206",
+    "sourceUrl": "https://www.ebay.com/itm/306902660593",
+    "sourceSite": "eBay / individual PSA front and back",
+    "originalImageUrl": "https://i.ebayimg.com/images/g/ssEAAeSwEPFp7YMI/s-l1600.jpg",
+    "originalPath": "research/yugioh-lob/fronts/LOB-110/replacement-psa-front.jpg",
     "originalResolution": [
-      960,
-      1364
+      951,
+      1600
     ],
     "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-110.png",
     "resolution": [
-      875,
-      1275
+      701,
+      1019
     ],
-    "sha256": "a03201199e2013037f7744744065d1fa93f9d4691662082f346c8e883b92cb6a",
-    "runtimeSha256": "6a5228f9cbf0e98430e25bdbeb5a7595b48fd840404a519780622d6fcc538909",
+    "sha256": "4b9022eb33b5ec2489797758541a416168fb01f4fae521fbaab815acd298cba1",
+    "runtimeSha256": "407d55e202975c91a7d8db4238809c79e0fba41b6948f1b7051d290591d2eac5",
     "normalization": {
-      "quad": [
-        [
-          47.189998626708984,
-          25.860000610351562
-        ],
-        [
-          922.6300048828125,
-          25.489999771118164
-        ],
-        [
-          948.52001953125,
-          1333.989990234375
-        ],
-        [
-          0.0,
-          1341.4000244140625
-        ]
+      "crop": [
+        123,
+        448,
+        824,
+        1467
       ],
-      "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
+      "note": "Crop to physical gray card border only; slab excluded. Native pixels retained without color or detail enhancement."
     },
     "upscaled": false,
-    "assetStatus": "original-print-region-review",
-    "exactPrint": false,
-    "fallback": true,
+    "assetStatus": "exact-print-high-quality",
+    "exactPrint": true,
+    "fallback": false,
     "quality": {
-      "width": 875,
-      "height": 1275,
-      "sharpness": 2029.076,
-      "glareProxy": 0.00157,
-      "jpegBlockProxy": 1.008,
+      "width": 701,
+      "height": 1019,
+      "sharpness": 2300.597,
+      "glareProxy": 0.00213,
+      "jpegBlockProxy": 0.995,
       "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
     },
     "caveats": [
-      "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
-      "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
+      "Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain.",
+      "Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later."
     ]
   },
   "candidates": [
+    {
+      "id": "LOB-110-replacement-psa-68910206",
+      "setCode": "LOB-110",
+      "kind": "graded-archive",
+      "sourceSite": "eBay / individual PSA front and back",
+      "sourceUrl": "https://www.ebay.com/itm/306902660593",
+      "imageUrl": "https://i.ebayimg.com/images/g/ssEAAeSwEPFp7YMI/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-110/replacement-psa-front.jpg",
+      "sha256": "4b9022eb33b5ec2489797758541a416168fb01f4fae521fbaab815acd298cba1",
+      "claimedPrinting": "2002 LOB 1st Edition, PSA 68910206",
+      "printingEvidence": {
+        "confidence": 0.95,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "region": "North America",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-110",
+          "passcode": "07089711",
+          "name": "Hane-Hane",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Original pixels inspected: title, 1st Edition, LOB code, passcode, 1996 footer, early text and security stamp. Individual paired TCG back has matching PSA certificate 68910206."
+        ],
+        "regionEvidence": {
+          "status": "verified-individual-paired-tcg-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/AsQAAeSwU0pp7YMI/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/LOB-110/replacement-psa-back.jpg",
+          "sha256": "5fcbff00bcd7b56734dfde8c03096858675003f4581611eb1d57d740c4c5e114"
+        }
+      },
+      "normalization": {
+        "crop": [
+          123,
+          448,
+          824,
+          1467
+        ],
+        "note": "Crop to physical gray card border only; slab excluded. Native pixels retained without color or detail enhancement."
+      },
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Complete native front/back scans and cropped front inspected; certificate matches, readable title/footer, full physical borders.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.03,
+        "perspective": 0,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.9
+      },
+      "caveats": [
+        "Native scan retained without brightening, recoloring, sharpening or upscaling. Natural print dots, minor wear and stamp reflections remain.",
+        "Individual PSA scans are associated by matching certificate; eBay product pages may show a different listing later."
+      ],
+      "registration": {
+        "title": [
+          0.097004,
+          0.078508,
+          0.514979,
+          0.135427
+        ],
+        "artwork": [
+          0.121255,
+          0.208047,
+          0.875892,
+          0.727184
+        ],
+        "stamp": [
+          0.917261,
+          0.932287,
+          0.968616,
+          0.976447
+        ],
+        "titleMaskMethod": "solid-glyphs",
+        "note": "Individual printed letter bounds and artwork/stamp inspected in cropped source coordinates.",
+        "titleInk": "dark"
+      },
+      "metrics": {
+        "width": 701,
+        "height": 1019,
+        "sharpness": 2300.597,
+        "glareProxy": 0.00213,
+        "jpegBlockProxy": 0.995,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        951,
+        1600
+      ],
+      "assessment": {
+        "eligible": true,
+        "provisionalEligible": false,
+        "score": 94.558,
+        "reasons": [],
+        "priority": 3
+      }
+    },
     {
       "id": "LOB-110-ebay-326121140629",
       "setCode": "LOB-110",
@@ -219,6 +319,7 @@
       "reviewFlags": [
         "north-american-region-needs-individual-paired-back"
       ],
+      "rejectedByUser": "Too dark; superseded by individually paired brighter PSA scans and corrected title masks.",
       "metrics": {
         "width": 875,
         "height": 1275,
@@ -233,9 +334,10 @@
       ],
       "assessment": {
         "eligible": false,
-        "provisionalEligible": true,
+        "provisionalEligible": false,
         "score": 51.297,
         "reasons": [
+          "user-rejected-front",
           "printing-unverified:region",
           "printing-confidence-below-gate"
         ],

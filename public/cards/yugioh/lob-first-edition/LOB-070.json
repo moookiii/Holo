@@ -4,7 +4,7 @@
   "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
   "fidelity": "general-image-fallback",
   "layout": "early-tcg",
-  "notes": "Asset status: unverified-print-fallback. Manual review: required. Preserved legacy front. Not accepted as a verified high-quality exact-print asset. Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+  "notes": "Asset status: unverified-print-fallback. Manual review: required. Preserved legacy front. Not accepted as a verified high-quality exact-print asset. Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary. White outer scan/sleeve margin cropped at native resolution; this does not improve printing verification.",
   "assetStatus": "unverified-print-fallback",
   "manualReview": {
     "required": true,
@@ -77,29 +77,38 @@
       490,
       709
     ],
-    "runtimePath": "/cards/yugioh/lob-first-edition/LOB-070.jpg",
+    "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-070.png",
     "resolution": [
-      490,
-      709
+      466,
+      677
     ],
     "sha256": "26aca082e3ae70ef7b008dcc08f9b6ab6a2e1277e7569e60330d8a45347ce33e",
-    "runtimeSha256": null,
-    "normalization": {},
+    "runtimeSha256": "6882075bd80f7416f9b057ef118bc0e7df727b6afff7a9468467ceda2cee91d3",
+    "normalization": {
+      "crop": [
+        12,
+        8,
+        478,
+        685
+      ],
+      "note": "User-requested removal of white scan/sleeve margin. Printed gray border retained; low-resolution fallback remains explicitly unverified, without upscaling."
+    },
     "upscaled": false,
     "assetStatus": "unverified-print-fallback",
     "exactPrint": false,
     "fallback": true,
     "quality": {
-      "width": 490,
-      "height": 709,
-      "sharpness": 1234.785,
-      "glareProxy": 0.00294,
-      "jpegBlockProxy": 1.104,
+      "width": 466,
+      "height": 677,
+      "sharpness": 1190.321,
+      "glareProxy": 6e-05,
+      "jpegBlockProxy": 1.107,
       "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
     },
     "caveats": [
       "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-      "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+      "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+      "White outer scan/sleeve margin cropped at native resolution; this does not improve printing verification."
     ]
   },
   "candidates": [
@@ -124,14 +133,57 @@
       },
       "caveats": [
         "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
-        "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+        "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+        "White outer scan/sleeve margin cropped at native resolution; this does not improve printing verification."
       ],
+      "normalization": {
+        "crop": [
+          12,
+          8,
+          478,
+          685
+        ],
+        "note": "User-requested removal of white scan/sleeve margin. Printed gray border retained; low-resolution fallback remains explicitly unverified, without upscaling."
+      },
+      "registration": {
+        "artwork": [
+          0.117253,
+          0.217535,
+          0.877489,
+          0.736979
+        ],
+        "title": [
+          0.067833,
+          0.065681,
+          0.802833,
+          0.122233
+        ],
+        "stamp": [
+          0.939528,
+          0.98204,
+          0.981588,
+          1.011363
+        ],
+        "mapCrop": {
+          "bounds": [
+            12,
+            8,
+            478,
+            685
+          ],
+          "root": "research/yugioh-lob/fronts/LOB-070/original-maps",
+          "originalSize": [
+            490,
+            709
+          ]
+        }
+      },
       "metrics": {
-        "width": 490,
-        "height": 709,
-        "sharpness": 1234.785,
-        "glareProxy": 0.00294,
-        "jpegBlockProxy": 1.104,
+        "width": 466,
+        "height": 677,
+        "sharpness": 1190.321,
+        "glareProxy": 6e-05,
+        "jpegBlockProxy": 1.107,
         "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
       },
       "originalResolution": [
@@ -141,7 +193,7 @@
       "assessment": {
         "eligible": false,
         "provisionalEligible": false,
-        "score": 21.773,
+        "score": 21.692,
         "reasons": [
           "printing-unverified:edition",
           "printing-unverified:region",
