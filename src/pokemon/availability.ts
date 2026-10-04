@@ -1,3 +1,4 @@
+import { collectionProductFor } from './CollectionProducts.ts';
 import { recipeFor } from './recipes.ts';
 import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
 import { prismaticSurfaceProgress } from './PrismaticSurfaces.ts';
@@ -8,6 +9,8 @@ import { WIZARDS_PROMO_ID, wizardsPromoCards } from './WizardsPromoCatalog.ts';
  * from cards with missing surfaces or silently substitute another material.
  */
 export function packAvailability(setId: string): { ready: boolean; label: string; detail: string } {
+  const collection = collectionProductFor(setId);
+  if (collection) return { ready: true, label: 'Collection available · 18 fixed cards', detail: collection.note };
   if (setId === WIZARDS_PROMO_ID) return { ready: false, label: `Browse ${wizardsPromoCards.length} promos`,
     detail: 'Choose an individual promo card. These cards were distributed outside booster packs.' };
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',

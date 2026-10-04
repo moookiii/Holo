@@ -1,4 +1,5 @@
 import './browser.css';
+import { collectionProductFor, resolvePokemonCollection, type PokemonCollectionProduct } from './CollectionProducts';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { PackDefinition } from '../pack/PackDefinition';
 import { packRegistry } from '../pack/PackDefinition';
@@ -37,7 +38,8 @@ export class PackBrowser {
   private prepared?: PreparedPack;
   private metadata?: PokemonCard[];
   private retry?: () => void;
-  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' | 'yugioh' | 'yugioh-sets' | 'yugioh-detail' | 'magic' | 'magic-sets' | 'magic-detail' = 'type';
+  private step: 'type' | 'archive' | 'series' | 'sets' | 'boosters' | 'cards' | 'collection' | 'collection-cards' | 'yugioh' | 'yugioh-sets' | 'yugioh-detail' | 'magic' | 'magic-sets' | 'magic-detail' = 'type';
+  private collection?: PokemonCollectionProduct;
   private magicSeries?: string;
   private yugiohProvider?: YugiohCatalogProvider;
   private yugiohSets: YugiohCatalogSet[] = [];
@@ -214,9 +216,40 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
+      sets.sort((a, b) => Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
         packAvailability(set.id).label));
     }, () => this.sets());
+  }
+  private collectionDetail(product: PokemonCollectionProduct) {
+    this.collection = product; this.step = 'collection';
+    this.screen(product.name, product.note);
+    const button = this.button('Open collection folder', () => this.openCollection(product), product.artwork,
+      `${product.cardIds.length} fixed cards · complete English collection`);
+    button.classList.add('pokemon-collection-folder');
+  }
+  private openCollection(product: PokemonCollectionProduct) {
+    this.step = 'collection-cards'; this.selection.booster = undefined;
+    this.screen(product.name, 'Opening the complete collection…');
+    void this.run('Loading collection cards…', async request => {
+      const set = await pokemonCatalog.set(product.setId, request.signal);
+      const metadata = await pokemonCatalog.cards(set, request.signal);
+      const cards = resolvePokemonCollection(product, metadata);
+      if (!this.task.current(request)) return;
+      this.selection.set = set;
+      this.status.textContent = `${cards.length} fixed cards · complete collection · choose a card to view.`;
+      for (const card of cards) {
+        const definition = pokemonDefinition(card, card.variants[0], this.deps.definitions);
+        const button = this.button(`#${card.localId} · ${card.name}`, () => {
+          if (this.disposed || this.root.getAttribute('aria-busy') === 'true') return;
+          this.root.close();
+          void this.deps.viewCard(definition.id).then(() => this.dispose(), error => {
+            if (this.disposed) return;
+            this.root.showModal(); this.status.textContent = error instanceof Error ? error.message : 'Unable to view this card.';
+          });
+        }, card.thumbnail, card.variants[0] === 'reverse' ? 'Cosmos reverse holo' : 'Non-holo');
+        button.classList.add('pokemon-collection-card'); button.dataset.cardId = card.id;
+      }
+    }, () => this.openCollection(product));
   }
   private promoCards() {
     this.step = 'cards'; this.selection.booster = undefined;
@@ -326,6 +359,8 @@ export class PackBrowser {
       case 'yugioh-sets': this.yugioh(); break;
       case 'yugioh': this.types(); break;
       case 'cards': this.sets(); break;
+      case 'collection': this.sets(); break;
+      case 'collection-cards': if (this.collection) this.collectionDetail(this.collection); else this.sets(); break;
       case 'boosters': this.sets(); break;
       case 'sets': this.series(); break;
       case 'series': case 'archive': this.types(); break;

@@ -1,3 +1,4 @@
+import { southernIslandsDefinitions } from './SouthernIslandsCards.ts';
 import { slimeCard } from './SlimeCard.ts';
 import { dividedHeartCard } from './DividedHeartCard.ts';
 import { phantomCorridorCard } from './PhantomCorridorCard.ts';
@@ -128,7 +129,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [slimeCard, dividedHeartCard, phantomCorridorCard, ancientMewCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...legendaryCollectionDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...neoDiscoveryDefinitions, ...wizardsPromoDefinitions, {
+export const cards: CardDefinition[] = [slimeCard, dividedHeartCard, phantomCorridorCard, ancientMewCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...legendaryCollectionDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...neoDiscoveryDefinitions, ...southernIslandsDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
