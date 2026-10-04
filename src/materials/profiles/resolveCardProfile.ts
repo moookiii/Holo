@@ -26,5 +26,6 @@ export function resolveCardProfile(card: CardDefinition, id = card.profile): Hol
     secondary: secondary ? overrideLayer(secondary, changes.secondary) : undefined,
     stamp: stamp ? overrideLayer(stamp, changes.stamp) : undefined,
     metallicInk: changes.metallicInk ?? base.metallicInk,
+    mapSettings: changes.mapSettings ? { ...base.mapSettings, ...changes.mapSettings } : base.mapSettings,
   };
 }
