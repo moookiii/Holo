@@ -125,7 +125,7 @@ export class Gallery {
     this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
   }
   private refreshFacetOptions() {
-    let cards: readonly CardDefinition[] = galleryMasterCards(this.options.cards).filter(card => !card.pickerHidden);
+    let cards: readonly CardDefinition[] = galleryMasterCards(this.options.cards).filter(card => !card.pickerHidden || card.galleryVisible);
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
       const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'

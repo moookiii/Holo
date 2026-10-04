@@ -80,7 +80,7 @@ export function prismaticDefinition(id: string, variant: PrintVariant): CardDefi
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${card.localId}/131 · ${card.rarity} · ${printVariantLabel(variant)}`,
     dimensions: DIMENSIONS.standard, front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 2025085,
-    pickerHidden: !surface,
+    pickerHidden: !surface, galleryVisible: variant === 'normal',
     pokemon: { ...card, variant, materialProfile: profile },
     ...(surface ? { maps: surface.maps, layout: surface.layout, mapSettings: surface.mapSettings, profileOverrides: surface.profileOverrides } : {}),
     source: { image: card.front!, metadata: `${PRISMATIC_ASSETS}/catalog.json`,
@@ -96,8 +96,14 @@ export function prismaticSurfaceProgress() {
     complete: missing.length === 0 };
 }
 
-/** Only authored holo printings enter the picker. The full pool stays in packs. */
+/** Only exact registered foil printings enter the main card picker. */
 export function prismaticPickerCards(): CardDefinition[] {
   return [...prismaticPrintings.filter(printing => surfaces[prismaticSurfaceKey(printing.cardId, printing.variant)])
     .map(printing => prismaticDefinition(printing.cardId, printing.variant)), ...prismaticEnergyPickerCards()];
+}
+
+/** Regular non-holo printings stay out of the main picker and appear in the gallery. */
+export function prismaticGalleryCards(): CardDefinition[] {
+  return prismaticPrintings.filter(printing => printing.variant === 'normal')
+    .map(printing => prismaticDefinition(printing.cardId, printing.variant));
 }

@@ -22,9 +22,9 @@ import { getPack, resolvePackContents, type PackDefinition } from './pack/PackDe
 import { CardCpuPreparation, type PreparedCardCpu } from './card/CardCpuPreparation';
 import { packIdentity, prepareExactPack, type PreparedPack } from './pack/PreparedPack';
 import type { PackBrowser } from './pokemon/PackBrowser';
-import { prismaticPickerCards } from './pokemon/PrismaticSurfaces';
-import { pokemon151PickerCards } from './pokemon/Pokemon151Surfaces';
-import { svTcglDefinition, svTcglPickerCards } from './pokemon/SvTcglSurfaces';
+import { prismaticGalleryCards, prismaticPickerCards } from './pokemon/PrismaticSurfaces';
+import { pokemon151GalleryCards, pokemon151PickerCards } from './pokemon/Pokemon151Surfaces';
+import { svTcglDefinition, svTcglGalleryCards, svTcglPickerCards } from './pokemon/SvTcglSurfaces';
 import type { Gallery } from './gallery/Gallery';
 import { lobCards } from './yugioh/sets/LegendOfBlueEyesCatalog';
 import { yugiohDefinition } from './yugioh/materials';
@@ -52,7 +52,8 @@ async function start() {
   const { assets, maps: mapLoader } = factory;
   const cards = [...builtInCards.map(card => card.id === 'tyranitar-paldea-evolved'
     ? { ...svTcglDefinition('sv02-135', 'holo'), id: card.id } : card),
-    ...svTcglPickerCards(), ...pokemon151PickerCards(), ...prismaticPickerCards(), ...lobCards.map(yugiohDefinition), ...alphaCards.map(magicDefinition)];
+    ...svTcglPickerCards(), ...svTcglGalleryCards(), ...pokemon151PickerCards(), ...pokemon151GalleryCards(),
+    ...prismaticPickerCards(), ...prismaticGalleryCards(), ...lobCards.map(yugiohDefinition), ...alphaCards.map(magicDefinition)];
   const initialCard = cards.find(card => card.id === FIRST_PICKER_CARD_ID) ?? cards[0];
   const lighting = new StudioLighting(scene);
   const spotlightPointer = new SpotlightPointer(container, camera, lighting.spot);

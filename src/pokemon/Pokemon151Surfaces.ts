@@ -20,7 +20,7 @@ export function pokemon151Definition(id: string, variant: PrintVariant): CardDef
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: '151',
     number: `${card.localId}/165 · ${card.rarity} · ${printVariantLabel(variant)}`,
     dimensions: DIMENSIONS.standard, front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 2023151,
-    pickerHidden: !surface, pokemon: { ...card, variant, materialProfile: profile },
+    pickerHidden: !surface, galleryVisible: variant === 'normal', pokemon: { ...card, variant, materialProfile: profile },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
       maps: surface.maps,
@@ -33,3 +33,5 @@ export function pokemon151Definition(id: string, variant: PrintVariant): CardDef
 }
 export const pokemon151PickerCards = () => pokemon151Cards.flatMap(card => card.variants
   .filter(variant => variant !== 'normal').map(variant => pokemon151Definition(card.id, variant)));
+export const pokemon151GalleryCards = () => pokemon151Cards.filter(card => card.variants.includes('normal'))
+  .map(card => pokemon151Definition(card.id, 'normal'));

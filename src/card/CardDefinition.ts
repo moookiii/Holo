@@ -94,6 +94,8 @@ export interface CardDefinition {
   yugioh?: import('../materials/profiles/YugiohPrinting').YugiohPrinting;
   /** Pack pulls can be inspected without becoming entries in the card picker. */
   pickerHidden?: boolean;
+  /** Keep an entry out of the main card picker while including it in the gallery. */
+  galleryVisible?: boolean;
   pokemon?: import('../pokemon/types').PokemonCard & { variant: import('../pokemon/types').PrintVariant; materialProfile: string; treatmentStatus?: 'deferred' };
   /** Lightweight procedural coverage for API prints; authored maps always win. */
   proceduralFoil?: 'artwork' | 'reverse' | 'full';

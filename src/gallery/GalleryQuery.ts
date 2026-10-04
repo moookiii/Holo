@@ -204,6 +204,6 @@ function matchesFacet(card: CardDefinition, facet: typeof facets[number], select
 
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
   const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return galleryMasterCards(cards).filter(card => !card.pickerHidden && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
+  return galleryMasterCards(cards).filter(card => (!card.pickerHidden || card.galleryVisible) && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
     && facets.every(facet => !query[facet.key] || matchesFacet(card, facet, query[facet.key]!))).sort(compareGalleryCards);
 }

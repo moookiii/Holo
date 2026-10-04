@@ -19,7 +19,7 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}`,
     dimensions: DIMENSIONS.standard, front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 2023000,
-    pickerHidden: !surface, pokemon: { ...card, variant, materialProfile: profile },
+    pickerHidden: !surface, galleryVisible: variant === 'normal', pokemon: { ...card, variant, materialProfile: profile },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
       maps: surface.maps,
@@ -32,3 +32,5 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
 }
 export const svTcglPickerCards = () => svTcglCards.flatMap(card => card.variants
   .filter(variant => variant !== 'normal').map(variant => svTcglDefinition(card.id, variant)));
+export const svTcglGalleryCards = () => svTcglCards.filter(card => card.variants.includes('normal'))
+  .map(card => svTcglDefinition(card.id, 'normal'));
