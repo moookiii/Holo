@@ -1,7 +1,7 @@
 {
   "cardId": "sv08.5-156",
   "variant": "holo",
-  "status": "photo-guided-reconstruction",
+  "status": "tcgl-etch-derived",
   "rendererReady": true,
   "textured": true,
   "mapSize": [
@@ -12,7 +12,7 @@
     "156-holo-foil.png": "f75f6e49a908becc78c2d1ab44676bb2e28e6326137b5802b7665eb8052d5c32",
     "156-holo-protection.png": "d5e40ee15bef92a3c09fa721801a0969fcc2f6be1a00bfd51718b725f4632e0a",
     "156-holo-height.png": "0f8ab7a763e52c2f89442d3cb6dbe2fbfbb06766fe32efc3df7078160064b2d7",
-    "156-holo-normal.png": "60783fa9392a4be4a71a7f9fa45f5db50f23ed169c20333e855571880b3b8408",
+    "156-holo-normal.png": "846d7bf13084db8e60dcc96257f809381cd2fed0325cee809a29881f1fedd9b5",
     "156-holo-roughness.png": "90b93885472173035a23834018bee437170106f3f724287cf3371eddf43ee823",
     "156-holo-secondary-foil.png": "f0eaafa4b5f5c17b4d170072424a08354e4df5b2bbbcaa61a155ed2910ba5966",
     "156-holo-body.png": "a4957b0f5ccd222311d91920e92a8e9ea9272792f88a6c2f281ff9b514c6a405",
@@ -27,5 +27,18 @@
     }
   ],
   "referencePolicy": "The user-attached 724671-L.jpg guides etched flow, character coverage and the upper/middle-right microdiamond field. Its supplied temporary path was unavailable; the visible attachment was reviewed directly. Clean local front supplies registration only. User silver microdiamond PNG supplies trim coverage, registered separately for ex lettering. Body contours are smoothed before PNG rasterization.",
-  "limitations": "Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief."
+  "limitations": "TCGL supplies etch line geometry, not calibrated physical groove depth. A restrained tangent slope gain is used to keep the response shallow. No denoising, generated geometry, or added texture is used.",
+  "normalSource": {
+    "file": "research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png",
+    "sha256": "0e7ec4ea068faac11027bc72eeb6498b720ebb5a15b27b12915b05513d994c20",
+    "dimensions": [
+      733,
+      1024
+    ],
+    "operation": "Full-domain resize to 1800x2475; white etched strokes interpreted as recessed height (luminance inverted); Scharr derivatives on the unfiltered continuous height field; existing protection PNG applied to slopes after differentiation; encode (-dH/dx, +dH/drow, +Z) in Holo OpenGL +Y tangent convention.",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "slopeGain": 0.12,
+    "runtimeGeneration": false
+  }
 }
