@@ -16,6 +16,7 @@ import { localBoosterArt } from './boosterArt.ts';
 import { PRISMATIC_SET_ID, prismaticCard, prismaticSet } from './PrismaticCatalog.ts';
 import { JUNGLE_SET_ID, jungleCard, jungleSet } from './JungleCatalog.ts';
 import { WIZARDS_PROMO_ID, wizardsPromoCard, wizardsPromoSet } from './WizardsPromoCatalog.ts';
+import { POKEMON_151_ID, pokemon151Card, pokemon151Set } from './Pokemon151Catalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -109,6 +110,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === POKEMON_151_ID) return { ...pokemon151Set, series: { ...pokemon151Set.series }, cardIds: [...pokemon151Set.cardIds], boosters: pokemon151Set.boosters.map(b => ({ ...b })) };
       if (id === SOUTHERN_ISLANDS_ID) return { ...southernIslandsSet, series: { ...southernIslandsSet.series }, cardIds: [...southernIslandsSet.cardIds], boosters: [] };
       if (id === NEO_DESTINY_ID) return { ...neoDestinySet, series: { ...neoDestinySet.series }, cardIds: [...neoDestinySet.cardIds], boosters: neoDestinySet.boosters.map(b => ({ ...b })) };
       if (id === NEO_REVELATION_ID) return { ...neoRevelationSet, series: { ...neoRevelationSet.series }, cardIds: [...neoRevelationSet.cardIds], boosters: neoRevelationSet.boosters.map(b => ({ ...b })) };
@@ -137,6 +139,11 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === POKEMON_151_ID) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return pokemon151Card(id);
+      }
+      if (id.startsWith(POKEMON_151_ID+'-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === SOUTHERN_ISLANDS_ID) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return southernIslandsCard(id);
