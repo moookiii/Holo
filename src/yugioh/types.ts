@@ -40,7 +40,9 @@ export interface YugiohCard {
   distribution: 'reported-short-print' | 'reported-super-short-print' | 'unclassified';
   treatment: { artwork: 'printed' | 'holo' | 'secret'; name: 'printed' | 'silver' | 'gold' | 'rainbow'; stamp: 'gold-early-tcg' };
   front: string;
-  source: { image: string; reference: string; metadata: string; fidelity: 'original-scan' | 'general-image-fallback'; notes: string };
+  source: { image: string; reference: string; metadata: string; fidelity: 'original-scan' | 'general-image-fallback'; notes: string;
+    assetStatus?: 'exact-print-high-quality' | 'original-print-region-review' | 'ygoprodeck-fallback' | 'unverified-print-fallback';
+    layout?: 'early-tcg' | 'modern-general'; manualReview?: boolean; provenance?: string };
 }
 export interface YugiohCollationRules {
   id: string;

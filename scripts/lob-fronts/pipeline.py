@@ -4,7 +4,6 @@ No browser requests; no generative cleanup, enhancement or invented detail.
 import argparse
 import hashlib
 import json
-import shutil
 import urllib.request
 from pathlib import Path
 
@@ -66,12 +65,17 @@ def normalize(image, candidate):
         q = np.array(spec['quad'], dtype=np.float32)
         if q.shape != (4, 2) or spec.get('crop') or not cv2.isContourConvex(q):
             raise ValueError('Invalid perspective quad')
+        a, b = q[1]-q[0], q[3]-q[0]
+        if a[0]*b[1]-a[1]*b[0] <= 0 or a[0] <= 0 or b[1] <= 0:
+            raise ValueError('Perspective points must be TL, TR, BR, BL; no mirroring')
         if (q < 0).any() or (q[:, 0] >= im.width).any() or (q[:, 1] >= im.height).any():
             raise ValueError('Perspective corners outside source')
         widths = [np.linalg.norm(q[1]-q[0]), np.linalg.norm(q[2]-q[3])]
         heights = [np.linalg.norm(q[3]-q[0]), np.linalg.norm(q[2]-q[1])]
         if max(widths)/min(widths) > 1.1 or max(heights)/min(heights) > 1.1:
             raise ValueError('Perspective too strong to normalize conservatively')
+        if abs(sum(widths)/sum(heights)-59/86)/(59/86) > .06:
+            raise ValueError('Physical quad has implausible card proportions')
         # Use shorter native edge; never create extra nominal resolution.
         h = int(min(heights)); w = min(int(min(widths)), round(h*59/86))
         h = min(h, round(w*86/59))
@@ -133,20 +137,25 @@ def run(download=False, apply=False):
             evaluated.append(item)
         ranked = rank(evaluated)
         winner = next((c for c in ranked if c['assessment']['eligible']), None)
+        provisional = next((c for c in ranked if c['assessment'].get('provisionalEligible')), None)
         # Baseline stays explicitly degraded unless a candidate passes the full gate.
         baseline = next((c for c in ranked if c.get('baseline')), None)
         if not baseline:
             raise ValueError('Every card must preserve a baseline with provenance')
-        selected = winner or baseline
-        status = 'exact-print-high-quality' if winner else ('ygoprodeck-fallback' if baseline['kind'] == 'ygoprodeck' else 'unverified-print-fallback')
+        selected = winner or provisional or baseline
+        replacement = winner or provisional
+        status = ('exact-print-high-quality' if winner else 'original-print-region-review' if provisional
+                  else 'ygoprodeck-fallback' if baseline['kind'] == 'ygoprodeck' else 'unverified-print-fallback')
         runtime = card['front']
-        if winner:
-            _, im, _ = acquire(winner, False)
+        runtime_hash = None
+        if replacement:
+            _, im, _ = acquire(replacement, False)
             runtime = f"/cards/yugioh/lob-first-edition/fronts/{card['number']}.png"
             if apply:
                 out = ROOT / ('public' + runtime)
                 out.parent.mkdir(parents=True, exist_ok=True)
                 im.save(out, optimize=True)
+                runtime_hash = digest(out)
         else:
             # Restore original fallback when a formerly approved replacement is rejected.
             runtime = baseline['runtimePath']
@@ -160,31 +169,39 @@ def run(download=False, apply=False):
                                 'verified': selected.get('printingEvidence', {}).get('observed', {}),
                                 'confidence': selected.get('printingEvidence', {}).get('confidence', 0),
                                 'evidence': selected.get('printingEvidence', {}).get('notes', []),
-                                'verificationStatus': 'verified' if winner else 'unverified'},
+                                'verificationStatus': 'verified' if winner else 'front-verified-region-unresolved' if provisional else 'unverified',
+                                'regionEvidence': selected.get('printingEvidence', {}).get('regionEvidence')},
             'imageProvenance': {'candidateId': selected['id'], 'sourceUrl': selected['sourceUrl'],
                 'sourceSite': selected['sourceSite'], 'originalImageUrl': selected['imageUrl'],
                 'originalPath': selected['originalPath'], 'originalResolution': selected.get('originalResolution'),
                 'runtimePath': runtime, 'resolution': [selected.get('metrics', {}).get('width'), selected.get('metrics', {}).get('height')],
-                'sha256': selected.get('sha256'), 'normalization': selected.get('normalization', {}),
+                'sha256': selected.get('sha256'), 'runtimeSha256': runtime_hash,
+                'normalization': selected.get('normalization', {}),
                 'upscaled': selected.get('upscaled', False), 'assetStatus': status, 'exactPrint': bool(winner),
                 'fallback': not bool(winner), 'quality': selected.get('metrics'), 'caveats': selected.get('caveats', [])},
             'manualReview': {'required': bool(flags), 'flags': list(dict.fromkeys(flags))},
             'candidates': ranked}
         records.append(provenance)
         if apply:
-            # Compatibility fields retain physical-layout semantics for existing mask tools.
+            # Every fallback gets the existing viewer's Image fallback label.
+            # assetStatus/printingIdentity distinguish provisional early fronts
+            # from generic modern YGOPRODeck representations.
             source = {'image': selected['imageUrl'], 'reference': selected['sourceUrl'],
                       'metadata': manifest['catalogUrl'],
-                      'fidelity': 'general-image-fallback' if selected['kind'] == 'ygoprodeck' else 'original-scan',
-                      'notes': ' '.join(selected.get('caveats', [])) or 'Reviewed exact-print front; see per-card provenance.',
+                      'fidelity': 'original-scan' if winner else 'general-image-fallback',
+                      'layout': 'early-tcg' if replacement or selected['kind'] != 'ygoprodeck' else 'modern-general',
+                      'notes': f"Asset status: {status}. Manual review: {'required' if flags else 'complete'}. " + ' '.join(selected.get('caveats', [])),
                       'assetStatus': status, 'manualReview': bool(flags),
                       'provenance': f"/cards/yugioh/lob-first-edition/{card['number']}.json"}
             card.update(front=runtime, source=source)
             write_json(PUBLIC / f"{card['number']}.json", {**source, **provenance})
     summary = {'total': 126, 'exactPrintHighQuality': sum(r['imageProvenance']['exactPrint'] for r in records),
+        'provisionalOriginalFronts': sum(r['imageProvenance']['assetStatus'] == 'original-print-region-review' for r in records),
+        'legacyFallbacks': sum(r['imageProvenance']['assetStatus'] in ('ygoprodeck-fallback', 'unverified-print-fallback') for r in records),
         'fallback': sum(r['imageProvenance']['fallback'] for r in records),
         'manualReview': sum(r['manualReview']['required'] for r in records),
         'unresolved': [r['catalogIdentity']['setCode'] for r in records if r['manualReview']['required']],
+        'noHighQualityOriginalFront': [r['catalogIdentity']['setCode'] for r in records if r['imageProvenance']['assetStatus'] in ('ygoprodeck-fallback', 'unverified-print-fallback')],
         'ygoprodeckFallback': [r['catalogIdentity']['setCode'] for r in records if r['imageProvenance']['sourceSite'] == 'YGOPRODeck'],
         'normalized': [r['catalogIdentity']['setCode'] for r in records if r['imageProvenance']['normalization']],
         'upscaled': [r['catalogIdentity']['setCode'] for r in records if r['imageProvenance']['upscaled']]}

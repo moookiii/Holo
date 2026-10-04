@@ -6,6 +6,7 @@ class QualityGateTests(unittest.TestCase):
     def setUp(self):
         self.card = {'number': 'LOB-008', 'passcode': '89091579', 'name': 'Basic Insect'}
         self.c = {'id': 'test', 'kind': 'exact-scan', 'sourceUrl': 'https://example.org/listing',
+                  'sha256': 'a' * 64,
                   'sourceSite': 'Test scan', 'imageUrl': 'https://example.org/front.jpg',
                   'printingEvidence': {'confidence': .98, 'observed': {**TARGET, 'setCode': 'LOB-008',
                     'passcode': '89091579', 'name': 'Basic Insect', 'copyright': '1996 KAZUKI TAKAHASHI',
@@ -43,5 +44,27 @@ class QualityGateTests(unittest.TestCase):
         self.assertEqual(rank([bad, good])[0]['id'], 'clean')
         exact = {**self.c, 'assessment': assess(self.c, self.card, self.m)}
         self.assertEqual(rank([good, exact])[0]['id'], 'test')
+
+    def test_regional_review_is_explicit_and_cannot_admit_mismatches(self):
+        c = deepcopy(self.c)
+        del c['printingEvidence']['observed']['region']
+        c['printingEvidence']['frontConfidence'] = .98
+        self.assertFalse(assess(c, self.card, self.m)['provisionalEligible'])
+        c['allowRegionalReview'] = True
+        result = assess(c, self.card, self.m)
+        self.assertFalse(result['eligible'])
+        self.assertTrue(result['provisionalEligible'])
+        for field, value in [('region', 'Asia'), ('edition', 'Unlimited'), ('setCode', 'LOB-EN008')]:
+            wrong = deepcopy(c); wrong['printingEvidence']['observed'][field] = value
+            self.assertFalse(assess(wrong, self.card, self.m)['provisionalEligible'])
+        c['review']['glare'] = 'fail'
+        self.assertFalse(assess(c, self.card, self.m)['provisionalEligible'])
+
+    def test_invalid_confidence_and_missing_checksum_fail_closed(self):
+        for value in ['seller says exact', None, float('nan')]:
+            c = deepcopy(self.c); c['printingEvidence']['confidence'] = value
+            self.assertFalse(assess(c, self.card, self.m)['eligible'])
+        c = deepcopy(self.c); del c['sha256']
+        self.assertFalse(assess(c, self.card, self.m)['eligible'])
 
 if __name__ == '__main__': unittest.main()

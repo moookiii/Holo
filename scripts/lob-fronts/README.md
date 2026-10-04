@@ -13,6 +13,14 @@ Glare/compression proxies are advisory. Every listed human review check must pas
 unknown means review required. Region evidence is necessary because original
 Asian-English cards may share the NA front code.
 
+An explicit `allowRegionalReview` candidate may replace a poor baseline only
+when every front-printing and quality check passes and the sole missing printing
+attribute is region. It remains a **fallback**, with status
+`original-print-region-review`; it never counts as a verified exact-print winner.
+A known wrong region, wrong edition/code, missing checksum or failed quality
+check cannot enter this path. Shared collection backs support an inference only.
+Individual paired TCG backs plus the early LOB front can close regional review.
+
 Run from the repo root with Python and `requirements.txt` dependencies:
 
 ```powershell
@@ -41,7 +49,10 @@ proportions. Strong skew, missing corners, slab glare, synthetic enhancement and
 upscaling are rejected. No denoise, sharpening, recoloring, generative fill or
 foil simulation is applied. Review foil-map registration in the live viewer when
 publishing a front. This pipeline does not regenerate masks or change materials.
+The scoped registration script updates PNG map alignment for replacements only;
+do not run the old whole-set `prepare-lob-maps.py` on this provenance schema.
 
-`node scripts/fetch-lob.mjs` refreshes the **set-specific** YGOPRODeck catalog then
-runs the offline audit; forward `--download` and/or `--apply` explicitly. It does
+`node scripts/fetch-lob.mjs` reads the cached **set-specific** YGOPRODeck catalog then
+runs the offline audit; use `--refresh-metadata` to request fresh set metadata and
+forward `--download` and/or `--apply` explicitly. Only `--apply` publishes changes. It does
 not treat YGOPRODeck fronts or gallery filenames as authoritative original scans.
