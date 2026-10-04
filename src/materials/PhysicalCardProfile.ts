@@ -15,7 +15,7 @@ export interface PhysicalCardProfile {
   legacyCoating: boolean;
   recessedName: boolean;
   back: { clearcoat: number; clearcoatRoughness: number };
-  edge: { color: [number, number, number]; roughness: number; fiberScale: number; fiberStrength: number; layerVariation: number };
+  edge: { color: [number, number, number]; roughness: number; fiberScale: number; fiberStrength: number; layerVariation: number; coreColor: [number, number, number]; coreWidth: number; reliefDepth: number };
 }
 
 const legacy: PhysicalCardProfile = {
@@ -24,23 +24,23 @@ const legacy: PhysicalCardProfile = {
   coatingStrength: .42, coatingRoughness: .24, microNormalStrength: .7,
   legacyCoating: true, recessedName: true,
   back: { clearcoat: .18, clearcoatRoughness: .38 },
-  edge: { color: [.39, .37, .32], roughness: .9, fiberScale: 1800, fiberStrength: .035, layerVariation: 0 },
+  edge: { color: [.39, .37, .32], roughness: .9, fiberScale: 1800, fiberStrength: .035, layerVariation: .028, coreColor: [.15, .16, .17], coreWidth: .16, reliefDepth: .00016 },
 };
 
 /** Rendering estimates, not measured factory recipes. No speculative era split. */
 export const physicalCardProfiles = {
   'yugioh-current': legacy,
   pokemon: { ...legacy, id: 'pokemon', legacyCoating: false, recessedName: false,
-    grainStrength: .55, grainScale: 78, fineGrainScale: 170, microreliefDepth: .00028,
-    roughness: .49, roughnessVariance: .018, coatingStrength: .27, coatingRoughness: .34, microNormalStrength: .55,
-    back: { clearcoat: .27, clearcoatRoughness: .38 },
-    edge: { ...legacy.edge, fiberStrength: .009, layerVariation: .012 },
+    grainStrength: .9, grainScale: 44, fineGrainScale: 115, microreliefDepth: .0018,
+    roughness: .49, roughnessVariance: .045, coatingStrength: .34, coatingRoughness: .31, microNormalStrength: 1.1,
+    back: { clearcoat: .3, clearcoatRoughness: .34 },
+    edge: { ...legacy.edge, color: [.54, .52, .46], fiberStrength: .023, layerVariation: .035 },
   },
   mtg: { ...legacy, id: 'mtg', legacyCoating: false, recessedName: false,
     grainStrength: .45, grainScale: 85, fineGrainScale: 190, microreliefDepth: .00022,
     roughness: .59, roughnessVariance: .014, coatingStrength: .13, coatingRoughness: .48, microNormalStrength: .5,
     back: { clearcoat: .13, clearcoatRoughness: .48 },
-    edge: { ...legacy.edge, fiberStrength: .008, layerVariation: .014 },
+    edge: { ...legacy.edge, color: [.53, .52, .46], fiberStrength: .019, layerVariation: .03, coreColor: [.12, .16, .20] },
   },
   'generic-print': { ...legacy, id: 'generic-print', grainStrength: 0, recessedName: false,
     back: { clearcoat: .34, clearcoatRoughness: .42 } },

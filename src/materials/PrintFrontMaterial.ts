@@ -1,6 +1,6 @@
 import { resolvePhysicalCardProfile } from './PhysicalCardProfile';
 import { MeshPhysicalNodeMaterial, Vector2, Vector4, type Texture, type Node } from 'three/webgpu';
-import { texture, uniform, uv, vec2, vec3, mix, float, normalViewGeometry } from 'three/tsl';
+import { texture, uniform, uv, vec2, vec3, mix, float, normalViewGeometry, normalMap } from 'three/tsl';
 import { DEFAULT_FOIL_LAYOUT, type CardDefinition } from '../card/CardDefinition';
 import type { HolographicProfile } from './HolographicProfile';
 import { StockSurfaceLayer } from './layers/StockSurfaceLayer';
@@ -35,6 +35,9 @@ export class PrintFrontMaterial extends MeshPhysicalNodeMaterial {
     this.clearcoatRoughnessNode = coating.add(stock.roughness.mul(.7)).pow2().add(stock.variance).sqrt().clamp(.14, .65);
     this.clearcoatNormalNode = stock.normal(normalViewGeometry as unknown as Node<'vec3'>, uniform(physical.microNormalStrength));
     if (!physical.legacyCoating) {
+      const base = this.normalNode as Node<'vec3'> | null;
+      const mapped = normal ? normalMap(texture(normal).rgb, vec2(definition.mapSettings?.normalScale ?? 1)) as unknown as Node<'vec3'> : normalViewGeometry as unknown as Node<'vec3'>;
+      this.normalNode = stock.normal(base ?? mapped, uniform(physical.microNormalStrength).mul(.65));
       this.roughnessNode = ((this.roughnessNode as Node<'float'>) ?? float(physical.roughness)).add(stock.roughness).clamp(.045, 1);
     }
     if (definition.frontBorderColor) {

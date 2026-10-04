@@ -9,6 +9,8 @@ export interface FoilLayer {
   disabledMechanisms?: Array<'diffraction' | 'sparkle' | 'relief' | 'varnish' | 'laminate' | 'reflection' | 'film' | 'image'>;
   diffraction: {
     /** Grating period in micrometres; wavelength bands use the same unit. */
+    /** Linear RGB absorption filter applied only to diffracted light. */
+    tint?: [number, number, number];
     period: number;
     bandwidth: number;
     strength: number;

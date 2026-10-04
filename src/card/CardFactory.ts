@@ -141,7 +141,7 @@ export class CardFactory {
         foil.setProfile(backProfile,{}); foil.setAspect(definition.dimensions.width/definition.dimensions.height,definition.dimensions.height);
         reverse = foil;
       }
-      const materials = [material, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical)];
+      const materials = [material, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)];
       this.gpuStats.materialCreationMs += performance.now() - materialStarted;
       instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => {
         this.instances.delete(instance!); releases.forEach(release => release());
@@ -227,7 +227,7 @@ export class CardFactory {
       check(); const key = JSON.stringify([definition.dimensions]);
       if (!this.geometries.has(key)) this.geometries.set(key, createCardGeometry(definition.dimensions));
       const materials = [new PrintFrontMaterial(front, definition, profile, normal, roughness, height),
-        createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, definition.seed), createEdgeMaterial(undefined, physical)];
+        createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, definition.seed), createEdgeMaterial(undefined, physical, definition.dimensions.thickness)];
       this.gpuStats.printMaterials++;
       const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
       this.instances.add(instance);
@@ -275,7 +275,7 @@ export class CardFactory {
     const reverse = backMaps ? new HolographicMaterial(back, backMaps.coverage, backMaps.surface, definition.seed, reverseProfile, undefined, backMaps, undefined, false, physical)
       : createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, definition.seed);
     if (reverse instanceof HolographicMaterial) { reverse.setProfile(reverseProfile, definition.backProfile ? {} : fields); reverse.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); }
-    const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical)];
+    const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)];
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);
     instance.mesh.userData.resourceTextures = [front, back, ...Object.values(maps), ...Object.values(backMaps ?? {}),

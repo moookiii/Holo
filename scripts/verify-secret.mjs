@@ -78,6 +78,7 @@ try {
     }
     gallery.mesh.visible = true; h.lighting.setPreset('Studio'); h.pose(0,0);
     window.__secretGallery = gallery;
+    await h.renderer.compileAsync(h.scene, h.camera);
     return { pack, profiles: prepared.map(p => p.profile.id), gallery: gallery.stats() };
   });
   assert.equal(integration.pack.profile, true); assert.equal(integration.pack.textures, false);

@@ -68,17 +68,49 @@ const yugiohSets = [
 const yugiohSetNames = new Map<string, string>(yugiohSets.map(([code, name]) => [code, name]));
 const yugiohSetReleaseDates = new Map<string, string>(yugiohSets.map(([, name, date]) => [name, date]));
 
+/** Scryfall set release dates for Magic printings represented in the gallery. */
+const magicSetReleaseDates = new Map<string, string>([
+  ['Limited Edition Alpha', '1993-08-05'],
+  ['Tempest', '1997-10-14'],
+  ['Magic 2011', '2010-07-16'],
+  ['Journey into Nyx', '2014-05-02'],
+  ['Commander 2021', '2021-04-23'],
+  ['Modern Horizons 2', '2021-06-18'],
+  ['Kamigawa: Neon Dynasty', '2022-02-18'],
+  ['Double Masters 2022', '2022-07-08'],
+  ['Dominaria Remastered', '2023-01-13'],
+  ['The Lord of the Rings: Tales of Middle-earth', '2023-06-23'],
+  ['Commander Masters', '2023-08-04'],
+  ['The Lost Caverns of Ixalan', '2023-11-17'],
+  ['Murders at Karlov Manor Commander', '2024-02-09'],
+  ['Foundations', '2024-11-15'],
+  ['Tarkir: Dragonstorm Commander', '2025-04-11'],
+  ['Avatar: The Last Airbender Eternal', '2025-11-21'],
+  ['Lorwyn Eclipsed Commander', '2026-01-23'],
+  ['Teenage Mutant Ninja Turtles Eternal', '2026-03-06'],
+  ['Secrets of Strixhaven Commander', '2026-04-24'],
+  ['Marvel Super Heroes Commander', '2026-06-26'],
+  ['The Hobbit Eternal', '2026-08-14'],
+  ['Mystery Booster Commander Edition', '2026-11-09'],
+  ['Star Trek', '2026-11-13'],
+]);
+
 export function gallerySetName(card: CardDefinition) {
   if (card.franchise === 'Yu-Gi-Oh!') {
     const code = card.number.match(/^([A-Z0-9]+)-(?:EN[A-Z0-9]+|\d{3})$/)?.[1];
     return (code && yugiohSetNames.get(code)) || card.set;
+  }
+  if (card.franchise === 'Magic: The Gathering') {
+    const name = card.set.replace(/ · (?:Nonfoil|Traditional foil|Foil study)$/, '');
+    return magicSetReleaseDates.has(name) ? name : card.set;
   }
   if (card.franchise !== 'Pokémon') return card.set;
   return card.pokemon?.setName ?? pokemonSetAliases[card.set] ?? card.set;
 }
 
 export function compareGallerySetNames(a: string, b: string) {
-  const dateA = yugiohSetReleaseDates.get(a), dateB = yugiohSetReleaseDates.get(b);
+  const dateA = yugiohSetReleaseDates.get(a) ?? magicSetReleaseDates.get(a);
+  const dateB = yugiohSetReleaseDates.get(b) ?? magicSetReleaseDates.get(b);
   if (dateA || dateB) {
     if (!dateA) return 1;
     if (!dateB) return -1;

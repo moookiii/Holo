@@ -14,6 +14,15 @@ const relief = Fn(([point]: [Node<'vec2'>]) => {
     b.sub(a).add(cross.mul(blend.y)).mul(derivative.x), c.sub(a).add(cross.mul(blend.x)).mul(derivative.y));
 }).setLayout({ name: 'coatedStockRelief', type: 'vec3', inputs: [{ name: 'point', type: 'vec2' }] });
 
+export interface StockSurfaceInputs {
+  point: Node<'vec2'>;
+  strength: Node<'float'>;
+  depth: Node<'float'>;
+  scale: Node<'float'>;
+  fineScale: Node<'float'>;
+  variation: Node<'float'>;
+}
+
 /** Coated-paper microfacets, independent of foil rarity and print resolution. */
 export class StockSurfaceLayer {
   readonly strength = uniform(1);
@@ -23,15 +32,16 @@ export class StockSurfaceLayer {
   readonly slope;
   readonly roughness;
   readonly variance;
-  constructor(seed: number, seedOffset?: Node<'vec2'>, profile?: PhysicalCardProfile) {
+  constructor(seed: number, seedOffset?: Node<'vec2'>, profile?: PhysicalCardProfile, inputs?: StockSurfaceInputs) {
     this.strength.value = profile?.grainStrength ?? 1;
     this.depth.value = profile?.microreliefDepth ?? .0024;
-    const scale = uniform(profile?.grainScale ?? 52), fineScale = uniform(profile?.fineGrainScale ?? 125);
-    const variation = uniform(profile?.roughnessVariance ?? .12);
+    const strength = inputs?.strength ?? this.strength, depth = inputs?.depth ?? this.depth;
+    const scale = inputs?.scale ?? uniform(profile?.grainScale ?? 52), fineScale = inputs?.fineScale ?? uniform(profile?.fineGrainScale ?? 125);
+    const variation = inputs?.variation ?? uniform(profile?.roughnessVariance ?? .12);
     // Continuous fields in physical centimetres; no screen coordinates, time,
     // source-image resampling, or extra GPU samplers (foil already uses sixteen).
     // Match the tangent direction on both faces (the reverse has mirrored U).
-    const point = vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(seedOffset ?? vec2((seed % 97) / 7, (seed % 71) / 11));
+    const point = inputs?.point ?? vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(seedOffset ?? vec2((seed % 97) / 7, (seed % 71) / 11));
     const grainUV = (p: Node<'vec2'>) => vec2(p.x.mul(.8).sub(p.y.mul(.6)), p.x.mul(.6).add(p.y.mul(.8))).mul(scale);
     const fineUV = (p: Node<'vec2'>) => vec2(p.x.mul(.36).add(p.y.mul(.93295)), p.y.mul(.36).sub(p.x.mul(.93295))).mul(fineScale);
     // Integrate away subpixel grains rather than sampling them into glitter.
@@ -42,8 +52,8 @@ export class StockSurfaceLayer {
     const bitangent = geometric.cross(tangentView).mul(tangentGeometry.w).normalize();
     const facing = positionViewDirection.dot(geometric).max(0);
     const ray = vec2(positionViewDirection.dot(tangentView), positionViewDirection.dot(bitangent))
-      .div(facing.max(.2)).mul(facing.smoothstep(.06, .2), this.depth, this.parallax, this.strength);
-    const displaced = Fn(() => {
+      .div(facing.max(.2)).mul(facing.smoothstep(.06, .2), depth, this.parallax, strength);
+    const displaced = inputs ? point : Fn(() => {
       const samplePoint = point.toVar();
       // Two fixed-point ray/height intersections are enough for microscopic
       // relief. Only coating coordinates move; print, masks and names never do.
@@ -57,10 +67,10 @@ export class StockSurfaceLayer {
     const grain = relief(grainUV(displaced)), fine = relief(fineUV(displaced));
     const grainSlope = vec2(grain.y.mul(.8).add(grain.z.mul(.6)), grain.z.mul(.8).sub(grain.y.mul(.6))).mul(scale, .72, visible);
     const fineSlope = vec2(fine.y.mul(.36).sub(fine.z.mul(.93295)), fine.y.mul(.93295).add(fine.z.mul(.36))).mul(fineScale, .28, fineVisible);
-    this.slope = grainSlope.add(fineSlope).mul(this.depth, this.strength, -1);
-    this.roughness = grain.x.sub(.5).mul(variation, visible, this.strength);
+    this.slope = grainSlope.add(fineSlope).mul(depth, strength, -1);
+    this.roughness = grain.x.sub(.5).mul(variation, visible, strength);
     this.variance = visible.pow2().oneMinus().mul(.0008, scale.div(52).pow2()).add(fineVisible.pow2().oneMinus().mul(.0006, fineScale.div(125).pow2()))
-      .mul(this.strength.pow2(), this.depth.div(.0012).pow2());
+      .mul(strength.pow2(), depth.div(.0012).pow2());
   }
   normal(base: Node<'vec3'>, amount: number | Node<'float'> = 1) {
     const geometric = normalViewGeometry as unknown as Node<'vec3'>;

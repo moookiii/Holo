@@ -37,3 +37,7 @@ more saturation;
 more effects;
 more UI;
 more particles.
+
+# Gallery
+
+Always place new sets in chronological order in the sets picker.

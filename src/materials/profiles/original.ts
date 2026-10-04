@@ -17,6 +17,12 @@ function original(p: ProfileChanges): HolographicProfile {
 }
 
 export const originalProfiles = [masterPrism,
+  original({ id: 'neon-cascade', name: 'Neon Cascade', description: 'Smooth flowing spectral ribbons for the full-square Porygon2 artwork. The supplied silhouette keeps the subject opaque on both faces.',
+    diffraction: { period: 1.28, bandwidth: .035, strength: .72, crossWidth: .26, secondaryOrder: .035, direction: 0 },
+    structure: { field: 'silk', scale: 12, engraving: 0, relief: 0, facetTilt: 0, patternRelief: 0, normalVariance: 0 },
+    glints: { density: 0, strength: 0 },
+    surface: { roughness: .28, metalness: .65, laminate: .3, laminateRoughness: .2, foilReflectance: .045, anisotropy: .35 },
+  }),
   original({ id: 'cathedral-prism', name: 'Cathedral prism', description: 'Eight engraved radial sectors, fine laser-cut rays and raised arch tracery split light into sharply separated spectral fans.',
     diffraction: { period: 1.16, bandwidth: .024, strength: 1.65, crossWidth: .25, secondaryOrder: .1 },
     structure: { field: 'cathedral', scale: 280, engraving: .38, relief: .035, facetTilt: .28, patternRelief: .38, normalVariance: .3 },

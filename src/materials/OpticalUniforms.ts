@@ -1,8 +1,10 @@
+import { Vector3 } from 'three/webgpu';
 import { uniform } from 'three/tsl';
 import type { FoilLayer } from './HolographicProfile';
 
 export class OpticalUniforms {
   enabled = uniform(1);
+  spectralTint = uniform(new Vector3(1, 1, 1));
   spectralGain = uniform(1); sparkleGain = uniform(1); neutralGain = uniform(1);
   period = uniform(1.35); bandwidth = uniform(0.043); strength = uniform(1.1);
   secondary = uniform(0.2); angle = uniform(0); crossWidth = uniform(0.32);
@@ -35,6 +37,7 @@ export class OpticalUniforms {
   apply(p: FoilLayer | undefined) {
     this.enabled.value = p && p.enabled !== false ? 1 : 0;
     if (!p) return;
+    this.spectralTint.value.set(...(p.diffraction.tint ?? [1, 1, 1]));
     this.period.value = p.diffraction.period; this.bandwidth.value = p.diffraction.bandwidth;
     this.strength.value = p.diffraction.strength; this.secondary.value = p.diffraction.secondaryOrder;
     this.angle.value = p.diffraction.direction; this.crossWidth.value = p.diffraction.crossWidth;

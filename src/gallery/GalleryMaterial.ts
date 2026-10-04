@@ -1,3 +1,4 @@
+import { StockSurfaceLayer } from '../materials/layers/StockSurfaceLayer';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
@@ -137,12 +138,27 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     this.roughnessNode = normal.a.add(variance).add(patternRoughness).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
+    const grain = param(40), finish = param(41), stockCard = param(42), registration = param(43);
+    const stock = new StockSurfaceLayer(0, undefined, undefined, {
+      point: uv().sub(.5).mul(stockCard.yz).add(registration.xy), strength: grain.x,
+      depth: grain.y, scale: grain.z, fineScale: grain.w, variation: finish.y,
+    });
+    const foil = weights[0].max(weights[1]).max(weights[2]);
+    const paper = foil.max(metal).oneMinus().mul(registration.z);
+    this.normalNode = stock.normal(this.normalNode as Node<'vec3'>, paper.mul(stockCard.x, .65));
+    this.clearcoatNormalNode = stock.normal(normalViewGeometry as unknown as Node<'vec3'>,
+      foil.mul(-.65).add(1).mul(metal.oneMinus(), stockCard.x, registration.z));
+    this.metalnessNode = mix(this.metalnessNode as Node<'float'>, float(0), paper.mul(stockCard.w.oneMinus()));
+    const paperRoughness = mix(finish.x, normal.a, registration.w).add(stock.roughness).clamp(.045, 1);
+    this.roughnessNode = mix(this.roughnessNode as Node<'float'>, paperRoughness, paper);
+    this.clearcoatNode = mix(this.clearcoatNode as Node<'float'>, finish.z, paper);
+    this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>,
+      finish.w.add(stock.roughness.mul(.7)).pow2().add(stock.variance).sqrt(), paper);
     this.iridescenceNode = blend(float(0), 6, 'z');
     this.iridescenceIORNode = blend(float(1.5), 6, 'w');
     this.iridescenceThicknessNode = this.regions.reduce<Node<'float'>>((v, r) => mix(v, mix(r.parameters[7].x, r.parameters[7].y, r.detail.b), r.mask), float(300));
     this.colorNode = mix(this.colorNode, vec3(.58, .61, .59), blend(float(0), 7, 'z'));
-    const edge = uv().sub(.5).abs().sub(vec2(.47, .479)).max(0).length();
-    this.opacityNode = edge.lessThan(.021).select(1, 0);
+
   }
   override setupLightingModel() { return new GalleryLightingModel(this.regions, this.layers); }
 }

@@ -1,7 +1,8 @@
+import { resolvePhysicalCardProfile } from '../materials/PhysicalCardProfile';
 import { DEFAULT_FOIL_LAYOUT, type CardDefinition } from './CardDefinition';
 import type { HolographicProfile } from '../materials/HolographicProfile';
 
-export const PREVIEW_PARAMETER_COLUMNS = 40;
+export const PREVIEW_PARAMETER_COLUMNS = 44;
 /** Same per-print optical controls as the viewer, packed for one shared shader.
  * Eight RGBA texels per layer; final rows describe ink/substrate and surface. */
 export function previewOptics(card: CardDefinition, profile: HolographicProfile) {
@@ -40,5 +41,10 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     profile.structure.field === 'legendary-fireworks' ? 1 : 0, profile.structure.field === 'secret' && !!card.maps?.secondaryFoil ? 1 : 0, 0]);
   set(35, [...(card.frontBorderColor ?? [0, 0, 0]), card.frontBorderColor ? 1 : 0]);
   set(36, (card.layout ?? DEFAULT_FOIL_LAYOUT).innerFrame);
+  const physical = resolvePhysicalCardProfile(card);
+  set(40, [physical.grainStrength, physical.microreliefDepth, physical.grainScale, physical.fineGrainScale]);
+  set(41, [physical.roughness, physical.roughnessVariance, physical.coatingStrength, physical.coatingRoughness]);
+  set(42, [physical.microNormalStrength, card.dimensions.width, card.dimensions.height, physical.legacyCoating ? 1 : 0]);
+  set(43, [(card.seed % 97) / 7, (card.seed % 71) / 11, physical.id === 'generic-print' ? 0 : 1, card.mapSettings?.roughnessMode === 'absolute' ? 1 : 0]);
   return parameters;
 }

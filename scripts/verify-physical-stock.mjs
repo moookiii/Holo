@@ -24,16 +24,24 @@ const cases = ['common-pokemon-bulbasaur', 'magic:lea:1', 'alakazam-base-set', '
 try {
   await page.goto(process.env.STOCK_REVIEW_URL || 'http://127.0.0.1:4174/Holo/', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
+  await page.waitForFunction(() => window.__holo.gallery.stats().pending === 0, null, { timeout: 60000 });
+  await page.screenshot({ path: join(out, 'gallery.png') });
   await page.evaluate(() => window.__holo.gallery.close());
   for (const id of cases) {
     await page.evaluate(id => window.__holo.setCard(id), id);
-    await page.evaluate(() => window.__holo.hideUI());
+    await page.evaluate(() => { window.__holo.hideUI(); window.__holo.lighting.playing = false; });
     for (const light of ['Studio', 'Skim']) {
       await page.evaluate(light => window.__holo.lighting.setPreset(light), light);
-      for (const [name, yaw, pitch, zoom] of [['front',0,0,1], ['tilt',-25,12,1], ['close',-15,-15,.65], ['grazing',85,0,1], ['back',180,0,1]]) {
+      for (const [name, yaw, pitch, zoom] of [['front',0,0,1], ['tilt',-25,12,1], ['reflection',-15,-20,.7], ['edge',75,8,.6], ['close',-15,-15,.65], ['grazing',85,0,1], ['back',180,0,1]]) {
         await page.evaluate(([yaw,pitch,zoom]) => { window.__holo.pose(yaw,pitch); window.__holo.zoom(zoom); }, [yaw,pitch,zoom]);
         await page.waitForTimeout(350);
         await page.screenshot({ path: join(out, `${id.replaceAll(':','-')}-${light}-${name}.png`) });
+        if (id === 'alakazam-base-set' && light === 'Studio' && name === 'reflection') {
+          const strength = await page.evaluate(() => { const stock = window.__holo.material().stock; const value = stock.strength.value; stock.strength.value = 0; return value; });
+          await page.waitForTimeout(250);
+          await page.screenshot({ path: join(out, 'alakazam-no-grain.png') });
+          await page.evaluate(value => { window.__holo.material().stock.strength.value = value; }, strength);
+        }
       }
     }
   }

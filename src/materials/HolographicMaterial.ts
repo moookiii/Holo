@@ -164,7 +164,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
       const printFilter = mix(vec3(1), region.inkTransmission!, u.inkTransmission);
-      const conventional = spectral.mul(u.spectralGain).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
+      const conventional = spectral.mul(u.spectralGain, u.spectralTint).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
       // Only direct illumination can reveal metallic printed die walls. The
       // authored normals select the ridges; no color/noise-derived relief or
       // ambient term is introduced. Integrate the source's angular footprint.
@@ -378,13 +378,17 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     const baseNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
     const varnishStrength = this.optics.varnishRelief.mul(primary).add(this.secondaryOptics.varnishRelief.mul(secondary)).add(this.stampOptics.varnishRelief.mul(stamp));
     this.clearcoatNormalNode = reliefNormal(this.surfaceTextureNode.r, varnishStrength.mul(.008));
-    if (this.stock) this.clearcoatNormalNode = this.stock.normal(this.clearcoatNormalNode as Node<'vec3'>, stockCoverage.mul(uniform(physical?.microNormalStrength ?? .7)).mul(physical && !physical.legacyCoating ? primary.max(secondary).max(stamp).oneMinus() : 1));
+    if (this.stock) this.clearcoatNormalNode = this.stock.normal(this.clearcoatNormalNode as Node<'vec3'>, stockCoverage.mul(uniform(physical?.microNormalStrength ?? .7)).mul(physical && !physical.legacyCoating ? primary.max(secondary).max(stamp).mul(-.65).add(1) : 1));
     if (this.nameRecess) this.clearcoatNormalNode = (this.clearcoatNormalNode as Node<'vec3'>).add(this.nameRecess.normal.sub(normalViewGeometry)).normalize();
     const slope = this.reliefTextureNode.rg.sub(.5).mul(this.optics.facetTilt, this.optics.reflectionCoupling, this.optics.fieldBlend, primary)
       .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.reflectionCoupling, this.secondaryOptics.fieldBlend, secondary))
       .add(this.stampReliefTextureNode.rg.sub(.5).mul(this.stampOptics.facetTilt, this.stampOptics.reflectionCoupling, this.stampOptics.fieldBlend, stamp));
     this.normalNode = Fn(() => {
       const normal = baseNormal.toVar();
+      if (this.stock && physical && !physical.legacyCoating) {
+        const paper = primary.max(secondary).max(stamp).oneMinus().mul(stockCoverage);
+        normal.assign(this.stock.normal(normal, paper.mul(uniform(physical.microNormalStrength), .65)));
+      }
       const geometryNormal = normalViewGeometry as unknown as Node<'vec3'>;
       if (this.nameRecess) normal.addAssign(this.nameRecess.normal.sub(geometryNormal));
       // Resolve the geometric frame before optional normal-map control flow.

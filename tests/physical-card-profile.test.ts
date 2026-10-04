@@ -11,7 +11,7 @@ test('physical profile selection is independent of foil and allows explicit manu
   const override = resolvePhysicalCardProfile({ franchise: 'Pokémon', stockSurface: { strength: 0, depth: .001 } });
   assert.equal(override.grainStrength, 0);
   assert.equal(override.microreliefDepth, .001);
-  assert.equal(physicalCardProfiles.pokemon.grainStrength, .55);
+  assert.equal(physicalCardProfiles.pokemon.grainStrength, .9);
   assert.equal(resolvePhysicalCardProfile({ franchise: 'Pokémon', construction: { kind: 'metal', frontReliefCm: .01, backReliefCm: .01 } }).grainStrength, 0);
 });
 
