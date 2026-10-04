@@ -1,0 +1,104 @@
+{
+  "cardId": "sv05-141",
+  "variant": "holo",
+  "tcglCardId": "sv5_141",
+  "tcglVariantId": "AwakeningDrum_sv5_141_std_Ace_AceFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_141_std.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_141_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "55ef668c1f1cba5f923e44c3be99106f0e8e3560020b89a1373fd8f9cd0bd472"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_141_std.foil.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_141_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "8aadf893dd270c7b8aa3aaca282449ff545c9425d3080ac3375ed3aa76b52e32"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_141_std.etch.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_141_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "1db2f7658b5bdfc7516e9b5ef36f1a763bb5a65e62a043d1023e0f67f5d9ce60"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv05/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-04.jpg"
+    ],
+    "holoFrontSha256": "55ef668c1f1cba5f923e44c3be99106f0e8e3560020b89a1373fd8f9cd0bd472"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 3204,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3130,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 22065,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "141-holo-foil.png": "b94e5fc16f7557aa7ef855517b730a013d744808b3bc41d66d2fdcaca8359d43",
+    "141-holo-protection.png": "2f7b34dd6fb3561c55ba358c85fbe841d826730a3c2e33b5bbee45e9cee9ec6c",
+    "141-holo-normal.png": "74342d58683193ad301d8f7e17c07886fb1574ec0e47a4b4d0f0768073e23738",
+    "141-holo-roughness.png": "58ba27d948f0919efae05e8166ba4e11c0c3059734fcc3b69f3e5c47ed929c54"
+  },
+  "holoFrontSha256": "55ef668c1f1cba5f923e44c3be99106f0e8e3560020b89a1373fd8f9cd0bd472",
+  "mapDimensions": {
+    "141-holo-foil.png": [
+      367,
+      512
+    ],
+    "141-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "141-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "141-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

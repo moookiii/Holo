@@ -1,0 +1,108 @@
+{
+  "cardId": "sv06-164",
+  "variant": "holo",
+  "tcglCardId": "sv6_164",
+  "tcglVariantId": "SurvivalBrace_sv6_164_std_Ace_AceFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_164_std.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_164_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ea4295d1a7fbe14895b707e3de848885f133949fc7f3a4f8feb4515bbad6d3bf"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_164_std.foil.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_164_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "f97c20913e170ac98386bd4a6c11acacc7beb2b601e0b343edeaeeacf62aca3b"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_164_std.etch.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_164_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e7b536683f3c1565a1f2eca39dd712f7a79fbd3426141b649bf3ebc0241e88d5"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-04.jpg"
+    ],
+    "holoFrontSha256": "ea4295d1a7fbe14895b707e3de848885f133949fc7f3a4f8feb4515bbad6d3bf"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 2514,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 2989,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3259,
+      "texturedInteriorFraction": 0.4663551401869159
+    },
+    {
+      "areaAtFoilResolution": 23649,
+      "texturedInteriorFraction": 0.9999507558969813
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "164-holo-foil.png": "17a32cc41708e4192feb49940a0150c40f2c6053714adfe11e074db79757b67d",
+    "164-holo-protection.png": "60a6736d71116099f4974a79b83037b2391a2c7def134ac956d89cc15a7cba56",
+    "164-holo-normal.png": "d8526eb9ad44e75e30ad29472e5a5ef98d599f4d9d987f762b2aec596b098f4a",
+    "164-holo-roughness.png": "f898b97f415c94534859a0d4b37ba2b5665543b970029be8bbeb29ef78902597"
+  },
+  "holoFrontSha256": "ea4295d1a7fbe14895b707e3de848885f133949fc7f3a4f8feb4515bbad6d3bf",
+  "mapDimensions": {
+    "164-holo-foil.png": [
+      367,
+      512
+    ],
+    "164-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "164-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "164-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

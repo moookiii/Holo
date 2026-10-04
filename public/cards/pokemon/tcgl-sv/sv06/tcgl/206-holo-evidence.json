@@ -1,0 +1,108 @@
+{
+  "cardId": "sv06-206",
+  "variant": "holo",
+  "tcglCardId": "sv6_206",
+  "tcglVariantId": "Kieran_sv6_206_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_206_std.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_206_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f4129170b086ec7ab6853459b86087e1fa0ee7a8dc200de411ed48cba4334a06"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_206_std.foil.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_206_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "1acb28f2ca07a46a3dd60b9d6372b1281fb5f4800ed55d28d3a77b3f8e70c811"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_206_std.etch.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_206_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0411d3f5b3ba23ade02a6df81692d1ef938d754f602d3aec72bd39582d11a2c6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-04.jpg"
+    ],
+    "holoFrontSha256": "f4129170b086ec7ab6853459b86087e1fa0ee7a8dc200de411ed48cba4334a06"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 212,
+      "texturedInteriorFraction": 0.42857142857142855
+    },
+    {
+      "areaAtFoilResolution": 300,
+      "texturedInteriorFraction": 0.4025974025974026
+    },
+    {
+      "areaAtFoilResolution": 220,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 187,
+      "texturedInteriorFraction": 0.4067796610169492
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "206-holo-foil.png": "b776e19ed682dbcbd0477c30b48f7c76606c39c50299cf6076bcd0d74d444c78",
+    "206-holo-protection.png": "08a501a12eccea362aeb85f331b48d8b961c2d241b7c390d9f86b5b45e08fa2b",
+    "206-holo-normal.png": "76ce74c4c5c76f1e6da7160cb9967fbd8a1fefc1c2fc1a0be024e8bfe366f930",
+    "206-holo-roughness.png": "f1c6750cf5a2700a14b451aff0bed133cbc433b034da472c25a71bed220ac985"
+  },
+  "holoFrontSha256": "f4129170b086ec7ab6853459b86087e1fa0ee7a8dc200de411ed48cba4334a06",
+  "mapDimensions": {
+    "206-holo-foil.png": [
+      367,
+      512
+    ],
+    "206-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "206-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "206-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

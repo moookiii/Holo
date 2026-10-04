@@ -1,0 +1,107 @@
+{
+  "cardId": "sv09-178",
+  "variant": "holo",
+  "tcglCardId": "sv9_178",
+  "tcglVariantId": "Dudunsparceex_sv9_178_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv9/sv9_en_178_std.png",
+      "file": "research/tcgl/sv09-set/raw/sv9_en_178_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e21b1b024317d226201e41ce038ab92495d115b09c124baca94d528849984ebe"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv9/sv9_en_178_std.foil.png",
+      "file": "research/tcgl/sv09-set/raw/sv9_en_178_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e0d3a2fff96c0a2dd6ba182873d6b1561a25129db8344582ee2119cae2e34959"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv9/sv9_en_178_std.etch.png",
+      "file": "research/tcgl/sv09-set/raw/sv9_en_178_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "965d55b633063315a7f231e365e38f2245c91ed4c601b6b2b4117bcfa78dca71"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv09/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv09/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv09/page-03.jpg"
+    ],
+    "holoFrontSha256": "e21b1b024317d226201e41ce038ab92495d115b09c124baca94d528849984ebe"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 248,
+      "texturedInteriorFraction": 0.8048780487804879
+    },
+    {
+      "areaAtFoilResolution": 214,
+      "texturedInteriorFraction": 0.4305555555555556
+    },
+    {
+      "areaAtFoilResolution": 204,
+      "texturedInteriorFraction": 0.4647887323943662
+    },
+    {
+      "areaAtFoilResolution": 213,
+      "texturedInteriorFraction": 0.48484848484848486
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "178-holo-foil.png": "7841f2ac9f654c821fcf49830d54b6d4da3e7c18fa7695e54c522fc1c4cb0217",
+    "178-holo-protection.png": "ee2e86986d5959737295f27983153cc8de69d6832dfdc8d6d10fb6c559eb4cfc",
+    "178-holo-normal.png": "3b574be913a041119da0aa4c69a464bd001f79f4a3750da38deee44daf619c26",
+    "178-holo-roughness.png": "1eacd78dc75046ba0d2c3bbfa9ee15525a3d64d920f1921c9f46a557eed1433f"
+  },
+  "holoFrontSha256": "e21b1b024317d226201e41ce038ab92495d115b09c124baca94d528849984ebe",
+  "mapDimensions": {
+    "178-holo-foil.png": [
+      367,
+      512
+    ],
+    "178-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "178-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "178-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

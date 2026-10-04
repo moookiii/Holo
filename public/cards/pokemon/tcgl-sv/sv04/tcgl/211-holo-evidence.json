@@ -1,0 +1,71 @@
+{
+  "cardId": "sv04-211",
+  "variant": "holo",
+  "tcglCardId": "sv4_211",
+  "tcglVariantId": "Aipom_sv4_211_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4/sv4_en_211_std.png",
+      "file": "research/tcgl/sv04-set/raw/sv4_en_211_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9becf304a961842e88f5cc81cf6a2f951f056c2e5e0c1e27d873af51bfc60507"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4/sv4_en_211_std.foil.png",
+      "file": "research/tcgl/sv04-set/raw/sv4_en_211_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "dc29781f036e62077d8957c2897e596b9ab878bad6b86c0dfd82efec638c5c7f"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source; smooth.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04/page-04.jpg"
+    ],
+    "holoFrontSha256": "9becf304a961842e88f5cc81cf6a2f951f056c2e5e0c1e27d873af51bfc60507"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "211-holo-foil.png": "5c5a08cd2416a37f87adacdce3c105f833f9e8c84ff24e652fe88d07066a57ba",
+    "211-holo-protection.png": "18139061825e857d0114d8a6075089d1d813263fb3aaa44165eab0d3b5a1a61d"
+  },
+  "holoFrontSha256": "9becf304a961842e88f5cc81cf6a2f951f056c2e5e0c1e27d873af51bfc60507",
+  "mapDimensions": {
+    "211-holo-foil.png": [
+      367,
+      512
+    ],
+    "211-holo-protection.png": [
+      1800,
+      2475
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "cardId": "sv10-148",
+  "variant": "reverse",
+  "tcglCardId": "sv10_148_ph",
+  "tcglVariantId": "TeamRocketsRaticate_sv10_148_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv10/sv10_en_148_std.png",
+      "file": "research/tcgl/sv10-set/raw/sv10_en_148_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "efcad5a19fc4c8b3a99839b39c830d0e61e908df666d4ae0056c48ad5534b6fe"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv10/sv10_en_148_ph.foil.png",
+      "file": "research/tcgl/sv10-set/raw/sv10_en_148_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c0f122266b34d8a95f04d0560ca1a6315cbb3418f1d28a5916d5d7d65a24f43d"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source; smooth.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10/page-03.jpg"
+    ],
+    "holoFrontSha256": "efcad5a19fc4c8b3a99839b39c830d0e61e908df666d4ae0056c48ad5534b6fe"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "148-reverse-foil.png": "fb668681b04263b54e5f5c21d3f15f8131ea8be035de0373232dc49fa6c2bd46",
+    "148-reverse-protection.png": "2c7d442f307803b9966c61d15c50e4322eaea4ddf2a71163c0bdb7ea90b5d4ce"
+  },
+  "holoFrontSha256": "efcad5a19fc4c8b3a99839b39c830d0e61e908df666d4ae0056c48ad5534b6fe",
+  "mapDimensions": {
+    "148-reverse-foil.png": [
+      367,
+      512
+    ],
+    "148-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "cardId": "sv05-190",
+  "variant": "holo",
+  "tcglCardId": "sv5_190",
+  "tcglVariantId": "Wugtrioex_sv5_190_std_UltraRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_190_std.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_190_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a3d0fed36f19362b9075675adfb6a64b564758e8dfcb85f0093e27fa7e6b539d"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_190_std.foil.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_190_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d5fed1c2d472dd2f1c4d6b4c0f5f257aa23efac60298c29a1c7178f272804ea4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_190_std.etch.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_190_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "84768896f2bbfe079549cee979ff06a5a01639c71479314fe1621ef375ae9608"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv05/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-04.jpg"
+    ],
+    "holoFrontSha256": "a3d0fed36f19362b9075675adfb6a64b564758e8dfcb85f0093e27fa7e6b539d"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 205,
+      "texturedInteriorFraction": 0.4418604651162791
+    },
+    {
+      "areaAtFoilResolution": 576,
+      "texturedInteriorFraction": 0.5144230769230769
+    },
+    {
+      "areaAtFoilResolution": 607,
+      "texturedInteriorFraction": 0.460431654676259
+    },
+    {
+      "areaAtFoilResolution": 504,
+      "texturedInteriorFraction": 0.45410628019323673
+    },
+    {
+      "areaAtFoilResolution": 215,
+      "texturedInteriorFraction": 0.5151515151515151
+    },
+    {
+      "areaAtFoilResolution": 193,
+      "texturedInteriorFraction": 0.4166666666666667
+    },
+    {
+      "areaAtFoilResolution": 300,
+      "texturedInteriorFraction": 0.4077669902912621
+    },
+    {
+      "areaAtFoilResolution": 177,
+      "texturedInteriorFraction": 0.6538461538461539
+    },
+    {
+      "areaAtFoilResolution": 227,
+      "texturedInteriorFraction": 0.6153846153846154
+    },
+    {
+      "areaAtFoilResolution": 207,
+      "texturedInteriorFraction": 0.44
+    },
+    {
+      "areaAtFoilResolution": 264,
+      "texturedInteriorFraction": 0.417910447761194
+    },
+    {
+      "areaAtFoilResolution": 150,
+      "texturedInteriorFraction": 0.43902439024390244
+    },
+    {
+      "areaAtFoilResolution": 202,
+      "texturedInteriorFraction": 0.46153846153846156
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "190-holo-foil.png": "8a62e3aed3401c2928eae61ba341c4f99720dba7ff02bb1ce91801cf1e6f77f5",
+    "190-holo-protection.png": "9d740aab3cefb02d40f89a5585441fe88932a5cb9fe164a757a8a65067d00df1",
+    "190-holo-normal.png": "fe8eb08944c8f6167a7a5608f6e70bfda24742380cfe6ba340afb703a2bcac7c",
+    "190-holo-roughness.png": "27334600688be4f4a84d92b0a03c3c79fe9f5aac0adf87dd0ee2671045c5197b"
+  },
+  "holoFrontSha256": "a3d0fed36f19362b9075675adfb6a64b564758e8dfcb85f0093e27fa7e6b539d",
+  "mapDimensions": {
+    "190-holo-foil.png": [
+      367,
+      512
+    ],
+    "190-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "190-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "190-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

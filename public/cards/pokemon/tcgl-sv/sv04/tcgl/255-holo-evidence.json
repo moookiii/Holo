@@ -1,0 +1,108 @@
+{
+  "cardId": "sv04-255",
+  "variant": "holo",
+  "tcglCardId": "sv4_255",
+  "tcglVariantId": "ParasolLady_sv4_255_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4/sv4_en_255_std.png",
+      "file": "research/tcgl/sv04-set/raw/sv4_en_255_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "40cb71a6bbf87d94515e9efe2fc741e77825702e9b81e81460d641664ec4228f"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4/sv4_en_255_std.foil.png",
+      "file": "research/tcgl/sv04-set/raw/sv4_en_255_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "29fee1106f6d441356f9ea90a2c8f77eec2e41a7d50bddde6f098d90827eb76a"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4/sv4_en_255_std.etch.png",
+      "file": "research/tcgl/sv04-set/raw/sv4_en_255_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c43db6c9819dff118eb48f6721f2e17899ec5ae089bbd5c1c5038c5ab296535f"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04/page-04.jpg"
+    ],
+    "holoFrontSha256": "40cb71a6bbf87d94515e9efe2fc741e77825702e9b81e81460d641664ec4228f"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 18353,
+      "texturedInteriorFraction": 0.640575172493767
+    },
+    {
+      "areaAtFoilResolution": 8904,
+      "texturedInteriorFraction": 0.44464586300660364
+    },
+    {
+      "areaAtFoilResolution": 13023,
+      "texturedInteriorFraction": 0.9619741100323624
+    },
+    {
+      "areaAtFoilResolution": 155,
+      "texturedInteriorFraction": 0.5686274509803921
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "255-holo-foil.png": "15053a45c07cc229afc64bb81af583cc0ef24e3761b48fcc266243b4ece90285",
+    "255-holo-protection.png": "ad86f9754b8cb385b1c05051d99b04bdf458c6b15078b8353034631e3edfa827",
+    "255-holo-normal.png": "f46e1821d7ab74e67c4288293bebf87072b462ca68124a70146b4c77794f445f",
+    "255-holo-roughness.png": "8ae676be325f9e34e0e9f620b055e373a1f50421faa44762c216375ab9c79d67"
+  },
+  "holoFrontSha256": "40cb71a6bbf87d94515e9efe2fc741e77825702e9b81e81460d641664ec4228f",
+  "mapDimensions": {
+    "255-holo-foil.png": [
+      367,
+      512
+    ],
+    "255-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "255-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "255-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

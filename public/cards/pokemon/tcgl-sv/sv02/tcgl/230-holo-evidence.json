@@ -1,0 +1,108 @@
+{
+  "cardId": "sv02-230",
+  "variant": "holo",
+  "tcglCardId": "sv2_230",
+  "tcglVariantId": "Forretressex_sv2_230_std_UltraRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv2/sv2_en_230_std.png",
+      "file": "research/tcgl/sv02-set/raw/sv2_en_230_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "85a9df82ca9eb3a5f0cdd1bbb2dce8aad1f9f2f9884279fb2375d1ef37cd3223"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv2/sv2_en_230_std.foil.png",
+      "file": "research/tcgl/sv02-set/raw/sv2_en_230_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "abd056d1f85a027076de3373b27c59576004b1c74ba48673ea0404740dc3cd6c"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv2/sv2_en_230_std.etch.png",
+      "file": "research/tcgl/sv02-set/raw/sv2_en_230_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a751c746f980a8d663c1c3f135aee74a30d007e0458009c75c5131014bdd2987"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv02/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv02/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv02/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv02/page-04.jpg"
+    ],
+    "holoFrontSha256": "85a9df82ca9eb3a5f0cdd1bbb2dce8aad1f9f2f9884279fb2375d1ef37cd3223"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 333,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 247,
+      "texturedInteriorFraction": 0.4305555555555556
+    },
+    {
+      "areaAtFoilResolution": 214,
+      "texturedInteriorFraction": 0.6666666666666666
+    },
+    {
+      "areaAtFoilResolution": 227,
+      "texturedInteriorFraction": 0.527027027027027
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "230-holo-foil.png": "3a6149a60a93d62cc633787187734b823bbef3b702268b17a85094cbede87812",
+    "230-holo-protection.png": "fa26ce827ff47477413fe0791138ebc5c6c286bff80c55b3e2b803a871f4a445",
+    "230-holo-normal.png": "876c00f5fb4392d667d9d55f8ddf5406aa355ae1bf4f097ea709479d771acd5c",
+    "230-holo-roughness.png": "b4d01ba1d0ccb1561eec489cedbb1e6a8e005ff564277a5140dec4d8794cd2f7"
+  },
+  "holoFrontSha256": "85a9df82ca9eb3a5f0cdd1bbb2dce8aad1f9f2f9884279fb2375d1ef37cd3223",
+  "mapDimensions": {
+    "230-holo-foil.png": [
+      367,
+      512
+    ],
+    "230-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "230-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "230-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

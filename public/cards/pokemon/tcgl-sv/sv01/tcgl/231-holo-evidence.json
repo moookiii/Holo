@@ -56,7 +56,7 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
   "foilBlackFloor": 0.08888888888888889,
   "protectedBodyRegions": [
     {
@@ -149,11 +149,28 @@
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "231-holo-foil.png": "1eb7683381a33940a46acb1f5da88b6c2d59047a7727e2d0bf5c7196873cfa7e",
+    "231-holo-foil.png": "17531a0a192df7b5eb4156dbfa3be8f47281cf7d9ed9eed04cf398173e38e420",
     "231-holo-protection.png": "04ccdccb30d9c9246a775ef8017f1b68c0778987016db019440506caabd6cba5",
     "231-holo-normal.png": "cc39f2e7ac747a17f5489520830c5ba46f74f1bb3e42a8296117a76c9472bea1",
-    "231-holo-height.png": "b94ad99e1962aecfe48eae477160ed3173dce72010a2308ad83901a8f76c9ae1",
     "231-holo-roughness.png": "baa70bd8f97dd90a60780f7158dfb932f1ad5fca4ad4ad1c475c8d6e906a7791"
   },
-  "holoFrontSha256": "a4cc11066b48c222518afbfd4b713c6edd1e57894df6ca9aac164d4f92b5c910"
+  "holoFrontSha256": "a4cc11066b48c222518afbfd4b713c6edd1e57894df6ca9aac164d4f92b5c910",
+  "mapDimensions": {
+    "231-holo-foil.png": [
+      367,
+      512
+    ],
+    "231-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "231-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "231-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
 }

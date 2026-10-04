@@ -1,0 +1,71 @@
+{
+  "cardId": "sv05-017",
+  "variant": "reverse",
+  "tcglCardId": "sv5_17_ph",
+  "tcglVariantId": "Sawsbuck_sv5_17_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_017_std.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_017_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0659401d269371fd8280ca4a1b1ab33a2e5e0cf6047e0be3d1913d87cf1aad68"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv5/sv5_en_017_ph.foil.png",
+      "file": "research/tcgl/sv05-set/raw/sv5_en_017_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "bac44e0d2f4a3fcdeb2e67a620df68ff9d94563c279b863d50ece0cd2edba9e4"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source; smooth.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv05/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv05/page-04.jpg"
+    ],
+    "holoFrontSha256": "0659401d269371fd8280ca4a1b1ab33a2e5e0cf6047e0be3d1913d87cf1aad68"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "017-reverse-foil.png": "7bd106ddfad5048811d5b9eb6405de9aa80484bdb84ed4674698827800eb4e7a",
+    "017-reverse-protection.png": "36e5037906f95e405b2c7297c0b8cde371252f4e56fc3474a79d721450ac9a21"
+  },
+  "holoFrontSha256": "0659401d269371fd8280ca4a1b1ab33a2e5e0cf6047e0be3d1913d87cf1aad68",
+  "mapDimensions": {
+    "017-reverse-foil.png": [
+      367,
+      512
+    ],
+    "017-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  }
+}

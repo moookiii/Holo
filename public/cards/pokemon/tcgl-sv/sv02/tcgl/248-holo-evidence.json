@@ -1,0 +1,108 @@
+{
+  "cardId": "sv02-248",
+  "variant": "holo",
+  "tcglCardId": "sv2_248",
+  "tcglVariantId": "BosssOrders_sv2_248_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv2/sv2_en_248_std.png",
+      "file": "research/tcgl/sv02-set/raw/sv2_en_248_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "cffff17b4b0bce30b9e43e639e477fd9d66b4614292664f0800654d24e21e8e3"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv2/sv2_en_248_std.foil.png",
+      "file": "research/tcgl/sv02-set/raw/sv2_en_248_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "731dfe81dfe5a78e99a66c1bdb1cdb99e1cb2885d20cfeb77794e6aa65065f1f"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv2/sv2_en_248_std.etch.png",
+      "file": "research/tcgl/sv02-set/raw/sv2_en_248_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ce36ca8e8f5a4f7d69b12a51d0e9c431d9d6fe0adb247a2af5c21927ac1c9e33"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv02/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv02/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv02/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv02/page-04.jpg"
+    ],
+    "holoFrontSha256": "cffff17b4b0bce30b9e43e639e477fd9d66b4614292664f0800654d24e21e8e3"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 228,
+      "texturedInteriorFraction": 0.45161290322580644
+    },
+    {
+      "areaAtFoilResolution": 218,
+      "texturedInteriorFraction": 0.41935483870967744
+    },
+    {
+      "areaAtFoilResolution": 349,
+      "texturedInteriorFraction": 0.46788990825688076
+    },
+    {
+      "areaAtFoilResolution": 313,
+      "texturedInteriorFraction": 0.4077669902912621
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "248-holo-foil.png": "d1eb8960d60fc032d20b2a9b1076871d1500fe8fc71ba3e97245ebc1ceab4422",
+    "248-holo-protection.png": "a4314782978798a4c4f38de4221f33e14dfc2cb465b8cad967b52cceb4b64b00",
+    "248-holo-normal.png": "0764ded70d358c030f235d094dd0822cf996fd87949cdadfecc6a69a5f116713",
+    "248-holo-roughness.png": "093ebcf0660bdb665de9829526e9d143df5082ececb57a640ba1f00c6c7d0398"
+  },
+  "holoFrontSha256": "cffff17b4b0bce30b9e43e639e477fd9d66b4614292664f0800654d24e21e8e3",
+  "mapDimensions": {
+    "248-holo-foil.png": [
+      367,
+      512
+    ],
+    "248-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "248-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "248-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

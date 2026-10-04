@@ -407,7 +407,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/032-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/032-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/032-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/032-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/032-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/032-holo-evidence.json",
@@ -602,7 +601,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/045-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/045-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/045-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/045-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/045-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/045-holo-evidence.json",
@@ -2933,7 +2931,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/223-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/223-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/223-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/223-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/223-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/223-holo-evidence.json",
@@ -2948,7 +2945,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/224-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/224-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/224-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/224-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/224-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/224-holo-evidence.json",
@@ -2963,7 +2959,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/225-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/225-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/225-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/225-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/225-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/225-holo-evidence.json",
@@ -2978,7 +2973,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/226-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/226-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/226-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/226-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/226-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/226-holo-evidence.json",
@@ -2993,7 +2987,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/227-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/227-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/227-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/227-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/227-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/227-holo-evidence.json",
@@ -3008,7 +3001,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/228-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/228-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/228-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/228-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/228-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/228-holo-evidence.json",
@@ -3023,7 +3015,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/229-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/229-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/229-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/229-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/229-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/229-holo-evidence.json",
@@ -3038,7 +3029,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/230-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/230-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/230-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/230-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/230-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/230-holo-evidence.json",
@@ -3053,7 +3043,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/231-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/231-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/231-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/231-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/231-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/231-holo-evidence.json",
@@ -3068,7 +3057,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/232-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/232-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/232-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/232-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/232-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/232-holo-evidence.json",
@@ -3083,7 +3071,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/233-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/233-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/233-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/233-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/233-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/233-holo-evidence.json",
@@ -3098,7 +3085,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/234-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/234-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/234-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/234-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/234-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/234-holo-evidence.json",
@@ -3113,7 +3099,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/235-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/235-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/235-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/235-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/235-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/235-holo-evidence.json",
@@ -3128,7 +3113,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/236-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/236-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/236-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/236-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/236-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/236-holo-evidence.json",
@@ -3143,7 +3127,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/237-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/237-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/237-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/237-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/237-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/237-holo-evidence.json",
@@ -3158,7 +3141,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/238-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/238-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/238-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/238-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/238-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/238-holo-evidence.json",
@@ -3173,7 +3155,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/239-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/239-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/239-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/239-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/239-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/239-holo-evidence.json",
@@ -3188,7 +3169,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/240-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/240-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/240-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/240-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/240-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/240-holo-evidence.json",
@@ -3203,7 +3183,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/241-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/241-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/241-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/241-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/241-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/241-holo-evidence.json",
@@ -3218,7 +3197,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/242-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/242-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/242-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/242-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/242-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/242-holo-evidence.json",
@@ -3233,7 +3211,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/243-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/243-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/243-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/243-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/243-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/243-holo-evidence.json",
@@ -3248,7 +3225,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/244-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/244-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/244-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/244-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/244-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/244-holo-evidence.json",
@@ -3263,7 +3239,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/245-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/245-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/245-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/245-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/245-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/245-holo-evidence.json",
@@ -3278,7 +3253,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/246-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/246-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/246-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/246-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/246-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/246-holo-evidence.json",
@@ -3293,7 +3267,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/247-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/247-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/247-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/247-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/247-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/247-holo-evidence.json",
@@ -3308,7 +3281,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/248-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/248-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/248-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/248-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/248-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/248-holo-evidence.json",
@@ -3323,7 +3295,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/249-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/249-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/249-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/249-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/249-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/249-holo-evidence.json",
@@ -3338,7 +3309,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/250-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/250-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/250-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/250-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/250-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/250-holo-evidence.json",
@@ -3353,7 +3323,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/251-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/251-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/251-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/251-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/251-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/251-holo-evidence.json",
@@ -3368,7 +3337,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/252-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/252-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/252-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/252-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/252-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/252-holo-evidence.json",
@@ -3383,7 +3351,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/253-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/253-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/253-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/253-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/253-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/253-holo-evidence.json",
@@ -3398,7 +3365,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/254-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/254-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/254-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/254-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/254-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/254-holo-evidence.json",
@@ -3413,7 +3379,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/255-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/255-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/255-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/255-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/255-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/255-holo-evidence.json",
@@ -3428,7 +3393,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/256-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/256-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/256-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/256-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/256-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/256-holo-evidence.json",
@@ -3443,7 +3407,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/257-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/257-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/257-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/257-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/257-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/257-holo-evidence.json",
@@ -3458,7 +3421,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv01/tcgl/258-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv01/tcgl/258-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv01/tcgl/258-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv01/tcgl/258-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv01/tcgl/258-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv01/tcgl/258-holo-evidence.json",
@@ -3533,7 +3495,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/005-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/005-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/005-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/005-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/005-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/005-holo-evidence.json",
@@ -4616,7 +4577,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/086-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/086-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/086-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/086-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/086-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/086-holo-evidence.json",
@@ -4715,7 +4675,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/093-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/093-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/093-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/093-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/093-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/093-holo-evidence.json",
@@ -6530,7 +6489,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/230-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/230-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/230-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/230-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/230-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/230-holo-evidence.json",
@@ -6545,7 +6503,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/231-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/231-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/231-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/231-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/231-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/231-holo-evidence.json",
@@ -6560,7 +6517,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/232-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/232-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/232-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/232-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/232-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/232-holo-evidence.json",
@@ -6575,7 +6531,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/233-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/233-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/233-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/233-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/233-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/233-holo-evidence.json",
@@ -6590,7 +6545,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/234-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/234-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/234-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/234-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/234-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/234-holo-evidence.json",
@@ -6605,7 +6559,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/235-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/235-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/235-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/235-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/235-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/235-holo-evidence.json",
@@ -6620,7 +6573,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/236-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/236-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/236-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/236-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/236-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/236-holo-evidence.json",
@@ -6635,7 +6587,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/237-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/237-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/237-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/237-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/237-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/237-holo-evidence.json",
@@ -6650,7 +6601,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/238-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/238-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/238-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/238-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/238-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/238-holo-evidence.json",
@@ -6665,7 +6615,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/239-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/239-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/239-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/239-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/239-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/239-holo-evidence.json",
@@ -6680,7 +6629,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/240-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/240-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/240-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/240-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/240-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/240-holo-evidence.json",
@@ -6695,7 +6643,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/241-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/241-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/241-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/241-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/241-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/241-holo-evidence.json",
@@ -6710,7 +6657,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/242-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/242-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/242-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/242-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/242-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/242-holo-evidence.json",
@@ -6725,7 +6671,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/243-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/243-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/243-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/243-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/243-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/243-holo-evidence.json",
@@ -6740,7 +6685,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/244-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/244-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/244-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/244-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/244-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/244-holo-evidence.json",
@@ -6755,7 +6699,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/245-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/245-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/245-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/245-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/245-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/245-holo-evidence.json",
@@ -6770,7 +6713,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/246-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/246-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/246-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/246-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/246-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/246-holo-evidence.json",
@@ -6785,7 +6727,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/247-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/247-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/247-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/247-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/247-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/247-holo-evidence.json",
@@ -6800,7 +6741,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/248-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/248-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/248-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/248-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/248-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/248-holo-evidence.json",
@@ -6815,7 +6755,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/249-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/249-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/249-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/249-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/249-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/249-holo-evidence.json",
@@ -6830,7 +6769,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/250-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/250-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/250-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/250-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/250-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/250-holo-evidence.json",
@@ -6845,7 +6783,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/251-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/251-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/251-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/251-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/251-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/251-holo-evidence.json",
@@ -6860,7 +6797,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/252-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/252-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/252-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/252-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/252-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/252-holo-evidence.json",
@@ -6875,7 +6811,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/253-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/253-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/253-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/253-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/253-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/253-holo-evidence.json",
@@ -6890,7 +6825,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/254-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/254-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/254-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/254-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/254-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/254-holo-evidence.json",
@@ -6905,7 +6839,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/255-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/255-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/255-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/255-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/255-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/255-holo-evidence.json",
@@ -6920,7 +6853,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/256-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/256-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/256-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/256-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/256-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/256-holo-evidence.json",
@@ -6935,7 +6867,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/257-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/257-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/257-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/257-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/257-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/257-holo-evidence.json",
@@ -6950,7 +6881,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/258-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/258-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/258-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/258-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/258-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/258-holo-evidence.json",
@@ -6965,7 +6895,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/259-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/259-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/259-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/259-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/259-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/259-holo-evidence.json",
@@ -6980,7 +6909,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/260-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/260-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/260-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/260-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/260-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/260-holo-evidence.json",
@@ -6995,7 +6923,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/261-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/261-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/261-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/261-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/261-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/261-holo-evidence.json",
@@ -7010,7 +6937,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/262-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/262-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/262-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/262-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/262-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/262-holo-evidence.json",
@@ -7025,7 +6951,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/263-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/263-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/263-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/263-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/263-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/263-holo-evidence.json",
@@ -7040,7 +6965,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/264-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/264-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/264-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/264-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/264-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/264-holo-evidence.json",
@@ -7055,7 +6979,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/265-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/265-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/265-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/265-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/265-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/265-holo-evidence.json",
@@ -7070,7 +6993,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/266-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/266-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/266-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/266-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/266-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/266-holo-evidence.json",
@@ -7085,7 +7007,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/267-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/267-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/267-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/267-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/267-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/267-holo-evidence.json",
@@ -7100,7 +7021,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/268-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/268-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/268-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/268-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/268-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/268-holo-evidence.json",
@@ -7115,7 +7035,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/269-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/269-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/269-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/269-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/269-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/269-holo-evidence.json",
@@ -7130,7 +7049,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/270-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/270-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/270-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/270-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/270-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/270-holo-evidence.json",
@@ -7145,7 +7063,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/271-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/271-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/271-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/271-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/271-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/271-holo-evidence.json",
@@ -7160,7 +7077,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/272-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/272-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/272-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/272-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/272-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/272-holo-evidence.json",
@@ -7175,7 +7091,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/273-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/273-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/273-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/273-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/273-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/273-holo-evidence.json",
@@ -7190,7 +7105,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/274-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/274-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/274-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/274-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/274-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/274-holo-evidence.json",
@@ -7205,7 +7119,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/275-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/275-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/275-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/275-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/275-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/275-holo-evidence.json",
@@ -7220,7 +7133,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/276-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/276-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/276-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/276-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/276-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/276-holo-evidence.json",
@@ -7235,7 +7147,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/277-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/277-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/277-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/277-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/277-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/277-holo-evidence.json",
@@ -7250,7 +7161,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/278-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/278-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/278-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/278-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/278-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/278-holo-evidence.json",
@@ -7265,7 +7175,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv02/tcgl/279-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv02/tcgl/279-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv02/tcgl/279-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv02/tcgl/279-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv02/tcgl/279-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv02/tcgl/279-holo-evidence.json",
@@ -7796,7 +7705,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/042-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/042-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/042-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/042-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/042-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/042-holo-evidence.json",
@@ -8099,7 +8007,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/066-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/066-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/066-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/066-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/066-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/066-holo-evidence.json",
@@ -8510,7 +8417,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/096-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/096-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/096-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/096-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/096-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/096-holo-evidence.json",
@@ -8861,7 +8767,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/125-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/125-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/125-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/125-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/125-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/125-holo-evidence.json",
@@ -9296,7 +9201,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/159-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/159-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/159-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/159-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/159-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/159-holo-evidence.json",
@@ -9539,7 +9443,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/179-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/179-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/179-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/179-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/179-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/179-holo-evidence.json",
@@ -9926,7 +9829,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/210-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/210-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/210-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/210-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/210-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/210-holo-evidence.json",
@@ -9941,7 +9843,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/211-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/211-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/211-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/211-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/211-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/211-holo-evidence.json",
@@ -9956,7 +9857,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/212-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/212-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/212-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/212-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/212-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/212-holo-evidence.json",
@@ -9971,7 +9871,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/213-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/213-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/213-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/213-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/213-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/213-holo-evidence.json",
@@ -9986,7 +9885,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/214-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/214-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/214-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/214-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/214-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/214-holo-evidence.json",
@@ -10001,7 +9899,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/215-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/215-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/215-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/215-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/215-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/215-holo-evidence.json",
@@ -10016,7 +9913,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/216-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/216-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/216-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/216-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/216-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/216-holo-evidence.json",
@@ -10031,7 +9927,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/217-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/217-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/217-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/217-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/217-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/217-holo-evidence.json",
@@ -10046,7 +9941,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/218-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/218-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/218-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/218-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/218-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/218-holo-evidence.json",
@@ -10061,7 +9955,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/219-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/219-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/219-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/219-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/219-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/219-holo-evidence.json",
@@ -10076,7 +9969,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/220-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/220-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/220-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/220-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/220-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/220-holo-evidence.json",
@@ -10091,7 +9983,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/221-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/221-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/221-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/221-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/221-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/221-holo-evidence.json",
@@ -10106,7 +9997,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/222-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/222-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/222-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/222-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/222-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/222-holo-evidence.json",
@@ -10121,7 +10011,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/223-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/223-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/223-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/223-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/223-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/223-holo-evidence.json",
@@ -10136,7 +10025,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/224-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/224-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/224-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/224-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/224-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/224-holo-evidence.json",
@@ -10151,7 +10039,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/225-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/225-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/225-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/225-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/225-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/225-holo-evidence.json",
@@ -10166,7 +10053,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/226-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/226-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/226-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/226-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/226-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/226-holo-evidence.json",
@@ -10181,7 +10067,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/227-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/227-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/227-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/227-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/227-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/227-holo-evidence.json",
@@ -10196,7 +10081,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/228-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/228-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/228-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/228-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/228-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/228-holo-evidence.json",
@@ -10211,7 +10095,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/229-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/229-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/229-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/229-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/229-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/229-holo-evidence.json",
@@ -10226,7 +10109,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv03/tcgl/230-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv03/tcgl/230-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv03/tcgl/230-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv03/tcgl/230-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv03/tcgl/230-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv03/tcgl/230-holo-evidence.json",
@@ -10265,7 +10147,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/003-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/003-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/003-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/003-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/003-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/003-holo-evidence.json",
@@ -10760,7 +10641,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/038-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/038-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/038-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/038-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/038-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/038-holo-evidence.json",
@@ -10871,7 +10751,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/046-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/046-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/046-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/046-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/046-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/046-holo-evidence.json",
@@ -11042,7 +10921,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/058-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/058-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/058-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/058-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/058-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/058-holo-evidence.json",
@@ -11597,7 +11475,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/098-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/098-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/098-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/098-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/098-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/098-holo-evidence.json",
@@ -11624,7 +11501,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/100-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/100-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/100-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/100-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/100-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/100-holo-evidence.json",
@@ -12191,7 +12067,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/137-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/137-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/137-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/137-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/137-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/137-holo-evidence.json",
@@ -13178,7 +13053,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/217-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/217-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/217-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/217-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/217-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/217-holo-evidence.json",
@@ -13193,7 +13067,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/218-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/218-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/218-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/218-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/218-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/218-holo-evidence.json",
@@ -13208,7 +13081,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/219-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/219-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/219-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/219-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/219-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/219-holo-evidence.json",
@@ -13223,7 +13095,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/220-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/220-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/220-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/220-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/220-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/220-holo-evidence.json",
@@ -13238,7 +13109,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/221-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/221-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/221-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/221-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/221-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/221-holo-evidence.json",
@@ -13253,7 +13123,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/222-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/222-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/222-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/222-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/222-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/222-holo-evidence.json",
@@ -13268,7 +13137,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/223-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/223-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/223-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/223-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/223-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/223-holo-evidence.json",
@@ -13283,7 +13151,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/224-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/224-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/224-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/224-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/224-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/224-holo-evidence.json",
@@ -13298,7 +13165,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/225-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/225-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/225-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/225-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/225-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/225-holo-evidence.json",
@@ -13313,7 +13179,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/226-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/226-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/226-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/226-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/226-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/226-holo-evidence.json",
@@ -13328,7 +13193,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/227-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/227-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/227-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/227-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/227-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/227-holo-evidence.json",
@@ -13343,7 +13207,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/228-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/228-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/228-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/228-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/228-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/228-holo-evidence.json",
@@ -13358,7 +13221,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/229-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/229-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/229-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/229-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/229-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/229-holo-evidence.json",
@@ -13373,7 +13235,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/230-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/230-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/230-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/230-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/230-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/230-holo-evidence.json",
@@ -13388,7 +13249,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/231-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/231-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/231-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/231-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/231-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/231-holo-evidence.json",
@@ -13403,7 +13263,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/232-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/232-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/232-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/232-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/232-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/232-holo-evidence.json",
@@ -13418,7 +13277,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/233-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/233-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/233-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/233-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/233-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/233-holo-evidence.json",
@@ -13433,7 +13291,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/234-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/234-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/234-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/234-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/234-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/234-holo-evidence.json",
@@ -13448,7 +13305,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/235-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/235-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/235-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/235-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/235-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/235-holo-evidence.json",
@@ -13463,7 +13319,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/236-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/236-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/236-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/236-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/236-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/236-holo-evidence.json",
@@ -13478,7 +13333,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/237-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/237-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/237-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/237-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/237-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/237-holo-evidence.json",
@@ -13493,7 +13347,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/238-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/238-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/238-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/238-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/238-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/238-holo-evidence.json",
@@ -13508,7 +13361,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/239-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/239-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/239-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/239-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/239-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/239-holo-evidence.json",
@@ -13523,7 +13375,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/240-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/240-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/240-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/240-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/240-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/240-holo-evidence.json",
@@ -13538,7 +13389,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/241-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/241-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/241-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/241-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/241-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/241-holo-evidence.json",
@@ -13553,7 +13403,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/242-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/242-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/242-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/242-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/242-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/242-holo-evidence.json",
@@ -13568,7 +13417,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/243-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/243-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/243-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/243-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/243-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/243-holo-evidence.json",
@@ -13583,7 +13431,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/244-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/244-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/244-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/244-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/244-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/244-holo-evidence.json",
@@ -13598,7 +13445,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/245-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/245-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/245-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/245-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/245-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/245-holo-evidence.json",
@@ -13613,7 +13459,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/246-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/246-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/246-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/246-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/246-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/246-holo-evidence.json",
@@ -13628,7 +13473,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/247-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/247-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/247-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/247-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/247-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/247-holo-evidence.json",
@@ -13643,7 +13487,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/248-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/248-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/248-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/248-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/248-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/248-holo-evidence.json",
@@ -13658,7 +13501,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/249-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/249-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/249-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/249-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/249-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/249-holo-evidence.json",
@@ -13673,7 +13515,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/250-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/250-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/250-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/250-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/250-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/250-holo-evidence.json",
@@ -13688,7 +13529,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/251-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/251-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/251-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/251-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/251-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/251-holo-evidence.json",
@@ -13703,7 +13543,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/252-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/252-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/252-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/252-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/252-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/252-holo-evidence.json",
@@ -13718,7 +13557,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/253-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/253-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/253-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/253-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/253-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/253-holo-evidence.json",
@@ -13733,7 +13571,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/254-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/254-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/254-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/254-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/254-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/254-holo-evidence.json",
@@ -13748,7 +13585,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/255-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/255-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/255-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/255-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/255-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/255-holo-evidence.json",
@@ -13763,7 +13599,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/256-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/256-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/256-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/256-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/256-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/256-holo-evidence.json",
@@ -13778,7 +13613,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/257-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/257-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/257-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/257-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/257-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/257-holo-evidence.json",
@@ -13793,7 +13627,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/258-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/258-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/258-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/258-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/258-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/258-holo-evidence.json",
@@ -13808,7 +13641,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/259-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/259-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/259-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/259-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/259-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/259-holo-evidence.json",
@@ -13823,7 +13655,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/260-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/260-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/260-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/260-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/260-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/260-holo-evidence.json",
@@ -13838,7 +13669,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/261-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/261-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/261-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/261-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/261-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/261-holo-evidence.json",
@@ -13853,7 +13683,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/262-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/262-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/262-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/262-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/262-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/262-holo-evidence.json",
@@ -13868,7 +13697,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/263-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/263-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/263-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/263-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/263-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/263-holo-evidence.json",
@@ -13883,7 +13711,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/264-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/264-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/264-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/264-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/264-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/264-holo-evidence.json",
@@ -13898,7 +13725,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/265-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/265-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/265-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/265-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/265-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/265-holo-evidence.json",
@@ -13913,7 +13739,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv04/tcgl/266-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv04/tcgl/266-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv04/tcgl/266-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv04/tcgl/266-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv04/tcgl/266-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv04/tcgl/266-holo-evidence.json",
@@ -14684,7 +14509,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/060-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/060-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/060-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/060-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/060-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/060-holo-evidence.json",
@@ -15311,7 +15135,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/108-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/108-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/108-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/108-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/108-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/108-holo-evidence.json",
@@ -15782,7 +15605,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-evidence.json",
@@ -15917,7 +15739,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-evidence.json",
@@ -15932,7 +15753,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-evidence.json",
@@ -15947,7 +15767,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-evidence.json",
@@ -15986,7 +15805,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-evidence.json",
@@ -16001,7 +15819,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-evidence.json",
@@ -16052,7 +15869,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-evidence.json",
@@ -16331,7 +16147,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/185-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/185-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/185-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/185-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/185-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/185-holo-evidence.json",
@@ -16346,7 +16161,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/186-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/186-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/186-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/186-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/186-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/186-holo-evidence.json",
@@ -16361,7 +16175,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/187-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/187-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/187-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/187-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/187-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/187-holo-evidence.json",
@@ -16376,7 +16189,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/188-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/188-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/188-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/188-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/188-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/188-holo-evidence.json",
@@ -16391,7 +16203,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/189-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/189-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/189-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/189-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/189-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/189-holo-evidence.json",
@@ -16406,7 +16217,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/190-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/190-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/190-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/190-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/190-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/190-holo-evidence.json",
@@ -16421,7 +16231,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/191-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/191-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/191-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/191-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/191-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/191-holo-evidence.json",
@@ -16436,7 +16245,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/192-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/192-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/192-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/192-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/192-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/192-holo-evidence.json",
@@ -16451,7 +16259,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/193-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/193-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/193-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/193-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/193-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/193-holo-evidence.json",
@@ -16466,7 +16273,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/194-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/194-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/194-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/194-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/194-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/194-holo-evidence.json",
@@ -16481,7 +16287,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/195-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/195-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/195-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/195-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/195-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/195-holo-evidence.json",
@@ -16496,7 +16301,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/196-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/196-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/196-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/196-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/196-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/196-holo-evidence.json",
@@ -16511,7 +16315,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/197-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/197-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/197-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/197-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/197-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/197-holo-evidence.json",
@@ -16526,7 +16329,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/198-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/198-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/198-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/198-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/198-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/198-holo-evidence.json",
@@ -16541,7 +16343,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/199-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/199-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/199-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/199-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/199-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/199-holo-evidence.json",
@@ -16556,7 +16357,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/200-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/200-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/200-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/200-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/200-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/200-holo-evidence.json",
@@ -16571,7 +16371,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/201-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/201-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/201-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/201-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/201-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/201-holo-evidence.json",
@@ -16586,7 +16385,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/202-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/202-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/202-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/202-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/202-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/202-holo-evidence.json",
@@ -16601,7 +16399,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/203-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/203-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/203-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/203-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/203-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/203-holo-evidence.json",
@@ -16616,7 +16413,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/204-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/204-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/204-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/204-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/204-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/204-holo-evidence.json",
@@ -16631,7 +16427,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/205-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/205-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/205-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/205-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/205-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/205-holo-evidence.json",
@@ -16646,7 +16441,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/206-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/206-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/206-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/206-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/206-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/206-holo-evidence.json",
@@ -16661,7 +16455,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/207-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/207-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/207-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/207-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/207-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/207-holo-evidence.json",
@@ -16676,7 +16469,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/208-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/208-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/208-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/208-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/208-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/208-holo-evidence.json",
@@ -16691,7 +16483,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/209-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/209-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/209-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/209-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/209-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/209-holo-evidence.json",
@@ -16706,7 +16497,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/210-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/210-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/210-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/210-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/210-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/210-holo-evidence.json",
@@ -16721,7 +16511,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/211-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/211-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/211-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/211-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/211-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/211-holo-evidence.json",
@@ -16736,7 +16525,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/212-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/212-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/212-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/212-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/212-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/212-holo-evidence.json",
@@ -16751,7 +16539,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/213-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/213-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/213-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/213-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/213-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/213-holo-evidence.json",
@@ -16766,7 +16553,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/214-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/214-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/214-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/214-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/214-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/214-holo-evidence.json",
@@ -16781,7 +16567,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/215-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/215-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/215-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/215-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/215-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/215-holo-evidence.json",
@@ -16796,7 +16581,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/216-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/216-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/216-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/216-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/216-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/216-holo-evidence.json",
@@ -16811,7 +16595,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/217-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/217-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/217-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/217-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/217-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/217-holo-evidence.json",
@@ -16826,7 +16609,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/218-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv05/tcgl/218-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv05/tcgl/218-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv05/tcgl/218-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv05/tcgl/218-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv05/tcgl/218-holo-evidence.json",
@@ -17165,7 +16947,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/025-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/025-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/025-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/025-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/025-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/025-holo-evidence.json",
@@ -17216,7 +16997,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/029-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/029-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/029-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/029-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/029-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/029-holo-evidence.json",
@@ -17375,7 +17155,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/040-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/040-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/040-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/040-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/040-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/040-holo-evidence.json",
@@ -17690,7 +17469,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/064-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/064-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/064-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/064-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/064-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/064-holo-evidence.json",
@@ -18269,7 +18047,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/106-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/106-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/106-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/106-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/106-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/106-holo-evidence.json",
@@ -18368,7 +18145,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/112-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/112-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/112-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/112-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/112-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/112-holo-evidence.json",
@@ -18599,7 +18375,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/130-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/130-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/130-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/130-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/130-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/130-holo-evidence.json",
@@ -18866,7 +18641,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-evidence.json",
@@ -18989,7 +18763,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-evidence.json",
@@ -19004,7 +18777,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-evidence.json",
@@ -19019,7 +18791,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-evidence.json",
@@ -19034,7 +18805,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-evidence.json",
@@ -19061,7 +18831,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-evidence.json",
@@ -19328,7 +19097,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/189-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/189-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/189-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/189-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/189-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/189-holo-evidence.json",
@@ -19343,7 +19111,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/190-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/190-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/190-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/190-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/190-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/190-holo-evidence.json",
@@ -19358,7 +19125,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/191-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/191-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/191-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/191-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/191-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/191-holo-evidence.json",
@@ -19373,7 +19139,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/192-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/192-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/192-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/192-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/192-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/192-holo-evidence.json",
@@ -19388,7 +19153,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/193-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/193-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/193-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/193-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/193-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/193-holo-evidence.json",
@@ -19403,7 +19167,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/194-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/194-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/194-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/194-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/194-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/194-holo-evidence.json",
@@ -19418,7 +19181,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/195-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/195-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/195-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/195-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/195-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/195-holo-evidence.json",
@@ -19433,7 +19195,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/196-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/196-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/196-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/196-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/196-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/196-holo-evidence.json",
@@ -19448,7 +19209,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/197-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/197-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/197-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/197-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/197-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/197-holo-evidence.json",
@@ -19463,7 +19223,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/198-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/198-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/198-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/198-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/198-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/198-holo-evidence.json",
@@ -19478,7 +19237,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/199-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/199-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/199-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/199-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/199-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/199-holo-evidence.json",
@@ -19493,7 +19251,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/200-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/200-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/200-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/200-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/200-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/200-holo-evidence.json",
@@ -19508,7 +19265,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/201-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/201-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/201-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/201-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/201-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/201-holo-evidence.json",
@@ -19523,7 +19279,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/202-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/202-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/202-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/202-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/202-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/202-holo-evidence.json",
@@ -19538,7 +19293,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/203-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/203-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/203-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/203-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/203-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/203-holo-evidence.json",
@@ -19553,7 +19307,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/204-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/204-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/204-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/204-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/204-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/204-holo-evidence.json",
@@ -19568,7 +19321,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/205-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/205-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/205-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/205-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/205-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/205-holo-evidence.json",
@@ -19583,7 +19335,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/206-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/206-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/206-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/206-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/206-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/206-holo-evidence.json",
@@ -19598,7 +19349,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/207-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/207-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/207-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/207-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/207-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/207-holo-evidence.json",
@@ -19613,7 +19363,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/208-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/208-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/208-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/208-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/208-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/208-holo-evidence.json",
@@ -19628,7 +19377,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/209-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/209-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/209-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/209-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/209-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/209-holo-evidence.json",
@@ -19643,7 +19391,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/210-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/210-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/210-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/210-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/210-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/210-holo-evidence.json",
@@ -19658,7 +19405,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/211-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/211-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/211-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/211-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/211-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/211-holo-evidence.json",
@@ -19673,7 +19419,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/212-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/212-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/212-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/212-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/212-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/212-holo-evidence.json",
@@ -19688,7 +19433,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/213-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/213-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/213-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/213-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/213-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/213-holo-evidence.json",
@@ -19703,7 +19447,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/214-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/214-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/214-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/214-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/214-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/214-holo-evidence.json",
@@ -19718,7 +19461,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/215-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/215-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/215-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/215-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/215-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/215-holo-evidence.json",
@@ -19733,7 +19475,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/216-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/216-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/216-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/216-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/216-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/216-holo-evidence.json",
@@ -19748,7 +19489,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/217-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/217-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/217-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/217-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/217-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/217-holo-evidence.json",
@@ -19763,7 +19503,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/218-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/218-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/218-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/218-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/218-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/218-holo-evidence.json",
@@ -19778,7 +19517,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/219-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/219-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/219-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/219-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/219-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/219-holo-evidence.json",
@@ -19793,7 +19531,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/220-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/220-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/220-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/220-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/220-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/220-holo-evidence.json",
@@ -19808,7 +19545,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/221-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/221-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/221-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/221-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/221-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/221-holo-evidence.json",
@@ -19823,7 +19559,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/222-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/222-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/222-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/222-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/222-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/222-holo-evidence.json",
@@ -19838,7 +19573,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/223-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/223-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/223-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/223-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/223-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/223-holo-evidence.json",
@@ -19853,7 +19587,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/224-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/224-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/224-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/224-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/224-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/224-holo-evidence.json",
@@ -19868,7 +19601,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/225-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/225-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/225-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/225-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/225-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/225-holo-evidence.json",
@@ -19883,7 +19615,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/226-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv06/tcgl/226-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv06/tcgl/226-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv06/tcgl/226-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv06/tcgl/226-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv06/tcgl/226-holo-evidence.json",
@@ -20246,7 +19977,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/028-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/028-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/028-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/028-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/028-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/028-holo-evidence.json",
@@ -20297,7 +20027,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/032-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/032-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/032-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/032-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/032-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/032-holo-evidence.json",
@@ -20552,7 +20281,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/051-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/051-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/051-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/051-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/051-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/051-holo-evidence.json",
@@ -21611,7 +21339,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/128-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/128-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/128-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/128-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/128-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/128-holo-evidence.json",
@@ -21686,7 +21413,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-evidence.json",
@@ -21713,7 +21439,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-evidence.json",
@@ -21788,7 +21513,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-evidence.json",
@@ -21959,7 +21683,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/156-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/156-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/156-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/156-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/156-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/156-holo-evidence.json",
@@ -21974,7 +21697,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/157-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/157-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/157-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/157-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/157-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/157-holo-evidence.json",
@@ -21989,7 +21711,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/158-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/158-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/158-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/158-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/158-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/158-holo-evidence.json",
@@ -22004,7 +21725,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/159-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/159-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/159-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/159-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/159-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/159-holo-evidence.json",
@@ -22019,7 +21739,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/160-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/160-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/160-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/160-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/160-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/160-holo-evidence.json",
@@ -22034,7 +21753,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/161-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/161-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/161-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/161-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/161-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/161-holo-evidence.json",
@@ -22049,7 +21767,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/162-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/162-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/162-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/162-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/162-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/162-holo-evidence.json",
@@ -22064,7 +21781,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/163-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/163-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/163-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/163-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/163-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/163-holo-evidence.json",
@@ -22079,7 +21795,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/164-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/164-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/164-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/164-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/164-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/164-holo-evidence.json",
@@ -22094,7 +21809,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/165-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/165-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/165-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/165-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/165-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/165-holo-evidence.json",
@@ -22109,7 +21823,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/166-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/166-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/166-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/166-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/166-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/166-holo-evidence.json",
@@ -22124,7 +21837,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/167-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/167-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/167-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/167-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/167-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/167-holo-evidence.json",
@@ -22139,7 +21851,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/168-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/168-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/168-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/168-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/168-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/168-holo-evidence.json",
@@ -22154,7 +21865,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/169-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/169-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/169-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/169-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/169-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/169-holo-evidence.json",
@@ -22169,7 +21879,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/170-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/170-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/170-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/170-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/170-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/170-holo-evidence.json",
@@ -22184,7 +21893,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/171-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/171-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/171-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/171-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/171-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/171-holo-evidence.json",
@@ -22199,7 +21907,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/172-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/172-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/172-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/172-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/172-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/172-holo-evidence.json",
@@ -22214,7 +21921,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/173-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/173-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/173-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/173-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/173-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/173-holo-evidence.json",
@@ -22229,7 +21935,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/174-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/174-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/174-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/174-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/174-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/174-holo-evidence.json",
@@ -22244,7 +21949,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/175-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv07/tcgl/175-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv07/tcgl/175-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv07/tcgl/175-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv07/tcgl/175-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv07/tcgl/175-holo-evidence.json",
@@ -22715,7 +22419,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/036-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/036-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/036-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/036-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/036-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/036-holo-evidence.json",
@@ -22994,7 +22697,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/057-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/057-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/057-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/057-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/057-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/057-holo-evidence.json",
@@ -23381,7 +23083,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/086-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/086-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/086-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/086-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/086-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/086-holo-evidence.json",
@@ -23444,7 +23145,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/091-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/091-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/091-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/091-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/091-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/091-holo-evidence.json",
@@ -23639,7 +23339,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/106-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/106-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/106-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/106-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/106-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/106-holo-evidence.json",
@@ -23822,7 +23521,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/119-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/119-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/119-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/119-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/119-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/119-holo-evidence.json",
@@ -24005,7 +23703,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/133-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/133-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/133-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/133-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/133-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/133-holo-evidence.json",
@@ -24152,7 +23849,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/142-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/142-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/142-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/142-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/142-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/142-holo-evidence.json",
@@ -24359,7 +24055,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/159-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/159-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/159-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/159-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/159-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/159-holo-evidence.json",
@@ -24410,7 +24105,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-evidence.json",
@@ -24437,7 +24131,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-evidence.json",
@@ -24584,7 +24277,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-evidence.json",
@@ -24659,7 +24351,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-evidence.json",
@@ -24674,7 +24365,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-evidence.json",
@@ -24701,7 +24391,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-evidence.json",
@@ -24716,7 +24405,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-evidence.json",
@@ -24779,7 +24467,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-evidence.json",
@@ -25070,7 +24757,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/215-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/215-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/215-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/215-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/215-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/215-holo-evidence.json",
@@ -25085,7 +24771,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/216-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/216-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/216-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/216-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/216-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/216-holo-evidence.json",
@@ -25100,7 +24785,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/217-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/217-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/217-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/217-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/217-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/217-holo-evidence.json",
@@ -25115,7 +24799,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/218-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/218-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/218-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/218-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/218-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/218-holo-evidence.json",
@@ -25130,7 +24813,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/219-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/219-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/219-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/219-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/219-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/219-holo-evidence.json",
@@ -25145,7 +24827,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/220-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/220-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/220-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/220-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/220-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/220-holo-evidence.json",
@@ -25160,7 +24841,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/221-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/221-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/221-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/221-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/221-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/221-holo-evidence.json",
@@ -25175,7 +24855,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/222-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/222-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/222-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/222-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/222-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/222-holo-evidence.json",
@@ -25190,7 +24869,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/223-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/223-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/223-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/223-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/223-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/223-holo-evidence.json",
@@ -25205,7 +24883,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/224-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/224-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/224-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/224-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/224-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/224-holo-evidence.json",
@@ -25220,7 +24897,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/225-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/225-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/225-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/225-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/225-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/225-holo-evidence.json",
@@ -25235,7 +24911,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/226-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/226-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/226-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/226-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/226-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/226-holo-evidence.json",
@@ -25250,7 +24925,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/227-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/227-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/227-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/227-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/227-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/227-holo-evidence.json",
@@ -25265,7 +24939,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/228-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/228-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/228-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/228-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/228-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/228-holo-evidence.json",
@@ -25280,7 +24953,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/229-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/229-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/229-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/229-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/229-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/229-holo-evidence.json",
@@ -25295,7 +24967,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/230-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/230-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/230-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/230-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/230-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/230-holo-evidence.json",
@@ -25310,7 +24981,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/231-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/231-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/231-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/231-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/231-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/231-holo-evidence.json",
@@ -25325,7 +24995,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/232-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/232-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/232-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/232-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/232-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/232-holo-evidence.json",
@@ -25340,7 +25009,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/233-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/233-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/233-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/233-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/233-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/233-holo-evidence.json",
@@ -25355,7 +25023,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/234-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/234-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/234-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/234-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/234-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/234-holo-evidence.json",
@@ -25370,7 +25037,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/235-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/235-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/235-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/235-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/235-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/235-holo-evidence.json",
@@ -25385,7 +25051,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/236-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/236-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/236-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/236-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/236-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/236-holo-evidence.json",
@@ -25400,7 +25065,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/237-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/237-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/237-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/237-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/237-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/237-holo-evidence.json",
@@ -25415,7 +25079,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/238-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/238-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/238-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/238-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/238-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/238-holo-evidence.json",
@@ -25430,7 +25093,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/239-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/239-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/239-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/239-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/239-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/239-holo-evidence.json",
@@ -25445,7 +25107,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/240-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/240-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/240-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/240-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/240-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/240-holo-evidence.json",
@@ -25460,7 +25121,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/241-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/241-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/241-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/241-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/241-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/241-holo-evidence.json",
@@ -25475,7 +25135,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/242-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/242-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/242-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/242-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/242-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/242-holo-evidence.json",
@@ -25490,7 +25149,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/243-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/243-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/243-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/243-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/243-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/243-holo-evidence.json",
@@ -25505,7 +25163,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/244-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/244-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/244-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/244-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/244-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/244-holo-evidence.json",
@@ -25520,7 +25177,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/245-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/245-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/245-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/245-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/245-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/245-holo-evidence.json",
@@ -25535,7 +25191,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/246-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/246-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/246-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/246-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/246-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/246-holo-evidence.json",
@@ -25550,7 +25205,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/247-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/247-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/247-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/247-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/247-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/247-holo-evidence.json",
@@ -25565,7 +25219,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/248-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/248-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/248-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/248-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/248-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/248-holo-evidence.json",
@@ -25580,7 +25233,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/249-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/249-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/249-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/249-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/249-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/249-holo-evidence.json",
@@ -25595,7 +25247,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/250-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/250-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/250-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/250-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/250-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/250-holo-evidence.json",
@@ -25610,7 +25261,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/251-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/251-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/251-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/251-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/251-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/251-holo-evidence.json",
@@ -25625,7 +25275,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/252-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv08/tcgl/252-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv08/tcgl/252-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv08/tcgl/252-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv08/tcgl/252-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv08/tcgl/252-holo-evidence.json",
@@ -27872,7 +27521,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/171-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/171-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/171-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/171-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/171-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/171-holo-evidence.json",
@@ -27887,7 +27535,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/172-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/172-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/172-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/172-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/172-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/172-holo-evidence.json",
@@ -27902,7 +27549,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/173-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/173-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/173-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/173-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/173-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/173-holo-evidence.json",
@@ -27917,7 +27563,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/174-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/174-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/174-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/174-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/174-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/174-holo-evidence.json",
@@ -27932,7 +27577,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/175-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/175-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/175-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/175-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/175-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/175-holo-evidence.json",
@@ -27947,7 +27591,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/176-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/176-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/176-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/176-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/176-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/176-holo-evidence.json",
@@ -27962,7 +27605,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/177-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/177-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/177-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/177-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/177-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/177-holo-evidence.json",
@@ -27977,7 +27619,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/178-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/178-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/178-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/178-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/178-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/178-holo-evidence.json",
@@ -27992,7 +27633,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/179-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/179-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/179-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/179-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/179-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/179-holo-evidence.json",
@@ -28007,7 +27647,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/180-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/180-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/180-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/180-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/180-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/180-holo-evidence.json",
@@ -28022,7 +27661,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/181-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/181-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/181-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/181-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/181-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/181-holo-evidence.json",
@@ -28037,7 +27675,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/182-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/182-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/182-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/182-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/182-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/182-holo-evidence.json",
@@ -28052,7 +27689,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/183-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/183-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/183-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/183-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/183-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/183-holo-evidence.json",
@@ -28067,7 +27703,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/184-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/184-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/184-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/184-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/184-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/184-holo-evidence.json",
@@ -28082,7 +27717,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/185-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/185-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/185-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/185-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/185-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/185-holo-evidence.json",
@@ -28097,7 +27731,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/186-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/186-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/186-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/186-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/186-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/186-holo-evidence.json",
@@ -28112,7 +27745,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/187-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/187-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/187-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/187-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/187-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/187-holo-evidence.json",
@@ -28127,7 +27759,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/188-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/188-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/188-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/188-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/188-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/188-holo-evidence.json",
@@ -28142,7 +27773,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/189-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/189-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/189-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/189-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/189-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/189-holo-evidence.json",
@@ -28157,7 +27787,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv09/tcgl/190-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv09/tcgl/190-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv09/tcgl/190-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv09/tcgl/190-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv09/tcgl/190-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv09/tcgl/190-holo-evidence.json",
@@ -30848,7 +30477,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/206-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/206-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/206-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/206-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/206-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/206-holo-evidence.json",
@@ -30863,7 +30491,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/207-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/207-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/207-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/207-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/207-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/207-holo-evidence.json",
@@ -30878,7 +30505,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/208-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/208-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/208-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/208-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/208-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/208-holo-evidence.json",
@@ -30893,7 +30519,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/209-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/209-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/209-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/209-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/209-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/209-holo-evidence.json",
@@ -30908,7 +30533,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/210-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/210-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/210-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/210-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/210-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/210-holo-evidence.json",
@@ -30923,7 +30547,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/211-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/211-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/211-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/211-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/211-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/211-holo-evidence.json",
@@ -30938,7 +30561,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/212-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/212-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/212-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/212-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/212-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/212-holo-evidence.json",
@@ -30953,7 +30575,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/213-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/213-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/213-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/213-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/213-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/213-holo-evidence.json",
@@ -30968,7 +30589,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/214-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/214-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/214-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/214-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/214-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/214-holo-evidence.json",
@@ -30983,7 +30603,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/215-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/215-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/215-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/215-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/215-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/215-holo-evidence.json",
@@ -30998,7 +30617,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/216-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/216-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/216-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/216-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/216-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/216-holo-evidence.json",
@@ -31013,7 +30631,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/217-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/217-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/217-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/217-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/217-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/217-holo-evidence.json",
@@ -31028,7 +30645,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/218-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/218-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/218-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/218-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/218-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/218-holo-evidence.json",
@@ -31043,7 +30659,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/219-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/219-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/219-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/219-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/219-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/219-holo-evidence.json",
@@ -31058,7 +30673,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/220-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/220-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/220-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/220-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/220-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/220-holo-evidence.json",
@@ -31073,7 +30687,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/221-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/221-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/221-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/221-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/221-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/221-holo-evidence.json",
@@ -31088,7 +30701,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/222-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/222-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/222-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/222-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/222-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/222-holo-evidence.json",
@@ -31103,7 +30715,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/223-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/223-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/223-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/223-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/223-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/223-holo-evidence.json",
@@ -31118,7 +30729,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/224-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/224-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/224-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/224-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/224-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/224-holo-evidence.json",
@@ -31133,7 +30743,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/225-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/225-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/225-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/225-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/225-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/225-holo-evidence.json",
@@ -31148,7 +30757,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/226-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/226-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/226-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/226-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/226-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/226-holo-evidence.json",
@@ -31163,7 +30771,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/227-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/227-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/227-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/227-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/227-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/227-holo-evidence.json",
@@ -31178,7 +30785,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/228-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/228-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/228-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/228-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/228-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/228-holo-evidence.json",
@@ -31193,7 +30799,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/229-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/229-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/229-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/229-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/229-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/229-holo-evidence.json",
@@ -31208,7 +30813,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/230-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/230-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/230-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/230-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/230-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/230-holo-evidence.json",
@@ -31223,7 +30827,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/231-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/231-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/231-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/231-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/231-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/231-holo-evidence.json",
@@ -31238,7 +30841,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/232-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/232-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/232-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/232-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/232-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/232-holo-evidence.json",
@@ -31253,7 +30855,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/233-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/233-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/233-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/233-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/233-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/233-holo-evidence.json",
@@ -31268,7 +30869,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/234-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/234-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/234-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/234-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/234-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/234-holo-evidence.json",
@@ -31283,7 +30883,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/235-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/235-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/235-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/235-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/235-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/235-holo-evidence.json",
@@ -31298,7 +30897,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/236-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/236-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/236-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/236-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/236-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/236-holo-evidence.json",
@@ -31313,7 +30911,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/237-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/237-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/237-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/237-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/237-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/237-holo-evidence.json",
@@ -31328,7 +30925,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/238-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/238-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/238-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/238-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/238-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/238-holo-evidence.json",
@@ -31343,7 +30939,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/239-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/239-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/239-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/239-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/239-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/239-holo-evidence.json",
@@ -31358,7 +30953,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/240-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/240-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/240-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/240-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/240-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/240-holo-evidence.json",
@@ -31373,7 +30967,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/241-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/241-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/241-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/241-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/241-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/241-holo-evidence.json",
@@ -31388,7 +30981,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/242-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/242-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/242-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/242-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/242-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/242-holo-evidence.json",
@@ -31403,7 +30995,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/243-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/243-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/243-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/243-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/243-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/243-holo-evidence.json",
@@ -31418,7 +31009,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
       "foil": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-foil.png",
       "protection": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-protection.png",
       "normal": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-normal.png",
-      "height": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-height.png",
       "roughness": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-evidence.json",

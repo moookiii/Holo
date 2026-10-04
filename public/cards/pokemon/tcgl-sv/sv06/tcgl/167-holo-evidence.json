@@ -1,0 +1,116 @@
+{
+  "cardId": "sv06-167",
+  "variant": "holo",
+  "tcglCardId": "sv6_167",
+  "tcglVariantId": "LegacyEnergy_sv6_167_std_Ace_AceFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_167_std.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_167_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "507f2d1565e7eebae95b13735c7e8c6315d05f39aa32b57707f300e0ffea1fe5"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_167_std.foil.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_167_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "6deee2a25d48a6acdecd4a3205010eecd3dbfd32eca9c33796873f8fdb5f57f4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6/sv6_en_167_std.etch.png",
+      "file": "research/tcgl/sv06-set/raw/sv6_en_167_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0a7bab29368efd65f4b0ccb7f34183ec835a13b1ce0363f8a64c583451f2d76a"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06/page-04.jpg"
+    ],
+    "holoFrontSha256": "507f2d1565e7eebae95b13735c7e8c6315d05f39aa32b57707f300e0ffea1fe5"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 2261,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 2886,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 494,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 22759,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 876,
+      "texturedInteriorFraction": 0.9793103448275862
+    },
+    {
+      "areaAtFoilResolution": 9979,
+      "texturedInteriorFraction": 0.8402755001639882
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "167-holo-foil.png": "eb63c6478c70e7f0fab248a7d3f2dde34520bfa94aef8c8b2115bb893cc42e5c",
+    "167-holo-protection.png": "fde7721df0c663ea6e86f69ca5582bee55e5ed2510a6fec7798d53f6028387b7",
+    "167-holo-normal.png": "a3d9a11caa6d761a6e9519c1034018481005387bca190378fc8923355c8c72d4",
+    "167-holo-roughness.png": "4cf74a61a01a56219c5d5e91f3e9b4879699400fae779c6aefa8ae8841efed27"
+  },
+  "holoFrontSha256": "507f2d1565e7eebae95b13735c7e8c6315d05f39aa32b57707f300e0ffea1fe5",
+  "mapDimensions": {
+    "167-holo-foil.png": [
+      367,
+      512
+    ],
+    "167-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "167-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "167-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}

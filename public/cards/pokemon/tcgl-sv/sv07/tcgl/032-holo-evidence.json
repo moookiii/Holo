@@ -1,0 +1,140 @@
+{
+  "cardId": "sv07-032",
+  "variant": "holo",
+  "tcglCardId": "sv7_32",
+  "tcglVariantId": "Laprasex_sv7_32_std_DoubleRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv7/sv7_en_032_std.png",
+      "file": "research/tcgl/sv07-set/raw/sv7_en_032_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "89d0379bec0fac59bd5d4d4471caf56c3546b6f118d4723fda8e9c907462fa70"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv7/sv7_en_032_std.foil.png",
+      "file": "research/tcgl/sv07-set/raw/sv7_en_032_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "3c22b8662405d1087f9d1ca6ca4ae97b83fe6a54cc2b647723bfd74adbc57d57"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv7/sv7_en_032_std.etch.png",
+      "file": "research/tcgl/sv07-set/raw/sv7_en_032_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7cfe66eb6eb58a0b8f4ad5975b75a65d98741abb1f7ac9c882ab484a12944a1b"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv07/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv07/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv07/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv07/page-04.jpg"
+    ],
+    "holoFrontSha256": "89d0379bec0fac59bd5d4d4471caf56c3546b6f118d4723fda8e9c907462fa70"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 245,
+      "texturedInteriorFraction": 0.5175438596491229
+    },
+    {
+      "areaAtFoilResolution": 514,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 193,
+      "texturedInteriorFraction": 0.48863636363636365
+    },
+    {
+      "areaAtFoilResolution": 237,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 243,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 189,
+      "texturedInteriorFraction": 0.648936170212766
+    },
+    {
+      "areaAtFoilResolution": 696,
+      "texturedInteriorFraction": 0.40693430656934304
+    },
+    {
+      "areaAtFoilResolution": 1348,
+      "texturedInteriorFraction": 0.5109649122807017
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 0.5045871559633027
+    },
+    {
+      "areaAtFoilResolution": 358,
+      "texturedInteriorFraction": 0.9911504424778761
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "032-holo-foil.png": "9ee5e00e5d44640709facae16507af8e8efffb353506ea062e09f274c7015fc4",
+    "032-holo-protection.png": "dbd4074d19fc4cf5de3d62923a2ae695dede6033f1f0771d012280853f3e540a",
+    "032-holo-normal.png": "fb34dbaad28b21fb9d2133c0ba7b7ed3a6a0c9e39842690ca6c1522826653690",
+    "032-holo-roughness.png": "973f4ff0aa420fb0589d66eedf193afffa700393c03663fa575574b81f86ab30"
+  },
+  "holoFrontSha256": "89d0379bec0fac59bd5d4d4471caf56c3546b6f118d4723fda8e9c907462fa70",
+  "mapDimensions": {
+    "032-holo-foil.png": [
+      367,
+      512
+    ],
+    "032-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "032-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "032-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  }
+}
