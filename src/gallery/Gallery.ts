@@ -15,6 +15,7 @@ import { profiles } from '../materials/profiles';
 import { printVariantLabel, type PrintVariant } from '../pokemon/types';
 
 interface Entry { token: number; ready: boolean; uploading?: boolean; error?: string; preview?: CardPreview; pitch: number; yaw: number; }
+const PREVIEW_CONCURRENCY = 4;
 export class Gallery {
   readonly root = document.createElement('section');
   readonly viewport = document.createElement('div');
@@ -104,7 +105,7 @@ export class Gallery {
   private async transition(action: () => Promise<void>) {
     if (this.loading) return;
     this.loading = true; this.root.setAttribute('aria-busy', 'true'); this.status.textContent = 'Opening full-quality card…';
-    for (const request of this.requests.values()) request.abort();
+    for (const slot of this.requests.keys()) this.cancelRequest(slot);
     try { await action(); }
     catch (error) { this.status.textContent = error instanceof Error ? error.message : 'Unable to open card. Try again.'; }
     finally { this.loading = false; this.root.removeAttribute('aria-busy'); }
@@ -146,8 +147,10 @@ export class Gallery {
       this.options.lighting.setPreset('Studio');
     }
     this.active = false; this.root.hidden = true; this.graphics.mesh.visible = false; this.pointer = undefined;
-    for (const request of this.requests.values()) request.abort();
+    for (const slot of this.requests.keys()) this.cancelRequest(slot);
   }
+  private cancelRequest(slot: number) { this.requests.get(slot)?.abort(); this.requests.delete(slot); }
+  private needsPreview(entry: Entry) { return !entry.ready && !entry.uploading && !entry.preview && !entry.error; }
   private applyFilters(reset = true) {
     this.filtered = filterCards(this.options.cards, this.query);
     this.count.textContent = `${this.filtered.length.toLocaleString()} cards`;
@@ -163,9 +166,9 @@ export class Gallery {
     this.assigned = this.residency.reconcile(visible.map(card => card.id));
     const wanted = new Set(visible.map(c => c.id));
     for (const [id, button] of this.buttons) if (!wanted.has(id)) { button.remove(); this.buttons.delete(id); }
-    for (const [slot, request] of this.requests) if (!this.assigned.some(a => a.slot === slot && this.entries.get(slot)?.token === a.token)) request.abort();
+    for (const slot of this.requests.keys()) if (!this.assigned.some(a => a.slot === slot && this.entries.get(slot)?.token === a.token)) this.cancelRequest(slot);
     for (const item of this.assigned) {
-      if (item.changed || !this.entries.has(item.slot)) { this.requests.get(item.slot)?.abort(); this.entries.set(item.slot, { token: item.token, ready: false, pitch: 0, yaw: 0 }); }
+      if (item.changed || !this.entries.has(item.slot)) { this.cancelRequest(item.slot); this.entries.set(item.slot, { token: item.token, ready: false, pitch: 0, yaw: 0 }); }
       const index = this.layout.start + visible.findIndex(c => c.id === item.id), card = this.filtered[index];
       let button = this.buttons.get(card.id);
       if (!button) {
@@ -196,9 +199,26 @@ export class Gallery {
       lighting.key.lookAt(0, 0, 0);
     }
     this.graphics.hideAll();
+    const prioritized = this.assigned.map(item => {
+      const index = Number(this.buttons.get(item.id)!.dataset.cardIndex), card = this.filtered[index];
+      const cardHeight = this.layout.cell * card.dimensions.height / card.dimensions.width;
+      const x = rect.left + this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + this.layout.cell / 2;
+      const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.viewport.scrollTop + cardHeight / 2;
+      return { ...item, card, cardHeight, x, y, visible: y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom };
+    }).sort((a, b) => Number(b.visible) - Number(a.visible));
+    // Cache hits do not need a worker slot, even when cold requests fill the queue.
+    for (const item of prioritized) {
+      const entry = this.entries.get(item.slot)!;
+      if (this.needsPreview(entry) && !this.requests.has(item.slot)) entry.preview = this.options.cpu.cachedPreview(item.card);
+    }
+    const waiting = Math.min(PREVIEW_CONCURRENCY, prioritized.filter(item => item.visible
+      && this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot)).length);
+    // After a scroll, unfinished overscan must not delay the new visible rows.
+    for (const item of prioritized) if (!item.visible && this.requests.has(item.slot)
+      && this.requests.size + waiting > PREVIEW_CONCURRENCY) this.cancelRequest(item.slot);
     let uploaded = false;
     let waitingForVisibleCard = false;
-    for (const item of this.assigned) {
+    for (const item of prioritized) {
       const entry = this.entries.get(item.slot)!, button = this.buttons.get(item.id)!;
       if (entry.preview && !uploaded) {
         const preview = entry.preview; entry.preview = undefined; entry.uploading = true; uploaded = true;
@@ -210,17 +230,14 @@ export class Gallery {
       }
       button.classList.toggle('is-ready', entry.ready);
       const placeholder = button.firstElementChild!; placeholder.textContent = entry.error ? 'Preview unavailable · Retry' : 'Loading…';
-      const index = Number(button.dataset.cardIndex), card = this.filtered[index];
-      const cardHeight = this.layout.cell * card.dimensions.height / card.dimensions.width;
-      const x = rect.left + this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + this.layout.cell / 2;
-      const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.viewport.scrollTop + cardHeight / 2;
-      if (y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom && !entry.ready && !entry.error)
+      const { card, cardHeight, x, y } = item;
+      if (item.visible && !entry.ready && !entry.error)
         waitingForVisibleCard = true;
       const target = this.pointer && !this.reduced.matches ? influence(this.pointer.x - x, this.pointer.y - y, this.tilt) : { pitch: 0, yaw: 0 };
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
-      if (entry.ready && y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom)
+      if (entry.ready && item.visible)
         this.graphics.place(item.slot, x, y, this.layout.cell, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
-      if (!entry.ready && !entry.uploading && !entry.preview && !entry.error && !this.requests.has(item.slot) && this.requests.size < 2 && !this.loading) {
+      if (this.needsPreview(entry) && !this.requests.has(item.slot) && this.requests.size < PREVIEW_CONCURRENCY && !this.loading) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
           if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed) entry.preview = preview;

@@ -6,7 +6,7 @@ Open **Gallery** beside **Open a pack**. Search and game/set/rarity/finish/categ
 
 | Tier | Resources | Lifetime |
 | --- | --- | --- |
-| Inactive | CardDefinition and source URLs; optional reduced preview in the CPU LRU | 24 MiB CPU preview budget |
+| Inactive | CardDefinition and source URLs; optional reduced preview in the CPU LRU | 96 MiB CPU preview budget |
 | Gallery | One instanced mesh, one physical material, one 512 × 720 × 48 artwork array, eight 128 × 180 × 48 map arrays and a 34 × 48 optical parameter texture | Fixed 106,194,432 bytes (101.275 MiB) of GPU texels, plus matrices/geometry/material; matching CPU upload buffers |
 | Focused | Existing CardFactory full-quality material, manufacturing fields, maps and physical geometry | One focused factory, disposed when returning to Gallery |
 
@@ -14,9 +14,9 @@ Gallery reuses the existing renderer, scene, camera, environment and StudioLight
 
 `GalleryLayout` calculates only viewport rows plus one row of overscan on each side. Row size adapts on extreme viewport sizes so at most 48 cards are needed. `GalleryResidency` assigns fixed slots and evicts the least recently needed inactive slot. Retained idle slots consume the same fixed allocation; total collection size cannot grow it. Slots have generation tokens, so canceled work cannot upload into a reassigned slot.
 
-At most two CPU preview requests run concurrently. Fetches are abortable with timeouts, decoded images are closed, and only one completed card uploads per animation frame. Three.js r186 supports per-layer updates in both WebGPU and WebGL fallback. New sources do not create new materials or shader graphs. While focused or opening a pack, Gallery starts no preview work. Its bounded atlas stays available for return navigation.
+At most four CPU preview requests run concurrently. Visible cards take priority over overscan for both preparation and upload; unfinished offscreen requests yield their slots when newly visible cards need them. Cache hits bypass worker scheduling even when all four requests are occupied. Fetches are abortable with timeouts, decoded images are closed, and only one completed card uploads per animation frame. Three.js r186 supports per-layer updates in both WebGPU and WebGL fallback. New sources do not create new materials or shader graphs. While focused or opening a pack, Gallery starts no preview work. Its bounded atlas stays available for return navigation.
 
-`CardCpuPreparation.preparePreview` is the reduced CPU tier. It uses the existing profile resolver, coverage resolver and channel packer. It generates reduced manufacturing fields with the existing worker and seeds, without filling the full-resolution CPU cache or invoking GPU APIs. Reduced arrays live in a 24 MiB LRU. Active/in-flight preview objects are also bounded by the 48 slots and two-request limit. Source blobs and large decoded images are temporary; browser HTTP caching may reuse their URLs independently.
+`CardCpuPreparation.preparePreview` is the reduced CPU tier. It uses the existing profile resolver, coverage resolver and channel packer. It generates reduced manufacturing fields with the existing worker and seeds, without filling the full-resolution CPU cache or invoking GPU APIs. Reduced arrays live in a 96 MiB LRU, counted by their actual typed-array byte lengths. Cache identity includes the complete card definition so seed, layout, dimensions, coverage and fallback changes cannot reuse incompatible pixels. CPU telemetry exposes cache entries, hits, bytes and preparation counts. Active/in-flight preview objects are also bounded by the 48 slots and four-request limit. Source blobs and large decoded images are temporary; browser HTTP caching may reuse their URLs independently.
 
 Focus checks `CardCpuPreparation.cached` for a complete compatible prepared card (e.g. from a pack), then calls the normal `realizeCardGpu`. Otherwise it calls the normal `CardFactory.create`. Constructed metal cards retain the original geometry path. No single-card shader, quality setting or resolution is reduced. Focus owns a separate factory resource domain on the **same renderer and scene**, so disposal also removes full-resolution textures and manufacturing caches. Existing viewer/pack caches keep their existing policy.
 
@@ -27,6 +27,8 @@ Previews retain the source aspect ratio, authored coverage/protection, roughness
 `GalleryMotion` exposes radius, strength, falloff and damping. Defaults use a 360-pixel influence radius and 0.60-radian strength, giving a noticeable tilt across nearby cards while ending at the shorter boundary. Frame-rate-independent damping and capped elapsed time prevent a tab resume from snapping cards. `GalleryLighting` exposes only controls relevant to the selected existing preset.
 
 ## Verification
+
+Run `node scripts/gallery-loading-check.mjs` against the dev server (override `GALLERY_URL` if needed) for deterministic browser checks of visible-first scheduling, cache reuse under a saturated queue, overscan preemption and stale/hide cancellation. This uses controlled preparation delays; it does not measure rendering or end-to-end load time.
 
 Run `node scripts/gallery-tilt-check.mjs` for outer-column tilt and neutral-return checks on WebGL. Set `GALLERY_BROWSER=firefox` to exercise Firefox. This samples the lower printed area of every complete card at several pointer positions, catching black wedges from undefined shader math in absent foil layers.
 

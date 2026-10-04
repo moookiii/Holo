@@ -5,7 +5,8 @@ import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from '../assets/M
 import type { FoilLayer, HolographicProfile } from '../materials/HolographicProfile';
 import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { FieldData, PatternSpec } from '../materials/patterns/ManufacturingField';
-import { PREVIEW_BYTES, type CardPreview } from './CardPreviewPreparation';
+import type { CardPreview } from './CardPreviewPreparation';
+import { CardPreviewCache } from './CardPreviewCache';
 import type { MotifImage } from '../materials/patterns/MotifField';
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
@@ -213,19 +214,19 @@ class CpuMapCache {
 
 export class CardCpuPreparation {
   private previewWorker?: CpuPreviewWorker;
-  private previews = new Map<string, CardPreview>();
-  private readonly previewBudget = 24 * 1024 * 1024;
+  private previews = new CardPreviewCache();
+  private previewPreparations = 0;
+  cachedPreview(card: CardDefinition) { return this.disposed ? undefined : this.previews.get(card); }
   async preparePreview(card: CardDefinition, signal: AbortSignal) {
     signal.throwIfAborted();
     if (this.disposed) throw new Error('CPU preparation disposed');
-    const key = JSON.stringify([card.id, card.front, card.maps, card.profile, card.profileOverrides, card.mapSettings]);
-    const cached = this.previews.get(key);
-    if (cached) { this.previews.delete(key); this.previews.set(key, cached); return cached; }
+    const cached = this.cachedPreview(card);
+    if (cached) return cached;
+    this.previewPreparations++;
     const preview = await (this.previewWorker ??= new CpuPreviewWorker()).prepare(card, signal);
     signal.throwIfAborted();
     if (this.disposed) throw new Error('CPU preparation disposed');
-    this.previews.set(key, preview);
-    while (this.previews.size * PREVIEW_BYTES > this.previewBudget) this.previews.delete(this.previews.keys().next().value!);
+    this.previews.set(card, preview);
     return preview;
   }
   /** Reuse pack preparation only when the complete definition is compatible. */
@@ -316,6 +317,6 @@ export class CardCpuPreparation {
     })().catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
-  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, previewBytes: this.previews.size * PREVIEW_BYTES, previewBudget: this.previewBudget }; }
+  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, ...this.previews.stats(), previewPreparations: this.previewPreparations }; }
   dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewWorker?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
 }
