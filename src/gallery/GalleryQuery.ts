@@ -15,28 +15,31 @@ const pokemonSetAliases: Readonly<Record<string, string>> = {
   'Vivid Voltage · Rainbow Rare': 'Vivid Voltage',
 };
 
-/** English Pokémon release order for sets represented in the collection. */
-const pokemonSetReleaseOrder = [
-  'Base Set',
-  'Wizards Black Star Promos',
-  'Jungle',
-  'Fossil',
-  'Burger King',
-  'Base Set 2',
-  'Team Rocket',
-  'Gym Heroes',
-  'Gym Challenge',
-  'Neo Genesis',
-  'Legendary Collection',
-  'Expedition Base Set',
-  'EX FireRed & LeafGreen',
-  'Sun & Moon Base',
-  'Vivid Voltage',
-  'Scarlet & Violet',
-  'Paldea Evolved',
-  'Prismatic Evolutions',
-];
-const pokemonSetReleaseRank = new Map(pokemonSetReleaseOrder.map((name, index) => [name, index]));
+/** English Pokémon release dates for sets represented in the collection. */
+const pokemonSetReleaseDates = new Map<string, string>([
+  ['Base Set', '1999-01-09'],
+  ['Jungle', '1999-06-16'],
+  ['Wizards Black Star Promos', '1999-07-01'],
+  ['Fossil', '1999-10-10'],
+  ['Burger King', '1999-11-15'],
+  ['Base Set 2', '2000-02-24'],
+  ['Team Rocket', '2000-04-24'],
+  ['Gym Heroes', '2000-08-14'],
+  ['Gym Challenge', '2000-10-16'],
+  ['Neo Genesis', '2000-12-16'],
+  ['Neo Discovery', '2001-06-01'],
+  ['Southern Islands', '2001-07-31'],
+  ['Legendary Collection', '2002-05-24'],
+  ['Expedition Base Set', '2002-09-15'],
+  ['EX FireRed & LeafGreen', '2004-09-01'],
+  ['FireRed & LeafGreen', '2004-09-01'],
+  ['Sun & Moon Base', '2017-02-03'],
+  ['Sun & Moon', '2017-02-03'],
+  ['Vivid Voltage', '2020-11-13'],
+  ['Scarlet & Violet', '2023-03-31'],
+  ['Paldea Evolved', '2023-06-09'],
+  ['Prismatic Evolutions', '2025-01-17'],
+]);
 
 /** TCG release dates for the Yu-Gi-Oh! prints in this collection. */
 const yugiohSets = [
@@ -94,6 +97,7 @@ const magicSetReleaseDates = new Map<string, string>([
   ['Mystery Booster Commander Edition', '2026-11-09'],
   ['Star Trek', '2026-11-13'],
 ]);
+const gallerySetReleaseDate = (name: string) => pokemonSetReleaseDates.get(name) ?? yugiohSetReleaseDates.get(name) ?? magicSetReleaseDates.get(name);
 
 export function gallerySetName(card: CardDefinition) {
   if (card.franchise === 'Yu-Gi-Oh!') {
@@ -109,18 +113,12 @@ export function gallerySetName(card: CardDefinition) {
 }
 
 export function compareGallerySetNames(a: string, b: string) {
-  const dateA = yugiohSetReleaseDates.get(a) ?? magicSetReleaseDates.get(a);
-  const dateB = yugiohSetReleaseDates.get(b) ?? magicSetReleaseDates.get(b);
+  const dateA = gallerySetReleaseDate(a);
+  const dateB = gallerySetReleaseDate(b);
   if (dateA || dateB) {
     if (!dateA) return 1;
     if (!dateB) return -1;
     return dateA.localeCompare(dateB) || a.localeCompare(b);
-  }
-  const rankA = pokemonSetReleaseRank.get(a), rankB = pokemonSetReleaseRank.get(b);
-  if (rankA !== undefined || rankB !== undefined) {
-    if (rankA === undefined) return 1;
-    if (rankB === undefined) return -1;
-    if (rankA !== rankB) return rankA - rankB;
   }
   return a.localeCompare(b);
 }
