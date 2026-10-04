@@ -1,8 +1,8 @@
 {
   "cardId": "sv08.5-149",
   "variant": "holo",
-  "status": "photo-guided-reconstruction",
-  "rendererReady": true,
+  "status": "tcgl-etch-derived",
+  "rendererReady": false,
   "textured": true,
   "mapSize": [
     1800,
@@ -11,9 +11,9 @@
   "maps": {
     "149-holo-foil.png": "d2c6a78dd4a397cc9b573fa03634b375190273b567c51b88542bb9d0a7e5ae30",
     "149-holo-protection.png": "0bdda333f6e3624559bec69739e74446b8938c1b745ebd19c064714361dfcc23",
-    "149-holo-height.png": "c46638e438606fb6c7649fd192a3ba2aba8a84703c9322f3ae4d946f06e598f1",
-    "149-holo-normal.png": "1f22c63625663092221a49ba441c762de255a211aa31e125cd4533c90cc1c3ec",
-    "149-holo-roughness.png": "c643efd9b88f6303241dd79b8316c8a1926ac4ca186f6d1fa57664005c96cdca",
+    "149-holo-height.png": "bd4b12203034d3b5c816cfffc531eddd7de2899ca031bd0e48d6cda1491803f7",
+    "149-holo-normal.png": "82bf65a69113d4444c55cad9016d040157568bdcd1e3b9825adf289aadc7fee0",
+    "149-holo-roughness.png": "794079dd6b1dbf47a81595c1b437634938bec522339e353bc4528cfe66da4ac7",
     "149-holo-secondary-foil.png": "ddaaa590672e1c448a6ef8da04b5f8aa96016aea9ee8ed637ef209b8f7293866",
     "149-holo-body.png": "75518cf3a621cb899e60faf245fefb768c1ef9eda1a6ed7469d2446dca2d2acd",
     "149-holo-gems.png": "521d8cd5d48124245d95c36aed3e6f8174d5ad8f2b300dc03bb23891ada96648",
@@ -50,5 +50,50 @@
     }
   ],
   "referencePolicy": "Etching master defines groove flow; cutout master defines character coverage. Clean local front supplies registration only. User silver microdiamond PNG supplies trim coverage, registered separately for ex lettering.",
-  "limitations": "Incision spacing, depth, hidden line continuation and optical constants are estimates from the supplied views. No brightness or random noise was converted to relief."
+  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief.",
+  "replacedNormal": {
+    "file": "public\\cards\\pokemon\\prismatic-evolutions\\maps\\149-holo-normal.png",
+    "sha256": "1f22c63625663092221a49ba441c762de255a211aa31e125cd4533c90cc1c3ec"
+  },
+  "legacyRelief": {},
+  "normalSource": {
+    "file": "research\\tcgl\\sv08.5-149\\sv8-5_en_149_std.etch.png",
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_149_std.etch.png",
+    "sha256": "f6b0e442d11467e1e1cd07ca9a0cde19bdb14f906e5a79b59fe0829ee1fe39cc",
+    "tcglCardId": "sv8-5_149",
+    "tcglLongFormId": "Vaporeonex_sv8-5_149_std_SpecialIllustrationRare_SvUltra_Etched",
+    "dimensions": [
+      733,
+      1024
+    ],
+    "operation": "Full-domain bilinear resize; invert mean etch RGB luminance; unblurred continuous-field Scharr derivatives with scale 1/32; gain 1.03; apply protection to slopes after differentiation; normalize; flatten outside source alpha; opaque RGB OpenGL +Y encoding (-dH/dx,+dH/drow,+Z).",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "slopeGain": 1.03,
+    "runtimeGeneration": false
+  },
+  "heightSource": {
+    "file": "research\\tcgl\\sv08.5-149\\sv8-5_en_149_std.etch.png",
+    "operation": "0.5 + (inverted resized etch luminance - 0.5) * 0.25",
+    "embossStrength": 0,
+    "note": "Inspection only; no live height response."
+  },
+  "finishReference": {
+    "cardId": "sv08.5-156",
+    "profile": "Espeon 155 finish used by final Sylveon 156",
+    "normalScale": 1,
+    "embossStrength": 0,
+    "roughnessMode": "absolute",
+    "roughness": "0.30 background + 0.105 body; blend to 0.27 in existing secondary foil. Missing region maps mean zero coverage.",
+    "metalness": 0.5,
+    "laminate": 0.045,
+    "foilReflectance": 0.025,
+    "etchedInkSheen": 0.85
+  },
+  "preservedAssets": {
+    "public\\cards\\pokemon\\prismatic-evolutions\\149.png": "aa069f8e5ec1fddd791bb78df82f8de01d4605ded23e72971370920f69d2eb99",
+    "public\\cards\\pokemon\\prismatic-evolutions\\maps\\149-holo-foil.png": "d2c6a78dd4a397cc9b573fa03634b375190273b567c51b88542bb9d0a7e5ae30",
+    "public\\cards\\pokemon\\prismatic-evolutions\\maps\\149-holo-protection.png": "0bdda333f6e3624559bec69739e74446b8938c1b745ebd19c064714361dfcc23",
+    "public\\cards\\pokemon\\prismatic-evolutions\\maps\\149-holo-secondary-foil.png": "ddaaa590672e1c448a6ef8da04b5f8aa96016aea9ee8ed637ef209b8f7293866"
+  }
 }

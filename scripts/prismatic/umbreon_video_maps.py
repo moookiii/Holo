@@ -253,3 +253,11 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('video',type=Path,nargs='?',help='Original video; omit to reuse recorded evidence and reference frames')
     build(parser.parse_args().video)
+
+# Keep legacy region authoring, but replace its generated relief with the exact
+# reviewed TCGL etch and the required Sylveon finish before delivery.
+if __name__ == "__main__":
+    import subprocess as _tcgl_subprocess
+    import sys as _tcgl_sys
+    _tcgl_root = Path(__file__).resolve().parents[2]
+    _tcgl_subprocess.run([_tcgl_sys.executable, str(_tcgl_root / "scripts/tcgl/convert_etched_cards.py"), "--card", "sv08.5-161"], check=True)

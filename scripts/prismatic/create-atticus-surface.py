@@ -91,3 +91,11 @@ def build():
 
 
 if __name__=='__main__': build()
+
+# Final relief always comes from the exact reviewed TCGL source.
+if __name__ == "__main__":
+    import subprocess as _tcgl_subprocess
+    import sys as _tcgl_sys
+    from pathlib import Path as _tcgl_Path
+    _tcgl_root = _tcgl_Path(__file__).resolve().parents[2]
+    _tcgl_subprocess.run([_tcgl_sys.executable, str(_tcgl_root / "scripts/tcgl/convert_etched_cards.py"), "--card", "sv08.5-133"], check=True)

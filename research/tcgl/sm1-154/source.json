@@ -24,6 +24,17 @@
     1024
   ],
   "matchingTcglFrontSha256": "e6bf62565fcf0cbf6466715e687768c4c640e8ba54149bbbc0ed0bf49779581b",
-  "alignmentReview": "pending",
+  "alignmentReview": {
+    "status": "reviewed",
+    "method": "Raw TCGL etch and paired TCGL front, with colored etch overlay over the unchanged Holo clean front.",
+    "capture": "artifacts/tcgl-etched-migration/sm1-154-alignment.png",
+    "holoFront": "public\\cards\\umbreon-gx-sm1-154\\front.png",
+    "holoFrontSha256": "6b0b9d65bd100f473d9623ba7775537ed44b256b510f43dc9e396de581ac808a",
+    "polarity": "White strokes interpreted as recessed; invert etch luminance.",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "observed": "Upright full-card UV domain. Border, corners, subject contours, title, individual text regions and attack areas align. No visible scaling drift, offset or stretching in the source overlays.",
+    "physicalDepth": "Not measured; same rendering gain as Sylveon 156."
+  },
   "assetUrlBasis": "Exact raw TCGL longFormID standard variant, using the same TCGL CDN PNG naming scheme as the processed exports. Downloaded paired front and etch must be inspected before conversion."
 }

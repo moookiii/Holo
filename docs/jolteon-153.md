@@ -1,3 +1,5 @@
+> Current relief: exact TCGL etch converted offline with the final Sylveon/Espeon finish. Height emboss is disabled. See [TCGL migration](tcgl-etched-migration.md) for the active method and evidence. The photo-guided relief descriptions below are historical; existing foil/protection boundaries are retained.
+
 # Jolteon ex 153/131
 
 The exact printing uses eleven dedicated 1800x2475 PNG maps and the established

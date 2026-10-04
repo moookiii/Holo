@@ -1,0 +1,62 @@
+{
+  "cardId": "swsh4-188",
+  "variant": "holo",
+  "maps": {
+    "normal.png": "8c64b937375e1f6ecc86ab39378deaeaaf08bb29f23d1f63d1f130dd79416604",
+    "height.png": "6905de8392702f0325f35a7814b4edd8a838e678367be096f043db0767b70dfa",
+    "roughness.png": "16a95d37696822de3cf6b242f4496007de35a0585a4f32e521e55eac6cc72b03",
+    "body.png": "56858df4b3c975b27bbeeeb521f151ea66f673663021976c69e65e193f5ce2b1"
+  },
+  "replacedNormal": {
+    "file": "public\\cards\\pikachu-vmax-vivid-voltage\\normal.png",
+    "sha256": "c4f1863a0c1a0b008f049d12a932761f509d1dd669cdfacfede0f9a7fb223c8e"
+  },
+  "legacyRelief": {},
+  "status": "tcgl-etch-derived",
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "textured": true,
+  "rendererReady": false,
+  "normalSource": {
+    "file": "research\\tcgl\\swsh4-188\\swsh4_en_188_std.etch.png",
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/swsh4/swsh4_en_188_std.etch.png",
+    "sha256": "c1da3f03b83b07bdeda244c2a0d22aa491ce3bfa5ad7d9089153ba04b273a5a8",
+    "tcglCardId": "swsh4_188",
+    "tcglLongFormId": "PikachuVMAX_swsh4_188_std_RareRainbow_SwSecret_Etched",
+    "dimensions": [
+      733,
+      1024
+    ],
+    "operation": "Full-domain bilinear resize; invert mean etch RGB luminance; unblurred continuous-field Scharr derivatives with scale 1/32; gain 1.03; apply protection to slopes after differentiation; normalize; flatten outside source alpha; opaque RGB OpenGL +Y encoding (-dH/dx,+dH/drow,+Z).",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "slopeGain": 1.03,
+    "runtimeGeneration": false
+  },
+  "heightSource": {
+    "file": "research\\tcgl\\swsh4-188\\swsh4_en_188_std.etch.png",
+    "operation": "0.5 + (inverted resized etch luminance - 0.5) * 0.25",
+    "embossStrength": 0,
+    "note": "Inspection only; no live height response."
+  },
+  "finishReference": {
+    "cardId": "sv08.5-156",
+    "profile": "Espeon 155 finish used by final Sylveon 156",
+    "normalScale": 1,
+    "embossStrength": 0,
+    "roughnessMode": "absolute",
+    "roughness": "0.30 background + 0.105 body; blend to 0.27 in existing secondary foil. Missing region maps mean zero coverage.",
+    "metalness": 0.5,
+    "laminate": 0.045,
+    "foilReflectance": 0.025,
+    "etchedInkSheen": 0.85
+  },
+  "preservedAssets": {
+    "public\\cards\\pikachu-vmax-vivid-voltage\\front.png": "213a853e8e112af0fb9ee8df4fdf55ca731274ccaacee3a743495c3165bee809",
+    "public\\cards\\pikachu-vmax-vivid-voltage\\foil.png": "e9c9555d4bff47690ff3e82be07471b9e170711d518765bcdaa80e18cef31d66",
+    "public\\cards\\pikachu-vmax-vivid-voltage\\protection.png": "af62a2b86703d184ff6c3a6a997a167253e06dd214c31a76ade7404ca41f6f3b"
+  },
+  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief."
+}

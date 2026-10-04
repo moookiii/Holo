@@ -13,6 +13,7 @@ import { baseSet2Definitions } from './BaseSet2Cards.ts';
 import { legendaryCollectionDefinitions } from './LegendaryCollectionCards.ts';
 import { fossilDefinitions } from './FossilCards.ts';
 import type { CardProfileOverrides } from '../materials/HolographicProfile';
+import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish';
 import { nonHoloCards } from './NonHoloCards.ts';
 import { holoBulkCards } from './HoloBulkCards.ts';
 import { yugiohTopCards } from './YugiohTopCards.ts';
@@ -154,8 +155,9 @@ export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, ph
   set: 'Sun & Moon Base · Rainbow Secret Rare', number: '154/149', dimensions: DIMENSIONS.standard,
   front: '/cards/umbreon-gx-sm1-154/front.png', back: '/cards/pokemon/back.jpg',
   layout: { artwork: [0, 0, 1, 1], innerFrame: [.025, .02, .975, .98] },
-  profile: 'pokemon-sm-rainbow-triangles', seed: 2017154,
-  mapSettings: { roughnessMode: 'absolute', embossStrength: 0, normalScale: .35 },
+  profile: 'prismatic_sir_texture', seed: 2017154,
+  mapSettings: { roughnessMode: 'absolute', embossStrength: 0, normalScale: 1 },
+  profileOverrides: tcglEtchedFinish,
   maps: {
     foil: '/cards/umbreon-gx-sm1-154/foil.png', protection: '/cards/umbreon-gx-sm1-154/protection.png',
     height: '/cards/umbreon-gx-sm1-154/height.png', normal: '/cards/umbreon-gx-sm1-154/normal.png',
@@ -163,25 +165,24 @@ export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, ph
   },
   source: {
     image: 'https://assets.tcgdex.net/en/sm/sm1/154/high.png', metadata: 'https://api.tcgdex.net/v2/en/cards/sm1-154',
-    notes: 'Unmodified TCGdex print. Exact-card user photos supply registered groove geometry and light-response references. Triangle axes, body contours, wavy trim, energy circles and smooth GX backdrop are authored independently; no photographed lighting becomes height. Depth and obscured continuation are estimates. See docs/umbreon-gx-sm1-154.md.',
+    notes: 'Unmodified TCGdex print and existing foil/protection boundaries. Exact TCGL UmbreonGX_sm1_154_std_RareRainbow_Rainbow_Etched supplies the offline normal; final Sylveon/Espeon finish, no extra height emboss. See research/tcgl/sm1-154/source.json and docs/tcgl-etched-migration.md.',
   },
 }, {
   id: 'pikachu-vmax-vivid-voltage', title: 'Pikachu VMAX', franchise: 'Pokémon',
   set: 'Vivid Voltage · Rainbow Rare', number: '188/185', dimensions: DIMENSIONS.standard,
   front: '/cards/pikachu-vmax-vivid-voltage/front.png', back: '/cards/pokemon/back.jpg',
   layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
-  profile: 'pokemon-rainbow-etched', seed: 2020188,
-  mapSettings: { roughnessMode: 'absolute', embossStrength: .1, normalScale: 1 },
+  profile: 'prismatic_sir_texture', seed: 2020188,
+  mapSettings: { roughnessMode: 'absolute', embossStrength: 0, normalScale: 1 },
+  profileOverrides: tcglEtchedFinish,
   maps: {
     foil: '/cards/pikachu-vmax-vivid-voltage/foil.png', protection: '/cards/pikachu-vmax-vivid-voltage/protection.png',
     height: '/cards/pikachu-vmax-vivid-voltage/height.png', normal: '/cards/pikachu-vmax-vivid-voltage/normal.png',
-    roughness: '/cards/pikachu-vmax-vivid-voltage/roughness.png', direction: '/cards/pikachu-vmax-vivid-voltage/direction.png',
-    pattern: '/cards/pikachu-vmax-vivid-voltage/pattern.png', laminate: '/cards/pikachu-vmax-vivid-voltage/laminate.png',
-    sparkle: '/cards/pikachu-vmax-vivid-voltage/sparkle.png',
+    roughness: '/cards/pikachu-vmax-vivid-voltage/roughness.png',
   },
   source: {
     image: 'https://images.pokemontcg.io/swsh4/188_hires.png', metadata: 'https://limitlesstcg.com/cards/en/VIV/188',
-    notes: 'English 2020 Vivid Voltage 188/185 Rainbow Rare, aky CG Works. Unmodified 734 × 1024 digital print; real etched treatment reconstructed with registered 1468 × 2048 surface maps from multiple physical-card photographs. No photographed lighting in the front. See docs/pikachu-vmax-rainbow.md and source.json for reference provenance and visual validation.',
+    notes: 'English Vivid Voltage 188/185 Rainbow Rare, aky CG Works. Unmodified front and existing foil/protection boundaries. Exact TCGL PikachuVMAX_swsh4_188_std_RareRainbow_SwSecret_Etched supplies the offline normal; final Sylveon/Espeon finish, no height emboss or generated grating/noise maps. See research/tcgl/swsh4-188/source.json and docs/tcgl-etched-migration.md.',
   },
 }, {
   id: 'tyranitar-paldea-evolved', title: 'Tyranitar', franchise: 'Pokémon',

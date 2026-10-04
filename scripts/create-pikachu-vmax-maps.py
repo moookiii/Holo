@@ -193,3 +193,11 @@ meta = {
 }
 (ROOT/'source.json').write_text(json.dumps(meta, ensure_ascii=False, indent=2)+'\n', encoding='utf-8')
 print(f'Authored 9 registered {W} x {H} material maps; front sha256 {meta["print"]["sha256"]}')
+
+# Keep legacy region authoring, but replace its generated relief with the exact
+# reviewed TCGL etch and the required Sylveon finish before delivery.
+if __name__ == "__main__":
+    import subprocess as _tcgl_subprocess
+    import sys as _tcgl_sys
+    _tcgl_root = Path(__file__).resolve().parents[1]
+    _tcgl_subprocess.run([_tcgl_sys.executable, str(_tcgl_root / "scripts/tcgl/convert_etched_cards.py"), "--card", "swsh4-188"], check=True)

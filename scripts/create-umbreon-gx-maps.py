@@ -168,3 +168,11 @@ Image.fromarray(np.uint8(np.clip(front*(1-vis[...,None]*.65)+viz*vis[...,None]*.
 (REF/'traced-groove-regions.json').write_text(json.dumps(polygons))
 manifest={'card':'sm1-154','source':'https://assets.tcgdex.net/en/sm/sm1/154/high.png','maps':{p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in OUT.glob('*.png')},'method':'Congruent interlaced equilateral triangles with one parallel groove family per triangle, reconstructed from complementary photographs. No photographed brightness becomes height. Body and bars are traced in TCGdex print coordinates.','estimates':'Triangle side (30 print pixels), 30-degree lattice rotation, lattice phase, groove pitch (2.3 print pixels), depth and the leg contour obscured by the GX banner are estimates guided by the photographs.'}
 (OUT/'source.json').write_text(json.dumps(manifest,indent=2)+'\n')
+
+# Keep legacy region authoring, but replace its generated relief with the exact
+# reviewed TCGL etch and the required Sylveon finish before delivery.
+if __name__ == "__main__":
+    import subprocess as _tcgl_subprocess
+    import sys as _tcgl_sys
+    _tcgl_root = Path(__file__).resolve().parents[1]
+    _tcgl_subprocess.run([_tcgl_sys.executable, str(_tcgl_root / "scripts/tcgl/convert_etched_cards.py"), "--card", "sm1-154"], check=True)

@@ -1,7 +1,7 @@
 {
   "identity": {
     "name": "Pikachu VMAX",
-    "set": "Sword & Shield—Vivid Voltage",
+    "set": "Sword & Shield\u00e2\u20ac\u201dVivid Voltage",
     "number": "188/185",
     "language": "English",
     "rarity": "Rare Rainbow",
@@ -19,14 +19,12 @@
   },
   "maps": {
     "size": [
-      1468,
-      2048
+      1800,
+      2475
     ],
-    "generator": "scripts/create-pikachu-vmax-maps.py",
+    "generator": "scripts/tcgl/convert_etched_cards.py",
     "normalConvention": "OpenGL +Y up",
-    "seed": 2020188,
-    "heightRangeCm": 0.0008,
-    "notes": "Authored estimates from multiple real-card photographs; no measured surface scan."
+    "notes": "Exact TCGL etch normal; fixed Sylveon gain 1.03; height is inspection only, embossStrength 0."
   },
   "references": [
     "https://limitlesstcg.com/cards/en/VIV/188",
@@ -34,5 +32,13 @@
     "https://www.ebay.co.uk/itm/336001692973",
     "https://www.ebay.com/itm/318521727878",
     "https://www.ebay.com/itm/255311777096"
-  ]
+  ],
+  "legacyRelief": {},
+  "tcglRelief": {
+    "source": "research\\tcgl\\swsh4-188\\source.json",
+    "evidence": "public/cards/pikachu-vmax-vivid-voltage/tcgl-evidence.json",
+    "generator": "scripts/tcgl/convert_etched_cards.py",
+    "normalScale": 1,
+    "embossStrength": 0
+  }
 }

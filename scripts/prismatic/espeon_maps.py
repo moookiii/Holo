@@ -135,3 +135,11 @@ def build():
     (OUT/'155-holo-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n')
 
 if __name__=='__main__': build()
+
+# Keep legacy region authoring, but replace its generated relief with the exact
+# reviewed TCGL etch and the required Sylveon finish before delivery.
+if __name__ == "__main__":
+    import subprocess as _tcgl_subprocess
+    import sys as _tcgl_sys
+    _tcgl_root = Path(__file__).resolve().parents[2]
+    _tcgl_subprocess.run([_tcgl_sys.executable, str(_tcgl_root / "scripts/tcgl/convert_etched_cards.py"), "--card", "sv08.5-155"], check=True)

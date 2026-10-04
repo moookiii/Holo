@@ -2,9 +2,9 @@
   "cardId": "sv08.5-133",
   "variant": "holo",
   "profile": "prismatic_fullart_texture",
-  "status": "directional-reconstruction",
+  "status": "tcgl-etch-derived",
   "textured": true,
-  "rendererReady": true,
+  "rendererReady": false,
   "references": [
     {
       "file": "atticus-133-user-01.png",
@@ -82,9 +82,8 @@
       "listing": "https://www.ebay.com/itm/388116117538"
     }
   ],
-  "authoring": "Photo-guided directional reconstruction. Named boundaries and guide curves follow exact-card photos; ridge spacing, phase and depth are approximations. No image-derived height or random noise.",
   "remaining": "",
-  "limitations": "Photo-guided full-card reconstruction; ridge positions and 1.5\u20132.2 micrometre relief are calibrated approximations, not pixel-exact or measured physical geometry.",
+  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief.",
   "opaqueRegions": [
     "Exposed eye and face, with separate foil eyebrow and lashes",
     "Left pointing fingertip",
@@ -109,592 +108,642 @@
   "maps": {
     "133-holo-foil.png": "f4bbba3acff3e23e403b7f1a98fe5967ce49a6a1209e848d0a708b7610aa8567",
     "133-holo-protection.png": "6d2db07d83219c100fdc5ad7d6dbd538bae2065f353bbe95e721ff9bc7485d69",
-    "133-holo-height.png": "795e320e5cb23a95623515a757900f9fc9bfabed10a91b32ccb108bd49ce30e7",
-    "133-holo-normal.png": "7026923efa5ce456259558f1fab3ee3b4a14fa4ea262a1f89af2a80a2cb359be",
-    "133-holo-roughness.png": "57b2efe6efb5f3e2c8c48acb99312d85e6a7b84f418941bd36a18cf3a877134a"
+    "133-holo-height.png": "33b6d95343fb5e6ff68de5db6e3d6877c4625ab8a45c13f7fbb876f44cab600b",
+    "133-holo-normal.png": "5f208283cdad37bd930b4f2d139ab2163e105e03da1ec966ff5c0556032f4843",
+    "133-holo-roughness.png": "9b568dd128eefeed11a09fca176da6f5f5534de07deef6c8eabf7aac3293a346"
   },
-  "regions": [
-    {
-      "name": "Continuous forest background",
-      "path": "M23 112 L577 112 L577 803 L23 803 Z",
-      "axis": "x",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          200,
-          22
-        ],
-        [
-          400,
-          -17
-        ],
-        [
-          560,
-          16
-        ],
-        [
-          680,
-          83
-        ],
-        [
-          825,
-          245
-        ]
-      ],
-      "spacing": 2.6,
-      "depth": 2.0
-    },
-    {
-      "name": "Lower garment main folds",
-      "path": "M297 555 Q392 523 443 541 Q479 584 527 719 L541 802 L57 802 L74 777 L76 755 Q120 705 145 679 Q188 637 230 606 Q270 578 297 555 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          95
-        ],
-        [
-          140,
-          38
-        ],
-        [
-          270,
-          0
-        ],
-        [
-          345,
-          -28
-        ],
-        [
-          396,
-          -72
-        ],
-        [
-          438,
-          -92
-        ],
-        [
-          480,
-          -68
-        ],
-        [
-          600,
-          -55
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.1
-    },
-    {
-      "name": "Lower trailing pink cloth",
-      "path": "M297 555 Q358 572 432 539 Q410 591 375 618 Q260 695 74 777 L76 755 Q120 705 145 679 Q188 637 230 606 Q270 578 297 555 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          25
-        ],
-        [
-          150,
-          -8
-        ],
-        [
-          270,
-          -48
-        ],
-        [
-          370,
-          -104
-        ],
-        [
-          460,
-          -155
-        ],
-        [
-          600,
-          -205
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.0
-    },
-    {
-      "name": "Lower right hanging strip",
-      "path": "M439 538 L468 546 L487 644 L521 717 L500 719 L466 664 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          430,
-          0
-        ],
-        [
-          470,
-          30
-        ],
-        [
-          500,
-          68
-        ],
-        [
-          600,
-          85
-        ]
-      ],
-      "spacing": 2.4,
-      "depth": 1.8
-    },
-    {
-      "name": "Rear sleeve",
-      "path": "M312 401 Q339 408 340 447 L338 485 Q286 500 276 456 Q270 441 312 401 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          275,
-          0
-        ],
-        [
-          304,
-          -18
-        ],
-        [
-          332,
-          -4
-        ],
-        [
-          600,
-          0
-        ]
-      ],
-      "spacing": 2.6,
-      "depth": 1.8
-    },
-    {
-      "name": "Torso pink cloth",
-      "path": "M300 283 L420 316 L472 444 L447 478 L420 490 Q371 502 320 490 Q331 478 333 455 L312 407 L290 400 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          295,
-          -15
-        ],
-        [
-          340,
-          0
-        ],
-        [
-          386,
-          24
-        ],
-        [
-          430,
-          49
-        ],
-        [
-          480,
-          64
-        ],
-        [
-          600,
-          90
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 1.9
-    },
-    {
-      "name": "Torso dark strap",
-      "path": "M325 416 Q335 405 347 406 Q365 404 385 416 Q421 434 449 466 Q455 472 457 477 Q449 489 435 499 L426 493 Q393 462 359 449 Q341 442 334 453 L332 459 Q327 451 325 416 Z",
-      "axis": "x",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          390,
-          0
-        ],
-        [
-          435,
-          35
-        ],
-        [
-          500,
-          75
-        ],
-        [
-          825,
-          90
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 1.8
-    },
-    {
-      "name": "Blue waist side",
-      "path": "M454 447 Q466 454 470 467 Q474 480 467 496 L458 505 L450 516 L453 523 Q432 543 402 558 L418 493 Q430 496 435 499 Q449 489 457 477 Q455 472 449 466 L442 457 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          390,
-          0
-        ],
-        [
-          430,
-          -12
-        ],
-        [
-          465,
-          -42
-        ],
-        [
-          600,
-          -70
-        ]
-      ],
-      "spacing": 2.4,
-      "depth": 1.8
-    },
-    {
-      "name": "Rear glove",
-      "path": "M472 478 Q491 478 510 476 Q519 476 526 484 L540 498 Q550 505 548 513 L545 524 Q553 531 551 539 Q544 547 529 550 L509 551 Q504 547 507 540 L509 532 L501 525 L493 557 L490 583 L473 579 L469 548 L472 509 L466 503 Z",
-      "axis": "x",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          478,
-          0
-        ],
-        [
-          510,
-          14
-        ],
-        [
-          551,
-          7
-        ],
-        [
-          590,
-          -8
-        ],
-        [
-          825,
-          0
-        ]
-      ],
-      "spacing": 2.4,
-      "depth": 1.9
-    },
-    {
-      "name": "Green forward sleeve",
-      "path": "M230 260 Q260 247 294 246 Q311 248 325 274 L335 294 Q324 297 327 303 Q337 320 341 333 Q341 337 327 341 Q320 344 321 351 L324 370 Q325 376 315 380 Q305 387 291 392 Q285 397 275 401 Q251 412 229 410 Q207 407 190 392 Q188 374 190 340 L176 327 Z",
-      "axis": "x",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          244,
-          -20
-        ],
-        [
-          300,
-          0
-        ],
-        [
-          348,
-          26
-        ],
-        [
-          385,
-          45
-        ],
-        [
-          420,
-          62
-        ],
-        [
-          825,
-          70
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.2
-    },
-    {
-      "name": "Extended glove palm",
-      "path": "M75 192 Q114 203 140 208 Q154 211 163 210 Q174 213 190 222 Q216 237 245 206 L260 225 Q241 239 231 262 L232 268 Q250 283 258 295 L264 310 L275 319 Q252 327 260 340 Q246 345 239 353 Q201 348 179 330 Q159 308 140 298 Q126 300 117 298 L112 272 L98 286 L87 282 L100 243 L106 232 Q86 227 66 216 Z",
-      "axis": "x",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          190,
-          30
-        ],
-        [
-          225,
-          20
-        ],
-        [
-          270,
-          -5
-        ],
-        [
-          300,
-          -31
-        ],
-        [
-          360,
-          -65
-        ],
-        [
-          825,
-          -80
-        ]
-      ],
-      "spacing": 2.7,
-      "depth": 2.0
-    },
-    {
-      "name": "Pointing finger",
-      "path": "M75 192 Q114 203 140 208 Q154 211 163 210 Q174 213 190 222 Q173 219 151 227 Q144 235 123 233 Q98 234 66 216 Q74 207 75 192 Z",
-      "axis": "x",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          188,
-          8
-        ],
-        [
-          205,
-          5
-        ],
-        [
-          220,
-          -1
-        ],
-        [
-          240,
-          -14
-        ],
-        [
-          825,
-          -20
-        ]
-      ],
-      "spacing": 2.6,
-      "depth": 2.0
-    },
-    {
-      "name": "Downward index glove",
-      "path": "M107 232 Q130 235 151 227 Q178 222 190 222 Q183 249 160 252 Q145 255 130 256 Q110 256 96 274 Q82 290 61 305 Q64 293 50 288 L41 291 Q61 277 75 263 Q98 248 107 232 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          45,
-          0
-        ],
-        [
-          82,
-          -18
-        ],
-        [
-          112,
-          -42
-        ],
-        [
-          150,
-          -80
-        ],
-        [
-          600,
-          -100
-        ]
-      ],
-      "spacing": 2.7,
-      "depth": 2.0
-    },
-    {
-      "name": "Downward middle glove",
-      "path": "M112 262 Q109 290 94 307 L82 332 Q81 319 71 321 L62 324 Q70 307 80 294 Q99 279 112 262 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          60,
-          0
-        ],
-        [
-          90,
-          -20
-        ],
-        [
-          125,
-          -64
-        ],
-        [
-          600,
-          -95
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.0
-    },
-    {
-      "name": "Downward ring glove",
-      "path": "M112 280 Q113 319 118 335 Q109 332 102 339 L97 309 Q108 294 112 280 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          95,
-          0
-        ],
-        [
-          114,
-          -8
-        ],
-        [
-          135,
-          -26
-        ],
-        [
-          600,
-          -50
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.0
-    },
-    {
-      "name": "Cloth face mask",
-      "path": "M341 206 L414 259 L466 290 L529 326 Q525 389 519 416 Q516 432 507 422 Q499 417 499 399 L498 337 L497 397 Q496 423 487 429 Q479 436 468 431 Q445 404 405 365 Q366 334 342 305 Q318 277 300 248 Q304 246 310 239 Q316 230 320 233 Q329 214 336 207 Q339 205 341 206 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          305,
-          -30
-        ],
-        [
-          355,
-          0
-        ],
-        [
-          405,
-          37
-        ],
-        [
-          455,
-          56
-        ],
-        [
-          505,
-          77
-        ],
-        [
-          600,
-          95
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.0
-    },
-    {
-      "name": "Hood outer drape",
-      "path": "M343 179 Q350 168 354 152 Q360 136 376 132 Q417 117 461 116 Q490 137 510 167 Q526 188 528 218 Q531 269 529 318 Q524 320 521 335 Q517 355 515 377 Q511 405 507 393 Q502 383 502 355 Q503 323 496 320 Q490 315 484 338 Q483 355 480 366 Q478 373 475 369 Q469 365 469 349 Q468 325 468 300 Q469 290 466 288 Q462 284 458 292 Q453 300 452 306 Q450 313 446 308 Q443 302 440 306 Q436 308 434 318 Q432 329 429 330 Q425 331 421 323 Q417 317 415 305 Q413 294 414 280 L414 259 L418 204 Q402 191 382 180 Q358 164 347 180 L341 193 Z",
-      "axis": "y",
-      "guide": [
-        [
-          0,
-          0
-        ],
-        [
-          340,
-          -10
-        ],
-        [
-          379,
-          0
-        ],
-        [
-          417,
-          12
-        ],
-        [
-          443,
-          21
-        ],
-        [
-          467,
-          18
-        ],
-        [
-          490,
-          8
-        ],
-        [
-          530,
-          -15
-        ],
-        [
-          600,
-          -25
-        ]
-      ],
-      "spacing": 2.5,
-      "depth": 2.1
-    },
-    {
-      "name": "Gray waist smooth",
-      "path": "M310 470 L330 476 L321 489 Q367 505 423 489 L407 550 Q341 568 297 557 Q287 542 288 522 Q291 499 301 481 Z",
-      "axis": "smooth",
-      "guide": [],
-      "spacing": 0,
-      "depth": 0
-    }
+  "replacedNormal": {
+    "file": "public\\cards\\pokemon\\prismatic-evolutions\\maps\\133-holo-normal.png",
+    "sha256": "7026923efa5ce456259558f1fab3ee3b4a14fa4ea262a1f89af2a80a2cb359be"
+  },
+  "legacyRelief": {
+    "authoring": "Photo-guided directional reconstruction. Named boundaries and guide curves follow exact-card photos; ridge spacing, phase and depth are approximations. No image-derived height or random noise.",
+    "regions": [
+      {
+        "name": "Continuous forest background",
+        "path": "M23 112 L577 112 L577 803 L23 803 Z",
+        "axis": "x",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            200,
+            22
+          ],
+          [
+            400,
+            -17
+          ],
+          [
+            560,
+            16
+          ],
+          [
+            680,
+            83
+          ],
+          [
+            825,
+            245
+          ]
+        ],
+        "spacing": 2.6,
+        "depth": 2.0
+      },
+      {
+        "name": "Lower garment main folds",
+        "path": "M297 555 Q392 523 443 541 Q479 584 527 719 L541 802 L57 802 L74 777 L76 755 Q120 705 145 679 Q188 637 230 606 Q270 578 297 555 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            95
+          ],
+          [
+            140,
+            38
+          ],
+          [
+            270,
+            0
+          ],
+          [
+            345,
+            -28
+          ],
+          [
+            396,
+            -72
+          ],
+          [
+            438,
+            -92
+          ],
+          [
+            480,
+            -68
+          ],
+          [
+            600,
+            -55
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.1
+      },
+      {
+        "name": "Lower trailing pink cloth",
+        "path": "M297 555 Q358 572 432 539 Q410 591 375 618 Q260 695 74 777 L76 755 Q120 705 145 679 Q188 637 230 606 Q270 578 297 555 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            25
+          ],
+          [
+            150,
+            -8
+          ],
+          [
+            270,
+            -48
+          ],
+          [
+            370,
+            -104
+          ],
+          [
+            460,
+            -155
+          ],
+          [
+            600,
+            -205
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.0
+      },
+      {
+        "name": "Lower right hanging strip",
+        "path": "M439 538 L468 546 L487 644 L521 717 L500 719 L466 664 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            430,
+            0
+          ],
+          [
+            470,
+            30
+          ],
+          [
+            500,
+            68
+          ],
+          [
+            600,
+            85
+          ]
+        ],
+        "spacing": 2.4,
+        "depth": 1.8
+      },
+      {
+        "name": "Rear sleeve",
+        "path": "M312 401 Q339 408 340 447 L338 485 Q286 500 276 456 Q270 441 312 401 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            275,
+            0
+          ],
+          [
+            304,
+            -18
+          ],
+          [
+            332,
+            -4
+          ],
+          [
+            600,
+            0
+          ]
+        ],
+        "spacing": 2.6,
+        "depth": 1.8
+      },
+      {
+        "name": "Torso pink cloth",
+        "path": "M300 283 L420 316 L472 444 L447 478 L420 490 Q371 502 320 490 Q331 478 333 455 L312 407 L290 400 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            295,
+            -15
+          ],
+          [
+            340,
+            0
+          ],
+          [
+            386,
+            24
+          ],
+          [
+            430,
+            49
+          ],
+          [
+            480,
+            64
+          ],
+          [
+            600,
+            90
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 1.9
+      },
+      {
+        "name": "Torso dark strap",
+        "path": "M325 416 Q335 405 347 406 Q365 404 385 416 Q421 434 449 466 Q455 472 457 477 Q449 489 435 499 L426 493 Q393 462 359 449 Q341 442 334 453 L332 459 Q327 451 325 416 Z",
+        "axis": "x",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            390,
+            0
+          ],
+          [
+            435,
+            35
+          ],
+          [
+            500,
+            75
+          ],
+          [
+            825,
+            90
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 1.8
+      },
+      {
+        "name": "Blue waist side",
+        "path": "M454 447 Q466 454 470 467 Q474 480 467 496 L458 505 L450 516 L453 523 Q432 543 402 558 L418 493 Q430 496 435 499 Q449 489 457 477 Q455 472 449 466 L442 457 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            390,
+            0
+          ],
+          [
+            430,
+            -12
+          ],
+          [
+            465,
+            -42
+          ],
+          [
+            600,
+            -70
+          ]
+        ],
+        "spacing": 2.4,
+        "depth": 1.8
+      },
+      {
+        "name": "Rear glove",
+        "path": "M472 478 Q491 478 510 476 Q519 476 526 484 L540 498 Q550 505 548 513 L545 524 Q553 531 551 539 Q544 547 529 550 L509 551 Q504 547 507 540 L509 532 L501 525 L493 557 L490 583 L473 579 L469 548 L472 509 L466 503 Z",
+        "axis": "x",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            478,
+            0
+          ],
+          [
+            510,
+            14
+          ],
+          [
+            551,
+            7
+          ],
+          [
+            590,
+            -8
+          ],
+          [
+            825,
+            0
+          ]
+        ],
+        "spacing": 2.4,
+        "depth": 1.9
+      },
+      {
+        "name": "Green forward sleeve",
+        "path": "M230 260 Q260 247 294 246 Q311 248 325 274 L335 294 Q324 297 327 303 Q337 320 341 333 Q341 337 327 341 Q320 344 321 351 L324 370 Q325 376 315 380 Q305 387 291 392 Q285 397 275 401 Q251 412 229 410 Q207 407 190 392 Q188 374 190 340 L176 327 Z",
+        "axis": "x",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            244,
+            -20
+          ],
+          [
+            300,
+            0
+          ],
+          [
+            348,
+            26
+          ],
+          [
+            385,
+            45
+          ],
+          [
+            420,
+            62
+          ],
+          [
+            825,
+            70
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.2
+      },
+      {
+        "name": "Extended glove palm",
+        "path": "M75 192 Q114 203 140 208 Q154 211 163 210 Q174 213 190 222 Q216 237 245 206 L260 225 Q241 239 231 262 L232 268 Q250 283 258 295 L264 310 L275 319 Q252 327 260 340 Q246 345 239 353 Q201 348 179 330 Q159 308 140 298 Q126 300 117 298 L112 272 L98 286 L87 282 L100 243 L106 232 Q86 227 66 216 Z",
+        "axis": "x",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            190,
+            30
+          ],
+          [
+            225,
+            20
+          ],
+          [
+            270,
+            -5
+          ],
+          [
+            300,
+            -31
+          ],
+          [
+            360,
+            -65
+          ],
+          [
+            825,
+            -80
+          ]
+        ],
+        "spacing": 2.7,
+        "depth": 2.0
+      },
+      {
+        "name": "Pointing finger",
+        "path": "M75 192 Q114 203 140 208 Q154 211 163 210 Q174 213 190 222 Q173 219 151 227 Q144 235 123 233 Q98 234 66 216 Q74 207 75 192 Z",
+        "axis": "x",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            188,
+            8
+          ],
+          [
+            205,
+            5
+          ],
+          [
+            220,
+            -1
+          ],
+          [
+            240,
+            -14
+          ],
+          [
+            825,
+            -20
+          ]
+        ],
+        "spacing": 2.6,
+        "depth": 2.0
+      },
+      {
+        "name": "Downward index glove",
+        "path": "M107 232 Q130 235 151 227 Q178 222 190 222 Q183 249 160 252 Q145 255 130 256 Q110 256 96 274 Q82 290 61 305 Q64 293 50 288 L41 291 Q61 277 75 263 Q98 248 107 232 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            45,
+            0
+          ],
+          [
+            82,
+            -18
+          ],
+          [
+            112,
+            -42
+          ],
+          [
+            150,
+            -80
+          ],
+          [
+            600,
+            -100
+          ]
+        ],
+        "spacing": 2.7,
+        "depth": 2.0
+      },
+      {
+        "name": "Downward middle glove",
+        "path": "M112 262 Q109 290 94 307 L82 332 Q81 319 71 321 L62 324 Q70 307 80 294 Q99 279 112 262 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            60,
+            0
+          ],
+          [
+            90,
+            -20
+          ],
+          [
+            125,
+            -64
+          ],
+          [
+            600,
+            -95
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.0
+      },
+      {
+        "name": "Downward ring glove",
+        "path": "M112 280 Q113 319 118 335 Q109 332 102 339 L97 309 Q108 294 112 280 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            95,
+            0
+          ],
+          [
+            114,
+            -8
+          ],
+          [
+            135,
+            -26
+          ],
+          [
+            600,
+            -50
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.0
+      },
+      {
+        "name": "Cloth face mask",
+        "path": "M341 206 L414 259 L466 290 L529 326 Q525 389 519 416 Q516 432 507 422 Q499 417 499 399 L498 337 L497 397 Q496 423 487 429 Q479 436 468 431 Q445 404 405 365 Q366 334 342 305 Q318 277 300 248 Q304 246 310 239 Q316 230 320 233 Q329 214 336 207 Q339 205 341 206 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            305,
+            -30
+          ],
+          [
+            355,
+            0
+          ],
+          [
+            405,
+            37
+          ],
+          [
+            455,
+            56
+          ],
+          [
+            505,
+            77
+          ],
+          [
+            600,
+            95
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.0
+      },
+      {
+        "name": "Hood outer drape",
+        "path": "M343 179 Q350 168 354 152 Q360 136 376 132 Q417 117 461 116 Q490 137 510 167 Q526 188 528 218 Q531 269 529 318 Q524 320 521 335 Q517 355 515 377 Q511 405 507 393 Q502 383 502 355 Q503 323 496 320 Q490 315 484 338 Q483 355 480 366 Q478 373 475 369 Q469 365 469 349 Q468 325 468 300 Q469 290 466 288 Q462 284 458 292 Q453 300 452 306 Q450 313 446 308 Q443 302 440 306 Q436 308 434 318 Q432 329 429 330 Q425 331 421 323 Q417 317 415 305 Q413 294 414 280 L414 259 L418 204 Q402 191 382 180 Q358 164 347 180 L341 193 Z",
+        "axis": "y",
+        "guide": [
+          [
+            0,
+            0
+          ],
+          [
+            340,
+            -10
+          ],
+          [
+            379,
+            0
+          ],
+          [
+            417,
+            12
+          ],
+          [
+            443,
+            21
+          ],
+          [
+            467,
+            18
+          ],
+          [
+            490,
+            8
+          ],
+          [
+            530,
+            -15
+          ],
+          [
+            600,
+            -25
+          ]
+        ],
+        "spacing": 2.5,
+        "depth": 2.1
+      },
+      {
+        "name": "Gray waist smooth",
+        "path": "M310 470 L330 476 L321 489 Q367 505 423 489 L407 550 Q341 568 297 557 Q287 542 288 522 Q291 499 301 481 Z",
+        "axis": "smooth",
+        "guide": [],
+        "spacing": 0,
+        "depth": 0
+      }
+    ],
+    "depthCalibration": "1.5\u20132.2 micrometre rounded crests with shallow valleys; no procedural shader emboss or sparkle."
+  },
+  "mapSize": [
+    1800,
+    2475
   ],
-  "depthCalibration": "1.5\u20132.2 micrometre rounded crests with shallow valleys; no procedural shader emboss or sparkle."
+  "normalSource": {
+    "file": "research\\tcgl\\sv08.5-133\\sv8-5_en_133_std.etch.png",
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_133_std.etch.png",
+    "sha256": "5fe3fb1853b3b71c1a842104795833c0a17828f2ed0ef999b1a84eff5b2ffae2",
+    "tcglCardId": "sv8-5_133",
+    "tcglLongFormId": "Atticus_sv8-5_133_std_UltraRare_SunPillar_Etched",
+    "dimensions": [
+      733,
+      1024
+    ],
+    "operation": "Full-domain bilinear resize; invert mean etch RGB luminance; unblurred continuous-field Scharr derivatives with scale 1/32; gain 1.03; apply protection to slopes after differentiation; normalize; flatten outside source alpha; opaque RGB OpenGL +Y encoding (-dH/dx,+dH/drow,+Z).",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "slopeGain": 1.03,
+    "runtimeGeneration": false
+  },
+  "heightSource": {
+    "file": "research\\tcgl\\sv08.5-133\\sv8-5_en_133_std.etch.png",
+    "operation": "0.5 + (inverted resized etch luminance - 0.5) * 0.25",
+    "embossStrength": 0,
+    "note": "Inspection only; no live height response."
+  },
+  "finishReference": {
+    "cardId": "sv08.5-156",
+    "profile": "Espeon 155 finish used by final Sylveon 156",
+    "normalScale": 1,
+    "embossStrength": 0,
+    "roughnessMode": "absolute",
+    "roughness": "0.30 background + 0.105 body; blend to 0.27 in existing secondary foil. Missing region maps mean zero coverage.",
+    "metalness": 0.5,
+    "laminate": 0.045,
+    "foilReflectance": 0.025,
+    "etchedInkSheen": 0.85
+  },
+  "preservedAssets": {
+    "public\\cards\\pokemon\\prismatic-evolutions\\133.png": "4580323e6cc54a9f275c6890e57e734c00c068c7f92a1153ef2e6cad79b4c1ac",
+    "public\\cards\\pokemon\\prismatic-evolutions\\maps\\133-holo-foil.png": "f4bbba3acff3e23e403b7f1a98fe5967ce49a6a1209e848d0a708b7610aa8567",
+    "public\\cards\\pokemon\\prismatic-evolutions\\maps\\133-holo-protection.png": "6d2db07d83219c100fdc5ad7d6dbd538bae2065f353bbe95e721ff9bc7485d69"
+  }
 }

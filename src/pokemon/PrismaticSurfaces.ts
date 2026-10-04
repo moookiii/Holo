@@ -1,3 +1,4 @@
+import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { DIMENSIONS, type CardDefinition, type CardMapPaths } from '../card/CardDefinition.ts';
 import { PRISMATIC_ASSETS, prismaticCard, prismaticPrinting, prismaticPrintings } from './PrismaticCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
@@ -27,9 +28,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: { surface: { metalness: .50, laminate: .045, foilReflectance: .025, etchedInkSheen: .85 }, secondary: {
-      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
-    } },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/144-holo-evidence.json`,
   },
   'sv08.5-155:holo': {
@@ -41,9 +40,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: { surface: { metalness: .50, laminate: .045, foilReflectance: .025, etchedInkSheen: .85 }, secondary: {
-      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
-    } },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/155-holo-evidence.json`,
   },
   'sv08.5-153:holo': {
@@ -55,9 +52,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: { surface: { metalness: .50, laminate: .045, foilReflectance: .025, etchedInkSheen: .85 }, secondary: {
-      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
-    } },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/153-holo-evidence.json`,
   },
   'sv08.5-156:holo': {
@@ -83,9 +78,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: { surface: { metalness: .55, laminate: .07, foilReflectance: .035, etchedInkSheen: 1.1 }, secondary: {
-      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
-    } },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/149-holo-evidence.json`,
   },
   'sv08.5-150:holo': {
@@ -97,9 +90,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: { surface: { metalness: .58, laminate: .07, foilReflectance: .035, etchedInkSheen: 1.1 }, secondary: {
-      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
-    } },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/150-holo-evidence.json`,
   },
   'sv08.5-167:holo': {
@@ -112,10 +103,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
     evidence: `${PRISMATIC_ASSETS}/maps/167-holo-evidence.json`,
-    profileOverrides: { surface: { metalness: .55, laminate: .06, foilReflectance: .035, etchedInkSheen: .9 }, secondary: {
-      diffraction: { strength: .48 },
-      glints: { density: .96, scale: 620, sharpness: 120, strength: 10 },
-    } },
+    profileOverrides: tcglEtchedFinish,
   },
   'sv08.5-146:holo': {
     profile: 'prismatic_sir_texture',
@@ -126,6 +114,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/146-holo-evidence.json`,
   },
   'sv08.5-161:holo': {
@@ -138,6 +127,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
     mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/161-holo-evidence.json`,
   },
   'sv08.5-133:holo': {
@@ -148,7 +138,8 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
       roughness: `${PRISMATIC_ASSETS}/maps/133-holo-roughness.png`,
     },
     layout: { artwork: [23/600,112/825,577/600,802/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1.35, embossStrength: 0, roughnessMode: 'absolute' },
+    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
+    profileOverrides: tcglEtchedFinish,
     evidence: `${PRISMATIC_ASSETS}/maps/133-holo-evidence.json`,
   },
   ...Object.fromEntries(['116', '117', '119', '128', '129', '131'].map(number => [`sv08.5-${number}:holo`, {

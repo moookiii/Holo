@@ -1,3 +1,5 @@
+> Current relief: exact TCGL etch converted offline with the final Sylveon/Espeon finish. Height emboss is disabled. See [TCGL migration](tcgl-etched-migration.md) for the active method and evidence. The photo-guided relief descriptions below are historical; existing foil/protection boundaries are retained.
+
 # Espeon ex 155/131
 
 The clean TCGdex front is retained unchanged. The supplied exact-card photo guides the curved background relief and upper-right microdiamond extent. The supplied red and green outline image registers the crystals, star gems, body and tail openings in the 600 x 825 print coordinate system. The hollow blue crystal stays open. The shared silver mask is registered to Espeon's ex mark and single retreat energy.

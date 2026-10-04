@@ -1,3 +1,5 @@
+> Current relief: exact TCGL etch converted offline with the final Sylveon/Espeon finish. Height emboss is disabled. See [TCGL migration](tcgl-etched-migration.md) for the active method and evidence. The photo-guided relief descriptions below are historical; existing foil/protection boundaries are retained.
+
 # Eevee ex 167/131
 
 `pokemon:sv08.5-167:holo` is registered in the card picker with its own nine

@@ -24,5 +24,16 @@
     1024
   ],
   "matchingTcglFrontSha256": "4ee80dbc6763c4289837807815812e6ad45e3d8ee4bd1dc7aa0092aacc868ae2",
-  "alignmentReview": "pending"
+  "alignmentReview": {
+    "status": "reviewed",
+    "method": "Raw TCGL etch and paired TCGL front, with colored etch overlay over the unchanged Holo clean front.",
+    "capture": "artifacts/tcgl-etched-migration/sv08.5-155-alignment.png",
+    "holoFront": "public\\cards\\pokemon\\prismatic-evolutions\\155.png",
+    "holoFrontSha256": "5c444b87ebe28bbb77baf9bf01a61656b67ba25d086008148755950cff2e5a99",
+    "polarity": "White strokes interpreted as recessed; invert etch luminance.",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "observed": "Upright full-card UV domain. Border, corners, subject contours, title, individual text regions and attack areas align. No visible scaling drift, offset or stretching in the source overlays.",
+    "physicalDepth": "Not measured; same rendering gain as Sylveon 156."
+  }
 }

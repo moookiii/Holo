@@ -1,0 +1,62 @@
+{
+  "cardId": "sm1-154",
+  "variant": "holo",
+  "maps": {
+    "normal.png": "f07e17b760936d9459dc170650ef9cd67ef1219858ddca2745d72492ad2a5af7",
+    "height.png": "3c7ad27c3d6b467c5aaffd0f0e4fad3accc5cafb777b032d60ed9e8b212d0344",
+    "roughness.png": "c96989418a0a96343a1c6b56ad99fb1bba99c3abbc5ccbd89c06861fc6741ed2",
+    "body.png": "03f75776df030b43e6cf0594846350e009c787ae86a8973ade1248cee37b0a54"
+  },
+  "replacedNormal": {
+    "file": "public\\cards\\umbreon-gx-sm1-154\\normal.png",
+    "sha256": "68358239963f67ab1b44fa6e51f70d32071184ca3ddd026abb1ca897d8e44c17"
+  },
+  "legacyRelief": {},
+  "status": "tcgl-etch-derived",
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "textured": true,
+  "rendererReady": false,
+  "normalSource": {
+    "file": "research\\tcgl\\sm1-154\\sm1_en_154_std.etch.png",
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sm1/sm1_en_154_std.etch.png",
+    "sha256": "17c49606e51085c7861ac85f63e09036e06f69116d924d79c5ffb383b71e7d50",
+    "tcglCardId": "sm1_154",
+    "tcglLongFormId": "UmbreonGX_sm1_154_std_RareRainbow_Rainbow_Etched",
+    "dimensions": [
+      733,
+      1024
+    ],
+    "operation": "Full-domain bilinear resize; invert mean etch RGB luminance; unblurred continuous-field Scharr derivatives with scale 1/32; gain 1.03; apply protection to slopes after differentiation; normalize; flatten outside source alpha; opaque RGB OpenGL +Y encoding (-dH/dx,+dH/drow,+Z).",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "slopeGain": 1.03,
+    "runtimeGeneration": false
+  },
+  "heightSource": {
+    "file": "research\\tcgl\\sm1-154\\sm1_en_154_std.etch.png",
+    "operation": "0.5 + (inverted resized etch luminance - 0.5) * 0.25",
+    "embossStrength": 0,
+    "note": "Inspection only; no live height response."
+  },
+  "finishReference": {
+    "cardId": "sv08.5-156",
+    "profile": "Espeon 155 finish used by final Sylveon 156",
+    "normalScale": 1,
+    "embossStrength": 0,
+    "roughnessMode": "absolute",
+    "roughness": "0.30 background + 0.105 body; blend to 0.27 in existing secondary foil. Missing region maps mean zero coverage.",
+    "metalness": 0.5,
+    "laminate": 0.045,
+    "foilReflectance": 0.025,
+    "etchedInkSheen": 0.85
+  },
+  "preservedAssets": {
+    "public\\cards\\umbreon-gx-sm1-154\\front.png": "6b0b9d65bd100f473d9623ba7775537ed44b256b510f43dc9e396de581ac808a",
+    "public\\cards\\umbreon-gx-sm1-154\\foil.png": "a5ae9267d8a9f70a9f3516f536d45aa77abb6c8d7f069981455ad3924c50e504",
+    "public\\cards\\umbreon-gx-sm1-154\\protection.png": "e5ee2110db3bc3e31fe81d01808bc29aedfe0d0b88a4068593fcd6a7c766b45e"
+  },
+  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief."
+}
