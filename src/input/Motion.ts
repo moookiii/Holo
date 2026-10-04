@@ -1,4 +1,4 @@
-import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
+import { Quaternion, Vector3 } from 'three/webgpu';
 
 export type InteractionMode = 'combined' | 'rotate' | 'tilt';
 export const X_AXIS = new Vector3(1, 0, 0);
@@ -31,9 +31,6 @@ export class CardMotion {
   private resetting = false;
   private resetElapsed = 0;
   private resetStart = new Quaternion();
-  private orbitEnabled = false;
-  private orbitAngles = new Vector2();
-  private orbitPending = new Vector2();
   readonly flipDuration = 0.58;
 
   constructor(_mode: InteractionMode = 'combined') {
@@ -46,27 +43,6 @@ export class CardMotion {
     // the unified interaction: pointer position tilts and dragging rotates.
     this.mode = 'combined';
   }
-  enableOrbitRotation() {
-    this.orbitEnabled = true;
-    this.syncOrbitPose();
-    this.hover.set(0, 0, 0); this.hoverTarget.set(0, 0, 0);
-  }
-  private syncOrbitPose() {
-    // Read the full yaw range, including the back, without Euler's alternate
-    // representation introducing a half-turn in pitch on the next drag.
-    this.axis.copy(Y_AXIS).applyQuaternion(this.manual);
-    const pitch = Math.atan2(this.axis.z, this.axis.y);
-    const frontX = this.axis.copy(Z_AXIS).applyQuaternion(this.manual).x;
-    const rightX = this.axis.copy(X_AXIS).applyQuaternion(this.manual).x;
-    this.orbitAngles.set(Math.atan2(frontX, rightX), pitch);
-  }
-  applyOrbitDrag(dx: number, dy: number, viewportHeight: number) {
-    if (this.resetting) this.halt();
-    // OrbitControls uses the stage height for both axes: one height = one turn.
-    const radiansPerPixel = 2 * Math.PI / Math.max(1, viewportHeight);
-    this.orbitPending.x += dx * radiansPerPixel;
-    this.orbitPending.y -= dy * radiansPerPixel;
-  }
   requestFlip() {
     this.halt(); this.flipPending = Math.min(8, this.flipPending + 1);
   }
@@ -75,7 +51,6 @@ export class CardMotion {
     this.flipBase = 0; this.flipPending = 0; this.flipActive = false;
     this.hover.set(0, 0, 0); this.hoverTarget.set(0, 0, 0);
     this.targetZoom = 1; this.velocity.set(0, 0, 0);
-    this.orbitPending.set(0, 0);
   }
   halt() {
     if (this.resetting) {
@@ -83,8 +58,6 @@ export class CardMotion {
       this.hover.set(0, 0, 0); this.hoverTarget.set(0, 0, 0);
     }
     this.resetting = false; this.velocity.set(0, 0, 0);
-    this.orbitPending.set(0, 0);
-    if (this.orbitEnabled) this.syncOrbitPose();
   }
   applyRotation(rotation: Quaternion, dt: number) {
     if (this.resetting) this.halt();
@@ -99,7 +72,6 @@ export class CardMotion {
     }
   }
   setHover(x: number, y: number) {
-    if (this.orbitEnabled) { this.hoverTarget.set(0, 0, 0); return; }
     if (this.precise) { this.hoverTarget.set(0, 0, 0); return; }
     if (this.resetting) return;
     const px = Math.max(-1.5, Math.min(1.5, x)), py = Math.max(-1.5, Math.min(1.5, y));
@@ -117,22 +89,10 @@ export class CardMotion {
       const t = Math.min(1, this.resetElapsed / 0.65);
       this.manual.slerpQuaternions(this.resetStart, DEFAULT_ORIENTATION, smootherstep(t));
       this.orientation.copy(this.manual);
-      if (t === 1) { this.resetting = false; if (this.orbitEnabled) this.syncOrbitPose(); }
+      if (t === 1) this.resetting = false;
       return;
     }
-    if (this.orbitEnabled && this.orbitPending.lengthSq() > 1e-16) {
-      // Match artifact damping (.085 per frame at 60 Hz) at any refresh rate.
-      const damping = 1 - Math.pow(1 - .085, dt * 60);
-      this.orbitAngles.addScaledVector(this.orbitPending, damping);
-      const limit = Math.PI / 2 - 1e-6;
-      this.orbitAngles.y = Math.max(-limit, Math.min(limit, this.orbitAngles.y));
-      this.orbitPending.multiplyScalar(1 - damping);
-      // Inverse camera orbit: pitch around screen X, yaw around the fixed up axis.
-      // No drag roll, and pitch cannot pass a pole and turn the card upside down.
-      this.manual.setFromAxisAngle(X_AXIS, this.orbitAngles.y)
-        .multiply(this.delta.setFromAxisAngle(Y_AXIS, this.orbitAngles.x)).normalize();
-    }
-    if (!this.orbitEnabled && !this.dragging) {
+    if (!this.dragging) {
       const speed = this.velocity.length();
       if (speed > 0.002) {
         // Analytic exponential integration keeps angular travel identical at 60 and 240 Hz.
@@ -164,6 +124,5 @@ export class CardMotion {
     this.manual.setFromAxisAngle(Y_AXIS, yaw).multiply(this.delta.setFromAxisAngle(X_AXIS, pitch))
       .premultiply(this.delta.setFromAxisAngle(Z_AXIS, roll)).normalize();
     this.orientation.copy(this.manual);
-    if (this.orbitEnabled) this.syncOrbitPose();
   }
 }

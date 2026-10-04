@@ -1,53 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
-import { CardMotion, X_AXIS, Y_AXIS, Z_AXIS } from '../src/input/Motion.ts';
+import { CardMotion, Y_AXIS, Z_AXIS } from '../src/input/Motion.ts';
 import { hoverFromCardCenter, projectAroundCardCenter } from '../src/input/HoverCoordinates.ts';
 
 const closeOrientation = (a: Quaternion, b: Quaternion, epsilon = 1e-6) => assert.ok(a.angleTo(b) < epsilon, `orientation differs by ${a.angleTo(b)} radians`);
 const advance = (motion: CardMotion, seconds: number, hz = 120) => { for (let i = 0; i < Math.round(seconds * hz); i++) motion.update(1 / hz); };
-
-test('card orbit matches artifact drag travel and damping across refresh rates', () => {
-  const slow = new CardMotion(), fast = new CardMotion();
-  for (const motion of [slow, fast]) {
-    motion.enableOrbitRotation(); motion.dragging = true;
-    motion.applyOrbitDrag(200, 100, 800);
-  }
-  advance(slow, .5, 60); advance(fast, .5, 240);
-  closeOrientation(slow.orientation, fast.orientation);
-  slow.dragging = false; advance(slow, 4);
-  const expected = new Quaternion().setFromAxisAngle(X_AXIS, -Math.PI / 4)
-    .multiply(new Quaternion().setFromAxisAngle(Y_AXIS, Math.PI / 2));
-  closeOrientation(slow.orientation, expected);
-});
-
-test('card orbit stays upright at both pitch limits through yaw and release', () => {
-  for (const dy of [-10000, 10000]) {
-    const motion = new CardMotion(); motion.enableOrbitRotation();
-    motion.applyOrbitDrag(1900, dy, 800); advance(motion, 4);
-    const up = Y_AXIS.clone().applyQuaternion(motion.orientation);
-    assert.ok(up.y > 0, 'pitch stops before turning upside down');
-    assert.ok(Math.abs(up.x) < 1e-12, 'yaw never adds screen roll');
-    motion.halt(); motion.applyOrbitDrag(50, 0, 800); advance(motion, 4);
-    assert.ok(Y_AXIS.clone().applyQuaternion(motion.orientation).y > 0);
-  }
-});
-
-test('orbit continues smoothly from the back and preserves flip and reset', () => {
-  const motion = new CardMotion(); motion.enableOrbitRotation();
-  motion.applyOrbitDrag(320, 0, 800); advance(motion, 4);
-  motion.halt(); motion.applyOrbitDrag(40, 0, 800); advance(motion, 4);
-  const expected = new Quaternion().setFromAxisAngle(Y_AXIS, .9 * Math.PI);
-  closeOrientation(motion.orientation, expected);
-  motion.requestFlip(); advance(motion, .7);
-  closeOrientation(motion.orientation, expected.clone().multiply(new Quaternion().setFromAxisAngle(Y_AXIS, Math.PI)));
-  motion.reset(); advance(motion, 1);
-  closeOrientation(motion.orientation, new Quaternion());
-  motion.setHover(1, -1); advance(motion, 1);
-  closeOrientation(motion.orientation, new Quaternion());
-  motion.applyOrbitDrag(100, 0, 800); advance(motion, 4);
-  closeOrientation(motion.orientation, new Quaternion().setFromAxisAngle(Y_AXIS, Math.PI / 4));
-});
 
 test('combined interaction starts face-on and resets a tilted, rotated or flipped card to the front', () => {
   {
