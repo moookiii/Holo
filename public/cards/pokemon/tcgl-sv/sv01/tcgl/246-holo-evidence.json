@@ -1,0 +1,119 @@
+{
+  "cardId": "sv01-246",
+  "variant": "holo",
+  "tcglCardId": "sv1_246",
+  "tcglVariantId": "GreatTuskex_sv1_246_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_246_std.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_246_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f48d5352d86199fec7ef99db5fd5fffbd5678355a4d2cc81ace7ec2f565d2cad"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_246_std.foil.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_246_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "59e053ed9e7c7219828d4e4b9cb242e474abb40e16e0b0932181157504b98287"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_246_std.etch.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_246_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8d885ef0a5a81212ef59c3f89a5d9dccd9fbc351c148820954bc3fa1cc42db14"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv01/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-04.jpg"
+    ],
+    "holoFrontSha256": "f48d5352d86199fec7ef99db5fd5fffbd5678355a4d2cc81ace7ec2f565d2cad"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 246,
+      "texturedInteriorFraction": 0.5175438596491229
+    },
+    {
+      "areaAtFoilResolution": 218,
+      "texturedInteriorFraction": 0.40540540540540543
+    },
+    {
+      "areaAtFoilResolution": 501,
+      "texturedInteriorFraction": 0.44129554655870445
+    },
+    {
+      "areaAtFoilResolution": 699,
+      "texturedInteriorFraction": 0.4036458333333333
+    },
+    {
+      "areaAtFoilResolution": 422,
+      "texturedInteriorFraction": 0.4067796610169492
+    },
+    {
+      "areaAtFoilResolution": 7249,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 235,
+      "texturedInteriorFraction": 0.4336283185840708
+    },
+    {
+      "areaAtFoilResolution": 282,
+      "texturedInteriorFraction": 0.4230769230769231
+    },
+    {
+      "areaAtFoilResolution": 302,
+      "texturedInteriorFraction": 0.4636363636363636
+    },
+    {
+      "areaAtFoilResolution": 335,
+      "texturedInteriorFraction": 0.6231884057971014
+    },
+    {
+      "areaAtFoilResolution": 155,
+      "texturedInteriorFraction": 0.5957446808510638
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "246-holo-foil.png": "48fa445370bd7c6483c3f3037678a001b73681cea34becee4845cfa1f31c8d39",
+    "246-holo-protection.png": "17379cb596aa10d205cb3fba3fc9b37e631e3bcf0a09c8032fb6846323205fd0",
+    "246-holo-normal.png": "5273f2e245f4a81a4943a032f439da8699c123dcde029301644320740c3f088d",
+    "246-holo-height.png": "31df545fdb005ff0c0414df5ba23656198851c4d48b7bb0319db627dfa5863f1",
+    "246-holo-roughness.png": "4aaf4f83d6b77a0a210380fb13e95315a6d28e5c2730218aee40b9c2d58bd3e5"
+  },
+  "holoFrontSha256": "f48d5352d86199fec7ef99db5fd5fffbd5678355a4d2cc81ace7ec2f565d2cad"
+}

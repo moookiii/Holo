@@ -1,0 +1,103 @@
+{
+  "cardId": "sv01-238",
+  "variant": "holo",
+  "tcglCardId": "sv1_238",
+  "tcglVariantId": "Miriam_sv1_238_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_238_std.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_238_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "29feb6c39ec8bc0347c31297f7bf7f314cabcf260f3ddb19a8e1ac2e244cb594"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_238_std.foil.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_238_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "8f5e544e6cf1e1a83838066b3c5ac525bfda3857f789213f7b52816a9de7bf15"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_238_std.etch.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_238_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d9d2bcb98add1e18c39a9b20edc11fbf73655bd3ffa19571e7446e9f6037ed32"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv01/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-04.jpg"
+    ],
+    "holoFrontSha256": "29feb6c39ec8bc0347c31297f7bf7f314cabcf260f3ddb19a8e1ac2e244cb594"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 329,
+      "texturedInteriorFraction": 0.42342342342342343
+    },
+    {
+      "areaAtFoilResolution": 166,
+      "texturedInteriorFraction": 0.6842105263157895
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.4666666666666667
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.4489795918367347
+    },
+    {
+      "areaAtFoilResolution": 176,
+      "texturedInteriorFraction": 0.5573770491803278
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.5714285714285714
+    },
+    {
+      "areaAtFoilResolution": 194,
+      "texturedInteriorFraction": 0.42857142857142855
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "238-holo-foil.png": "d9bcda87cdbf00f52b589ebccc659222e5923a2402e1146cd5e0f47ac0d245a0",
+    "238-holo-protection.png": "0539771ef208bac797cfb7fd33e737340d8d165506c8341722444bb79ec21153",
+    "238-holo-normal.png": "0b831052cd8c024fe2db2407b5dc07f9cb760eb485269cd5323869645d4205a3",
+    "238-holo-height.png": "880ed5b546529bf9aa65146587a92e701d56fe9246604ef37389056b09a96df4",
+    "238-holo-roughness.png": "7bed259132f71f62a99e6e168ba7e9fd0dc2dc5fdb6381cbc24f5b1b649259d7"
+  },
+  "holoFrontSha256": "29feb6c39ec8bc0347c31297f7bf7f314cabcf260f3ddb19a8e1ac2e244cb594"
+}

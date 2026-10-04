@@ -1,0 +1,103 @@
+{
+  "cardId": "sv01-229",
+  "variant": "holo",
+  "tcglCardId": "sv1_229",
+  "tcglVariantId": "Banetteex_sv1_229_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_229_std.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_229_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0d82e99339919c7ad6aa20a9d59c50c9a61603fe4c4aa56cb7d127862c898176"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_229_std.foil.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_229_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "036150c8ea01d9c783914df6b112536de2a490af46075a1a7026c46dd86fa685"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv1/sv1_en_229_std.etch.png",
+      "file": "research/tcgl/sv01-set/raw/sv1_en_229_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d0265efb5af220792f52a079d513600e0b28b489b3dcd2e0b122cccbbd892b1b"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv01/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv01/page-04.jpg"
+    ],
+    "holoFrontSha256": "0d82e99339919c7ad6aa20a9d59c50c9a61603fe4c4aa56cb7d127862c898176"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 628,
+      "texturedInteriorFraction": 0.4577922077922078
+    },
+    {
+      "areaAtFoilResolution": 425,
+      "texturedInteriorFraction": 0.425
+    },
+    {
+      "areaAtFoilResolution": 357,
+      "texturedInteriorFraction": 0.45263157894736844
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.40425531914893614
+    },
+    {
+      "areaAtFoilResolution": 167,
+      "texturedInteriorFraction": 0.6181818181818182
+    },
+    {
+      "areaAtFoilResolution": 203,
+      "texturedInteriorFraction": 0.47058823529411764
+    },
+    {
+      "areaAtFoilResolution": 179,
+      "texturedInteriorFraction": 0.4444444444444444
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "229-holo-foil.png": "2ae9530191797947458930ec3be3f25514b00f539505435bc764a58e1c12df46",
+    "229-holo-protection.png": "0394b7473d016b54c09c01fbf1ae973934b3b3a12b3cd3c826d4c986cd640cf2",
+    "229-holo-normal.png": "33ab62aa19d5192f1d8d5a8a4da846a28558d7e3784cb90a279bfd916eda96b9",
+    "229-holo-height.png": "540e530b9c4445ba2f8781481364ada78e376b7ff7e6dd8b6332c64dde866b1d",
+    "229-holo-roughness.png": "2cc0c44d1f1d80810158dfe5139f5853f872b89902cfbc9d91ad7023a7901a5c"
+  },
+  "holoFrontSha256": "0d82e99339919c7ad6aa20a9d59c50c9a61603fe4c4aa56cb7d127862c898176"
+}
