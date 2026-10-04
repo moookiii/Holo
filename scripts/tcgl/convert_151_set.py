@@ -42,8 +42,8 @@ def source_regions(foil, etch):
     from front brightness. Existing reviewed SIR regions are retained instead.
     """
     luminance=foil[...,:3].mean(2)
-    opaque=(luminance<=28/255)&(foil[...,3]>.5)
-    protected=np.clip((30/255-luminance)/(8/255),0,1)*foil[...,3]
+    opaque=(luminance<=39/255)&(foil[...,3]>.5)
+    protected=np.clip((41/255-luminance)/(8/255),0,1)*foil[...,3]
     body=np.zeros(opaque.shape,np.float32)
     estimates=[]
     if etch is not None:
@@ -79,9 +79,9 @@ def convert(printing,record_review):
     if 'foil' not in sources:return None
     prefix=number+'-'+variant+'-'
     raw_foil=np.asarray(Image.open(ROOT/sources['foil']['file']).convert('RGBA'),np.float32)/255
-    # TCGL's compressed neutral black is 22/255 in the preserved PNG/tex
+    # TCGL's compressed neutral black is 33/255 in the preserved PNG/tex
     # samples. Remove that black floor; retain all continuous gray coverage.
-    foil=np.clip((raw_foil[...,:3].mean(2)-22/255)/(233/255),0,1)*raw_foil[...,3]
+    foil=np.clip((raw_foil[...,:3].mean(2)-33/255)/(233/255),0,1)*raw_foil[...,3]
     foil=cv2.resize(foil,SIZE,interpolation=cv2.INTER_LINEAR)
     raw_etch=np.asarray(Image.open(ROOT/sources['etch']['file']).convert('RGBA'),np.float32)/255 if 'etch' in sources else None
     protection,body,regions=source_regions(raw_foil,raw_etch)
@@ -124,7 +124,7 @@ def convert(printing,record_review):
     evidence={'cardId':printing['cardId'],'variant':variant,'tcglCardId':printing['tcglCardId'],'tcglVariantId':printing['tcglVariantId'],
       'sources':sources,'alignmentReview':review,'textured':raw_etch is not None,'rendererReady':False,'mapSize':list(SIZE),
       'normalMethod':'Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).',
-      'foilMethod':'Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.',
+      'foilMethod':'Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.',
       'protectedBodyRegions':regions,'retainedRegions':retained,'normalScale':1 if raw_etch is not None else 0,'embossStrength':0,
       'limitations':'TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.',
       'maps':{Path(path).name:digest(ROOT/'public'/path.lstrip('/')) for path in maps.values()},'holoFrontSha256':digest(front)}

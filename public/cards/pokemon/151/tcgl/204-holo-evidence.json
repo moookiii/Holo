@@ -51,18 +51,27 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
-  "protectedBodyRegions": [],
+  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 64733,
+      "texturedInteriorFraction": 0.9124809741248098
+    },
+    {
+      "areaAtFoilResolution": 207,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
   "retainedRegions": [],
   "normalScale": 1,
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "204-holo-foil.png": "115497ed8cb8a91793046460e8bba0f0f6f140d302c0b5a0064312b9b90b2e35",
-    "204-holo-protection.png": "130385ee7c862a2e2c0a675850de22467c9a721bfecb2df7c8c9c2d0a84f259d",
-    "204-holo-normal.png": "52c50b0732613c4128d2f6369d9d1435a746c6a12aa13f5800117082282e6e04",
+    "204-holo-foil.png": "0d923d5bf60930da94ec06f69778edb2e944d983b6d9c60064cc7ce779f53319",
+    "204-holo-protection.png": "5e21418e599e4384b588f8a7a6a878255d9ed62166e3db73388f706ab3215853",
+    "204-holo-normal.png": "88591119a4d29665af7f7cc8a20fa96bb506cea60b1d6a2c20aa30b23aa4ee78",
     "204-holo-height.png": "7c9947431f11d6891750a8c49d0e7b3c56b0b700af35473334defe102e6d1f03",
-    "204-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+    "204-holo-roughness.png": "77520e359d5bc5390c4d1e4d735ad3a447e5533a91a0f21e435105f6855b417d"
   },
   "holoFrontSha256": "8b6ac5c0b10e8b555ebfc9df12f7003af22e2b30c056f3ce49f0538f65a42f20"
 }

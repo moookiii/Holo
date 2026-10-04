@@ -51,18 +51,39 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
-  "protectedBodyRegions": [],
+  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 225,
+      "texturedInteriorFraction": 0.4318181818181818
+    },
+    {
+      "areaAtFoilResolution": 178,
+      "texturedInteriorFraction": 0.47619047619047616
+    },
+    {
+      "areaAtFoilResolution": 179,
+      "texturedInteriorFraction": 0.47368421052631576
+    },
+    {
+      "areaAtFoilResolution": 209,
+      "texturedInteriorFraction": 0.48333333333333334
+    },
+    {
+      "areaAtFoilResolution": 247,
+      "texturedInteriorFraction": 0.4090909090909091
+    }
+  ],
   "retainedRegions": [],
   "normalScale": 1,
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "205-holo-foil.png": "cd56d61dd36c9122f4c196b88d093ed0dcce315b13e67bc78b07e159c580e092",
-    "205-holo-protection.png": "9b8870d22d0f591d3b4330317fd88890fd7b1485905b51649de252237850713f",
-    "205-holo-normal.png": "20a06863bce2c83035a6635fdc421c4b95a62ffd99135fc3e77dd65540b88c1d",
+    "205-holo-foil.png": "b700d0b9e759c681f6f32f36582ee5924322d8bb962d2942e626993335326e0b",
+    "205-holo-protection.png": "f4763c8a4f9f3ce0afcf14ebf4825bc8678b012726a45939a2b1d5abf434df5b",
+    "205-holo-normal.png": "8affefa59178755eda5b88777a0bdaf15a824ada75833ef4ab8869d208d6f0cd",
     "205-holo-height.png": "fb15dc0cd021ee192ee050b58c50f4275487dc859ca9655de1322e3f63ff2b86",
-    "205-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+    "205-holo-roughness.png": "ae039d651d5b541966b8290645300c884c9cffaa56637c5acecf91f28714a120"
   },
   "holoFrontSha256": "f19e1451771a9a8f7e6a412d28ab316233fb8f7822267c259aeb658a84c8fb1e"
 }

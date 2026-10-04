@@ -20,7 +20,7 @@ def tile(printing):
     etch = Image.open(ROOT / sources['etch']['file']).convert('RGB') if 'etch' in sources else Image.new('RGB', front.size, '#808080')
     clean = Image.open(ROOT / f"public/cards/pokemon/151/{printing['number']}.png").convert('RGB')
     mask = np.asarray(foil.resize(clean.size, Image.Resampling.BILINEAR), np.float32)/255
-    coverage = np.clip((mask[..., :3].mean(2)-22/255)/(233/255), 0, 1)*mask[..., 3]
+    coverage = np.clip((mask[..., :3].mean(2)-33/255)/(222/255), 0, 1)*mask[..., 3]
     rgb = np.asarray(clean, np.float32)/255
     overlay = rgb*(1-coverage[...,None]*.5)+np.array([0,.95,.35])*coverage[...,None]*.5
     overlay = Image.fromarray(np.rint(np.clip(overlay,0,1)*255).astype(np.uint8))
