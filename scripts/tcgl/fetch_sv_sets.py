@@ -42,7 +42,7 @@ def main():
             if suffix not in ('std','ph'):raise ValueError('Unknown variant '+suffix)
             variant='reverse' if suffix=='ph' else 'holo' if 'foil' in e else 'normal'
             if (n,variant) in seen:raise ValueError('Duplicate printing')
-            seen.add((n,variant));rarity=e['rarity']['designation'].replace('_',' ').title()
+            seen.add((n,variant));rarity=e['rarity']['designation'].replace('_',' ').title().replace('Ace Spec','ACE SPEC')
             printings.append({'cardId':set_id+'-'+number,'number':number,'name':e['name'],'rarity':rarity,'variant':variant,'suffix':suffix,'tcglCardId':tcgl['cardID'],'tcglVariantId':tcgl['longFormID'],'foil':e.get('foil'),'images':e['images']['tcgl']['png']})
             for u in e['images']['tcgl']['png'].values():downloads[u]=dest/'raw'/Path(urlparse(u).path).name
             if suffix=='std':

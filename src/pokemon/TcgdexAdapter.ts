@@ -17,6 +17,7 @@ import { PRISMATIC_SET_ID, prismaticCard, prismaticSet } from './PrismaticCatalo
 import { JUNGLE_SET_ID, jungleCard, jungleSet } from './JungleCatalog.ts';
 import { WIZARDS_PROMO_ID, wizardsPromoCard, wizardsPromoSet } from './WizardsPromoCatalog.ts';
 import { POKEMON_151_ID, pokemon151Card, pokemon151Set } from './Pokemon151Catalog.ts';
+import { isSvTcglSet, svTcglCard, svTcglSet, svTcglSets } from './SvTcglCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -77,6 +78,12 @@ export class TcgdexAdapter {
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
+      if (seriesId === 'sv') {
+        const local = [...svTcglSets, pokemon151Set, prismaticSet];
+        for (const set of local) if (!sets.some(s => s.id === set.id)) sets.push({ id: set.id, name: set.name, logo: set.logo });
+        const dates = new Map(local.map(set => [set.id, set.releaseDate]));
+        sets.sort((a, b) => (dates.get(a.id) ?? '9999').localeCompare(dates.get(b.id) ?? '9999'));
+      }
       if (seriesId === 'base') {
         // Local audited sets follow release order, even if discovery is unordered.
         let previous = 'base1';
@@ -110,6 +117,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (isSvTcglSet(id)) return svTcglSet(id);
       if (id === POKEMON_151_ID) return { ...pokemon151Set, series: { ...pokemon151Set.series }, cardIds: [...pokemon151Set.cardIds], boosters: pokemon151Set.boosters.map(b => ({ ...b })) };
       if (id === SOUTHERN_ISLANDS_ID) return { ...southernIslandsSet, series: { ...southernIslandsSet.series }, cardIds: [...southernIslandsSet.cardIds], boosters: [] };
       if (id === NEO_DESTINY_ID) return { ...neoDestinySet, series: { ...neoDestinySet.series }, cardIds: [...neoDestinySet.cardIds], boosters: neoDestinySet.boosters.map(b => ({ ...b })) };
@@ -139,6 +147,11 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (isSvTcglSet(set.id)) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return svTcglCard(id);
+      }
+      if (isSvTcglSet(id.split('-')[0])) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === POKEMON_151_ID) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return pokemon151Card(id);

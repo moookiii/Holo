@@ -1,4 +1,5 @@
 import type { CardDefinition } from '../card/CardDefinition';
+import { tcglSvSets } from '../pokemon/data/sv-tcgl.generated.ts';
 
 const pokemonSetAliases: Readonly<Record<string, string>> = {
   'Base Set · First Edition': 'Base Set',
@@ -40,7 +41,9 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ['Vivid Voltage', '2020-11-13'],
   ['Scarlet & Violet', '2023-03-31'],
   ['Paldea Evolved', '2023-06-09'],
+  ['151', '2023-09-22'],
   ['Prismatic Evolutions', '2025-01-17'],
+  ...tcglSvSets.map(set => [set.name, set.releaseDate] as [string, string]),
 ]);
 
 /** TCG release dates for the Yu-Gi-Oh! prints in this collection. */

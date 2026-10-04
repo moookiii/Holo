@@ -6,6 +6,8 @@ import { prismaticDefinition, prismaticProfile } from './PrismaticSurfaces.ts';
 import { prismaticEnergyDefinition } from './PrismaticEnergySurfaces.ts';
 import { POKEMON_151_ID } from './Pokemon151Catalog.ts';
 import { pokemon151Definition, pokemon151Profile } from './Pokemon151Surfaces.ts';
+import { isSvTcglSet } from './SvTcglCatalog.ts';
+import { svTcglDefinition, svTcglProfile } from './SvTcglSurfaces.ts';
 
 /** Stable identities for existing authored printings, never a name-only match. */
 const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
@@ -17,6 +19,7 @@ const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
   'ex6-83': { reverse: 'squirtle-frlg-reverse' },
 };
 export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string {
+  if (isSvTcglSet(card.setId)) return svTcglProfile(card.id, variant);
   if (card.setId === POKEMON_151_ID) return pokemon151Profile(card.id, variant);
   if (card.setId === PRISMATIC_SET_ID) return prismaticProfile(card.id, variant);
   if (variant === 'normal') return 'print-only';
@@ -38,6 +41,7 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
   return 'pokemon-sheen';
 }
 export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[], packSetId?: string): CardDefinition {
+  if (isSvTcglSet(card.setId)) return svTcglDefinition(card.id, variant);
   if (card.setId === POKEMON_151_ID) return pokemon151Definition(card.id, variant);
   if (card.setId === PRISMATIC_SET_ID) return prismaticDefinition(card.id, variant);
   // SVE resources are shared by sets; this exact reverse is scoped to Prismatic.
