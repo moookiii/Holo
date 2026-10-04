@@ -41,6 +41,7 @@ export class Gallery {
   private dirty = true;
   private disposed = false;
   private lightingInitialized = false;
+  private savedLighting?: Pick<StudioLighting, 'preset' | 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle' | 'playing'>;
   private reduced = matchMedia('(prefers-reduced-motion: reduce)');
   active = false;
   openingReady = false;
@@ -109,6 +110,10 @@ export class Gallery {
     finally { this.loading = false; this.root.removeAttribute('aria-busy'); }
   }
   show() {
+    if (this.savedLighting) {
+      this.options.lighting.setPreset(this.savedLighting.preset);
+      Object.assign(this.options.lighting, this.savedLighting);
+    }
     if (!this.lightingInitialized) {
       this.options.lighting.setPreset('Skim');
       this.options.lighting.elevation = 28;
@@ -135,6 +140,11 @@ export class Gallery {
     }
   }
   hide() {
+    if (this.active) {
+      const { preset, azimuth, elevation, intensity, speed, filterAngle, playing } = this.options.lighting;
+      this.savedLighting = { preset, azimuth, elevation, intensity, speed, filterAngle, playing };
+      this.options.lighting.setPreset('Studio');
+    }
     this.active = false; this.root.hidden = true; this.graphics.mesh.visible = false; this.pointer = undefined;
     for (const request of this.requests.values()) request.abort();
   }
