@@ -51,17 +51,18 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
   "normalScale": 1,
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "207-holo-foil.png": "8c99e8e0a34ef06561f23f866773365ce6566713e4a2d07fc1a47fad00a8b7f9",
-    "207-holo-protection.png": "90ffb8c4e39e8e059cdbe63a6b90ca8d2c947ef71335e69f99bf39c21784d862",
-    "207-holo-normal.png": "71b587273daca0d399d0a8edbb44191f1c9004d6a3077da582ea9fc150ea8b71",
-    "207-holo-height.png": "1d9ace8ade196ee02beecbedbf72afc9d75fcd55d05d9a9b63592d084546cf4e",
+    "207-holo-foil.png": "f6c1e91071a82cfa28afbf80b6c1db164fa9f31ffe2330bc962109fa674c0928",
+    "207-holo-protection.png": "7e493ee148222b004c276eb879477ea62c0aa9c184b4325532edb6ccb8ecb373",
+    "207-holo-normal.png": "b6f805c66d0c1cd1e2150592ca8538eb525ee90c9af52ddcca93efcf7bbfc2f9",
+    "207-holo-height.png": "400b6fba9e27b4141d633fe4509c9d3e5454147d2e036eb183f837c3a4988f88",
     "207-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
   },
   "holoFrontSha256": "f2160e4d49b3c3895a6e4ab631267a3f70b7bd4893726f29b5ddc4c1044c372a"

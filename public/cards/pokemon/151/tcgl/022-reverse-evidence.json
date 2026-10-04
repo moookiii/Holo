@@ -41,15 +41,16 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
   "normalScale": 0,
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "022-reverse-foil.png": "525ce67b57720983649963c7c16f98a7c440786de1899376d050936cb85fc852",
-    "022-reverse-protection.png": "724763106de816da12f8bb03d77a44810699285fc4d80ef42252d2ec14cdd69e"
+    "022-reverse-foil.png": "fd2f8b31bf91f0dd9a0998ce8350ce93897f48657daf02b430f678f2427da683",
+    "022-reverse-protection.png": "25d3ec3e7fa1c9977e4288d528ef651375b8da7b3006fa9e4c890d569ce97fd9"
   },
   "holoFrontSha256": "c841a6bdbcdd36ef9cafd24d71f100d85af1b88c7292a76c05c34e3650346c4a"
 }

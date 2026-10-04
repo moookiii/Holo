@@ -51,7 +51,8 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [
     {
       "areaAtFoilResolution": 292,
@@ -71,11 +72,11 @@
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "188-holo-foil.png": "e7b1cc32d24fad8cab0476e86fdca1e637abe86633378ed0d5f73cb322880322",
-    "188-holo-protection.png": "3aa71ced9e700cb3fd1f93812e6c0a43ead7d6a585ba74d13a24e0d62f60e82d",
-    "188-holo-normal.png": "0b24c71430d6f9bf728037de85f1931122e4ae09506c119f550fd6fbeb9d639d",
-    "188-holo-height.png": "f80465dce3cfe01fd16bafaf773e94f793a478a66d13d86c4d04421f0391b54b",
-    "188-holo-roughness.png": "5d10d43c310a7d3d466aebc07af15ee4a3f9628805f8268c2e9ad0310b35815d"
+    "188-holo-foil.png": "cadfe100be86fa68345d150893978f6ef3ee4041b378f1ed53fdff1beb5b1e6a",
+    "188-holo-protection.png": "be7ec849231b4295556632570197ca8b59bf1af7e8bdce7f896a41d57dda5e9f",
+    "188-holo-normal.png": "6a1888bf7b1bc6e53a8e6ceae13f5935c553cc59efc888ba754f95a084cb3fba",
+    "188-holo-height.png": "2dbf0df51c8c2010880026efb7258fbf64b618725324691293caa73193b33bb8",
+    "188-holo-roughness.png": "4ca71ca9c569d0d7046f3bf0e4c10bd3bb4a06a7bd0c3f4bf2e6dc62f8570efb"
   },
   "holoFrontSha256": "6663c157e158e530a97a2d0b46f22b0497db071f1f030a7c6399e812466723d3"
 }

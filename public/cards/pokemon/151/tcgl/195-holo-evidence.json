@@ -51,17 +51,18 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
   "normalScale": 1,
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "195-holo-foil.png": "e67d2f9eb4263f70234cc80dbf75cba1e594908d5938b0f4ebf1533cbbd3a8b3",
-    "195-holo-protection.png": "3a1e2e60b956e100ee2fd3b913d99ae02909cdab6985f7f1c877bc25d241c384",
-    "195-holo-normal.png": "c0cad7ee4cabbde3508d0d4d2a0fc129f9ee6098624f4a99bea784adba1c666c",
-    "195-holo-height.png": "a74df6f4b7465cb175ae6dfed21d413795c10645eb0c0c584d2a210d7e9e1c0f",
+    "195-holo-foil.png": "360166ace4ffe9155ad44809d5932a39fd9471545a0baf47b87ba2dca968114f",
+    "195-holo-protection.png": "5f208071b9cd1cae4b5dc814c7261c151f51f8f43d401791211feca4e9edab35",
+    "195-holo-normal.png": "ed3cdc68d259ae513deef35dc9e7e7c87f74f926befd417fbc4d4d6884c06c57",
+    "195-holo-height.png": "0270eeb6c538ca52c0efc0fd94b8f88185f288748e03f388e8f283fabc365717",
     "195-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
   },
   "holoFrontSha256": "ac478b4f339c34b8abf7ea177c1f588f88131a6c8a914fa726a46d3bc21008c9"

@@ -51,17 +51,18 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
   "normalScale": 1,
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "194-holo-foil.png": "3c6a7af2ceb0446e891fc8020d08d1855cd761a7f03aaa50b40f6fb1f1cb51f3",
-    "194-holo-protection.png": "30feba004a604e4feba838f1537113302de57637fe0dbbe55f44b9e14087646f",
-    "194-holo-normal.png": "8ce0cb63117eb607d8c8a75fcb2938eb514471d186c054bf5b31d146eb4e77d9",
-    "194-holo-height.png": "b2568660fed54575182ddcf169c8b3b086acb7c1f95357c2eb40ab6370b44f64",
+    "194-holo-foil.png": "265f859f5bc306b1691f3509592726f6a02ea4f016b1fd3ae62443fdf56c3d17",
+    "194-holo-protection.png": "558c195df2e3dedc42d2f5a88d5d4be7bad32db854a3aa02cc46c70fdeca984a",
+    "194-holo-normal.png": "2368b39e11d94312f19ee0f89f6451820cb47822cf8c43adac538eb8801a977e",
+    "194-holo-height.png": "75824728139293fa426e7a877d31d3f944333c4baf239b7fce3d1fbf4b84ce49",
     "194-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
   },
   "holoFrontSha256": "1b2d039e26ceaebf8d8718a625e6c729f5444b48b91237379224d79fd33cffe0"
