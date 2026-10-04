@@ -4,6 +4,9 @@ No browser requests; no generative cleanup, enhancement or invented detail.
 import argparse
 import hashlib
 import json
+import io
+import time
+import uuid
 import urllib.request
 from pathlib import Path
 
@@ -30,7 +33,34 @@ def write_json(path, value):
     path.parent.mkdir(parents=True, exist_ok=True)
     content = json.dumps(value, indent=2, ensure_ascii=False) + '\n'
     if not path.exists() or path.read_text(encoding='utf-8') != content:
-        path.write_text(content, encoding='utf-8')
+        write_bytes(path, content.encode('utf-8'))
+
+
+def write_bytes(path, data):
+    """Publish complete bytes atomically; locked Windows files fail without partial writes."""
+    if path.exists() and path.read_bytes() == data:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    staging = ROOT / 'artifacts/lob-fronts/staging'
+    staging.mkdir(parents=True, exist_ok=True)
+    temporary = staging / (uuid.uuid4().hex + '.pending')
+    temporary.write_bytes(data)
+    for attempt in range(10):
+        try:
+            temporary.replace(path)
+            return
+        except OSError:
+            if attempt == 9:
+                temporary.unlink(missing_ok=True)
+                raise
+            time.sleep(.1)
+
+
+
+def write_png(path, image):
+    buffer = io.BytesIO()
+    image.save(buffer, format='PNG', optimize=True)
+    write_bytes(path, buffer.getvalue())
 
 
 def digest(path):
@@ -133,7 +163,19 @@ def run(download=False, apply=False):
                 item.update(metrics=metrics, originalResolution=original_size, sha256=digest(path),
                             assessment=assess(c, card, metrics))
             except (OSError, ValueError, KeyError) as e:
-                item['assessment'] = {'eligible': False, 'priority': 99, 'score': 0, 'reasons': ['acquisition-error:' + str(e)]}
+                # Retain observed printing mismatches even when a slab/background
+                # prevents normalization. Source dimensions are not card dimensions.
+                original = local_path(c['originalPath'])
+                if original.exists():
+                    item['sha256'] = digest(original)
+                    try:
+                        with Image.open(original) as raw:
+                            item['originalResolution'] = list(raw.size)
+                    except OSError:
+                        pass
+                failure = assess(c, card, {'width': 0, 'height': 0, 'sharpness': 0})
+                item['assessment'] = {**failure, 'eligible': False, 'provisionalEligible': False,
+                                      'reasons': ['acquisition-error:' + str(e), *failure['reasons']]}
             evaluated.append(item)
         ranked = rank(evaluated)
         winner = next((c for c in ranked if c['assessment']['eligible']), None)
@@ -154,7 +196,7 @@ def run(download=False, apply=False):
             if apply:
                 out = ROOT / ('public' + runtime)
                 out.parent.mkdir(parents=True, exist_ok=True)
-                im.save(out, optimize=True)
+                write_png(out, im)
                 runtime_hash = digest(out)
         else:
             # Restore original fallback when a formerly approved replacement is rejected.
@@ -168,6 +210,7 @@ def run(download=False, apply=False):
                                 'claimed': selected.get('claimedPrinting'),
                                 'verified': selected.get('printingEvidence', {}).get('observed', {}),
                                 'confidence': selected.get('printingEvidence', {}).get('confidence', 0),
+                                'frontConfidence': selected.get('printingEvidence', {}).get('frontConfidence', 0),
                                 'evidence': selected.get('printingEvidence', {}).get('notes', []),
                                 'verificationStatus': 'verified' if winner else 'front-verified-region-unresolved' if provisional else 'unverified',
                                 'regionEvidence': selected.get('printingEvidence', {}).get('regionEvidence')},

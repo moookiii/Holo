@@ -1,6 +1,323 @@
 {
-  "image": "https://images.ygoprodeck.com/images/cards/82542267.jpg",
-  "reference": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+  "image": "https://i.ebayimg.com/images/g/3OoAAOSw5nBk5F8y/s-l1600.jpg",
+  "reference": "https://www.ebay.com/itm/326121140629",
+  "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
   "fidelity": "general-image-fallback",
-  "notes": "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ."
+  "layout": "early-tcg",
+  "notes": "Asset status: original-print-region-review. Manual review: required. Natural print dots, original coloration and physical wear retained; no sharpening or enhancement. Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable.",
+  "assetStatus": "original-print-region-review",
+  "manualReview": {
+    "required": true,
+    "flags": [
+      "no-verified-high-quality-exact-print-source",
+      "printing-unverified:region",
+      "printing-confidence-below-gate",
+      "north-american-region-needs-individual-paired-back"
+    ]
+  },
+  "provenance": "/cards/yugioh/lob-first-edition/LOB-065.json",
+  "schemaVersion": 2,
+  "catalogIdentity": {
+    "provider": "YGOPRODeck",
+    "cardId": "82542267",
+    "cardName": "Gravedigger Ghoul",
+    "setCode": "LOB-065",
+    "rarity": "Rare",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
+  },
+  "printingIdentity": {
+    "target": {
+      "edition": "1st Edition",
+      "region": "North America",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-065"
+    },
+    "claimed": "English LOB 1st Edition; seller collection",
+    "verified": {
+      "edition": "1st Edition",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-065",
+      "passcode": "82542267",
+      "name": "Gravedigger Ghoul",
+      "copyright": "1996 KAZUKI TAKAHASHI",
+      "layout": "early-tcg",
+      "securityStamp": "gold-bottom-right"
+    },
+    "confidence": 0.88,
+    "frontConfidence": 0.97,
+    "evidence": [
+      "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
+      "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
+    ],
+    "verificationStatus": "front-verified-region-unresolved",
+    "regionEvidence": {
+      "status": "inferred-shared-collection-back",
+      "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
+      "path": "research/yugioh-lob/fronts/collection-back.jpg"
+    }
+  },
+  "imageProvenance": {
+    "candidateId": "LOB-065-ebay-326121140629",
+    "sourceUrl": "https://www.ebay.com/itm/326121140629",
+    "sourceSite": "eBay / The Anime and TCG Shop",
+    "originalImageUrl": "https://i.ebayimg.com/images/g/3OoAAOSw5nBk5F8y/s-l1600.jpg",
+    "originalPath": "research/yugioh-lob/fronts/LOB-065/ebay-326121140629.jpg",
+    "originalResolution": [
+      960,
+      1353
+    ],
+    "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-065.png",
+    "resolution": [
+      870,
+      1268
+    ],
+    "sha256": "38ffccee96a0f88bd71606b8845121342062872663de4ec8aa81363a030a5a40",
+    "runtimeSha256": "d9c6d340b68904d981c817ee0a670aed8e67971c32bba44f206d38ccc0ed3478",
+    "normalization": {
+      "quad": [
+        [
+          53.290000915527344,
+          14.6899995803833
+        ],
+        [
+          923.5999755859375,
+          14.6899995803833
+        ],
+        [
+          951.8200073242188,
+          1326.1400146484375
+        ],
+        [
+          2.1600000858306885,
+          1335.510009765625
+        ]
+      ],
+      "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
+    },
+    "upscaled": false,
+    "assetStatus": "original-print-region-review",
+    "exactPrint": false,
+    "fallback": true,
+    "quality": {
+      "width": 870,
+      "height": 1268,
+      "sharpness": 1430.575,
+      "glareProxy": 0.00044,
+      "jpegBlockProxy": 0.978,
+      "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+    },
+    "caveats": [
+      "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
+      "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
+    ]
+  },
+  "candidates": [
+    {
+      "id": "LOB-065-ebay-326121140629",
+      "setCode": "LOB-065",
+      "kind": "collector-listing",
+      "sourceSite": "eBay / The Anime and TCG Shop",
+      "sourceUrl": "https://www.ebay.com/itm/326121140629",
+      "imageUrl": "https://i.ebayimg.com/images/g/3OoAAOSw5nBk5F8y/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-065/ebay-326121140629.jpg",
+      "sha256": "38ffccee96a0f88bd71606b8845121342062872663de4ec8aa81363a030a5a40",
+      "claimedPrinting": "English LOB 1st Edition; seller collection",
+      "discovery": {
+        "artworkMatches": [
+          [
+            264,
+            "LOB-065"
+          ],
+          [
+            18,
+            "LOB-013"
+          ],
+          [
+            14,
+            "LOB-049"
+          ]
+        ],
+        "notes": "ORB matching finds catalog identity only; printing review is separate."
+      },
+      "printingEvidence": {
+        "confidence": 0.88,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-065",
+          "passcode": "82542267",
+          "name": "Gravedigger Ghoul",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
+          "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
+        ],
+        "regionEvidence": {
+          "status": "inferred-shared-collection-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/collection-back.jpg"
+        }
+      },
+      "caveats": [
+        "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
+        "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
+      ],
+      "normalization": {
+        "quad": [
+          [
+            53.290000915527344,
+            14.6899995803833
+          ],
+          [
+            923.5999755859375,
+            14.6899995803833
+          ],
+          [
+            951.8200073242188,
+            1326.1400146484375
+          ],
+          [
+            2.1600000858306885,
+            1335.510009765625
+          ]
+        ],
+        "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
+      },
+      "allowRegionalReview": true,
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Original-resolution printing strips plus complete normalized front and physical border review.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.02,
+        "perspective": 0.08,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.75
+      },
+      "reviewFlags": [
+        "north-american-region-needs-individual-paired-back"
+      ],
+      "metrics": {
+        "width": 870,
+        "height": 1268,
+        "sharpness": 1430.575,
+        "glareProxy": 0.00044,
+        "jpegBlockProxy": 0.978,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        960,
+        1353
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": true,
+        "score": 51.28,
+        "reasons": [
+          "printing-unverified:region",
+          "printing-confidence-below-gate"
+        ],
+        "priority": 4
+      }
+    },
+    {
+      "id": "LOB-065-baseline",
+      "setCode": "LOB-065",
+      "baseline": true,
+      "runtimePath": "/cards/yugioh/lob-first-edition/LOB-065.jpg",
+      "kind": "ygoprodeck",
+      "sourceSite": "YGOPRODeck",
+      "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+      "imageUrl": "https://images.ygoprodeck.com/images/cards/82542267.jpg",
+      "originalPath": "public/cards/yugioh/lob-first-edition/LOB-065.jpg",
+      "sha256": "a07f2582a9e3ba7822c97ca9a12de39ce095cea3deee19dc5762b6618d269642",
+      "claimedPrinting": "Generic card render; no original-print claim",
+      "printingEvidence": {
+        "confidence": 0,
+        "observed": {
+          "layout": "modern-general",
+          "edition": "absent",
+          "generation": "modern-representation",
+          "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
+          "setCode": "absent"
+        },
+        "notes": [
+          "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
+        ]
+      },
+      "caveats": [
+        "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+        "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
+        "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
+      ],
+      "metrics": {
+        "width": 813,
+        "height": 1185,
+        "sharpness": 1508.86,
+        "glareProxy": 0.0064,
+        "jpegBlockProxy": 1.101,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        813,
+        1185
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 22.962,
+        "reasons": [
+          "printing-mismatch:edition",
+          "printing-unverified:region",
+          "printing-mismatch:generation",
+          "printing-unverified:language",
+          "printing-mismatch:setCode",
+          "printing-unverified:passcode",
+          "printing-unverified:name",
+          "printing-mismatch:copyright",
+          "printing-mismatch:layout",
+          "printing-unverified:securityStamp",
+          "printing-confidence-below-gate",
+          "manual-review-required",
+          "quality-unreviewed:sharpness",
+          "quality-unreviewed:compression",
+          "quality-unreviewed:glare",
+          "quality-unreviewed:reflections",
+          "quality-unreviewed:perspective",
+          "quality-unreviewed:sleeveObstruction",
+          "quality-unreviewed:slabObstruction",
+          "quality-unreviewed:cropCompleteness",
+          "quality-unreviewed:borderVisibility",
+          "quality-unreviewed:textReadability",
+          "quality-unreviewed:cornersVisible",
+          "quality-unreviewed:watermark",
+          "quality-unreviewed:colorEditing",
+          "quality-unreviewed:upscaling"
+        ],
+        "priority": 5
+      }
+    }
+  ]
 }

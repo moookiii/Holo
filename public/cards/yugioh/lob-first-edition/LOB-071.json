@@ -1,6 +1,190 @@
 {
   "image": "https://images.ygoprodeck.com/images/cards/33066139.jpg",
   "reference": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+  "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
   "fidelity": "general-image-fallback",
-  "notes": "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ."
+  "layout": "modern-general",
+  "notes": "Asset status: ygoprodeck-fallback. Manual review: required. Preserved legacy front. Not accepted as a verified high-quality exact-print asset. YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ. Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement.",
+  "assetStatus": "ygoprodeck-fallback",
+  "manualReview": {
+    "required": true,
+    "flags": [
+      "no-verified-high-quality-exact-print-source",
+      "printing-mismatch:edition",
+      "printing-unverified:region",
+      "printing-mismatch:generation",
+      "printing-unverified:language",
+      "printing-mismatch:setCode",
+      "printing-unverified:passcode",
+      "printing-unverified:name",
+      "printing-mismatch:copyright",
+      "printing-mismatch:layout",
+      "printing-unverified:securityStamp",
+      "printing-confidence-below-gate",
+      "manual-review-required",
+      "quality-unreviewed:sharpness",
+      "quality-unreviewed:compression",
+      "quality-unreviewed:glare",
+      "quality-unreviewed:reflections",
+      "quality-unreviewed:perspective",
+      "quality-unreviewed:sleeveObstruction",
+      "quality-unreviewed:slabObstruction",
+      "quality-unreviewed:cropCompleteness",
+      "quality-unreviewed:borderVisibility",
+      "quality-unreviewed:textReadability",
+      "quality-unreviewed:cornersVisible",
+      "quality-unreviewed:watermark",
+      "quality-unreviewed:colorEditing",
+      "quality-unreviewed:upscaling"
+    ]
+  },
+  "provenance": "/cards/yugioh/lob-first-edition/LOB-071.json",
+  "schemaVersion": 2,
+  "catalogIdentity": {
+    "provider": "YGOPRODeck",
+    "cardId": "33066139",
+    "cardName": "Reaper of the Cards",
+    "setCode": "LOB-071",
+    "rarity": "Rare",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
+  },
+  "printingIdentity": {
+    "target": {
+      "edition": "1st Edition",
+      "region": "North America",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-071"
+    },
+    "claimed": "Generic card render; no original-print claim",
+    "verified": {
+      "layout": "modern-general",
+      "edition": "absent",
+      "generation": "modern-representation",
+      "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
+      "setCode": "absent"
+    },
+    "confidence": 0,
+    "frontConfidence": 0,
+    "evidence": [
+      "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
+    ],
+    "verificationStatus": "unverified",
+    "regionEvidence": null
+  },
+  "imageProvenance": {
+    "candidateId": "LOB-071-baseline",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+    "sourceSite": "YGOPRODeck",
+    "originalImageUrl": "https://images.ygoprodeck.com/images/cards/33066139.jpg",
+    "originalPath": "public/cards/yugioh/lob-first-edition/LOB-071.jpg",
+    "originalResolution": [
+      813,
+      1185
+    ],
+    "runtimePath": "/cards/yugioh/lob-first-edition/LOB-071.jpg",
+    "resolution": [
+      813,
+      1185
+    ],
+    "sha256": "4f940ce3275969c8e8ae2830054074efce036659ab13fdc4b09b058c128bb986",
+    "runtimeSha256": null,
+    "normalization": {},
+    "upscaled": false,
+    "assetStatus": "ygoprodeck-fallback",
+    "exactPrint": false,
+    "fallback": true,
+    "quality": {
+      "width": 813,
+      "height": 1185,
+      "sharpness": 2220.018,
+      "glareProxy": 0.0012,
+      "jpegBlockProxy": 1.088,
+      "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+    },
+    "caveats": [
+      "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+      "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
+      "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
+    ]
+  },
+  "candidates": [
+    {
+      "id": "LOB-071-baseline",
+      "setCode": "LOB-071",
+      "baseline": true,
+      "runtimePath": "/cards/yugioh/lob-first-edition/LOB-071.jpg",
+      "kind": "ygoprodeck",
+      "sourceSite": "YGOPRODeck",
+      "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+      "imageUrl": "https://images.ygoprodeck.com/images/cards/33066139.jpg",
+      "originalPath": "public/cards/yugioh/lob-first-edition/LOB-071.jpg",
+      "sha256": "4f940ce3275969c8e8ae2830054074efce036659ab13fdc4b09b058c128bb986",
+      "claimedPrinting": "Generic card render; no original-print claim",
+      "printingEvidence": {
+        "confidence": 0,
+        "observed": {
+          "layout": "modern-general",
+          "edition": "absent",
+          "generation": "modern-representation",
+          "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
+          "setCode": "absent"
+        },
+        "notes": [
+          "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
+        ]
+      },
+      "caveats": [
+        "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+        "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
+        "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
+      ],
+      "metrics": {
+        "width": 813,
+        "height": 1185,
+        "sharpness": 2220.018,
+        "glareProxy": 0.0012,
+        "jpegBlockProxy": 1.088,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        813,
+        1185
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 22.962,
+        "reasons": [
+          "printing-mismatch:edition",
+          "printing-unverified:region",
+          "printing-mismatch:generation",
+          "printing-unverified:language",
+          "printing-mismatch:setCode",
+          "printing-unverified:passcode",
+          "printing-unverified:name",
+          "printing-mismatch:copyright",
+          "printing-mismatch:layout",
+          "printing-unverified:securityStamp",
+          "printing-confidence-below-gate",
+          "manual-review-required",
+          "quality-unreviewed:sharpness",
+          "quality-unreviewed:compression",
+          "quality-unreviewed:glare",
+          "quality-unreviewed:reflections",
+          "quality-unreviewed:perspective",
+          "quality-unreviewed:sleeveObstruction",
+          "quality-unreviewed:slabObstruction",
+          "quality-unreviewed:cropCompleteness",
+          "quality-unreviewed:borderVisibility",
+          "quality-unreviewed:textReadability",
+          "quality-unreviewed:cornersVisible",
+          "quality-unreviewed:watermark",
+          "quality-unreviewed:colorEditing",
+          "quality-unreviewed:upscaling"
+        ],
+        "priority": 5
+      }
+    }
+  ]
 }

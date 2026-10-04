@@ -1,6 +1,323 @@
 {
-  "image": "https://images.ygoprodeck.com/images/cards/91595718.jpg",
-  "reference": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+  "image": "https://i.ebayimg.com/images/g/D2oAAOSwdHteVdUn/s-l1600.jpg",
+  "reference": "https://www.ebay.com/itm/326121140629",
+  "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
   "fidelity": "general-image-fallback",
-  "notes": "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ."
+  "layout": "early-tcg",
+  "notes": "Asset status: original-print-region-review. Manual review: required. Natural print dots, original coloration and physical wear retained; no sharpening or enhancement. Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable.",
+  "assetStatus": "original-print-region-review",
+  "manualReview": {
+    "required": true,
+    "flags": [
+      "no-verified-high-quality-exact-print-source",
+      "printing-unverified:region",
+      "printing-confidence-below-gate",
+      "north-american-region-needs-individual-paired-back"
+    ]
+  },
+  "provenance": "/cards/yugioh/lob-first-edition/LOB-043.json",
+  "schemaVersion": 2,
+  "catalogIdentity": {
+    "provider": "YGOPRODeck",
+    "cardId": "91595718",
+    "cardName": "Book of Secret Arts",
+    "setCode": "LOB-043",
+    "rarity": "Common",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
+  },
+  "printingIdentity": {
+    "target": {
+      "edition": "1st Edition",
+      "region": "North America",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-043"
+    },
+    "claimed": "English LOB 1st Edition; seller collection",
+    "verified": {
+      "edition": "1st Edition",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-043",
+      "passcode": "91595718",
+      "name": "Book of Secret Arts",
+      "copyright": "1996 KAZUKI TAKAHASHI",
+      "layout": "early-tcg",
+      "securityStamp": "gold-bottom-right"
+    },
+    "confidence": 0.88,
+    "frontConfidence": 0.97,
+    "evidence": [
+      "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
+      "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
+    ],
+    "verificationStatus": "front-verified-region-unresolved",
+    "regionEvidence": {
+      "status": "inferred-shared-collection-back",
+      "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
+      "path": "research/yugioh-lob/fronts/collection-back.jpg"
+    }
+  },
+  "imageProvenance": {
+    "candidateId": "LOB-043-ebay-326121140629",
+    "sourceUrl": "https://www.ebay.com/itm/326121140629",
+    "sourceSite": "eBay / The Anime and TCG Shop",
+    "originalImageUrl": "https://i.ebayimg.com/images/g/D2oAAOSwdHteVdUn/s-l1600.jpg",
+    "originalPath": "research/yugioh-lob/fronts/LOB-043/ebay-326121140629.jpg",
+    "originalResolution": [
+      960,
+      1373
+    ],
+    "runtimePath": "/cards/yugioh/lob-first-edition/fronts/LOB-043.png",
+    "resolution": [
+      911,
+      1328
+    ],
+    "sha256": "5d4adbb0259f1c02ea0cefda5593767236c2ce76e86a115e72b8bd5b0483b07f",
+    "runtimeSha256": "b0101e789c2b01f57bea5bfa6e872ae24d19f1bcb5c72aea87639006d23bddf6",
+    "normalization": {
+      "quad": [
+        [
+          12.890000343322754,
+          19.670000076293945
+        ],
+        [
+          924.1400146484375,
+          19.670000076293945
+        ],
+        [
+          953.4600219726562,
+          1349.56005859375
+        ],
+        [
+          0.0,
+          1359.0
+        ]
+      ],
+      "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
+    },
+    "upscaled": false,
+    "assetStatus": "original-print-region-review",
+    "exactPrint": false,
+    "fallback": true,
+    "quality": {
+      "width": 911,
+      "height": 1328,
+      "sharpness": 2161.97,
+      "glareProxy": 0.01388,
+      "jpegBlockProxy": 0.997,
+      "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+    },
+    "caveats": [
+      "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
+      "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
+    ]
+  },
+  "candidates": [
+    {
+      "id": "LOB-043-ebay-326121140629",
+      "setCode": "LOB-043",
+      "kind": "collector-listing",
+      "sourceSite": "eBay / The Anime and TCG Shop",
+      "sourceUrl": "https://www.ebay.com/itm/326121140629",
+      "imageUrl": "https://i.ebayimg.com/images/g/D2oAAOSwdHteVdUn/s-l1600.jpg",
+      "originalPath": "research/yugioh-lob/fronts/LOB-043/ebay-326121140629.jpg",
+      "sha256": "5d4adbb0259f1c02ea0cefda5593767236c2ce76e86a115e72b8bd5b0483b07f",
+      "claimedPrinting": "English LOB 1st Edition; seller collection",
+      "discovery": {
+        "artworkMatches": [
+          [
+            289,
+            "LOB-043"
+          ],
+          [
+            13,
+            "LOB-056"
+          ],
+          [
+            9,
+            "LOB-067"
+          ]
+        ],
+        "notes": "ORB matching finds catalog identity only; printing review is separate."
+      },
+      "printingEvidence": {
+        "confidence": 0.88,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-043",
+          "passcode": "91595718",
+          "name": "Book of Secret Arts",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Inspected original-resolution title, LOB code, 1st Edition line, passcode, 1996 footer, early TCG layout and gold security mark against catalog identity.",
+          "NA attribution remains inferred from a shared listing back; front code alone cannot distinguish Asian-English prints."
+        ],
+        "regionEvidence": {
+          "status": "inferred-shared-collection-back",
+          "imageUrl": "https://i.ebayimg.com/images/g/OAoAAOSwk09eU11l/s-l1600.jpg",
+          "path": "research/yugioh-lob/fronts/collection-back.jpg"
+        }
+      },
+      "caveats": [
+        "Natural print dots, original coloration and physical wear retained; no sharpening or enhancement.",
+        "Collection back has TCG logo. Association with each front is inferred; individual paired backs are unavailable."
+      ],
+      "normalization": {
+        "quad": [
+          [
+            12.890000343322754,
+            19.670000076293945
+          ],
+          [
+            924.1400146484375,
+            19.670000076293945
+          ],
+          [
+            953.4600219726562,
+            1349.56005859375
+          ],
+          [
+            0.0,
+            1359.0
+          ]
+        ],
+        "note": "Conservative estimated physical corners; inspect colored overlay before acceptance."
+      },
+      "allowRegionalReview": true,
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Original-resolution printing strips plus complete normalized front and physical border review.",
+        "sharpness": "pass",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "quality": {
+        "glare": 0.02,
+        "perspective": 0.08,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.75
+      },
+      "reviewFlags": [
+        "north-american-region-needs-individual-paired-back"
+      ],
+      "metrics": {
+        "width": 911,
+        "height": 1328,
+        "sharpness": 2161.97,
+        "glareProxy": 0.01388,
+        "jpegBlockProxy": 0.997,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        960,
+        1373
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": true,
+        "score": 51.43,
+        "reasons": [
+          "printing-unverified:region",
+          "printing-confidence-below-gate"
+        ],
+        "priority": 4
+      }
+    },
+    {
+      "id": "LOB-043-baseline",
+      "setCode": "LOB-043",
+      "baseline": true,
+      "runtimePath": "/cards/yugioh/lob-first-edition/LOB-043.jpg",
+      "kind": "ygoprodeck",
+      "sourceSite": "YGOPRODeck",
+      "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+      "imageUrl": "https://images.ygoprodeck.com/images/cards/91595718.jpg",
+      "originalPath": "public/cards/yugioh/lob-first-edition/LOB-043.jpg",
+      "sha256": "57f054553abb0a62d63dc917e577f1f4cd47ed7f6d5d124f888d83ad2c603d54",
+      "claimedPrinting": "Generic card render; no original-print claim",
+      "printingEvidence": {
+        "confidence": 0,
+        "observed": {
+          "layout": "modern-general",
+          "edition": "absent",
+          "generation": "modern-representation",
+          "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
+          "setCode": "absent"
+        },
+        "notes": [
+          "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
+        ]
+      },
+      "caveats": [
+        "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+        "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
+        "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
+      ],
+      "metrics": {
+        "width": 813,
+        "height": 1185,
+        "sharpness": 1858.875,
+        "glareProxy": 0.01926,
+        "jpegBlockProxy": 1.103,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        813,
+        1185
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 22.962,
+        "reasons": [
+          "printing-mismatch:edition",
+          "printing-unverified:region",
+          "printing-mismatch:generation",
+          "printing-unverified:language",
+          "printing-mismatch:setCode",
+          "printing-unverified:passcode",
+          "printing-unverified:name",
+          "printing-mismatch:copyright",
+          "printing-mismatch:layout",
+          "printing-unverified:securityStamp",
+          "printing-confidence-below-gate",
+          "manual-review-required",
+          "quality-unreviewed:sharpness",
+          "quality-unreviewed:compression",
+          "quality-unreviewed:glare",
+          "quality-unreviewed:reflections",
+          "quality-unreviewed:perspective",
+          "quality-unreviewed:sleeveObstruction",
+          "quality-unreviewed:slabObstruction",
+          "quality-unreviewed:cropCompleteness",
+          "quality-unreviewed:borderVisibility",
+          "quality-unreviewed:textReadability",
+          "quality-unreviewed:cornersVisible",
+          "quality-unreviewed:watermark",
+          "quality-unreviewed:colorEditing",
+          "quality-unreviewed:upscaling"
+        ],
+        "priority": 5
+      }
+    }
+  ]
 }

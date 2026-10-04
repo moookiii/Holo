@@ -1,6 +1,247 @@
 {
   "image": "https://static.wikia.nocookie.net/yugioh/images/8/8d/Raigeki-LOB-NA-SR-1E.png/revision/latest",
   "reference": "https://yugioh.fandom.com/wiki/Set_Card_Galleries:Legend_of_Blue_Eyes_White_Dragon_(TCG-NA-1E)",
-  "fidelity": "original-scan",
-  "notes": "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+  "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+  "fidelity": "general-image-fallback",
+  "layout": "early-tcg",
+  "notes": "Asset status: unverified-print-fallback. Manual review: required. Preserved legacy front. Not accepted as a verified high-quality exact-print asset. Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary.",
+  "assetStatus": "unverified-print-fallback",
+  "manualReview": {
+    "required": true,
+    "flags": [
+      "no-verified-high-quality-exact-print-source",
+      "printing-unverified:edition",
+      "printing-unverified:region",
+      "printing-unverified:generation",
+      "printing-unverified:language",
+      "printing-unverified:setCode",
+      "printing-unverified:passcode",
+      "printing-unverified:name",
+      "printing-unverified:copyright",
+      "printing-unverified:layout",
+      "printing-unverified:securityStamp",
+      "printing-confidence-below-gate",
+      "manual-review-required",
+      "quality-unreviewed:sharpness",
+      "quality-unreviewed:compression",
+      "quality-unreviewed:glare",
+      "quality-unreviewed:reflections",
+      "quality-unreviewed:perspective",
+      "quality-unreviewed:sleeveObstruction",
+      "quality-unreviewed:slabObstruction",
+      "quality-unreviewed:cropCompleteness",
+      "quality-unreviewed:borderVisibility",
+      "quality-unreviewed:textReadability",
+      "quality-unreviewed:cornersVisible",
+      "quality-unreviewed:watermark",
+      "quality-unreviewed:colorEditing",
+      "quality-unreviewed:upscaling",
+      "insufficient-native-resolution"
+    ]
+  },
+  "provenance": "/cards/yugioh/lob-first-edition/LOB-053.json",
+  "schemaVersion": 2,
+  "catalogIdentity": {
+    "provider": "YGOPRODeck",
+    "cardId": "12580477",
+    "cardName": "Raigeki",
+    "setCode": "LOB-053",
+    "rarity": "Super Rare",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
+  },
+  "printingIdentity": {
+    "target": {
+      "edition": "1st Edition",
+      "region": "North America",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-053"
+    },
+    "claimed": "Gallery-labeled NA 2002 1st Edition",
+    "verified": {},
+    "confidence": 0,
+    "frontConfidence": 0,
+    "evidence": [
+      "Legacy gallery label is not pixel verification."
+    ],
+    "verificationStatus": "unverified",
+    "regionEvidence": null
+  },
+  "imageProvenance": {
+    "candidateId": "LOB-053-baseline",
+    "sourceUrl": "https://yugioh.fandom.com/wiki/Set_Card_Galleries:Legend_of_Blue_Eyes_White_Dragon_(TCG-NA-1E)",
+    "sourceSite": "Yu-Gi-Oh! Wiki / Fandom",
+    "originalImageUrl": "https://static.wikia.nocookie.net/yugioh/images/8/8d/Raigeki-LOB-NA-SR-1E.png/revision/latest",
+    "originalPath": "public/cards/yugioh/lob-first-edition/LOB-053.jpg",
+    "originalResolution": [
+      525,
+      771
+    ],
+    "runtimePath": "/cards/yugioh/lob-first-edition/LOB-053.jpg",
+    "resolution": [
+      525,
+      771
+    ],
+    "sha256": "832e115d89bcd9151e337ff825f6ce4fa3d54dc39c6471cacf036c02be87902e",
+    "runtimeSha256": null,
+    "normalization": {},
+    "upscaled": false,
+    "assetStatus": "unverified-print-fallback",
+    "exactPrint": false,
+    "fallback": true,
+    "quality": {
+      "width": 525,
+      "height": 771,
+      "sharpness": 817.788,
+      "glareProxy": 0.00158,
+      "jpegBlockProxy": 1.009,
+      "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+    },
+    "caveats": [
+      "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+      "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+    ]
+  },
+  "candidates": [
+    {
+      "id": "LOB-053-baseline",
+      "setCode": "LOB-053",
+      "baseline": true,
+      "runtimePath": "/cards/yugioh/lob-first-edition/LOB-053.jpg",
+      "kind": "exact-scan",
+      "sourceSite": "Yu-Gi-Oh! Wiki / Fandom",
+      "sourceUrl": "https://yugioh.fandom.com/wiki/Set_Card_Galleries:Legend_of_Blue_Eyes_White_Dragon_(TCG-NA-1E)",
+      "imageUrl": "https://static.wikia.nocookie.net/yugioh/images/8/8d/Raigeki-LOB-NA-SR-1E.png/revision/latest",
+      "originalPath": "public/cards/yugioh/lob-first-edition/LOB-053.jpg",
+      "sha256": "832e115d89bcd9151e337ff825f6ce4fa3d54dc39c6471cacf036c02be87902e",
+      "claimedPrinting": "Gallery-labeled NA 2002 1st Edition",
+      "printingEvidence": {
+        "confidence": 0,
+        "observed": {},
+        "notes": [
+          "Legacy gallery label is not pixel verification."
+        ]
+      },
+      "caveats": [
+        "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+        "Gallery-labeled North American 1st Edition scan; photographed foil remains in source. Resolution and physical registration vary."
+      ],
+      "metrics": {
+        "width": 525,
+        "height": 771,
+        "sharpness": 817.788,
+        "glareProxy": 0.00158,
+        "jpegBlockProxy": 1.009,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        525,
+        771
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 21.927,
+        "reasons": [
+          "printing-unverified:edition",
+          "printing-unverified:region",
+          "printing-unverified:generation",
+          "printing-unverified:language",
+          "printing-unverified:setCode",
+          "printing-unverified:passcode",
+          "printing-unverified:name",
+          "printing-unverified:copyright",
+          "printing-unverified:layout",
+          "printing-unverified:securityStamp",
+          "printing-confidence-below-gate",
+          "manual-review-required",
+          "quality-unreviewed:sharpness",
+          "quality-unreviewed:compression",
+          "quality-unreviewed:glare",
+          "quality-unreviewed:reflections",
+          "quality-unreviewed:perspective",
+          "quality-unreviewed:sleeveObstruction",
+          "quality-unreviewed:slabObstruction",
+          "quality-unreviewed:cropCompleteness",
+          "quality-unreviewed:borderVisibility",
+          "quality-unreviewed:textReadability",
+          "quality-unreviewed:cornersVisible",
+          "quality-unreviewed:watermark",
+          "quality-unreviewed:colorEditing",
+          "quality-unreviewed:upscaling",
+          "insufficient-native-resolution"
+        ],
+        "priority": 1
+      }
+    },
+    {
+      "setCode": "LOB-053",
+      "sourceUrl": "https://www.ebay.com/itm/116961764713",
+      "imageUrl": "https://i.ebayimg.com/images/g/dhwAAeSwZehpWEQd/s-l1600.jpg",
+      "id": "LOB-053-additional-ebay",
+      "kind": "collector-listing",
+      "sourceSite": "eBay",
+      "originalPath": "research/yugioh-lob/fronts/LOB-053/additional-ebay.jpg",
+      "sha256": "ffc799357c30914d53b5d0558e7ab5fcc1e7108c5c1ffbe8336876e614ae64c9",
+      "claimedPrinting": "Listing claims original LOB 1st Edition",
+      "caveats": [
+        "Broad baked multicolor foil reflection; clean base art unavailable. Rejected."
+      ],
+      "printingEvidence": {
+        "confidence": 0,
+        "observed": {},
+        "notes": [
+          "Broad baked multicolor foil reflection; clean base art unavailable. Rejected."
+        ]
+      },
+      "reviewFlags": [
+        "source-rejected-pending-better-front"
+      ],
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Broad baked multicolor foil reflection; clean base art unavailable. Rejected.",
+        "glare": "fail"
+      },
+      "originalResolution": [
+        1080,
+        1440
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 0.0,
+        "reasons": [
+          "acquisition-error:Card proportions outside tolerance; do not stretch",
+          "printing-unverified:edition",
+          "printing-unverified:region",
+          "printing-unverified:generation",
+          "printing-unverified:language",
+          "printing-unverified:setCode",
+          "printing-unverified:passcode",
+          "printing-unverified:name",
+          "printing-unverified:copyright",
+          "printing-unverified:layout",
+          "printing-unverified:securityStamp",
+          "printing-confidence-below-gate",
+          "quality-unreviewed:sharpness",
+          "quality-unreviewed:compression",
+          "quality-rejected:glare",
+          "quality-unreviewed:reflections",
+          "quality-unreviewed:perspective",
+          "quality-unreviewed:sleeveObstruction",
+          "quality-unreviewed:slabObstruction",
+          "quality-unreviewed:cropCompleteness",
+          "quality-unreviewed:borderVisibility",
+          "quality-unreviewed:textReadability",
+          "quality-unreviewed:cornersVisible",
+          "quality-unreviewed:watermark",
+          "quality-unreviewed:colorEditing",
+          "quality-unreviewed:upscaling",
+          "insufficient-native-resolution",
+          "soft-at-viewer-scale"
+        ],
+        "priority": 4
+      }
+    }
+  ]
 }

@@ -1,6 +1,295 @@
 {
   "image": "https://images.ygoprodeck.com/images/cards/4614116.jpg",
   "reference": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+  "metadata": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
   "fidelity": "general-image-fallback",
-  "notes": "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ."
+  "layout": "modern-general",
+  "notes": "Asset status: ygoprodeck-fallback. Manual review: required. Preserved legacy front. Not accepted as a verified high-quality exact-print asset. YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ. Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement.",
+  "assetStatus": "ygoprodeck-fallback",
+  "manualReview": {
+    "required": true,
+    "flags": [
+      "no-verified-high-quality-exact-print-source",
+      "printing-mismatch:edition",
+      "printing-unverified:region",
+      "printing-mismatch:generation",
+      "printing-unverified:language",
+      "printing-mismatch:setCode",
+      "printing-unverified:passcode",
+      "printing-unverified:name",
+      "printing-mismatch:copyright",
+      "printing-mismatch:layout",
+      "printing-unverified:securityStamp",
+      "printing-confidence-below-gate",
+      "manual-review-required",
+      "quality-unreviewed:sharpness",
+      "quality-unreviewed:compression",
+      "quality-unreviewed:glare",
+      "quality-unreviewed:reflections",
+      "quality-unreviewed:perspective",
+      "quality-unreviewed:sleeveObstruction",
+      "quality-unreviewed:slabObstruction",
+      "quality-unreviewed:cropCompleteness",
+      "quality-unreviewed:borderVisibility",
+      "quality-unreviewed:textReadability",
+      "quality-unreviewed:cornersVisible",
+      "quality-unreviewed:watermark",
+      "quality-unreviewed:colorEditing",
+      "quality-unreviewed:upscaling"
+    ]
+  },
+  "provenance": "/cards/yugioh/lob-first-edition/LOB-088.json",
+  "schemaVersion": 2,
+  "catalogIdentity": {
+    "provider": "YGOPRODeck",
+    "cardId": "04614116",
+    "cardName": "Dark Energy",
+    "setCode": "LOB-088",
+    "rarity": "Common",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon"
+  },
+  "printingIdentity": {
+    "target": {
+      "edition": "1st Edition",
+      "region": "North America",
+      "generation": "original-2002",
+      "language": "en",
+      "setCode": "LOB-088"
+    },
+    "claimed": "Generic card render; no original-print claim",
+    "verified": {
+      "layout": "modern-general",
+      "edition": "absent",
+      "generation": "modern-representation",
+      "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
+      "setCode": "absent"
+    },
+    "confidence": 0,
+    "frontConfidence": 0,
+    "evidence": [
+      "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
+    ],
+    "verificationStatus": "unverified",
+    "regionEvidence": null
+  },
+  "imageProvenance": {
+    "candidateId": "LOB-088-baseline",
+    "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+    "sourceSite": "YGOPRODeck",
+    "originalImageUrl": "https://images.ygoprodeck.com/images/cards/4614116.jpg",
+    "originalPath": "public/cards/yugioh/lob-first-edition/LOB-088.jpg",
+    "originalResolution": [
+      813,
+      1185
+    ],
+    "runtimePath": "/cards/yugioh/lob-first-edition/LOB-088.jpg",
+    "resolution": [
+      813,
+      1185
+    ],
+    "sha256": "e10ad5c542cd28a117a08df4fc7c4731122437e5f7706bbbe3d8cb87ffbcc230",
+    "runtimeSha256": null,
+    "normalization": {},
+    "upscaled": false,
+    "assetStatus": "ygoprodeck-fallback",
+    "exactPrint": false,
+    "fallback": true,
+    "quality": {
+      "width": 813,
+      "height": 1185,
+      "sharpness": 1663.933,
+      "glareProxy": 0.01296,
+      "jpegBlockProxy": 1.119,
+      "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+    },
+    "caveats": [
+      "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+      "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
+      "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
+    ]
+  },
+  "candidates": [
+    {
+      "setCode": "LOB-088",
+      "sourceUrl": "https://www.ebay.com/itm/336610932522",
+      "imageUrl": "https://i.ebayimg.com/images/g/cEYAAeSwpxFqG1Xl/s-l1600.jpg",
+      "id": "LOB-088-additional-ebay",
+      "kind": "collector-listing",
+      "sourceSite": "eBay",
+      "originalPath": "research/yugioh-lob/fronts/LOB-088/additional-ebay.jpg",
+      "sha256": "d85973ee61df49f41ee7062924752c81a6d6b8411938c85afdc113937a5cb41c",
+      "claimedPrinting": "Listing claims original LOB 1st Edition",
+      "caveats": [
+        "Original-layout 1st Edition front, but actual native card crop is below 1000 px high and focus is soft. Rejected as high-quality."
+      ],
+      "printingEvidence": {
+        "confidence": 0.88,
+        "frontConfidence": 0.97,
+        "observed": {
+          "edition": "1st Edition",
+          "generation": "original-2002",
+          "language": "en",
+          "setCode": "LOB-088",
+          "name": "Dark Energy",
+          "passcode": "04614116",
+          "copyright": "1996 KAZUKI TAKAHASHI",
+          "layout": "early-tcg",
+          "securityStamp": "gold-bottom-right"
+        },
+        "notes": [
+          "Actual original-resolution code, 1st Edition, Magic Card layout, passcode, title, 1996 footer and gold stamp inspected. Region not established by a paired back."
+        ]
+      },
+      "reviewFlags": [
+        "insufficient-native-card-resolution"
+      ],
+      "review": {
+        "reviewer": "Codex visual inspection, 2026-10-03",
+        "evidence": "Original-layout 1st Edition front, but actual native card crop is below 1000 px high and focus is soft. Rejected as high-quality.",
+        "sharpness": "fail",
+        "compression": "pass",
+        "glare": "pass",
+        "reflections": "pass",
+        "perspective": "pass",
+        "sleeveObstruction": "pass",
+        "slabObstruction": "pass",
+        "cropCompleteness": "pass",
+        "borderVisibility": "pass",
+        "textReadability": "pass",
+        "cornersVisible": "pass",
+        "watermark": "pass",
+        "colorEditing": "pass",
+        "upscaling": "pass"
+      },
+      "allowRegionalReview": true,
+      "quality": {
+        "glare": 0.02,
+        "perspective": 0.03,
+        "cropCompleteness": 1,
+        "watermark": 0,
+        "sourceTrust": 0.65
+      },
+      "normalization": {
+        "quad": [
+          [
+            53,
+            78
+          ],
+          [
+            684,
+            53
+          ],
+          [
+            728,
+            1006
+          ],
+          [
+            76,
+            1005
+          ]
+        ]
+      },
+      "metrics": {
+        "width": 631,
+        "height": 920,
+        "sharpness": 1730.581,
+        "glareProxy": 0.03425,
+        "jpegBlockProxy": 0.896,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        770,
+        1071
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 50.21,
+        "reasons": [
+          "printing-unverified:region",
+          "printing-confidence-below-gate",
+          "quality-rejected:sharpness",
+          "insufficient-native-resolution"
+        ],
+        "priority": 4
+      }
+    },
+    {
+      "id": "LOB-088-baseline",
+      "setCode": "LOB-088",
+      "baseline": true,
+      "runtimePath": "/cards/yugioh/lob-first-edition/LOB-088.jpg",
+      "kind": "ygoprodeck",
+      "sourceSite": "YGOPRODeck",
+      "sourceUrl": "https://db.ygoprodeck.com/api/v7/cardinfo.php?cardset=Legend%20of%20Blue%20Eyes%20White%20Dragon",
+      "imageUrl": "https://images.ygoprodeck.com/images/cards/4614116.jpg",
+      "originalPath": "public/cards/yugioh/lob-first-edition/LOB-088.jpg",
+      "sha256": "e10ad5c542cd28a117a08df4fc7c4731122437e5f7706bbbe3d8cb87ffbcc230",
+      "claimedPrinting": "Generic card render; no original-print claim",
+      "printingEvidence": {
+        "confidence": 0,
+        "observed": {
+          "layout": "modern-general",
+          "edition": "absent",
+          "generation": "modern-representation",
+          "copyright": "2020 Studio Dice/SHUEISHA, TV TOKYO, KONAMI",
+          "setCode": "absent"
+        },
+        "notes": [
+          "Actual front has modern effect typography/footer, no printed LOB set code or 1st Edition, and Replica / Not For Use In Sanctioned Tournaments footer. Explicit generic fallback, not a physical original print."
+        ]
+      },
+      "caveats": [
+        "Preserved legacy front. Not accepted as a verified high-quality exact-print asset.",
+        "YGOPRODeck general card representation; NOT an exact 2002 North American 1st Edition scan. Printed name, text, code, edition and stamp may differ.",
+        "Actual pixels identify a modern replica representation with no original LOB code or edition. Requires an original front replacement."
+      ],
+      "metrics": {
+        "width": 813,
+        "height": 1185,
+        "sharpness": 1663.933,
+        "glareProxy": 0.01296,
+        "jpegBlockProxy": 1.119,
+        "measurementNotes": "Sharpness measured at 400x580. White artwork and print dots can affect proxies; manual review is mandatory."
+      },
+      "originalResolution": [
+        813,
+        1185
+      ],
+      "assessment": {
+        "eligible": false,
+        "provisionalEligible": false,
+        "score": 22.962,
+        "reasons": [
+          "printing-mismatch:edition",
+          "printing-unverified:region",
+          "printing-mismatch:generation",
+          "printing-unverified:language",
+          "printing-mismatch:setCode",
+          "printing-unverified:passcode",
+          "printing-unverified:name",
+          "printing-mismatch:copyright",
+          "printing-mismatch:layout",
+          "printing-unverified:securityStamp",
+          "printing-confidence-below-gate",
+          "manual-review-required",
+          "quality-unreviewed:sharpness",
+          "quality-unreviewed:compression",
+          "quality-unreviewed:glare",
+          "quality-unreviewed:reflections",
+          "quality-unreviewed:perspective",
+          "quality-unreviewed:sleeveObstruction",
+          "quality-unreviewed:slabObstruction",
+          "quality-unreviewed:cropCompleteness",
+          "quality-unreviewed:borderVisibility",
+          "quality-unreviewed:textReadability",
+          "quality-unreviewed:cornersVisible",
+          "quality-unreviewed:watermark",
+          "quality-unreviewed:colorEditing",
+          "quality-unreviewed:upscaling"
+        ],
+        "priority": 5
+      }
+    }
+  ]
 }

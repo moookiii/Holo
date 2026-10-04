@@ -27,6 +27,7 @@ Run from the repo root with Python and `requirements.txt` dependencies:
 python scripts/lob-fronts/pipeline.py
 python scripts/lob-fronts/pipeline.py --download
 python scripts/lob-fronts/pipeline.py --apply
+python scripts/lob-fronts/register_maps.py
 python -m unittest discover -s scripts/lob-fronts -p 'test_*.py'
 ```
 
@@ -49,6 +50,10 @@ proportions. Strong skew, missing corners, slab glare, synthetic enhancement and
 upscaling are rejected. No denoise, sharpening, recoloring, generative fill or
 foil simulation is applied. Review foil-map registration in the live viewer when
 publishing a front. This pipeline does not regenerate masks or change materials.
+`review_bounds.py` produces colored physical-edge overlays and contact sheets for
+black-backed collector scans. Inspect them before `--apply-bounds`, then rerun
+publication and PNG registration. It trims scan backing while retaining the
+printed gray border; it does not replace corners or invent image pixels.
 The scoped registration script updates PNG map alignment for replacements only;
 do not run the old whole-set `prepare-lob-maps.py` on this provenance schema.
 
