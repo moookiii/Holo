@@ -3,6 +3,7 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
 import argparse,json
 import numpy as np
+import cv2
 from PIL import Image
 import convert_151_set as converter
 
@@ -12,11 +13,13 @@ def black_floor(source):
     rgba=np.asarray(Image.open(ROOT/source['file']).convert('RGBA'))
     low=rgba[(rgba[...,:3].mean(2)<51)&(rgba[...,3]>127),:3]
     if len(low)==0:raise ValueError('No black reference in foil: '+source['file'])
-    colors,counts=np.unique(low,axis=0,return_counts=True)
-    value=colors[np.argmax(counts)]
+    packed=low[:,0].astype(np.uint32)*65536+low[:,1].astype(np.uint32)*256+low[:,2]
+    colors,counts=np.unique(packed,return_counts=True)
+    mode=int(colors[np.argmax(counts)]);value=np.array([mode>>16,(mode>>8)&255,mode&255])
     return float(value.mean()/255),value.tolist()
 
 def main():
+    cv2.setNumThreads(1)
     parser=argparse.ArgumentParser();parser.add_argument('--sets',nargs='+',default=[f'sv{i:02d}' for i in range(1,11)]);args=parser.parse_args();records=[]
     for set_id in args.sets:
         converter.ASSETS=ROOT/f'public/cards/pokemon/tcgl-sv/{set_id}'
@@ -36,7 +39,7 @@ def main():
             result=converter.convert(p,False)
             if result:print(set_id+' '+p['number']+' '+p['variant']+' converted',flush=True)
             return result
-        with ThreadPoolExecutor(max_workers=2) as pool:built=[r for r in pool.map(build,source['printings']) if r]
+        with ThreadPoolExecutor(max_workers=4) as pool:built=[r for r in pool.map(build,source['printings']) if r]
         (converter.OUT/'manifest.json').write_text(json.dumps(built,indent=2)+'\n')
         source_path.write_text(json.dumps(source,indent=2)+'\n');records.extend(built)
         print(f'{set_id}: complete {len(built)} exact foil printings',flush=True)
