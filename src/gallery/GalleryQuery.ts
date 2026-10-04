@@ -29,6 +29,7 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ['Neo Genesis', '2000-12-16'],
   ['Neo Discovery', '2001-06-01'],
   ['Southern Islands', '2001-07-31'],
+  ['Neo Revelation', '2001-09-21'],
   ['Legendary Collection', '2002-05-24'],
   ['Expedition Base Set', '2002-09-15'],
   ['EX FireRed & LeafGreen', '2004-09-01'],

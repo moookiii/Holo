@@ -1,3 +1,4 @@
+import { NEO_REVELATION_ID, neoRevelationCard, neoRevelationSet } from './NeoRevelationCatalog.ts';
 import { SOUTHERN_ISLANDS_ID, southernIslandsCard, southernIslandsSet } from './SouthernIslandsCatalog.ts';
 import { NEO_DISCOVERY_ID, neoDiscoveryCard, neoDiscoverySet } from './NeoDiscoveryCatalog.ts';
 import { NEO_GENESIS_ID, neoGenesisCard, neoGenesisSet } from './NeoGenesisCatalog.ts';
@@ -42,7 +43,7 @@ class PermanentCatalogError extends Error {}
 const client = new TCGdex('en');
 const image = (path?: string) => path ? /\.(png|webp|jpe?g)$/i.test(path) ? path : `${path}.webp` : undefined;
 const localSetLogo = (setId: string) => {
-  const logo = setId === SOUTHERN_ISLANDS_ID ? 'si1-logo.png' : setId === 'neo2' ? 'neo2-logo.png' : setId === 'neo1' ? 'neo1-logo.png' : setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : setId === 'lc' ? 'lc-logo.png' : undefined;
+  const logo = setId === SOUTHERN_ISLANDS_ID ? 'si1-logo.png' : setId === 'neo3' ? 'neo3-logo.png' : setId === 'neo2' ? 'neo2-logo.png' : setId === 'neo1' ? 'neo1-logo.png' : setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : setId === 'lc' ? 'lc-logo.png' : undefined;
   return logo ? `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/${logo}` : undefined;
 };
 const titleCase = (value: string) => value.replace(/\b\w/g, c => c.toUpperCase());
@@ -88,6 +89,12 @@ export class TcgdexAdapter {
         if (promo >= 0) sets.splice(promo, 1);
         sets.push({ id: WIZARDS_PROMO_ID, name: wizardsPromoSet.name, logo: undefined });
       }
+      if (seriesId === 'neo') {
+        const local = [neoGenesisSet, neoDiscoverySet, southernIslandsSet, neoRevelationSet];
+        for (const set of local) if (!sets.some(s => s.id === set.id)) sets.push({ id: set.id, name: set.name, logo: set.logo });
+        const dates = new Map(local.map(s => [s.id, s.releaseDate!]));
+        sets.sort((a,b) => (dates.get(a.id) ?? '9999').localeCompare(dates.get(b.id) ?? '9999'));
+      }
       if (seriesId === 'gym') {
         const index = sets.findIndex(s => s.id === GYM_HEROES_ID);
         if (index >= 0) sets.splice(index, 1);
@@ -102,6 +109,7 @@ export class TcgdexAdapter {
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
       if (id === SOUTHERN_ISLANDS_ID) return { ...southernIslandsSet, series: { ...southernIslandsSet.series }, cardIds: [...southernIslandsSet.cardIds], boosters: [] };
+      if (id === NEO_REVELATION_ID) return { ...neoRevelationSet, series: { ...neoRevelationSet.series }, cardIds: [...neoRevelationSet.cardIds], boosters: neoRevelationSet.boosters.map(b => ({ ...b })) };
       if (id === NEO_DISCOVERY_ID) return { ...neoDiscoverySet, series: { ...neoDiscoverySet.series }, cardIds: [...neoDiscoverySet.cardIds], boosters: neoDiscoverySet.boosters.map(b => ({ ...b })) };
       if (id === NEO_GENESIS_ID) return { ...neoGenesisSet, series: { ...neoGenesisSet.series }, cardIds: [...neoGenesisSet.cardIds], boosters: neoGenesisSet.boosters.map(b => ({ ...b })) };
       if (id === WIZARDS_PROMO_ID) return { ...wizardsPromoSet, series: { ...wizardsPromoSet.series }, cardIds: [...wizardsPromoSet.cardIds], boosters: [] };
@@ -132,6 +140,11 @@ export class TcgdexAdapter {
         return southernIslandsCard(id);
       }
       if (id.startsWith(SOUTHERN_ISLANDS_ID+'-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
+      if (set.id === NEO_REVELATION_ID) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return neoRevelationCard(id);
+      }
+      if (id.startsWith('neo3-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === NEO_DISCOVERY_ID) {
         if (!id.startsWith('neo2-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return neoDiscoveryCard(id);

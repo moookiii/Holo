@@ -216,7 +216,7 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
+      sets.sort((a, b) => series.id === 'neo' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
         packAvailability(set.id).label));
     }, () => this.sets());
   }
