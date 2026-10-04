@@ -1,0 +1,55 @@
+{
+  "cardId": "sv03.5-169",
+  "variant": "holo",
+  "tcglCardId": "sv3-5_169",
+  "tcglVariantId": "Charmeleon_sv3-5_169_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_169_std.png",
+      "file": "research/tcgl/151-set/raw/sv3-5_en_169_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f6b77d9c990fb5f5799f98b949c42cfe7cfe34c6652ab53538a600350cd11110"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_169_std.foil.png",
+      "file": "research/tcgl/151-set/raw/sv3-5_en_169_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "158706b78d24ec660ff0b3dca237ea031f44c375ea7076ecc884e223c0869865"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/151-tcgl-set/source-review/page-18.jpg",
+    "holoFrontSha256": "f6b77d9c990fb5f5799f98b949c42cfe7cfe34c6652ab53538a600350cd11110",
+    "etchPolarity": "No etch asset; smooth surface."
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "169-holo-foil.png": "58f81099dc52076b6c5b290051fd8dd6001ab28c4313f044994b55bfcde97f69",
+    "169-holo-protection.png": "efb3e147413693f978edcce1032220d596d1198fa4fb8497c0b8ee67c5664e61"
+  },
+  "holoFrontSha256": "f6b77d9c990fb5f5799f98b949c42cfe7cfe34c6652ab53538a600350cd11110"
+}
