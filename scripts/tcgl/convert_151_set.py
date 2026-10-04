@@ -5,7 +5,7 @@ human/agent inspection; it is not an automatic alignment test.
 """
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor
-import argparse, hashlib, io, json
+import argparse, hashlib, io, json, time
 import cv2
 import numpy as np
 from PIL import Image
@@ -30,7 +30,15 @@ def png(path, data):
     output=io.BytesIO(); Image.fromarray(data).save(output,format='PNG')
     content=output.getvalue()
     if not path.exists() or path.read_bytes()!=content:
-        temporary=path.with_suffix('.tmp.png');temporary.write_bytes(content);temporary.replace(path)
+        temporary=path.with_suffix('.tmp.png');temporary.write_bytes(content)
+        # Windows readers can briefly hold a destination without delete sharing.
+        for attempt in range(20):
+            try:
+                temporary.replace(path)
+                break
+            except PermissionError:
+                if attempt == 19:raise
+                time.sleep(0.1 * min(attempt + 1, 5))
 
 
 def mask(path):
