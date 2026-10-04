@@ -2,7 +2,7 @@ import { StockSurfaceLayer } from '../materials/layers/StockSurfaceLayer';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
+import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
@@ -10,15 +10,23 @@ import { gratingDirection, radialStructure } from '../materials/layers/PatternLa
 import { inspection } from '../lighting/inspection';
 import type { GalleryOpticalLayer } from './GalleryBatch';
 
+// Same seven spectral bands and arithmetic, emitted once instead of inlining
+// their entire graph again for every light, axis and material region.
+const gallerySpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'float'>[]) => spectrum(path, bandwidth, secondary, variance))
+  .setLayout({ name: 'gallerySpectrum', type: 'vec3', inputs: [
+    { name: 'path', type: 'float' }, { name: 'bandwidth', type: 'float' },
+    { name: 'secondary', type: 'float' }, { name: 'variance', type: 'float' },
+  ] });
 
 interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; }
 
 /** Uses the viewer's wavelength response and grating momentum under actual
  * incident light. Foil energy enters directSpecular, never the printed color. */
 class GalleryLightingModel extends PhysicalLightingModel {
-  constructor(private regions: Region[], private layers: GalleryOpticalLayer[]) { super(true, false, true, false); }
+  constructor(private regions: Region[], private layers: GalleryOpticalLayer[]) { super(true, false, layers.some(layer => layer.iridescence), false); }
   private backing() {
-    return this.regions.reduce<Node<'float'>>((weight, r) => weight.sub(r.mask.mul(r.parameters[5].y.oneMinus())), float(1)).max(.09);
+    return this.regions.reduce<Node<'float'>>((weight, r, index) => this.layers[index].enabled
+      ? weight.sub(r.mask.mul(r.parameters[5].y.oneMinus())) : weight, float(1)).max(.09);
   }
   override direct(data: LightingModelDirectInput, builder: NodeBuilder) {
     super.direct({ ...data, lightColor: (data.lightColor as Node<'vec3'>).mul(this.backing()) }, builder);
@@ -65,7 +73,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const spectralLobe = (across: Node<'vec3'>, along: Node<'vec3'>) => {
         const width = axis.y.pow2().add(variance(along)).sqrt();
         const aperture = exp(momentum.dot(along).div(width).pow2().mul(-.5)).mul(axis.y.div(width));
-        return spectrum(momentum.dot(across).abs().mul(diffraction.x, spacing), diffraction.y, diffraction.w,
+        return gallerySpectrum(momentum.dot(across).abs().mul(diffraction.x, spacing), diffraction.y, diffraction.w,
           variance(across).mul(diffraction.x.mul(spacing).pow2())).mul(aperture);
       };
       const spectral = spectralLobe(grating, groove).mul(axis.z.oneMinus()).add(spectralLobe(groove, grating).mul(axis.z)).mul(diffraction.z, energy);
@@ -89,7 +97,8 @@ class GalleryLightingModel extends PhysicalLightingModel {
     super.indirectSpecular(builder);
     const context = builder.context as LightingContext;
     (context.reflectedLight.indirectSpecular as Node<'vec3'>).mulAssign(this.backing());
-    for (const r of this.regions) {
+    for (const [index, r] of this.regions.entries()) {
+      if (!this.layers[index].enabled) continue;
       const backing = mix(float(1), mix(float(.18), float(1), r.field.a), r.parameters[5].w);
       (context.reflectedLight.indirectSpecular as Node<'vec3'>).addAssign((context.radiance as Node<'vec3'>)
         .mul(r.mask, r.parameters[4].x, backing, mix(vec3(1), r.ink, r.parameters[4].z.max(r.glintSurface.w.greaterThan(0).select(1, 0)))));
@@ -114,11 +123,12 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), preview = param(34);
     const metal = artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
     const primary = mix(masks.r, artwork.a, preview.x);
-    const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b];
+    const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) => layers[index].enabled ? mask : float(0));
     this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index), field: image(3 + index), detail: image(6 + index),
       glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06) }));
-    const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => this.regions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
+    const activeRegions = this.regions.filter((_, index) => layers[index].enabled);
+    const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => activeRegions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
     // Match the focus renderer's neutral border before removing paper light.
     // Keep the original print available for optical ink transmission.
@@ -128,13 +138,13 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const borderVariation = print.dot(vec3(.2126, .7152, .0722)).div(.01444).sub(1).mul(.28).add(1).clamp(.84, 1.16);
     const basePrint = mix(print, border.rgb.mul(borderVariation), insideFrame.oneMinus().mul(border.a));
     const base = mix(mix(basePrint, substrate.rgb, primary.mul(substrate.a)), basePrint.add(substrate.rgb.sub(background.rgb).mul(primary, substrate.a)).max(0), background.a);
-    const darkening = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
+    const darkening = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
     this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
     const cutSlope = image(6).rg.sub(.5).mul(param(2).y, param(2).z, primary, preview.y);
     this.normalNode = normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
-    const variance = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
-    const patternRoughness = this.regions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
+    const variance = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
+    const patternRoughness = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
     this.roughnessNode = normal.a.add(variance).add(patternRoughness).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
@@ -154,9 +164,9 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     this.clearcoatNode = mix(this.clearcoatNode as Node<'float'>, finish.z, paper);
     this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>,
       finish.w.add(stock.roughness.mul(.7)).pow2().add(stock.variance).sqrt(), paper);
-    this.iridescenceNode = blend(float(0), 6, 'z');
+    this.iridescenceNode = layers.some(layer => layer.iridescence) ? blend(float(0), 6, 'z') : float(0);
     this.iridescenceIORNode = blend(float(1.5), 6, 'w');
-    this.iridescenceThicknessNode = this.regions.reduce<Node<'float'>>((v, r) => mix(v, mix(r.parameters[7].x, r.parameters[7].y, r.detail.b), r.mask), float(300));
+    this.iridescenceThicknessNode = activeRegions.reduce<Node<'float'>>((v, r) => mix(v, mix(r.parameters[7].x, r.parameters[7].y, r.detail.b), r.mask), float(300));
     this.colorNode = mix(this.colorNode, vec3(.58, .61, .59), blend(float(0), 7, 'z'));
 
   }
