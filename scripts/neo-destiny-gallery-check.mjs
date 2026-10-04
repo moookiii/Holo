@@ -37,7 +37,7 @@ try {
   await page.getByRole('searchbox',{name:'Search gallery cards'}).fill('Shining Celebi');
   await page.getByRole('button',{name:/^Open Shining Celebi, Neo Destiny/}).click();
   await page.waitForFunction(()=>window.__holo.stats().card==='pokemon:neo4-106:holo:first-edition',null,{timeout:90000});
-  assert.equal(await page.evaluate(()=>window.__holo.stats().profile),'pokemon-team-rocket-trainer');
+  assert.equal(await page.evaluate(()=>window.__holo.stats().profile),'pokemon-neo-destiny-shining');
   await page.screenshot({path:join(out,'shining-viewer.png')});
   assert.deepEqual(errors,[]);
   await writeFile(join(out,'report.json'),JSON.stringify({stats,order,errors},null,2));

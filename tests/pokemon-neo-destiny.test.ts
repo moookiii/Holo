@@ -9,6 +9,23 @@ import { collatePokemon } from '../src/pokemon/collator.ts';
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
 import { TcgdexAdapter } from '../src/pokemon/TcgdexAdapter.ts';
 import { packAvailability } from '../src/pokemon/availability.ts';
+import { neoDestinyShining } from '../src/materials/profiles/neoDestiny.ts';
+
+test('Shining silver has its own neutral optical grain and no invented etched relief',()=>{
+  assert.equal(neoDestinyShining.id,'pokemon-neo-destiny-shining');
+  assert.equal(neoDestinyShining.diffraction.strength,0);
+  assert.equal(neoDestinyShining.glints.metallicGrain,true);
+  assert.equal(neoDestinyShining.structure.field,'plain');
+  assert.equal(neoDestinyShining.structure.relief,0);
+  assert.equal(neoDestinyShining.structure.engraving,0);
+  assert.equal(neoDestinyShining.mapSettings!.embossStrength,0);
+  const registrations=JSON.parse(readFileSync('scripts/neo-destiny/cosmos-registration.json','utf8'));
+  assert.equal(registrations.length,16);
+  for(const card of registrations)assert.ok(card.motifs.length>0);
+  const evidence=JSON.parse(readFileSync('scripts/neo-destiny/map-evidence.json','utf8'));
+  assert.equal(evidence.shiningChecks.length,8);
+  for(const card of evidence.shiningChecks)assert.equal(card.outsideArtworkPixels,0);
+});
 
 test('Neo Destiny preserves 113 TCGdex fronts and supplies 24 PNG holo treatments',()=>{
   assert.equal(neoDestinyCards.length,113);
@@ -21,7 +38,7 @@ test('Neo Destiny preserves 113 TCGdex fronts and supplies 24 PNG holo treatment
     assert.equal(d.proceduralFoil,undefined);
     assert.ok(existsSync(`public${d.front}`));
     if(c.variants[0]==='holo'){
-      assert.equal(d.profile,Number(c.localId)>=106?'pokemon-team-rocket-trainer':'pokemon-base-set-2-cosmos');
+      assert.equal(d.profile,Number(c.localId)>=106?'pokemon-neo-destiny-shining':'pokemon-base-set-2-cosmos');
       assert.equal(d.maps!.normal,undefined);assert.equal(d.maps!.height,undefined);
       if(Number(c.localId)>=106)assert.equal(d.maps!.motif,undefined);
       for(const path of Object.values(d.maps!)){

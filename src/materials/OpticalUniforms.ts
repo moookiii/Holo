@@ -17,6 +17,7 @@ export class OpticalUniforms {
   glintStrength = uniform(13); spread = uniform(0.56);
   orderedGlints = uniform(0); patternRelief = uniform(0); normalVariance = uniform(0);
   microdiamondGlints = false;
+  metallicGrain = false;
   metalness = uniform(0.68); roughness = uniform(0.29);
   patternRoughness = uniform(0);
   laminate = uniform(0.72); laminateRoughness = uniform(0.2);
@@ -48,6 +49,7 @@ export class OpticalUniforms {
     this.sharpness.value = p.glints.sharpness; this.glintStrength.value = p.glints.strength; this.spread.value = p.glints.spread;
     this.orderedGlints.value = p.glints.ordered ? 1 : 0;
     this.microdiamondGlints = p.glints.microdiamond ?? false;
+    this.metallicGrain = p.glints.metallicGrain ?? false;
     this.patternRelief.value = p.structure.patternRelief ?? 0;
     this.normalVariance.value = p.structure.normalVariance ?? 0;
     this.gridStrength.value = p.structure.gridStrength ?? 0; this.gridScale.value = p.structure.gridScale ?? 6.4;

@@ -19,7 +19,7 @@ export const neoDestinyDefinitions: CardDefinition[] = neoDestinyCards.map(card 
     pokemon: { ...card, variant: holo ? 'holo' : 'normal', materialProfile: profile },
     source: { image: `https://assets.tcgdex.net/en/neo/neo4/${card.localId}/high.png`,
       metadata: `https://api.tcgdex.net/v2/en/cards/${card.id}`,
-      notes: holo ? 'Original TCGdex 1st Edition front; supplied PNG mask; Shining foil is confined to its subject; Cosmos dot placements pending at user request. No relief. See docs/neo-destiny.md.'
+      notes: holo ? 'Original TCGdex 1st Edition front; authored PNG coverage; dedicated subject-only silver Shining finish; registered Cosmos motifs on regular holos. No relief. See docs/neo-destiny.md.'
         : 'Original numbered English Neo Destiny 1st Edition non-holo print.' },
   };
 });

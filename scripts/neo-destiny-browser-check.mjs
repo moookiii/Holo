@@ -63,7 +63,7 @@ try {
     assert.equal(pulls.length,11);
     assert.ok(pulls.every(p=>p.edition==='first-edition'&&!p.procedural));
     assert.ok(pulls.every(p=>p.pending===undefined));
-    assert.ok(pulls.every(p=>p.variant==='holo'?(p.profile==='pokemon-base-set-2-cosmos'||p.profile==='pokemon-team-rocket-trainer')&&p.maps?.protection:p.profile==='print-only'&&!p.maps));
+    assert.ok(pulls.every(p=>p.variant==='holo'?(p.profile==='pokemon-base-set-2-cosmos'||p.profile==='pokemon-neo-destiny-shining')&&p.maps?.protection:p.profile==='print-only'&&!p.maps));
     if(outcome==='normal')assert.equal(pulls[10].variant,'normal');
     else assert.equal(pulls[10].id,`neo4-${outcome}`);
     const cache=await page.evaluate(async()=>{

@@ -11,6 +11,7 @@ export interface GlintUniforms {
   aspect?: Node<'float'>;
   ordered?: Node<'float'>;
   microdiamond?: boolean;
+  metallicGrain?: boolean;
 }
 
 export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number) {
@@ -22,7 +23,9 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
   const r1 = stableHash(cell, seed), r2 = stableHash(cell, seed + 17.3), r3 = stableHash(cell, seed + 76.1);
   const center = mix(vec2(mix(float(.25), float(.75), r1), mix(float(.25), float(.75), r2)), vec2(.5), ordered);
   const local = lattice.fract().sub(center);
-  const radius = mix(mix(float(.055), float(.19), r3.pow(4)), float(.11), ordered);
+  const radius = settings.metallicGrain
+    ? mix(float(.30), float(.56), r3)
+    : mix(mix(float(.055), float(.19), r3.pow(4)), float(.11), ordered);
   const footprint = lattice.fwidth().length().mul(0.5).max(0.025);
   const width = footprint.max(radius);
   const spot = smoothstep(width.mul(0.28), width, local.length()).oneMinus();
@@ -33,7 +36,8 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
     .add((bitangentView as unknown as Node<'vec3'>).mul(r2.sub(0.5).mul(settings.spread.mul(2)))).normalize();
   const half = lightDirection.add(positionViewDirection).normalize();
   const angular = normal.dot(half).max(0).pow(settings.sharpness);
-  return vec3(1, 0.97, 0.91).mul(spot, integratedArea, occupied, angular, settings.strength);
+  const color = settings.metallicGrain ? vec3(1, .99, .98) : vec3(1, .97, .91);
+  return color.mul(spot, integratedArea, occupied, angular, settings.strength);
 }
 
 /** Registered microscopic square cuts: their positions and inclinations are

@@ -29,7 +29,9 @@ try {
   for(const n of numbers) for(const edition of ['holo']) {
     await page.evaluate(async id=>{await window.__holo.setCard(id);window.__holo.zoom(.85);},`pokemon:neo4-${n}:holo:first-edition`);
     assert.equal(await page.evaluate(()=>window.__holo.stats().card),`pokemon:neo4-${n}:holo:first-edition`);
-    for(const [label,yaw,pitch,light] of [['front',0,0,'Studio'],['tilt',-16,-12,'Studio'],['strip',18,9,'Strip']]) {
+    const poses=[['front',0,0,'Studio'],['tilt',-16,-12,'Studio'],['strip',18,9,'Strip']];
+    if(process.env.REVIEW_EXTENDED && n===107)poses.push(['dark',12,-8,'Low key'],['grazing',-28,18,'Skim'],['moving',0,0,'Moving light'],['specular',-12,-18,'Strip']);
+    for(const [label,yaw,pitch,light] of poses) {
       await page.evaluate(([y,p,l])=>{window.__holo.lighting.setPreset(l);window.__holo.pose(y,p);},[yaw,pitch,light]);
       await page.waitForTimeout(180);
       await page.screenshot({path:join(out,`${n}-${edition}-${label}.png`)});
@@ -49,5 +51,5 @@ try {
   });
   assert.equal(cache.after.hits,cache.before.hits+1);assert.equal(cache.after.misses,cache.before.misses);assert.equal(cache.after.gpuCalls,0);
   assert.deepEqual(errors,[]);
-  await writeFile(join(out,'report.json'),JSON.stringify({cards:numbers,poses:3,nonHolos:12,cache,errors},null,2));
+  await writeFile(join(out,'report.json'),JSON.stringify({cards:numbers,poses:3,extraCharizardPoses:process.env.REVIEW_EXTENDED?4:0,nonHolos:12,cache,errors},null,2));
 } finally {await browser.close();}

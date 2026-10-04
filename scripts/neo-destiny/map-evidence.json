@@ -1,5 +1,47 @@
 {
-  "method": "No relief or shader authoring. Whole UV resize 600x825 to 1200x1650 Lanczos; regular white subject is print protection; Shining black subject is inverted foil coverage; no flip/crop/offset. Miracle Energy uses its own large window (20,119)-(578,606) in 600x825 coordinates.",
+  "method": "Whole-card 600x825 to 1200x1650 Lanczos. Regular subjects protect existing basic/evolved foil windows; Miracle Energy uses its own window. Cosmos centers/radii are registered to each clean master, with reviewed large-disk and Porygon2 broken-swirl corrections. Shining inverse supplied silhouettes clipped inside printed art rails; Noctowl refined from its own master using shining-contours.json at 4x, downsampled to PNG. No vertical flip, offset, relief, or runtime mask generation.",
+  "shiningChecks": [
+    {
+      "card": 106,
+      "foilPixels": 219692,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 107,
+      "foilPixels": 206404,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 108,
+      "foilPixels": 222444,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 109,
+      "foilPixels": 241708,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 110,
+      "foilPixels": 363430,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 111,
+      "foilPixels": 247915,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 112,
+      "foilPixels": 339896,
+      "outsideArtworkPixels": 0
+    },
+    {
+      "card": 113,
+      "foilPixels": 231432,
+      "outsideArtworkPixels": 0
+    }
+  ],
   "outputs": [
     {
       "file": "1-cosmos.png",
@@ -7,7 +49,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "16ebcf77ae46398478304b54a11c7a35e79ad3d9c75454a6aa3346f7d85e49a7"
     },
     {
       "file": "1-foil.png",
@@ -31,7 +73,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "e5d2f3527c49ade19756a417f48f59f265207c8c116c824a70a02afe9c7fa3a3"
     },
     {
       "file": "10-foil.png",
@@ -55,7 +97,7 @@
         1200,
         1650
       ],
-      "sha256": "8c9e18192940fd009919e99149666e7d48fa89a669484ab02f3d30d1893e0da9"
+      "sha256": "77fad46bf416d9b8517dea1a7e18fb4b0ffda19a847c8f67921a9a8ff7063d7a"
     },
     {
       "file": "106-protection.png",
@@ -63,7 +105,7 @@
         1200,
         1650
       ],
-      "sha256": "e52602b829c4a4f2f6abab19aa5e04938f24959a3a126c36a571ee898d8f32b8"
+      "sha256": "478b445ebb46b63f41061630f7de281c7fc3d494bdb933c6d44d6cc733fe2d4c"
     },
     {
       "file": "107-foil.png",
@@ -71,7 +113,7 @@
         1200,
         1650
       ],
-      "sha256": "256313234ee327d74684b6c0526d4e71984df477ab57e957fb5110507522c334"
+      "sha256": "1982533d9b7bdac5f47c1d515a23b384caf0c2c2e8534b9736543ba7e0b1ef85"
     },
     {
       "file": "107-protection.png",
@@ -79,7 +121,7 @@
         1200,
         1650
       ],
-      "sha256": "00f515ef68e4155fdb8600400dbe1e90c858d1deef7cfebad787b943e534e76d"
+      "sha256": "389766916b5a15a347c14d6af58e795381ed43060569695e5f427bdb5ad08183"
     },
     {
       "file": "108-foil.png",
@@ -87,7 +129,7 @@
         1200,
         1650
       ],
-      "sha256": "225b148b944de2d05767d1eb29f68b8ff8cb0abb2ab4029c3b97a194983e84f0"
+      "sha256": "c7cb46b29f6073761263d1848e62591e0de057b3bc302401e042bfa300e283e4"
     },
     {
       "file": "108-protection.png",
@@ -95,7 +137,7 @@
         1200,
         1650
       ],
-      "sha256": "73f77d40f4528cc3c99acca233da24c4b570176c0c1a0b50812a9a5cfe0c4312"
+      "sha256": "7dbaab05aaa32ca5a3e3f8a9515b0c1f57ae6b8f8bbfa05425229ec677fcdc33"
     },
     {
       "file": "109-foil.png",
@@ -103,7 +145,7 @@
         1200,
         1650
       ],
-      "sha256": "ecd42f3799a267f5ccafbd68c9f82b73acb3a5675bca00e68e15585ace731bb1"
+      "sha256": "8ff183208e5663a908e0e59f4f0d9d6886222c9a0eead1321065ce9becd6728b"
     },
     {
       "file": "109-protection.png",
@@ -111,7 +153,7 @@
         1200,
         1650
       ],
-      "sha256": "6ac611fccc7b70374ddf829c817f67fbff2983794765777b88004269c516f3e4"
+      "sha256": "ff8c4e5abc5f9ee4d4c00bf67f0043981c98df2b719044bea18679b650e11920"
     },
     {
       "file": "11-cosmos.png",
@@ -119,7 +161,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "088ef179ca9c685bc8596d5803e5e8fe6ca542cfbe35b528190ffed6491267bb"
     },
     {
       "file": "11-foil.png",
@@ -143,7 +185,7 @@
         1200,
         1650
       ],
-      "sha256": "24b94e6118b7fb7317b6b436594a80d72fe5e5996d415489c8284fd3b75bdd63"
+      "sha256": "f65521f3a790760e98101c2c473f148a2af9a486a3c320b2ec1ddea8fdcd1800"
     },
     {
       "file": "110-protection.png",
@@ -151,7 +193,7 @@
         1200,
         1650
       ],
-      "sha256": "a69dc1047a548446a3a1bb11e794d8095f54450d189b386bbcdd6ea8b7896b44"
+      "sha256": "8e16c4226553f674443888a58f4549c8bec624627dffba409015f18961ee2640"
     },
     {
       "file": "111-foil.png",
@@ -159,7 +201,7 @@
         1200,
         1650
       ],
-      "sha256": "10dc6513fb8e494264a15a3a4d9f174fd3aed1167597c79459746324aef70cba"
+      "sha256": "22a90c3e66c463fb17f7279e7c26d70db412cdc352185fec29359f9e6f19f80f"
     },
     {
       "file": "111-protection.png",
@@ -167,7 +209,7 @@
         1200,
         1650
       ],
-      "sha256": "6f921aaa0a73e7e6d3fe7cf959167ba25ffd336896aeebbc115add8ee3bbfa69"
+      "sha256": "01b3fb077908b48a73f616a3575757625546940acc3f49f488b4a4968ada50a2"
     },
     {
       "file": "112-foil.png",
@@ -175,7 +217,7 @@
         1200,
         1650
       ],
-      "sha256": "26c324f3549a41785fb556ce53c36e329621deb6ad13d17c9b8166f0d73471b9"
+      "sha256": "59fc1bd274210de2cde9347a5df488adec6867c68fb3df5c311fd7dc80f92714"
     },
     {
       "file": "112-protection.png",
@@ -183,7 +225,7 @@
         1200,
         1650
       ],
-      "sha256": "5f3c6cc0a3af1107e6fe7acb555b9178639700164c08f1443d8c3129d8827a83"
+      "sha256": "dba678cc4c755b5bd9ebd105f6087070e68bd3f392ea752fc6e69bbca807bdb7"
     },
     {
       "file": "113-foil.png",
@@ -191,7 +233,7 @@
         1200,
         1650
       ],
-      "sha256": "3ccbd29eee111afe6c82b22e9a668808635725620646b2d9e04fde2594a7c040"
+      "sha256": "42e1a3556989429ce7d5faaf0cf13cd9255f2989b7dfa24b0c0879c60ce8b4bd"
     },
     {
       "file": "113-protection.png",
@@ -199,7 +241,7 @@
         1200,
         1650
       ],
-      "sha256": "42ece6b6a76585fdbadad9463187883604eaa85faca5f6a2f37de58b0488679e"
+      "sha256": "676578487dcaeebe8860be6de4e33e24f009af7db498345a706e050625372fbf"
     },
     {
       "file": "12-cosmos.png",
@@ -207,7 +249,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "32ef37f9fd091dd60c641f11cfacbbed1e254e6a7f2ca342b311e3ef961edb68"
     },
     {
       "file": "12-foil.png",
@@ -231,7 +273,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "26e4d4f403b2d18694f9ba156b560e47fb184db1c450d0698de6130f129b7cea"
     },
     {
       "file": "13-foil.png",
@@ -255,7 +297,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "f1e1d929fe7bfc9d3e470a65d77f844c3188b9e942cc9f81c7c8e2e5779508ff"
     },
     {
       "file": "14-foil.png",
@@ -279,7 +321,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "b63e09f1ac4e608926da189d256bc908c31e2e29af79ae1bc3e2c06dd6d97e3b"
     },
     {
       "file": "15-foil.png",
@@ -303,7 +345,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "cef5d383ba0bd54ef3703c2d1e36544481cb55167df04072d6f8697da72dc14d"
     },
     {
       "file": "16-foil.png",
@@ -327,7 +369,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "6edd2c4c98274b49f9d8935cc8692cde73d84445dd018b0ecf73c1bb8924dd93"
     },
     {
       "file": "2-foil.png",
@@ -351,7 +393,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "81df4781c8ff5dd980ff09120e21fcd68101eafe4bfa3756e3fd4180fdd2b812"
     },
     {
       "file": "3-foil.png",
@@ -375,7 +417,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "3b9caf62bcd655d4838df5f69af7c585cbd393b66d6a05d370bf063686a875db"
     },
     {
       "file": "4-foil.png",
@@ -399,7 +441,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "d7048bc4d0bd33813593b4618e47908442bf9a81ff7322ff551839934bfdc1d6"
     },
     {
       "file": "5-foil.png",
@@ -423,7 +465,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "816fc410fd1c9f46eb56dad537cbb3cd31fe873cee512bbee76d2aa97ae6a3f2"
     },
     {
       "file": "6-foil.png",
@@ -447,7 +489,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "6d692753198b8a0ee09ef2e0aba658a95e77431d42b9786f0973a3adc4b3e0d0"
     },
     {
       "file": "7-foil.png",
@@ -471,7 +513,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "7410353c9ea782a81f786362b885192514331c9352c57a7858ea3bc4223f7952"
     },
     {
       "file": "8-foil.png",
@@ -495,7 +537,7 @@
         1200,
         1650
       ],
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+      "sha256": "d4bc31576ff6b4ee24e9042947c9718df3c0a6963e3108ab6f84e85900962a4c"
     },
     {
       "file": "9-foil.png",

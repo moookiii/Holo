@@ -1,0 +1,436 @@
+{
+  "date": "2026-10-04",
+  "build": "npm run build passed",
+  "targetedTests": {
+    "passed": 20,
+    "failed": 0
+  },
+  "render": {
+    "cards": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113
+    ],
+    "poses": 3,
+    "nonHolos": 12,
+    "cache": {
+      "before": {
+        "hits": 174,
+        "misses": 7,
+        "entries": 6,
+        "mapMs": 743.6000000238419,
+        "patternMs": 10014.79999999702,
+        "gpuCalls": 0,
+        "previewBytes": 24889536,
+        "previewBudget": 25165824
+      },
+      "after": {
+        "hits": 175,
+        "misses": 7,
+        "entries": 6,
+        "mapMs": 743.6000000238419,
+        "patternMs": 10014.79999999702,
+        "gpuCalls": 0,
+        "previewBytes": 24889536,
+        "previewBudget": 25165824
+      }
+    },
+    "errors": [],
+    "extraCharizardPoses": 4
+  },
+  "gallery": {
+    "gallery": {
+      "gpuBudgetBytes": 132744192,
+      "gpuAllocatedBytes": 132744192,
+      "capacity": 48,
+      "visible": 8,
+      "uploads": 24,
+      "materials": 1,
+      "textureArrays": 9,
+      "active": true,
+      "filtered": 113,
+      "domCards": 12,
+      "pending": 0,
+      "failed": 0,
+      "tilted": 0,
+      "scrollTop": 0
+    },
+    "cpu": {
+      "hits": 0,
+      "misses": 0,
+      "entries": 0,
+      "mapMs": 0,
+      "patternMs": 0,
+      "gpuCalls": 0,
+      "previewBytes": 24889536,
+      "previewBudget": 25165824
+    }
+  },
+  "galleryErrors": [],
+  "packErrors": [],
+  "packCases": [
+    {
+      "design": "Noctowl",
+      "outcome": "1",
+      "seed": 10,
+      "cache": {
+        "before": {
+          "hits": 0,
+          "misses": 11,
+          "entries": 11,
+          "mapMs": 477.40000000596046,
+          "patternMs": 487.09999999403954,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "after": {
+          "hits": 11,
+          "misses": 11,
+          "entries": 11,
+          "mapMs": 477.40000000596046,
+          "patternMs": 487.09999999403954,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "packMetrics": {
+          "lastWasPrepared": true,
+          "clickAt": 23193,
+          "moduleLoadMs": 73.90000000596046,
+          "clickToGpuMs": 587.2000000029802,
+          "preparedLookupMs": 0.09999999403953552,
+          "cpuGenerationMs": 0,
+          "wrapperMs": 379.59999999403954,
+          "gpuRealizationMs": 26.599999979138374,
+          "materialCreationMs": 13.099999994039536,
+          "uploadReadinessMs": 45.6000000089407,
+          "uploadedResources": 17,
+          "compileMs": 20192.69999998808,
+          "gpuTexturesCreated": 26,
+          "gpuTextureCacheHits": 10,
+          "holoMaterials": 1,
+          "printMaterials": 10,
+          "cardMaterialTypes": [
+            "Printed card front",
+            "MeshPhysicalNodeMaterial",
+            "MeshStandardNodeMaterial"
+          ],
+          "usedCpuPreparation": true,
+          "renderPipelines": 13,
+          "printPipelines": 1,
+          "holoPipelines": 0,
+          "cardTextureCacheMisses": 17,
+          "postCompileUploadMs": 0,
+          "textureUploads": 26,
+          "textureUploadCpuMs": 69.40000000596046,
+          "mipmapCalls": 20,
+          "mipmapCpuMs": 0.4000000059604645,
+          "audioMs": 106.70000000298023,
+          "sceneConstructionMs": 2.5,
+          "preparedCards": 11,
+          "loadCompleteMs": 21121.10000000894,
+          "firstVisibleMs": 21178.20000000298,
+          "clickToReadyMs": 22374.40000000596
+        }
+      }
+    },
+    {
+      "design": "Tyranitar",
+      "outcome": "6",
+      "seed": 35,
+      "cache": {
+        "before": {
+          "hits": 12,
+          "misses": 21,
+          "entries": 21,
+          "mapMs": 923.7999999970198,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "after": {
+          "hits": 23,
+          "misses": 21,
+          "entries": 21,
+          "mapMs": 923.7999999970198,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "packMetrics": {
+          "lastWasPrepared": true,
+          "clickAt": 49553.10000000894,
+          "moduleLoadMs": 20.799999997019768,
+          "clickToGpuMs": 459.09999999403954,
+          "preparedLookupMs": 0.10000000894069672,
+          "cpuGenerationMs": 0,
+          "wrapperMs": 380.20000000298023,
+          "gpuRealizationMs": 12.100000008940697,
+          "materialCreationMs": 11.100000008940697,
+          "uploadReadinessMs": 57.3999999910593,
+          "uploadedResources": 17,
+          "compileMs": 27133.19999998808,
+          "gpuTexturesCreated": 22,
+          "gpuTextureCacheHits": 11,
+          "holoMaterials": 1,
+          "printMaterials": 10,
+          "cardMaterialTypes": [
+            "Printed card front",
+            "MeshPhysicalNodeMaterial",
+            "MeshStandardNodeMaterial"
+          ],
+          "usedCpuPreparation": true,
+          "renderPipelines": 15,
+          "printPipelines": 1,
+          "holoPipelines": 1,
+          "cardTextureCacheMisses": 16,
+          "postCompileUploadMs": 0,
+          "textureUploads": 22,
+          "textureUploadCpuMs": 81.59999999403954,
+          "mipmapCalls": 18,
+          "mipmapCpuMs": 0,
+          "audioMs": 16.700000002980232,
+          "sceneConstructionMs": 1.6000000089406967,
+          "preparedCards": 11,
+          "loadCompleteMs": 27681.59999999404,
+          "firstVisibleMs": 27689.29999999702,
+          "clickToReadyMs": 28882.79999999702
+        }
+      }
+    },
+    {
+      "design": "Celebi",
+      "outcome": "106",
+      "seed": 6,
+      "cache": {
+        "before": {
+          "hits": 25,
+          "misses": 30,
+          "entries": 30,
+          "mapMs": 1110.0999999940395,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "after": {
+          "hits": 36,
+          "misses": 30,
+          "entries": 30,
+          "mapMs": 1110.0999999940395,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "packMetrics": {
+          "lastWasPrepared": true,
+          "clickAt": 80364.5,
+          "moduleLoadMs": 13.700000002980232,
+          "clickToGpuMs": 338.40000000596046,
+          "preparedLookupMs": 0.10000000894069672,
+          "cpuGenerationMs": 0,
+          "wrapperMs": 281.09999999403954,
+          "gpuRealizationMs": 9.400000005960464,
+          "materialCreationMs": 8.700000002980232,
+          "uploadReadinessMs": 43.099999994039536,
+          "uploadedResources": 15,
+          "compileMs": 22819.20000000298,
+          "gpuTexturesCreated": 20,
+          "gpuTextureCacheHits": 11,
+          "holoMaterials": 1,
+          "printMaterials": 10,
+          "cardMaterialTypes": [
+            "Printed card front",
+            "MeshPhysicalNodeMaterial",
+            "MeshStandardNodeMaterial"
+          ],
+          "usedCpuPreparation": true,
+          "renderPipelines": 15,
+          "printPipelines": 1,
+          "holoPipelines": 1,
+          "cardTextureCacheMisses": 14,
+          "postCompileUploadMs": 0,
+          "textureUploads": 20,
+          "textureUploadCpuMs": 66.39999997615814,
+          "mipmapCalls": 16,
+          "mipmapCpuMs": 0,
+          "audioMs": 15.099999994039536,
+          "sceneConstructionMs": 1.0999999940395355,
+          "preparedCards": 11,
+          "loadCompleteMs": 23229.5,
+          "firstVisibleMs": 23237.40000000596,
+          "clickToReadyMs": 24428.80000001192
+        }
+      }
+    },
+    {
+      "design": "Togetic",
+      "outcome": "113",
+      "seed": 44,
+      "cache": {
+        "before": {
+          "hits": 38,
+          "misses": 39,
+          "entries": 39,
+          "mapMs": 1260.7999999821186,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "after": {
+          "hits": 49,
+          "misses": 39,
+          "entries": 39,
+          "mapMs": 1260.7999999821186,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "packMetrics": {
+          "lastWasPrepared": true,
+          "clickAt": 106356.60000000894,
+          "moduleLoadMs": 12.099999994039536,
+          "clickToGpuMs": 316.29999999701977,
+          "preparedLookupMs": 0,
+          "cpuGenerationMs": 0,
+          "wrapperMs": 255.30000001192093,
+          "gpuRealizationMs": 10.900000020861626,
+          "materialCreationMs": 9.899999961256981,
+          "uploadReadinessMs": 48.5,
+          "uploadedResources": 15,
+          "compileMs": 22020.70000000298,
+          "gpuTexturesCreated": 20,
+          "gpuTextureCacheHits": 11,
+          "holoMaterials": 1,
+          "printMaterials": 10,
+          "cardMaterialTypes": [
+            "Printed card front",
+            "MeshPhysicalNodeMaterial",
+            "MeshStandardNodeMaterial"
+          ],
+          "usedCpuPreparation": true,
+          "renderPipelines": 15,
+          "printPipelines": 1,
+          "holoPipelines": 1,
+          "cardTextureCacheMisses": 14,
+          "postCompileUploadMs": 0,
+          "textureUploads": 20,
+          "textureUploadCpuMs": 69.99999997019768,
+          "mipmapCalls": 16,
+          "mipmapCpuMs": 0.20000000298023224,
+          "audioMs": 15,
+          "sceneConstructionMs": 1.1000000089406967,
+          "preparedCards": 11,
+          "loadCompleteMs": 22424.59999999404,
+          "firstVisibleMs": 22433.89999999106,
+          "clickToReadyMs": 23625
+        }
+      }
+    },
+    {
+      "design": "Noctowl",
+      "outcome": "normal",
+      "seed": 0,
+      "cache": {
+        "before": {
+          "hits": 54,
+          "misses": 45,
+          "entries": 45,
+          "mapMs": 1261.1999999582767,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "after": {
+          "hits": 65,
+          "misses": 45,
+          "entries": 45,
+          "mapMs": 1261.1999999582767,
+          "patternMs": 616.0999999940395,
+          "gpuCalls": 0,
+          "previewBytes": 24889536,
+          "previewBudget": 25165824
+        },
+        "packMetrics": {
+          "lastWasPrepared": true,
+          "clickAt": 131556.60000000894,
+          "moduleLoadMs": 11.5,
+          "clickToGpuMs": 50.5,
+          "preparedLookupMs": 0,
+          "cpuGenerationMs": 0,
+          "wrapperMs": 22.200000002980232,
+          "gpuRealizationMs": 11,
+          "materialCreationMs": 10.5,
+          "uploadReadinessMs": 16,
+          "uploadedResources": 12,
+          "compileMs": 10557.29999999702,
+          "gpuTexturesCreated": 12,
+          "gpuTextureCacheHits": 11,
+          "holoMaterials": 0,
+          "printMaterials": 11,
+          "cardMaterialTypes": [
+            "Printed card front",
+            "MeshPhysicalNodeMaterial",
+            "MeshStandardNodeMaterial"
+          ],
+          "usedCpuPreparation": true,
+          "renderPipelines": 14,
+          "printPipelines": 1,
+          "holoPipelines": 0,
+          "cardTextureCacheMisses": 11,
+          "postCompileUploadMs": 0,
+          "textureUploads": 12,
+          "textureUploadCpuMs": 15.200000032782555,
+          "mipmapCalls": 11,
+          "mipmapCpuMs": 0.09999999403953552,
+          "audioMs": 2.7999999970197678,
+          "sceneConstructionMs": 1.1000000089406967,
+          "preparedCards": 11,
+          "loadCompleteMs": 10697.79999999702,
+          "firstVisibleMs": 10705.39999999106,
+          "clickToReadyMs": 12045.59999999404
+        }
+      }
+    }
+  ],
+  "visualReview": {
+    "captures": "artifacts/neo-destiny-review-finish-final",
+    "maskOverlays": "artifacts/neo-destiny-finish/masks",
+    "cosmosOverlays": "artifacts/neo-destiny-cosmos",
+    "observations": [
+      "All regular holos retain their printed subject occlusion and existing Cosmos material. Miracle Energy retains its larger window.",
+      "All eight Shinings retain independent subject masks; Noctowl outline stays inside its printed halo.",
+      "Charizard dark/grazing views suppress reflection; strip and moving light reveal neutral fine grain. Text, background, symbols and tail flame are outside the Shining foil mask.",
+      "Existing CPU workers, cache budgets and GPU-on-demand path are unchanged."
+    ],
+    "limits": "Short Charizard video is the moving physical reference. Other Shining responses share that optical approximation. Headless cold shader times are not a hardware frame-rate benchmark."
+  }
+}
