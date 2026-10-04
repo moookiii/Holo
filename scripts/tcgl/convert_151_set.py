@@ -98,6 +98,8 @@ def convert(printing,record_review):
                 elif name=='body':body=value
                 else:secondary=value
                 retained.append({'file':path.relative_to(ROOT).as_posix(),'sha256':digest(path)})
+    # Match the stored 8-bit protection mask before attenuating tangent slopes.
+    protection=np.rint(protection*255)/255
     png(OUT/(prefix+'foil.png'),np.rint(foil*255).astype(np.uint8))
     png(OUT/(prefix+'protection.png'),np.rint(protection*255).astype(np.uint8))
     maps={name:'/cards/pokemon/151/tcgl/'+prefix+name+'.png' for name in ('foil','protection')}
