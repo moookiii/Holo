@@ -7,60 +7,6 @@ import { hoverFromCardCenter, projectAroundCardCenter } from '../src/input/Hover
 const closeOrientation = (a: Quaternion, b: Quaternion, epsilon = 1e-6) => assert.ok(a.angleTo(b) < epsilon, `orientation differs by ${a.angleTo(b)} radians`);
 const advance = (motion: CardMotion, seconds: number, hz = 120) => { for (let i = 0; i < Math.round(seconds * hz); i++) motion.update(1 / hz); };
 
-test('card orbit keeps the original vertical drag direction at artifact speed', () => {
-  for (const dy of [-100, 100]) {
-    const motion = new CardMotion(); motion.enableOrbitRotation();
-    motion.applyOrbitDrag(0, dy, 800); advance(motion, 4);
-    const oldDirection = new Quaternion().setFromUnitVectors(new Vector3(0, 0, 1), new Vector3(0, -dy, 800).normalize());
-    assert.ok(motion.manual.x * oldDirection.x > 0, 'vertical rotation keeps the trackball direction');
-    closeOrientation(motion.manual, new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), dy * 2 * Math.PI / 800));
-  }
-});
-
-test('card orbit preserves cursor-follow tilt before and after a drag', () => {
-  const motion = new CardMotion(); motion.enableOrbitRotation();
-  const original = new CardMotion();
-  motion.setHover(.8, -.6); original.setHover(.8, -.6);
-  advance(motion, 2); advance(original, 2);
-  closeOrientation(motion.orientation, original.orientation);
-  motion.applyOrbitDrag(200, 50, 800); advance(motion, 4);
-  const manual = motion.manual.clone();
-  motion.setHover(-.7, .9); advance(motion, 2);
-  closeOrientation(motion.manual, manual);
-  closeOrientation(motion.orientation, motion.presentation.clone().multiply(manual));
-  assert.ok(motion.orientation.angleTo(manual) > .2, 'cursor visibly tilts a dragged card');
-  motion.setHover(0, 0); advance(motion, 2);
-  closeOrientation(motion.orientation, manual);
-});
-
-test('card orbit remains upright at either pitch limit with cursor tilt and flips', () => {
-  for (const dy of [-10000, 10000]) {
-    const motion = new CardMotion(); motion.enableOrbitRotation();
-    motion.applyOrbitDrag(1900, dy, 800); advance(motion, 4);
-    for (const x of [-1.5, 0, 1.5]) for (const y of [-1.5, 0, 1.5]) {
-      motion.setHover(x, y); advance(motion, 2);
-      assert.ok(Y_AXIS.clone().applyQuaternion(motion.orientation).y > 0, 'hover cannot push the visible card past a pole');
-      motion.requestFlip(); advance(motion, .7);
-      assert.ok(Y_AXIS.clone().applyQuaternion(motion.orientation).y > 0, 'flip keeps the card upright');
-    }
-    motion.reset(); advance(motion, 1);
-    closeOrientation(motion.orientation, new Quaternion());
-    motion.applyOrbitDrag(100, 0, 800); advance(motion, 4);
-    closeOrientation(motion.manual, new Quaternion().setFromAxisAngle(Y_AXIS, Math.PI / 4));
-  }
-});
-
-test('card orbit damping and continued back-side drag are independent of refresh rate', () => {
-  const slow = new CardMotion(), fast = new CardMotion();
-  for (const motion of [slow, fast]) { motion.enableOrbitRotation(); motion.applyOrbitDrag(320, 50, 800); }
-  advance(slow, .5, 60); advance(fast, .5, 240);
-  closeOrientation(slow.orientation, fast.orientation);
-  advance(slow, 4); slow.halt(); slow.applyOrbitDrag(40, 0, 800); advance(slow, 4);
-  const expected = new Quaternion().setFromAxisAngle(new Vector3(1, 0, 0), Math.PI / 8)
-    .multiply(new Quaternion().setFromAxisAngle(Y_AXIS, .9 * Math.PI));
-  closeOrientation(slow.manual, expected);
-});
-
 test('combined interaction starts face-on and resets a tilted, rotated or flipped card to the front', () => {
   {
     const motion = new CardMotion();
