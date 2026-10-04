@@ -18,6 +18,8 @@ SIZE = (1800,2475)
 AUTHORED = set()
 PUBLIC_BASE = '/cards/pokemon/151'
 PROFILE_PREFIX = 'pokemon151_'
+FOIL_NATIVE = False
+OMIT_HEIGHT = False
 
 
 def digest(path):
@@ -85,7 +87,7 @@ def convert(printing,record_review):
     # samples. Remove that black floor; retain all continuous gray coverage.
     floor=printing.get('foilBlackFloor',33/255)
     foil=np.clip((raw_foil[...,:3].mean(2)-floor)/(1-floor),0,1)*raw_foil[...,3]
-    foil=cv2.resize(foil,SIZE,interpolation=cv2.INTER_LINEAR)
+    if not FOIL_NATIVE:foil=cv2.resize(foil,SIZE,interpolation=cv2.INTER_LINEAR)
     raw_etch=np.asarray(Image.open(ROOT/sources['etch']['file']).convert('RGBA'),np.float32)/255 if 'etch' in sources else None
     protection,body,regions=source_regions(raw_foil,raw_etch,floor)
     protection=cv2.resize(protection,SIZE,interpolation=cv2.INTER_LINEAR)
@@ -118,10 +120,10 @@ def convert(printing,record_review):
         normal=normal*alpha[...,None]+np.array([0,0,1],np.float32)*(1-alpha[...,None])
         encoded=np.rint(np.clip(normal*.5+.5,0,1)*255).astype(np.uint8)
         png(OUT/(prefix+'normal.png'),encoded)
-        png(OUT/(prefix+'height.png'),np.rint((.5+(height-.5)*.25)*255).astype(np.uint8))
+        if not OMIT_HEIGHT:png(OUT/(prefix+'height.png'),np.rint((.5+(height-.5)*.25)*255).astype(np.uint8))
         roughness=(.30+.105*body)*(1-secondary)+.27*secondary
         png(OUT/(prefix+'roughness.png'),np.rint(roughness*255).astype(np.uint8))
-        for name in ('normal','height','roughness'):maps[name]=PUBLIC_BASE+'/tcgl/'+prefix+name+'.png'
+        for name in ('normal','roughness') if OMIT_HEIGHT else ('normal','height','roughness'):maps[name]=PUBLIC_BASE+'/tcgl/'+prefix+name+'.png'
         if not np.all(encoded[protection==1]==[128,128,255]):raise ValueError('Protected normal is not flat')
     treatment={'illustration rare':'illustration_holo','rare':'regular_holo','double rare':'ex_holo','ace spec rare':'ace_spec','ultra rare':'fullart_texture','special illustration rare':'sir_texture','hyper rare':'gold'}.get(printing['rarity'].lower())
     if variant!='holo':treatment={'reverse':'standard_reverse','pokeball-reverse':'pokeball_reverse','masterball-reverse':'masterball_reverse'}[variant]
@@ -129,10 +131,11 @@ def convert(printing,record_review):
     evidence={'cardId':printing['cardId'],'variant':variant,'tcglCardId':printing['tcglCardId'],'tcglVariantId':printing['tcglVariantId'],
       'sources':sources,'alignmentReview':review,'textured':raw_etch is not None,'rendererReady':False,'mapSize':list(SIZE),
       'normalMethod':'Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).',
-      'foilMethod':'Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.', 'foilBlackFloor':floor,
+      'foilMethod':'Mean source RGB with decoded black floor removed, alpha multiplied; '+('native source dimensions, GPU linear UV sampling.' if FOIL_NATIVE else 'full-domain bilinear resize.')+' No crop, flip or offset. Continuous grayscale coverage retained.', 'foilBlackFloor':floor,
       'protectedBodyRegions':regions,'retainedRegions':retained,'normalScale':1 if raw_etch is not None else 0,'embossStrength':0,
       'limitations':'TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.',
       'maps':{Path(path).name:digest(ROOT/'public'/path.lstrip('/')) for path in maps.values()},'holoFrontSha256':digest(front)}
+    evidence['mapDimensions']={Path(path).name:list(Image.open(ROOT/'public'/path.lstrip('/')).size) for path in maps.values()}
     ep=OUT/(prefix+'evidence.json');ep.write_text(json.dumps(evidence,indent=2)+'\n')
     return {'cardId':printing['cardId'],'variant':variant,'profile':PROFILE_PREFIX+treatment,'textured':raw_etch is not None,
             'maps':maps,'evidence':PUBLIC_BASE+'/tcgl/'+ep.name,'foilType':printing['foil']['type']}

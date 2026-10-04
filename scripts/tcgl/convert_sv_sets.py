@@ -20,6 +20,7 @@ def black_floor(source):
 
 def main():
     cv2.setNumThreads(1)
+    converter.FOIL_NATIVE=True;converter.OMIT_HEIGHT=True
     parser=argparse.ArgumentParser();parser.add_argument('--sets',nargs='+',default=[f'sv{i:02d}' for i in range(1,11)]);args=parser.parse_args();records=[]
     for set_id in args.sets:
         converter.ASSETS=ROOT/f'public/cards/pokemon/tcgl-sv/{set_id}'
@@ -34,12 +35,18 @@ def main():
             front=converter.ASSETS/(p['number']+'.png')
             if converter.digest(front)!=p['sources']['front']['sha256']:raise ValueError('Front registration changed')
             p['alignmentReview']={'status':'source-family-reviewed','verticalFlip':False,'cropOrOffset':False,'etchPolarity':'Inverted mean RGB; white grooves recessed.' if 'etch' in p['sources'] else 'No etch source; smooth.', 'method':'Paired exact TCGL full-card front; source-family contact sheets inspected. No independent angled-photo calibration for every card.','capture':review['captures'],'holoFrontSha256':converter.digest(front)}
+            if set_id=='sv08' and p['number']=='162':p['alignmentReview']['providerCaveat']=review.get('providerCaveat')
             if 'foil' in p['sources']:p['foilBlackFloor'],p['foilBlackFloorRgb']=black_floor(p['sources']['foil'])
         def build(p):
             result=converter.convert(p,False)
             if result:print(set_id+' '+p['number']+' '+p['variant']+' converted',flush=True)
             return result
         with ThreadPoolExecutor(max_workers=4) as pool:built=[r for r in pool.map(build,source['printings']) if r]
+        # These inspection-only copies were emitted by this new set pipeline;
+        # exact raw etches remain preserved and normals already encode relief.
+        for p in source['printings']:
+            height_path=converter.OUT/(p['number']+'-'+p['variant']+'-height.png')
+            if height_path.exists():height_path.unlink()
         (converter.OUT/'manifest.json').write_text(json.dumps(built,indent=2)+'\n')
         source_path.write_text(json.dumps(source,indent=2)+'\n');records.extend(built)
         print(f'{set_id}: complete {len(built)} exact foil printings',flush=True)
