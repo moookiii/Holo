@@ -2,9 +2,21 @@
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from urllib.parse import urlparse
-import hashlib, json, os
+import hashlib, json, os, threading, time
+import requests
 from PIL import Image
-from fetch_prismatic_set import fetch
+
+_worker=threading.local()
+def fetch(url):
+    # Reuse each worker's HTTPS connection across this large asset collection.
+    if not hasattr(_worker,'session'):
+        _worker.session=requests.Session();_worker.session.headers['User-Agent']='Mozilla/5.0'
+    for attempt in range(4):
+        try:
+            response=_worker.session.get(url,timeout=60);response.raise_for_status();return response.content
+        except requests.RequestException:
+            if attempt==3:raise
+            time.sleep(attempt+1)
 
 ROOT=Path(__file__).resolve().parents[2]
 BASE='https://cdn.malie.io/file/malie-io/tcgl/export/'
@@ -52,7 +64,7 @@ def main():
             with Image.open(path) as im:size,mode=list(im.size),im.mode
             return u,{'file':path.relative_to(ROOT).as_posix(),'dimensions':size,'mode':mode,'sha256':hashlib.sha256(path.read_bytes()).hexdigest()}
         saved={}
-        with ThreadPoolExecutor(max_workers=8) as pool:
+        with ThreadPoolExecutor(max_workers=24) as pool:
             for count,f in enumerate(as_completed([pool.submit(preserve,x) for x in downloads.items()]),1):
                 u,data=f.result();saved[u]=data
                 if count%100==0:print(f'{set_id}: preserved {count}/{len(downloads)}',flush=True)
