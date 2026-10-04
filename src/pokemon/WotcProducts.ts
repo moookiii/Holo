@@ -1,3 +1,4 @@
+import { neoDestinyRecipe, neoDestinyWrapper } from './NeoDestinyProduct.ts';
 import { neoRevelationRecipe, neoRevelationWrapper } from './NeoRevelationProduct.ts';
 import { neoDiscoveryRecipe, neoDiscoveryWrapper } from './NeoDiscoveryProduct.ts';
 import { neoGenesisRecipe, neoGenesisWrapper } from './NeoGenesisProduct.ts';
@@ -9,7 +10,7 @@ import type { PokemonRecipe } from './recipes.ts';
 
 /** Explicit product slots; no era-wide assumption about Energy or rare prints. */
 export const wotcRecipes: readonly PokemonRecipe[] = [
-  neoRevelationRecipe, neoDiscoveryRecipe, neoGenesisRecipe, teamRocketRecipe, gymHeroesRecipe, gymChallengeRecipe, legendaryCollectionRecipe,
+  neoDestinyRecipe, neoRevelationRecipe, neoDiscoveryRecipe, neoGenesisRecipe, teamRocketRecipe, gymHeroesRecipe, gymChallengeRecipe, legendaryCollectionRecipe,
   { id: 'base4-english-retail', version: '1', setId: 'base4', era: 'base',
     boosterIds: ['mewtwo', 'pidgeot', 'raichu', 'gyarados'],
     requiredCardIds: Array.from({ length: 130 }, (_, i) => `base4-${i + 1}`),
@@ -67,7 +68,7 @@ export const wotcRecipes: readonly PokemonRecipe[] = [
 
 /** Wrapper identity is cosmetic; it never changes a product's card odds. */
 export const wotcWrappers: Record<string, { back: string; backBounds?: [number, number, number, number]; designs: readonly { id: string; name?: string; edition?: import('./types.ts').PrintEdition; front?: string; frontBounds?: [number, number, number, number]; back?: string; backBounds?: [number, number, number, number] }[] }> = {
-  neo3: neoRevelationWrapper, neo2: neoDiscoveryWrapper, neo1: neoGenesisWrapper, base5: teamRocketWrapper, gym1: gymHeroesWrapper, gym2: gymChallengeWrapper,
+  neo4: neoDestinyWrapper, neo3: neoRevelationWrapper, neo2: neoDiscoveryWrapper, neo1: neoGenesisWrapper, base5: teamRocketWrapper, gym1: gymHeroesWrapper, gym2: gymChallengeWrapper,
   lc: legendaryCollectionWrapper,
   base4: { back: 'base4-back.jpg', backBounds: [20/2379, 15/4080, 2350/2379, 4060/4080], designs: [
     { id: 'mewtwo', front: 'base4-mewtwo.jpg' },
