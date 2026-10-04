@@ -187,7 +187,15 @@ export class BirdParts {
       material.color.set(mode === 'frosted' ? '#f0f5ef' : '#727872');
       material.roughness = mode === 'frosted' ? .48 : material.userData.clearRoughness;
       material.transmission = mode === 'frosted' ? Math.min(.86, material.userData.clearTransmission) : 0;
-      material.opacity = mode === 'frosted' ? .96 : 1 - material.userData.clearTransmission;
+      // Transmission supplies the frosted translucency. Alpha blending without
+      // depth writes lets the closed sheets' rear triangles overwrite their fronts.
+      const transparent = mode !== 'frosted';
+      if (material.transparent !== transparent) {
+        material.transparent = transparent;
+        material.needsUpdate = true;
+      }
+      material.depthWrite = !transparent;
+      material.opacity = mode === 'frosted' ? 1 : 1 - material.userData.clearTransmission;
       material.clearcoat = mode === 'frosted' ? .05 : 1;
     }
   }
