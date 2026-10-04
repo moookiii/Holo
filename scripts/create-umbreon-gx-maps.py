@@ -6,10 +6,20 @@ from umbreon_gx_geometry import BODY,LEG_GAP,EAR,EAR_RING,TAIL,TAIL_RING,REAR_EA
 ROOT=Path(__file__).resolve().parents[1]; OUT=ROOT/'public/cards/umbreon-gx-sm1-154'; REF=ROOT/'research/umbreon-gx-sm1-154'; REVIEW=ROOT/'artifacts/umbreon-gx-sm1-154'
 W,H,S=1800,2475,3
 parser=argparse.ArgumentParser()
-parser.add_argument('--normal-only',action='store_true',help='Rebuild normal.png using the edited body and protection PNGs without overwriting other maps.')
-parser.add_argument('--derived-only',action='store_true',help='Rebuild normal, height, and roughness from the edited body and protection PNGs.')
+parser.add_argument('--normal-only',action='store_true',help='Rebuild the TCGL normal, inspection height and reference roughness using the edited masks.')
+parser.add_argument('--derived-only',action='store_true',help='Rebuild the TCGL normal, inspection height and reference roughness using the edited masks.')
 args=parser.parse_args()
 use_edited_masks=args.normal_only or args.derived_only
+
+def convert_tcgl():
+ import subprocess, sys
+ subprocess.run([sys.executable,str(ROOT/'scripts/tcgl/convert_etched_cards.py'),'--card','sm1-154'],check=True)
+
+# Edited-mask shortcuts must never emit historical procedural relief or exit
+# before exact TCGL conversion. The converter preserves the region PNGs.
+if use_edited_masks:
+ convert_tcgl()
+ raise SystemExit(0)
 y,x=np.mgrid[:H,:W].astype(np.float32)/S
 
 def read_mask(name):
@@ -172,7 +182,4 @@ manifest={'card':'sm1-154','source':'https://assets.tcgdex.net/en/sm/sm1/154/hig
 # Keep legacy region authoring, but replace its generated relief with the exact
 # reviewed TCGL etch and the required Sylveon finish before delivery.
 if __name__ == "__main__":
-    import subprocess as _tcgl_subprocess
-    import sys as _tcgl_sys
-    _tcgl_root = Path(__file__).resolve().parents[1]
-    _tcgl_subprocess.run([_tcgl_sys.executable, str(_tcgl_root / "scripts/tcgl/convert_etched_cards.py"), "--card", "sm1-154"], check=True)
+    convert_tcgl()
