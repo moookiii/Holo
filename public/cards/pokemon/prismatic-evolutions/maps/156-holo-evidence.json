@@ -12,8 +12,8 @@
     "156-holo-foil.png": "f75f6e49a908becc78c2d1ab44676bb2e28e6326137b5802b7665eb8052d5c32",
     "156-holo-protection.png": "d5e40ee15bef92a3c09fa721801a0969fcc2f6be1a00bfd51718b725f4632e0a",
     "156-holo-height.png": "78f223c1c738403da07deb3c024712307d7e9da8a5dd5a14d23add6d21c87b22",
-    "156-holo-normal.png": "053fc043c4f43109767383bca443a5d13c0e6b77300be72b71ba37241b004f69",
-    "156-holo-roughness.png": "90b93885472173035a23834018bee437170106f3f724287cf3371eddf43ee823",
+    "156-holo-normal.png": "01464287aa3afbc52b3f0a650fefd3acd4e7a4a4f0d4e1d85b7c6d3455963b8c",
+    "156-holo-roughness.png": "ae4d04422318c03931fe0e02f810a4b11bd1c7675de19f263ad87340ff474658",
     "156-holo-secondary-foil.png": "f0eaafa4b5f5c17b4d170072424a08354e4df5b2bbbcaa61a155ed2910ba5966",
     "156-holo-body.png": "a4957b0f5ccd222311d91920e92a8e9ea9272792f88a6c2f281ff9b514c6a405",
     "156-holo-gems.png": "308db2163a3960ccccde3a5af7cf6cfdca07f666a551c7ceba1034cad0e7fdf0",
@@ -27,7 +27,7 @@
     }
   ],
   "referencePolicy": "The user-attached 724671-L.jpg guides etched flow, character coverage and the upper/middle-right microdiamond field. Its supplied temporary path was unavailable; the visible attachment was reviewed directly. Clean local front supplies registration only. User silver microdiamond PNG supplies trim coverage, registered separately for ex lettering. Body contours are smoothed before PNG rasterization.",
-  "limitations": "TCGL supplies etch line geometry, not calibrated physical groove depth. A restrained tangent slope gain is used to keep the response shallow. No denoising, generated geometry, or added texture is used.",
+  "limitations": "TCGL supplies etch line geometry, not calibrated physical groove depth. Tangent slope gain and surface finish are matched to Holo Espeon 155; absolute physical depth is not inferred from the reference photo. No denoising, generated geometry, or added texture is used.",
   "normalSource": {
     "file": "research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png",
     "sha256": "0e7ec4ea068faac11027bc72eeb6498b720ebb5a15b27b12915b05513d994c20",
@@ -38,7 +38,7 @@
     "operation": "Full-domain resize to 1800x2475; white etched strokes interpreted as recessed height (luminance inverted); Scharr derivatives on the unfiltered continuous height field; existing protection PNG applied to slopes after differentiation; encode (-dH/dx, +dH/drow, +Z) in Holo OpenGL +Y tangent convention.",
     "verticalFlip": false,
     "cropOrOffset": false,
-    "slopeGain": 0.12,
+    "slopeGain": 1.03,
     "runtimeGeneration": false
   },
   "heightSource": {
@@ -47,10 +47,22 @@
       733,
       1024
     ],
-    "operation": "Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25. Protection remains in normal PNG alpha and masks height gradients in the shader after differentiation.",
-    "embossStrength": 0.08,
-    "normalScale": 0,
-    "estimatedReliefSpanMicrometres": 1.6,
-    "note": "Height emboss supplies the single active normal response; the TCGL normal RGB remains available for inspection. No mesh displacement."
+    "operation": "Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25.",
+    "embossStrength": 0,
+    "normalScale": 1,
+    "note": "Height is retained for inspection. The precomputed protected TCGL normal supplies the single active surface response, matching Espeon 155."
+  },
+  "finishReference": {
+    "cardId": "sv08.5-155",
+    "variant": "holo",
+    "normalResponse": "Precomputed OpenGL tangent normals; normalScale 1; embossStrength 0.",
+    "calibration": "Primary etched-background normal RMS slope approximately 0.183, measured outside body, secondary foil and protected print.",
+    "roughness": "0.30 background, 0.405 body, 0.27 secondary foil; blended with the existing Sylveon body and secondary foil maps.",
+    "surface": {
+      "metalness": 0.5,
+      "laminate": 0.045,
+      "foilReflectance": 0.025,
+      "etchedInkSheen": 0.85
+    }
   }
 }

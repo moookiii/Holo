@@ -24,12 +24,15 @@ with `python scripts/prismatic/sylveon_maps.py`; review overlays and lighting
 captures are in `artifacts/sylveon-156/`. Asset hashes are in
 `156-holo-evidence.json`.
 
-The active height and normal assets now come from the preserved exact TCGL
-etch at `research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png`. Regenerate these
-two maps with `python scripts/prismatic/tcgl_etch_normal.py`. Height embossing
-uses strength 0.08 over a height-map span of 0.25 (estimated 1.6 micrometres).
-Normal RGB strength is zero during height embossing to avoid duplicate relief.
-Normal alpha carries existing protection and clips height gradients after
-differentiation, leaving text flat without false boundary bevels. Embossing
-changes lighting normals; it does not displace the card mesh. The old procedural
-height and normal no longer contribute.
+The height and normal assets come from the preserved exact TCGL etch at
+`research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png`. Regenerate these maps
+and roughness with `python scripts/prismatic/tcgl_etch_normal.py`. Live relief
+uses the precomputed protected normal at strength 1, with height embossing off,
+matching Espeon 155's material path. TCGL groove geometry is unchanged; slope
+gain is calibrated to Espeon's primary etched-background RMS slope (~0.183).
+Sylveon uses Espeon's background/body/secondary roughness values and surface
+metalness, laminate, reflectance and etched ink sheen. Existing Sylveon region
+and protection masks supply all boundaries. The normal PNG is opaque RGB;
+protected areas contain flat normals. The TCGL height remains available for
+inspection and contributes no additional relief. Physical depth remains an
+estimate; no mesh displacement or invented linework is introduced.

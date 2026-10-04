@@ -15,10 +15,11 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / 'research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png'
 DEST = ROOT / 'public/cards/pokemon/prismatic-evolutions/maps/156-holo-normal.png'
 HEIGHT_DEST = DEST.with_name('156-holo-height.png')
+ROUGHNESS_DEST = DEST.with_name('156-holo-roughness.png')
 EVIDENCE = ROOT / 'public/cards/pokemon/prismatic-evolutions/maps/156-holo-evidence.json'
 PROTECTION = ROOT / 'public/cards/pokemon/prismatic-evolutions/maps/156-holo-protection.png'
 SIZE = (1800, 2475)
-SLOPE_GAIN = 0.12  # restrained tangent slope; normalScale remains 1 in card setup
+SLOPE_GAIN = 1.03  # matches Espeon 155 primary etched-background RMS slope (~0.183)
 
 
 def main():
@@ -48,22 +49,33 @@ def main():
     # Pixels outside the original rounded card image have no etched relief.
     normal = normal * alpha[..., None] + np.array([0.0, 0.0, 1.0]) * (1.0 - alpha[..., None])
     encoded = np.rint(np.clip(normal * 0.5 + 0.5, 0, 1) * 255).astype(np.uint8)
-    # Alpha is the relief protection mask. The shader masks the differentiated
-    # height slopes with it, rather than differentiating a clipped height field.
-    relief_mask = np.rint(alpha * (1.0 - protected) * 255).astype(np.uint8)
-    Image.fromarray(np.dstack((encoded, relief_mask)), 'RGBA').save(DEST, optimize=True)
-    # Preserve continuous TCGL linework, including across protection boundaries.
-    # At embossStrength .08 this range represents a shallow 1.6 micrometre span.
+    # Protect relief in RGB itself. Keep opaque normal pixels so decoding and
+    # filtering cannot turn transparent protected areas into invalid normals.
+    Image.fromarray(encoded, 'RGB').save(DEST, optimize=True)
+    # Retain the continuous TCGL height for inspection. Live relief uses only
+    # the precomputed normal, matching Espeon 155; height emboss is disabled.
     encoded_height = np.rint((0.5 + (height - 0.5) * 0.25) * 255).astype(np.uint8)
     Image.fromarray(encoded_height, 'L').save(HEIGHT_DEST, optimize=True)
+    maps_dir = DEST.parent
+    body = np.asarray(Image.open(maps_dir / '156-holo-body.png').convert('L'), dtype=np.float32) / 255.0
+    secondary = np.asarray(Image.open(maps_dir / '156-holo-secondary-foil.png').convert('L'), dtype=np.float32) / 255.0
+    # Espeon's material response, using Sylveon's existing region boundaries.
+    roughness = (0.30 + 0.105 * body) * (1.0 - secondary) + 0.27 * secondary
+    Image.fromarray(np.rint(roughness * 255).astype(np.uint8), 'L').save(ROUGHNESS_DEST, optimize=True)
 
     evidence = json.loads(EVIDENCE.read_text())
     evidence['maps']['156-holo-normal.png'] = hashlib.sha256(DEST.read_bytes()).hexdigest()
     evidence['maps']['156-holo-height.png'] = hashlib.sha256(HEIGHT_DEST.read_bytes()).hexdigest()
+    evidence['maps']['156-holo-roughness.png'] = hashlib.sha256(ROUGHNESS_DEST.read_bytes()).hexdigest()
     evidence['heightSource'] = dict(file=str(SOURCE.relative_to(ROOT)), dimensions=list(raw.size),
-        operation='Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25. Protection remains in normal PNG alpha and masks height gradients in the shader after differentiation.',
-        embossStrength=0.08, normalScale=0, estimatedReliefSpanMicrometres=1.6,
-        note='Height emboss supplies the single active normal response; the TCGL normal RGB remains available for inspection. No mesh displacement.')
+        operation='Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25.',
+        embossStrength=0, normalScale=1,
+        note='Height is retained for inspection. The precomputed protected TCGL normal supplies the single active surface response, matching Espeon 155.')
+    evidence['finishReference'] = dict(cardId='sv08.5-155', variant='holo',
+        normalResponse='Precomputed OpenGL tangent normals; normalScale 1; embossStrength 0.',
+        calibration='Primary etched-background normal RMS slope approximately 0.183, measured outside body, secondary foil and protected print.',
+        roughness='0.30 background, 0.405 body, 0.27 secondary foil; blended with the existing Sylveon body and secondary foil maps.',
+        surface=dict(metalness=0.50, laminate=0.045, foilReflectance=0.025, etchedInkSheen=0.85))
     evidence['normalSource'] = {
         'file': 'research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png',
         'sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
@@ -76,7 +88,7 @@ def main():
     }
     evidence['mapSize'] = [*SIZE]
     evidence['status'] = 'tcgl-etch-derived'
-    evidence['limitations'] = 'TCGL supplies etch line geometry, not calibrated physical groove depth. A restrained tangent slope gain is used to keep the response shallow. No denoising, generated geometry, or added texture is used.'
+    evidence['limitations'] = 'TCGL supplies etch line geometry, not calibrated physical groove depth. Tangent slope gain and surface finish are matched to Holo Espeon 155; absolute physical depth is not inferred from the reference photo. No denoising, generated geometry, or added texture is used.'
     EVIDENCE.write_text(json.dumps(evidence, indent=2) + '\n')
 
 
