@@ -10,7 +10,7 @@ export async function startArtifacts() {
   document.querySelector('#ui')?.remove();
   const host=document.querySelector<HTMLElement>('#studio')!;
   host.className='artifact-page'; host.setAttribute('aria-label','Interactive artifact viewer');
-  host.innerHTML=`<header class="artifact-header"><a class="artifact-brand" href="${import.meta.env.BASE_URL}">HOLO <span>/ ARTIFACTS</span></a><a href="${import.meta.env.BASE_URL}">Card studio ↗</a></header>
+  host.innerHTML=`<header class="artifact-header"><span class="artifact-brand">HOLO <span>/ ARTIFACTS</span></span><a href="${import.meta.env.BASE_URL}">Card studio ↗</a></header>
     <div class="artifact-stage" tabindex="0" aria-label="3D artifact. Drag to rotate, scroll to zoom. Arrow keys rotate; plus and minus zoom."></div>
     <div class="artifact-caption"><p class="artifact-eyebrow"></p><h1></h1><p class="artifact-description"></p></div>
     <aside class="artifact-panel" aria-label="Artifact controls"><label class="artifact-label" for="artifact-picker">COLLECTION</label><div class="artifact-selection"><img alt="Reference image"/><select id="artifact-picker" aria-label="Choose artifact"></select></div><div class="artifact-options"></div></aside>
