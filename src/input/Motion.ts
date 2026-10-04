@@ -1,4 +1,4 @@
-import { Quaternion, Vector3 } from 'three/webgpu';
+import { Quaternion, Vector2, Vector3 } from 'three/webgpu';
 
 export type InteractionMode = 'combined' | 'rotate' | 'tilt';
 export const X_AXIS = new Vector3(1, 0, 0);
@@ -31,6 +31,10 @@ export class CardMotion {
   private resetting = false;
   private resetElapsed = 0;
   private resetStart = new Quaternion();
+  private orbitEnabled = false;
+  private orbitAngles = new Vector2();
+  private orbitPending = new Vector2();
+  private orbitPose = new Quaternion();
   readonly flipDuration = 0.58;
 
   constructor(_mode: InteractionMode = 'combined') {
@@ -43,6 +47,26 @@ export class CardMotion {
     // the unified interaction: pointer position tilts and dragging rotates.
     this.mode = 'combined';
   }
+  enableOrbitRotation() {
+    this.orbitEnabled = true;
+    this.syncOrbitPose();
+  }
+  private syncOrbitPose() {
+    // Recover a full turn of yaw, including the back, without Euler pole flips.
+    this.axis.copy(Y_AXIS).applyQuaternion(this.manual);
+    const pitch = Math.atan2(this.axis.z, this.axis.y);
+    const frontX = this.axis.copy(Z_AXIS).applyQuaternion(this.manual).x;
+    const rightX = this.axis.copy(X_AXIS).applyQuaternion(this.manual).x;
+    this.orbitAngles.set(Math.atan2(frontX, rightX), pitch);
+  }
+  applyOrbitDrag(dx: number, dy: number, viewportHeight: number) {
+    if (this.resetting) this.halt();
+    // Artifact orbit speed: dragging one stage height turns through 360 degrees.
+    // Positive pitch follows the card's existing downward drag direction.
+    const radiansPerPixel = 2 * Math.PI / Math.max(1, viewportHeight);
+    this.orbitPending.x += dx * radiansPerPixel;
+    this.orbitPending.y += dy * radiansPerPixel;
+  }
   requestFlip() {
     this.halt(); this.flipPending = Math.min(8, this.flipPending + 1);
   }
@@ -51,6 +75,7 @@ export class CardMotion {
     this.flipBase = 0; this.flipPending = 0; this.flipActive = false;
     this.hover.set(0, 0, 0); this.hoverTarget.set(0, 0, 0);
     this.targetZoom = 1; this.velocity.set(0, 0, 0);
+    this.orbitPending.set(0, 0);
   }
   halt() {
     if (this.resetting) {
@@ -58,6 +83,8 @@ export class CardMotion {
       this.hover.set(0, 0, 0); this.hoverTarget.set(0, 0, 0);
     }
     this.resetting = false; this.velocity.set(0, 0, 0);
+    this.orbitPending.set(0, 0);
+    if (this.orbitEnabled) this.syncOrbitPose();
   }
   applyRotation(rotation: Quaternion, dt: number) {
     if (this.resetting) this.halt();
@@ -89,10 +116,20 @@ export class CardMotion {
       const t = Math.min(1, this.resetElapsed / 0.65);
       this.manual.slerpQuaternions(this.resetStart, DEFAULT_ORIENTATION, smootherstep(t));
       this.orientation.copy(this.manual);
-      if (t === 1) this.resetting = false;
+      if (t === 1) { this.resetting = false; if (this.orbitEnabled) this.syncOrbitPose(); }
       return;
     }
-    if (!this.dragging) {
+    if (this.orbitEnabled && this.orbitPending.lengthSq() > 1e-16) {
+      // Artifact damping is .085 at 60 Hz; preserve that feel at other rates.
+      const damping = 1 - Math.pow(1 - .085, dt * 60);
+      this.orbitAngles.addScaledVector(this.orbitPending, damping);
+      const limit = Math.PI / 2 - 1e-6;
+      this.orbitAngles.y = Math.max(-limit, Math.min(limit, this.orbitAngles.y));
+      this.orbitPending.multiplyScalar(1 - damping);
+      this.manual.setFromAxisAngle(X_AXIS, this.orbitAngles.y)
+        .multiply(this.delta.setFromAxisAngle(Y_AXIS, this.orbitAngles.x)).normalize();
+    }
+    if (!this.orbitEnabled && !this.dragging) {
       const speed = this.velocity.length();
       if (speed > 0.002) {
         // Analytic exponential integration keeps angular travel identical at 60 and 240 Hz.
@@ -116,7 +153,17 @@ export class CardMotion {
     this.presentation.setFromAxisAngle(Y_AXIS, this.hover.y)
       .multiply(this.delta.setFromAxisAngle(X_AXIS, this.hover.x))
       .multiply(this.delta.setFromAxisAngle(Z_AXIS, this.hover.z));
-    this.orientation.copy(this.presentation).multiply(this.manual).multiply(this.flip).normalize();
+    this.orbitPose.copy(this.manual);
+    if (this.orbitEnabled) {
+      // Keep the existing cursor tilt. At a pole, reserve just enough pitch for
+      // that tilt so the final visible card stays upright as the cursor moves.
+      const upY = this.axis.copy(Y_AXIS).applyQuaternion(this.presentation).y;
+      const frontY = this.axis.copy(Z_AXIS).applyQuaternion(this.presentation).y;
+      const center = Math.atan2(frontY, upY), limit = Math.PI / 2 - 1e-6;
+      const pitch = Math.max(center - limit, Math.min(center + limit, this.orbitAngles.y));
+      this.orbitPose.premultiply(this.delta.setFromAxisAngle(X_AXIS, pitch - this.orbitAngles.y));
+    }
+    this.orientation.copy(this.presentation).multiply(this.orbitPose).multiply(this.flip).normalize();
   }
   setPose(yaw: number, pitch: number, roll = 0) {
     this.halt(); this.flipPending = 0; this.flipActive = false; this.flipBase = 0;
@@ -124,5 +171,6 @@ export class CardMotion {
     this.manual.setFromAxisAngle(Y_AXIS, yaw).multiply(this.delta.setFromAxisAngle(X_AXIS, pitch))
       .premultiply(this.delta.setFromAxisAngle(Z_AXIS, roll)).normalize();
     this.orientation.copy(this.manual);
+    if (this.orbitEnabled) this.syncOrbitPose();
   }
 }
