@@ -59,15 +59,15 @@ class GalleryLightingModel extends PhysicalLightingModel {
       } else {
       const radial = radialStructure(float(95), axis.x);
       const direction = mix(radial.direction, gratingDirection(r.field.rg, axis.x), behavior.w).normalize();
-      const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize();
+      const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
       const authoredNormal = normalView as unknown as Node<'vec3'>;
       const slope = r.detail.rg.sub(.5).mul(structure.y);
       const facet = geometric.add(tangentView.mul(slope.x)).add(bitangent.mul(slope.y)).normalize();
-      const n = mix(authoredNormal, facet, axis.w).normalize();
+      const n = mix(authoredNormal, facet, axis.w).normalize().toVar();
       const projected = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();
-      const grating = mix(sheetAxis, projected, structure.w.max(axis.w)).normalize();
-      const groove = n.cross(grating).normalize(), momentum = light.add(positionViewDirection);
-      const spacing = mix(radial.phase.mul(.09).add(.96), r.field.b.mul(1.5).add(.5), behavior.w);
+      const grating = mix(sheetAxis, projected, structure.w.max(axis.w)).normalize().toVar();
+      const groove = n.cross(grating).normalize().toVar(), momentum = light.add(positionViewDirection).toVar();
+      const spacing = mix(radial.phase.mul(.09).add(.96), r.field.b.mul(1.5).add(.5), behavior.w).toVar();
       const variance = (a: Node<'vec3'>) => footprint ? footprint[0].dot(a).pow2().add(footprint[1].dot(a).pow2()).div(3) : float(0);
       const energy = mix(float(1), r.detail.a.mul(.85).add(.18), structure.x).mul(r.field.a);
       const spectralLobe = (across: Node<'vec3'>, along: Node<'vec3'>) => {
@@ -118,15 +118,20 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     super({ clearcoat: .2, clearcoatRoughness: .34, roughness: .48, metalness: .015, envMapIntensity: .65, alphaTest: .5 });
     this.name = 'Gallery shared optical material';
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
-    const image = (index: number) => texture(arrays[index], coord).depth(layer);
-    const param = (column: number) => textureLoad(parameterTexture, ivec2(column, layer.toInt()));
+    const imageValues = arrays.map(array => texture(array, coord).depth(layer).toVar());
+    const image = (index: number) => imageValues[index];
+    const parameterValues = new Map<number, Node<'vec4'>>();
+    const param = (column: number) => {
+      if (!parameterValues.has(column)) parameterValues.set(column, textureLoad(parameterTexture, ivec2(column, layer.toInt())).toVar());
+      return parameterValues.get(column)!;
+    };
     const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), preview = param(34);
     const metal = artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
     const primary = mix(masks.r, artwork.a, preview.x);
     const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) => layers[index].enabled ? mask : float(0));
     this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index), field: image(3 + index), detail: image(6 + index),
       glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
-      parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06) }));
+      parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06).toVar() }));
     const activeRegions = this.regions.filter((_, index) => layers[index].enabled);
     const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => activeRegions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
