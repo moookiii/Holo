@@ -87,7 +87,7 @@ export class TcgdexAdapter {
         }
         const promo = sets.findIndex(set => set.id === WIZARDS_PROMO_ID);
         if (promo >= 0) sets.splice(promo, 1);
-        sets.push({ id: WIZARDS_PROMO_ID, name: wizardsPromoSet.name, logo: undefined });
+        sets.push({ id: WIZARDS_PROMO_ID, name: wizardsPromoSet.name, logo: `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/basep-logo.webp` });
       }
       if (seriesId === 'neo') {
         const local = [neoGenesisSet, neoDiscoverySet, southernIslandsSet, neoRevelationSet];
