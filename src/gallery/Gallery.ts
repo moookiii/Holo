@@ -40,6 +40,7 @@ export class Gallery {
   private refreshLighting: () => void;
   private dirty = true;
   private disposed = false;
+  private lightingInitialized = false;
   private reduced = matchMedia('(prefers-reduced-motion: reduce)');
   active = false;
   openingReady = false;
@@ -108,6 +109,11 @@ export class Gallery {
     finally { this.loading = false; this.root.removeAttribute('aria-busy'); }
   }
   show() {
+    if (!this.lightingInitialized) {
+      this.options.lighting.setPreset('Skim');
+      this.options.lighting.elevation = 28;
+      this.lightingInitialized = true;
+    }
     this.openingReady = false;
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
     this.refreshFacetOptions();
