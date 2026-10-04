@@ -68,8 +68,8 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = {
       roughness: `${PRISMATIC_ASSETS}/maps/156-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/156-holo-secondary-foil.png`,
     },
     layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 0, embossStrength: .25, roughnessMode: 'absolute' },
-    profileOverrides: { mapSettings: { normalScale: 0, embossStrength: .25, embossMaskFromNormalAlpha: true }, surface: { metalness: .55, laminate: .07, foilReflectance: .035, etchedInkSheen: 1.1 }, secondary: {
+    mapSettings: { normalScale: 0, embossStrength: .08, roughnessMode: 'absolute' },
+    profileOverrides: { mapSettings: { normalScale: 0, embossStrength: .08, embossMaskFromNormalAlpha: true }, surface: { metalness: .55, laminate: .07, foilReflectance: .035, etchedInkSheen: 1.1 }, secondary: {
       diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
     } },
     evidence: `${PRISMATIC_ASSETS}/maps/156-holo-evidence.json`,

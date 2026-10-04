@@ -48,9 +48,9 @@
       1024
     ],
     "operation": "Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25. Protection remains in normal PNG alpha and masks height gradients in the shader after differentiation.",
-    "embossStrength": 0.25,
+    "embossStrength": 0.08,
     "normalScale": 0,
-    "estimatedReliefSpanMicrometres": 5,
+    "estimatedReliefSpanMicrometres": 1.6,
     "note": "Height emboss supplies the single active normal response; the TCGL normal RGB remains available for inspection. No mesh displacement."
   }
 }

@@ -53,7 +53,7 @@ def main():
     relief_mask = np.rint(alpha * (1.0 - protected) * 255).astype(np.uint8)
     Image.fromarray(np.dstack((encoded, relief_mask)), 'RGBA').save(DEST, optimize=True)
     # Preserve continuous TCGL linework, including across protection boundaries.
-    # At embossStrength .25 this range represents a shallow 5 micrometre span.
+    # At embossStrength .08 this range represents a shallow 1.6 micrometre span.
     encoded_height = np.rint((0.5 + (height - 0.5) * 0.25) * 255).astype(np.uint8)
     Image.fromarray(encoded_height, 'L').save(HEIGHT_DEST, optimize=True)
 
@@ -62,7 +62,7 @@ def main():
     evidence['maps']['156-holo-height.png'] = hashlib.sha256(HEIGHT_DEST.read_bytes()).hexdigest()
     evidence['heightSource'] = dict(file=str(SOURCE.relative_to(ROOT)), dimensions=list(raw.size),
         operation='Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25. Protection remains in normal PNG alpha and masks height gradients in the shader after differentiation.',
-        embossStrength=0.25, normalScale=0, estimatedReliefSpanMicrometres=5,
+        embossStrength=0.08, normalScale=0, estimatedReliefSpanMicrometres=1.6,
         note='Height emboss supplies the single active normal response; the TCGL normal RGB remains available for inspection. No mesh displacement.')
     evidence['normalSource'] = {
         'file': 'research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png',

@@ -27,7 +27,7 @@ captures are in `artifacts/sylveon-156/`. Asset hashes are in
 The active height and normal assets now come from the preserved exact TCGL
 etch at `research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png`. Regenerate these
 two maps with `python scripts/prismatic/tcgl_etch_normal.py`. Height embossing
-uses strength 0.25 over a height-map span of 0.25 (estimated 5 micrometres).
+uses strength 0.08 over a height-map span of 0.25 (estimated 1.6 micrometres).
 Normal RGB strength is zero during height embossing to avoid duplicate relief.
 Normal alpha carries existing protection and clips height gradients after
 differentiation, leaving text flat without false boundary bevels. Embossing
