@@ -49,7 +49,9 @@ async function state() {
       const bounds = card.getBoundingClientRect(), height = parseFloat(card.style.getPropertyValue('--card-height'));
       return bounds.top <= viewport.bottom && bounds.top + height >= viewport.top;
     }) : [];
+    const gl = h?.renderer.backend.gl, info = gl?.getExtension('WEBGL_debug_renderer_info');
     return { gallery: gallery?.stats(), cpu: h?.cpuPreparation.stats(), loading: !document.querySelector('#loading')?.hidden,
+      gpu: gl ? { renderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), parallelCompile: !!gl.getExtension('KHR_parallel_shader_compile') } : undefined,
       visibleCards: cards.length, readyCards: cards.filter(card => card.classList.contains('is-ready')).length,
       entries: gallery ? [...gallery.entries].filter(([, entry]) => entry.error).map(([slot, entry]) => ({ slot, error: entry.error })) : [],
       instrumentation: window.__galleryBench, startup: h?.startupTiming };

@@ -19,7 +19,7 @@ try {
         backend.createRenderPipeline = function(object, promises) {
           const started = performance.now(), result = create.call(this, object, promises);
           if (object.object.name.startsWith('Gallery optics')) window.__shaderCapture.push({ name: object.object.name,
-            ms: performance.now() - started, code: object.pipeline.fragmentProgram.code });
+            ms: performance.now() - started, code: object.pipeline.fragmentProgram.code, vertex: object.pipeline.vertexProgram.code });
           return result;
         };
       } });
@@ -42,6 +42,7 @@ try {
     const shaders = await page.evaluate(() => window.__shaderCapture);
     for (const [index, shader] of shaders.entries()) {
       await writeFile(join(out, `${version}-${index}.glsl`), shader.code);
+      await writeFile(join(out, `${version}-${index}.vert.glsl`), shader.vertex);
       report.push({ version, index, name: shader.name, ms: shader.ms, bytes: shader.code.length });
     }
     await context.close();
