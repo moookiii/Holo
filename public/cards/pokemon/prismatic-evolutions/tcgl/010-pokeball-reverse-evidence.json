@@ -1,0 +1,101 @@
+{
+  "cardId": "sv08.5-010",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_10_sph",
+  "tcglVariantId": "Dipplin_sv8-5_10_sph_PokeBallUncommon_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_010_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_010_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0f9ce229138f6c09dcf9336588f4ed108a5230a25c34ab148677acc7289caf0b"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_010_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_010_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "61b19ad05b2728ce865430af48c5ef359934ebec503ff33932c0bf26ee673e27"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_010_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_010_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "cf0affd9f2acb12f492904ff3340540645d9d26ab6b0f59119cdb95f636a9d4b"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-02.jpg",
+    "holoFrontSha256": "d52f4249ab42d2d555257e9dc90b2e6af76156e53f38bfb24504924fb7f6b930",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 25483,
+      "texturedInteriorFraction": 0.7681004064495958
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 711,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 239,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "010-pokeball-reverse-foil.png": "71b9b70abff061598d87e24f5516d2738e268714e8c3ff30c5ef550035585def",
+    "010-pokeball-reverse-protection.png": "29749c4239754a67f5a3ba5f035812e894e15b11c2287140a50b9838db820522",
+    "010-pokeball-reverse-normal.png": "44372e6aae83cb18a6706d47352ed49fd2acc081706ee5888f0257c0731d1ff5",
+    "010-pokeball-reverse-height.png": "87ec3be100550f82f7d55de287e20ada9f5c6fc8b1f202a1b8750a6a5cbcbc14",
+    "010-pokeball-reverse-roughness.png": "ea72115c2ead573e751b6128ff246e1e1c5c3387e99a253e2b629b4dbb277c82"
+  },
+  "holoFrontSha256": "d52f4249ab42d2d555257e9dc90b2e6af76156e53f38bfb24504924fb7f6b930"
+}

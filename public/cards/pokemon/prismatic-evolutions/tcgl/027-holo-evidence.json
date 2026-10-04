@@ -1,0 +1,105 @@
+{
+  "cardId": "sv08.5-027",
+  "variant": "holo",
+  "tcglCardId": "sv8-5_27",
+  "tcglVariantId": "WellspringMaskOgerponex_sv8-5_27_std_DoubleRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_027_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_027_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7317409ad344a45311766a96935eede826f37753d9b1ba6f3bbd87bc169a6b74"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_027_std.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_027_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "186667f4a7b3416aa4466df87e75a390137ad7e827b52eaf6b86ad2a798f8708"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_027_std.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_027_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7995c66e45b4b66250181de0468a701f54b4dec2e0b0f89b322fbc2a8e9537df"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-05.jpg",
+    "holoFrontSha256": "5bb9cf94503b487e2e36abbed535a07376d999bdb7275404f5462e27ab9c87cb",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 245,
+      "texturedInteriorFraction": 0.49122807017543857
+    },
+    {
+      "areaAtFoilResolution": 514,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 237,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 243,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 674,
+      "texturedInteriorFraction": 0.40892193308550184
+    },
+    {
+      "areaAtFoilResolution": 2085,
+      "texturedInteriorFraction": 0.5786314525810324
+    },
+    {
+      "areaAtFoilResolution": 641,
+      "texturedInteriorFraction": 0.764
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "027-holo-foil.png": "7663e1d16394dd669020d4ee1ae3fc553233ac05e5971b8b3d2e2acb923f750e",
+    "027-holo-protection.png": "c48afdace951072a909bde50ab649c7032d988d35ca1f5d1ad93d9e57d3f2a9e",
+    "027-holo-normal.png": "0137234170fc04a5f56b07492ed29784e9e6d266db20826d308cb0a5da9b1270",
+    "027-holo-height.png": "2721f91e1ca6f71da59524581c4e04bd54af4264c98582e63ae1fd14d38953ce",
+    "027-holo-roughness.png": "15dc7f41939eed122d2785e110ca00e5f419847f4cc9931a8b4eff7e26faa4d7"
+  },
+  "holoFrontSha256": "5bb9cf94503b487e2e36abbed535a07376d999bdb7275404f5462e27ab9c87cb"
+}

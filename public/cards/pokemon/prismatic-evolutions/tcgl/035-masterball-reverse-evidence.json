@@ -1,0 +1,109 @@
+{
+  "cardId": "sv08.5-035",
+  "variant": "masterball-reverse",
+  "tcglCardId": "sv8-5_35_mph",
+  "tcglVariantId": "Duskull_sv8-5_35_mph_MasterBallCommon_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_035_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_035_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2476173149275ddfe1563f2561be696c2ec1765c65711a7eb148250b686a59af"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_035_mph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_035_mph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "0309ee0554b3d196d2434ddcea5d8d00e48546614d1cca7ae36f754601a903a5"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_035_mph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_035_mph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "1280349f074f2bd593a48048cc5054deeaaf09b11e3bff207f9130adb8b8dccd"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-06.jpg",
+    "holoFrontSha256": "4c250677a4d1ce22fd890f5d0015fb468ac88ceb24b3e9949ca8a3112a65aa6e",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 824,
+      "texturedInteriorFraction": 0.9112426035502958
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 23588,
+      "texturedInteriorFraction": 0.8942607003891051
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 243,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 242,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "035-masterball-reverse-foil.png": "2bc531d391ec9c783f2ac67b1e2cd3abcd44c9c578fefbd5fd5b4eae0134111e",
+    "035-masterball-reverse-protection.png": "044f8d619a646f0df08f389874391696938b2131f8ddbc8cd47b6e8410a78a45",
+    "035-masterball-reverse-normal.png": "ec606b8192b6db4755f09c34bd4525b3c6731af4543ed27d9d2bff1d8368ed71",
+    "035-masterball-reverse-height.png": "6a4e4a0534b920cb38e6c9346a5122e1e1567733cfe81f9f14c3675c77b3e258",
+    "035-masterball-reverse-roughness.png": "ba80d091b91f7f6cd26a3c32dfde83ad58e9aba4a44dd3cd15cbeb32ced6a6cc"
+  },
+  "holoFrontSha256": "4c250677a4d1ce22fd890f5d0015fb468ac88ceb24b3e9949ca8a3112a65aa6e"
+}

@@ -10,7 +10,7 @@ export const prismaticEnergyCards: readonly PokemonCard[] = basicEnergyCards.map
 /** TCGplayer's 1,200+ pack sample, 2025-01-17 with 2025-01-27 caveat.
  * The SIR marginal may include demigod packs. This models independent ordinary
  * packs, not undocumented God/Demigod event rates or factory print sheets.
- * Standard reverses remain real outcomes while their renderer is deferred.
+ * Standard reverses resolve to their exact TCGL foil surfaces.
  */
 export const prismaticRecipe: PokemonRecipe = {
   id: 'sv08.5-english-retail', version: '1', setId: 'sv08.5', era: 'sv',

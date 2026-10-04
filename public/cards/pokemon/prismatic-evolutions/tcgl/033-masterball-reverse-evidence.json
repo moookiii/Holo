@@ -1,0 +1,105 @@
+{
+  "cardId": "sv08.5-033",
+  "variant": "masterball-reverse",
+  "tcglCardId": "sv8-5_33_mph",
+  "tcglVariantId": "Espeon_sv8-5_33_mph_MasterBallRare_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_033_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_033_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0b666d52a3da8a82b6da6ddae91aba9a2d786bf294647b20f19a4de91d680f37"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_033_mph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_033_mph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "0f59d1eeb0b93a65d1138c0251d6880f76d9bf28e680b898a99900c4e3d68a2c"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_033_mph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_033_mph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ec419f0acecce59f24a0419001e176bcb479517dec08f7b3d07546ac110b8e5c"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-06.jpg",
+    "holoFrontSha256": "57842cfefe067db5b6e6d46884f2e7487c65a03ae4a82b448e89f1e1611f5b37",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 28864,
+      "texturedInteriorFraction": 0.8474260235103365
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "033-masterball-reverse-foil.png": "b65312802e54b0eeec73d8fd8c9286062f0f1f390bbe64050921c54732264a95",
+    "033-masterball-reverse-protection.png": "fcb82ca4ebc5388e42cce47f537ea4b2b6c4f962047cc26c03bfb960a062e7c5",
+    "033-masterball-reverse-normal.png": "23a6053c66bf13d9051dbf2ee150fe5012760044ff1e35067bc872eac474ee29",
+    "033-masterball-reverse-height.png": "1838322788f3ab8a7f9e3cfbdebba4c741268a8b1b465c9b7485173f57a11f85",
+    "033-masterball-reverse-roughness.png": "72e85a03fb87fdff83c97989be11235dfc9bc8b2ebd21b84702df6c555212880"
+  },
+  "holoFrontSha256": "57842cfefe067db5b6e6d46884f2e7487c65a03ae4a82b448e89f1e1611f5b37"
+}

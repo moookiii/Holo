@@ -1,0 +1,55 @@
+{
+  "cardId": "sv08.5-081",
+  "variant": "reverse",
+  "tcglCardId": "sv8-5_81_ph",
+  "tcglVariantId": "Miltank_sv8-5_81_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_081_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_081_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5bd0c55a30db823d59fa5981076dccb8f008b3c4e83fef133df15c40ec95dd9b"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_081_ph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_081_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "7b0edc912af3466fa0e95aca32cf820d6444ef42428ec1c2e107ce918f73e045"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-15.jpg",
+    "holoFrontSha256": "8afd7a586b89de0cb1e5fffa5bd531ddc14e298339e0debfad313c57f0fabbb6",
+    "etchPolarity": "No etch asset; smooth surface."
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "081-reverse-foil.png": "0aac51aba3c82b501c219d07b3e46dd7eb9864be7f00ae6839f5838beea1d778",
+    "081-reverse-protection.png": "0b468af110194b3e548ca987146d2cec07cefc00cf2a9420f83cef404dd81532"
+  },
+  "holoFrontSha256": "8afd7a586b89de0cb1e5fffa5bd531ddc14e298339e0debfad313c57f0fabbb6"
+}

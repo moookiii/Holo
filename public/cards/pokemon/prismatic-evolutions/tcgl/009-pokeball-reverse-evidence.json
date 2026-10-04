@@ -1,0 +1,101 @@
+{
+  "cardId": "sv08.5-009",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_9_sph",
+  "tcglVariantId": "Applin_sv8-5_9_sph_PokeBallCommon_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_009_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_009_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bb24fcdc8f69fcc3dbbe2edbbadb6540df2f91d1dc45368cdcb69c3314498eb7"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_009_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_009_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c3e071fe8baf2387b2efc0b9facd02ddd0f1bf190fd61ab5c6c90c14b9e09aa9"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_009_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_009_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "72d503af0c577fba563dbabf70b78864b0a1a168c25f1d0285bf865d671b4fb3"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-02.jpg",
+    "holoFrontSha256": "8f874aa4ce06fca772e40264775d1951396709b5e3ffe408e808261f1f798a6b",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 824,
+      "texturedInteriorFraction": 0.9112426035502958
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 21730,
+      "texturedInteriorFraction": 0.9020414793956788
+    },
+    {
+      "areaAtFoilResolution": 234,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "009-pokeball-reverse-foil.png": "3bcfc8f5219f2606a13a3386d967acf53dbbf2ac23cb071e163a074f5bcd35a5",
+    "009-pokeball-reverse-protection.png": "048ee3a9dd2fd35ddb1fb2c3b0c32b4dd9c7e8c3dd133511417205ecbb994043",
+    "009-pokeball-reverse-normal.png": "92ca311a6fd4e68866cb93b2d723f74a092d3797addcd51631fc97236a7a0807",
+    "009-pokeball-reverse-height.png": "ebbdaec3e93cc971be478dfb2cc4c567a5f5350d9b4013243061b21998f7097f",
+    "009-pokeball-reverse-roughness.png": "4a3fc420dd3291f3db659947aba178f1cb64faeef26938fba23352df65c35203"
+  },
+  "holoFrontSha256": "8f874aa4ce06fca772e40264775d1951396709b5e3ffe408e808261f1f798a6b"
+}

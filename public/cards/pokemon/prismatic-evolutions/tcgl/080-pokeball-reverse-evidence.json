@@ -1,0 +1,109 @@
+{
+  "cardId": "sv08.5-080",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_80_sph",
+  "tcglVariantId": "Dudunsparce_sv8-5_80_sph_PokeBallRare_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_080_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_080_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c4fad9320877b09e0f353f1eda9d3717d0eac1a25cc67369730feabda81faf03"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_080_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_080_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e522cff954412eacc96c6dcb7fb51b7f4f47b7ab4d34552924c0fa8b7079abb4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_080_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_080_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "93f6649737a9711c89a2aff9c8014fab863b3062ed0b172ea62745f44cf74a98"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-15.jpg",
+    "holoFrontSha256": "2c59bc4b2f1ebcf387028d6a8e8937909ca0be88940910756e2ec567c05f2605",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 10548,
+      "texturedInteriorFraction": 0.5662356672359112
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 9816,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 249,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 242,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "080-pokeball-reverse-foil.png": "3ddc61e833f9d9c8c684269990c170bd842cc4c83f6e855931152260783628e1",
+    "080-pokeball-reverse-protection.png": "6336a06fba61d56c8948bdc9236112ea96635b75216e4726ec825085b03953d6",
+    "080-pokeball-reverse-normal.png": "ffcb0c3dd2541b90cd6753bae10b73210fe3ab24c9b023ee1f759ec05bbceba0",
+    "080-pokeball-reverse-height.png": "86fbbaab188f1bb4252fedcb6afc54ee133f194d70ed41c37788cde7bbcd01fe",
+    "080-pokeball-reverse-roughness.png": "6f3df604e41d9b0fd23091afbad6a0ece8b93e20cd90c1aa358db7f3467a545a"
+  },
+  "holoFrontSha256": "2c59bc4b2f1ebcf387028d6a8e8937909ca0be88940910756e2ec567c05f2605"
+}

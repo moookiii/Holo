@@ -14,8 +14,7 @@ export const prismaticCards: readonly PokemonCard[] = prismaticRecords.map(recor
   const ordinary = ['Common', 'Uncommon', 'Rare'].includes(rarity);
   const variants: PrintVariant[] = [rarity === 'Common' || rarity === 'Uncommon' ? 'normal' : 'holo'];
   if (ordinary) {
-    // Retain real standard-reverse identities for collation/the future pass;
-    // this is availability metadata, not a standard-reverse implementation.
+    // Exact standard, Poké Ball and Master Ball TCGL surfaces are registered.
     variants.push('reverse', 'pokeball-reverse');
     if (record.category === 'Pokemon') variants.push('masterball-reverse');
   }
@@ -70,10 +69,10 @@ export function prismaticPrinting(id: string, variant: PrintVariant): PrismaticP
     }
   }
   const textured = ['pokeball-reverse', 'masterball-reverse', 'fullart-texture', 'sir-texture', 'gold'].includes(treatment);
-  return { cardId: id, variant, treatment, textured, inScope: variant !== 'reverse',
-    profileId: treatment === 'non-holo' ? 'print-only' : treatment === 'standard-reverse' ? undefined : `prismatic_${treatment.replaceAll('-', '_')}` };
+  return { cardId: id, variant, treatment, textured, inScope: true,
+    profileId: treatment === 'non-holo' ? 'print-only' : `prismatic_${treatment.replaceAll('-', '_')}` };
 }
 
-/** 347 in-scope printings; the 100 ordinary reverses remain separately named. */
+/** All 447 English retail printings, including the 100 standard reverses. */
 export const prismaticPrintings: readonly PrismaticPrinting[] = prismaticCards.flatMap(card =>
   card.variants.map(variant => prismaticPrinting(card.id, variant)));

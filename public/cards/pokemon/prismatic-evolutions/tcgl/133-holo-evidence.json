@@ -1,0 +1,102 @@
+{
+  "cardId": "sv08.5-133",
+  "variant": "holo",
+  "tcglCardId": "sv8-5_133",
+  "tcglVariantId": "Atticus_sv8-5_133_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_133_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_133_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "1e817d79ef5fce9a1d273a06997c56439a7d0740b37e41da1c87b1079a9cf0a9"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_133_std.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_133_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d4c4b5a826a9629da42bb34325fe153762a5e16ab297a2d72cbb0c15189dfa1a"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_133_std.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_133_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5fe3fb1853b3b71c1a842104795833c0a17828f2ed0ef999b1a84eff5b2ffae2"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-23.jpg",
+    "holoFrontSha256": "4580323e6cc54a9f275c6890e57e734c00c068c7f92a1153ef2e6cad79b4c1ac",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 185,
+      "texturedInteriorFraction": 0.6428571428571429
+    },
+    {
+      "areaAtFoilResolution": 162,
+      "texturedInteriorFraction": 0.4777777777777778
+    },
+    {
+      "areaAtFoilResolution": 170,
+      "texturedInteriorFraction": 0.5340909090909091
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.7073170731707317
+    },
+    {
+      "areaAtFoilResolution": 260,
+      "texturedInteriorFraction": 0.4897959183673469
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.45098039215686275
+    },
+    {
+      "areaAtFoilResolution": 173,
+      "texturedInteriorFraction": 0.40540540540540543
+    }
+  ],
+  "retainedRegions": [
+    {
+      "file": "public/cards/pokemon/prismatic-evolutions/maps/133-holo-protection.png",
+      "sha256": "6d2db07d83219c100fdc5ad7d6dbd538bae2065f353bbe95e721ff9bc7485d69"
+    }
+  ],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "133-holo-foil.png": "adf32e4a813c870cbbda51c47570d2a7d6f45e3a4b396ad466310326ad74792d",
+    "133-holo-protection.png": "05fa46677c2fe784935076f058fa8cbe623c9b800363264bb558f4636f3726bc",
+    "133-holo-normal.png": "49b16ea81927db8dc97a283f54c9a34fa8d5f218319b4fca3d040a15140ef06f",
+    "133-holo-height.png": "e98802b036f4cfc6204c99a554663f751868ccc3e87909c35d84be0728224a95",
+    "133-holo-roughness.png": "368a5f865907ea23b34174dfaeea50107ad5f6871707ecee7d6d4f7c7bbf951d"
+  },
+  "holoFrontSha256": "4580323e6cc54a9f275c6890e57e734c00c068c7f92a1153ef2e6cad79b4c1ac"
+}

@@ -1,11 +1,11 @@
 import type { HolographicProfile } from '../HolographicProfile';
 
 /** Prismatic retail surfaces. Coverage is always supplied by an exact printing.
- * Textured candidates stay Lab-only until exact-card maps pass visual review.
+ * Each printing supplies the exact TCGL foil mask and optional etched normal.
  */
 export const prismaticProfiles: HolographicProfile[] = [{
   id: 'prismatic_sir_texture', name: 'Prismatic · SIR etched holo', family: 'Pokémon', status: 'development',
-  description: 'Prismatic Eeveelution ex: card-specific curved background and edge etching, textured crystal bodies, and separately masked microdiamond regions. Exact-card PNG normals redirect the sheet reflection; printed rules remain protected.',
+  description: 'Exact TCGL SIR foil coverage and card-specific etched normals. Separately masked microdiamond regions are retained where reviewed. Printed rules remain protected; physical depth is estimated.',
   diffraction: { period: 1.16, bandwidth: .048, strength: .48, secondaryOrder: .065, direction: -.48, crossWidth: .42, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
@@ -26,17 +26,42 @@ export const prismaticProfiles: HolographicProfile[] = [{
   surface: { metalness: .68, roughness: .30, laminate: .20, laminateRoughness: .31, foilReflectance: .055, sheen: 0 },
 }, {
   id: 'prismatic_ace_spec', name: 'Prismatic · ACE SPEC', family: 'Pokémon', status: 'development',
-  description: 'Prismatic ACE SPEC horizontal foil strands form broad diamond reflections beneath colored ink. Each card supplies its own opaque device casing, transmissive windows and text protection. Magenta is printed ink, and the sheet has no raised etched relief.',
+  description: 'Exact TCGL ACE SPEC foil coverage and etched asset, interpreted with the single authored-normal Sylveon/Espeon response. Magenta remains printed ink; extra shader emboss is disabled.',
   diffraction: { period: 1.15, bandwidth: .052, strength: .65, secondaryOrder: .10, direction: 0, crossWidth: .45, facetCoupling: 1 },
   structure: { field: 'ace-spec', scale: 440, engraving: 0, relief: 0, facetTilt: .85, reflectionCoupling: .18, normalVariance: .12 },
   glints: { density: 0, scale: 610, sharpness: 280, strength: 0, spread: .20 },
   surface: { metalness: .72, roughness: .31, laminate: .20, laminateRoughness: .30, foilReflectance: .09, sheen: 0, inkTransmission: 1 },
 }, {
-  id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'development', labOnly: true,
-  description: 'Scarlet & Violet full-art Trainer foil under colored ink. A uniform sheet direction drives diffraction, while card-specific PNG height and normal maps supply photo-guided etched relief. Ridge placement and depth are reconstructed approximations. Atticus 133 is authored. Other full arts still need their own maps.',
+  id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'development',
+  description: 'Exact TCGL full-art Trainer foil coverage and precomputed etched normals. Each printing uses its own source geometry with the final Sylveon/Espeon finish. Physical depth remains estimated.',
   diffraction: { period: 1.18, bandwidth: .032, strength: .48, secondaryOrder: .04, direction: -.55, crossWidth: .22, facetCoupling: 0, followsAuthoredNormals: true },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
   surface: { metalness: .70, roughness: .34, laminate: .06, laminateRoughness: .26, foilReflectance: .025, sheen: 0, inkTransmission: 1 },
   mapSettings: { normalScale: 1.35, embossStrength: 0, roughnessMode: 'absolute' },
 }];
+
+// Exact printing coverage and optional TCGL normals are assigned by the set
+// registry. These destinations retain printing identities without adding a
+// generic generated groove or symbol field over the supplied maps.
+const etchedReference = prismaticProfiles[0];
+for (const [id, name] of [
+  ['prismatic_ex_holo', 'Prismatic · ex holo'],
+  ['prismatic_pokeball_reverse', 'Prismatic · Poké Ball reverse'],
+  ['prismatic_masterball_reverse', 'Prismatic · Master Ball reverse'],
+  ['prismatic_gold', 'Prismatic · Gold etched holo'],
+]) {
+  prismaticProfiles.push({ ...etchedReference, id, name,
+    description: 'Exact-printing TCGL foil mask and optional offline TCGL etched normal. Single authored-normal response with the Sylveon/Espeon finish; no extra emboss.',
+    secondary: undefined,
+  });
+}
+prismaticProfiles.push({
+  id: 'prismatic_standard_reverse', name: 'Prismatic · Standard reverse', family: 'Pokémon', status: 'development',
+  description: 'Exact TCGL standard reverse coverage, including its energy-symbol pattern. Smooth silver film; no invented etching or generic reverse mask.',
+  diffraction: { period: 1.17, bandwidth: .065, strength: 0, secondaryOrder: 0, direction: 0, crossWidth: .42, facetCoupling: 0 },
+  structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
+  glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+  surface: { metalness: .68, roughness: .30, laminate: .12, laminateRoughness: .31, foilReflectance: .045, sheen: 0 },
+  mapSettings: { normalScale: 0, embossStrength: 0 },
+});

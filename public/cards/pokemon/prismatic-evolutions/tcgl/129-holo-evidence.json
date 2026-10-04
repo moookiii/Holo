@@ -1,0 +1,85 @@
+{
+  "cardId": "sv08.5-129",
+  "variant": "holo",
+  "tcglCardId": "sv8-5_129",
+  "tcglVariantId": "SparklingCrystal_sv8-5_129_std_Ace_AceFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_129_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_129_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9f81257c4c7a09587368cfa5bbdcbf5647f4281bfe944b263dbb56cefd097e3c"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_129_std.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_129_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a6111dfd4d920e43bb4b66f92b6c44a85d4b2ce70734cb4c8a15e1e4d9651890"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_129_std.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_129_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6276b3eab5c99bcbe97bf57569e83f59714eef9a44fd5102a36c37f1d008b0d2"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-22.jpg",
+    "holoFrontSha256": "be07512c9123ff65c09b2e66351d081bf9a2c18693eddf932900ac3429f403f6",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 2761,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3192,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3460,
+      "texturedInteriorFraction": 0.44558697514995715
+    },
+    {
+      "areaAtFoilResolution": 23665,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "129-holo-foil.png": "7d6cea8c1f12b5674e8050ad9d63881518a51edf2a4f7a186d5ebd39fe49cfa2",
+    "129-holo-protection.png": "8e991944e2fb155a5207b4321ac81e949bceae2dc1035153e838e94730e9a82d",
+    "129-holo-normal.png": "c0a530e18b3e6dae5ad86a0c599e38f37086ff115533e335fa12b0efa5a31add",
+    "129-holo-height.png": "014addfef8ee64e523930a6f90608662536a9c8c9642505dd43b150f46497157",
+    "129-holo-roughness.png": "d2d70a151fb5a84dfe5c9bc0e8c1a933068bd71f1f55749f37c18dc82e15ef86"
+  },
+  "holoFrontSha256": "be07512c9123ff65c09b2e66351d081bf9a2c18693eddf932900ac3429f403f6"
+}

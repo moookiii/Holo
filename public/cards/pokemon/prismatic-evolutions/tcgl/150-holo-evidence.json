@@ -1,0 +1,119 @@
+{
+  "cardId": "sv08.5-150",
+  "variant": "holo",
+  "tcglCardId": "sv8-5_150",
+  "tcglVariantId": "Glaceonex_sv8-5_150_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_150_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_150_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "883cc4f79118ce8b30b66f87572322b5b76ebd522c1cf46b083c8edf3e1dba0c"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_150_std.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_150_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "07ffae2837ade4ed62faab745ed0c07188c152e219ea89f3058498b092e207b1"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_150_std.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_150_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6de271e6700e7bf77a439929216135fd41704d7d3770420c17bb2432f32b0eaf"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-24.jpg",
+    "holoFrontSha256": "16e65138eb36944020f9ef85a33a74ab76d00fb4325b4454245f8751986d11b7",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 213,
+      "texturedInteriorFraction": 0.4166666666666667
+    },
+    {
+      "areaAtFoilResolution": 216,
+      "texturedInteriorFraction": 0.42592592592592593
+    },
+    {
+      "areaAtFoilResolution": 163,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 313,
+      "texturedInteriorFraction": 0.4423076923076923
+    },
+    {
+      "areaAtFoilResolution": 224,
+      "texturedInteriorFraction": 0.4576271186440678
+    },
+    {
+      "areaAtFoilResolution": 350,
+      "texturedInteriorFraction": 0.5503875968992248
+    },
+    {
+      "areaAtFoilResolution": 273,
+      "texturedInteriorFraction": 0.4807692307692308
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.6785714285714286
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.5909090909090909
+    }
+  ],
+  "retainedRegions": [
+    {
+      "file": "public/cards/pokemon/prismatic-evolutions/maps/150-holo-protection.png",
+      "sha256": "db8c770bd7c4dda90e569352783c098e469c1d789fadf90141721f6ecfe0623b"
+    },
+    {
+      "file": "public/cards/pokemon/prismatic-evolutions/maps/150-holo-body.png",
+      "sha256": "f9f65dcce44d683966d2a52d4cbd08e1733029bee5563cd1a2b7be7e07d1b759"
+    },
+    {
+      "file": "public/cards/pokemon/prismatic-evolutions/maps/150-holo-secondary-foil.png",
+      "sha256": "aeb69f0db7d25b53d64a7e9516ccc3b48c8ec8cd3b9cc7cc40af434ac71e80b8"
+    }
+  ],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "150-holo-foil.png": "776484c7af7d9337ad913140fed410a812da47d152c520dffb58a974120bdd66",
+    "150-holo-protection.png": "dc030b7ef90581dc2358ca4f87ef191e95049cf340183b8563c239ddc044b5b5",
+    "150-holo-secondary-foil.png": "8d57492499572fbccbab6d8957dd1354573ed683895d99f237f0cc0d336d4052",
+    "150-holo-normal.png": "cf526c18b3a2703a5f82be306970f444063d28732725a8eae0f7a4a1225bc37e",
+    "150-holo-height.png": "d695d88adbe54266f67b09ce0bc1707690ab55e19bb72e711289f9a4bd9e5dc8",
+    "150-holo-roughness.png": "535454dacc8b0aff9453ff9297878ad628a33af9d9043429e002e8a27f1fe911"
+  },
+  "holoFrontSha256": "16e65138eb36944020f9ef85a33a74ab76d00fb4325b4454245f8751986d11b7"
+}

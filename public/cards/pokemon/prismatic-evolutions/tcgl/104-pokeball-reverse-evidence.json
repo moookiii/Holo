@@ -1,0 +1,125 @@
+{
+  "cardId": "sv08.5-104",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_104_sph",
+  "tcglVariantId": "CiphermaniacsCodebreaking_sv8-5_104_sph_PokeBallUncommon_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_104_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_104_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "00c0d3012a5870d2d3110d7805a26789fe2168b00e938eab61a15977e19edd9a"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_104_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_104_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "1bac17e5bf7afe6f328278f52604e2acd5dfab25a57a43a15d46bfb3390499ce"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_104_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_104_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c74cd7b03c5b99c7384fb948ea2a9a87e55d0e2bd4b05508b6b2024b86a0cba2"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-19.jpg",
+    "holoFrontSha256": "9a281bdc2239b133c3f4e20c7858f2e893be76ee80e5dc99f9fdc2a2a1e77f70",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 172,
+      "texturedInteriorFraction": 0.4634146341463415
+    },
+    {
+      "areaAtFoilResolution": 277,
+      "texturedInteriorFraction": 0.4755244755244755
+    },
+    {
+      "areaAtFoilResolution": 418,
+      "texturedInteriorFraction": 0.503030303030303
+    },
+    {
+      "areaAtFoilResolution": 442,
+      "texturedInteriorFraction": 0.6394230769230769
+    },
+    {
+      "areaAtFoilResolution": 689,
+      "texturedInteriorFraction": 0.45714285714285713
+    },
+    {
+      "areaAtFoilResolution": 498,
+      "texturedInteriorFraction": 0.4588744588744589
+    },
+    {
+      "areaAtFoilResolution": 295,
+      "texturedInteriorFraction": 0.5390070921985816
+    },
+    {
+      "areaAtFoilResolution": 21969,
+      "texturedInteriorFraction": 0.9285435158823201
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 249,
+      "texturedInteriorFraction": 0.40707964601769914
+    },
+    {
+      "areaAtFoilResolution": 185,
+      "texturedInteriorFraction": 0.4426229508196721
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.4166666666666667
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.6666666666666666
+    },
+    {
+      "areaAtFoilResolution": 173,
+      "texturedInteriorFraction": 0.47619047619047616
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "104-pokeball-reverse-foil.png": "a1655092991ca9b9ce6985a991f55401e27e4cff1e2a648b6055e61f587bfcbd",
+    "104-pokeball-reverse-protection.png": "aee33581992552cc24a74eb92d2b79b2a306d999444a452903406be1142c2565",
+    "104-pokeball-reverse-normal.png": "d1cf557f29d30b99026badc816d9c7a3799c6685140ac8ed7cfd3f16216b7fd2",
+    "104-pokeball-reverse-height.png": "856ac6e2a989acceb5368864d5dfda9abd114bbf8ca3d636c949267d53ec1b51",
+    "104-pokeball-reverse-roughness.png": "1b031c5c579ba232733abdd5883944570bd991e63a6c24c025f0084d8fecfe9a"
+  },
+  "holoFrontSha256": "9a281bdc2239b133c3f4e20c7858f2e893be76ee80e5dc99f9fdc2a2a1e77f70"
+}

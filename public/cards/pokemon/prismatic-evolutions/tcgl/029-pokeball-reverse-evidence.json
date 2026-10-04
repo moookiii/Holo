@@ -1,0 +1,109 @@
+{
+  "cardId": "sv08.5-029",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_29_sph",
+  "tcglVariantId": "Jolteon_sv8-5_29_sph_PokeBallRare_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_029_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_029_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "aa98dc8f06fd2b5cd089c9cfe58ab806f8e72f0d3da2fbd8dabb2da902f3d034"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_029_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_029_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "153ddd4779a80c910264a6a88f0c2eb86a8256ecc3197ef7c558ddf75f5fe9ab"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_029_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_029_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b33e227337ab3bf37bab4ddd6b555ac258453ec7453ac68b0aa1721b6187e9d2"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-05.jpg",
+    "holoFrontSha256": "11993ee1d0550e8be57b9872403585b50bed8c09566522caae4bf65a5c1d3257",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 28326,
+      "texturedInteriorFraction": 0.8534819628974538
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 240,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 247,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "029-pokeball-reverse-foil.png": "a067d8af56c5c10282f7162889945f3093b752b86a00df21fb715dde1d879304",
+    "029-pokeball-reverse-protection.png": "710412be986399f594f7cb82570c1c7331831676eb9a4950907cf1aa66d634cd",
+    "029-pokeball-reverse-normal.png": "aa50a7aada51caa76c0984675aaabc206ae50f8368fb6bb46514ed7409e19e3f",
+    "029-pokeball-reverse-height.png": "0822521749b4ac5231b4599b0d91fd76c9e2767c8b2545dde4f6f4334c8c6cfc",
+    "029-pokeball-reverse-roughness.png": "f4e74e308fd8632d7c19492bef4bddd736157178986508ef39d140586c4e3b18"
+  },
+  "holoFrontSha256": "11993ee1d0550e8be57b9872403585b50bed8c09566522caae4bf65a5c1d3257"
+}

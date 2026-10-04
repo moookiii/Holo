@@ -1,0 +1,105 @@
+{
+  "cardId": "sv08.5-025",
+  "variant": "masterball-reverse",
+  "tcglCardId": "sv8-5_25_mph",
+  "tcglVariantId": "Glaceon_sv8-5_25_mph_MasterBallRare_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_025_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_025_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "58551b69a6eeebe88bf2a41d17b73d732d9bf7a3154cab41d093f1392b61609f"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_025_mph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_025_mph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "846fbb6a35e2a2d94aba66e79ca1ac410326ca827425c32d892e854364533a27"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_025_mph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_025_mph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8a858fe94ada22f7e1006278f105bcc7580c10163eb375e8485b626fdcae7011"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-05.jpg",
+    "holoFrontSha256": "a5ebcbae84429f26d089b5471298f126f1806f4d8884f74561511da4cae21ba9",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 22455,
+      "texturedInteriorFraction": 0.7980098943107713
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "025-masterball-reverse-foil.png": "fb75e289b9e09a196013edce04a6608aa7c205af40c2afd085ad59bc1d9d3c8b",
+    "025-masterball-reverse-protection.png": "9a138c0cf3493761cb8bd458986d93bef9503cd0a139e4a4786396a6a3005740",
+    "025-masterball-reverse-normal.png": "0b8c69556268ca107aa2bd8eefc3b47ba3e7e6c132c9855cf115943495d96a19",
+    "025-masterball-reverse-height.png": "9f5da95d2550200c3fd243ab75315f713ba1a5c2a02f31055ccde41bead67c9a",
+    "025-masterball-reverse-roughness.png": "6e28f7652c8f55e3ae94373609b26c33015df0505e6e723634cea31bb7ce032e"
+  },
+  "holoFrontSha256": "a5ebcbae84429f26d089b5471298f126f1806f4d8884f74561511da4cae21ba9"
+}

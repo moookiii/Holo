@@ -1,4 +1,5 @@
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { tcglPrismaticSurfaces } from './data/prismatic-surfaces.generated.ts';
 import { DIMENSIONS, type CardDefinition, type CardMapPaths } from '../card/CardDefinition.ts';
 import { PRISMATIC_ASSETS, prismaticCard, prismaticPrinting, prismaticPrintings } from './PrismaticCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
@@ -14,149 +15,35 @@ export interface PrismaticSurface {
   profileOverrides?: CardDefinition['profileOverrides'];
   /** Path to the audited photo/region manifest for this exact printing. */
   evidence: string;
+  /** TCGL resource presence, independent of catalog rarity. */
+  textured?: boolean;
 }
 
-// Populate only after the per-printing photo, map and rendered-tilt review.
-// No generic Mirage/rainbow-etched fallback may stand in for a missing surface.
-const surfaces: Readonly<Record<string, PrismaticSurface>> = {
-  'sv08.5-144:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/144-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/144-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/144-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/144-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/144-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/144-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/144-holo-evidence.json`,
-  },
-  'sv08.5-155:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/155-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/155-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/155-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/155-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/155-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/155-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/155-holo-evidence.json`,
-  },
-  'sv08.5-153:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/153-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/153-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/153-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/153-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/153-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/153-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/153-holo-evidence.json`,
-  },
-  'sv08.5-156:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/156-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/156-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/156-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/156-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/156-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/156-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: { mapSettings: { normalScale: 1, embossStrength: 0, embossMaskFromNormalAlpha: false }, surface: { metalness: .50, laminate: .045, foilReflectance: .025, etchedInkSheen: .85 }, secondary: {
-      diffraction: { strength: .46 }, glints: { density: .94, scale: 620, sharpness: 125, strength: 10 },
-    } },
-    evidence: `${PRISMATIC_ASSETS}/maps/156-holo-evidence.json`,
-  },
-  'sv08.5-149:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/149-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/149-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/149-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/149-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/149-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/149-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/149-holo-evidence.json`,
-  },
-  'sv08.5-150:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/150-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/150-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/150-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/150-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/150-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/150-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/150-holo-evidence.json`,
-  },
-  'sv08.5-167:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/167-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/167-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/167-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/167-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/167-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/167-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    evidence: `${PRISMATIC_ASSETS}/maps/167-holo-evidence.json`,
-    profileOverrides: tcglEtchedFinish,
-  },
-  'sv08.5-146:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/146-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/146-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/146-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/146-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/146-holo-roughness.png`, secondaryFoil: `${PRISMATIC_ASSETS}/maps/146-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/146-holo-evidence.json`,
-  },
-  'sv08.5-161:holo': {
-    profile: 'prismatic_sir_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/161-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/161-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/161-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/161-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/161-holo-roughness.png`,
-      secondaryFoil: `${PRISMATIC_ASSETS}/maps/161-holo-secondary-foil.png`,
-    },
-    layout: { artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/161-holo-evidence.json`,
-  },
-  'sv08.5-133:holo': {
-    profile: 'prismatic_fullart_texture',
-    maps: {
-      foil: `${PRISMATIC_ASSETS}/maps/133-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/133-holo-protection.png`,
-      height: `${PRISMATIC_ASSETS}/maps/133-holo-height.png`, normal: `${PRISMATIC_ASSETS}/maps/133-holo-normal.png`,
-      roughness: `${PRISMATIC_ASSETS}/maps/133-holo-roughness.png`,
-    },
-    layout: { artwork: [23/600,112/825,577/600,802/825], innerFrame: [23/600,23/825,577/600,802/825] },
-    mapSettings: { normalScale: 1, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: tcglEtchedFinish,
-    evidence: `${PRISMATIC_ASSETS}/maps/133-holo-evidence.json`,
-  },
-  ...Object.fromEntries(['116', '117', '119', '128', '129', '131'].map(number => [`sv08.5-${number}:holo`, {
-    profile: 'prismatic_ace_spec',
-    maps: { foil: `${PRISMATIC_ASSETS}/maps/${number}-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/${number}-holo-protection.png` },
-    layout: { artwork: [49 / 600, 119 / 825, 551 / 600, 426 / 825], innerFrame: [23 / 600, 23 / 825, 577 / 600, 803 / 825] },
-    mapSettings: { embossStrength: 0, normalScale: 0 },
-    evidence: `${PRISMATIC_ASSETS}/maps/${number}-holo-evidence.json`,
-  } satisfies PrismaticSurface])),
-  ...Object.fromEntries(['005', '013', '022', '025', '029', '033', '040', '059'].map(number => [`sv08.5-${number}:holo`, {
-    profile: 'prismatic_regular_holo',
-    maps: { foil: `${PRISMATIC_ASSETS}/maps/${number}-holo-foil.png`, protection: `${PRISMATIC_ASSETS}/maps/${number}-holo-protection.png` },
-    layout: { artwork: [49 / 600, 94 / 825, 552 / 600, 389 / 825], innerFrame: [23 / 600, 23 / 825, 577 / 600, 802 / 825] },
-    mapSettings: { embossStrength: 0, normalScale: 0 },
-    evidence: `${PRISMATIC_ASSETS}/maps/${number}-holo-evidence.json`,
-  } satisfies PrismaticSurface])),
+// Preserve reviewed UV coordinates; all surface maps come from TCGL below.
+const legacyLayouts: Readonly<Record<string, NonNullable<CardDefinition['layout']>>> = {
+  ...Object.fromEntries(['144','155','153','156','149','150','167','146','161'].map(number => [`sv08.5-${number}:holo`, {
+    artwork: [23/600,137/825,577/600,708/825], innerFrame: [23/600,23/825,577/600,802/825],
+  } satisfies NonNullable<CardDefinition['layout']>])),
+  'sv08.5-133:holo': { artwork: [23/600,112/825,577/600,802/825], innerFrame: [23/600,23/825,577/600,802/825] },
+  ...Object.fromEntries(['116','117','119','128','129','131'].map(number => [`sv08.5-${number}:holo`, {
+    artwork: [49/600,119/825,551/600,426/825], innerFrame: [23/600,23/825,577/600,803/825],
+  } satisfies NonNullable<CardDefinition['layout']>])),
+  ...Object.fromEntries(['005','013','022','025','029','033','040','059'].map(number => [`sv08.5-${number}:holo`, {
+    artwork: [49/600,94/825,552/600,389/825], innerFrame: [23/600,23/825,577/600,802/825],
+  } satisfies NonNullable<CardDefinition['layout']>])),
 };
+/** Exact TCGL assets replace the old region maps. Historical registrations are
+ * consulted only for their reviewed normalized card layout coordinates.
+ */
+const surfaces: Readonly<Record<string, PrismaticSurface>> = Object.fromEntries(tcglPrismaticSurfaces.map(record => {
+  const key = `${record.cardId}:${record.variant}`;
+  return [key, {
+    profile: record.profile, maps: record.maps, evidence: record.evidence, textured: record.textured,
+    layout: legacyLayouts[key] ?? { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
+    mapSettings: { normalScale: record.textured ? 1 : 0, embossStrength: 0, roughnessMode: record.textured ? 'absolute' : 'profile' },
+    ...(record.textured ? { profileOverrides: tcglEtchedFinish } : {}),
+  } satisfies PrismaticSurface];
+}));
 export const prismaticSurfaceKey = (id: string, variant: PrintVariant) => `${id}:${variant}`;
 
 export class PrismaticSurfaceUnavailable extends Error {
@@ -175,7 +62,7 @@ export function prismaticSurface(id: string, variant: PrintVariant): PrismaticSu
   const surface = surfaces[prismaticSurfaceKey(id, variant)];
   if (!surface) throw new PrismaticSurfaceUnavailable(id, variant);
   if (surface.profile !== printing.profileId || !surface.maps.foil || !surface.maps.protection || !surface.evidence
-    || (printing.textured && (!surface.maps.height || !surface.maps.normal || !surface.maps.roughness))) {
+    || (surface.textured && (!surface.maps.height || !surface.maps.normal || !surface.maps.roughness))) {
     throw new Error(`Incomplete authored surface: ${id}:${variant}`);
   }
   return surface;
@@ -187,19 +74,17 @@ export function prismaticProfile(id: string, variant: PrintVariant): string {
 
 export function prismaticDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = prismaticCard(id), surface = prismaticSurface(id, variant);
-  const deferred = variant === 'reverse';
   const profile = surface?.profile ?? 'print-only';
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
-    number: `${card.localId}/131 · ${card.rarity} · ${printVariantLabel(variant)}${deferred ? ' · foil pending' : ''}`,
+    number: `${card.localId}/131 · ${card.rarity} · ${printVariantLabel(variant)}`,
     dimensions: DIMENSIONS.standard, front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 2025085,
     pickerHidden: !surface,
-    pokemon: { ...card, variant, materialProfile: profile, ...(deferred ? { treatmentStatus: 'deferred' as const } : {}) },
+    pokemon: { ...card, variant, materialProfile: profile },
     ...(surface ? { maps: surface.maps, layout: surface.layout, mapSettings: surface.mapSettings, profileOverrides: surface.profileOverrides } : {}),
     source: { image: card.front!, metadata: `${PRISMATIC_ASSETS}/catalog.json`,
-      notes: surface ? `Exact-printing surface evidence: ${surface.evidence}` : deferred
-        ? 'Standard SV reverse-holo rendering is intentionally deferred. This print-only face preserves the real pack outcome; no substitute foil is applied.'
-        : 'Unmodified TCGdex front. Regular non-holo retail printing.' },
+      notes: surface ? `Exact TCGL printing foil/etch evidence: ${surface.evidence}`
+        : 'Unmodified clean front. Regular non-holo retail printing.' },
   };
 }
 

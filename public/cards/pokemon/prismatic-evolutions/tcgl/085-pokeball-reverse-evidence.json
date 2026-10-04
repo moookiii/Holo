@@ -1,0 +1,101 @@
+{
+  "cardId": "sv08.5-085",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_85_sph",
+  "tcglVariantId": "FanRotom_sv8-5_85_sph_PokeBallCommon_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_085_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_085_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "863e6c4f4f67482719c8cd3c1ec3e2d9beaca0595a710d2f695684c3dd48ad70"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_085_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_085_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "6649800995194617760e1c399fe15e4d00d86f4cf3b683d1cba386dac1bd79e9"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_085_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_085_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "df435bb88818e38a8083836958dd9469794558e4f3a1011a4b99051cb447dbd0"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-15.jpg",
+    "holoFrontSha256": "e01f14db562fc70f7cf12db858ddb622cf3ba5620c34025db34dd71d05e7fa2f",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 824,
+      "texturedInteriorFraction": 0.9112426035502958
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 31370,
+      "texturedInteriorFraction": 0.9230987816573722
+    },
+    {
+      "areaAtFoilResolution": 239,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "085-pokeball-reverse-foil.png": "91f62ce2bba1a70ce5cfa903c38391417dbfa6c2245654600dfa486a949392b7",
+    "085-pokeball-reverse-protection.png": "0dd3386193d6d434da6fd11681e64bbd3ffc623e4c4c3bee8418f22e13933add",
+    "085-pokeball-reverse-normal.png": "40e42a0bbd8808434268c9d594b47d85b983ab40bd3a6d074848b9d032cc1140",
+    "085-pokeball-reverse-height.png": "c2fd362962a25470b6caddc81411331eb7c92b8aaddfed02323032a45c003cba",
+    "085-pokeball-reverse-roughness.png": "aa1b13704b8489e5ae9fb685af7901d3c4e91afd19467317b12a68ee2af88af4"
+  },
+  "holoFrontSha256": "e01f14db562fc70f7cf12db858ddb622cf3ba5620c34025db34dd71d05e7fa2f"
+}

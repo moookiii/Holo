@@ -1,0 +1,105 @@
+{
+  "cardId": "sv08.5-007",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "sv8-5_7_sph",
+  "tcglVariantId": "Cottonee_sv8-5_7_sph_PokeBallCommon_Rainbow_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_007_std.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_007_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "506dd9cd8f5215e20267b945d502ad78a4f4cbe0ae9f7a2010f61faed0430899"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_007_sph.foil.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_007_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "7cc8fe0681620020ba17bc609d56028fb20bb80a0f5c9283648782d0ed34df78"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_007_sph.etch.png",
+      "file": "research/tcgl/prismatic-set/raw/sv8-5_en_007_sph.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2da8a9469eafa1c1c36e833e11d104c26c3e334583b0bd1df9729fb050044a48"
+    }
+  },
+  "alignmentReview": {
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "method": "Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.",
+    "capture": "artifacts/prismatic-tcgl-set/source-review/page-02.jpg",
+    "holoFrontSha256": "c76f3ae6bc89bdf32a4e6f08523e971fbb69e334b9b466efcd7bc9905bcfdaf9",
+    "etchPolarity": "Inverted mean RGB luminance; white lines recessed."
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor 22/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 824,
+      "texturedInteriorFraction": 0.9112426035502958
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 5574,
+      "texturedInteriorFraction": 0.4789504036908881
+    },
+    {
+      "areaAtFoilResolution": 19932,
+      "texturedInteriorFraction": 0.9852632683029159
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 569,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 573,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 406,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.",
+  "maps": {
+    "007-pokeball-reverse-foil.png": "5478d8bad53185379c32351ea824e5591b08348117a92ab43314aa7031f4a59c",
+    "007-pokeball-reverse-protection.png": "88e3412d422c1c6b361f3dd397b1d26d4363aabc16863deee5daa6004b88e0a7",
+    "007-pokeball-reverse-normal.png": "505814405ac4e12a9f2cb3af08586b5b4847ca04b2d3cdbe941940e6d58df412",
+    "007-pokeball-reverse-height.png": "f95f5c246ffa38bf0ed38407fd3599508ea8e66c4f7ee862184022b2306e4f1f",
+    "007-pokeball-reverse-roughness.png": "a912213875b8d77a3678ba8c49caf3b19898a8e925224666bb7b60dd8dde4daf"
+  },
+  "holoFrontSha256": "c76f3ae6bc89bdf32a4e6f08523e971fbb69e334b9b466efcd7bc9905bcfdaf9"
+}
