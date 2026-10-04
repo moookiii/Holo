@@ -1,0 +1,111 @@
+{
+  "name": "Vaporeon ex",
+  "card_type": "POKEMON",
+  "lang": "en-US",
+  "foil": {
+    "type": "SV_ULTRA",
+    "mask": "ETCHED"
+  },
+  "size": "STANDARD",
+  "back": "POKEMON_1999",
+  "artists": {
+    "text": "Illus. Narano",
+    "list": [
+      "Narano"
+    ]
+  },
+  "regulation_mark": "H",
+  "set_icon": "PRE_EN",
+  "collector_number": {
+    "full": "149/131",
+    "numerator": "149",
+    "denominator": "131",
+    "numeric": 149
+  },
+  "rarity": {
+    "designation": "SPECIAL_ILLUSTRATION_RARE",
+    "icon": "TWO_GOLD_STARS"
+  },
+  "copyright": {
+    "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+    "year": 2025
+  },
+  "tags": [
+    "EX_LOWER",
+    "TERA"
+  ],
+  "stage": "STAGE1",
+  "stage_text": "Evolves from Eevee",
+  "hp": 280,
+  "types": [
+    "WATER"
+  ],
+  "weakness": {
+    "types": [
+      "LIGHTNING"
+    ],
+    "operator": "\u00d7",
+    "amount": 2
+  },
+  "retreat": 2,
+  "text": [
+    {
+      "kind": "EFFECT",
+      "name": "Tera",
+      "text": "As long as this Pok\u00e9mon is on your Bench, prevent all damage done to this Pok\u00e9mon by attacks (both yours and your opponent\u2019s)."
+    },
+    {
+      "kind": "ATTACK",
+      "name": "Severe Squall",
+      "text": "This attack does 60 damage to each of your opponent's Pok\u00e9mon ex. This attack's damage isn't affected by Weakness or Resistance.",
+      "cost": [
+        "WATER",
+        "COLORLESS"
+      ]
+    },
+    {
+      "kind": "ATTACK",
+      "name": "Aquamarine",
+      "text": "During your next turn, this Pok\u00e9mon can't attack.",
+      "cost": [
+        "FIRE",
+        "WATER",
+        "LIGHTNING"
+      ],
+      "damage": {
+        "amount": 280
+      }
+    },
+    {
+      "kind": "RULE_BOX",
+      "name": "Pok\u00e9mon ex rule",
+      "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+    }
+  ],
+  "ext": {
+    "tcgl": {
+      "cardID": "sv8-5_149",
+      "longFormID": "Vaporeonex_sv8-5_149_std_SpecialIllustrationRare_SvUltra_Etched",
+      "archetypeID": "0xc624c380",
+      "reldate": "2025-01-16 17:00:00+00:00",
+      "key": "sv8-5"
+    }
+  },
+  "images": {
+    "tcgl": {
+      "tex": {
+        "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv8-5/sv8-5_en_149_std.png",
+        "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv8-5/sv8-5_en_149_std.foil.png",
+        "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv8-5/sv8-5_en_149_std.etch.png"
+      },
+      "png": {
+        "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_149_std.png",
+        "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_149_std.foil.png",
+        "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_149_std.etch.png"
+      },
+      "jpg": {
+        "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv8-5/sv8-5_en_149_std.jpg"
+      }
+    }
+  }
+}

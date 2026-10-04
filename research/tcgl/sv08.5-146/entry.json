@@ -1,0 +1,114 @@
+{
+  "name": "Flareon ex",
+  "card_type": "POKEMON",
+  "lang": "en-US",
+  "foil": {
+    "type": "SV_ULTRA",
+    "mask": "ETCHED"
+  },
+  "size": "STANDARD",
+  "back": "POKEMON_1999",
+  "artists": {
+    "text": "Illus. Nurikabe",
+    "list": [
+      "Nurikabe"
+    ]
+  },
+  "regulation_mark": "H",
+  "set_icon": "PRE_EN",
+  "collector_number": {
+    "full": "146/131",
+    "numerator": "146",
+    "denominator": "131",
+    "numeric": 146
+  },
+  "rarity": {
+    "designation": "SPECIAL_ILLUSTRATION_RARE",
+    "icon": "TWO_GOLD_STARS"
+  },
+  "copyright": {
+    "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+    "year": 2025
+  },
+  "tags": [
+    "EX_LOWER",
+    "TERA"
+  ],
+  "stage": "STAGE1",
+  "stage_text": "Evolves from Eevee",
+  "hp": 270,
+  "types": [
+    "FIRE"
+  ],
+  "weakness": {
+    "types": [
+      "WATER"
+    ],
+    "operator": "\u00d7",
+    "amount": 2
+  },
+  "retreat": 2,
+  "text": [
+    {
+      "kind": "EFFECT",
+      "name": "Tera",
+      "text": "As long as this Pok\u00e9mon is on your Bench, prevent all damage done to this Pok\u00e9mon by attacks (both yours and your opponent\u2019s)."
+    },
+    {
+      "kind": "ATTACK",
+      "name": "Burning Charge",
+      "text": "Search your deck for up to 2 Basic Energy cards and attach them to 1 of your Pok\u00e9mon. Then, shuffle your deck.",
+      "cost": [
+        "FIRE",
+        "COLORLESS"
+      ],
+      "damage": {
+        "amount": 130
+      }
+    },
+    {
+      "kind": "ATTACK",
+      "name": "Carnelian",
+      "text": "During your next turn, this Pok\u00e9mon can't attack.",
+      "cost": [
+        "FIRE",
+        "WATER",
+        "LIGHTNING"
+      ],
+      "damage": {
+        "amount": 280
+      }
+    },
+    {
+      "kind": "RULE_BOX",
+      "name": "Pok\u00e9mon ex rule",
+      "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+    }
+  ],
+  "ext": {
+    "tcgl": {
+      "cardID": "sv8-5_146",
+      "longFormID": "Flareonex_sv8-5_146_std_SpecialIllustrationRare_SvUltra_Etched",
+      "archetypeID": "0xecdb9566",
+      "reldate": "2025-01-16 17:00:00+00:00",
+      "key": "sv8-5"
+    }
+  },
+  "images": {
+    "tcgl": {
+      "tex": {
+        "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv8-5/sv8-5_en_146_std.png",
+        "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv8-5/sv8-5_en_146_std.foil.png",
+        "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv8-5/sv8-5_en_146_std.etch.png"
+      },
+      "png": {
+        "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_146_std.png",
+        "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_146_std.foil.png",
+        "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv8-5/sv8-5_en_146_std.etch.png"
+      },
+      "jpg": {
+        "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv8-5/sv8-5_en_146_std.jpg"
+      }
+    }
+  }
+}
