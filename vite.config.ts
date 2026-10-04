@@ -18,11 +18,13 @@ export default defineConfig(({ command }) => ({
     port: 5173,
     strictPort: true,
     watch: {
-      usePolling: true,
-      interval: 200,
+      // Polling this asset-heavy checkout every 200 ms competes with card reads.
+      // Native filesystem events retain live reload without scanning all PNGs.
+      usePolling: false,
       ignored: [
         `${resolve('artifacts').replaceAll('\\', '/')}/**`,
         '**/docs/**',
+        '**/research/**',
         '**/dist/**',
         '**/scripts/**',
         '**/tests/**',
