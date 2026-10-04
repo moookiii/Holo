@@ -58,11 +58,13 @@ async function state() {
 async function measure(name, action) {
   const started = Date.now();
   if (action) await action();
+  // Scroll events/layout must reach the renderer before inspecting its old flags.
+  await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
   let timeout;
   try {
     await page.waitForFunction(() => {
       const g = window.__holo?.gallery.instance(), viewport = document.querySelector('.gallery-viewport')?.getBoundingClientRect();
-      if (!g?.active || !viewport || !document.querySelector('#loading')?.hidden) return false;
+      if (!g?.active || g.dirty || !viewport || !document.querySelector('#loading')?.hidden) return false;
       const cards = [...document.querySelectorAll('.gallery-card')].filter(card => {
         const b = card.getBoundingClientRect(), height = parseFloat(card.style.getPropertyValue('--card-height'));
         return b.top <= viewport.bottom && b.top + height >= viewport.top;
@@ -73,6 +75,7 @@ async function measure(name, action) {
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => resolve())));
   } catch (error) { timeout = String(error); }
   const row = { name, ms: Date.now() - started, timeout, ...await state() };
+  if (row.readyCards !== row.visibleCards || row.gallery?.visible < row.visibleCards) row.timeout ??= 'Visible cards were not ready on the presented frame';
   report.phases.push(row); await page.screenshot({ path: join(out, `${name}.png`) });
   await writeFile(join(out, 'report.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify({ name, ms: row.ms, timeout, visible: row.visibleCards, ready: row.readyCards, failed: row.gallery?.failed, cpu: row.cpu }));
