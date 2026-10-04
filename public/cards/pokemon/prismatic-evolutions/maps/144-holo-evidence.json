@@ -2,7 +2,7 @@
   "cardId": "sv08.5-144",
   "variant": "holo",
   "status": "tcgl-etch-derived",
-  "rendererReady": false,
+  "rendererReady": true,
   "textured": true,
   "mapSize": [
     1800,
@@ -86,5 +86,117 @@
     "public\\cards\\pokemon\\prismatic-evolutions\\maps\\144-holo-foil.png": "5978d4397a5b1d3e2e932b1b9e6c3e8a9326dcf98d8137f20d1ef7780e4205e8",
     "public\\cards\\pokemon\\prismatic-evolutions\\maps\\144-holo-protection.png": "035cd9e9fa740a09d0ae2d95a61d35ff18036fae1d818d94c0d70db5c97940b6",
     "public\\cards\\pokemon\\prismatic-evolutions\\maps\\144-holo-secondary-foil.png": "196bc22847b37cb652f4cef624f684c98708ff9de9420b03745858aaaf879ad7"
+  },
+  "visualReview": {
+    "status": "reviewed",
+    "reviewedAt": "2026-10-04T04:51:16.227060+00:00",
+    "reference": "sv08.5-156 final TCGL normal and Espeon finish, reviewed at identical rigs and poses",
+    "setups": [
+      {
+        "capture": "front",
+        "rig": "Near-front reflection",
+        "pose": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "capture": "grazing",
+        "rig": "Narrow grazing",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      },
+      {
+        "capture": "tilt",
+        "rig": "Neutral studio",
+        "pose": [
+          -28,
+          24,
+          20
+        ]
+      },
+      {
+        "capture": "dark",
+        "rig": "Dark inspection",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      },
+      {
+        "capture": "specular",
+        "rig": "Strong side reflection",
+        "pose": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "capture": "moving",
+        "rig": "Moving strip sweep",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      }
+    ],
+    "captures": {
+      "front": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/front.jpg",
+        "sha256": "9d9f7ad622f7ce0dbe442b6a1c877864bef5ced760439d9dc8bcd9e65da16e5a"
+      },
+      "grazing": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/grazing.jpg",
+        "sha256": "695735a254df05b8ebdcdafe30760ba638b91396a7c378aa9dbe998fb34789b8"
+      },
+      "tilt": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/tilt.jpg",
+        "sha256": "4c4ff95ad6df06630510e402d305746268b279d47264ffd10f36070c59ff64b2"
+      },
+      "dark": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/dark.jpg",
+        "sha256": "a503820b2dff842e252ff62b106157f1f6c9e66a52a349f1c01e582b38415c74"
+      },
+      "specular": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/specular.jpg",
+        "sha256": "48b33db851d3f4810ae0167872d3af6fa6c538edc7c93d370f96b1ed46528e6e"
+      },
+      "moving": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/moving.jpg",
+        "sha256": "ab8baf32aa6d526755cd96dbfed4d3049055151cb63a7967831c08198ee19d29"
+      },
+      "moving-late": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/moving-late.jpg",
+        "sha256": "f868ca327544d48bb3ae1e2a52d59585e30d9f23e52589bda81246600e3f6b52"
+      },
+      "context": {
+        "path": "artifacts/tcgl-etched-migration/live/sv08.5-144/context.jpg",
+        "sha256": "13b1975ba997c242d081ee7a0084ee2d1dad9db63ec0f03eb0d427ac73deb44b"
+      }
+    },
+    "movingLight": [
+      {
+        "file": "moving.jpg",
+        "azimuth": "30.134",
+        "card": "Leafeon ex \u00c2\u00b7 Prismatic Evolutions"
+      },
+      {
+        "file": "moving-late.jpg",
+        "azimuth": "56.723",
+        "card": "Leafeon ex \u00c2\u00b7 Prismatic Evolutions"
+      }
+    ],
+    "observed": "Exact-card groove families remain registered across center, corners, border, text, subject silhouette, attack areas and decorative background. No visible UV scaling drift, offset, stretching or vertical inversion. Protected title/rule/letter regions show no false raised border; no added primary procedural relief or glints. Light moves over fixed authored grooves. Front/specular highlight width and tilt response match the reference finish.",
+    "physicalDepth": "Not measured. Fixed Sylveon slope gain 1.03. Existing region masks remain authored estimates.",
+    "normalSha256": "6bd68a4f1c3f9c1a5acf491ae98aa8920a5ec6b5475967bea00939a3606d6e25",
+    "preservedAssetsVerified": true,
+    "fullyProtectedPixelsFlat": true
   }
 }

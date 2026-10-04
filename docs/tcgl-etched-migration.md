@@ -42,7 +42,13 @@ After a new source has actually been inspected, `--record-source-review` records
 
 ## Review
 
-Source/front alignment sheets and full-resolution overlays are in `artifacts/tcgl-etched-migration/`. Fully protected normal pixels are `(128,128,255)` for all 11 outputs. Physical groove depth is an estimate represented by the fixed Sylveon gain, not a measurement from photos. Live lighting review is recorded per card after inspection.
+Source/front alignment sheets and full-resolution overlays are in `artifacts/tcgl-etched-migration/`. Fully protected normal pixels are `(128,128,255)` for all 11 outputs. Physical groove depth is an estimate represented by the fixed Sylveon gain, not a measurement from photos.
+
+All 11 cards were reviewed in Holo Lab at a 1440x1000 viewport against the unchanged final Sylveon reference, with identical settings for near-front reflection, narrow grazing light, diagonal card tilt, dark inspection, strong side reflection and a moving strip sweep. Full viewport captures are under `artifacts/tcgl-etched-migration/live/<card-id>/`. Two moving-light frames per card include their observed light azimuths in `moving-state.json`. Source overlays and the lit views showed no visible UV offset, scaling drift, stretching or inversion across the center, corners, border, glyphs, subject silhouette, attack regions and decorative background. Protected print showed no added relief rims. Broad near-front highlights still wash out some grooves, as on the reference; grazing and tilted views reveal their directional flow.
+
+The per-card evidence records the reviewed output hash, captures, lighting setups and preservation audit. Front, foil, protection and existing secondary masks were verified byte-for-byte against the pre-conversion hashes. [The complete review report](../research/tcgl/etched-migration-review.json) also lists every exact source URL, TCGL variant, replaced normal and changed file. TypeScript compilation passed; no unit tests were added or run. This verifies source registration and the reference rendering response, not measured physical groove depth.
+
+Umbreon GX's `--normal-only` and `--derived-only` shortcuts invoke TCGL conversion directly, before any historical procedural relief is generated. Both regenerate the normal, inspection height and reference roughness while preserving edited region maps.
 
 ## Source-unavailable exceptions
 

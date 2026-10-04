@@ -18,7 +18,7 @@
     2475
   ],
   "textured": true,
-  "rendererReady": false,
+  "rendererReady": true,
   "normalSource": {
     "file": "research\\tcgl\\swsh4-188\\swsh4_en_188_std.etch.png",
     "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/swsh4/swsh4_en_188_std.etch.png",
@@ -58,5 +58,117 @@
     "public\\cards\\pikachu-vmax-vivid-voltage\\foil.png": "e9c9555d4bff47690ff3e82be07471b9e170711d518765bcdaa80e18cef31d66",
     "public\\cards\\pikachu-vmax-vivid-voltage\\protection.png": "af62a2b86703d184ff6c3a6a997a167253e06dd214c31a76ade7404ca41f6f3b"
   },
-  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief."
+  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief.",
+  "visualReview": {
+    "status": "reviewed",
+    "reviewedAt": "2026-10-04T04:51:16.227060+00:00",
+    "reference": "sv08.5-156 final TCGL normal and Espeon finish, reviewed at identical rigs and poses",
+    "setups": [
+      {
+        "capture": "front",
+        "rig": "Near-front reflection",
+        "pose": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "capture": "grazing",
+        "rig": "Narrow grazing",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      },
+      {
+        "capture": "tilt",
+        "rig": "Neutral studio",
+        "pose": [
+          -28,
+          24,
+          20
+        ]
+      },
+      {
+        "capture": "dark",
+        "rig": "Dark inspection",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      },
+      {
+        "capture": "specular",
+        "rig": "Strong side reflection",
+        "pose": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "capture": "moving",
+        "rig": "Moving strip sweep",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      }
+    ],
+    "captures": {
+      "front": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/front.jpg",
+        "sha256": "5bfd749cc2b95fd2ce56a5e6d71f252ecdee04331b010c65574b2fe6f91885d3"
+      },
+      "grazing": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/grazing.jpg",
+        "sha256": "bde224a5fa825f0361784b66b4a548ae4a4fb0976328c689b4c01813d2cfa58d"
+      },
+      "tilt": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/tilt.jpg",
+        "sha256": "a604bb94f9a4d96ef6bf2c266a6edc88924d537a69b639bc47ec4697926cebb9"
+      },
+      "dark": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/dark.jpg",
+        "sha256": "395933af47b6e531fa55b9f976417a7ea732c5cac3fed2fa5b95390b655f266c"
+      },
+      "specular": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/specular.jpg",
+        "sha256": "260e51f78be16b5347c894c6929e75b7cafad1e90d19d437496d3118d5b99dbe"
+      },
+      "moving": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/moving.jpg",
+        "sha256": "44b85bdb7c14d99756862491b79a787c359c7a75dd9f8331373ff76743af291d"
+      },
+      "moving-late": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/moving-late.jpg",
+        "sha256": "80d2e9f95511e5feb32ff567b808598820930499c6078bbc923fa7ec1ba68e0d"
+      },
+      "context": {
+        "path": "artifacts/tcgl-etched-migration/live/swsh4-188/context.jpg",
+        "sha256": "cfe3fc3fa9e44631059abe13831ef9ae8d2a6e4b0b7d11a79deee24fdc541b8c"
+      }
+    },
+    "movingLight": [
+      {
+        "file": "moving.jpg",
+        "azimuth": "-69.439",
+        "card": "Pikachu VMAX \u00c2\u00b7 Vivid Voltage \u00c2\u00b7 Rainbow Rare"
+      },
+      {
+        "file": "moving-late.jpg",
+        "azimuth": "-62.01",
+        "card": "Pikachu VMAX \u00c2\u00b7 Vivid Voltage \u00c2\u00b7 Rainbow Rare"
+      }
+    ],
+    "observed": "Exact-card groove families remain registered across center, corners, border, text, subject silhouette, attack areas and decorative background. No visible UV scaling drift, offset, stretching or vertical inversion. Protected title/rule/letter regions show no false raised border; no added primary procedural relief or glints. Light moves over fixed authored grooves. Front/specular highlight width and tilt response match the reference finish.",
+    "physicalDepth": "Not measured. Fixed Sylveon slope gain 1.03. Existing region masks remain authored estimates.",
+    "normalSha256": "8c64b937375e1f6ecc86ab39378deaeaaf08bb29f23d1f63d1f130dd79416604",
+    "preservedAssetsVerified": true,
+    "fullyProtectedPixelsFlat": true
+  }
 }

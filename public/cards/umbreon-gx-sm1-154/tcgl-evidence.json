@@ -18,7 +18,7 @@
     2475
   ],
   "textured": true,
-  "rendererReady": false,
+  "rendererReady": true,
   "normalSource": {
     "file": "research\\tcgl\\sm1-154\\sm1_en_154_std.etch.png",
     "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sm1/sm1_en_154_std.etch.png",
@@ -58,5 +58,117 @@
     "public\\cards\\umbreon-gx-sm1-154\\foil.png": "a5ae9267d8a9f70a9f3516f536d45aa77abb6c8d7f069981455ad3924c50e504",
     "public\\cards\\umbreon-gx-sm1-154\\protection.png": "e5ee2110db3bc3e31fe81d01808bc29aedfe0d0b88a4068593fcd6a7c766b45e"
   },
-  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief."
+  "limitations": "Exact TCGL line geometry, with estimated physical depth represented by the fixed Sylveon rendering gain. Existing authored foil/protection boundaries remain estimates. No invented noise, smoothing or copied-card relief.",
+  "visualReview": {
+    "status": "reviewed",
+    "reviewedAt": "2026-10-04T04:51:16.227060+00:00",
+    "reference": "sv08.5-156 final TCGL normal and Espeon finish, reviewed at identical rigs and poses",
+    "setups": [
+      {
+        "capture": "front",
+        "rig": "Near-front reflection",
+        "pose": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "capture": "grazing",
+        "rig": "Narrow grazing",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      },
+      {
+        "capture": "tilt",
+        "rig": "Neutral studio",
+        "pose": [
+          -28,
+          24,
+          20
+        ]
+      },
+      {
+        "capture": "dark",
+        "rig": "Dark inspection",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      },
+      {
+        "capture": "specular",
+        "rig": "Strong side reflection",
+        "pose": [
+          0,
+          0,
+          0
+        ]
+      },
+      {
+        "capture": "moving",
+        "rig": "Moving strip sweep",
+        "pose": [
+          -15,
+          -15,
+          0
+        ]
+      }
+    ],
+    "captures": {
+      "front": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/front.jpg",
+        "sha256": "08ac07fa87f2116b5fbb1ecbe061be8f839e602584ba0ae445414931a88c3b58"
+      },
+      "grazing": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/grazing.jpg",
+        "sha256": "45dc18e6835cd636e453edd58e89b3876e60522320cabe84c6003cc6b4b10b5a"
+      },
+      "tilt": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/tilt.jpg",
+        "sha256": "eb39a6bade99ebc8af1ff89989ae5e8b390393be26880f308e1a06a84f5e8192"
+      },
+      "dark": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/dark.jpg",
+        "sha256": "cab2f441a0c25267c597ccd50cb8cee41632f4985a0dd359e33a5ce36b598686"
+      },
+      "specular": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/specular.jpg",
+        "sha256": "4067fa1b3d99f97deade878f7b7f83185d235d1a617e6184db5e298bbeae8fea"
+      },
+      "moving": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/moving.jpg",
+        "sha256": "2da22c4cf62424a1493cf73f7e82d75160d5c54ed7e9b11a6cd2ed6379e8d486"
+      },
+      "moving-late": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/moving-late.jpg",
+        "sha256": "6240e16974477daf75787714ec1b00d353276f36b718bd1bbafda43f2a182642"
+      },
+      "context": {
+        "path": "artifacts/tcgl-etched-migration/live/sm1-154/context.jpg",
+        "sha256": "4fe5781ef68bff4a701fa46aaaafaa506ded93e4c3851f1a35ea4cdbef3cb007"
+      }
+    },
+    "movingLight": [
+      {
+        "file": "moving.jpg",
+        "azimuth": "12.994",
+        "card": "Umbreon GX \u00c2\u00b7 Sun & Moon Base \u00c2\u00b7 Rainbow Secret Rare"
+      },
+      {
+        "file": "moving-late.jpg",
+        "azimuth": "-20.904",
+        "card": "Umbreon GX \u00c2\u00b7 Sun & Moon Base \u00c2\u00b7 Rainbow Secret Rare"
+      }
+    ],
+    "observed": "Exact-card groove families remain registered across center, corners, border, text, subject silhouette, attack areas and decorative background. No visible UV scaling drift, offset, stretching or vertical inversion. Protected title/rule/letter regions show no false raised border; no added primary procedural relief or glints. Light moves over fixed authored grooves. Front/specular highlight width and tilt response match the reference finish.",
+    "physicalDepth": "Not measured. Fixed Sylveon slope gain 1.03. Existing region masks remain authored estimates.",
+    "normalSha256": "f07e17b760936d9459dc170650ef9cd67ef1219858ddca2745d72492ad2a5af7",
+    "preservedAssetsVerified": true,
+    "fullyProtectedPixelsFlat": true
+  }
 }
