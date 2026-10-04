@@ -16,6 +16,8 @@ ASSETS = ROOT / 'public/cards/pokemon/151'
 OUT = ASSETS / 'tcgl'
 SIZE = (1800,2475)
 AUTHORED = set()
+PUBLIC_BASE = '/cards/pokemon/151'
+PROFILE_PREFIX = 'pokemon151_'
 
 
 def digest(path):
@@ -35,15 +37,15 @@ def mask(path):
     return cv2.resize(value,SIZE,interpolation=cv2.INTER_LINEAR)
 
 
-def source_regions(foil, etch):
+def source_regions(foil, etch, black_floor=33/255):
     """Source-mask print boundaries; distinguish grooved opaque body from text.
 
     These are coating/protection estimates from the supplied TCGL maps, never
     from front brightness. Existing reviewed SIR regions are retained instead.
     """
     luminance=foil[...,:3].mean(2)
-    opaque=(luminance<=39/255)&(foil[...,3]>.5)
-    protected=np.clip((41/255-luminance)/(8/255),0,1)*foil[...,3]
+    opaque=(luminance<=black_floor+6/255)&(foil[...,3]>.5)
+    protected=np.clip((black_floor+8/255-luminance)/(8/255),0,1)*foil[...,3]
     body=np.zeros(opaque.shape,np.float32)
     estimates=[]
     if etch is not None:
@@ -72,7 +74,7 @@ def convert(printing,record_review):
           'capture':f"artifacts/151-tcgl-set/source-review/page-{printing['reviewPage']:02d}.jpg",
           'holoFrontSha256':digest(front),'etchPolarity':'Inverted mean RGB luminance; white lines recessed.' if 'etch' in sources else 'No etch asset; smooth surface.'}
     review=printing['alignmentReview']
-    if not isinstance(review,dict) or review.get('status')!='reviewed' or review['holoFrontSha256']!=digest(front):
+    if not isinstance(review,dict) or review.get('status') not in ('reviewed', 'source-family-reviewed') or review['holoFrontSha256']!=digest(front):
         raise ValueError('Source/front review required: '+number+' '+variant)
     for source in sources.values():
         if digest(ROOT/source['file'])!=source['sha256']:raise ValueError('Raw source changed')
@@ -81,10 +83,11 @@ def convert(printing,record_review):
     raw_foil=np.asarray(Image.open(ROOT/sources['foil']['file']).convert('RGBA'),np.float32)/255
     # TCGL's compressed neutral black is 33/255 in the preserved PNG/tex
     # samples. Remove that black floor; retain all continuous gray coverage.
-    foil=np.clip((raw_foil[...,:3].mean(2)-33/255)/(233/255),0,1)*raw_foil[...,3]
+    floor=printing.get('foilBlackFloor',33/255)
+    foil=np.clip((raw_foil[...,:3].mean(2)-floor)/(1-floor),0,1)*raw_foil[...,3]
     foil=cv2.resize(foil,SIZE,interpolation=cv2.INTER_LINEAR)
     raw_etch=np.asarray(Image.open(ROOT/sources['etch']['file']).convert('RGBA'),np.float32)/255 if 'etch' in sources else None
-    protection,body,regions=source_regions(raw_foil,raw_etch)
+    protection,body,regions=source_regions(raw_foil,raw_etch,floor)
     protection=cv2.resize(protection,SIZE,interpolation=cv2.INTER_LINEAR)
     body=cv2.resize(body,SIZE,interpolation=cv2.INTER_LINEAR)
     secondary=np.zeros_like(body)
@@ -102,9 +105,9 @@ def convert(printing,record_review):
     protection=np.rint(protection*255)/255
     png(OUT/(prefix+'foil.png'),np.rint(foil*255).astype(np.uint8))
     png(OUT/(prefix+'protection.png'),np.rint(protection*255).astype(np.uint8))
-    maps={name:'/cards/pokemon/151/tcgl/'+prefix+name+'.png' for name in ('foil','protection')}
+    maps={name:PUBLIC_BASE+'/tcgl/'+prefix+name+'.png' for name in ('foil','protection')}
     if secondary.any():
-        png(OUT/(prefix+'secondary-foil.png'),np.rint(secondary*255).astype(np.uint8));maps['secondaryFoil']='/cards/pokemon/151/tcgl/'+prefix+'secondary-foil.png'
+        png(OUT/(prefix+'secondary-foil.png'),np.rint(secondary*255).astype(np.uint8));maps['secondaryFoil']=PUBLIC_BASE+'/tcgl/'+prefix+'secondary-foil.png'
     if raw_etch is not None:
         height=cv2.resize(1-raw_etch[...,:3].mean(2),SIZE,interpolation=cv2.INTER_LINEAR)
         alpha=cv2.resize(raw_etch[...,3],SIZE,interpolation=cv2.INTER_LINEAR)
@@ -118,7 +121,7 @@ def convert(printing,record_review):
         png(OUT/(prefix+'height.png'),np.rint((.5+(height-.5)*.25)*255).astype(np.uint8))
         roughness=(.30+.105*body)*(1-secondary)+.27*secondary
         png(OUT/(prefix+'roughness.png'),np.rint(roughness*255).astype(np.uint8))
-        for name in ('normal','height','roughness'):maps[name]='/cards/pokemon/151/tcgl/'+prefix+name+'.png'
+        for name in ('normal','height','roughness'):maps[name]=PUBLIC_BASE+'/tcgl/'+prefix+name+'.png'
         if not np.all(encoded[protection==1]==[128,128,255]):raise ValueError('Protected normal is not flat')
     treatment={'illustration rare':'illustration_holo','rare':'regular_holo','double rare':'ex_holo','ace spec rare':'ace_spec','ultra rare':'fullart_texture','special illustration rare':'sir_texture','hyper rare':'gold'}.get(printing['rarity'].lower())
     if variant!='holo':treatment={'reverse':'standard_reverse','pokeball-reverse':'pokeball_reverse','masterball-reverse':'masterball_reverse'}[variant]
@@ -126,13 +129,13 @@ def convert(printing,record_review):
     evidence={'cardId':printing['cardId'],'variant':variant,'tcglCardId':printing['tcglCardId'],'tcglVariantId':printing['tcglVariantId'],
       'sources':sources,'alignmentReview':review,'textured':raw_etch is not None,'rendererReady':False,'mapSize':list(SIZE),
       'normalMethod':'Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).',
-      'foilMethod':'Mean source RGB with decoded black floor 33/255 removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.',
+      'foilMethod':'Mean source RGB with decoded black floor removed, alpha multiplied, full-domain bilinear resize. No crop, flip or offset. Continuous grayscale coverage retained.', 'foilBlackFloor':floor,
       'protectedBodyRegions':regions,'retainedRegions':retained,'normalScale':1 if raw_etch is not None else 0,'embossStrength':0,
       'limitations':'TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.',
       'maps':{Path(path).name:digest(ROOT/'public'/path.lstrip('/')) for path in maps.values()},'holoFrontSha256':digest(front)}
     ep=OUT/(prefix+'evidence.json');ep.write_text(json.dumps(evidence,indent=2)+'\n')
-    return {'cardId':printing['cardId'],'variant':variant,'profile':'pokemon151_'+treatment,'textured':raw_etch is not None,
-            'maps':maps,'evidence':'/cards/pokemon/151/tcgl/'+ep.name,'foilType':printing['foil']['type']}
+    return {'cardId':printing['cardId'],'variant':variant,'profile':PROFILE_PREFIX+treatment,'textured':raw_etch is not None,
+            'maps':maps,'evidence':PUBLIC_BASE+'/tcgl/'+ep.name,'foilType':printing['foil']['type']}
 
 
 def main():
