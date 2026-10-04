@@ -11,8 +11,8 @@
   "maps": {
     "156-holo-foil.png": "f75f6e49a908becc78c2d1ab44676bb2e28e6326137b5802b7665eb8052d5c32",
     "156-holo-protection.png": "d5e40ee15bef92a3c09fa721801a0969fcc2f6be1a00bfd51718b725f4632e0a",
-    "156-holo-height.png": "0f8ab7a763e52c2f89442d3cb6dbe2fbfbb06766fe32efc3df7078160064b2d7",
-    "156-holo-normal.png": "846d7bf13084db8e60dcc96257f809381cd2fed0325cee809a29881f1fedd9b5",
+    "156-holo-height.png": "78f223c1c738403da07deb3c024712307d7e9da8a5dd5a14d23add6d21c87b22",
+    "156-holo-normal.png": "053fc043c4f43109767383bca443a5d13c0e6b77300be72b71ba37241b004f69",
     "156-holo-roughness.png": "90b93885472173035a23834018bee437170106f3f724287cf3371eddf43ee823",
     "156-holo-secondary-foil.png": "f0eaafa4b5f5c17b4d170072424a08354e4df5b2bbbcaa61a155ed2910ba5966",
     "156-holo-body.png": "a4957b0f5ccd222311d91920e92a8e9ea9272792f88a6c2f281ff9b514c6a405",
@@ -40,5 +40,17 @@
     "cropOrOffset": false,
     "slopeGain": 0.12,
     "runtimeGeneration": false
+  },
+  "heightSource": {
+    "file": "research\\tcgl\\sv08.5-156\\sv8-5_en_156_std.etch.png",
+    "dimensions": [
+      733,
+      1024
+    ],
+    "operation": "Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25. Protection remains in normal PNG alpha and masks height gradients in the shader after differentiation.",
+    "embossStrength": 0.25,
+    "normalScale": 0,
+    "estimatedReliefSpanMicrometres": 5,
+    "note": "Height emboss supplies the single active normal response; the TCGL normal RGB remains available for inspection. No mesh displacement."
   }
 }

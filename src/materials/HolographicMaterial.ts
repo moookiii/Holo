@@ -228,7 +228,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     hasExtendedFoil: uniform(0), extendedCoverage: uniform(0),
     hasStamp: uniform(0), hasNormal: uniform(0), normalScale: uniform(1),
     anniversary: uniform(0),
-    roughnessAbsolute: uniform(0), roughnessOffset: uniform(0), embossOverride: uniform(0), embossStrength: uniform(.25),
+    roughnessAbsolute: uniform(0), roughnessOffset: uniform(0), embossOverride: uniform(0), embossStrength: uniform(.25), embossMaskFromNormalAlpha: uniform(0),
   };
   private inkEnabled = uniform(0);
   private inkTint = uniform(new Vector3(1, 1, 1));
@@ -375,7 +375,12 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       this.clearcoatRoughnessNode = mix(this.clearcoatRoughnessNode as Node<'float'>, coating, paper);
     }
     const heightStrength = mix(this.optics.relief.mul(primary).add(this.secondaryOptics.relief.mul(secondary)).add(this.stampOptics.relief.mul(stamp)), controls.embossStrength, controls.embossOverride);
-    const baseNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
+    const heightNormal = reliefNormal(this.surfaceTextureNode.r, heightStrength.mul(.008));
+    // Optional per-card alpha protection clips continuous height gradients, so
+    // smooth print boundaries cannot become raised outlines.
+    const embossMask = mix(float(1), this.normalTextureNode.a, controls.embossMaskFromNormalAlpha);
+    const baseNormal = (normalViewGeometry as unknown as Node<'vec3'>).add(
+      heightNormal.sub(normalViewGeometry).mul(embossMask)).normalize();
     const varnishStrength = this.optics.varnishRelief.mul(primary).add(this.secondaryOptics.varnishRelief.mul(secondary)).add(this.stampOptics.varnishRelief.mul(stamp));
     this.clearcoatNormalNode = reliefNormal(this.surfaceTextureNode.r, varnishStrength.mul(.008));
     if (this.stock) this.clearcoatNormalNode = this.stock.normal(this.clearcoatNormalNode as Node<'vec3'>, stockCoverage.mul(uniform(physical?.microNormalStrength ?? .7)).mul(physical && !physical.legacyCoating ? primary.max(secondary).max(stamp).mul(-.65).add(1) : 1));
@@ -462,6 +467,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.surfaceControls.normalScale.value = settings.normalScale ?? 1;
     this.surfaceControls.embossOverride.value = settings.embossStrength === undefined ? 0 : 1;
     this.surfaceControls.embossStrength.value = settings.embossStrength ?? .25;
+    this.surfaceControls.embossMaskFromNormalAlpha.value = settings.embossMaskFromNormalAlpha ? 1 : 0;
     this.surfaceControls.roughnessAbsolute.value = settings.roughnessMode === 'absolute' ? 1 : 0;
     this.surfaceControls.roughnessOffset.value = settings.roughnessMode === 'offset' ? 1 : 0;
     if (profile.disabledMechanisms?.includes('relief')) { this.surfaceControls.normalScale.value = 0; this.surfaceControls.embossOverride.value = 1; this.surfaceControls.embossStrength.value = 0; }

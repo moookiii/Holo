@@ -67,7 +67,7 @@ export interface HolographicProfile extends FoilLayer {
   /** Optional assignments resolved by the existing card map loader. */
   maps?: Partial<CardMapPaths>;
   /** Optional authored-map response overrides, shared by viewer and Lab. */
-  mapSettings?: { normalScale?: number; embossStrength?: number; roughnessMode?: 'profile' | 'absolute' | 'offset' };
+  mapSettings?: { normalScale?: number; embossStrength?: number; embossMaskFromNormalAlpha?: boolean; roughnessMode?: 'profile' | 'absolute' | 'offset' };
   id: string;
   name: string;
   family: 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';

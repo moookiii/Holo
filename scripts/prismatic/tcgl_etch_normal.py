@@ -14,6 +14,7 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / 'research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png'
 DEST = ROOT / 'public/cards/pokemon/prismatic-evolutions/maps/156-holo-normal.png'
+HEIGHT_DEST = DEST.with_name('156-holo-height.png')
 EVIDENCE = ROOT / 'public/cards/pokemon/prismatic-evolutions/maps/156-holo-evidence.json'
 PROTECTION = ROOT / 'public/cards/pokemon/prismatic-evolutions/maps/156-holo-protection.png'
 SIZE = (1800, 2475)
@@ -47,10 +48,22 @@ def main():
     # Pixels outside the original rounded card image have no etched relief.
     normal = normal * alpha[..., None] + np.array([0.0, 0.0, 1.0]) * (1.0 - alpha[..., None])
     encoded = np.rint(np.clip(normal * 0.5 + 0.5, 0, 1) * 255).astype(np.uint8)
-    Image.fromarray(encoded, 'RGB').save(DEST, optimize=True)
+    # Alpha is the relief protection mask. The shader masks the differentiated
+    # height slopes with it, rather than differentiating a clipped height field.
+    relief_mask = np.rint(alpha * (1.0 - protected) * 255).astype(np.uint8)
+    Image.fromarray(np.dstack((encoded, relief_mask)), 'RGBA').save(DEST, optimize=True)
+    # Preserve continuous TCGL linework, including across protection boundaries.
+    # At embossStrength .25 this range represents a shallow 5 micrometre span.
+    encoded_height = np.rint((0.5 + (height - 0.5) * 0.25) * 255).astype(np.uint8)
+    Image.fromarray(encoded_height, 'L').save(HEIGHT_DEST, optimize=True)
 
     evidence = json.loads(EVIDENCE.read_text())
     evidence['maps']['156-holo-normal.png'] = hashlib.sha256(DEST.read_bytes()).hexdigest()
+    evidence['maps']['156-holo-height.png'] = hashlib.sha256(HEIGHT_DEST.read_bytes()).hexdigest()
+    evidence['heightSource'] = dict(file=str(SOURCE.relative_to(ROOT)), dimensions=list(raw.size),
+        operation='Unfiltered inverted TCGL etch luminance, full-domain bilinear resize; encode 0.5 + (height - 0.5) * 0.25. Protection remains in normal PNG alpha and masks height gradients in the shader after differentiation.',
+        embossStrength=0.25, normalScale=0, estimatedReliefSpanMicrometres=5,
+        note='Height emboss supplies the single active normal response; the TCGL normal RGB remains available for inspection. No mesh displacement.')
     evidence['normalSource'] = {
         'file': 'research/tcgl/sv08.5-156/sv8-5_en_156_std.etch.png',
         'sha256': hashlib.sha256(SOURCE.read_bytes()).hexdigest(),
