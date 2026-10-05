@@ -126,6 +126,8 @@ async function start() {
   let viewerQueue: Promise<unknown> = Promise.resolve();
   let hoverTimer: ReturnType<typeof setTimeout> | undefined;
   let hoverBusy = false;
+  let hoveredViewerId: string | undefined;
+  let visibleWarmupId: string | undefined;
   const pooledInstances = new WeakSet<CardInstance>();
   const viewerKey = (next: CardDefinition) => JSON.stringify([next, resolveCardProfile(next)]);
   const acquireViewer = (next: CardDefinition) => viewerResources.acquire(viewerKey(next), async () => {
@@ -145,10 +147,11 @@ async function start() {
     viewerLease.release(activeProfile !== definition.profile || activeCard.disposed);
     viewerLease = undefined;
   };
-  const prepareHoveredCard = (id?: string) => {
+  const scheduleViewerPreparation = (id?: string) => {
     clearTimeout(hoverTimer);
     if (!id || hoverBusy) return;
     hoverTimer = setTimeout(() => {
+      hoverTimer = undefined;
       const next = cards.find(card => card.id === id);
       const visible = gallery?.stats();
       if (!next || next.imported || disposed || !visible?.active || pendingLoads.size
@@ -158,6 +161,7 @@ async function start() {
       void lease.pending.catch(() => {}).finally(() => { lease.release(); hoverBusy = false; });
     }, 220);
   };
+  const prepareHoveredCard = (id?: string) => { hoveredViewerId = id; scheduleViewerPreparation(id); };
   const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickAt?: number; clickToGpuMs?: number; loadCompleteMs?: number; firstVisibleMs?: number; clickToReadyMs?: number; moduleLoadMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
   const cancelWarmup = () => {
@@ -459,6 +463,7 @@ async function start() {
       if (card) card.visible = false;
       pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
+      visibleWarmupId = undefined;
       // The gallery controls are usable while individual cards prepare. Its
       // own readiness flags still track when every visible shader has painted.
     } finally {
@@ -533,6 +538,11 @@ async function start() {
     }
     if (gallery?.active) gallery.recordFrame(dt * 1000, performance.now() - now);
     const galleryFrame = gallery?.active ? gallery.stats() : undefined;
+    if (galleryFrame && galleryFrame.visible === galleryFrame.visibleExpected && !galleryFrame.visibleFailed
+      && !pendingLoads.size && !hoverBusy && hoverTimer === undefined && !hoveredViewerId) {
+      const likely = gallery?.likelyViewerCard();
+      if (likely && likely !== visibleWarmupId) { visibleWarmupId = likely; scheduleViewerPreparation(likely); }
+    }
     const { firstCardDrawn, galleryAllVisibleDrawn } = startupFrameReadiness(galleryFrame, !!card?.visible);
     if (galleryFrame && galleryFrame.visible > 0) startupMark('galleryFirstCardSubmitted');
     if (galleryFrame && galleryAllVisibleDrawn && !galleryPresentationPending && startupTiming.galleryAllVisiblePresented === undefined) {

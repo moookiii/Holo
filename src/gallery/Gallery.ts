@@ -57,6 +57,7 @@ export class Gallery {
   private performance = new GalleryPerformance();
   private visibleExpected = 0;
   private visibleFailed = 0;
+  private firstVisibleCardId?: string;
   private savedLighting?: Pick<StudioLighting, 'preset' | 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle' | 'playing'>;
   private reduced = matchMedia('(prefers-reduced-motion: reduce)');
   active = false;
@@ -266,6 +267,7 @@ export class Gallery {
       const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.viewport.scrollTop + cardHeight / 2;
       return { ...item, card, cardWidth, cardHeight, x, y, visible: y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom };
     }).sort((a, b) => Number(b.visible) - Number(a.visible));
+    this.firstVisibleCardId = prioritized.find(item => item.visible)?.id;
     // Cache hits do not need a worker slot, even when cold requests fill the queue.
     for (const item of prioritized) {
       const entry = this.entries.get(item.slot)!;
@@ -352,5 +354,6 @@ export class Gallery {
     failed: [...this.entries.values()].filter(e => e.error).length, tilted: this.assigned.filter(item => { const e = this.entries.get(item.slot)!; return Math.abs(e.pitch) + Math.abs(e.yaw) > .001; }).length, scrollTop: this.viewport.scrollTop }; }
   presentationKey() { return JSON.stringify([this.query, this.assigned.map(item => item.id), this.viewport.scrollTop,
     this.viewport.clientWidth, this.viewport.clientHeight]); }
+  likelyViewerCard() { return this.active && this.openingReady ? this.firstVisibleCardId : undefined; }
   dispose() { this.disposed = true; this.hide(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }
 }
