@@ -81,3 +81,7 @@ more particles.
 # Gallery
 
 Always place new sets in chronological order in the sets picker.
+
+# Pack artwork
+
+All newly added pack fronts must have a perfect, tight crop to the printed wrapper: remove source backgrounds, outer padding, and tapered empty side gaps while preserving the artwork, text, and top/bottom seals. Rotate older sourced packs when needed so the wrapper is upright before cropping. Inspect the finished crop at full resolution and in the pack picker; do not stretch the artwork or leave stray border pixels.
