@@ -1,6 +1,7 @@
-import { chromium } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import { mkdir, writeFile } from 'node:fs/promises';
-const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE || chromium.executablePath(), headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
+const browserType = process.env.BROWSER_ENGINE === 'firefox' ? firefox : chromium;
+const browser = await browserType.launch({ executablePath: process.env.BROWSER_EXECUTABLE || browserType.executablePath(), headless: true, ...(browserType === chromium ? { args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] } : {}) });
 const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
 const errors = []; page.on('pageerror', error => errors.push(String(error)));
 try {
