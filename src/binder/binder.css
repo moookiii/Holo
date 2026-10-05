@@ -1,5 +1,6 @@
 .favorites-binder { position: fixed; inset: 0; z-index: 6; color: #cec9bd; }
 .favorites-binder[hidden] { display: none; }
+.favorites-binder label[hidden], .favorites-binder button[hidden] { display: none; }
 .binder-header { position: absolute; z-index: 2; inset: 0 0 auto; display: flex; align-items: center; gap: 28px; padding: 22px 30px; background: linear-gradient(#050505ed, #05050500); pointer-events: none; }
 .binder-header > * { pointer-events: auto; }
 .binder-eyebrow { font-size: 9px; letter-spacing: .22em; color: #8c8373; }

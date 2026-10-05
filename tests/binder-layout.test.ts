@@ -28,7 +28,7 @@ test('rapid turn input is locked, endpoints are clamped and repeated reversals s
 test('sheet bends instead of turning as a rigid rectangle and lands in registration', () => {
   const start = sheetPoint(BINDER.pageWidth, 0, 1), end = sheetPoint(BINDER.pageWidth, 1, 1);
   assert.ok(Math.abs(start.x - (BINDER.pageWidth + BINDER.hinge)) < 1e-6);
-  assert.ok(Math.abs(end.x - (BINDER.hinge - BINDER.pageWidth)) < 1e-6);
+  assert.ok(Math.abs(end.x - (-BINDER.hinge - BINDER.pageWidth)) < 1e-6);
   assert.ok(Math.abs(start.z - .42) < 1e-6 && Math.abs(end.z - .42) < 1e-6);
   const inner = sheetPoint(4, .4, 1), outer = sheetPoint(27, .4, 1);
   assert.ok(Math.abs(inner.angle - outer.angle) > .25);

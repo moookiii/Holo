@@ -36,8 +36,10 @@ export class FavoritesBinder {
   private opening = false;
   private wantedNeighbor?: number;
   private preparedNeighbor?: number;
+  private revision = 0;
+  private lightingBase?: { position: Vector3; width: number; height: number };
   private abort = new AbortController();
-  private tilt = { x: -.13, y: 0, targetX: -.13, targetY: 0 };
+  private tilt = { x: -.24, y: -.025, targetX: -.24, targetY: -.025 };
   private zoom = 1;
   private drag?: { x: number; y: number; moved: boolean };
   private savedCamera?: { position: Vector3; far: number };
@@ -47,7 +49,7 @@ export class FavoritesBinder {
     this.root.setAttribute('aria-label', 'Favorites card binder');
     const header = document.createElement('header'); header.className = 'binder-header';
     const title = document.createElement('div'); title.innerHTML = '<span class="binder-eyebrow">PRIVATE COLLECTION</span><h1>Favorites</h1>';
-    const exit = document.createElement('button'); exit.textContent = '← Gallery'; exit.onclick = options.exit;
+    const exit = document.createElement('button'); exit.textContent = '← Gallery'; exit.onclick = () => { void this.exit(); };
     const light = document.createElement('div'); light.className = 'gallery-light binder-light';
     this.refreshLight = galleryLightingControls(light, options.lighting); header.append(title, light, exit);
     this.stage.className = 'binder-stage'; this.stage.tabIndex = 0; this.stage.setAttribute('aria-label', 'Drag to tilt binder. Scroll to zoom. Arrow keys turn pages.');
@@ -94,13 +96,14 @@ export class FavoritesBinder {
     this.root.addEventListener('keydown', e => {
       if ((e.target as HTMLElement).matches('input, select')) return;
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') { e.preventDefault(); void this.turn(e.key === 'ArrowLeft' ? -1 : 1); }
-      if (e.key === 'Escape' && !this.opening) options.exit();
+      if (e.key === 'Escape' && !this.opening) void this.exit();
     }, { signal });
   }
   private busy() { return this.pending || this.opening || !!this.navigation.turn; }
   show(cards: CardDefinition[]) {
     this.cards = cards; this.navigation.setCount(cards.length);
     this.active = true; this.root.hidden = false; this.physical.group.visible = true;
+    this.status.textContent = '';
     this.savedCamera = { position: this.options.camera.position.clone(), far: this.options.camera.far };
     this.options.camera.far = 250; this.options.camera.updateProjectionMatrix();
     this.factory ??= this.options.factory(); this.refreshLight(); this.reconcile();
@@ -108,11 +111,15 @@ export class FavoritesBinder {
     void this.prepare(this.navigation.spread);
   }
   refresh(cards: CardDefinition[]) {
+    const revision = ++this.revision;
+    this.pending = true; this.updateControls();
     // Do not renumber a page underneath a pending GPU realization.
     void this.suspendPreparation().then(() => {
-      if (!this.active) return;
+      if (!this.active || revision !== this.revision) return;
       this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); this.preparedNeighbor = undefined;
-      this.cards = cards; this.navigation.setCount(cards.length); this.reconcile(); void this.prepare(this.navigation.spread);
+      this.wantedNeighbor = undefined;
+      this.status.textContent = '';
+      this.cards = cards; this.navigation.setCount(cards.length); this.pending = false; this.reconcile(); void this.prepare(this.navigation.spread);
     });
   }
   private reconcile() {
@@ -157,7 +164,7 @@ export class FavoritesBinder {
         if (request.signal.aborted || !this.active) return;
         const card = this.cards[index]; let instance;
         try {
-          const prepared = card.construction ? undefined : await this.options.cpu.prepare(card, request.signal);
+          const prepared = card.construction ? undefined : await this.cpuReady(card, request.signal);
           if (request.signal.aborted) return;
           instance = prepared ? await domain.realizeCardGpu(prepared, request.signal, false)
             : await domain.create(card, request.signal, false);
@@ -181,6 +188,12 @@ export class FavoritesBinder {
     finally { if (this.job === job) { this.job = undefined; this.request = undefined; } }
     if (!request.signal.aborted && this.active && spread !== this.navigation.spread) this.preparedNeighbor = spread;
   }
+  private async cpuReady(card: CardDefinition, signal: AbortSignal) {
+    let cancel!: () => void;
+    const aborted = new Promise<never>((_, reject) => { cancel = () => reject(signal.reason); signal.addEventListener('abort', cancel, { once: true }); });
+    try { signal.throwIfAborted(); return await Promise.race([this.options.cpu.prepare(card, signal), aborted]); }
+    finally { signal.removeEventListener('abort', cancel); }
+  }
   async turn(direction: -1 | 1) {
     if (!this.active || this.busy()) return;
     const to = this.navigation.spread + direction;
@@ -203,7 +216,19 @@ export class FavoritesBinder {
     finally { this.opening = false; this.updateControls(); }
   }
   async suspendPreparation() { this.request?.abort(); await this.job; }
+  private async exit() { if (this.opening) return; await this.suspendPreparation(); this.options.exit(); }
+  private restoreLighting() {
+    if (!this.lightingBase) return;
+    const key = this.options.lighting.key;
+    // A preset may have rebuilt the rig since our last frame. Preserve that
+    // freshly applied rig instead of restoring the previous preset's shape.
+    if (key.width === this.lightingBase.width * 3.3 && key.height === this.lightingBase.height * 3.3) {
+      key.position.copy(this.lightingBase.position); key.width = this.lightingBase.width; key.height = this.lightingBase.height;
+    }
+    key.lookAt(0, 0, 0); this.lightingBase = undefined;
+  }
   hide() {
+    this.restoreLighting();
     this.active = false; this.root.hidden = true; this.physical.group.visible = false; this.request?.abort();
     const domain = this.factory; this.factory = undefined;
     // Disposal follows any in-flight compile so its renderer hook has unwound.
@@ -214,16 +239,25 @@ export class FavoritesBinder {
   }
   update(dt: number, width: number, height: number) {
     if (!this.active) return;
+    this.restoreLighting();
     this.options.lighting.update(dt, true);
+    const key = this.options.lighting.key;
+    this.lightingBase = { position: key.position.clone(), width: key.width, height: key.height };
+    // The same studio rig, enlarged to illuminate a 60cm spread instead of one card.
+    key.position.multiplyScalar(3.3); key.width *= 3.3; key.height *= 3.3; key.lookAt(0, 0, 0);
     this.tilt.x += (this.tilt.targetX - this.tilt.x) * (1 - Math.exp(-Math.min(dt, .05) * 9));
     this.tilt.y += (this.tilt.targetY - this.tilt.y) * (1 - Math.exp(-Math.min(dt, .05) * 9));
     this.physical.group.rotation.set(this.tilt.x, this.tilt.y, 0);
     const camera = this.options.camera;
     const distance = Math.max(68 / camera.aspect, 43) / (2 * Math.tan(camera.fov * Math.PI / 360)) * this.zoom;
-    camera.position.set(0, 0, distance); camera.updateMatrixWorld();
     const turn = this.navigation.turn;
+    const duration = matchMedia('(prefers-reduced-motion: reduce)').matches ? .22 : 1.35;
+    const p = turn ? Math.min(1, turn.elapsed / duration) : 0;
+    const lift = Math.sin(Math.PI * p * p * (3 - 2 * p));
+    // Keep the raised sheet inside the frame while preserving the resting pose.
+    camera.position.set(0, 3.5 * lift, distance + 36 * lift); camera.updateMatrixWorld();
     if (turn) {
-      const progress = this.navigation.advance(dt, matchMedia('(prefers-reduced-motion: reduce)').matches ? .22 : 1.35);
+      const progress = this.navigation.advance(dt, duration);
       const outgoing = this.physical.page(turn.from * 2 + (turn.direction === 1 ? 1 : 0));
       const incoming = this.physical.page(turn.to * 2 + (turn.direction === 1 ? 0 : 1));
       const under = this.physical.page(turn.to * 2 + (turn.direction === 1 ? 1 : 0));
@@ -263,6 +297,7 @@ export class FavoritesBinder {
       preparing: this.pending, active: this.active, filtered: this.cards.length,
       visible: visiblePages.reduce((n, p) => n + p.cards.size, 0), visibleExpected: spreadIndices(this.navigation.spread, this.cards.length).length,
       visibleFailed: this.failed.size, residentCards: this.loaded.size, residentPages: this.physical.pages.size, pending: Number(!!this.job),
+      neighborReady: this.preparedNeighbor, residentGpuBytes: this.factory?.retainedBytes(), domCards: this.buttons.size,
       factory: this.factory?.stats() };
   }
   dispose() { this.hide(); this.abort.abort(); this.root.remove(); if (this.job) void this.job.finally(() => this.physical.dispose()); else this.physical.dispose(); }

@@ -20,8 +20,20 @@ export function pocket(index: number, side: -1 | 1) {
 export function sheetPoint(u: number, progress: number, side: -1 | 1) {
   const p = Math.max(0, Math.min(1, progress));
   const eased = p * p * (3 - 2 * p);
-  const angleAt = (s: number) => Math.PI * eased + Math.sin(Math.PI * eased) * (.68 * (s - .5) + .14 * Math.sin(s * Math.PI * 2 - eased * Math.PI));
-  const steps = 48, step = u / steps;
+  const angleAt = (s: number) => {
+    // Card stock stays planar; the unoccupied weld channels take most of the
+    // curvature. Smooth transitions prevent film cutting through rigid cards.
+    const distance = s * BINDER.pageWidth;
+    let supported = 4.725;
+    for (let seam = 0; seam < 3; seam++) {
+      const center = 8.25 + seam * BINDER.pitchX;
+      const t = Math.max(0, Math.min(1, (distance - center + .34) / .68));
+      supported += BINDER.pitchX * t * t * (3 - 2 * t);
+    }
+    const k = supported / BINDER.pageWidth;
+    return Math.PI * eased + Math.sin(Math.PI * eased) * (.68 * (k - .5) + .14 * Math.sin(k * Math.PI * 2 - eased * Math.PI));
+  };
+  const steps = 96, step = u / steps;
   let x = 0, z = 0;
   for (let i = 0; i < steps; i++) {
     const a = angleAt((i + .5) * step / BINDER.pageWidth);
@@ -30,7 +42,7 @@ export function sheetPoint(u: number, progress: number, side: -1 | 1) {
   const angle = angleAt(u / BINDER.pageWidth);
   // The sheet relaxes before landing; the small final lift decays smoothly.
   const settle = Math.sin(Math.PI * p) * .16 * Math.sin(p * Math.PI * 4);
-  return { x: side * (BINDER.hinge + x), z: z + settle + .42, angle: -side * angle };
+  return { x: side * (BINDER.hinge * Math.cos(Math.PI * eased) + x), z: z + settle + .42, angle: -side * angle };
 }
 
 export class BinderNavigation {

@@ -1,5 +1,5 @@
 import { Group, Mesh, MeshStandardNodeMaterial, MeshPhysicalNodeMaterial, PlaneGeometry,
-  BoxGeometry, DoubleSide, BufferGeometry, Float32BufferAttribute, type Material } from 'three/webgpu';
+  BoxGeometry, DoubleSide, BufferGeometry, Float32BufferAttribute, TextureLoader, RepeatWrapping, type Material } from 'three/webgpu';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
 import { BINDER, pocket, sheetPoint } from './BinderLayout';
 import type { CardInstance } from '../card/CardInstance';
@@ -45,7 +45,7 @@ export class BinderPage {
     const points = new Map<number, ReturnType<typeof sheetPoint>>();
     const at = (u: number) => {
       let point = points.get(u);
-      if (!point) { point = turning ? sheetPoint(u, progress!, turningSide) : { x: this.side * (BINDER.hinge + u), z: .42, angle: 0 }; points.set(u, point); }
+      if (!point) { point = turning ? sheetPoint(u, progress!, turningSide) : { x: this.side * (BINDER.hinge + u), z: .42 + .20 * Math.exp(-u / 1.1), angle: 0 }; points.set(u, point); }
       return point;
     };
     for (const surface of this.surfaces) {
@@ -78,18 +78,21 @@ export class BinderScene {
   readonly group = new Group();
   readonly pages = new Map<number, BinderPage>();
   private geometries: BufferGeometry[] = [];
+  private grain = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/leather-grain.png`);
   private materials = {
-    cover: new MeshStandardNodeMaterial({ color: '#151618', roughness: .88, metalness: .03 }),
-    piping: new MeshStandardNodeMaterial({ color: '#28282a', roughness: .73 }),
-    backing: new MeshStandardNodeMaterial({ color: '#121315', roughness: .93, side: DoubleSide }),
-    plastic: new MeshPhysicalNodeMaterial({ color: '#e0e6eb', transparent: true, opacity: .075,
-      roughness: .29, metalness: 0, clearcoat: .38, clearcoatRoughness: .24, ior: 1.46,
+    cover: new MeshStandardNodeMaterial({ color: '#29292c', roughness: .86, metalness: .03 }),
+    piping: new MeshStandardNodeMaterial({ color: '#3a3a3e', roughness: .73 }),
+    backing: new MeshStandardNodeMaterial({ color: '#17181a', roughness: .93, side: DoubleSide }),
+    plastic: new MeshPhysicalNodeMaterial({ color: '#f3f5f8', transparent: true, opacity: .035,
+      roughness: .23, metalness: 0, clearcoat: .36, clearcoatRoughness: .22, ior: 1.46,
       depthWrite: false, side: DoubleSide }),
     weld: new MeshStandardNodeMaterial({ color: '#51555a', roughness: .48, transparent: true, opacity: .27, depthWrite: false, side: DoubleSide }),
     stitch: new MeshStandardNodeMaterial({ color: '#555358', roughness: .9 }),
   };
   constructor() {
     this.group.name = 'favorites-binder';
+    this.grain.wrapS = this.grain.wrapT = RepeatWrapping; this.grain.repeat.set(9, 9);
+    this.materials.cover.bumpMap = this.grain; this.materials.cover.bumpScale = .024;
     for (const side of [-1, 1] as const) {
       const center = side * (BINDER.pageWidth / 2 + BINDER.hinge);
       this.solid(new RoundedBoxGeometry(31.2, 32, .58, 4, .32), center, 0, -.12, this.materials.cover);
@@ -125,5 +128,5 @@ export class BinderScene {
     return page;
   }
   retain(indices: Set<number>) { for (const [index, page] of this.pages) if (!indices.has(index)) { page.dispose(); this.pages.delete(index); } }
-  dispose() { this.retain(new Set()); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); this.group.removeFromParent(); }
+  dispose() { this.retain(new Set()); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); this.grain.dispose(); this.group.removeFromParent(); }
 }
