@@ -1,4 +1,5 @@
 import type { CardDefinition } from '../card/CardDefinition';
+import { compareGallerySetNames, gallerySetName } from '../gallery/GalleryQuery';
 import { lightPresets, type StudioLighting, type LightPreset } from '../lighting/StudioLighting';
 
 interface ViewerActions {
@@ -139,7 +140,9 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
       const priorityA = pickerPriority.indexOf(a.id);
       const priorityB = pickerPriority.indexOf(b.id);
       if (priorityA !== priorityB) return (priorityA < 0 ? pickerPriority.length : priorityA) - (priorityB < 0 ? pickerPriority.length : priorityB);
-      return Number(a.profile === 'print-only') - Number(b.profile === 'print-only');
+      const setOrder = a.franchise === 'Pokémon' && b.franchise === 'Pokémon'
+        ? compareGallerySetNames(gallerySetName(a), gallerySetName(b)) : 0;
+      return setOrder || Number(a.profile === 'print-only') - Number(b.profile === 'print-only');
     });
     empty.hidden = visibleCards.length > 0;
     visibleCards.forEach(card => {
