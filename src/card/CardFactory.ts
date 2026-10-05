@@ -249,6 +249,8 @@ export class CardFactory {
     };
     check();
     const profile = resolveCardProfile(definition);
+    // Authored/plain cards have no manufacturing work to overlap.
+    precompile &&= [profile, profile.secondary, profile.stamp].some(layer => layer && !['radial', 'plain', 'secret'].includes(layer.structure.field));
     const physical = resolvePhysicalCardProfile(definition);
     if (profile.id === 'print-only' && !editableOptics && !definition.construction) {
       const paths = { ...definition.maps, ...profile.maps };
