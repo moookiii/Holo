@@ -2,6 +2,19 @@
 
 Implementation and review: October 4, 2026. Baseline source: `6d0242d8` (before the optimization). Tests use the existing local assets, including the user's uncommitted mask edits, identically for both versions.
 
+## Cold-load follow-up
+
+The user prioritized fresh-page cold opens. Two changes are retained:
+
+- `309ff219`: evaluate the four MaterialX stock-noise hash corners in independent uint vector lanes. Every seed, wrapping integer operation, rotation and final division matches the original. A GPU comparison against Three's scalar reference matched 262,144 sampled values on both Firefox WebGL and Chromium WebGPU. Alakazam and Blastoise captures were pixel-identical. This reduced the observed cold Alakazam run from 9,420 to 7,328 ms.
+- `319e8d76` plus `c0f8c3a7`, `1be32741`, and `a9af1bd5`: overlap foreground shader compilation with actual foil-worker generation, with an explicit worker-start acknowledgement. Each future generated texture has its own placeholder sampler before compilation to prevent Three's texture-UUID aliasing. Full-resolution fields are rebound, uploaded and compiled/checked before presentation. The acknowledgement is opt-in to preserve the CPU pack-worker protocol. Authored/plain cards without manufacturing work keep the serial path. No speculative GPU work was added to Gallery.
+
+One internal cold Alakazam run reached 5,977 ms. Matching-type subsequent cards measured 1.7–2.2 seconds across runs. These do **not** establish instant loading. The stronger final actual-Gallery-click test (`scripts/profile-cold-click.mjs`) ran three separate fresh Firefox browser contexts and measured **5,380 / 6,659 / 8,325 ms**, median **6,659 ms**, mean **6,788 ms**. Shader preparation accounted for 4.7–6.9 seconds. Each run waited for the loading overlay to be hidden and the viewer to be active; click-wall timing includes Playwright dispatch/polling overhead. Browser errors: none. Reports are in `artifacts/cold-click/report.json`.
+
+The serial/overlapped Sylveon comparison (`scripts/check-cold-parity.mjs`) was pixel-identical at front, tilt and dark poses. It did not establish a cold speed gain from overlap for Sylveon; its plain/authored fields have no manufacturing work to overlap, hence the serial-path guard. The Firefox lifecycle check passed all eleven interaction/cancellation/eviction checks without page errors. Early post-opening frame intervals still included 141–171 ms spikes; smooth immediate interaction is not yet proven. The production build passed; the suite reports 247 passes and the same 27 existing failures. Final TypeScript validation passed after the guard and protocol fixes.
+
+Experiments with a stock-relief loop, vector spectrum evaluation, batched synchronous links, identity UV matrices, and a specialized CPU field loop did not establish consistent additional gains and are not active. Authored maps, finish settings and resolution were preserved. The remaining cold shader bottleneck and the user's instant-opening objective are unresolved.
+
 ## Firefox correction and cross-card reuse
 
 The earlier Chromium numbers below did not establish an improvement for the user's Firefox workflow. Before cross-card shader sharing, the Firefox matrix still measured Alakazam at 12,779 ms (9,360 ms compilation), Sylveon at 15,906 ms, and Blastoise at 11,090 ms. Exact-card cache hits were fast, but new cards were not materially faster. The task was not solved by the resident-card pool.
