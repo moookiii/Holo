@@ -6,8 +6,7 @@ const budget = 16 * 1024 * 1024;
 let bytes = 0;
 export const assetCacheMetrics = { downloads: 0, avoidedDownloads: 0, memoryHits: 0 };
 
-export function resolveCardAsset(path: string) {
-  const base = import.meta.env.BASE_URL;
+export function resolveCardAsset(path: string, base = import.meta.env.BASE_URL) {
   return /^(blob:|data:|https?:\/\/)/.test(path) || path.startsWith(base) ? path : `${base}${path.replace(/^\/+/, '')}`;
 }
 

@@ -11,7 +11,7 @@ if (!existsSync(chromium.executablePath())) {
     if (existsSync(path)) { options.executablePath = path; break; }
   }
 }
-const browser = await chromium.launch(options), page = await browser.newPage();
+const browser = await chromium.launch(options), context = await browser.newContext(), page = await context.newPage();
 const url = process.env.GALLERY_URL || 'http://127.0.0.1:5173';
 const out = 'artifacts/card-cache'; await mkdir(out, { recursive: true });
 try {
@@ -44,5 +44,21 @@ try {
   });
   assert.deepEqual(second.a, [1, 2, 3]); assert.deepEqual(second.c, [7, 8, 9]);
   assert.ok(second.typed && second.oversized && second.invalidated && second.denied && second.errors > 0);
-  const report = { first, second }; await writeFile(`${out}/report.json`, JSON.stringify(report, null, 2)); console.log(JSON.stringify(report));
+  await page.reload();
+  const paths = await page.evaluate(async () => {
+    const { resolveCardAsset } = await import('/src/assets/CachedCardAssets.ts');
+    return ['/cards/a.png', '/Holo/cards/a.png', 'cards/a.png', 'https://example.com/a.png'].map(path => resolveCardAsset(path, '/Holo/'));
+  });
+  assert.deepEqual(paths, ['/Holo/cards/a.png', '/Holo/cards/a.png', '/Holo/cards/a.png', 'https://example.com/a.png']);
+  let downloads = 0;
+  await page.context().route('**/cards/cache-probe.png', route => { downloads++; return route.fulfill({ contentType: 'image/png', body: Buffer.from([1, 2, 3]) }); });
+  const other = await page.context().newPage();
+  await other.route('**/cache-harness', route => route.fulfill({ contentType: 'text/html', body: '<html></html>' }));
+  await other.goto(`${url}/cache-harness`);
+  const load = () => import('/src/assets/CachedCardAssets.ts').then(async ({ cachedCardAsset }) =>
+    Promise.all(Array.from({ length: 12 }, async () => [...new Uint8Array(await (await cachedCardAsset('/cards/cache-probe.png')).arrayBuffer())])));
+  const blobs = await Promise.all([page.evaluate(load), other.evaluate(load)]);
+  assert.equal(downloads, 1, 'Concurrent requests across browser contexts must share one completed download');
+  assert.ok(blobs.flat().every(bytes => JSON.stringify(bytes) === '[1,2,3]'));
+  const report = { first, second, paths, downloads }; await writeFile(`${out}/report.json`, JSON.stringify(report, null, 2)); console.log(JSON.stringify(report));
 } finally { await browser.close(); }
