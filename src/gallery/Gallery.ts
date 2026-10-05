@@ -8,6 +8,7 @@ import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
 import { GalleryUploadBudget } from './GalleryUploadBudget';
 import { GalleryPerformance } from './GalleryPerformance';
+import { GalleryScrollPreparation } from './GalleryScrollPreparation';
 import { galleryCardSize, galleryLayout } from './GalleryLayout';
 import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
@@ -38,6 +39,7 @@ export class Gallery {
   private nearFailed = new Set<string>();
   private lastScroll = 0;
   private scrollDirection = 1;
+  private scrollPreparation = new GalleryScrollPreparation();
   private buttons = new Map<string, HTMLButtonElement>();
   private filtered: CardDefinition[] = [];
   private catalog: GalleryQueryIndex;
@@ -136,6 +138,7 @@ export class Gallery {
     }
     this.openingReady = false;
     this.performance.begin();
+    this.scrollPreparation.reset();
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
     this.refreshFacetOptions();
     this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
@@ -169,6 +172,7 @@ export class Gallery {
   private cancelRequest(slot: number) { this.requests.get(slot)?.abort(); this.requests.delete(slot); }
   private needsPreview(entry: Entry) { return !entry.ready && !entry.uploading && !entry.preview && !entry.error; }
   private applyFilters(reset = true) {
+    this.scrollPreparation.reset();
     this.filtered = this.catalog.filter(this.query);
     this.count.textContent = `${this.filtered.length.toLocaleString()} cards`;
     this.status.textContent = this.filtered.length ? '' : 'No cards match. Try clearing a filter.';
@@ -181,7 +185,10 @@ export class Gallery {
     this.content.style.height = `${this.layout.total}px`;
     const visible = this.filtered.slice(this.layout.start, this.layout.end);
     const scroll = this.viewport.scrollTop;
-    if (scroll !== this.lastScroll) this.scrollDirection = Math.sign(scroll - this.lastScroll);
+    if (scroll !== this.lastScroll) {
+      this.scrollDirection = Math.sign(scroll - this.lastScroll);
+      this.scrollPreparation.scroll(scroll, performance.now());
+    }
     this.lastScroll = scroll;
     const onScreen = visible.filter((card, offset) => {
       const top = this.layout.padding + Math.floor((this.layout.start + offset) / this.layout.columns) * this.layout.row - scroll;
@@ -226,6 +233,7 @@ export class Gallery {
   update(dt: number, width: number, height: number) {
     if (!this.active || this.disposed) return;
     if (this.dirty) this.reconcile();
+    const prepareCold = this.scrollPreparation.ready(performance.now());
     const rect = this.viewport.getBoundingClientRect();
     const lighting = this.options.lighting;
     lighting.update(dt, true);
@@ -288,7 +296,7 @@ export class Gallery {
       if (entry.ready && item.visible)
         this.graphics.place(item.slot, x, y, cardWidth, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
       if (this.needsPreview(entry) && !this.requests.has(item.slot) && !this.nearRequests.has(item.id)
-        && this.requests.size + this.nearRequests.size < PREVIEW_CONCURRENCY && !this.loading) {
+        && this.requests.size + this.nearRequests.size < PREVIEW_CONCURRENCY && !this.loading && prepareCold) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
           if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed) entry.preview = preview;
@@ -297,7 +305,7 @@ export class Gallery {
       }
     }
     for (const card of this.nearCards) {
-      if (this.loading || this.requests.size + this.nearRequests.size >= PREVIEW_CONCURRENCY) break;
+      if (this.loading || !prepareCold || this.requests.size + this.nearRequests.size >= PREVIEW_CONCURRENCY) break;
       if (this.nearRequests.has(card.id) || this.nearFailed.has(card.id) || this.options.cpu.hasPreview(card)) continue;
       const request = new AbortController(); this.nearRequests.set(card.id, request);
       void this.options.cpu.preparePreview(card, request.signal).then(preview => {

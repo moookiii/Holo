@@ -40,6 +40,10 @@ try {
       const gallery = new Gallery({ cards, scene: { add() {} }, camera: {}, cpu, lighting,
         compile: async () => {}, open: async () => {}, close: async () => {}, pack: async () => {} });
       gallery.graphics.dispose();
+      // This harness checks request ownership/priority with settled positions;
+      // fling timing is covered by the dedicated deterministic gate test and
+      // the real Firefox scroll regression.
+      gallery.scrollPreparation = { ready: () => true, scroll() {}, reset() {} };
       gallery.graphics = { mesh: {}, hideAll() {}, updateLighting() {}, place() {}, stats: () => ({ visible: 0 }),
         upload: async (slot, bytes) => { uploads.push({ slot, bytes }); }, dispose() {} };
       gallery.root.hidden = false; gallery.active = true; gallery.filtered = cards;
