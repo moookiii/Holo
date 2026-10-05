@@ -26,8 +26,12 @@ page.on('console', message => {
 page.on('response', response => { if (response.status() >= 400) failures.push({ url: response.url(), status: response.status() }); });
 const ids = ['002','004','016','019','021','042','048','074','083','088'];
 try {
-  await page.goto(process.env.HOLO_REVIEW_URL ?? 'http://127.0.0.1:5173/?lab&card=pokemon:sp-002:normal', { waitUntil: 'domcontentloaded' });
+  await page.goto(process.env.HOLO_REVIEW_URL ?? 'http://127.0.0.1:5173/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
+  // Normal startup opens the gallery. Enter through the real card tile.
+  await page.getByRole('combobox', { name: 'Set', exact: true }).selectOption('Pokémon e-Card Sample Set');
+  await page.locator('.gallery [data-card-index]').filter({ hasText: 'Hoppip' }).click();
+  await page.waitForFunction(() => window.__holo.stats().card === 'pokemon:sp-002:normal');
   for (const id of ids) {
     await page.evaluate(id => window.__holo.setCard(`pokemon:sp-${id}:normal`), id);
     await page.evaluate(() => { window.__holo.pose(0,0,0); window.__holo.zoom(1.35); });
