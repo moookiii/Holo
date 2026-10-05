@@ -157,12 +157,19 @@ export class CardFactory {
     } catch (error) { if (instance) instance.dispose(); else releases.forEach(release => release()); throw error; }
   }
 
-  /** Only called during the explicit pack transition. Full-size card uploads
-   * and mip generation finish before compilation/presentation begins. */
-  async uploadCardResources(cards: CardInstance[]) {
+  /** Full-size uploads and mip generation finish before presentation. Viewer
+   * opens yield between expensive textures so the loading UI keeps painting. */
+  async uploadCardResources(cards: CardInstance[], incremental = false) {
     const started = performance.now();
     const resources = new Set<Texture>(cards.flatMap(card => card.mesh.userData.resourceTextures ?? []));
-    for (const texture of resources) this.renderer.initTexture(texture);
+    let sliceStarted = performance.now();
+    for (const texture of resources) {
+      this.renderer.initTexture(texture);
+      if (incremental && performance.now() - sliceStarted >= 5) {
+        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+        sliceStarted = performance.now();
+      }
+    }
     await this.finishResourceUploads();
     openingStage('gpu-upload-and-readiness', started);
     return resources.size;

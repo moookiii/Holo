@@ -353,7 +353,7 @@ async function start() {
         markOpening(timing, 'cpuReady');
         if (generation !== loadGeneration || disposed) return;
         if (!resource.ready) {
-          await resource.factory.uploadCardResources([resource.instance]);
+          await resource.factory.uploadCardResources([resource.instance], true);
           markOpening(timing, 'uploadsReady');
           resource.instance.mesh.visible = true;
           resource.instance.mesh.frustumCulled = false;
