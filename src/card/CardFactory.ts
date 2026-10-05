@@ -33,6 +33,17 @@ export class CardFactory {
   // both slots (PatternCache reserves the second worker for foreground work).
   private patterns = new PatternCache(2);
   private geometries = new Map<string, BufferGeometry>();
+  private edgeMaterials = new Map<string, Material>();
+  private sharedEdgeMaterial(definition: CardDefinition, profile: HolographicProfile, physical: ReturnType<typeof resolvePhysicalCardProfile>) {
+    const metal = definition.construction ? profile.metallicInk : undefined;
+    const key = JSON.stringify([metal, physical.edge, definition.dimensions.thickness]);
+    let material = this.edgeMaterials.get(key);
+    if (!material) {
+      material = createEdgeMaterial(metal, physical, definition.dimensions.thickness);
+      this.edgeMaterials.set(key, material);
+    }
+    return material;
+  }
   private instances = new Set<CardInstance>();
   private disposed = false;
   private textures = new CardTextureCache();
@@ -153,11 +164,11 @@ export class CardFactory {
         foil.setProfile(backProfile,{}); foil.setAspect(definition.dimensions.width/definition.dimensions.height,definition.dimensions.height);
         reverse = foil;
       }
-      const materials = [material, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)];
+      const materials = [material, reverse, this.sharedEdgeMaterial(definition, profile, physical)];
       this.gpuStats.materialCreationMs += performance.now() - materialStarted;
       instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => {
         this.instances.delete(instance!); releases.forEach(release => release());
-      }); this.instances.add(instance);
+      }, [material, reverse]); this.instances.add(instance);
       instance.mesh.userData.resourceTextures = [...resources];
       this.gpuStats.realizations++; this.gpuStats.gpuRealizationMs += performance.now() - started - waitMs;
       instance.mesh.frustumCulled = false;
@@ -376,12 +387,13 @@ export class CardFactory {
     for (const texture of textures) { const image = texture.image; bytes += (image?.width ?? 1) * (image?.height ?? 1) * 10; }
     return bytes;
   }
-  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures, ...this.resourceTelemetry.stats,
+  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, sharedEdgeMaterials: this.edgeMaterials.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures, ...this.resourceTelemetry.stats,
     textureRealizations: textures.textureRealizations + this.gpuStats.sharedTextureCreates,
     textureCacheHits: textures.textureCacheHits + this.gpuStats.sharedTextureHits }; }
   dispose() {
     this.disposed = true;
     this.instances.forEach(card => card.dispose());
+    this.edgeMaterials.forEach(material => material.dispose()); this.edgeMaterials.clear();
     this.geometries.forEach(geometry => geometry.dispose()); this.geometries.clear();
     this.maps.dispose(); this.assets.dispose(); this.patterns.dispose();
     this.textures.dispose();

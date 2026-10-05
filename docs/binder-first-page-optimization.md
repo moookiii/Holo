@@ -47,3 +47,21 @@ were modified.
 TypeScript, the production bundle, and the eight binder/favorites unit checks
 pass. The broader suite has 261 passes and 28 failures in card/catalog/asset
 checks outside the edited binder code; see `artifacts/binder-tests.txt`.
+
+## Shared immutable card edges
+
+Full-quality CPU-prepared cards now reuse the same edge material when the
+complete edge finish, metal settings and card thickness match. This eliminates
+eleven identical edge node-graph builds on the first twelve-card page. Front
+and reverse materials remain independent, including their seed-specific stock
+grain. The resource domain owns shared edges; card disposal releases only its
+own faces. Domain disposal releases the edges after all its cards.
+
+Set `BINDER_COMPARE=edge` when running the first-page check to compare this
+change alone, preserving the earlier geometry and readiness optimization in
+both cases. Two paired WebGPU samples measured 7.16 -> 6.66 s and 9.44 -> 8.23 s
+for the complete first page. Edge material/node builds fell from twelve to one.
+Frame P95 improved in both pairs (99.9 -> 66.6 ms, 110.9 -> 105.6 ms).
+Populated page turns still created no new pipelines or textures. The material
+ownership tests verify that disposing one card preserves the shared edge for
+the others and that ordinary instances keep their original disposal behavior.

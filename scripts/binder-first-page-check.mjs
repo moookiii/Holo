@@ -7,6 +7,7 @@ await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome', headless: true,
   args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const report = [];
+const edgeComparison = process.env.BINDER_COMPARE === 'edge';
 try {
   for (let run = 0; run < Number(process.env.BINDER_RUNS || 2); run++) {
     for (const baseline of [true, false]) {
@@ -15,12 +16,18 @@ try {
       const page = await context.newPage(), errors = [];
       page.on('pageerror', error => errors.push(String(error)));
       await page.routeWebSocket('**', socket => socket.close());
-      if (baseline) await page.route('**/src/binder/BinderScene.ts*', async route => {
+      if (baseline && !edgeComparison) await page.route('**/src/binder/BinderScene.ts*', async route => {
         const response = await route.fetch();
         const source = await response.text();
         assert.ok(source.includes('new BinderPage(index, side, this.materials, geometry)'));
         await route.fulfill({ response, body: source.replace('new BinderPage(index, side, this.materials, geometry)',
           'new BinderPage(index, side, this.materials)') });
+      });
+      if (baseline && edgeComparison) await page.route('**/src/card/CardFactory.ts*', async route => {
+        const response = await route.fetch(), source = await response.text();
+        assert.ok(source.includes('this.sharedEdgeMaterial(definition, profile, physical)'));
+        await route.fulfill({ response, body: source.replace('this.sharedEdgeMaterial(definition, profile, physical)',
+          'createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)') });
       });
       const url = new URL(process.env.BINDER_URL || 'http://127.0.0.1:5173/?backend=webgpu');
       url.searchParams.set('benchmark-cold-viewer', '1');
@@ -29,7 +36,7 @@ try {
         const s = window.__holo?.gallery.stats();
         return s?.active && s.visibleExpected && s.visible === s.visibleExpected && !s.visibleFailed;
       }, null, { timeout: 120000 });
-      await page.evaluate(baseline => {
+      await page.evaluate(({ baseline, edgeComparison }) => {
         const g = window.__holo.gallery.instance();
         if (g.binder) throw Error('Binder already constructed');
         if (g.options.cpu.stats().entries) throw Error('Full-quality cards already prepared');
@@ -37,6 +44,13 @@ try {
         g.options.lighting.playing = false;
         g.options.lighting.setPreset('Skim');
         const timing = window.firstPageTiming = { start: performance.now(), frames: [], longTasks: [] };
+        const renderer = window.__holo.renderer, created = renderer.debug.onNodeBuilderCreated;
+        timing.edgeBuilds = 0;
+        renderer.debug.onNodeBuilderCreated = function(builder, object) {
+          const card = object.object.userData.cardInstance;
+          if (card && object.material === card.mesh.material[2]) timing.edgeBuilds++;
+          created?.(builder, object);
+        };
         const observer = new PerformanceObserver(list => {
           timing.longTasks.push(...list.getEntries().map(e => ({ at: e.startTime - timing.start, ms: e.duration })));
         });
@@ -44,7 +58,7 @@ try {
         g.openBinder();
         // Reproduce the old presentation order without changing the loader,
         // assets, geometry, material response or preparation concurrency.
-        if (baseline) g.binder.physical.group.visible = true;
+        if (baseline && !edgeComparison) g.binder.physical.group.visible = true;
         timing.constructMs = performance.now() - timing.start;
         let previous = timing.start, readyFrame = false;
         const poll = now => {
@@ -59,7 +73,7 @@ try {
           } else { readyFrame = ready; requestAnimationFrame(poll); }
         };
         requestAnimationFrame(poll);
-      }, baseline);
+      }, { baseline, edgeComparison });
       await page.waitForFunction(() => window.firstPageTiming.visibleMs, null, { timeout: 240000 });
       const result = await page.evaluate(() => {
         const binder = window.__holo.gallery.instance().binder;
@@ -67,13 +81,18 @@ try {
         const surfaces = pages.flatMap(p => p.surfaces.map(s => s.mesh.geometry));
         const unique = [...new Set(surfaces)];
         return { timing: window.firstPageTiming, stats: window.__holo.gallery.stats(),
+          edgeMaterials: new Set(pages.flatMap(p => [...p.cards.values()].map(c => c.mesh.material[2]))).size,
           geometry: { surfaces: surfaces.length, unique: unique.length,
             bytes: unique.reduce((sum, g) => sum + Object.values(g.attributes).reduce((n, a) => n + a.array.byteLength, 0), 0) } };
       });
       assert.equal(result.stats.visible, 12);
       assert.equal(result.stats.visibleFailed, 0);
       assert.ok(result.stats.residentCards >= 12 && result.stats.residentCards <= 36);
-      assert.equal(result.geometry.unique, baseline ? result.geometry.surfaces : 6);
+      assert.equal(result.geometry.unique, baseline && !edgeComparison ? result.geometry.surfaces : 6);
+      if (edgeComparison) {
+        assert.equal(result.edgeMaterials, baseline ? result.stats.residentCards : 1);
+        assert.equal(result.timing.edgeBuilds, baseline ? result.stats.residentCards : 1);
+      }
       result.geometry.hashes = await page.evaluate(async baseline => {
         const physical = window.__holo.gallery.instance().binder.physical;
         const pages = physical.preparationPages ?? [...physical.pages.values()];
@@ -88,7 +107,7 @@ try {
         for (const side of [-1, 1]) {
           const sameSide = pages.filter(p => p.side === side);
           result[side] = await Promise.all(sameSide[0].surfaces.map(s => hash(s.mesh.geometry)));
-          if (!sameSide.every(p => p.surfaces.every((s, i) => baseline || s.mesh.geometry === sameSide[0].surfaces[i].mesh.geometry)))
+        if (!sameSide.every(p => p.surfaces.every((s, i) => baseline || s.mesh.geometry === sameSide[0].surfaces[i].mesh.geometry)))
             throw Error('Page buffers were not shared');
         }
         return result;
@@ -109,6 +128,28 @@ try {
         return { pipelines, textures, visible: g.stats().visible, failed: g.stats().visibleFailed };
       });
       assert.deepEqual(result.turn, { pipelines: 0, textures: 0, visible: 24, failed: 0 });
+      if (edgeComparison && !baseline) {
+        result.edgeLifetime = await page.evaluate(async () => {
+          const binder = window.__holo.gallery.instance().binder, factory = binder.factory;
+          await binder.suspendPreparation();
+          const cards = [...binder.physical.pages.values()].flatMap(p => [...p.cards.values()]);
+          const edge = cards[0].mesh.material[2];
+          let edgeDisposals = 0, variantDisposals = 0;
+          edge.addEventListener('dispose', () => edgeDisposals++);
+          cards[0].dispose();
+          const survivedCardRemoval = edgeDisposals === 0 && cards[1].mesh.material[2] === edge;
+          const prepared = await binder.options.cpu.cached(cards[1].definition);
+          const variant = await factory.realizeCardGpu({ ...prepared, definition: { ...prepared.definition,
+            dimensions: { ...prepared.definition.dimensions, thickness: prepared.definition.dimensions.thickness * 1.1 } } }, undefined, false);
+          const separateThickness = variant.mesh.material[2] !== edge;
+          variant.mesh.material[2].addEventListener('dispose', () => variantDisposals++);
+          variant.dispose();
+          factory.dispose();
+          return { survivedCardRemoval, separateThickness, edgeDisposals, variantDisposals, allCardsDisposed: cards.every(c => c.disposed) };
+        });
+        assert.deepEqual(result.edgeLifetime, { survivedCardRemoval: true, separateThickness: true,
+          edgeDisposals: 1, variantDisposals: 1, allCardsDisposed: true });
+      }
       assert.deepEqual(errors, []);
       const frames = result.timing.frames.toSorted((a, b) => a - b);
       result.frameP95Ms = frames[Math.floor(frames.length * .95)];
@@ -120,11 +161,12 @@ try {
       console.log(JSON.stringify({ baseline, run, visibleMs: result.timing.visibleMs, firstMs: result.timing.firstMs,
         frameP95Ms: result.frameP95Ms, maxFrameMs: result.maxFrameMs,
         constructMs: result.timing.constructMs, geometry: result.geometry,
+        edgeMaterials: result.edgeMaterials, edgeBuilds: result.timing.edgeBuilds,
         longTasks: result.timing.longTasks.length, gpuBytes: result.stats.residentGpuBytes, turn: result.turn }));
       await context.close();
     }
   }
 } finally {
-  await writeFile(`${out}/first-page-report.json`, JSON.stringify(report, null, 2));
+  await writeFile(`${out}/first-page${edgeComparison ? '-edge' : ''}-report.json`, JSON.stringify(report, null, 2));
   await browser.close();
 }
