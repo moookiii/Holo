@@ -1,9 +1,15 @@
 export const GALLERY_CAPACITY = 48;
+export const GALLERY_CARD_WIDTH = 273;
+/** One monitor calibration for all cards; dimensions are in centimeters. */
+export function galleryCardSize(dimensions: { width: number; height: number }, cell: number) {
+  const pixelsPerCm = cell / 6.3;
+  return { cardWidth: dimensions.width * pixelsPerCm, cardHeight: dimensions.height * pixelsPerCm };
+}
 /** Row virtualization is O(visible cards), independent of collection size. */
 export function galleryLayout(width: number, height: number, count: number, scroll: number, capacity = GALLERY_CAPACITY) {
   const gap = width < 600 ? 20 : 36, padding = width < 600 ? 20 : 40;
-  const columns = Math.max(1, Math.min(6, Math.floor((width - padding * 2 + gap) / (180 + gap))));
-  const cell = Math.min(260, (width - padding * 2 - gap * (columns - 1)) / columns);
+  const columns = Math.max(1, Math.min(6, Math.floor((width - padding * 2 + gap) / (GALLERY_CARD_WIDTH + gap))));
+  const cell = Math.max(1, Math.min(GALLERY_CARD_WIDTH, (width - padding * 2 - gap * (columns - 1)) / columns));
   const row = Math.max(cell * 1.48 + 68, height / Math.max(1, Math.floor(capacity / columns) - 3));
   const total = Math.ceil(count / columns) * row + padding * 2;
   const top = Math.min(Math.max(0, scroll), Math.max(0, total - height));

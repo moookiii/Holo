@@ -6,7 +6,7 @@ import type { CardPreview } from '../card/CardPreviewPreparation';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
-import { galleryLayout } from './GalleryLayout';
+import { galleryCardSize, galleryLayout } from './GalleryLayout';
 import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
@@ -184,8 +184,8 @@ export class Gallery {
         this.buttons.set(card.id, button); this.content.append(button);
       }
       button.dataset.cardIndex = String(index);
-      const cardHeight = this.layout.cell * card.dimensions.height / card.dimensions.width;
-      Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap)}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row}px`, width: `${this.layout.cell}px`, height: `${cardHeight + 54}px` });
+      const { cardWidth, cardHeight } = galleryCardSize(card.dimensions, this.layout.cell);
+      Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + (this.layout.cell - cardWidth) / 2}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row}px`, width: `${cardWidth}px`, height: `${cardHeight + 54}px` });
       button.style.setProperty('--card-height', `${cardHeight}px`);
     }
   }
@@ -203,10 +203,10 @@ export class Gallery {
     this.graphics.hideAll();
     const prioritized = this.assigned.map(item => {
       const index = Number(this.buttons.get(item.id)!.dataset.cardIndex), card = this.filtered[index];
-      const cardHeight = this.layout.cell * card.dimensions.height / card.dimensions.width;
+      const { cardWidth, cardHeight } = galleryCardSize(card.dimensions, this.layout.cell);
       const x = rect.left + this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + this.layout.cell / 2;
       const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.viewport.scrollTop + cardHeight / 2;
-      return { ...item, card, cardHeight, x, y, visible: y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom };
+      return { ...item, card, cardWidth, cardHeight, x, y, visible: y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom };
     }).sort((a, b) => Number(b.visible) - Number(a.visible));
     // Cache hits do not need a worker slot, even when cold requests fill the queue.
     for (const item of prioritized) {
@@ -232,13 +232,13 @@ export class Gallery {
       }
       button.classList.toggle('is-ready', entry.ready);
       const placeholder = button.firstElementChild!; placeholder.textContent = entry.error ? 'Preview unavailable · Retry' : 'Loading…';
-      const { card, cardHeight, x, y } = item;
+      const { card, cardWidth, cardHeight, x, y } = item;
       if (item.visible && !entry.ready && !entry.error)
         waitingForVisibleCard = true;
       const target = this.pointer && !this.reduced.matches ? influence(this.pointer.x - x, this.pointer.y - y, this.tilt) : { pitch: 0, yaw: 0 };
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
       if (entry.ready && item.visible)
-        this.graphics.place(item.slot, x, y, this.layout.cell, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
+        this.graphics.place(item.slot, x, y, cardWidth, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
       if (this.needsPreview(entry) && !this.requests.has(item.slot) && this.requests.size < PREVIEW_CONCURRENCY && !this.loading) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
