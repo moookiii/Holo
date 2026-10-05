@@ -78,6 +78,20 @@ more effects;
 more UI;
 more particles.
 
+# COSMOS DOT PLACEMENT
+
+Reuse the existing Base Set 2 Cosmos implementation (`pokemon-base-set-2-cosmos` and `src/materials/patterns/BaseSet2Cosmos.ts`). Preserve its material, lighting response and scale conventions. Author per-card placement data; do not redesign the shader, add random dots, use modern rainbow foil or infer relief from scan brightness.
+
+1. Use the exact clean card front as the printed master. Register every feature in that front's full-card coordinates, normally 600x825, with no artwork-only crop or UV offset. Preserve the master image unchanged. Use photos/video of the exact print to distinguish physical foil features from printed artwork and to review their angular response; another physical copy can have different spot positions.
+2. Keep foil coverage, opaque protection and Cosmos motifs separate. Use supplied SAM protection PNGs unchanged; do not re-segment subjects or text. Reuse the existing basic/evolved foil-window PNGs when applicable. Apply protection during material composition, so a feature behind print can remain one complete feature in the motif map.
+3. Inspect the whole foil region at high zoom, including edges, narrow gaps and areas around text. Establish each physical feature's outer boundary before counting highlights. One large dot stays ONE large filled dot; internal gradients, rings, bright patches or reflections must not become a cluster of smaller dots. Measure its overall center and radius, retaining the large/medium/small hierarchy. Record a swirl or noncircular feature as its observed shape rather than substituting random dots.
+4. Existing registration scripts may propose candidates using local contrast and multiscale blob detection. These are proposals, not finished placement. Reject print edges, text, rays, scan grain and false circles. Suppress satellites inside a larger feature. Manually review and correct missing, faint, clipped and partially occluded features. Never claim every dot is matched solely because automated detection produced many candidates.
+5. Save stable card-ID-based registration data with coordinate dimensions, centers, radii and any reviewed shape/brightness information. Keep explicit additions/removals in correction data. Rasterize completed motifs offline as antialiased grayscale PNGs, normally 1200x1650. A circle has a continuous filled interior without holes or noisy fragments. Seeded optical orientation may use the existing renderer; feature positions must come from the reviewed registration, not RNG.
+6. Overlay motif boundaries on the master at full resolution and inspect every foil region. Check centers, diameters, isolated large spots, clustering, empty regions, swirls and print occlusion. Compare motif-only PNGs as well as overlays; contact sheets are navigation aids, not sufficient final review.
+7. Test the live card under moving light and several rotations, including front, grazing and strong specular angles. Compare the same controls with the established Base Set 2/Entei treatment. Confirm dots respond individually in their registered positions, large dots stay intact and protected print stays opaque. Preserve CPU preparation/GPU realization separation and caching; no runtime image detection or whole-set GPU preload.
+
+Document remaining uncertainty and save review captures. If placement is explicitly deferred, keep an empty motif PNG and mark placement pending; visible dots baked into the clean scan are not completed animated placement. Mask regeneration must preserve already authored motif maps. Do not change unrelated sets or existing Cosmos optics while authoring a new card.
+
 # Gallery
 
 Always place new sets in chronological order in the sets picker.
