@@ -131,6 +131,7 @@ class CpuPreviewWorker {
   private worker = new Worker(new URL('./card-preview.worker.ts', import.meta.url), { type: 'module' });
   private sequence = 0;
   private pending = new Map<number, { resolve: (preview: CardPreview) => void; reject: (error: Error) => void }>();
+  get pendingCount() { return this.pending.size; }
   constructor() {
     this.worker.onmessage = (event: MessageEvent<{ type: string; id: number; svgId?: number; blob?: Blob; width?: number; height?: number; preview?: CardPreview; error?: string }>) => {
       const message = event.data;
@@ -213,7 +214,8 @@ class CpuMapCache {
 }
 
 export class CardCpuPreparation {
-  private previewWorker?: CpuPreviewWorker;
+  private previewWorkers: CpuPreviewWorker[] = [];
+  private previewWorkerLimit = Math.min(4, Math.max(1, Math.floor(navigator.hardwareConcurrency / 2)));
   private previews = new CardPreviewCache();
   private previewPreparations = 0;
   cachedPreview(card: CardDefinition) { return this.disposed ? undefined : this.previews.get(card); }
@@ -223,7 +225,12 @@ export class CardCpuPreparation {
     const cached = this.cachedPreview(card);
     if (cached) return cached;
     this.previewPreparations++;
-    const preview = await (this.previewWorker ??= new CpuPreviewWorker()).prepare(card, signal);
+    let worker = this.previewWorkers.find(candidate => candidate.pendingCount === 0);
+    if (!worker && this.previewWorkers.length < this.previewWorkerLimit) {
+      worker = new CpuPreviewWorker(); this.previewWorkers.push(worker);
+    }
+    worker ??= this.previewWorkers.reduce((least, candidate) => candidate.pendingCount < least.pendingCount ? candidate : least);
+    const preview = await worker.prepare(card, signal);
     signal.throwIfAborted();
     if (this.disposed) throw new Error('CPU preparation disposed');
     this.previews.set(card, preview);
@@ -317,6 +324,6 @@ export class CardCpuPreparation {
     })().catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
-  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, ...this.previews.stats(), previewPreparations: this.previewPreparations }; }
-  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewWorker?.dispose(); this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
+  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, ...this.previews.stats(), previewPreparations: this.previewPreparations, previewWorkers: this.previewWorkers.length }; }
+  dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewWorkers.forEach(worker => worker.dispose()); this.previewWorkers = []; this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
 }
