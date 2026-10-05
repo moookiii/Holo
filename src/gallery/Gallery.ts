@@ -194,10 +194,13 @@ export class Gallery {
     if (this.scrollDirection > 0) this.nearCards.reverse();
     const nearIds = new Set(this.nearCards.map(card => card.id));
     for (const id of this.nearFailed) if (!nearIds.has(id)) this.nearFailed.delete(id);
-    for (const [id, request] of this.nearRequests) if (!nearIds.has(id)) { request.abort(); this.nearRequests.delete(id); }
+    for (const [id, request] of this.nearRequests) if (!nearIds.has(id) && !onScreenIds.has(id)) { request.abort(); this.nearRequests.delete(id); }
     const wanted = new Set(visible.map(c => c.id));
     for (const [id, button] of this.buttons) if (!wanted.has(id)) { button.remove(); this.buttons.delete(id); }
     for (const slot of this.requests.keys()) if (!this.assigned.some(a => a.slot === slot && this.entries.get(slot)?.token === a.token)) this.cancelRequest(slot);
+    // Pending CPU pixels remain in the byte-budgeted cache; slot bookkeeping
+    // must not keep an extra unaccounted copy alive after RAM eviction.
+    for (const [slot, entry] of this.entries) if (!this.assigned.some(item => item.slot === slot)) entry.preview = undefined;
     for (const item of this.assigned) {
       if (item.changed || !this.entries.has(item.slot)) { this.cancelRequest(item.slot); this.entries.set(item.slot, { token: item.token, ready: false, pitch: 0, yaw: 0 }); }
     }
@@ -245,9 +248,10 @@ export class Gallery {
       if (this.needsPreview(entry) && !this.requests.has(item.slot)) entry.preview = this.options.cpu.cachedPreview(item.card);
     }
     const waiting = Math.min(PREVIEW_CONCURRENCY, prioritized.filter(item => item.visible
-      && this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot)).length);
+      && this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot) && !this.nearRequests.has(item.id)).length);
     for (const [id, request] of [...this.nearRequests].reverse()) {
       if (this.requests.size + this.nearRequests.size + waiting <= PREVIEW_CONCURRENCY) break;
+      if (this.assigned.some(item => item.id === id)) continue;
       request.abort(); this.nearRequests.delete(id);
     }
     // After a scroll, unfinished overscan must not delay the new visible rows.
@@ -283,7 +287,8 @@ export class Gallery {
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
       if (entry.ready && item.visible)
         this.graphics.place(item.slot, x, y, cardWidth, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
-      if (this.needsPreview(entry) && !this.requests.has(item.slot) && this.requests.size + this.nearRequests.size < PREVIEW_CONCURRENCY && !this.loading) {
+      if (this.needsPreview(entry) && !this.requests.has(item.slot) && !this.nearRequests.has(item.id)
+        && this.requests.size + this.nearRequests.size < PREVIEW_CONCURRENCY && !this.loading) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
           if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed) entry.preview = preview;
@@ -295,7 +300,13 @@ export class Gallery {
       if (this.loading || this.requests.size + this.nearRequests.size >= PREVIEW_CONCURRENCY) break;
       if (this.nearRequests.has(card.id) || this.nearFailed.has(card.id) || this.options.cpu.hasPreview(card)) continue;
       const request = new AbortController(); this.nearRequests.set(card.id, request);
-      void this.options.cpu.preparePreview(card, request.signal).catch(() => { if (!request.signal.aborted) this.nearFailed.add(card.id); })
+      void this.options.cpu.preparePreview(card, request.signal).then(preview => {
+        // Promote an in-flight prefetch when it enters view, without canceling
+        // and restarting the expensive worker job.
+        if (request.signal.aborted || this.disposed) return;
+        const item = this.assigned.find(item => item.id === card.id), entry = item && this.entries.get(item.slot);
+        if (entry && item && entry.token === item.token && this.needsPreview(entry)) entry.preview = preview;
+      }).catch(() => { if (!request.signal.aborted) this.nearFailed.add(card.id); })
         .finally(() => { if (this.nearRequests.get(card.id) === request) this.nearRequests.delete(card.id); });
     }
     this.graphics.updateLighting(this.options.lighting, this.options.camera);
@@ -309,7 +320,7 @@ export class Gallery {
   stats() { return { ...this.graphics.stats(), ...this.uploadBudget.stats(), ...this.performance.stats(), visibleExpected: this.visibleExpected, visibleFailed: this.visibleFailed,
     ...this.residency.stats(), active: this.active, filtered: this.filtered.length, domCards: this.buttons.size,
     pending: this.requests.size + this.nearRequests.size, activeVisibleLoads: this.requests.size, activeNearLoads: this.nearRequests.size,
-    queued: this.assigned.filter(item => this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot)).length,
+    queued: this.assigned.filter(item => this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot) && !this.nearRequests.has(item.id)).length,
     failed: [...this.entries.values()].filter(e => e.error).length, tilted: this.assigned.filter(item => { const e = this.entries.get(item.slot)!; return Math.abs(e.pitch) + Math.abs(e.yaw) > .001; }).length, scrollTop: this.viewport.scrollTop }; }
   presentationKey() { return JSON.stringify([this.query, this.assigned.map(item => item.id), this.viewport.scrollTop,
     this.viewport.clientWidth, this.viewport.clientHeight]); }

@@ -84,6 +84,18 @@ try {
     check(scroll.gallery.requests.size + scroll.gallery.nearRequests.size <= 4, 'Preemption must retain the four-request concurrency limit');
     check(scroll.gallery.assigned.every(item => scroll.visible().includes(item.id)), 'CPU overscan must not take GPU residency slots');
     scroll.gallery.dispose();
+    const promotion = harness(4); promotion.tick();
+    for (const slot of promotion.gallery.requests.keys()) promotion.gallery.cancelRequest(slot);
+    for (const item of promotion.gallery.assigned) promotion.gallery.entries.get(item.slot).ready = true;
+    promotion.tick();
+    const prefetched = promotion.jobs.find(job => !job.signal.aborted);
+    promotion.gallery.viewport.scrollTop = Math.floor(Number(prefetched.card.id) / promotion.gallery.layout.columns) * promotion.gallery.layout.row;
+    promotion.gallery.dirty = true; promotion.tick();
+    check(!prefetched.signal.aborted, 'An in-flight near preview must be promoted when it becomes visible');
+    check(promotion.jobs.filter(job => job.card.id === prefetched.card.id && !job.signal.aborted).length === 1, 'Promotion must not duplicate preparation');
+    prefetched.complete(); await flush(); promotion.tick();
+    check(promotion.uploads.some(upload => promotion.gallery.assigned.find(item => item.slot === upload.slot)?.id === prefetched.card.id), 'Promoted pixels must upload for their current visible owner');
+    promotion.gallery.dispose();
     const burst = harness(4), fullPreview = { images: [new Uint8Array(2764800)], parameters: new Float32Array(176) };
     burst.gallery.reconcile();
     for (const item of burst.gallery.assigned) burst.cache.set(burst.cards.find(card => card.id === item.id), fullPreview);
@@ -124,7 +136,7 @@ try {
     check(replacement.gallery.assigned.every(item => !replacement.gallery.entries.get(item.slot).ready), 'Replacement cards must wait for their own uploads');
     replacement.gallery.dispose();
     return { passed: ['visible priority', 'cache bypass', 'stale cancellation', 'hide cancellation', 'overscan preemption',
-      'bounded upload burst', 'visible upload priority', 'upload time budget and progress', 'pending upload ownership'], concurrency: 4 };
+      'prefetch promotion', 'bounded upload burst', 'visible upload priority', 'upload time budget and progress', 'pending upload ownership'], concurrency: 4 };
   });
   await writeFile(join(out, 'report.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));
