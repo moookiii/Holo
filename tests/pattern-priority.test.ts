@@ -57,3 +57,32 @@ test('authoring cache evicts old variants without disposing fields bound to the 
     cache.trim(0); assert.equal(boundDisposed, true); assert.equal(cache.stats().textures, 0);
   } finally { cache.dispose(); globalThis.Worker = previous; }
 });
+
+test('worker startup notification does not finish the field or release its worker slot', async () => {
+  const previous = globalThis.Worker;
+  let worker;
+  class WorkerFixture {
+    sent = []; onmessage; onerror;
+    constructor() { worker = this; }
+    postMessage(message) { this.sent.push(message); }
+    terminate() {}
+  }
+  globalThis.Worker = WorkerFixture;
+  const cache = new PatternCache();
+  try {
+    let started = 0, finished = false;
+    const spec = { kind: 'satin', seed: 1, aspect: .7, scale: 10 };
+    const first = cache.get(spec, undefined, 0, () => started++);
+    void first.then(() => { finished = true; });
+    const second = cache.get({ ...spec, seed: 2 });
+    worker.onmessage({ data: { id: worker.sent[0].id, started: true } });
+    await Promise.resolve();
+    assert.equal(started, 1); assert.equal(finished, false);
+    assert.equal(worker.sent.length, 1, 'startup must not dispatch overlapping work to the busy worker');
+    const field = () => ({ width: 1, height: 1, direction: new Uint8Array(4), relief: new Uint8Array(4) });
+    worker.onmessage({ data: { id: worker.sent[0].id, field: field() } });
+    await first; assert.equal(started, 1); assert.equal(worker.sent.length, 2);
+    worker.onmessage({ data: { id: worker.sent[1].id, field: field() } });
+    await second;
+  } finally { cache.dispose(); globalThis.Worker = previous; }
+});

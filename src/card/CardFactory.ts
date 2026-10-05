@@ -45,26 +45,33 @@ export class CardFactory {
   }
 
   setBackgroundPaused(paused: boolean) { this.patterns.setBackgroundPaused(paused); }
-  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns, upload = true): Promise<ProfileFields> {
+  async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns, upload = true, onStarted?: () => void): Promise<ProfileFields> {
     const started = performance.now();
     const aspect = definition.dimensions.width / definition.dimensions.height;
+    const starts: Promise<void>[] = [];
     const prepareLayer = async (layer: FoilLayer | undefined, seed: number, motifPath?: string) => {
       // Radial and plain layers are analytic in the material and contain no
       // authored manufacturing field. Avoid generating and uploading a full
       // 1024px pair of neutral textures for them during pack preparation.
       if (!layer || layer.structure.field === 'radial' || layer.structure.field === 'plain' || layer.structure.field === 'secret') return undefined;
+      let started!: () => void;
+      starts.push(new Promise<void>(resolve => { started = resolve; }));
+      try {
       const motif = ['symbol-foil', 'base-set-star', 'base-set-2-cosmos', 'ancient-mew'].includes(layer.structure.field) && motifPath ? await this.assets.load(motifPath, false) : undefined;
       const field = await patterns.get({ kind: layer.structure.field, seed, aspect, scale: layer.structure.scale,
         ...(layer.structure.motif ? { motif: layer.structure.motif } : {}),
-        ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif, priority);
+        ...(['collector', 'collector-prismatic'].includes(layer.structure.field) ? { layout: definition.layout } : {}) }, motif, priority, started);
       if (upload && !this.disposed) { this.renderer.initTexture(field.direction); this.renderer.initTexture(field.relief); }
       return field;
+      } finally { started(); }
     };
-    const [primary, secondary, stamp] = await Promise.all([
+    const work = [
       prepareLayer(profile, definition.seed, definition.maps?.motif),
       prepareLayer(profile.secondary, definition.seed + 8191, definition.maps?.secondaryMotif),
       prepareLayer(profile.stamp, definition.seed + 16381, definition.maps?.stampMotif),
-    ]);
+    ];
+    void Promise.all(starts).then(() => onStarted?.());
+    const [primary, secondary, stamp] = await Promise.all(work);
     openingStage('procedural-fields', started); return { primary, secondary, stamp };
   }
 
@@ -234,7 +241,7 @@ export class CardFactory {
     });
   }
 
-  async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false): Promise<CardInstance> {
+  async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false, precompile = false): Promise<CardInstance> {
     const started = performance.now();
     const check = () => {
       signal?.throwIfAborted();
@@ -268,14 +275,19 @@ export class CardFactory {
     const reverseDefinition = definition.backProfile ? { ...definition, front: definition.back, maps: definition.backMaps } : definition.construction ? { ...definition, maps: definition.backMaps, coverageMode: undefined,
       construction: { ...definition.construction, frontReliefCm: definition.construction.backReliefCm },
       mapSettings: { ...definition.mapSettings, embossStrength: definition.construction.backReliefCm / .008 } } : undefined;
-    const [front, back, maps, fields, backMaps] = await Promise.all([
+    // Shader structure depends on the profile/maps, not the manufactured pixel
+    // values. Start the worker now; a foreground open can compile in parallel.
+    let startCompilation!: () => void;
+    const fieldsStarted = new Promise<void>(resolve => { startCompilation = resolve; });
+    const fieldsReady = this.prepareProfile(profile, definition, priority, this.patterns, false, startCompilation);
+    void fieldsReady.catch(() => {});
+    const [front, back, maps, backMaps] = await Promise.all([
       frontReady, this.assets.load(definition.back, true),
       frontReady.then(front => {
         const image = front.image as HTMLImageElement;
         return this.maps.load({ ...definition, maps: { ...definition.maps, ...profile.maps }, mapSettings: { ...definition.mapSettings, ...profile.mapSettings,
           ...(definition.construction ? { embossStrength: definition.construction.frontReliefCm / .008 } : {}) } }, image.width / image.height, profile.watermark === 'quarter-century');
       }),
-      this.prepareProfile(profile, definition, priority, this.patterns, false),
       reverseDefinition ? this.maps.load(reverseDefinition, definition.dimensions.width / definition.dimensions.height) : Promise.resolve(undefined),
     ]);
     check();
@@ -296,7 +308,8 @@ export class CardFactory {
         if (!this.geometries.has(key)) this.geometries.set(key, createMetalReliefGeometry(definition.dimensions, frontHeight, backHeight, definition.construction.frontReliefCm, definition.construction.backReliefCm));
       } else this.geometries.set(key, createCardGeometry(definition.dimensions));
     }
-    // All awaited work precedes per-instance material allocation, including abort checks.
+    let fields: ProfileFields = precompile ? {} : await fieldsReady;
+    check();
     const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile,
       definition.substrate, maps, definition.frontBorderColor, physical.recessedName, physical);
     holo.setProfile(profile, fields);
@@ -307,11 +320,22 @@ export class CardFactory {
     const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)];
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);
-    openingStage('cpu-preparation-and-materials', started);
-    instance.mesh.userData.resourceTextures = [front, back, ...Object.values(maps), ...Object.values(backMaps ?? {}),
-      ...Object.values(fields).flatMap(field => field ? [field.direction, field.relief] : [])].filter(value => value instanceof Texture);
     try {
       instance.mesh.frustumCulled = false;
+      if (precompile) {
+        await fieldsStarted;
+        check();
+        // Detached mesh only: neutral field samplers establish the exact graph,
+        // then the full-resolution results are rebound before any visible frame.
+        await this.compile(instance.mesh);
+        fields = await fieldsReady;
+        check();
+        holo.setProfile(profile, fields);
+        if (reverse instanceof HolographicMaterial) reverse.setProfile(reverseProfile, definition.backProfile ? {} : fields);
+      }
+      openingStage(precompile ? 'overlapped-preparation-and-compilation' : 'cpu-preparation-and-materials', started);
+      instance.mesh.userData.resourceTextures = [front, back, ...Object.values(maps), ...Object.values(backMaps ?? {}),
+        ...Object.values(fields).flatMap(field => field ? [field.direction, field.relief] : [])].filter(value => value instanceof Texture);
       startupMark('initialGpuRealization');
       if (compile) await this.uploadCardResources([instance]);
       startupMark('initialUploadComplete');

@@ -7,7 +7,7 @@ export class PatternCache {
   private workers: Worker[];
   private busy = new Set<Worker>();
   private sequence = 0;
-  private requests = new Map<number, { resolve: (f: FieldData) => void; reject: (e: Error) => void }>();
+  private requests = new Map<number, { resolve: (f: FieldData) => void; reject: (e: Error) => void; started?: () => void }>();
   private cache = new Map<string, Promise<PatternTextures>>();
   private textures = new Set<DataTexture>();
   private settled = new Map<string, PatternTextures>();
@@ -17,9 +17,11 @@ export class PatternCache {
   constructor(workerCount = 1) {
     this.workers = Array.from({ length: workerCount }, () => new Worker(new URL('./pattern.worker.ts', import.meta.url), { type: 'module' }));
     for (const worker of this.workers) {
-      worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string; persistentHit?: boolean }>) => {
+      worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string; persistentHit?: boolean; started?: boolean }>) => {
+        const task = this.requests.get(event.data.id);
+        if (event.data.started) { task?.started?.(); if (task) task.started = undefined; return; }
         this.busy.delete(worker);
-        const task = this.requests.get(event.data.id); if (!task) { this.dispatch(); return; }
+        task?.started?.(); if (!task) { this.dispatch(); return; }
         this.requests.delete(event.data.id);
         if (event.data.error) task.reject(new Error(event.data.error));
         else { openingCache('persistent-manufacturing-field', !!event.data.persistentHit); task.resolve(event.data.field); }
@@ -43,13 +45,14 @@ export class PatternCache {
       worker.postMessage(task.message, task.transfers);
     }
   }
-  get(spec: PatternSpec, motifTexture?: Texture, priority = 0): Promise<PatternTextures> {
+  get(spec: PatternSpec, motifTexture?: Texture, priority = 0, onStarted?: () => void): Promise<PatternTextures> {
     if (this.disposed) return Promise.reject(new Error('Pattern cache disposed'));
     const key = JSON.stringify([spec, motifTexture?.uuid]);
     const previous = this.settled.get(key);
     if (previous) { this.settled.delete(key); this.settled.set(key, previous); }
     const queued = this.queue.find(task => task.key === key);
     if (queued && queued.priority < priority) { queued.priority = priority; this.dispatch(); }
+    if (this.cache.has(key)) onStarted?.();
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
       let motifImage;
       if (motifTexture) {
@@ -64,7 +67,7 @@ export class PatternCache {
         for (let i = 0; i < data.length; i++) data[i] = rgba[i * 4];
         motifImage = { width: canvas.width, height: canvas.height, data };
       }
-      const id = ++this.sequence; this.requests.set(id, { resolve, reject });
+      const id = ++this.sequence; this.requests.set(id, { resolve, reject, started: onStarted });
       this.queue.push({ id, key, priority, message: { id, spec, motifImage }, transfers: motifImage ? [motifImage.data.buffer] : [] }); this.dispatch();
     }).then(data => {
       if (this.disposed) throw new Error('Pattern cache disposed');

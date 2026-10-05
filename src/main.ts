@@ -130,12 +130,12 @@ async function start() {
   let visibleWarmupId: string | undefined;
   const pooledInstances = new WeakSet<CardInstance>();
   const viewerKey = (next: CardDefinition) => JSON.stringify([next, resolveCardProfile(next)]);
-  const acquireViewer = (next: CardDefinition) => viewerResources.acquire(viewerKey(next), async () => {
+  const acquireViewer = (next: CardDefinition, precompile = false) => viewerResources.acquire(viewerKey(next), async () => {
     const domain = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
     try {
-      // Full quality CPU preparation only. No speculative uploads or compile.
+      // Idle preparation is CPU-only; foreground requests may overlap compilation.
       const prepared = !next.construction ? await cpuPreparation.cached(next) : undefined;
-      const instance = prepared ? await domain.realizeCardGpu(prepared, undefined, false) : await domain.create(next, undefined, false);
+      const instance = prepared ? await domain.realizeCardGpu(prepared, undefined, false) : await domain.create(next, undefined, false, 0, false, precompile);
       pooledInstances.add(instance);
       instance.mesh.visible = false;
       return { factory: domain, instance, ready: false };
@@ -352,7 +352,7 @@ async function start() {
       await previous;
       if (generation !== loadGeneration || disposed) return;
       if (managed) {
-        lease = acquireViewer(next);
+        lease = acquireViewer(next, true);
         const resource = await lease.pending;
         markOpening(timing, 'cpuReady');
         if (generation !== loadGeneration || disposed) return;

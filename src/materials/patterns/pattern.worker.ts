@@ -15,6 +15,9 @@ self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; mot
     const valid = stored && stored.width > 0 && stored.height > 0
       && stored.direction instanceof Uint8Array && stored.relief instanceof Uint8Array
       && stored.direction.length === stored.width * stored.height * 4 && stored.relief.length === stored.direction.length;
+    // Let foreground shader compilation start only after this worker has
+    // finished module/cache initialization and is ready to generate pixels.
+    self.postMessage({ id, started: true });
     const field = valid ? stored : spec.kind === 'symbol-foil' && spec.motif
       ? generateMotifField(spec.seed, spec.aspect, spec.scale, height ?? 2048, spec.motif, motifImage) : generateField(spec, height, motifImage);
     // Complete structured cloning before transferring ownership to the caller.
