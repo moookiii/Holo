@@ -178,7 +178,7 @@ export class FavoritesBinder {
         // Fetch/decode the next few full-quality cards while the GPU prepares
         // this one. Keep the window bounded and in visible-spread order.
         const preparations = new Map<number, Promise<{ value?: PreparedCardCpu; error?: unknown; failed?: true }>>();
-        const prepareAhead = (offset: number, count = 3) => {
+        const prepareAhead = (offset: number, count = 6) => {
           if (request.signal.aborted || !this.active) return;
           for (const index of indices.slice(offset, offset + count)) {
             const key = `${this.face(index)}:${index % 12}`;
