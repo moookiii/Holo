@@ -150,6 +150,7 @@ async function start() {
   };
   const scheduleViewerPreparation = (id?: string) => {
     clearTimeout(hoverTimer); hoverTimer = undefined;
+    if (new URLSearchParams(location.search).has('benchmark-cold-viewer')) return;
     if (!id || hoverBusy) return;
     hoverTimer = setTimeout(() => {
       hoverTimer = undefined;
