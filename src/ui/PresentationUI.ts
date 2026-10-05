@@ -31,7 +31,20 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   <section id="card-panel" class="popover card-panel" aria-label="Choose card" hidden><div class="card-panel-actions"><button id="import-card">Import card</button></div><div class="card-finish-tabs" role="group" aria-label="Card finish"></div><div class="filters" role="group" aria-label="Card category"></div><div class="card-search"><input id="card-search" type="search" aria-label="Search cards" placeholder="Search cards" autocomplete="off" spellcheck="false"></div><div class="card-grid"></div><p class="card-empty" role="status" hidden>No cards match these filters.</p></section>
   <section id="light-panel" class="popover light-panel" aria-label="Choose lighting" hidden></section>`;
   const select = root.querySelector<HTMLSelectElement>('#holo-select')!;
-  root.querySelector<HTMLButtonElement>('#lab-open')!.onclick = () => { window.location.href = '?lab=1'; };
+  const randomButton = document.createElement('button');
+  randomButton.id = 'random-card';
+  randomButton.className = 'random-entry';
+  randomButton.type = 'button';
+  randomButton.textContent = 'Random card';
+  const labButton = root.querySelector<HTMLButtonElement>('#lab-open')!;
+  labButton.after(randomButton);
+  randomButton.onclick = () => {
+    const candidates = cards.filter(card => !card.pickerHidden && card.id !== selectedCard);
+    if (!candidates.length) return;
+    close();
+    actions.card(candidates[Math.floor(Math.random() * candidates.length)].id);
+  };
+  labButton.onclick = () => { window.location.href = '?lab=1'; };
   root.querySelector<HTMLButtonElement>('#gallery-open')!.onclick = actions.gallery;
   root.querySelector<HTMLButtonElement>('#pack-open')!.onclick = actions.pack;
   let selectedCard = cards[0].id;
