@@ -70,6 +70,8 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     if (document.fullscreenElement) void document.exitFullscreen(); else void document.documentElement.requestFullscreen();
   };
   const panels = ['card', 'light'] as const;
+  let pickerDirty = true;
+  const ensurePicker = () => { if (pickerDirty) drawCards(); };
   const close = () => { panels.forEach(name => {
     root.querySelector<HTMLElement>(`#${name}-panel`)!.hidden = true;
     root.querySelector(`#${name}-toggle`)!.setAttribute('aria-expanded', 'false');
@@ -80,7 +82,9 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
       const wasHidden = panel.hidden === true; close(); panel.hidden = !wasHidden;
       root.querySelector(`#${name}-toggle`)!.setAttribute('aria-expanded', String(wasHidden));
       root.classList.toggle('open', wasHidden);
-      if (name === 'card' && wasHidden) root.querySelector<HTMLInputElement>('#card-search')!.focus();
+      if (name === 'card' && wasHidden) {
+        ensurePicker(); root.querySelector<HTMLInputElement>('#card-search')!.focus();
+      }
     };
   });
   let selectedFinish: CardFinish = 'all';
@@ -126,6 +130,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
     'lugia-neo-genesis',
   ];
   const drawCards = () => {
+    pickerDirty = false;
     grid.replaceChildren();
     const visibleCards = cardsForFinish().filter(card => (selectedCategory === 'All' || card.franchise === selectedCategory) && matchesSearch(card));
     visibleCards.sort((a, b) => {
@@ -199,7 +204,10 @@ image.loading = 'lazy';
     });
   };
   const refreshCards = () => {
-    drawFinishTabs(); drawFilters(); drawCards(); drawProfiles();
+    pickerDirty = true;
+    drawFinishTabs(); drawFilters();
+    if (!root.querySelector<HTMLElement>('#card-panel')!.hidden) ensurePicker();
+    drawProfiles();
   };
   refreshCards();
   const lightPanel = root.querySelector('#light-panel')!;
