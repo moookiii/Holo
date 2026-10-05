@@ -1,15 +1,16 @@
+import { stockCellNoise } from './StockCellNoise';
 import { Vector2 } from 'three/webgpu';
 import type { PhysicalCardProfile } from '../PhysicalCardProfile';
 import type { Node } from 'three/webgpu';
-import { Fn, positionLocal, positionViewDirection, vec2, vec3, uniform, normalViewGeometry, tangentView, tangentGeometry, mx_cell_noise_float } from 'three/tsl';
+import { Fn, positionLocal, positionViewDirection, vec2, vec3, uniform, normalViewGeometry, tangentView, tangentGeometry } from 'three/tsl';
 
 /** Continuous height and its analytic derivatives; all three describe one surface. */
 const relief = Fn(([point]: [Node<'vec2'>]) => {
   const cell = point.floor(), f = point.fract();
   const blend = f.pow3().mul(f.mul(f.mul(6).sub(15)).add(10));
   const derivative = f.pow2().mul(f.sub(1).pow2()).mul(30);
-  const a = mx_cell_noise_float(cell).toVar(), b = mx_cell_noise_float(cell.add(vec2(1, 0))).toVar();
-  const c = mx_cell_noise_float(cell.add(vec2(0, 1))).toVar(), d = mx_cell_noise_float(cell.add(1)).toVar();
+  const cells = stockCellNoise(cell).toVar();
+  const a = cells.x, b = cells.y, c = cells.z, d = cells.w;
   const cross = a.sub(b).sub(c).add(d);
   return vec3(a.add(b.sub(a).mul(blend.x)).add(c.sub(a).mul(blend.y)).add(cross.mul(blend.x, blend.y)),
     b.sub(a).add(cross.mul(blend.y)).mul(derivative.x), c.sub(a).add(cross.mul(blend.x)).mul(derivative.y));
