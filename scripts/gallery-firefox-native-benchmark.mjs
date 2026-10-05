@@ -81,7 +81,9 @@ async function measure(name, action) {
       compatibilityMode: h.renderer.backend.compatibilityMode, deviceFeatures: h.renderer.backend.device ? [...h.renderer.backend.device.features] : undefined,
       browserReportedRenderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl?.getParameter(gl.RENDERER),
       parallelCompile: !!gl?.getExtension('KHR_parallel_shader_compile'), frameMs: h.stats().frameMs,
-      stages: window.__galleryStages });
+      stages: window.__galleryStages,
+      failedPreviews: [...g.entries].flatMap(([slot, entry]) => entry.error
+        ? [{ card: g.residency.slots[slot]?.id, error: entry.error }] : []) });
   })()`));
   const row = { name, readyMs, paintedMs, ...state }; report.phases.push(row);
   await writeFile(join(out, `${name}.png`), Buffer.from(capture.data, 'base64'));
