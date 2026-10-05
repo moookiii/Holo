@@ -303,7 +303,7 @@ export class Gallery {
     const rect = this.viewport.getBoundingClientRect();
     const lighting = this.options.lighting;
     lighting.update(dt, true);
-    if (lighting.preset === 'Skim' && height > 0) {
+    if ((lighting.preset === 'Skim' || lighting.preset === 'Moving light') && height > 0) {
       const camera = this.options.camera;
       lighting.key.position.y = gallerySkimLightY(lighting.elevation, rect.top, rect.bottom, height, camera.position.z, camera.fov, lighting.key.position.z);
       lighting.key.lookAt(0, 0, 0);
