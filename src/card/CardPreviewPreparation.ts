@@ -6,6 +6,9 @@ import { resolveCardProfile } from '../materials/profiles/resolveCardProfile';
 import type { FieldData, PatternSpec } from '../materials/patterns/ManufacturingField';
 import type { MotifImage } from '../materials/patterns/MotifField';
 import { previewOptics, PREVIEW_PARAMETER_COLUMNS } from './PreviewOptics';
+import { PreviewReadQueue } from './PreviewReadQueue';
+
+const previewReads = new PreviewReadQueue();
 
 export const PREVIEW_WIDTH = 512, PREVIEW_HEIGHT = 720;
 export const PREVIEW_MAP_WIDTH = 128, PREVIEW_MAP_HEIGHT = 180;
@@ -21,12 +24,16 @@ type PrepareField = (spec: PatternSpec, height: number, motif?: MotifImage) => P
 export async function prepareCardPreview(card: CardDefinition, signal: AbortSignal, prepareField: PrepareField,
   decodeSvg?: (blob: Blob, width: number, height: number) => Promise<Uint8Array>): Promise<CardPreview> {
   const width = PREVIEW_MAP_WIDTH, height = PREVIEW_MAP_HEIGHT;
-  const read = async (path: string, w = width, h = height) => {
+  const blobs = new Map<string, Promise<Blob>>(), decoded = new Map<string, Promise<Uint8Array>>();
+  const decode = async (path: string, w: number, h: number) => {
     signal.throwIfAborted();
     const url = /^(blob:|data:|https?:\/\/)/.test(path) ? path : `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
-    const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]) });
-    if (!response.ok) throw new Error(`Preview unavailable (${response.status})`);
-    const blob = await response.blob();
+    if (!blobs.has(url)) blobs.set(url, (async () => {
+      const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]) });
+      if (!response.ok) throw new Error(`Preview unavailable (${response.status})`);
+      return response.blob();
+    })());
+    const blob = await blobs.get(url)!;
     if (blob.type.includes('svg') && decodeSvg) return decodeSvg(blob, w, h);
     let image: ImageBitmap;
     if (blob.type.includes('svg')) {
@@ -43,10 +50,11 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
       return new Uint8Array(context.getImageData(0, 0, w, h).data);
     } finally { image.close(); }
   };
-  const front = await read(card.front, PREVIEW_WIDTH, PREVIEW_HEIGHT).catch(error => {
-    if (signal.aborted || !card.frontFallback) throw error;
-    return read(card.frontFallback, PREVIEW_WIDTH, PREVIEW_HEIGHT);
-  });
+  const read = (path: string, w = width, h = height) => {
+    const key = JSON.stringify([path, w, h]);
+    if (!decoded.has(key)) decoded.set(key, previewReads.run(signal, () => decode(path, w, h)));
+    return decoded.get(key)!;
+  };
   const profile = resolveCardProfile(card), paths = { ...resolveCoverageMaps(card), ...profile.maps };
   const settings = { ...card.mapSettings, ...profile.mapSettings };
   const parameters = previewOptics(card, profile);
@@ -54,18 +62,24 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   // Keep individual metallic letter edges at artwork resolution; the small
   // optical maps otherwise blur gold into the surrounding title panel.
   const titlePath = profile.structure.field === 'secret' ? paths.secondaryFoil ?? paths.metallic : paths.metallic;
-  const titleMask = titlePath ? await read(titlePath, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
-  const titleProtection = titleMask && paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
+  const keys = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic', 'protection', 'roughness', 'surface', 'height', 'pattern', 'secondaryPattern', 'stampPattern', 'stamp', 'laminate', 'sparkle'] as const;
+  const [front, titleMask, titleProtection, reverseFoil, reverseProtection, inputEntries, normalSource] = await Promise.all([
+    read(card.front, PREVIEW_WIDTH, PREVIEW_HEIGHT).catch(error => {
+      if (signal.aborted || !card.frontFallback) throw error;
+      return read(card.frontFallback, PREVIEW_WIDTH, PREVIEW_HEIGHT);
+    }),
+    titlePath ? read(titlePath, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined,
+    titlePath && paths.protection ? read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined,
+    sharpReverse ? read(paths.foil!, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined,
+    sharpReverse && paths.protection ? read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined,
+    Promise.all(keys.filter(key => paths[key]).map(async key => [key, await read(paths[key]!)] as const)),
+    paths.normal ? read(paths.normal) : undefined,
+  ]);
   for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
   if (sharpReverse) {
-    const foil = await read(paths.foil!, PREVIEW_WIDTH, PREVIEW_HEIGHT);
-    const protection = paths.protection ? await read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined;
-    for (let i = 0; i < front.length; i += 4) front[i + 3] = Math.round(foil[i] * (1 - (protection?.[i] ?? 0) / 255));
+    for (let i = 0; i < front.length; i += 4) front[i + 3] = Math.round(reverseFoil![i] * (1 - (reverseProtection?.[i] ?? 0) / 255));
   }
-  const inputs: Partial<Record<PackedMapKey, Uint8Array>> = {};
-  const keys = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic', 'protection', 'roughness', 'surface', 'height', 'pattern', 'secondaryPattern', 'stampPattern', 'stamp', 'laminate', 'sparkle'] as const;
-  for (const key of keys) if (paths[key]) inputs[key] = await read(paths[key]!);
-  const normalSource = paths.normal ? await read(paths.normal) : undefined;
+  const inputs: Partial<Record<PackedMapKey, Uint8Array>> = Object.fromEntries(inputEntries);
   const hasCoverage = ['coverage', 'foil', 'secondaryFoil', 'extendedFoil', 'metallic'].some(key => key in inputs);
   const packed = packMapChannels(width, height, inputs, card.imported && !hasCoverage && profile.id !== 'print-only' ? 255 : 0);
   const layers = [profile, profile.secondary, profile.stamp];
