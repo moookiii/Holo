@@ -3,6 +3,7 @@ import { generateField, type PatternSpec } from './ManufacturingField';
 import { generateMotifField, type MotifImage } from './MotifField';
 import { cardCacheRevision, persistentCards } from '../../assets/PersistentCardCache';
 import type { FieldData } from './ManufacturingField';
+import { generateRegisteredStarField } from './RegisteredStarField';
 self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; motifImage?: MotifImage; height?: number; notifyStarted?: boolean }>) => {
   const { id, spec, motifImage, height } = event.data;
   try {
@@ -18,7 +19,8 @@ self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; mot
     // Let foreground shader compilation start only after this worker has
     // finished module/cache initialization and is ready to generate pixels.
     if (event.data.notifyStarted) self.postMessage({ id, started: true });
-    const field = valid ? stored : spec.kind === 'symbol-foil' && spec.motif
+    const field = valid ? stored : spec.kind === 'base-set-star' && motifImage
+      ? generateRegisteredStarField(spec, height ?? 2048, motifImage) : spec.kind === 'symbol-foil' && spec.motif
       ? generateMotifField(spec.seed, spec.aspect, spec.scale, height ?? 2048, spec.motif, motifImage) : generateField(spec, height, motifImage);
     // Wait only for the cache's snapshot, not its disk commit, before transfer.
     if (key && !valid) await new Promise<void>(resolve => {
