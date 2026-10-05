@@ -3,7 +3,7 @@ import { generateField, type PatternSpec } from './ManufacturingField';
 import { generateMotifField, type MotifImage } from './MotifField';
 import { cardCacheRevision, persistentCards } from '../../assets/PersistentCardCache';
 import type { FieldData } from './ManufacturingField';
-self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; motifImage?: MotifImage; height?: number }>) => {
+self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; motifImage?: MotifImage; height?: number; notifyStarted?: boolean }>) => {
   const { id, spec, motifImage, height } = event.data;
   try {
     let key = '';
@@ -17,7 +17,7 @@ self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; mot
       && stored.direction.length === stored.width * stored.height * 4 && stored.relief.length === stored.direction.length;
     // Let foreground shader compilation start only after this worker has
     // finished module/cache initialization and is ready to generate pixels.
-    self.postMessage({ id, started: true });
+    if (event.data.notifyStarted) self.postMessage({ id, started: true });
     const field = valid ? stored : spec.kind === 'symbol-foil' && spec.motif
       ? generateMotifField(spec.seed, spec.aspect, spec.scale, height ?? 2048, spec.motif, motifImage) : generateField(spec, height, motifImage);
     // Complete structured cloning before transferring ownership to the caller.

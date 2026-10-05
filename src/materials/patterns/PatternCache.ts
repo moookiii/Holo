@@ -68,7 +68,7 @@ export class PatternCache {
         motifImage = { width: canvas.width, height: canvas.height, data };
       }
       const id = ++this.sequence; this.requests.set(id, { resolve, reject, started: onStarted });
-      this.queue.push({ id, key, priority, message: { id, spec, motifImage }, transfers: motifImage ? [motifImage.data.buffer] : [] }); this.dispatch();
+      this.queue.push({ id, key, priority, message: { id, spec, motifImage, notifyStarted: !!onStarted }, transfers: motifImage ? [motifImage.data.buffer] : [] }); this.dispatch();
     }).then(data => {
       if (this.disposed) throw new Error('Pattern cache disposed');
       const make = (values: Uint8Array) => {
