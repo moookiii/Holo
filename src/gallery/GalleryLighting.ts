@@ -2,7 +2,8 @@ import { lightPresets, type StudioLighting } from '../lighting/StudioLighting';
 import { galleryElevationRange } from './GallerySkim';
 
 export function galleryLightingControls(root: HTMLElement, lighting: StudioLighting) {
-  const label = document.createElement('label'); label.textContent = 'Lighting';
+  const label = document.createElement('label');
+  const caption = document.createElement('span'); caption.textContent = 'Lighting'; label.append(caption);
   const select = document.createElement('select'); select.setAttribute('aria-label', 'Gallery lighting');
   for (const preset of lightPresets) select.add(new Option(preset, preset));
   select.value = lighting.preset;
@@ -11,7 +12,8 @@ export function galleryLightingControls(root: HTMLElement, lighting: StudioLight
   for (const [key, title, min, max, step] of [
     ['elevation', 'Elevation', galleryElevationRange.min, galleryElevationRange.max, 1], ['intensity', 'Intensity', .1, 2, .05], ['speed', 'Speed', 0, 2, .1], ['filterAngle', 'Polarizer', 0, 90, 1],
   ] as const) {
-    const label = document.createElement('label'); label.textContent = title;
+    const label = document.createElement('label');
+    const caption = document.createElement('span'); caption.textContent = title; label.append(caption);
     const input = document.createElement('input'); input.type = 'range'; input.min = String(min); input.max = String(max); input.step = String(step); input.value = String(lighting[key]); input.setAttribute('aria-label', `Gallery light ${title.toLowerCase()}`);
     input.oninput = () => { lighting[key] = Number(input.value); }; label.append(input); root.append(label);
     settings.push({ key, label, input });

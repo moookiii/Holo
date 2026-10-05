@@ -27,7 +27,6 @@ export class Gallery {
   private content = document.createElement('div');
   private count = document.createElement('p');
   private status = document.createElement('p');
-  private tools = document.createElement('details');
   private search = document.createElement('input');
   private filters = new Map<string, HTMLSelectElement>();
   private favorites = browserGalleryFavorites();
@@ -73,16 +72,17 @@ export class Gallery {
     this.graphics = new GalleryRenderer(options.scene, options.compile);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
     const header = document.createElement('header'); header.className = 'gallery-header';
-    const title = document.createElement('h1'); title.textContent = 'Collection';
+    this.count.className = 'gallery-count'; this.count.setAttribute('role', 'status');
     const close = document.createElement('button'); close.textContent = 'Back to viewer'; close.onclick = () => { void this.transition(options.close); };
     const pack = document.createElement('button'); pack.textContent = 'Open a pack'; pack.onclick = () => { if (!this.loading) void options.pack(); };
     const actions = document.createElement('div'); actions.className = 'gallery-header-actions'; actions.append(close, pack);
-    header.append(title, this.count, actions);
+    header.append(actions);
     const filters = document.createElement('div'); filters.className = 'gallery-filters';
     this.search.type = 'search'; this.search.placeholder = 'Search cards'; this.search.setAttribute('aria-label', 'Search gallery cards');
     this.search.oninput = () => { this.query.search = this.search.value; this.applyFilters(); }; filters.append(this.search);
     for (const facet of facets) {
-      const label = document.createElement('label'); label.textContent = facet.label;
+      const label = document.createElement('label');
+      const caption = document.createElement('span'); caption.textContent = facet.label; label.append(caption);
       const select = document.createElement('select'); select.setAttribute('aria-label', facet.label);
       select.onchange = () => {
         if (select.value) this.query[facet.key] = select.value;
@@ -111,18 +111,16 @@ export class Gallery {
     }; filters.append(clear);
     const light = document.createElement('div'); light.className = 'gallery-light';
     this.refreshLighting = galleryLightingControls(light, options.lighting);
-    const tools = this.tools; tools.className = 'gallery-tools'; tools.open = true;
-    const toolsSummary = document.createElement('summary'); toolsSummary.textContent = 'Filters & lighting';
-    const toolsContent = document.createElement('div'); toolsContent.append(filters, light);
-    tools.append(toolsSummary, toolsContent);
+    const tools = document.createElement('div'); tools.className = 'gallery-tools';
+    tools.append(filters, light);
     this.viewport.className = 'gallery-viewport'; this.viewport.tabIndex = 0; this.viewport.setAttribute('aria-label', 'Scrollable card collection');
     this.content.className = 'gallery-content'; this.viewport.append(this.content);
     this.status.className = 'gallery-status'; this.status.setAttribute('role', 'status');
     this.favoriteAnnouncement.className = 'gallery-favorite-announcement';
     this.favoriteAnnouncement.setAttribute('role', 'status');
     this.favoriteAnnouncement.setAttribute('aria-atomic', 'true');
-    const toolbar = document.createElement('div'); toolbar.className = 'gallery-toolbar'; toolbar.append(header, tools);
-    this.root.append(toolbar, this.viewport, this.status, this.favoriteAnnouncement); document.body.append(this.root);
+    const toolbar = document.createElement('div'); toolbar.className = 'gallery-toolbar'; toolbar.append(tools, header);
+    this.root.append(toolbar, this.viewport, this.status, this.count, this.favoriteAnnouncement); document.body.append(this.root);
     const signal = this.abort.signal;
     this.viewport.addEventListener('scroll', () => { this.dirty = true; }, { passive: true, signal });
     this.viewport.addEventListener('pointermove', event => { if (event.pointerType !== 'touch') this.pointer = { x: event.clientX, y: event.clientY }; }, { passive: true, signal });
@@ -163,7 +161,7 @@ export class Gallery {
     this.scrollPreparation.reset();
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
     this.refreshFacetOptions();
-    this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
+    this.applyFilters(false); this.search.focus({ preventScroll: true });
   }
   private refreshFacetOptions() {
     let cards: readonly CardDefinition[] = this.catalog.cards();
