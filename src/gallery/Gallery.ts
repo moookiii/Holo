@@ -34,7 +34,6 @@ export class Gallery {
   private favorites = browserGalleryFavorites();
   private favoritesOnly = false;
   private binder?: FavoritesBinder;
-  private binderWarmupScheduled = false;
   private favoriteFilter = document.createElement('button');
   private favoriteAnnouncement = document.createElement('span');
   readonly query: GalleryQuery = { search: '' };
@@ -172,10 +171,6 @@ export class Gallery {
     this.cancelNearRequests(); this.options.hover?.();
     this.favoritesOnly = true; this.favoriteFilter.setAttribute('aria-pressed', 'true');
     this.root.hidden = true; this.graphics.hideAll(); this.graphics.mesh.visible = false;
-    this.ensureBinder();
-    this.binder!.show(this.favorites.filter(this.catalog.cards(), true));
-  }
-  private ensureBinder() {
     this.binder ??= new FavoritesBinder({ ...this.options, factory: this.options.binderFactory,
       open: id => this.transition(() => this.options.open(id)),
       toggle: id => { this.favorites.toggle(id); this.binder!.refresh(this.favorites.filter(this.catalog.cards(), true)); },
@@ -183,16 +178,7 @@ export class Gallery {
         this.binder!.hide(); this.favoritesOnly = false; this.favoriteFilter.setAttribute('aria-pressed', 'false');
         this.root.hidden = false; this.applyFilters(false); this.favoriteFilter.focus({ preventScroll: true });
       } });
-    return this.binder;
-  }
-  private warmBinderWhenIdle() {
-    if ((this.binder && !this.binder.canWarm) || this.binderWarmupScheduled || !this.favorites.filter(this.catalog.cards(), true).length) return;
-    this.binderWarmupScheduled = true;
-    setTimeout(() => {
-      this.binderWarmupScheduled = false;
-      if (this.disposed || !this.active || this.loading || !this.openingReady || (this.binder && !this.binder.canWarm)) return;
-      this.ensureBinder().warm(this.favorites.filter(this.catalog.cards(), true));
-    }, 300);
+    this.binder.show(this.favorites.filter(this.catalog.cards(), true));
   }
   private refreshFacetOptions() {
     let cards: readonly CardDefinition[] = this.catalog.cards();
@@ -426,7 +412,6 @@ export class Gallery {
     this.graphics.updateLighting(this.options.lighting, this.options.camera);
     this.graphics.mesh.visible = this.graphics.stats().visible > 0;
     this.openingReady = !waitingForVisibleCard;
-    if (this.openingReady) this.warmBinderWhenIdle();
   }
   recordFrame(intervalMs: number, submissionMs: number) {
     this.performance.frame(intervalMs, submissionMs, this.graphics.stats().visible, this.visibleExpected, this.visibleFailed,

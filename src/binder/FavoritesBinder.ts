@@ -6,7 +6,6 @@ import type { CardCpuPreparation, PreparedCardCpu } from '../card/CardCpuPrepara
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { galleryLightingControls } from '../gallery/GalleryLighting';
 import { BinderScene } from './BinderScene';
-import { binderArtwork } from './BinderArtwork';
 import { BINDER, BinderNavigation, binderCount, spreadFaces, spreadIndices, faceHeight } from './BinderLayout';
 
 interface Options {
@@ -31,7 +30,6 @@ export class FavoritesBinder {
   private failed = new Set<string>();
   private pending = false;
   private opening = false;
-  private settledAt = 0;
   private revision = 0;
   private queuedRevision = -1;
   private lightingBase?: { position: Vector3; width: number; height: number };
@@ -40,7 +38,6 @@ export class FavoritesBinder {
   private drag?: Drag;
   private ray = new Raycaster();
   private savedCamera?: { position: Vector3; far: number };
-  private warming = false;
   active = false;
   constructor(private options: Options) {
     this.root.className = 'gallery favorites-binder'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Favorites card binder');
@@ -127,29 +124,12 @@ export class FavoritesBinder {
     }
     return undefined;
   }
-  get canWarm() { return !this.active && !this.factory && !this.job; }
-  /** Prepare only the opening spread while the gallery is idle. */
-  warm(cards: CardDefinition[]) {
-    if (this.active || this.warming || this.job || !cards.length) return;
-    this.warming = true;
-    this.cards = cards; this.navigation.setCount(cards.length);
-    this.factory ??= this.options.factory();
-    this.reconcile(); this.queuePreparation();
-  }
   show(cards: CardDefinition[]) {
-    const changed = this.cards.length > 0 && (this.cards.length !== cards.length || this.cards.some((card, i) => card !== cards[i]));
-    this.warming = false;
-    this.active = true; this.pending = false;
+    this.cards = cards; this.navigation.setCount(cards.length); this.active = true; this.pending = false;
     this.root.hidden = false; this.physical.group.visible = true; this.status.textContent = '';
     this.savedCamera = { position: this.options.camera.position.clone(), far: this.options.camera.far };
     this.options.camera.far = 250; this.options.camera.updateProjectionMatrix();
-    this.factory ??= this.options.factory(); this.refreshLight();
-    if (changed) void this.replaceCollection(cards);
-    else {
-      this.cards = cards; this.navigation.setCount(cards.length);
-      this.reconcile(); this.queuePreparation();
-    }
-    this.stage.focus({ preventScroll: true });
+    this.factory ??= this.options.factory(); this.refreshLight(); this.reconcile(); this.queuePreparation(); this.stage.focus({ preventScroll: true });
   }
   refresh(cards: CardDefinition[]) { void this.replaceCollection(cards); }
   private async replaceCollection(cards: CardDefinition[], binder?: number) {
@@ -190,41 +170,15 @@ export class FavoritesBinder {
     const revision = ++this.revision; this.queuedRevision = revision; this.request?.abort();
     void (async () => {
       await this.job;
-      if (!(this.active || this.warming) || !this.factory || this.pending || this.opening || this.queuedRevision !== revision) return;
+      if (!this.active || !this.factory || this.pending || this.opening || this.queuedRevision !== revision) return;
       const request = new AbortController(), domain = this.factory; this.request = request;
-      const indices = this.warming ? this.indices() : this.windowSpreads().flatMap(s => this.indices(s));
+      const indices = this.windowSpreads().flatMap(s => this.indices(s));
       const job = (async () => {
-        if (this.warming) {
-          await this.physical.ready();
-          if (request.signal.aborted) return;
-          // Compile a detached visible shell without flashing the hidden binder
-          // over the gallery. Clones share the authored geometry and materials.
-          const shell = this.physical.group.clone(true); shell.visible = true;
-          await domain.compile(shell);
-          if (request.signal.aborted) return;
-        }
-        // Fill the visible spread concurrently before expensive full-quality work.
-        // The same physical card transforms carry artwork through page turns.
-        const artwork = async (index: number) => {
-          const pageIndex = this.face(index), slot = index % 12;
-          if (this.physical.pages.get(pageIndex)?.cards.has(slot)) return;
-          try {
-            const card = await binderArtwork(this.cards[index], this.options.cpu, request.signal);
-            const page = this.physical.pages.get(pageIndex);
-            if (request.signal.aborted || !(this.active || this.warming) || !page || page.cards.has(slot)) { card.dispose(); return; }
-            page.attach(slot, card);
-          } catch (error) {
-            if (!request.signal.aborted) console.warn('Binder artwork could not load', error);
-          }
-        };
-        await Promise.all(this.indices().map(artwork));
-        if (request.signal.aborted || !(this.active || this.warming)) return;
-        await Promise.all(indices.filter(index => !this.indices().includes(index)).map(artwork));
         // Fetch/decode the next few full-quality cards while the GPU prepares
         // this one. Keep the window bounded and in visible-spread order.
         const preparations = new Map<number, Promise<{ value?: PreparedCardCpu; error?: unknown; failed?: true }>>();
         const prepareAhead = (offset: number, count = 3) => {
-          if (request.signal.aborted || !(this.active || this.warming)) return;
+          if (request.signal.aborted || !this.active) return;
           for (const index of indices.slice(offset, offset + count)) {
             const key = `${this.face(index)}:${index % 12}`;
             if (preparations.has(index) || this.loaded.has(key) || this.failed.has(key) || this.cards[index].construction) continue;
@@ -234,16 +188,8 @@ export class FavoritesBinder {
           }
         };
         prepareAhead(0, 1);
-        await this.physical.ready();
-        if (request.signal.aborted || !(this.active || this.warming)) return;
-        // A hidden reverse/newly revealed face must have its pipeline ready
-        // before the first lift, rather than compiling in that input frame.
-        for (const page of this.physical.preparationPages) {
-          await page.prepare(mesh => domain.compile(mesh), () => this.waitForMotion(request.signal), () => request.signal.aborted || !(this.active || this.warming));
-          if (request.signal.aborted || !(this.active || this.warming)) return;
-        }
         for (const [offset, index] of indices.entries()) {
-          if (request.signal.aborted || !(this.active || this.warming)) return;
+          if (request.signal.aborted || !this.active) return;
           prepareAhead(offset, offset === 0 ? 1 : 3);
           const pageIndex = this.face(index), slot = index % 12, key = `${pageIndex}:${slot}`;
           if (this.loaded.has(key) || this.failed.has(key)) continue;
@@ -262,7 +208,7 @@ export class FavoritesBinder {
             if (request.signal.aborted) { instance.dispose(); return; }
             await domain.compile(instance.mesh);
             await this.waitForMotion(request.signal);
-            if (request.signal.aborted || !(this.active || this.warming)) { instance.dispose(); return; }
+            if (request.signal.aborted || !this.active) { instance.dispose(); return; }
             const page = this.physical.pages.get(pageIndex);
             if (!page) { instance.dispose(); continue; }
             page.attach(slot, instance); this.loaded.add(key);
@@ -278,7 +224,7 @@ export class FavoritesBinder {
       try { await job; } finally { if (this.job === job) { this.job = undefined; this.request = undefined; } }
     })().catch(error => { if (this.active) this.status.textContent = String(error); });
   }
-  private motionActive() { return !!this.navigation.turn || !!this.drag?.moved || performance.now() - this.settledAt < 180; }
+  private motionActive() { return !!this.navigation.turn || !!this.drag?.moved; }
   private async waitForMotion(signal: AbortSignal) {
     while (!signal.aborted && this.active && this.motionActive()) await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
   }
@@ -307,7 +253,7 @@ export class FavoritesBinder {
     catch (error) { this.status.textContent = String(error); }
     finally { this.opening = false; this.updateControls(); }
   }
-  async suspendPreparation() { this.warming = false; this.queuedRevision = -1; this.request?.abort(); await this.job; }
+  async suspendPreparation() { this.queuedRevision = -1; this.request?.abort(); await this.job; }
   private async exit() { if (this.opening) return; await this.suspendPreparation(); this.options.exit(); }
   private restoreLighting() {
     if (!this.lightingBase) return;
@@ -318,7 +264,7 @@ export class FavoritesBinder {
     key.lookAt(0, 0, 0); this.lightingBase = undefined;
   }
   hide() {
-    this.warming = false; this.restoreLighting(); this.active = false; this.root.hidden = true; this.physical.group.visible = false;
+    this.restoreLighting(); this.active = false; this.root.hidden = true; this.physical.group.visible = false;
     this.request?.abort(); this.queuedRevision = -1; this.revision++; this.drag = undefined;
     const domain = this.factory; this.factory = undefined;
     const release = () => { this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
@@ -352,7 +298,7 @@ export class FavoritesBinder {
       }
       this.physical.stack(turn.from, Math.floor(outgoingIndex / 2));
       this.buttons.forEach(b => { b.hidden = true; });
-      if (!this.navigation.turn) { this.settledAt = performance.now(); this.reconcile(); this.queuePreparation(); }
+      if (!this.navigation.turn) { this.reconcile(); this.queuePreparation(); }
     }
     this.physical.group.updateMatrixWorld(true);
     if (!this.navigation.turn) {
@@ -372,8 +318,7 @@ export class FavoritesBinder {
   stats() {
     const faces = new Set(spreadFaces(this.navigation.spread));
     const ready = this.indices().filter(index => this.loaded.has(`${this.face(index)}:${index % 12}`)).length;
-    const artworkVisible = this.indices().filter(index => this.physical.pages.get(this.face(index))?.cards.has(index % 12)).length;
-    return { binder: true, artworkVisible, binderIndex: this.navigation.binder, binders: binderCount(this.cards.length), capacityPerBinder: 480,
+    return { binder: true, binderIndex: this.navigation.binder, binders: binderCount(this.cards.length), capacityPerBinder: 480,
       physicalSheets: 20, leftStack: this.navigation.spread, rightStack: 20 - this.navigation.spread,
       spread: this.navigation.spread, spreads: 21, turning: !!this.navigation.turn, dragging: !!this.navigation.turn?.dragging,
       turnProgress: this.navigation.turn?.progress ?? 0, preparing: this.pending, active: this.active, filtered: this.cards.length,
