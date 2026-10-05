@@ -30,6 +30,7 @@ export class FavoritesBinder {
   private failed = new Set<string>();
   private pending = false;
   private opening = false;
+  private shellReady = false;
   private revision = 0;
   private queuedRevision = -1;
   private lightingBase?: { position: Vector3; width: number; height: number };
@@ -188,6 +189,21 @@ export class FavoritesBinder {
           }
         };
         prepareAhead(0);
+        if (!this.shellReady) {
+          // A cold ordinary render compiles the sleeve/cover shaders
+          // synchronously, blocking image-decode completions for seconds.
+          // Compile after the open request, alongside CPU card preparation.
+          // Capture every resident page so the first turn is prepared too.
+          const visibility = [...this.physical.pages.values()].map(page => [page, page.group.visible] as const);
+          for (const [page] of visibility) page.group.visible = true;
+          this.physical.group.visible = true;
+          const shell = domain.compile(this.physical.group);
+          this.physical.group.visible = false;
+          for (const [page, visible] of visibility) page.group.visible = visible;
+          await shell;
+          if (request.signal.aborted || !this.active) return;
+          this.shellReady = true; this.physical.group.visible = true;
+        }
         for (const [offset, index] of indices.entries()) {
           if (request.signal.aborted || !this.active) return;
           prepareAhead(offset);
@@ -264,6 +280,7 @@ export class FavoritesBinder {
     key.lookAt(0, 0, 0); this.lightingBase = undefined;
   }
   hide() {
+    this.shellReady = false;
     this.restoreLighting(); this.active = false; this.root.hidden = true; this.physical.group.visible = false;
     this.request?.abort(); this.queuedRevision = -1; this.revision++; this.drag = undefined;
     const domain = this.factory; this.factory = undefined;
