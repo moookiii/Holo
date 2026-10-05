@@ -22,6 +22,8 @@ The matching Alakazam screenshots were pixel-identical after the uniform convers
 
 First-ever Firefox compilation remains slow (roughly 9–11 seconds total in these runs). Its WebGL backend did not expose parallel shader compilation on the tested driver. Moving this compilation into Gallery without addressing the synchronous stall could merely move the freeze earlier. The full opening-speed goal remains incomplete. Program reuse lasts while a compatible program has a live renderer reference; the three-domain resource budget can evict the last compatible reference.
 
+Final checks: TypeScript and the production build passed. The suite reports 246 passes and the same 27 baseline failures. Firefox passed all eleven lifecycle/interaction checks with no page errors, using a test page with HMR disconnected because unrelated asset edits repeatedly reloaded the page. Early frame intervals included 91–182 ms spikes; this run does not establish hitch-free opening.
+
 Full-resolution deterministic pattern fields are now revisioned and persisted, unlike the earlier implementation described below. Firefox validation must take precedence over the historical Chromium-only conclusions.
 
 ## Earlier Chromium investigation (historical)
