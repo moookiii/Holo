@@ -124,6 +124,18 @@ try {
     report.preOpeningGallery = await evaluate('!!window.__holo.gallery.instance()');
     await measure('first-open-from-viewer', () => evaluate(`document.querySelector('#gallery-open').click()`));
   } else await measure('cold-navigation', () => call('browsingContext.navigate', { context, url, wait: 'interactive' }));
+  if (process.env.GALLERY_SET) {
+    await measure('set-opening', () => evaluate(`(() => {
+      const select = document.querySelector('select[aria-label="Set"]');
+      const option = [...select.options].find(option => option.textContent === ${JSON.stringify(process.env.GALLERY_SET)});
+      if (!option) throw new Error('Requested gallery set is unavailable');
+      select.value = option.value; select.dispatchEvent(new Event('change', { bubbles: true }));
+    })()`));
+    await measure('set-bottom', () => evaluate(`(() => {
+      const viewport = document.querySelector('.gallery-viewport'); viewport.scrollTop = viewport.scrollHeight;
+      viewport.dispatchEvent(new Event('scroll'));
+    })()`));
+  }
   await measure('scroll-new', () => evaluate(`document.querySelector('.gallery-viewport').scrollTop += document.querySelector('.gallery-viewport').clientHeight`));
   await measure('scroll-return', () => evaluate(`document.querySelector('.gallery-viewport').scrollTop = 0`));
   const search = text => evaluate(`(() => {const s = document.querySelector('[aria-label="Search gallery cards"]');s.value=${JSON.stringify(text)};s.dispatchEvent(new Event('input',{bubbles:true}));})()`);
