@@ -148,7 +148,7 @@ async function start() {
     viewerLease = undefined;
   };
   const scheduleViewerPreparation = (id?: string) => {
-    clearTimeout(hoverTimer);
+    clearTimeout(hoverTimer); hoverTimer = undefined;
     if (!id || hoverBusy) return;
     hoverTimer = setTimeout(() => {
       hoverTimer = undefined;
@@ -332,7 +332,7 @@ async function start() {
     if (disposed) return;
     const generation = ++loadGeneration;
     markOpening(timing, 'metadataResolved');
-    clearTimeout(hoverTimer);
+    clearTimeout(hoverTimer); hoverTimer = undefined;
     cancelWarmup(); factory.setBackgroundPaused(true);
     requestedCardId = id;
     pendingLoads.set(id, (pendingLoads.get(id) ?? 0) + 1);

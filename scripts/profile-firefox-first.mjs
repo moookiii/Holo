@@ -39,7 +39,9 @@ try {
       return result;
     };
     const start = performance.now(); await h.gallery.close('alakazam-base-set');
-    return { ms: performance.now() - start, rows, opening: h.opening(), parallel: !!backend.parallel, backend: backend.constructor.name };
+    const gl = backend.gl, info = gl?.getExtension('WEBGL_debug_renderer_info');
+    return { ms: performance.now() - start, rows, opening: h.opening(), parallel: !!backend.parallel, backend: backend.constructor.name,
+      driver: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : undefined };
   }, !!process.env.PROBE_FENCE);
   await mkdir('artifacts/firefox-first', { recursive: true });
   await writeFile('artifacts/firefox-first/report.json', JSON.stringify(result, null, 2));
