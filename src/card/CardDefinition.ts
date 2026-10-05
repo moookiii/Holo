@@ -14,7 +14,7 @@ import { baseSet2Definitions } from './BaseSet2Cards.ts';
 import { legendaryCollectionDefinitions } from './LegendaryCollectionCards.ts';
 import { fossilDefinitions } from './FossilCards.ts';
 import type { CardProfileOverrides } from '../materials/HolographicProfile';
-import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish';
+import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { nonHoloCards } from './NonHoloCards.ts';
 import { holoBulkCards } from './HoloBulkCards.ts';
 import { yugiohTopCards } from './YugiohTopCards.ts';
