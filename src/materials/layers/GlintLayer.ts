@@ -1,5 +1,5 @@
 import type { Node } from 'three/webgpu';
-import { uv, vec2, vec3, smoothstep, mix, float, tangentView, bitangentView, normalView, positionViewDirection } from 'three/tsl';
+import { uniform, uv, vec2, vec3, smoothstep, mix, float, tangentView, bitangentView, normalView, positionViewDirection } from 'three/tsl';
 import { stableHash } from './PatternLayer';
 
 export interface GlintUniforms {
@@ -20,7 +20,7 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
   const point = uv().mul(vec2(settings.aspect ?? float(.716), 1));
   const lattice = mix(point, vec2(point.x.add(point.y), point.y.sub(point.x)), ordered).mul(settings.scale);
   const cell = lattice.floor();
-  const r1 = stableHash(cell, seed), r2 = stableHash(cell, seed + 17.3), r3 = stableHash(cell, seed + 76.1);
+  const r1 = stableHash(cell, uniform(seed)), r2 = stableHash(cell, uniform(seed + 17.3)), r3 = stableHash(cell, uniform(seed + 76.1));
   const center = mix(vec2(mix(float(.25), float(.75), r1), mix(float(.25), float(.75), r2)), vec2(.5), ordered);
   const local = lattice.fract().sub(center);
   const radius = settings.metallicGrain
@@ -44,12 +44,12 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
  * fixed in card space. Light selects individual flashes. Pixel-area integration
  * preserves tiny facets without aliasing them into a coarse diamond grid. */
 export function microdiamondGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>) {
-  const offsetSeed = (offset: number) => typeof seed === 'number' ? seed + offset : seed.add(offset);
+  const offsetSeed = (offset: number) => typeof seed === 'number' ? uniform(seed + offset) : seed.add(offset);
   const p = uv().mul(vec2(settings.aspect ?? float(.716), 1)).mul(settings.scale);
   const row = p.y.floor();
   const lattice = p.add(vec2(stableHash(vec2(row, 7), offsetSeed(311)).mul(.8), 0));
   const cell = lattice.floor();
-  const r = stableHash(cell, seed), s = stableHash(cell, offsetSeed(31));
+  const r = stableHash(cell, typeof seed === 'number' ? uniform(seed) : seed), s = stableHash(cell, offsetSeed(31));
   const t = stableHash(cell, offsetSeed(83));
   const center = vec2(r, s).sub(.5).mul(.24).add(.5);
   const local = lattice.fract().sub(center);

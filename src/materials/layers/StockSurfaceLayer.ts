@@ -1,3 +1,4 @@
+import { Vector2 } from 'three/webgpu';
 import type { PhysicalCardProfile } from '../PhysicalCardProfile';
 import type { Node } from 'three/webgpu';
 import { Fn, positionLocal, positionViewDirection, vec2, vec3, uniform, normalViewGeometry, tangentView, tangentGeometry, mx_cell_noise_float } from 'three/tsl';
@@ -41,7 +42,7 @@ export class StockSurfaceLayer {
     // Continuous fields in physical centimetres; no screen coordinates, time,
     // source-image resampling, or extra GPU samplers (foil already uses sixteen).
     // Match the tangent direction on both faces (the reverse has mirrored U).
-    const point = inputs?.point ?? vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(seedOffset ?? vec2((seed % 97) / 7, (seed % 71) / 11));
+    const point = inputs?.point ?? vec2(positionLocal.x.mul(tangentGeometry.x), positionLocal.y).add(seedOffset ?? uniform(new Vector2((seed % 97) / 7, (seed % 71) / 11)));
     const grainUV = (p: Node<'vec2'>) => vec2(p.x.mul(.8).sub(p.y.mul(.6)), p.x.mul(.6).add(p.y.mul(.8))).mul(scale);
     const fineUV = (p: Node<'vec2'>) => vec2(p.x.mul(.36).add(p.y.mul(.93295)), p.y.mul(.36).sub(p.x.mul(.93295))).mul(fineScale);
     // Integrate away subpixel grains rather than sampling them into glitter.

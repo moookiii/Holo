@@ -343,8 +343,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // Remove that transmitted paper contribution before inserting the metal;
     // a simple gray mix would leave bright fringes around dark lettering.
     const base = substrate?.backgroundColor
-      ? correctedPrint.add(vec3(...substrate.color).sub(vec3(...substrate.backgroundColor)).mul(primary, 1 - substrate.printRetention)).max(0)
-      : substrate ? mix(correctedPrint, vec3(...substrate.color), primary.mul(1 - substrate.printRetention))
+      ? correctedPrint.add(uniform(new Vector3(...substrate.color)).sub(uniform(new Vector3(...substrate.backgroundColor))).mul(primary, uniform(1 - substrate.printRetention))).max(0)
+      : substrate ? mix(correctedPrint, uniform(new Vector3(...substrate.color)), primary.mul(uniform(1 - substrate.printRetention)))
         : mix(correctedPrint, vec3(0.27, 0.31, 0.30), primary.mul(this.optics.secretMode.oneMinus(), 0.1));
     this.colorNode = mix(base, this.inkTint, metal.mul(this.inkTintStrength));
     // Ambient cavity loss only; moving direct specular still reaches the die walls.
