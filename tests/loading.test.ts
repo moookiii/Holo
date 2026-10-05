@@ -3,6 +3,24 @@ import assert from 'node:assert/strict';
 import { capturePassContext } from '../src/rendering/PassCompileContext.ts';
 import { stabilizeShaderCodeOrder } from '../src/rendering/StableShaderCode.ts';
 import { ResourceTelemetry } from '../src/rendering/ResourceTelemetry.ts';
+import { PipelineCompletionBatch } from '../src/rendering/PipelineCompletionBatch.ts';
+
+test('overlapping driver compilation waits for every pipeline and propagates failures', async () => {
+  const batch = new PipelineCompletionBatch();
+  let resolveFirst!: () => void, rejectSecond!: (reason: Error) => void;
+  const first = new Promise<void>(resolve => { resolveFirst = resolve; });
+  const second = new Promise<void>((_, reject) => { rejectSecond = reject; });
+  batch.add([first, second]);
+  const failure = new Error('Driver compilation failed');
+  rejectSecond(failure);
+  let finished = false;
+  const completion = batch.finish().finally(() => { finished = true; });
+  const rejected = assert.rejects(completion, error => error === failure);
+  await Promise.resolve(); await Promise.resolve();
+  assert.equal(finished, false, 'Failure must not release resources while another pipeline is compiling');
+  resolveFirst(); await rejected;
+  const empty = new PipelineCompletionBatch(); await empty.finish();
+});
 
 test('pass compilation captures nested context and restores lookup before async work', async () => {
   const target = {}, other = {};

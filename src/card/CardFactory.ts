@@ -4,6 +4,7 @@ import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearF
 import { AssetManager } from '../assets/AssetManager';
 import { startupMark } from '../rendering/LoadTiming';
 import { capturePassContext } from '../rendering/PassCompileContext';
+import { PipelineCompletionBatch } from '../rendering/PipelineCompletionBatch';
 import { ResourceTelemetry } from '../rendering/ResourceTelemetry';
 import { CardMapLoader } from '../assets/CardMapLoader';
 import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
@@ -171,6 +172,8 @@ export class CardFactory {
   async compile(object: Object3D) {
     this.gpuStats.compilations++;
     const objects = new Set<Object3D>(); object.traverse(child => objects.add(child));
+    const overlap = [...objects].some(child => child.name === 'card:ancient-mew');
+    const completions = new PipelineCompletionBatch();
     // r186 backend contract (not yet declared on @types/three's base Backend).
     const backend = this.renderer.backend as unknown as { createRenderPipeline: (object: { object: Object3D; material: Material }, promises?: Promise<unknown>[]) => void };
     const createPipeline = backend.createRenderPipeline;
@@ -180,6 +183,14 @@ export class CardFactory {
         this.gpuStats.renderPipelines++;
         if (renderObject.material instanceof PrintFrontMaterial) this.gpuStats.printPipelines++;
         if (renderObject.material instanceof HolographicMaterial) this.gpuStats.holoPipelines++;
+      }
+      // Three r186 waits for each driver pipeline before building the next
+      // material. Ancient Mew's front, reverse and edge can compile together.
+      // Keep node-building yields and the final GPU readiness boundary intact.
+      if (overlap && objects.has(renderObject.object) && args[1]) {
+        const pending: Promise<unknown>[] = [];
+        const result = createPipeline.call(backend, renderObject, pending);
+        completions.add(pending); return result;
       }
       return createPipeline.apply(backend, args);
     };
@@ -196,7 +207,10 @@ export class CardFactory {
       this.renderer.setRenderTarget(target); this.renderer.setMRT(mrt);
     }
     try { await compilation; }
-    finally { backend.createRenderPipeline = createPipeline; }
+    finally {
+      try { await completions.finish(); }
+      finally { backend.createRenderPipeline = createPipeline; }
+    }
   }
 
   private loadFront(definition: CardDefinition): Promise<Texture> {

@@ -37,8 +37,17 @@ interface OpticalRegion {
 }
 export interface ProfileFields { primary?: PatternTextures; secondary?: PatternTextures; stamp?: PatternTextures; }
 
+// Ancient Mew has two foil regions and several light sources. Emit its exact
+// seven-band response once instead of inlining it for every region and light.
+const ancientMewSpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'float'>[]) => spectrum(path, bandwidth, secondary, variance))
+  .setLayout({ name: 'ancientMewSpectrum', type: 'vec3', inputs: [
+    { name: 'path', type: 'float' }, { name: 'bandwidth', type: 'float' },
+    { name: 'secondary', type: 'float' }, { name: 'variance', type: 'float' },
+  ] });
+
 class HolographicLightingModel extends PhysicalLightingModel {
-  constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>, private crossedShaders: boolean[], private physicalGain: Node<'float'>) { super(true, false, true, true); }
+  constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>, private crossedShaders: boolean[], private physicalGain: Node<'float'>,
+    private compactOptics = false, iridescence = true, anisotropy = true) { super(true, false, iridescence, anisotropy); }
   private substrateReflection() {
     // Reserve the configured share for the smooth backing response. Counting
     // full substrate reflection plus etched diffraction washes out lit ridges.
@@ -137,7 +146,8 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const etched = mix(structure.engraving, region.details.a, u.fieldBlend);
       const patternCoverage = mix(float(1), region.field.a, u.fieldBlend);
       const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, grid);
-      const spectral = spectrum(path, u.bandwidth, u.secondary, gratingVariance.mul(u.period.mul(spacing).pow2())).mul(aperture, grooveEnergy, u.strength, u.crossing.oneMinus()).toVar();
+      const response = this.compactOptics ? ancientMewSpectrum : spectrum;
+      const spectral = response(path, u.bandwidth, u.secondary, gratingVariance.mul(u.period.mul(spacing).pow2())).mul(aperture, grooveEnergy, u.strength, u.crossing.oneMinus()).toVar();
       if (u.imageHologram.value > 0) If(u.imageHologram.greaterThan(0), () => {
         spectral.addAssign(hologramReconstruction(light, region.image!, region.imageDepth!, u, variance(tangentView)));
       });
@@ -145,7 +155,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
         const crossPath = momentum.dot(groove).abs().mul(u.period, spacing);
         const crossWidth = u.crossWidth.pow2().add(gratingVariance).sqrt();
         const crossAperture = exp(momentum.dot(grating).div(crossWidth).pow2().mul(-.5)).mul(u.crossWidth.div(crossWidth));
-        spectral.addAssign(spectrum(crossPath, u.bandwidth, u.secondary, grooveVariance.mul(u.period.mul(spacing).pow2())).mul(crossAperture, grooveEnergy, u.strength, u.crossing));
+        spectral.addAssign(response(crossPath, u.bandwidth, u.secondary, grooveVariance.mul(u.period.mul(spacing).pow2())).mul(crossAperture, grooveEnergy, u.strength, u.crossing));
       });
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
@@ -244,8 +254,16 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private regions: OpticalRegion[];
   private crossedShaders = [false, false, false];
   private activeShaders = [true, false, false];
+  private compactOptics = false;
+  override get useIridescence() {
+    return this.compactOptics ? this.iridescence > 0 || [this.optics, this.secondaryOptics, this.stampOptics].some(u => u.enabled.value > 0 && u.iridescence.value > 0) : super.useIridescence;
+  }
+  override get useAnisotropy() {
+    return this.compactOptics ? this.anisotropy > 0 || [this.optics, this.secondaryOptics, this.stampOptics].some(u => u.enabled.value > 0 && u.anisotropy.value !== 0) : super.useAnisotropy;
+  }
   constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false, coatedStock: boolean | PhysicalCardProfile = false) {
     super({ clearcoat: 0.72, clearcoatRoughness: 0.2, metalness: 0.5, roughness: 0.3, envMapIntensity: 0.65 });
+    this.compactOptics = profile.id === 'pokemon-ancient-mew' || profile.id === 'pokemon-ancient-mew-back';
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
     this.neutralHologram.needsUpdate = true;
     this.hologramTextureNode = texture(cardMaps?.hologram ?? this.neutralHologram);
@@ -389,7 +407,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       .add(this.secondaryReliefTextureNode.rg.sub(.5).mul(this.secondaryOptics.facetTilt, this.secondaryOptics.reflectionCoupling, this.secondaryOptics.fieldBlend, secondary))
       .add(this.stampReliefTextureNode.rg.sub(.5).mul(this.stampOptics.facetTilt, this.stampOptics.reflectionCoupling, this.stampOptics.fieldBlend, stamp));
     this.normalNode = Fn(() => {
-      const normal = baseNormal.toVar();
+      const normal = (this.compactOptics && !this.usesHeightRelief() ? normalViewGeometry as unknown as Node<'vec3'> : baseNormal).toVar();
       if (this.stock && physical && !physical.legacyCoating) {
         const paper = primary.max(secondary).max(stamp).oneMinus().mul(stockCoverage);
         normal.assign(this.stock.normal(normal, paper.mul(uniform(physical.microNormalStrength), .65)));
@@ -401,21 +419,23 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       // and later reuse its uninitialized value for manufactured slopes.
       const geometryTangent = tangentView.toVar();
       const geometryBitangent = geometryNormal.cross(geometryTangent).mul(tangentGeometry.w).normalize().toVar();
-      const stamped = reliefNormal(logoShape, controls.anniversary.mul(.00006, printTransmission));
-      normal.addAssign(stamped.sub(geometryNormal));
-      If(controls.hasNormal.greaterThan(0), () => {
+      if (!this.compactOptics || controls.anniversary.value > 0) {
+        const stamped = reliefNormal(logoShape, controls.anniversary.mul(.00006, printTransmission));
+        normal.addAssign(stamped.sub(geometryNormal));
+      }
+      if (!this.compactOptics || controls.hasNormal.value > 0) If(controls.hasNormal.greaterThan(0), () => {
         const mapped = normalMap(this.normalTextureNode.rgb, vec2(controls.normalScale)) as unknown as Node<'vec3'>;
         normal.addAssign(mapped.sub(geometryNormal));
       });
-      If(this.optics.patternRelief.greaterThan(0), () => {
+      if (!this.compactOptics || this.optics.patternRelief.value > 0) If(this.optics.patternRelief.greaterThan(0), () => {
         const engraved = reliefNormal(this.reliefTextureNode.b, this.optics.patternRelief.mul(.008, this.optics.fieldBlend, primary));
         normal.addAssign(engraved.sub(geometryNormal));
       });
-      If(this.secondaryOptics.patternRelief.greaterThan(0), () => {
+      if (!this.compactOptics || this.secondaryOptics.patternRelief.value > 0) If(this.secondaryOptics.patternRelief.greaterThan(0), () => {
         const engraved = reliefNormal(this.secondaryReliefTextureNode.b, this.secondaryOptics.patternRelief.mul(.008, this.secondaryOptics.fieldBlend, secondary));
         normal.addAssign(engraved.sub(geometryNormal));
       });
-      If(this.stampOptics.patternRelief.greaterThan(0), () => {
+      if (!this.compactOptics || this.stampOptics.patternRelief.value > 0) If(this.stampOptics.patternRelief.greaterThan(0), () => {
         const engraved = reliefNormal(this.stampReliefTextureNode.b, this.stampOptics.patternRelief.mul(.008, this.stampOptics.fieldBlend, stamp));
         normal.addAssign(engraved.sub(geometryNormal));
       });
@@ -461,7 +481,6 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       const follows = !!this.cardMaps?.hasNormal && (!!axes[i] || region.uniformAuthoredSurface);
       if (!!region.followsAuthoredSurface !== follows) { region.followsAuthoredSurface = follows; this.needsUpdate = true; }
     });
-    if (previousFeatures !== this.opticalFeatureKey()) this.needsUpdate = true;
     this.physicalGain.value = 1;
     const settings = { ...this.cardMaps, ...profile.mapSettings };
     this.surfaceControls.normalScale.value = settings.normalScale ?? 1;
@@ -483,9 +502,11 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.inkRecess.value = profile.metallicInk?.recess ?? 0;
     this.inkNormalFiltering.value = profile.metallicInk?.normalFiltering ?? 0;
     this.envMapIntensity = profile.metallicInk?.environmentIntensity ?? .65;
+    if (previousFeatures !== this.opticalFeatureKey()) this.needsUpdate = true;
   }
   /** Rebind authored maps without replacing artwork, geometry or material. */
   setMaps(maps: CardMaterialMaps) {
+    const previousFeatures = this.opticalFeatureKey();
     this.cardMaps = maps;
     this.coverageTextureNode.value = maps.coverage; this.surfaceTextureNode.value = maps.surface;
     this.patternTextureNode.value = maps.pattern; this.normalTextureNode.value = maps.normal;
@@ -498,6 +519,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       const follows = (!!authored[i] || !!region.uniformAuthoredSurface) && maps.hasNormal;
       if (!!region.followsAuthoredSurface !== follows) { region.followsAuthoredSurface = follows; this.needsUpdate = true; }
     });
+    if (previousFeatures !== this.opticalFeatureKey()) this.needsUpdate = true;
   }
   setAspect(aspect: number, height = 8.8) {
     for (const optics of [this.optics, this.secondaryOptics, this.stampOptics]) { optics.aspect.value = aspect; optics.cardHeight.value = height; }
@@ -513,12 +535,20 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts].map(Number).join('')).join('/');
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts].map(Number).join('')).join('/')
+      + (this.compactOptics ? ':mew:' + [this.useIridescence, this.useAnisotropy, this.usesHeightRelief(),
+        this.surfaceControls.hasNormal.value > 0, this.surfaceControls.anniversary.value > 0,
+        ...[this.optics, this.secondaryOptics, this.stampOptics].map(u => u.patternRelief.value > 0)].map(Number).join('') : '');
+  }
+  private usesHeightRelief() {
+    return this.surfaceControls.embossOverride.value > 0 ? this.surfaceControls.embossStrength.value !== 0
+      : [this.optics, this.secondaryOptics, this.stampOptics].some(u => u.relief.value !== 0);
   }
   override setupLightingModel() {
     const regions = this.regions.filter((_, i) => this.activeShaders[i]);
     const crossed = this.crossedShaders.filter((_, i) => this.activeShaders[i]);
-    return new HolographicLightingModel(regions, this.surfaceTextureNode.b, crossed, this.physicalGain);
+    return new HolographicLightingModel(regions, this.surfaceTextureNode.b, crossed, this.physicalGain,
+      this.compactOptics, this.compactOptics ? this.useIridescence : true, this.compactOptics ? this.useAnisotropy : true);
   }
   override dispose() { this.neutralField.dispose(); this.neutralRelief.dispose(); this.neutralWhite.dispose(); this.neutralHologram.dispose(); super.dispose(); }
 }
