@@ -207,3 +207,26 @@ export function filterCards(cards: readonly CardDefinition[], query: GalleryQuer
   return galleryMasterCards(cards).filter(card => (!card.pickerHidden || card.galleryVisible) && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
     && facets.every(facet => !query[facet.key] || matchesFacet(card, facet, query[facet.key]!))).sort(compareGalleryCards);
 }
+
+/** Build search text and chronological ordering once per collection revision.
+ * Pack pulls/imports can mutate the array, so reference snapshots invalidate it. */
+export class GalleryQueryIndex {
+  private snapshot: readonly CardDefinition[] = [];
+  private indexed: { card: CardDefinition; text: string }[] = [];
+  private source: readonly CardDefinition[];
+  constructor(source: readonly CardDefinition[]) { this.source = source; }
+  private refresh() {
+    if (this.snapshot.length === this.source.length && this.source.every((card, index) => card === this.snapshot[index])) return;
+    this.snapshot = [...this.source];
+    this.indexed = galleryMasterCards(this.source).filter(card => !card.pickerHidden || card.galleryVisible)
+      .sort(compareGalleryCards).map(card => ({ card, text: `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase() }));
+  }
+  cards() { this.refresh(); return this.indexed.map(row => row.card); }
+  filter(query: GalleryQuery) {
+    this.refresh();
+    const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    const selected = facets.filter(facet => query[facet.key]);
+    return this.indexed.filter(row => words.every(word => row.text.includes(word))
+      && selected.every(facet => matchesFacet(row.card, facet, query[facet.key]!))).map(row => row.card);
+  }
+}

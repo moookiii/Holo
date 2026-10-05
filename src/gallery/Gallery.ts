@@ -7,7 +7,7 @@ import type { StudioLighting } from '../lighting/StudioLighting';
 import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
 import { galleryLayout } from './GalleryLayout';
-import { compareGallerySetNames, facets, filterCards, galleryMasterCards, gallerySetName, type GalleryQuery } from './GalleryQuery';
+import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
 import { gallerySkimLightY } from './GallerySkim';
@@ -33,6 +33,7 @@ export class Gallery {
   private requests = new Map<number, AbortController>();
   private buttons = new Map<string, HTMLButtonElement>();
   private filtered: CardDefinition[] = [];
+  private catalog: GalleryQueryIndex;
   private assigned: { id: string; slot: number; token: number; changed: boolean }[] = [];
   private layout = galleryLayout(1, 1, 0, 0);
   private pointer?: { x: number; y: number };
@@ -48,6 +49,7 @@ export class Gallery {
   openingReady = false;
   loading = false;
   constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: InstancedMesh) => Promise<void>; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
+    this.catalog = new GalleryQueryIndex(options.cards);
     this.graphics = new GalleryRenderer(options.scene, options.compile);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
     const header = document.createElement('header'); header.className = 'gallery-header';
@@ -126,7 +128,7 @@ export class Gallery {
     this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
   }
   private refreshFacetOptions() {
-    let cards: readonly CardDefinition[] = galleryMasterCards(this.options.cards).filter(card => !card.pickerHidden || card.galleryVisible);
+    let cards: readonly CardDefinition[] = this.catalog.cards();
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
       const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
@@ -152,7 +154,7 @@ export class Gallery {
   private cancelRequest(slot: number) { this.requests.get(slot)?.abort(); this.requests.delete(slot); }
   private needsPreview(entry: Entry) { return !entry.ready && !entry.uploading && !entry.preview && !entry.error; }
   private applyFilters(reset = true) {
-    this.filtered = filterCards(this.options.cards, this.query);
+    this.filtered = this.catalog.filter(this.query);
     this.count.textContent = `${this.filtered.length.toLocaleString()} cards`;
     this.status.textContent = this.filtered.length ? '' : 'No cards match. Try clearing a filter.';
     if (reset) this.viewport.scrollTop = 0;
