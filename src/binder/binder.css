@@ -1,0 +1,23 @@
+.favorites-binder { position: fixed; inset: 0; z-index: 6; color: #cec9bd; }
+.favorites-binder[hidden] { display: none; }
+.binder-header { position: absolute; z-index: 2; inset: 0 0 auto; display: flex; align-items: center; gap: 28px; padding: 22px 30px; background: linear-gradient(#050505ed, #05050500); pointer-events: none; }
+.binder-header > * { pointer-events: auto; }
+.binder-eyebrow { font-size: 9px; letter-spacing: .22em; color: #8c8373; }
+.binder-header h1 { font-size: 23px; font-weight: 450; letter-spacing: -.04em; margin: 5px 0 0; }
+.binder-header > button { margin-left: auto; }
+.favorites-binder button, .binder-light select { border: 1px solid #37332c; border-radius: 7px; background: #10100fe8; color: #cec2ab; font: inherit; font-size: 12px; padding: 9px 13px; cursor: pointer; }
+.binder-light label { display: grid; font-size: 9px; gap: 3px; color: #8e8980; }
+.binder-light select { padding: 6px; max-width: 125px; }
+.binder-light input { height: 24px; width: 75px; accent-color: #b7a783; }
+.binder-stage { position: absolute; inset: 98px 0 90px; touch-action: none; cursor: grab; outline: none; }
+.binder-stage:active { cursor: grabbing; }
+.binder-controls { position: absolute; bottom: 42px; left: 50%; transform: translateX(-50%); display: flex; align-items: center; gap: 22px; font-size: 11px; letter-spacing: .04em; white-space: nowrap; }
+.binder-controls button { font-size: 24px; padding: 0; width: 38px; height: 34px; }
+.favorites-binder button:disabled { opacity: .28; cursor: default; }
+.binder-hint { position: absolute; bottom: 17px; left: 50%; transform: translateX(-50%); font-size: 10px; color: #77756e; white-space: nowrap; }
+.binder-status { position: absolute; bottom: 92px; left: 50%; transform: translateX(-50%); font-size: 12px; padding: 10px 16px; border-radius: 6px; background: #111111dd; max-width: 80%; text-align: center; pointer-events: none; }
+.binder-status:empty { display: none; }
+.favorites-binder .binder-card { position: absolute; padding: 0; border: 0; border-radius: 3px; background: transparent; pointer-events: none; }
+.favorites-binder .binder-card:focus-visible { outline: 2px solid #ccb481; outline-offset: 2px; }
+.binder-card[hidden] { display: none; }
+@media (max-width: 850px) { .binder-header { padding: 14px 18px; gap: 16px; } .binder-light { gap: 7px; } .binder-light input { width: 55px; } .binder-hint { font-size: 9px; white-space: normal; text-align: center; width: 90%; } }

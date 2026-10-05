@@ -18,6 +18,8 @@ import { gallerySkimLightY } from './GallerySkim';
 import { browserGalleryFavorites } from './GalleryFavorites';
 import { profiles } from '../materials/profiles';
 import { printVariantLabel, type PrintVariant } from '../pokemon/types';
+import type { CardFactory } from '../card/CardFactory';
+import { FavoritesBinder } from '../binder/FavoritesBinder';
 
 interface Entry { token: number; ready: boolean; uploading?: boolean; error?: string; preview?: CardPreview; pitch: number; yaw: number; }
 const PREVIEW_CONCURRENCY = 4;
@@ -31,6 +33,7 @@ export class Gallery {
   private filters = new Map<string, HTMLSelectElement>();
   private favorites = browserGalleryFavorites();
   private favoritesOnly = false;
+  private binder?: FavoritesBinder;
   private favoriteFilter = document.createElement('button');
   private favoriteAnnouncement = document.createElement('span');
   readonly query: GalleryQuery = { search: '' };
@@ -67,7 +70,7 @@ export class Gallery {
   active = false;
   openingReady = false;
   loading = false;
-  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: Object3D) => Promise<void>; open: (id: string) => Promise<void>; hover?: (id?: string) => void; close: () => Promise<void>; pack: () => Promise<void> }) {
+  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; binderFactory: () => CardFactory; compile: (mesh: Object3D) => Promise<void>; open: (id: string) => Promise<void>; hover?: (id?: string) => void; close: () => Promise<void>; pack: () => Promise<void> }) {
     this.catalog = new GalleryQueryIndex(options.cards);
     this.graphics = new GalleryRenderer(options.scene, options.compile);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
@@ -93,13 +96,11 @@ export class Gallery {
     }
     const favoriteFilter = this.favoriteFilter;
     favoriteFilter.type = 'button'; favoriteFilter.className = 'gallery-favorites-filter';
-    favoriteFilter.textContent = '★'; favoriteFilter.setAttribute('aria-label', 'Show favorites only');
+    favoriteFilter.textContent = '★'; favoriteFilter.setAttribute('aria-label', 'Open Favorites binder');
     favoriteFilter.setAttribute('aria-pressed', 'false');
-    favoriteFilter.title = 'Show favorites only · Shift + Click to favorite';
+    favoriteFilter.title = 'Open Favorites binder · Shift + Click a card to favorite';
     favoriteFilter.onclick = () => {
-      this.favoritesOnly = !this.favoritesOnly;
-      favoriteFilter.setAttribute('aria-pressed', String(this.favoritesOnly));
-      this.applyFilters();
+      this.openBinder();
     };
     filters.append(favoriteFilter);
     const clear = document.createElement('button'); clear.textContent = 'Clear filters';
@@ -160,8 +161,24 @@ export class Gallery {
     this.performance.begin();
     this.scrollPreparation.reset();
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
+    if (this.favoritesOnly) { this.openBinder(); return; }
     this.refreshFacetOptions();
     this.applyFilters(false); this.search.focus({ preventScroll: true });
+  }
+  private openBinder() {
+    if (this.loading) return;
+    for (const slot of this.requests.keys()) this.cancelRequest(slot);
+    this.cancelNearRequests(); this.options.hover?.();
+    this.favoritesOnly = true; this.favoriteFilter.setAttribute('aria-pressed', 'true');
+    this.root.hidden = true; this.graphics.hideAll(); this.graphics.mesh.visible = false;
+    this.binder ??= new FavoritesBinder({ ...this.options, factory: this.options.binderFactory,
+      open: id => this.transition(() => this.options.open(id)),
+      toggle: id => { this.favorites.toggle(id); this.binder!.refresh(this.favorites.filter(this.catalog.cards(), true)); },
+      exit: () => {
+        this.binder!.hide(); this.favoritesOnly = false; this.favoriteFilter.setAttribute('aria-pressed', 'false');
+        this.root.hidden = false; this.applyFilters(false); this.favoriteFilter.focus({ preventScroll: true });
+      } });
+    this.binder.show(this.favorites.filter(this.catalog.cards(), true));
   }
   private refreshFacetOptions() {
     let cards: readonly CardDefinition[] = this.catalog.cards();
@@ -179,6 +196,7 @@ export class Gallery {
     }
   }
   hide() {
+    this.binder?.hide();
     if (this.active) {
       const { preset, azimuth, elevation, intensity, speed, filterAngle, playing } = this.options.lighting;
       this.savedLighting = { preset, azimuth, elevation, intensity, speed, filterAngle, playing };
@@ -298,6 +316,7 @@ export class Gallery {
   }
   update(dt: number, width: number, height: number) {
     if (!this.active || this.disposed) return;
+    if (this.binder?.active) { this.binder.update(dt, width, height); this.openingReady = this.binder.stats().visible >= this.binder.stats().visibleExpected; return; }
     if (this.dirty) this.reconcile();
     const prepareCold = this.scrollPreparation.ready(performance.now());
     const rect = this.viewport.getBoundingClientRect();
@@ -400,9 +419,10 @@ export class Gallery {
     ...this.residency.stats(), active: this.active, filtered: this.filtered.length, domCards: this.buttons.size,
     pending: this.requests.size + this.nearRequests.size, activeVisibleLoads: this.requests.size, activeNearLoads: this.nearRequests.size,
     queued: this.assigned.filter(item => this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot) && !this.nearRequests.has(item.id)).length,
-    failed: [...this.entries.values()].filter(e => e.error).length, tilted: this.assigned.filter(item => { const e = this.entries.get(item.slot)!; return Math.abs(e.pitch) + Math.abs(e.yaw) > .001; }).length, scrollTop: this.viewport.scrollTop }; }
+    failed: [...this.entries.values()].filter(e => e.error).length, tilted: this.assigned.filter(item => { const e = this.entries.get(item.slot)!; return Math.abs(e.pitch) + Math.abs(e.yaw) > .001; }).length, scrollTop: this.viewport.scrollTop,
+    ...(this.binder?.active ? this.binder.stats() : {}) }; }
   presentationKey() { return JSON.stringify([this.query, this.assigned.map(item => item.id), this.viewport.scrollTop,
     this.viewport.clientWidth, this.viewport.clientHeight]); }
-  likelyViewerCard() { return this.active && this.openingReady ? this.firstVisibleCardId : undefined; }
-  dispose() { this.disposed = true; this.hide(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }
+  likelyViewerCard() { return this.active && this.openingReady && !this.binder?.active ? this.firstVisibleCardId : undefined; }
+  dispose() { this.disposed = true; this.hide(); this.binder?.dispose(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }
 }

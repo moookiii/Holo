@@ -457,7 +457,9 @@ async function start() {
         const { Gallery } = await import('./gallery/Gallery');
         startupMark('galleryModuleReady');
         if (disposed) return;
-        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, compile: mesh => factory.compile(mesh), open: leaveGallery, hover: prepareHoveredCard, close: () => leaveGallery(), pack: browsePacksFromGallery });
+        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting,
+          binderFactory: () => new CardFactory(renderer, camera, scene, scenePass.renderTarget),
+          compile: mesh => factory.compile(mesh), open: leaveGallery, hover: prepareHoveredCard, close: () => leaveGallery(), pack: browsePacksFromGallery });
         startupMark('galleryResourcesReady');
       }
       ++loadGeneration; ++profileGeneration;
