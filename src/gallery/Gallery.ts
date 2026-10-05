@@ -62,7 +62,7 @@ export class Gallery {
   active = false;
   openingReady = false;
   loading = false;
-  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: Object3D) => Promise<void>; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
+  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: Object3D) => Promise<void>; open: (id: string) => Promise<void>; hover?: (id?: string) => void; close: () => Promise<void>; pack: () => Promise<void> }) {
     this.catalog = new GalleryQueryIndex(options.cards);
     this.graphics = new GalleryRenderer(options.scene, options.compile);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
@@ -234,6 +234,10 @@ export class Gallery {
         const placeholder = document.createElement('span'); placeholder.className = 'gallery-placeholder'; placeholder.textContent = 'Loading…';
         button.append(placeholder, name, detail);
         button.onclick = () => { const item = this.assigned.find(item => item.id === card.id), entry = item && this.entries.get(item.slot); if (entry?.error) { entry.error = undefined; return; } void this.transition(() => this.options.open(card.id)); };
+        button.onpointerenter = () => this.options.hover?.(card.id);
+        button.onpointerleave = () => this.options.hover?.();
+        button.onfocus = () => this.options.hover?.(card.id);
+        button.onblur = () => this.options.hover?.();
         this.buttons.set(card.id, button); this.content.append(button);
       }
       button.dataset.cardIndex = String(index);

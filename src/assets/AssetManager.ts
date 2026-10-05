@@ -10,6 +10,7 @@ import {
   Texture,
 } from 'three/webgpu';
 import { cachedCardAsset } from './CachedCardAssets';
+import { openingStage } from '../rendering/CardOpeningTiming';
 
 function resolveAssetUrl(url: string): string {
   // Leave runtime/external URLs unchanged.
@@ -71,9 +72,13 @@ export class AssetManager {
       this.cache.set(
         key,
         cachedCardAsset(resolvedUrl).then(async blob => {
+          const started = performance.now();
           const objectUrl = URL.createObjectURL(blob);
-          try { return await this.loader.loadAsync(objectUrl); }
-          finally { URL.revokeObjectURL(objectUrl); }
+          try {
+            const texture = await this.loader.loadAsync(objectUrl);
+            await (texture.image as HTMLImageElement).decode();
+            return texture;
+          } finally { URL.revokeObjectURL(objectUrl); openingStage('image-decode', started); }
         }).then((texture) => {
           texture.colorSpace = color ? SRGBColorSpace : NoColorSpace;
           texture.anisotropy = this.anisotropy;
@@ -149,4 +154,5 @@ export class AssetManager {
     this.owned.clear();
     this.cache.clear();
   }
+  textures() { return [...this.owned]; }
 }

@@ -44,6 +44,10 @@ export class CardMapLoader {
   }
   private async prepare(card: CardDefinition, aspect: number, needsAnniversary: boolean): Promise<CardMaterialMaps> {
     const paths = resolveCoverageMaps(card);
+    // Start independent packed inputs alongside normal/direction decoding.
+    // load() coalesces them with the packing reads below.
+    const inputsReady = Promise.all(PACKED_MAP_KEYS.map(name => paths[name] ? this.assets.load(paths[name]!, false) : undefined));
+    void inputsReady.catch(() => {});
     const wholeFront = card.imported
       && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
     // Authored paths are required when present: an invalid mask must not silently change a printing.
@@ -60,6 +64,7 @@ export class CardMapLoader {
     // packing pipeline, then allocating three redundant GPU textures. This is
     // the common pack-opening path (four commons plus one foil).
     if (packedInputs || anniversary || wholeFront) {
+      await inputsReady;
       const images: Partial<Record<PackedMapKey, ImageBitmap>> = {};
       let anniversaryImage: ImageBitmap | undefined;
       try {
@@ -102,4 +107,5 @@ export class CardMapLoader {
     this.worker.terminate(); for (const request of this.pending.values()) request.reject(new Error('Material map loading disposed'));
     for (const texture of this.owned) texture.dispose(); this.owned.clear(); this.pending.clear(); this.cache.clear(); this.owners.clear(); this.keys.clear(); this.released.clear();
   }
+  textures() { return [...this.owned]; }
 }

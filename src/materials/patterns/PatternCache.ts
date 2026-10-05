@@ -87,6 +87,7 @@ export class PatternCache {
     }
   }
   stats() { return { fields: this.settled.size, textures: this.textures.size, pending: this.requests.size }; }
+  resources() { return [...this.textures]; }
   dispose() {
     this.disposed = true;
     this.workers.forEach(worker => worker.terminate()); for (const r of this.requests.values()) r.reject(new Error('Pattern generation disposed'));

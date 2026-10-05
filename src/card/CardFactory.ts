@@ -3,6 +3,7 @@ import { getProfile } from '../materials/profiles/index';
 import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
 import { AssetManager } from '../assets/AssetManager';
 import { startupMark } from '../rendering/LoadTiming';
+import { openingStage } from '../rendering/CardOpeningTiming';
 import { capturePassContext } from '../rendering/PassCompileContext';
 import { PipelineCompletionBatch } from '../rendering/PipelineCompletionBatch';
 import { ResourceTelemetry } from '../rendering/ResourceTelemetry';
@@ -158,9 +159,11 @@ export class CardFactory {
   /** Only called during the explicit pack transition. Full-size card uploads
    * and mip generation finish before compilation/presentation begins. */
   async uploadCardResources(cards: CardInstance[]) {
+    const started = performance.now();
     const resources = new Set<Texture>(cards.flatMap(card => card.mesh.userData.resourceTextures ?? []));
     for (const texture of resources) this.renderer.initTexture(texture);
     await this.finishResourceUploads();
+    openingStage('gpu-upload-and-readiness', started);
     return resources.size;
   }
   async finishResourceUploads() {
@@ -170,9 +173,10 @@ export class CardFactory {
   }
 
   async compile(object: Object3D) {
+    const started = performance.now();
     this.gpuStats.compilations++;
     const objects = new Set<Object3D>(); object.traverse(child => objects.add(child));
-    const overlap = object.name === 'Gallery compile' || [...objects].some(child => child.name === 'card:ancient-mew');
+    const overlap = true;
     const completions = new PipelineCompletionBatch();
     // r186 backend contract (not yet declared on @types/three's base Backend).
     const backend = this.renderer.backend as unknown as { createRenderPipeline: (object: { object: Object3D; material: Material }, promises?: Promise<unknown>[]) => void };
@@ -210,7 +214,7 @@ export class CardFactory {
     try { await compilation; }
     finally {
       try { await completions.finish(); }
-      finally { backend.createRenderPipeline = createPipeline; }
+      finally { backend.createRenderPipeline = createPipeline; openingStage('shader-compilation', started); }
     }
   }
 
@@ -224,6 +228,7 @@ export class CardFactory {
   }
 
   async create(definition: CardDefinition, signal?: AbortSignal, compile = true, priority = 0, editableOptics = false): Promise<CardInstance> {
+    const started = performance.now();
     const check = () => {
       signal?.throwIfAborted();
       if (this.disposed) throw new Error('Card factory disposed');
@@ -246,6 +251,8 @@ export class CardFactory {
       this.gpuStats.printMaterials++;
       const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
       this.instances.add(instance);
+      instance.mesh.userData.resourceTextures = [front, back, normal, roughness, height].filter(Boolean);
+      openingStage('cpu-preparation-and-materials', started);
       try { instance.mesh.frustumCulled = false; if (compile) await this.compile(instance.mesh); check(); instance.mesh.frustumCulled = true; return instance; }
       catch (error) { instance.dispose(); throw error; }
     }
@@ -293,6 +300,7 @@ export class CardFactory {
     const materials = [holo, reverse, createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)];
     const instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => this.instances.delete(instance));
     this.instances.add(instance);
+    openingStage('cpu-preparation-and-materials', started);
     instance.mesh.userData.resourceTextures = [front, back, ...Object.values(maps), ...Object.values(backMaps ?? {}),
       ...Object.values(fields).flatMap(field => field ? [field.direction, field.relief] : [])].filter(value => value instanceof Texture);
     try {
@@ -308,6 +316,15 @@ export class CardFactory {
     } catch (error) { instance.dispose(); throw error; }
   }
   inUse(id: string) { return [...this.instances].some(card => card.definition.id === id); }
+  /** Conservative decoded CPU + GPU mip storage estimate for a resource domain.
+   * Includes input maps that are decoded but never uploaded. */
+  retainedBytes() {
+    const textures = new Set([...this.assets.textures(), ...this.maps.textures(), ...this.patterns.resources(),
+      ...[...this.instances].flatMap(card => card.mesh.userData.resourceTextures ?? [])]);
+    let bytes = 0;
+    for (const texture of textures) { const image = texture.image; bytes += (image?.width ?? 1) * (image?.height ?? 1) * 10; }
+    return bytes;
+  }
   stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures, ...this.resourceTelemetry.stats,
     textureRealizations: textures.textureRealizations + this.gpuStats.sharedTextureCreates,
     textureCacheHits: textures.textureCacheHits + this.gpuStats.sharedTextureHits }; }

@@ -31,6 +31,10 @@ import { yugiohDefinition } from './yugioh/materials';
 import { alphaCards } from './magic/AlphaCatalog';
 import { magicDefinition } from './magic/materials';
 import { resolveMagicProduct } from './magic/products';
+import { WarmResourcePool } from './card/WarmResourcePool';
+import { beginOpening, markOpening, openingStages, openingEvents } from './rendering/CardOpeningTiming';
+import { assetCacheMetrics } from './assets/CachedCardAssets';
+import { persistentCards } from './assets/PersistentCardCache';
 
 async function start() {
   startupMark('modulesReady');
@@ -114,6 +118,44 @@ async function start() {
   let gallery: Gallery | undefined;
   let galleryOpening = false;
   let galleryFocusFactory: CardFactory | undefined;
+  type ViewerResource = { factory: CardFactory; instance: CardInstance; ready: boolean };
+  const viewerResources = new WarmResourcePool<ViewerResource>(256 * 1024 * 1024, 3,
+    value => value.factory.retainedBytes(), value => value.factory.dispose());
+  let viewerLease: ReturnType<typeof viewerResources.acquire> | undefined;
+  let openingFrame: ReturnType<typeof beginOpening>;
+  let viewerQueue: Promise<unknown> = Promise.resolve();
+  let hoverTimer: ReturnType<typeof setTimeout> | undefined;
+  let hoverBusy = false;
+  const pooledInstances = new WeakSet<CardInstance>();
+  const viewerKey = (next: CardDefinition) => JSON.stringify([next, resolveCardProfile(next)]);
+  const acquireViewer = (next: CardDefinition) => viewerResources.acquire(viewerKey(next), async () => {
+    const domain = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
+    try {
+      // Full quality CPU preparation only. No speculative uploads or compile.
+      const prepared = !next.construction ? await cpuPreparation.cached(next) : undefined;
+      const instance = prepared ? await domain.realizeCardGpu(prepared, undefined, false) : await domain.create(next, undefined, false);
+      pooledInstances.add(instance);
+      instance.mesh.visible = false;
+      return { factory: domain, instance, ready: false };
+    } catch (error) { domain.dispose(); throw error; }
+  });
+  const releaseViewer = () => {
+    if (!viewerLease) { if (activeCard && !pooledInstances.has(activeCard)) activeCard.dispose(); return; }
+    activeCard.mesh.removeFromParent(); activeCard.mesh.visible = false;
+    viewerLease.release(activeProfile !== definition.profile || activeCard.disposed);
+    viewerLease = undefined;
+  };
+  const prepareHoveredCard = (id?: string) => {
+    clearTimeout(hoverTimer);
+    if (!id || hoverBusy) return;
+    hoverTimer = setTimeout(() => {
+      const next = cards.find(card => card.id === id);
+      if (!next || next.imported || disposed || !gallery?.active || pendingLoads.size) return;
+      hoverBusy = true;
+      const lease = acquireViewer(next);
+      void lease.pending.catch(() => {}).finally(() => { lease.release(); hoverBusy = false; });
+    }, 220);
+  };
   const packMetrics: Partial<PackLoadMetrics> & { cpuPreparationMs?: number; clickAt?: number; clickToGpuMs?: number; loadCompleteMs?: number; firstVisibleMs?: number; clickToReadyMs?: number; moduleLoadMs?: number; lastWasPrepared: boolean } = { lastWasPrepared: false };
   const viewerUI = document.querySelector<HTMLElement>('#ui')!;
   const cancelWarmup = () => {
@@ -164,7 +206,7 @@ async function start() {
     pack?.dispose(instance); pack = undefined; packRequest = undefined;
     factory.setBackgroundPaused(false);
     ++loadGeneration; ++profileGeneration;
-    activeCard?.dispose(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
+    releaseViewer(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
     motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
     activeProfile = definition.profile; requestedCardId = definition.id; ui?.selectCard(definition.id); ui?.selectProfile(activeProfile);
     pointer.setEnabled(true); viewerUI.inert = false; document.body.classList.remove('pack-mode');
@@ -261,7 +303,7 @@ async function start() {
           profileOverrides: id === definition.profile ? definition.profileOverrides : undefined });
         if (generation !== profileGeneration || disposed) { candidate.dispose(); return; }
         candidate.mesh.position.copy(card.position); candidate.mesh.quaternion.copy(card.quaternion); candidate.mesh.scale.copy(card.scale);
-        activeCard.dispose(); activeCard = candidate; card = candidate.mesh; scene.add(card);
+        releaseViewer(); activeCard = candidate; card = candidate.mesh; scene.add(card);
         activeProfile = id; ui?.selectProfile(id); return;
       }
       const field = await prepareProfile(p, definition);
@@ -276,29 +318,68 @@ async function start() {
       factory.setBackgroundPaused(false); scheduleWarmup();
     }
   };
-  const setCard = async (id: string, cardFactory = factory) => {
+  const setCard = async (id: string, fromGallery = false) => {
     const next = cards.find(c => c.id === id);
     if (!next) throw new Error(`Unknown card: ${id}`);
     if (disposed) return;
     const generation = ++loadGeneration;
+    const timing = beginOpening(id); markOpening(timing, 'metadataResolved');
+    clearTimeout(hoverTimer);
     cancelWarmup(); factory.setBackgroundPaused(true);
     requestedCardId = id;
     pendingLoads.set(id, (pendingLoads.get(id) ?? 0) + 1);
     setLoading(true, definition.id === id ? 'Loading card…' : 'Loading next card…');
+    markOpening(timing, 'transitionBegins');
+    let lease: ReturnType<typeof viewerResources.acquire> | undefined;
     try {
     ++profileGeneration;
-    const prepared = !next.construction && cardFactory !== factory ? await cpuPreparation.cached(next) : undefined;
-    const candidate = prepared ? await cardFactory.realizeCardGpu(prepared) : await cardFactory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
-    if (generation !== loadGeneration || disposed) { candidate.dispose(); return; }
+    const managed = !next.imported && !new URLSearchParams(location.search).has('lab');
+    // Serialize foreground realization: Three's compile context is shared.
+    const previous = viewerQueue;
+    let finish!: () => void;
+    viewerQueue = new Promise<void>(resolve => { finish = resolve; });
+    let candidate: CardInstance;
+    try {
+      await previous;
+      if (generation !== loadGeneration || disposed) return;
+      if (managed) {
+        lease = acquireViewer(next);
+        const resource = await lease.pending;
+        markOpening(timing, 'cpuReady');
+        if (generation !== loadGeneration || disposed) return;
+        if (!resource.ready) {
+          await resource.factory.uploadCardResources([resource.instance]);
+          markOpening(timing, 'uploadsReady');
+          resource.instance.mesh.visible = true;
+          resource.instance.mesh.frustumCulled = false;
+          try { await resource.factory.compile(resource.instance.mesh); }
+          finally { resource.instance.mesh.visible = false; resource.instance.mesh.frustumCulled = true; }
+          resource.ready = true;
+        } else markOpening(timing, 'residentHit');
+        candidate = resource.instance;
+        if (fromGallery) galleryFocusFactory = resource.factory;
+      } else candidate = await factory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
+    } finally { finish(); }
+    if (generation !== loadGeneration || disposed) { if (!pooledInstances.has(candidate)) candidate.dispose(); return; }
     // Transfer ownership only after textures, manufacturing fields and GPU programs are ready.
     ++profileGeneration;
     const previousPosition = card?.position.clone();
-    activeCard?.dispose();
+    // Re-selecting the active resource must not invalidate its new lease.
+    if (activeCard !== candidate) releaseViewer(); else viewerLease?.release();
+    viewerLease = lease; lease = undefined;
     activeCard = candidate; definition = next; card = candidate.mesh;
     if (previousPosition) card.position.copy(previousPosition);
     card.quaternion.copy(motion.orientation); scene.add(card);
+    card.visible = true;
+    if (fromGallery) {
+      gallery?.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false; pointer.setEnabled(true);
+      motion.reset(); card.position.set(0, 0, 0);
+    }
+    openingFrame = timing;
+    markOpening(timing, 'resourcesReady');
     activeProfile = next.profile; ui?.selectProfile(activeProfile); ui?.selectCard(id);
     } finally {
+      lease?.release();
       const remaining = pendingLoads.get(id)! - 1;
       if (remaining) pendingLoads.set(id, remaining); else pendingLoads.delete(id);
       if (generation === loadGeneration) {
@@ -344,15 +425,8 @@ async function start() {
     } finally { openingImport = false; }
   };
   const leaveGallery = async (id = definition.id) => {
-    const focusedFactory = new CardFactory(renderer, camera, scene, scenePass.renderTarget);
-    try {
-      await setCard(id, focusedFactory);
-      if (disposed) { focusedFactory.dispose(); return; }
-      galleryFocusFactory?.dispose(); galleryFocusFactory = focusedFactory;
-      gallery?.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false; pointer.setEnabled(true);
-      card.visible = true; motion.reset(); card.position.set(0, 0, 0);
-      document.querySelector<HTMLButtonElement>('#gallery-open')?.focus({ preventScroll: true });
-    } catch (error) { focusedFactory.dispose(); throw error; }
+    await setCard(id, true);
+    document.querySelector<HTMLButtonElement>('#gallery-open')?.focus({ preventScroll: true });
   };
   const openGallery = async () => {
     if (disposed || galleryOpening || gallery?.active || pack || packRequest || packBrowser) return;
@@ -368,11 +442,11 @@ async function start() {
         const { Gallery } = await import('./gallery/Gallery');
         startupMark('galleryModuleReady');
         if (disposed) return;
-        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, compile: mesh => factory.compile(mesh), open: leaveGallery, close: () => leaveGallery(), pack: browsePacksFromGallery });
+        gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, compile: mesh => factory.compile(mesh), open: leaveGallery, hover: prepareHoveredCard, close: () => leaveGallery(), pack: browsePacksFromGallery });
         startupMark('galleryResourcesReady');
       }
       ++loadGeneration; ++profileGeneration;
-      if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
+      if (galleryFocusFactory) { releaseViewer(); galleryFocusFactory = undefined; }
       if (card) card.visible = false;
       pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
@@ -441,6 +515,13 @@ async function start() {
     else lighting.update(dt);
     if (!pack) spotlightPointer.update(gallery?.active ? undefined : card);
     pipeline.render();
+    if (openingFrame && !gallery?.active && card?.visible) {
+      const event = openingFrame; openingFrame = undefined;
+      markOpening(event, 'firstCardFrame'); markOpening(event, 'fullQualityFrameSubmitted');
+      requestAnimationFrame(() => {
+        if (!disposed && !gallery?.active && definition.id === event.id) markOpening(event, 'interactive');
+      });
+    }
     if (gallery?.active) gallery.recordFrame(dt * 1000, performance.now() - now);
     const galleryFrame = gallery?.active ? gallery.stats() : undefined;
     const { firstCardDrawn, galleryAllVisibleDrawn } = startupFrameReadiness(galleryFrame, !!card?.visible);
@@ -477,6 +558,7 @@ async function start() {
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
     ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming, startupPipelines,
+    opening: () => ({ events: openingEvents, stages: openingStages, resources: viewerResources.stats(), assets: assetCacheMetrics, persistent: persistentCards.metrics }),
     gallery: { open: openGallery, close: leaveGallery, stats: () => gallery?.stats(), instance: () => gallery },
     pack: {
       open: openPack, browse: browsePacks, close: closePack, reset: () => browsePacks(), setSeed: (seed: number) => { cancelWarmup(); packSeed = seed >>> 0; },
@@ -520,7 +602,7 @@ async function start() {
   }
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;
-    gallery?.dispose(); galleryFocusFactory?.dispose();
+    clearTimeout(hoverTimer); gallery?.dispose(); viewerResources.dispose();
     packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
     ++loadGeneration; ++profileGeneration;
     spotlightPointer.dispose();
