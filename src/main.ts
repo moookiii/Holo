@@ -150,7 +150,9 @@ async function start() {
     if (!id || hoverBusy) return;
     hoverTimer = setTimeout(() => {
       const next = cards.find(card => card.id === id);
-      if (!next || next.imported || disposed || !gallery?.active || pendingLoads.size) return;
+      const visible = gallery?.stats();
+      if (!next || next.imported || disposed || !visible?.active || pendingLoads.size
+        || visible.visible < visible.visibleExpected || visible.visibleFailed) return;
       hoverBusy = true;
       const lease = acquireViewer(next);
       void lease.pending.catch(() => {}).finally(() => { lease.release(); hoverBusy = false; });

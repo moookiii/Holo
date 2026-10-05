@@ -1,0 +1,55 @@
+import { chromium } from 'playwright';
+import { mkdir, writeFile } from 'node:fs/promises';
+const browser = await chromium.launch({ executablePath: process.env.BROWSER_EXECUTABLE || chromium.executablePath(), headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
+const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
+const errors = []; page.on('pageerror', error => errors.push(String(error)));
+try {
+  await page.goto('http://127.0.0.1:5173/');
+  await page.waitForFunction(() => window.__holo?.gallery.stats()?.visible > 0, null, { timeout: 120000 });
+  const checks = await page.evaluate(async () => {
+    const h = window.__holo, checks = [];
+    const assert = (condition, label) => { if (!condition) throw Error(label); checks.push(label); };
+    const frames = async (n = 2) => { const times = []; let last = performance.now(); for (let i = 0; i < n; i++) await new Promise(resolve => requestAnimationFrame(() => { const now = performance.now(); times.push(now - last); last = now; resolve(); })); return times; };
+    await h.gallery.close('pokemon:sv08.5-156:holo');
+    const firstFrames = await frames(30);
+    assert(h.stats().card === 'pokemon:sv08.5-156:holo', 'etched card selected');
+    h.zoom(.8); h.flip(); h.lighting.setPreset('Low key'); await frames(60);
+    assert(h.stats().zoom === .8, 'zoom works');
+    assert(Math.abs(h.stats().quaternion[1]) > .5, 'flip works');
+    h.reset(); h.lighting.setPreset('Studio');
+    await h.setProfile('print-only');
+    await h.gallery.open(); await h.gallery.close('pokemon:sv08.5-156:holo');
+    assert(h.stats().profile !== 'print-only', 'profile edits cannot contaminate reopened card');
+    await h.gallery.open();
+    const opening = h.gallery.close('ancient-mew'); await new Promise(r => setTimeout(r, 5));
+    await h.gallery.open(); await opening;
+    assert(h.gallery.stats().active, 'return to Gallery cancels stale publication');
+    await h.gallery.close('ancient-mew'); await frames();
+    assert(h.stats().card === 'ancient-mew', 'two-sided foil opens');
+    await h.gallery.open(); await h.gallery.close('charizard-burger-king-1999'); await frames();
+    assert(h.stats().card === 'charizard-burger-king-1999', 'constructed metal geometry opens');
+    const prints = h.cards.filter(c => c.profile === 'print-only' && !c.imported && !c.construction).slice(0, 6);
+    for (const card of prints) { await h.gallery.open(); await h.gallery.close(card.id); }
+    await h.gallery.open();
+    const cache = h.opening().resources;
+    assert(cache.bytes <= cache.budget && cache.entries <= 3, 'idle RAM/GPU resource estimate and entry count stay bounded');
+    assert(cache.evictions > 0, 'LRU eviction exercised');
+    await Promise.all(['alakazam-base-set', 'pokemon:sv08.5-156:holo', prints[0].id].map(id => h.gallery.close(id)));
+    await frames();
+    const visible = h.scene.children.filter(node => node.name.startsWith('card:') && node.visible);
+    assert(visible.length === 1 && visible[0].name === `card:${prints[0].id}`, 'rapid switch publishes exactly one correct mesh');
+    return { checks, firstFrames, cache, opening: h.opening() };
+  });
+  await page.evaluate(() => window.__holo.setMode('rotate'));
+  const before = await page.evaluate(() => window.__holo.stats().quaternion);
+  await page.mouse.move(720, 440); await page.mouse.down(); await page.mouse.move(820, 490, { steps: 8 }); await page.mouse.up();
+  await page.waitForTimeout(200);
+  const after = await page.evaluate(() => window.__holo.stats().quaternion);
+  if (JSON.stringify(before) === JSON.stringify(after)) throw Error('Drag did not rotate card');
+  checks.checks.push('pointer drag rotates card');
+  await mkdir('artifacts/card-opening-lifecycle', { recursive: true });
+  await page.screenshot({ path: 'artifacts/card-opening-lifecycle/drag.png' });
+  await writeFile('artifacts/card-opening-lifecycle/report.json', JSON.stringify({ ...checks, errors }, null, 2));
+  console.log(JSON.stringify({ checks: checks.checks, firstFrames: checks.firstFrames, cache: checks.cache, errors }, null, 2));
+  if (errors.length) process.exitCode = 1;
+} finally { await browser.close(); }
