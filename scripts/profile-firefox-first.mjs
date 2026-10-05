@@ -16,7 +16,24 @@ try {
     const create = backend.createRenderPipeline;
     backend.createRenderPipeline = function (object, promises) {
       const start = performance.now(), count = promises?.length ?? 0;
-      const result = create.call(this, object, promises);
+      const complete = backend._completeCompile;
+      backend._completeCompile = function (...args) {
+        const gl = backend.gl, sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
+        gl.flush();
+        promises.push(new Promise((resolve, reject) => {
+          const poll = () => {
+            const status = gl.clientWaitSync(sync, 0, 0);
+            if (status === gl.TIMEOUT_EXPIRED) return requestAnimationFrame(poll);
+            gl.deleteSync(sync);
+            const started = performance.now();
+            try { complete.apply(backend, args); resolve(); } catch (error) { reject(error); }
+            rows.push({ stage: 'final-link-status', ms: performance.now() - started });
+          }; requestAnimationFrame(poll);
+        }));
+      };
+      let result;
+      try { result = create.call(this, object, promises); }
+      finally { backend._completeCompile = complete; }
       rows.push({ stage: 'driver-submit', ms: performance.now() - start, material: object.material.type, fragmentLength: object.pipeline.fragmentProgram.code.length });
       if (promises) void Promise.all(promises.slice(count)).then(() => rows.push({ stage: 'driver-ready', ms: performance.now() - start, material: object.material.type }));
       return result;
