@@ -33,7 +33,7 @@ export class GalleryRenderer {
   private visible = new Set<number>();
   private drawn = new Set<InstancedMesh>();
   uploads = 0;
-  constructor(scene: Scene, private compile: (mesh: InstancedMesh) => Promise<void>) {
+  constructor(scene: Scene, private compile: (mesh: Object3D) => Promise<void>) {
     this.arrays[0].colorSpace = SRGBColorSpace;
     this.parameterTexture.minFilter = this.parameterTexture.magFilter = NearestFilter;
     this.parameterTexture.needsUpdate = true;
@@ -53,6 +53,7 @@ export class GalleryRenderer {
     if (!batch) {
       const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers);
       let geometry = this.geometries.get(geometryKey);
+      const newGeometry = !geometry;
       if (!geometry) {
         const face = createGalleryCardGeometry(dimensions), edgeGeometry = face.clone();
         const groups = [...face.groups]; face.clearGroups(); edgeGeometry.clearGroups();
@@ -63,13 +64,14 @@ export class GalleryRenderer {
         const edge = new InstancedMesh(edgeGeometry, this.edge, this.capacity);
         edge.name = `Gallery edges ${geometryKey}`; edge.instanceMatrix.setUsage(DynamicDrawUsage); edge.frustumCulled = false;
         this.clear(edge); this.mesh.add(edge);
-        geometry = { face, edgeGeometry, edge, compilation: this.queueCompile(edge) };
+        geometry = { face, edgeGeometry, edge, compilation: Promise.resolve() };
         this.geometries.set(geometryKey, geometry);
       }
       const mesh = new InstancedMesh(geometry.face, [material, material], this.capacity);
       mesh.name = `Gallery optics ${key}`; mesh.instanceMatrix.setUsage(DynamicDrawUsage); mesh.frustumCulled = false;
       this.clear(mesh); this.mesh.add(mesh);
-      const compilation = Promise.all([geometry.compilation, this.queueCompile(mesh)]).then(() => {});
+      const compilation = Promise.all([geometry.compilation, this.queueCompile(mesh, newGeometry ? geometry.edge : undefined)]).then(() => {});
+      if (newGeometry) geometry.compilation = compilation;
       batch = { mesh, edge: geometry.edge, material, compilation }; this.batches.set(key, batch);
       const created = batch;
       compilation.catch(() => {
@@ -80,12 +82,19 @@ export class GalleryRenderer {
     this.slots.set(slot, batch);
     await batch.compilation;
   }
-  private queueCompile(mesh: InstancedMesh) {
+  private queueCompile(mesh: InstancedMesh, edge?: InstancedMesh) {
     const compilation = this.compilation.then(async () => {
       if (this.disposed) throw new Error('Gallery disposed');
-      mesh.visible = true; mesh.count = this.capacity;
-      try { await this.compile(mesh); }
-      finally { mesh.visible = false; mesh.count = 0; }
+      const group = new Group(); group.name = 'Gallery compile';
+      const meshes = edge ? [mesh, edge] : [mesh];
+      for (const object of meshes) { object.visible = true; object.count = this.capacity; group.add(object); }
+      try { await this.compile(group); }
+      finally {
+        for (const object of meshes) {
+          object.visible = false; object.count = 0;
+          if (!this.disposed) this.mesh.add(object);
+        }
+      }
     });
     this.compilation = compilation.catch(() => {});
     return compilation;

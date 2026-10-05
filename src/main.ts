@@ -438,6 +438,7 @@ async function start() {
     else lighting.update(dt);
     if (!pack) spotlightPointer.update(gallery?.active ? undefined : card);
     pipeline.render();
+    if (gallery?.active) gallery.recordFrame(dt * 1000, performance.now() - now);
     const galleryFrame = gallery?.active ? gallery.stats() : undefined;
     const { firstCardDrawn, galleryAllVisibleDrawn } = startupFrameReadiness(galleryFrame, !!card?.visible);
     if (galleryFrame && galleryFrame.visible > 0) startupMark('galleryFirstCardSubmitted');

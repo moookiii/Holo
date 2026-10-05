@@ -172,7 +172,7 @@ export class CardFactory {
   async compile(object: Object3D) {
     this.gpuStats.compilations++;
     const objects = new Set<Object3D>(); object.traverse(child => objects.add(child));
-    const overlap = [...objects].some(child => child.name === 'card:ancient-mew');
+    const overlap = object.name === 'Gallery compile' || [...objects].some(child => child.name === 'card:ancient-mew');
     const completions = new PipelineCompletionBatch();
     // r186 backend contract (not yet declared on @types/three's base Backend).
     const backend = this.renderer.backend as unknown as { createRenderPipeline: (object: { object: Object3D; material: Material }, promises?: Promise<unknown>[]) => void };
@@ -185,7 +185,8 @@ export class CardFactory {
         if (renderObject.material instanceof HolographicMaterial) this.gpuStats.holoPipelines++;
       }
       // Three r186 waits for each driver pipeline before building the next
-      // material. Ancient Mew's front, reverse and edge can compile together.
+      // material. Independent gallery face/edge pipelines (and Ancient Mew's
+      // front/reverse/edge) can compile together.
       // Keep node-building yields and the final GPU readiness boundary intact.
       if (overlap && objects.has(renderObject.object) && args[1]) {
         const pending: Promise<unknown>[] = [];

@@ -1,5 +1,5 @@
 import './gallery.css';
-import type { InstancedMesh, PerspectiveCamera, Scene } from 'three/webgpu';
+import type { Object3D, PerspectiveCamera, Scene } from 'three/webgpu';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardCpuPreparation } from '../card/CardCpuPreparation';
 import type { CardPreview } from '../card/CardPreviewPreparation';
@@ -7,6 +7,7 @@ import type { StudioLighting } from '../lighting/StudioLighting';
 import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
 import { GalleryUploadBudget } from './GalleryUploadBudget';
+import { GalleryPerformance } from './GalleryPerformance';
 import { galleryCardSize, galleryLayout } from './GalleryLayout';
 import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
@@ -32,6 +33,11 @@ export class Gallery {
   private residency = new GalleryResidency(48);
   private entries = new Map<number, Entry>();
   private requests = new Map<number, AbortController>();
+  private nearRequests = new Map<string, AbortController>();
+  private nearCards: CardDefinition[] = [];
+  private nearFailed = new Set<string>();
+  private lastScroll = 0;
+  private scrollDirection = 1;
   private buttons = new Map<string, HTMLButtonElement>();
   private filtered: CardDefinition[] = [];
   private catalog: GalleryQueryIndex;
@@ -45,6 +51,7 @@ export class Gallery {
   private disposed = false;
   private lightingInitialized = false;
   private uploadBudget = new GalleryUploadBudget();
+  private performance = new GalleryPerformance();
   private visibleExpected = 0;
   private visibleFailed = 0;
   private savedLighting?: Pick<StudioLighting, 'preset' | 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle' | 'playing'>;
@@ -52,7 +59,7 @@ export class Gallery {
   active = false;
   openingReady = false;
   loading = false;
-  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: InstancedMesh) => Promise<void>; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
+  constructor(private options: { cards: CardDefinition[]; scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting; compile: (mesh: Object3D) => Promise<void>; open: (id: string) => Promise<void>; close: () => Promise<void>; pack: () => Promise<void> }) {
     this.catalog = new GalleryQueryIndex(options.cards);
     this.graphics = new GalleryRenderer(options.scene, options.compile);
     this.root.className = 'gallery'; this.root.hidden = true; this.root.setAttribute('aria-label', 'Card gallery');
@@ -112,6 +119,7 @@ export class Gallery {
     if (this.loading) return;
     this.loading = true; this.root.setAttribute('aria-busy', 'true'); this.status.textContent = 'Opening full-quality card…';
     for (const slot of this.requests.keys()) this.cancelRequest(slot);
+    this.cancelNearRequests();
     try { await action(); }
     catch (error) { this.status.textContent = error instanceof Error ? error.message : 'Unable to open card. Try again.'; }
     finally { this.loading = false; this.root.removeAttribute('aria-busy'); }
@@ -127,6 +135,7 @@ export class Gallery {
       this.lightingInitialized = true;
     }
     this.openingReady = false;
+    this.performance.begin();
     this.active = true; this.root.hidden = false; this.graphics.mesh.visible = false; this.refreshLighting();
     this.refreshFacetOptions();
     this.applyFilters(false); (this.tools.open ? this.search : this.tools.querySelector('summary')!).focus({ preventScroll: true });
@@ -154,7 +163,9 @@ export class Gallery {
     }
     this.active = false; this.root.hidden = true; this.graphics.mesh.visible = false; this.pointer = undefined;
     for (const slot of this.requests.keys()) this.cancelRequest(slot);
+    this.cancelNearRequests();
   }
+  private cancelNearRequests() { for (const request of this.nearRequests.values()) request.abort(); this.nearRequests.clear(); }
   private cancelRequest(slot: number) { this.requests.get(slot)?.abort(); this.requests.delete(slot); }
   private needsPreview(entry: Entry) { return !entry.ready && !entry.uploading && !entry.preview && !entry.error; }
   private applyFilters(reset = true) {
@@ -169,13 +180,29 @@ export class Gallery {
     this.layout = galleryLayout(this.viewport.clientWidth, this.viewport.clientHeight, this.filtered.length, this.viewport.scrollTop);
     this.content.style.height = `${this.layout.total}px`;
     const visible = this.filtered.slice(this.layout.start, this.layout.end);
-    this.assigned = this.residency.reconcile(visible.map(card => card.id));
+    const scroll = this.viewport.scrollTop;
+    if (scroll !== this.lastScroll) this.scrollDirection = Math.sign(scroll - this.lastScroll);
+    this.lastScroll = scroll;
+    const onScreen = visible.filter((card, offset) => {
+      const top = this.layout.padding + Math.floor((this.layout.start + offset) / this.layout.columns) * this.layout.row - scroll;
+      return top <= this.viewport.clientHeight && top + galleryCardSize(card.dimensions, this.layout.cell).cardHeight >= 0;
+    });
+    // Overscan owns CPU preparation only. It cannot evict a resident texture.
+    this.assigned = this.residency.reconcile(onScreen.map(card => card.id));
+    const onScreenIds = new Set(onScreen.map(card => card.id));
+    this.nearCards = visible.filter(card => !onScreenIds.has(card.id));
+    if (this.scrollDirection > 0) this.nearCards.reverse();
+    const nearIds = new Set(this.nearCards.map(card => card.id));
+    for (const id of this.nearFailed) if (!nearIds.has(id)) this.nearFailed.delete(id);
+    for (const [id, request] of this.nearRequests) if (!nearIds.has(id)) { request.abort(); this.nearRequests.delete(id); }
     const wanted = new Set(visible.map(c => c.id));
     for (const [id, button] of this.buttons) if (!wanted.has(id)) { button.remove(); this.buttons.delete(id); }
     for (const slot of this.requests.keys()) if (!this.assigned.some(a => a.slot === slot && this.entries.get(slot)?.token === a.token)) this.cancelRequest(slot);
     for (const item of this.assigned) {
       if (item.changed || !this.entries.has(item.slot)) { this.cancelRequest(item.slot); this.entries.set(item.slot, { token: item.token, ready: false, pitch: 0, yaw: 0 }); }
-      const index = this.layout.start + visible.findIndex(c => c.id === item.id), card = this.filtered[index];
+    }
+    for (const [offset, card] of visible.entries()) {
+      const index = this.layout.start + offset;
       let button = this.buttons.get(card.id);
       if (!button) {
         button = document.createElement('button'); button.className = 'gallery-card';
@@ -184,7 +211,7 @@ export class Gallery {
         const detail = document.createElement('span'); detail.className = 'gallery-card-detail'; detail.textContent = `${gallerySetName(card)} · ${card.number}`;
         const placeholder = document.createElement('span'); placeholder.className = 'gallery-placeholder'; placeholder.textContent = 'Loading…';
         button.append(placeholder, name, detail);
-        button.onclick = () => { const entry = this.entries.get(item.slot); if (entry?.error) { entry.error = undefined; return; } void this.transition(() => this.options.open(card.id)); };
+        button.onclick = () => { const item = this.assigned.find(item => item.id === card.id), entry = item && this.entries.get(item.slot); if (entry?.error) { entry.error = undefined; return; } void this.transition(() => this.options.open(card.id)); };
         this.buttons.set(card.id, button); this.content.append(button);
       }
       button.dataset.cardIndex = String(index);
@@ -219,6 +246,10 @@ export class Gallery {
     }
     const waiting = Math.min(PREVIEW_CONCURRENCY, prioritized.filter(item => item.visible
       && this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot)).length);
+    for (const [id, request] of [...this.nearRequests].reverse()) {
+      if (this.requests.size + this.nearRequests.size + waiting <= PREVIEW_CONCURRENCY) break;
+      request.abort(); this.nearRequests.delete(id);
+    }
     // After a scroll, unfinished overscan must not delay the new visible rows.
     for (const item of prioritized) if (!item.visible && this.requests.has(item.slot)
       && this.requests.size + waiting > PREVIEW_CONCURRENCY) this.cancelRequest(item.slot);
@@ -252,7 +283,7 @@ export class Gallery {
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
       if (entry.ready && item.visible)
         this.graphics.place(item.slot, x, y, cardWidth, cardHeight, entry.pitch, entry.yaw, width, height, this.options.camera);
-      if (this.needsPreview(entry) && !this.requests.has(item.slot) && this.requests.size < PREVIEW_CONCURRENCY && !this.loading) {
+      if (this.needsPreview(entry) && !this.requests.has(item.slot) && this.requests.size + this.nearRequests.size < PREVIEW_CONCURRENCY && !this.loading) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
           if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed) entry.preview = preview;
@@ -260,12 +291,26 @@ export class Gallery {
           .finally(() => { if (this.requests.get(item.slot) === request) this.requests.delete(item.slot); });
       }
     }
+    for (const card of this.nearCards) {
+      if (this.loading || this.requests.size + this.nearRequests.size >= PREVIEW_CONCURRENCY) break;
+      if (this.nearRequests.has(card.id) || this.nearFailed.has(card.id) || this.options.cpu.cachedPreview(card)) continue;
+      const request = new AbortController(); this.nearRequests.set(card.id, request);
+      void this.options.cpu.preparePreview(card, request.signal).catch(() => { if (!request.signal.aborted) this.nearFailed.add(card.id); })
+        .finally(() => { if (this.nearRequests.get(card.id) === request) this.nearRequests.delete(card.id); });
+    }
     this.graphics.updateLighting(this.options.lighting, this.options.camera);
     this.graphics.mesh.visible = this.graphics.stats().visible > 0;
     this.openingReady = !waitingForVisibleCard;
   }
-  stats() { return { ...this.graphics.stats(), ...this.uploadBudget.stats(), visibleExpected: this.visibleExpected, visibleFailed: this.visibleFailed,
-    active: this.active, filtered: this.filtered.length, domCards: this.buttons.size, pending: this.requests.size, failed: [...this.entries.values()].filter(e => e.error).length, tilted: [...this.entries.values()].filter(e => Math.abs(e.pitch) + Math.abs(e.yaw) > .001).length, scrollTop: this.viewport.scrollTop }; }
+  recordFrame(intervalMs: number, submissionMs: number) {
+    this.performance.frame(intervalMs, submissionMs, this.graphics.stats().visible, this.visibleExpected, this.visibleFailed,
+      this.uploadBudget.stats().frameUploads > 0 || [...this.entries.values()].some(entry => entry.uploading));
+  }
+  stats() { return { ...this.graphics.stats(), ...this.uploadBudget.stats(), ...this.performance.stats(), visibleExpected: this.visibleExpected, visibleFailed: this.visibleFailed,
+    ...this.residency.stats(), active: this.active, filtered: this.filtered.length, domCards: this.buttons.size,
+    pending: this.requests.size + this.nearRequests.size, activeVisibleLoads: this.requests.size, activeNearLoads: this.nearRequests.size,
+    queued: this.assigned.filter(item => this.needsPreview(this.entries.get(item.slot)!) && !this.requests.has(item.slot)).length,
+    failed: [...this.entries.values()].filter(e => e.error).length, tilted: this.assigned.filter(item => { const e = this.entries.get(item.slot)!; return Math.abs(e.pitch) + Math.abs(e.yaw) > .001; }).length, scrollTop: this.viewport.scrollTop }; }
   presentationKey() { return JSON.stringify([this.query, this.assigned.map(item => item.id), this.viewport.scrollTop,
     this.viewport.clientWidth, this.viewport.clientHeight]); }
   dispose() { this.disposed = true; this.hide(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }

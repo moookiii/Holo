@@ -28,7 +28,7 @@ try {
     const check = (condition, message) => { if (!condition) throw new Error(message); };
     const preview = { images: [new Uint8Array([12, 34, 56, 255])], parameters: new Float32Array([1]) };
     function harness(scrollRows = 0) {
-      const cards = Array.from({ length: 120 }, (_, i) => ({ id: String(i), title: `Card ${i}`, franchise: 'Original',
+      const cards = Array.from({ length: 1000 }, (_, i) => ({ id: String(i), title: `Card ${i}`, franchise: 'Original',
         set: 'Test', number: String(i), front: '/front.png', back: '/back.png', profile: 'print-only', seed: i,
         dimensions: { width: 6.3, height: 8.8, thickness: .032, cornerRadius: .3, bevel: .007 } }));
       const cache = new CardPreviewCache(), jobs = [], uploads = [];
@@ -80,8 +80,9 @@ try {
     scroll.gallery.viewport.scrollTop -= scroll.gallery.layout.row * .4; scroll.gallery.dirty = true; scroll.tick();
     check(overscanJobs.some(job => job.signal.aborted), 'Retained offscreen work must yield to newly visible cards');
     const foregroundJobs = scroll.jobs.slice(jobsBeforeScroll);
-    check(foregroundJobs.length > 0 && foregroundJobs.every(job => scroll.visible().includes(job.card.id)), 'Newly visible cards must receive the freed slots');
-    check(scroll.gallery.requests.size <= 4, 'Preemption must retain the four-request concurrency limit');
+    check(foregroundJobs.length > 0 && scroll.visible().includes(foregroundJobs[0].card.id), 'Newly visible cards must receive the first freed slot');
+    check(scroll.gallery.requests.size + scroll.gallery.nearRequests.size <= 4, 'Preemption must retain the four-request concurrency limit');
+    check(scroll.gallery.assigned.every(item => scroll.visible().includes(item.id)), 'CPU overscan must not take GPU residency slots');
     scroll.gallery.dispose();
     const burst = harness(4), fullPreview = { images: [new Uint8Array(2764800)], parameters: new Float32Array(176) };
     burst.gallery.reconcile();
@@ -113,7 +114,7 @@ try {
       .map(item => ({ ...item, entry: replacement.gallery.entries.get(item.slot) }));
     // Cross enough uncached viewports to exhaust retained residency as well as
     // leave the screen; retained offscreen slots legitimately remain reusable.
-    for (let i = 0; i < 4; i++) {
+    for (let i = 0; i < 8; i++) {
       replacement.gallery.viewport.scrollTop += replacement.gallery.layout.row * 8;
       replacement.gallery.dirty = true; replacement.tick();
     }
