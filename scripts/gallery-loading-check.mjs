@@ -24,6 +24,7 @@ try {
   const report = await page.evaluate(async () => {
     const { Gallery } = await import('/src/gallery/Gallery.ts');
     const { CardPreviewCache } = await import('/src/card/CardPreviewCache.ts');
+    const { GalleryUploadBudget } = await import('/src/gallery/GalleryUploadBudget.ts');
     const check = (condition, message) => { if (!condition) throw new Error(message); };
     const preview = { images: [new Uint8Array([12, 34, 56, 255])], parameters: new Float32Array([1]) };
     function harness(scrollRows = 0) {
@@ -75,11 +76,54 @@ try {
     scroll.tick();
     const overscanJobs = scroll.jobs.filter(job => !job.signal.aborted);
     check(overscanJobs.length === 4 && overscanJobs.every(job => !scroll.visible().includes(job.card.id)), 'Overscan should prepare when visible cards are ready');
+    const jobsBeforeScroll = scroll.jobs.length;
     scroll.gallery.viewport.scrollTop -= scroll.gallery.layout.row * .4; scroll.gallery.dirty = true; scroll.tick();
     check(overscanJobs.some(job => job.signal.aborted), 'Retained offscreen work must yield to newly visible cards');
-    check(scroll.jobs.filter(job => !job.signal.aborted).every(job => scroll.visible().includes(job.card.id)), 'Newly visible cards must receive the freed slots');
+    const foregroundJobs = scroll.jobs.slice(jobsBeforeScroll);
+    check(foregroundJobs.length > 0 && foregroundJobs.every(job => scroll.visible().includes(job.card.id)), 'Newly visible cards must receive the freed slots');
+    check(scroll.gallery.requests.size <= 4, 'Preemption must retain the four-request concurrency limit');
     scroll.gallery.dispose();
-    return { passed: ['visible priority', 'cache bypass', 'stale cancellation', 'hide cancellation', 'overscan preemption'], concurrency: 4 };
+    const burst = harness(4), fullPreview = { images: [new Uint8Array(2764800)], parameters: new Float32Array(176) };
+    burst.gallery.reconcile();
+    for (const item of burst.gallery.assigned) burst.cache.set(burst.cards.find(card => card.id === item.id), fullPreview);
+    burst.gallery.uploadBudget = new GalleryUploadBudget(() => 0);
+    burst.tick();
+    check(burst.uploads.length === 3, 'A frame should upload three full-sized cached previews within the byte budget');
+    check(burst.uploads.every(upload => burst.visible().includes(burst.gallery.assigned.find(item => item.slot === upload.slot).id)), 'Upload bursts must retain visible-first ordering');
+    await flush(); burst.tick();
+    check(burst.uploads.length === 6, 'Deferred cached previews must continue in the following frame');
+    burst.gallery.dispose();
+
+    const slow = harness(4); slow.gallery.reconcile();
+    for (const item of slow.gallery.assigned) slow.cache.set(slow.cards.find(card => card.id === item.id), fullPreview);
+    let uploadTime = 0;
+    slow.gallery.uploadBudget = new GalleryUploadBudget(() => uploadTime);
+    slow.gallery.graphics.upload = async slot => { slow.uploads.push({ slot }); uploadTime += 3; };
+    slow.tick(); check(slow.uploads.length === 1, 'Slow synchronous uploads must yield after exceeding the time budget');
+    await flush(); slow.tick(); check(slow.uploads.length === 2, 'A slow device must still make progress in every frame');
+    slow.gallery.dispose();
+
+    const replacement = harness(4); replacement.gallery.reconcile();
+    for (const item of replacement.gallery.assigned) replacement.cache.set(replacement.cards.find(card => card.id === item.id), fullPreview);
+    const uploadCompletions = [];
+    replacement.gallery.uploadBudget = new GalleryUploadBudget(() => 0);
+    replacement.gallery.graphics.upload = () => new Promise(resolve => uploadCompletions.push(resolve));
+    replacement.tick(); check(uploadCompletions.length === 3, 'The ownership test must have multiple pending upload completions');
+    const staleUploads = replacement.gallery.assigned.filter(item => replacement.gallery.entries.get(item.slot).uploading)
+      .map(item => ({ ...item, entry: replacement.gallery.entries.get(item.slot) }));
+    // Cross enough uncached viewports to exhaust retained residency as well as
+    // leave the screen; retained offscreen slots legitimately remain reusable.
+    for (let i = 0; i < 4; i++) {
+      replacement.gallery.viewport.scrollTop += replacement.gallery.layout.row * 8;
+      replacement.gallery.dirty = true; replacement.tick();
+    }
+    uploadCompletions.forEach(resolve => resolve()); await flush();
+    const reassigned = staleUploads.filter(item => !replacement.gallery.residency.owns(item.slot, item.token));
+    check(reassigned.length > 0 && reassigned.every(item => !item.entry.ready), 'Upload completions from a previous viewport must not report replacement slots ready');
+    check(replacement.gallery.assigned.every(item => !replacement.gallery.entries.get(item.slot).ready), 'Replacement cards must wait for their own uploads');
+    replacement.gallery.dispose();
+    return { passed: ['visible priority', 'cache bypass', 'stale cancellation', 'hide cancellation', 'overscan preemption',
+      'bounded upload burst', 'visible upload priority', 'upload time budget and progress', 'pending upload ownership'], concurrency: 4 };
   });
   await writeFile(join(out, 'report.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));

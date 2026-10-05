@@ -1,5 +1,5 @@
 import './styles.css';
-import { startupMark, startupTiming, startupPipelines } from './rendering/LoadTiming';
+import { startupFrameReadiness, startupMark, startupTiming, startupPipelines } from './rendering/LoadTiming';
 import { Raycaster, Vector2, Vector3 } from 'three/webgpu';
 import { createRenderer } from './rendering/StudioRenderer';
 import { StudioLighting } from './lighting/StudioLighting';
@@ -356,6 +356,7 @@ async function start() {
   };
   const openGallery = async () => {
     if (disposed || galleryOpening || gallery?.active || pack || packRequest || packBrowser) return;
+    startupMark('galleryOpenRequested');
     galleryOpening = true; cancelWarmup(); ui?.close();
     setLoading(true, 'Opening gallery…');
     try {
@@ -374,7 +375,10 @@ async function start() {
       document.body.classList.add('gallery-mode'); gallery.show();
       // The gallery controls are usable while individual cards prepare. Its
       // own readiness flags still track when every visible shader has painted.
-    } finally { galleryOpening = false; setLoading(false); }
+    } finally {
+      galleryOpening = false; setLoading(false);
+      if (gallery?.active) startupMark('galleryUIAvailable');
+    }
   };
   const browsePacksFromGallery = async () => {
     if (!gallery?.active || packBrowser || browserLoading) return;
@@ -411,6 +415,8 @@ async function start() {
   const observer = new ResizeObserver(resize); observer.observe(container);
   let last = performance.now();
   const frameTimes: number[] = [];
+  let galleryPresentationPending = false;
+  let firstInteractivePending = false;
   renderer.setAnimationLoop(() => {
     const now = performance.now(); const dt = (now - last) / 1000; last = now;
     if (gallery?.active) {
@@ -432,9 +438,31 @@ async function start() {
     else lighting.update(dt);
     if (!pack) spotlightPointer.update(gallery?.active ? undefined : card);
     pipeline.render();
-    if (startupTiming.firstCardVisible === undefined && (gallery?.active || card?.visible)) {
+    const galleryFrame = gallery?.active ? gallery.stats() : undefined;
+    const { firstCardDrawn, galleryAllVisibleDrawn } = startupFrameReadiness(galleryFrame, !!card?.visible);
+    if (galleryFrame && galleryFrame.visible > 0) startupMark('galleryFirstCardSubmitted');
+    if (galleryFrame && galleryAllVisibleDrawn && !galleryPresentationPending && startupTiming.galleryAllVisiblePresented === undefined) {
+      startupMark('galleryAllVisibleSubmitted');
+      const presentedGallery = gallery, expected = galleryFrame.visibleExpected, key = gallery?.presentationKey();
+      galleryPresentationPending = true;
+      requestAnimationFrame(() => {
+        galleryPresentationPending = false;
+        const current = presentedGallery?.stats();
+        if (!disposed && presentedGallery === gallery && current?.active && current.visibleExpected === expected
+          && current.visible === expected && current.visibleFailed === 0 && presentedGallery?.presentationKey() === key)
+          startupMark('galleryAllVisiblePresented');
+      });
+    }
+    if (startupTiming.firstCardVisible === undefined && firstCardDrawn) {
       startupMark('firstCardVisible');
-      requestAnimationFrame(() => { startupMark('firstCardInteractive'); scheduleWarmup(); });
+    }
+    if (startupTiming.firstCardInteractive === undefined && firstCardDrawn && !firstInteractivePending) {
+      firstInteractivePending = true;
+      requestAnimationFrame(() => {
+        firstInteractivePending = false;
+        if (disposed || (gallery?.active ? gallery.stats().visible === 0 : !card?.visible)) return;
+        startupMark('firstCardInteractive'); scheduleWarmup();
+      });
     }
     if (pack && packMetrics.clickAt !== undefined) {
       packMetrics.firstVisibleMs ??= performance.now() - packMetrics.clickAt;

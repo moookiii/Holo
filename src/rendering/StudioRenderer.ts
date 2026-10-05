@@ -1,6 +1,6 @@
 import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, NeutralToneMapping, SRGBColorSpace } from 'three/webgpu';
 import { pass } from 'three/tsl';
-import { startupPipelines, startupTiming } from './LoadTiming';
+import { captureStartupPipelines, startupPipelines } from './LoadTiming';
 import { stabilizeShaderCodeOrder } from './StableShaderCode';
 
 export async function createRenderer(container: HTMLElement) {
@@ -28,7 +28,7 @@ export async function createRenderer(container: HTMLElement) {
   const backend = renderer.backend as unknown as { createRenderPipeline: (object: { material: { name: string; type: string }; pipeline: { vertexProgram: { code: string }; fragmentProgram: { code: string } } }, promises?: Promise<unknown>[]) => void };
   const create = backend.createRenderPipeline;
   backend.createRenderPipeline = function(object, promises) {
-    if (startupTiming.firstCardInteractive !== undefined) return create.call(this, object, promises);
+    if (!captureStartupPipelines()) return create.call(this, object, promises);
     const entry = { material: object.material.name || object.material.type, started: performance.now(), elapsed: 0, async: Array.isArray(promises),
       ...(new URLSearchParams(location.search).has('profile') ? { vertex: object.pipeline.vertexProgram.code, fragment: object.pipeline.fragmentProgram.code } : {}) };
     startupPipelines.push(entry);

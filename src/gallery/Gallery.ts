@@ -6,6 +6,7 @@ import type { CardPreview } from '../card/CardPreviewPreparation';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { GalleryRenderer } from './GalleryRenderer';
 import { GalleryResidency } from './GalleryResidency';
+import { GalleryUploadBudget } from './GalleryUploadBudget';
 import { galleryCardSize, galleryLayout } from './GalleryLayout';
 import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
@@ -43,6 +44,9 @@ export class Gallery {
   private dirty = true;
   private disposed = false;
   private lightingInitialized = false;
+  private uploadBudget = new GalleryUploadBudget();
+  private visibleExpected = 0;
+  private visibleFailed = 0;
   private savedLighting?: Pick<StudioLighting, 'preset' | 'azimuth' | 'elevation' | 'intensity' | 'speed' | 'filterAngle' | 'playing'>;
   private reduced = matchMedia('(prefers-reduced-motion: reduce)');
   active = false;
@@ -218,23 +222,29 @@ export class Gallery {
     // After a scroll, unfinished overscan must not delay the new visible rows.
     for (const item of prioritized) if (!item.visible && this.requests.has(item.slot)
       && this.requests.size + waiting > PREVIEW_CONCURRENCY) this.cancelRequest(item.slot);
-    let uploaded = false;
+    this.uploadBudget.beginFrame();
+    this.visibleExpected = prioritized.filter(item => item.visible).length;
+    this.visibleFailed = 0;
     let waitingForVisibleCard = false;
     for (const item of prioritized) {
       const entry = this.entries.get(item.slot)!, button = this.buttons.get(item.id)!;
-      if (entry.preview && !uploaded) {
-        const preview = entry.preview; entry.preview = undefined; entry.uploading = true; uploaded = true;
+      const previewBytes = entry.preview ? entry.preview.images.reduce((sum, image) => sum + image.byteLength,
+        entry.preview.parameters.byteLength) : 0;
+      if (entry.preview && this.uploadBudget.allows(previewBytes)) {
+        const preview = entry.preview; entry.preview = undefined; entry.uploading = true;
         void this.graphics.upload(item.slot, preview).then(() => {
           if (!this.disposed && this.residency.owns(item.slot, item.token)) entry.ready = true;
         }).catch(error => {
           if (!this.disposed && this.residency.owns(item.slot, item.token)) entry.error = String(error);
         }).finally(() => { entry.uploading = false; });
+        this.uploadBudget.record(previewBytes);
       }
       button.classList.toggle('is-ready', entry.ready);
       const placeholder = button.firstElementChild!; placeholder.textContent = entry.error ? 'Preview unavailable · Retry' : 'Loading…';
       const { card, cardWidth, cardHeight, x, y } = item;
       if (item.visible && !entry.ready && !entry.error)
         waitingForVisibleCard = true;
+      if (item.visible && entry.error) this.visibleFailed++;
       const target = this.pointer && !this.reduced.matches ? influence(this.pointer.x - x, this.pointer.y - y, this.tilt) : { pitch: 0, yaw: 0 };
       entry.pitch = damp(entry.pitch, target.pitch, dt, this.tilt.damping); entry.yaw = damp(entry.yaw, target.yaw, dt, this.tilt.damping);
       if (entry.ready && item.visible)
@@ -251,6 +261,9 @@ export class Gallery {
     this.graphics.mesh.visible = this.graphics.stats().visible > 0;
     this.openingReady = !waitingForVisibleCard;
   }
-  stats() { return { ...this.graphics.stats(), active: this.active, filtered: this.filtered.length, domCards: this.buttons.size, pending: this.requests.size, failed: [...this.entries.values()].filter(e => e.error).length, tilted: [...this.entries.values()].filter(e => Math.abs(e.pitch) + Math.abs(e.yaw) > .001).length, scrollTop: this.viewport.scrollTop }; }
+  stats() { return { ...this.graphics.stats(), ...this.uploadBudget.stats(), visibleExpected: this.visibleExpected, visibleFailed: this.visibleFailed,
+    active: this.active, filtered: this.filtered.length, domCards: this.buttons.size, pending: this.requests.size, failed: [...this.entries.values()].filter(e => e.error).length, tilted: [...this.entries.values()].filter(e => Math.abs(e.pitch) + Math.abs(e.yaw) > .001).length, scrollTop: this.viewport.scrollTop }; }
+  presentationKey() { return JSON.stringify([this.query, this.assigned.map(item => item.id), this.viewport.scrollTop,
+    this.viewport.clientWidth, this.viewport.clientHeight]); }
   dispose() { this.disposed = true; this.hide(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }
 }
