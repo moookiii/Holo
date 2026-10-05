@@ -68,3 +68,12 @@ test('resource counters measure real calls and restore backend ownership', () =>
   assert.equal(telemetry.stats.textureAllocations, 1); assert.equal(telemetry.stats.textureUploads, 1); assert.equal(telemetry.stats.mipmapCalls, 1);
   telemetry.dispose(); assert.equal(backend.createTexture, original);
 });
+
+test('resource observers can be removed out of order without retaining factories', () => {
+  const backend = { createTexture: () => 1, updateTexture: () => {}, generateMipmaps: () => {} };
+  const original = backend.createTexture;
+  const first = new ResourceTelemetry(backend), second = new ResourceTelemetry(backend);
+  first.dispose(); backend.createTexture();
+  assert.equal(first.stats.textureAllocations, 0); assert.equal(second.stats.textureAllocations, 1);
+  second.dispose(); assert.equal(backend.createTexture, original);
+});

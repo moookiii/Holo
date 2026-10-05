@@ -119,7 +119,7 @@ async function start() {
   let galleryOpening = false;
   let galleryFocusFactory: CardFactory | undefined;
   type ViewerResource = { factory: CardFactory; instance: CardInstance; ready: boolean };
-  const viewerResources = new WarmResourcePool<ViewerResource>(256 * 1024 * 1024, 3,
+  const viewerResources = new WarmResourcePool<ViewerResource>(512 * 1024 * 1024, 3,
     value => value.factory.retainedBytes(), value => value.factory.dispose());
   let viewerLease: ReturnType<typeof viewerResources.acquire> | undefined;
   let openingFrame: ReturnType<typeof beginOpening>;
@@ -293,6 +293,7 @@ async function start() {
   };
   const prepareProfile = factory.prepareProfile.bind(factory);
   const setProfile = async (id: string) => {
+    viewerLease?.invalidate();
     cancelWarmup(); factory.setBackgroundPaused(true);
     try {
       const p = resolveCardProfile(definition, id);
@@ -357,7 +358,6 @@ async function start() {
           resource.ready = true;
         } else markOpening(timing, 'residentHit');
         candidate = resource.instance;
-        if (fromGallery) galleryFocusFactory = resource.factory;
       } else candidate = await factory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
     } finally { finish(); }
     if (generation !== loadGeneration || disposed) { if (!pooledInstances.has(candidate)) candidate.dispose(); return; }
@@ -372,6 +372,7 @@ async function start() {
     card.quaternion.copy(motion.orientation); scene.add(card);
     card.visible = true;
     if (fromGallery) {
+      galleryFocusFactory = viewerLease ? (await viewerLease.pending).factory : undefined;
       gallery?.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false; pointer.setEnabled(true);
       motion.reset(); card.position.set(0, 0, 0);
     }

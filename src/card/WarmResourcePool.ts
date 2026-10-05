@@ -17,12 +17,16 @@ export class WarmResourcePool<T> {
       fresh.pending = Promise.resolve().then(create).then(value => {
         fresh.value = value; fresh.bytes = this.size(value);
         if (this.disposed) { this.destroy(value); fresh.value = undefined; }
+        else if (fresh.invalid && !fresh.refs) {
+          this.destroy(value); fresh.value = undefined;
+          if (this.entries.get(key) === fresh) this.entries.delete(key);
+        }
         this.trim(); return value;
       }, error => { if (this.entries.get(key) === fresh) this.entries.delete(key); throw error; });
     }
     const held = entry; held.refs++;
     let released = false;
-    return { pending: held.pending, release: (invalidate = false) => {
+    return { pending: held.pending, invalidate: () => { held.invalid = true; }, release: (invalidate = false) => {
       if (released) return; released = true;
       held.invalid ||= invalidate; held.refs--;
       if (held.invalid && !held.refs && held.value) {
