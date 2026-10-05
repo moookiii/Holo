@@ -5,7 +5,7 @@ import type { Node } from 'three/webgpu';
 import { MeshPhysicalNodeMaterial, MeshStandardNodeMaterial, Color, Texture, Vector2 } from 'three/webgpu';
 import { texture, mix, vec2, uv, positionLocal, sin, float, uniform, normalViewGeometry, vec3, mx_noise_float } from 'three/tsl';
 
-export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { clearcoat: number; clearcoatRoughness: number; }, crop?: [number, number, number, number], physical?: PhysicalCardProfile, seed = 0) {
+export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { clearcoat: number; clearcoatRoughness: number; }, crop?: [number, number, number, number], physical?: PhysicalCardProfile, seed = 0, seedOffset?: Node<'vec2'>) {
   // Card backs use a broad satin varnish. A tight clearcoat lobe turns the
   // camera/stack settling motion after extraction into a sequence of hard
   // white flashes, especially beneath the pack's narrow studio emitters.
@@ -18,7 +18,7 @@ export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { 
   material.metalnessNode = mix(float(0.02), float(0.8), metal);
   material.roughnessNode = mix(float(0.48), float(0.26), metal);
   if (physical && !physical.legacyCoating) {
-    const stock = new StockSurfaceLayer(seed, undefined, physical);
+    const stock = new StockSurfaceLayer(seed, seedOffset, physical);
     material.clearcoat = physical.back.clearcoat;
     material.clearcoatRoughness = physical.back.clearcoatRoughness;
     material.metalnessNode = mix(float(0), float(.8), metal);

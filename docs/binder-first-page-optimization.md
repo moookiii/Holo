@@ -65,3 +65,31 @@ Frame P95 improved in both pairs (99.9 -> 66.6 ms, 110.9 -> 105.6 ms).
 Populated page turns still created no new pipelines or textures. The material
 ownership tests verify that disposing one card preserves the shared edge for
 the others and that ordinary instances keep their original disposal behavior.
+The further lifecycle verification pair measured 7.65 -> 8.97 s, despite the
+same twelve-to-one reduction. End-to-end timings remain noisy; the first two
+pairs should not be interpreted as an improvement guaranteed on every run.
+
+## Shared printed-back graphs
+
+Printed backs with the same texture, crop and complete physical finish now
+clone one authored node graph. A material reference supplies each clone's
+original `(seed % 97) / 7, (seed % 71) / 11` grain offset, with separate material
+instances and per-object GPU uniform bindings. This uses the original stock
+shader, including parallax, roughness and micro-normals. Holographic reverses
+also avoid constructing and immediately discarding an unused printed material.
+The graph-template cache is limited to sixteen recent entries so imported
+backs and crop edits cannot accumulate an unbounded set of templates. Live
+clones retain their nodes independently when an unused template is evicted.
+
+Set `BINDER_COMPARE=back` to compare this optimization alone while keeping shared
+edges enabled in both samples. Printed-back node builds fall from twelve to
+one; together with shared edges, this removes twenty-two redundant graph builds
+from the first page. Pairs measured 8.98 -> 6.83 s, 6.74 -> 7.31 s, and
+7.39 -> 7.24 s. The shader work reduction is verified, while asset/CPU and
+machine-load variation still prevents a reliable fixed end-to-end saving.
+
+Set `BINDER_VISUAL=1` for a pixel comparison of Alakazam and Blastoise backs in
+Studio and grazing Skim light. All four comparisons have zero changed RGB
+channels and zero mean channel difference. Populated first turns still create
+no new pipelines or textures. No preload, reduced image resolution, reduced
+surface detail or deferred compilation on first presentation is involved.

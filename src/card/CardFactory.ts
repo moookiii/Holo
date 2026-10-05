@@ -1,6 +1,7 @@
 import { resolvePhysicalCardProfile } from '../materials/PhysicalCardProfile';
 import { getProfile } from '../materials/profiles/index';
-import { DataTexture, Texture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
+import { DataTexture, Texture, Vector2, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, SRGBColorSpace, type Node, type Material, type BufferGeometry, type Camera, type Object3D, type RenderTarget, type Scene, type WebGPURenderer } from 'three/webgpu';
+import { materialReference } from 'three/tsl';
 import { AssetManager } from '../assets/AssetManager';
 import { startupMark } from '../rendering/LoadTiming';
 import { openingStage } from '../rendering/CardOpeningTiming';
@@ -34,6 +35,28 @@ export class CardFactory {
   private patterns = new PatternCache(2);
   private geometries = new Map<string, BufferGeometry>();
   private edgeMaterials = new Map<string, Material>();
+  private printBackTemplates = new Map<string, Material>();
+  private createPrintedBack(definition: CardDefinition, back: Texture, physical: ReturnType<typeof resolvePhysicalCardProfile>) {
+    const key = JSON.stringify([back.uuid, this.assets.black.uuid, physical, definition.backCrop]);
+    let template = this.printBackTemplates.get(key);
+    if (template) this.printBackTemplates.delete(key);
+    if (!template) {
+      // The graph is identical across seeds. A material reference keeps each
+      // clone's original seed offset and separate per-object uniform bindings.
+      template = createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, 0,
+        materialReference('userData.stockSeedOffset', 'vec2') as unknown as Node<'vec2'>);
+    }
+    this.printBackTemplates.set(key, template);
+    // Imported backs and crop edits must not grow an unbounded graph cache.
+    // Clones retain their nodes independently of this unused template material.
+    if (this.printBackTemplates.size > 16) {
+      const oldest = this.printBackTemplates.keys().next().value!;
+      this.printBackTemplates.get(oldest)!.dispose(); this.printBackTemplates.delete(oldest);
+    }
+    const material = template.clone();
+    material.userData.stockSeedOffset = new Vector2((definition.seed % 97) / 7, (definition.seed % 71) / 11);
+    return material;
+  }
   private sharedEdgeMaterial(definition: CardDefinition, profile: HolographicProfile, physical: ReturnType<typeof resolvePhysicalCardProfile>) {
     const metal = definition.construction ? profile.metallicInk : undefined;
     const key = JSON.stringify([metal, physical.edge, definition.dimensions.thickness]);
@@ -154,16 +177,15 @@ export class CardFactory {
         holo.setProfile(profile, fields); holo.setAspect(definition.dimensions.width / definition.dimensions.height, definition.dimensions.height); material = holo;
         this.gpuStats.holoMaterials++;
       }
-      let reverse: Material = createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, definition.seed);
+      let reverse: Material;
       if (prepared.backMaps && definition.backProfile) {
         const source = prepared.backMaps, packed = source.packed!;
         const maps: CardMaterialMaps = { ...source, secondaryDirection: undefined, stampDirection: undefined, coverage: bytesTexture(packed.coverage,packed.width,packed.height), surface: bytesTexture(packed.surface,packed.width,packed.height), pattern: bytesTexture(packed.pattern,packed.width,packed.height), normal: source.normal ? imageTexture(source.normal, false) : this.assets.flatNormal, direction: source.direction ? imageTexture(source.direction,false) : undefined };
         const backProfile = getProfile(definition.backProfile);
-        reverse.dispose();
         const foil = new HolographicMaterial(back,maps.coverage,maps.surface,definition.seed,backProfile,undefined,maps, undefined, false, physical);
         foil.setProfile(backProfile,{}); foil.setAspect(definition.dimensions.width/definition.dimensions.height,definition.dimensions.height);
         reverse = foil;
-      }
+      } else reverse = this.createPrintedBack(definition, back, physical);
       const materials = [material, reverse, this.sharedEdgeMaterial(definition, profile, physical)];
       this.gpuStats.materialCreationMs += performance.now() - materialStarted;
       instance = new CardInstance(definition, this.geometries.get(key)!, materials, () => {
@@ -387,13 +409,14 @@ export class CardFactory {
     for (const texture of textures) { const image = texture.image; bytes += (image?.width ?? 1) * (image?.height ?? 1) * 10; }
     return bytes;
   }
-  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, sharedEdgeMaterials: this.edgeMaterials.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures, ...this.resourceTelemetry.stats,
+  stats() { const textures = this.textures.stats(); return { instances: this.instances.size, geometries: this.geometries.size, sharedEdgeMaterials: this.edgeMaterials.size, printBackTemplates: this.printBackTemplates.size, residentGpuTextures: this.renderer.info.memory.textures, ...this.gpuStats, ...textures, ...this.resourceTelemetry.stats,
     textureRealizations: textures.textureRealizations + this.gpuStats.sharedTextureCreates,
     textureCacheHits: textures.textureCacheHits + this.gpuStats.sharedTextureHits }; }
   dispose() {
     this.disposed = true;
     this.instances.forEach(card => card.dispose());
     this.edgeMaterials.forEach(material => material.dispose()); this.edgeMaterials.clear();
+    this.printBackTemplates.forEach(material => material.dispose()); this.printBackTemplates.clear();
     this.geometries.forEach(geometry => geometry.dispose()); this.geometries.clear();
     this.maps.dispose(); this.assets.dispose(); this.patterns.dispose();
     this.textures.dispose();

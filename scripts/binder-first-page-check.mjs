@@ -8,6 +8,9 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true,
   args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const report = [];
 const edgeComparison = process.env.BINDER_COMPARE === 'edge';
+const backComparison = process.env.BINDER_COMPARE === 'back';
+const materialComparison = edgeComparison || backComparison;
+const baselineBackShots = new Map();
 try {
   for (let run = 0; run < Number(process.env.BINDER_RUNS || 2); run++) {
     for (const baseline of [true, false]) {
@@ -15,8 +18,14 @@ try {
       const context = await browser.newContext({ viewport: { width: 1600, height: 1000 } });
       const page = await context.newPage(), errors = [];
       page.on('pageerror', error => errors.push(String(error)));
+      page.on('console', message => {
+        const text = message.text();
+        // Hot reload is deliberately disconnected for benchmark stability.
+        if (text.startsWith('[vite] failed to connect to websocket.') || text.startsWith('Failed to send error to Vite server:')) return;
+        if (message.type() === 'error') errors.push(text);
+      });
       await page.routeWebSocket('**', socket => socket.close());
-      if (baseline && !edgeComparison) await page.route('**/src/binder/BinderScene.ts*', async route => {
+      if (baseline && !materialComparison) await page.route('**/src/binder/BinderScene.ts*', async route => {
         const response = await route.fetch();
         const source = await response.text();
         assert.ok(source.includes('new BinderPage(index, side, this.materials, geometry)'));
@@ -29,6 +38,12 @@ try {
         await route.fulfill({ response, body: source.replace('this.sharedEdgeMaterial(definition, profile, physical)',
           'createEdgeMaterial(definition.construction ? profile.metallicInk : undefined, physical, definition.dimensions.thickness)') });
       });
+      if (baseline && backComparison) await page.route('**/src/card/CardFactory.ts*', async route => {
+        const response = await route.fetch(), source = await response.text();
+        assert.ok(source.includes('this.createPrintedBack(definition, back, physical)'));
+        await route.fulfill({ response, body: source.replace('this.createPrintedBack(definition, back, physical)',
+          'createPrintMaterial(back, this.assets.black, physical.back, definition.backCrop, physical, definition.seed)') });
+      });
       const url = new URL(process.env.BINDER_URL || 'http://127.0.0.1:5173/?backend=webgpu');
       url.searchParams.set('benchmark-cold-viewer', '1');
       await page.goto(url.href);
@@ -36,7 +51,7 @@ try {
         const s = window.__holo?.gallery.stats();
         return s?.active && s.visibleExpected && s.visible === s.visibleExpected && !s.visibleFailed;
       }, null, { timeout: 120000 });
-      await page.evaluate(({ baseline, edgeComparison }) => {
+      await page.evaluate(({ baseline, materialComparison }) => {
         const g = window.__holo.gallery.instance();
         if (g.binder) throw Error('Binder already constructed');
         if (g.options.cpu.stats().entries) throw Error('Full-quality cards already prepared');
@@ -46,9 +61,11 @@ try {
         const timing = window.firstPageTiming = { start: performance.now(), frames: [], longTasks: [] };
         const renderer = window.__holo.renderer, created = renderer.debug.onNodeBuilderCreated;
         timing.edgeBuilds = 0;
+        timing.backBuilds = 0;
         renderer.debug.onNodeBuilderCreated = function(builder, object) {
           const card = object.object.userData.cardInstance;
           if (card && object.material === card.mesh.material[2]) timing.edgeBuilds++;
+          if (card && object.material === card.mesh.material[1]) timing.backBuilds++;
           created?.(builder, object);
         };
         const observer = new PerformanceObserver(list => {
@@ -58,7 +75,7 @@ try {
         g.openBinder();
         // Reproduce the old presentation order without changing the loader,
         // assets, geometry, material response or preparation concurrency.
-        if (baseline && !edgeComparison) g.binder.physical.group.visible = true;
+        if (baseline && !materialComparison) g.binder.physical.group.visible = true;
         timing.constructMs = performance.now() - timing.start;
         let previous = timing.start, readyFrame = false;
         const poll = now => {
@@ -73,7 +90,7 @@ try {
           } else { readyFrame = ready; requestAnimationFrame(poll); }
         };
         requestAnimationFrame(poll);
-      }, { baseline, edgeComparison });
+      }, { baseline, materialComparison });
       await page.waitForFunction(() => window.firstPageTiming.visibleMs, null, { timeout: 240000 });
       const result = await page.evaluate(() => {
         const binder = window.__holo.gallery.instance().binder;
@@ -88,11 +105,12 @@ try {
       assert.equal(result.stats.visible, 12);
       assert.equal(result.stats.visibleFailed, 0);
       assert.ok(result.stats.residentCards >= 12 && result.stats.residentCards <= 36);
-      assert.equal(result.geometry.unique, baseline && !edgeComparison ? result.geometry.surfaces : 6);
+      assert.equal(result.geometry.unique, baseline && !materialComparison ? result.geometry.surfaces : 6);
       if (edgeComparison) {
         assert.equal(result.edgeMaterials, baseline ? result.stats.residentCards : 1);
         assert.equal(result.timing.edgeBuilds, baseline ? result.stats.residentCards : 1);
       }
+      if (backComparison) assert.equal(result.timing.backBuilds, baseline ? result.stats.residentCards : 1);
       result.geometry.hashes = await page.evaluate(async baseline => {
         const physical = window.__holo.gallery.instance().binder.physical;
         const pages = physical.preparationPages ?? [...physical.pages.values()];
@@ -128,6 +146,44 @@ try {
         return { pipelines, textures, visible: g.stats().visible, failed: g.stats().visibleFailed };
       });
       assert.deepEqual(result.turn, { pipelines: 0, textures: 0, visible: 24, failed: 0 });
+      if (backComparison && process.env.BINDER_VISUAL === '1') {
+        const ids = await page.evaluate(() => window.__holo.gallery.instance().binder.cards.slice(0, 2).map(c => c.id));
+        await page.evaluate(async id => { await window.__holo.gallery.instance().binder.inspect(id); window.__holo.hideUI(); }, ids[0]);
+        await page.mouse.move(800, 500);
+        result.backPixels = [];
+        for (const id of ids) {
+          await page.evaluate(async id => { await window.__holo.setCard(id); window.__holo.lighting.playing = false; }, id);
+          for (const [yaw, pitch, light] of [[180, 0, 'Studio'], [155, 12, 'Skim']]) {
+            await page.evaluate(({ yaw, pitch, light }) => {
+              const h = window.__holo; h.pose(yaw, pitch); h.zoom(1);
+              h.lighting.setPreset(light); h.lighting.playing = false;
+            }, { yaw, pitch, light });
+            await page.waitForTimeout(250);
+            const shot = await page.screenshot({ path: `${out}/back-${baseline ? 'baseline' : 'shared'}-${run}-${id}-${light}.png` });
+            const key = `${run}:${id}:${light}`;
+            if (baseline) baselineBackShots.set(key, shot.toString('base64'));
+            else {
+              const pixels = await page.evaluate(async shots => {
+                const data = [];
+                for (const shot of shots) {
+                  const image = new Image(); image.src = `data:image/png;base64,${shot}`; await image.decode();
+                  const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height;
+                  const ctx = canvas.getContext('2d'); ctx.drawImage(image, 0, 0);
+                  data.push(ctx.getImageData(0, 0, image.width, image.height).data);
+                }
+                let sum = 0, changed = 0;
+                for (let i = 0; i < data[0].length; i += 4) for (let c = 0; c < 3; c++) {
+                  const difference = Math.abs(data[0][i + c] - data[1][i + c]); sum += difference;
+                  if (difference > 2) changed++;
+                }
+                return { meanChannelDifference: sum / (data[0].length * .75), changedChannelsAbove2: changed };
+              }, [baselineBackShots.get(key), shot.toString('base64')]);
+              result.backPixels.push({ id, light, ...pixels });
+              assert.ok(pixels.meanChannelDifference < .03, `${id}/${light}: seed-specific back pixels changed`);
+            }
+          }
+        }
+      }
       if (edgeComparison && !baseline) {
         result.edgeLifetime = await page.evaluate(async () => {
           const binder = window.__holo.gallery.instance().binder, factory = binder.factory;
@@ -162,11 +218,12 @@ try {
         frameP95Ms: result.frameP95Ms, maxFrameMs: result.maxFrameMs,
         constructMs: result.timing.constructMs, geometry: result.geometry,
         edgeMaterials: result.edgeMaterials, edgeBuilds: result.timing.edgeBuilds,
+        backBuilds: result.timing.backBuilds,
         longTasks: result.timing.longTasks.length, gpuBytes: result.stats.residentGpuBytes, turn: result.turn }));
       await context.close();
     }
   }
 } finally {
-  await writeFile(`${out}/first-page${edgeComparison ? '-edge' : ''}-report.json`, JSON.stringify(report, null, 2));
+  await writeFile(`${out}/first-page${materialComparison ? `-${process.env.BINDER_COMPARE}` : ''}-report.json`, JSON.stringify(report, null, 2));
   await browser.close();
 }
