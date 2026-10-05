@@ -80,7 +80,8 @@ async function measure(name, action) {
       webgl: h.renderer.backend.isWebGLBackend === true, samples: h.renderer.samples,
       compatibilityMode: h.renderer.backend.compatibilityMode, deviceFeatures: h.renderer.backend.device ? [...h.renderer.backend.device.features] : undefined,
       browserReportedRenderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl?.getParameter(gl.RENDERER),
-      parallelCompile: !!gl?.getExtension('KHR_parallel_shader_compile'), frameMs: h.stats().frameMs });
+      parallelCompile: !!gl?.getExtension('KHR_parallel_shader_compile'), frameMs: h.stats().frameMs,
+      stages: window.__galleryStages });
   })()`));
   const row = { name, readyMs, paintedMs, ...state }; report.phases.push(row);
   await writeFile(join(out, `${name}.png`), Buffer.from(capture.data, 'base64'));
@@ -94,6 +95,25 @@ try {
   context = (await call('browsingContext.create', { type: 'tab' })).context;
   await call('browsingContext.setViewport', { context, viewport: { width: 1440, height: 1100 }, devicePixelRatio: 1 });
   await call('session.subscribe', { events: ['log.entryAdded'] });
+  await call('script.addPreloadScript', { functionDeclaration: `() => {
+    window.__galleryStages = []; let debug;
+    Object.defineProperty(window, '__holo', { configurable: true, get: () => debug, set(value) {
+      debug = value;
+      const backend = value.renderer.backend, create = backend.createRenderPipeline;
+      backend.createRenderPipeline = function(object, promises) {
+        const started = performance.now(), result = create.call(this, object, promises);
+        if (object.object.name.startsWith('Gallery ')) window.__galleryStages.push({ stage: 'pipeline', name: object.object.name,
+          started, ms: performance.now() - started, fragmentBytes: object.pipeline.fragmentProgram.code.length });
+        return result;
+      };
+      const cpu = value.cpuPreparation, prepare = cpu.preparePreview;
+      cpu.preparePreview = async function(...args) {
+        const started = performance.now();
+        try { return await prepare.apply(this, args); }
+        finally { window.__galleryStages.push({ stage: 'preview', card: args[0]?.id, started, ms: performance.now() - started }); }
+      };
+    } });
+  }` });
   if (process.env.GALLERY_START_VIEWER === '1') {
     const viewer = new URL(url); viewer.searchParams.set('lab', '');
     await call('browsingContext.navigate', { context, url: viewer.href, wait: 'interactive' });
