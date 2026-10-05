@@ -1,10 +1,15 @@
 import { firefox } from 'playwright';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { transformWithEsbuild } from 'vite';
 const url = process.env.GALLERY_URL || 'http://127.0.0.1:5174';
 const out = join(process.cwd(), 'artifacts', 'gallery-preview-compare');
 await mkdir(out, { recursive: true });
-const baseline = await readFile('artifacts/card-preview-before-parallel.js', 'utf8');
+const source = await readFile('artifacts/gallery-baseline-source/src/card/CardPreviewPreparation.ts', 'utf8');
+const { code } = await transformWithEsbuild(source, 'baseline.ts', { loader: 'ts', target: 'es2022' });
+const baseline = code.replace(/from '(\.[^']+)'/g, (_match, path) => `from '${new URL(`${path}.ts`, 'http://placeholder/src/card/').pathname}'`)
+  .replace(/from "(\.[^"]+)"/g, (_match, path) => `from '${new URL(`${path}.ts`, 'http://placeholder/src/card/').pathname}'`)
+  .replaceAll('import.meta.env.BASE_URL', JSON.stringify('/'));
 const browser = await firefox.launch({ headless: true, executablePath: join(process.env.LOCALAPPDATA, 'ms-playwright', 'firefox-1543', 'firefox', 'firefox.exe') });
 try {
   const page = await browser.newPage();
