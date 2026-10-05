@@ -57,3 +57,17 @@ full card viewer. Captures and results are written to `artifacts/favorites-binde
 The browser check uses the WebGL fallback by default; set BINDER_URL for another
 running backend. Screenshots support visual review, not a claim of measured physical
 material accuracy or a guarantee of frame rate on every GPU.
+
+## Motion scheduling
+
+Dense film and seam vertices remain static. A 513-sample float texture carries the
+sheet's position/tangent curve into the vertex shader; the authored film normal maps
+remain active. Surfaces are merged into three material draws per face. Raycasting
+uses a separate 96-by-4 separator, and cards remain rigid instances following the
+same tangents. This removes dense vertex uploads and normal/bounds reconstruction
+from each turn frame. Hidden stationary pages do not repeat deformation work.
+
+GPU card realization, per-texture uploads, compilation and attachment wait while a
+page turn or orbit drag is active. Already-started GPU operations can finish, but
+subsequent loading steps yield until motion settles. The pause callback is optional
+in CardFactory, so normal viewer/gallery uploads retain their existing behavior.

@@ -38,13 +38,6 @@ try{
  await page.mouse.move(edge.x,edge.y);await page.mouse.down();await page.mouse.move(edge.x-180,edge.y,{steps:10});
  assert.equal((await state()).dragging,true);assert.deepEqual((await pose()).camera,initial.camera); await capture('drag-follow');await page.mouse.up();
  await page.waitForFunction(()=>!window.__holo.gallery.stats().turning);assert.equal((await state()).spread,1);
- const pose=()=>page.evaluate(()=>{const b=window.__holo.gallery.instance().binder;return {camera:window.__holo.camera.position.toArray(),tilt:[b.tilt.targetX,b.tilt.targetY],vertices:Array.from(b.physical.pages.get(2).hitMesh.geometry.getAttribute('position').array)};});
- const initial=await pose();await page.mouse.move(1500,500);await page.waitForTimeout(250);assert.deepEqual(await pose(),initial);
- await page.mouse.wheel(0,600);await page.waitForTimeout(150);assert.deepEqual((await pose()).camera,initial.camera);
- // A shell/spine press cannot rotate. Rotation depends on where the press started.
- await page.mouse.move(800,500);await page.mouse.down();await page.mouse.move(860,550,{steps:8});await page.mouse.up();assert.deepEqual((await pose()).tilt,initial.tilt);
- await page.mouse.move(12,500);await page.mouse.down();await page.mouse.move(30,520,{steps:8});await page.mouse.up();assert.notDeepEqual((await pose()).tilt,initial.tilt);
- await page.evaluate(()=>{const b=window.__holo.gallery.instance().binder;b.tilt.targetX=-.065;b.tilt.targetY=0;});await page.waitForTimeout(500);
  await page.mouse.move(edge.x,edge.y);await page.mouse.down();await page.mouse.move(400,edge.y,{steps:18});await capture('drag-across');await page.mouse.up();
  await page.waitForFunction(()=>!window.__holo.gallery.stats().turning);assert.equal((await state()).spread,2);
  for(let s=3;s<=20;s++){await turn(1,s);if([4,10,20].includes(s))await capture(`spread-${s}`);}
@@ -53,13 +46,6 @@ try{
  await collection(73);await ready();await capture('cards-corrected');
  for(let s=2;s<=5;s++){await turn(1,s);await ready();const expected=Math.min(24,Math.max(0,73-(2*s-1)*12));assert.equal((await state()).visible,expected);}
  await collection(961);await page.getByLabel('Select favorites binder').selectOption('2');await ready();assert.equal((await state()).binderIndex,2);assert.equal((await state()).spread,1);
- const pose=()=>page.evaluate(()=>{const b=window.__holo.gallery.instance().binder;return {camera:window.__holo.camera.position.toArray(),tilt:[b.tilt.targetX,b.tilt.targetY],vertices:Array.from(b.physical.pages.get(2).hitMesh.geometry.getAttribute('position').array)};});
- const initial=await pose();await page.mouse.move(1500,500);await page.waitForTimeout(250);assert.deepEqual(await pose(),initial);
- await page.mouse.wheel(0,600);await page.waitForTimeout(150);assert.deepEqual((await pose()).camera,initial.camera);
- // A shell/spine press cannot rotate. Rotation depends on where the press started.
- await page.mouse.move(800,500);await page.mouse.down();await page.mouse.move(860,550,{steps:8});await page.mouse.up();assert.deepEqual((await pose()).tilt,initial.tilt);
- await page.mouse.move(12,500);await page.mouse.down();await page.mouse.move(30,520,{steps:8});await page.mouse.up();assert.notDeepEqual((await pose()).tilt,initial.tilt);
- await page.evaluate(()=>{const b=window.__holo.gallery.instance().binder;b.tilt.targetX=-.065;b.tilt.targetY=0;});await page.waitForTimeout(500);
  await turn(-1,0);await ready();assert.equal((await state()).visible,1);await capture('third-binder');
  const card=page.locator('.binder-card').first(); const rect=await card.boundingBox();await page.mouse.click(rect.x+rect.width/2,rect.y+rect.height/2);
  await page.waitForFunction(()=>!window.__holo.gallery.stats().active,null,{timeout:120000});

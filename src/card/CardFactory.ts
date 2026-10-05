@@ -166,11 +166,12 @@ export class CardFactory {
 
   /** Full-size uploads and mip generation finish before presentation. Viewer
    * opens yield between expensive textures so the loading UI keeps painting. */
-  async uploadCardResources(cards: CardInstance[], incremental = false) {
+  async uploadCardResources(cards: CardInstance[], incremental = false, pause?: () => boolean) {
     const started = performance.now();
     const resources = new Set<Texture>(cards.flatMap(card => card.mesh.userData.resourceTextures ?? []));
     let sliceStarted = performance.now();
     for (const texture of resources) {
+      while (pause?.()) await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
       this.renderer.initTexture(texture);
       if (incremental && performance.now() - sliceStarted >= 5) {
         await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));

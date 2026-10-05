@@ -184,9 +184,14 @@ export class FavoritesBinder {
           const card = this.cards[index]; let instance;
           try {
             const prepared = card.construction ? undefined : await this.cpuReady(card, request.signal);
+            await this.waitForMotion(request.signal);
             if (request.signal.aborted) return;
             instance = prepared ? await domain.realizeCardGpu(prepared, request.signal, false) : await domain.create(card, request.signal, false);
-            await domain.uploadCardResources([instance], true); await domain.compile(instance.mesh);
+            await domain.uploadCardResources([instance], true, () => !request.signal.aborted && this.motionActive());
+            await this.waitForMotion(request.signal);
+            if (request.signal.aborted) { instance.dispose(); return; }
+            await domain.compile(instance.mesh);
+            await this.waitForMotion(request.signal);
             if (request.signal.aborted || !this.active) { instance.dispose(); return; }
             const page = this.physical.pages.get(pageIndex);
             if (!page) { instance.dispose(); continue; }
@@ -202,6 +207,10 @@ export class FavoritesBinder {
       this.job = job;
       try { await job; } finally { if (this.job === job) { this.job = undefined; this.request = undefined; } }
     })().catch(error => { if (this.active) this.status.textContent = String(error); });
+  }
+  private motionActive() { return !!this.navigation.turn || !!this.drag?.moved; }
+  private async waitForMotion(signal: AbortSignal) {
+    while (!signal.aborted && this.active && this.motionActive()) await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
   }
   private async cpuReady(card: CardDefinition, signal: AbortSignal) {
     let cancel!: () => void;

@@ -1,10 +1,11 @@
 import { Group, Mesh, MeshStandardNodeMaterial, MeshPhysicalNodeMaterial, PlaneGeometry,
-  BoxGeometry, DoubleSide, BufferGeometry, Float32BufferAttribute, TextureLoader, RepeatWrapping, Vector2,
+  BoxGeometry, DoubleSide, BufferGeometry, Float32BufferAttribute, TextureLoader, RepeatWrapping, Vector2, DataTexture, FloatType, RGBAFormat, LinearFilter,
   Shape, Path, ExtrudeGeometry, CatmullRomCurve3, CurvePath, LineCurve3, QuadraticBezierCurve3, Color, Vector3, TubeGeometry, InstancedMesh, Matrix4, Quaternion, type Material } from 'three/webgpu';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { BINDER, pocket, sheetCurve, sheetPoint, restingPoint, faceSide, faceHeight } from './BinderLayout';
 import type { CardInstance } from '../card/CardInstance';
-import { float, normalView, positionViewDirection } from 'three/tsl';
+import { float, normalView, positionViewDirection, texture, vec2, vec3, positionGeometry, normalLocal, Fn, uniform } from 'three/tsl';
 
 /** Raised annular weld impressions: open centres expose the dark separator. */
 function perforatedSeams() {
@@ -20,6 +21,7 @@ function perforatedSeams() {
   for (let c = 0; c <= 4; c++) for (let y = -14.2; y < 14.3; y += .18) add(1.2 + c * 7.05, y, true);
   for (let r = 0; r <= 3; r++) for (let x = 1.3; x < 29.3; x += .18) add(x, -14.175 + r * 9.45, false);
   const geometry = new BufferGeometry(); geometry.setAttribute('position', new Float32BufferAttribute(vertices, 3)); geometry.computeVertexNormals();
+  geometry.setAttribute('uv', new Float32BufferAttribute(new Float32Array(vertices.length / 3 * 2), 2));
   return geometry;
 }
 
@@ -30,9 +32,16 @@ export class BinderPage {
   private surfaces: Surface[] = [];
   private geometries = new Set<BufferGeometry>();
   private lastPose = '';
-  get hitMesh() { return this.surfaces[0].mesh; }
+  private hit!: Mesh;
+  private poseData = new Float32Array(513 * 4);
+  private poseTexture = new DataTexture(this.poseData, 513, 1, RGBAFormat, FloatType);
+  private reverse = uniform(1);
+  private orientation = uniform(1);
+  private pageMaterials: Material[] = [];
+  get hitMesh() { this.hit.matrixWorld.copy(this.group.matrixWorld); return this.hit; }
   constructor(readonly index: number, readonly side: -1 | 1, private materials: { backing: Material; plastic: Material; weld: Material }) {
     this.group.name = `binder-page:${index}`;
+    this.poseTexture.minFilter = this.poseTexture.magFilter = LinearFilter; this.poseTexture.generateMipmaps = false;
     this.surface(new PlaneGeometry(BINDER.pageWidth, BINDER.pageHeight, 96, 12), 0, 0, .42, materials.backing);
     // A separate physical film above the card, with a little tension at each lip.
     for (let i = 0; i < 12; i++) {
@@ -54,10 +63,33 @@ export class BinderPage {
         this.surface(new PlaneGeometry(6.98, .035, 20, 1), u - BINDER.pageWidth / 2, y + dy, .54, materials.weld);
     }
     this.surface(perforatedSeams(), -BINDER.pageWidth / 2, 0, .57, materials.weld);
+    const hitGeometry = new PlaneGeometry(BINDER.pageWidth, BINDER.pageHeight, 96, 4);
+    this.geometries.add(hitGeometry); this.hit = new Mesh(hitGeometry, materials.backing); this.hit.matrixAutoUpdate = false;
+    // Three draw calls per face. Dense film and weld geometry remains static;
+    // a tiny sampled curve drives all vertices on the GPU during a drag.
+    const grouped = new Map<Material, Surface[]>();
+    for (const surface of this.surfaces) { const material = surface.mesh.material as Material; const group = grouped.get(material) ?? []; group.push(surface); grouped.set(material, group); }
+    this.surfaces = [];
+    for (const [source, surfaces] of grouped) {
+      const inputs = surfaces.map(s => { const g = s.mesh.geometry; if (!g.index) return g; const plain = g.toNonIndexed(); this.geometries.add(plain); return plain; });
+      const geometry = mergeGeometries(inputs, false)!;
+      surfaces.forEach(s => s.mesh.removeFromParent()); this.geometries.add(geometry);
+      const material = (source as MeshStandardNodeMaterial).clone();
+      material.positionNode = Fn(() => {
+        const sample = texture(this.poseTexture, vec2(positionGeometry.x.div(BINDER.pageWidth).mul(512).add(.5).div(513), .5)).level(float(0)).toVar();
+        const angle = sample.z, sin = angle.sin(), cos = angle.cos(), offset = positionGeometry.z.mul(this.reverse);
+        const n = normalLocal.toVar(), nx = n.x.mul(this.reverse), ny = n.y.mul(this.orientation).mul(this.reverse), nz = n.z.mul(this.orientation);
+        normalLocal.assign(vec3(nx.mul(cos).add(nz.mul(sin)), ny, nz.mul(cos).sub(nx.mul(sin))));
+        return vec3(sample.x.add(sin.mul(offset)), positionGeometry.y, sample.y.add(cos.mul(offset)));
+      })();
+      this.pageMaterials.push(material);
+      const mesh = new Mesh(geometry, material); mesh.frustumCulled = false; this.group.add(mesh);
+      this.surfaces.push({ mesh, original: new Float32Array(0), offset: source === materials.backing ? 0 : 1 });
+    }
     this.pose();
   }
   private surface(geometry: BufferGeometry, x: number, y: number, offset: number, material: Material) {
-    geometry.translate(x + BINDER.pageWidth / 2, y, 0);
+    geometry.translate(x + BINDER.pageWidth / 2, y, offset - .42);
     const mesh = new Mesh(geometry, material); mesh.frustumCulled = false;
     this.surfaces.push({ mesh, original: new Float32Array(geometry.getAttribute('position').array), offset });
     this.geometries.add(geometry); this.group.add(mesh);
@@ -69,25 +101,20 @@ export class BinderPage {
     this.lastPose = key;
     const turning = progress !== undefined;
     const curve = turning ? sheetCurve(progress!, turningSide, height) : undefined;
+    this.reverse.value = reverse ? -1 : 1; this.orientation.value = turning ? turningSide : this.side;
     const points = new Map<number, ReturnType<typeof sheetPoint>>();
     const at = (u: number) => {
       let point = points.get(u);
       if (!point) { point = curve ? curve(u) : restingPoint(u, this.side, height); points.set(u, point); }
       return point;
     };
-    for (const surface of this.surfaces) {
-      const pos = surface.mesh.geometry.getAttribute('position');
-      for (let i = 0; i < pos.count; i++) {
-        const u = surface.original[i * 3], y = surface.original[i * 3 + 1];
-        const point = at(u), offset = (surface.offset - .42 + surface.original[i * 3 + 2]) * (reverse ? -1 : 1);
-        pos.setXYZ(i, point.x + Math.sin(point.angle) * offset, y, point.z + Math.cos(point.angle) * offset);
-      }
-      pos.needsUpdate = true;
-      surface.mesh.geometry.computeVertexNormals();
-      surface.mesh.geometry.computeBoundingSphere();
-      // Reverse page owns the film on its back, while both share one backing.
-      surface.mesh.visible = !reverse || surface.mesh.material !== this.materials.backing;
-    }
+    for (let i = 0; i <= 512; i++) { const p = at(i / 512 * BINDER.pageWidth); this.poseData.set([p.x, p.z, p.angle, 1], i * 4); }
+    this.poseTexture.needsUpdate = true;
+    for (const surface of this.surfaces) surface.mesh.visible = !reverse || surface.offset !== 0;
+    // Raycasting needs only the low-resolution separator, never the dense film.
+    const hitPosition = this.hit.geometry.getAttribute('position');
+    for (let i = 0; i < hitPosition.count; i++) { const u = i % 97 / 96 * BINDER.pageWidth, p = at(u); hitPosition.setX(i, p.x); hitPosition.setZ(i, p.z); }
+    hitPosition.needsUpdate = true; this.hit.geometry.computeBoundingSphere();
     for (const [slot, card] of this.cards) {
       const { u, y } = pocket(slot, this.side), point = at(u);
       const offset = .09 * (reverse ? -1 : 1);
@@ -99,7 +126,7 @@ export class BinderPage {
       card.mesh.scale.setScalar(scale);
     }
   }
-  dispose() { this.group.removeFromParent(); this.cards.forEach(card => card.dispose()); this.cards.clear(); this.geometries.forEach(g => g.dispose()); }
+  dispose() { this.group.removeFromParent(); this.cards.forEach(card => card.dispose()); this.cards.clear(); this.geometries.forEach(g => g.dispose()); this.pageMaterials.forEach(m => m.dispose()); this.poseTexture.dispose(); }
 }
 
 function roundedShape(width: number, height: number, radius: number) {
