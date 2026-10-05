@@ -23,7 +23,26 @@ interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'
 /** Uses the viewer's wavelength response and grating momentum under actual
  * incident light. Foil energy enters directSpecular, never the printed color. */
 class GalleryLightingModel extends PhysicalLightingModel {
+  private frames = new Map<Region, ReturnType<GalleryLightingModel['createFrame']>>();
   constructor(private regions: Region[], private layers: GalleryOpticalLayer[]) { super(true, false, layers.some(layer => layer.iridescence), false); }
+  // These are surface properties, independent of incident light. Reuse one
+  // node graph per region instead of rebuilding/inlining it for every light.
+  private createFrame(r: Region) {
+    const [, axis, structure, , , behavior] = r.parameters;
+    const geometric = normalViewGeometry as unknown as Node<'vec3'>;
+    const bitangent = geometric.cross(tangentView).normalize();
+    const radial = radialStructure(float(95), axis.x);
+    const direction = mix(radial.direction, gratingDirection(r.field.rg, axis.x), behavior.w).normalize();
+    const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
+    const authoredNormal = normalView as unknown as Node<'vec3'>;
+    const slope = r.detail.rg.sub(.5).mul(structure.y);
+    const facet = geometric.add(tangentView.mul(slope.x)).add(bitangent.mul(slope.y)).normalize();
+    const n = mix(authoredNormal, facet, axis.w).normalize().toVar();
+    const projected = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();
+    const grating = mix(sheetAxis, projected, structure.w.max(axis.w)).normalize().toVar();
+    return { n, grating, groove: n.cross(grating).normalize().toVar(),
+      spacing: mix(radial.phase.mul(.09).add(.96), r.field.b.mul(1.5).add(.5), behavior.w).toVar() };
+  }
   private backing() {
     return this.regions.reduce<Node<'float'>>((weight, r, index) => this.layers[index].enabled
       ? weight.sub(r.mask.mul(r.parameters[5].y.oneMinus())) : weight, float(1)).max(.09);
@@ -57,17 +76,9 @@ class GalleryLightingModel extends PhysicalLightingModel {
         }, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a, r.ink, data.lightColor as Node<'vec3'>));
       } else {
-      const radial = radialStructure(float(95), axis.x);
-      const direction = mix(radial.direction, gratingDirection(r.field.rg, axis.x), behavior.w).normalize();
-      const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
-      const authoredNormal = normalView as unknown as Node<'vec3'>;
-      const slope = r.detail.rg.sub(.5).mul(structure.y);
-      const facet = geometric.add(tangentView.mul(slope.x)).add(bitangent.mul(slope.y)).normalize();
-      const n = mix(authoredNormal, facet, axis.w).normalize().toVar();
-      const projected = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();
-      const grating = mix(sheetAxis, projected, structure.w.max(axis.w)).normalize().toVar();
-      const groove = n.cross(grating).normalize().toVar(), momentum = light.add(positionViewDirection).toVar();
-      const spacing = mix(radial.phase.mul(.09).add(.96), r.field.b.mul(1.5).add(.5), behavior.w).toVar();
+      if (!this.frames.has(r)) this.frames.set(r, this.createFrame(r));
+      const { n, grating, groove, spacing } = this.frames.get(r)!;
+      const momentum = light.add(positionViewDirection).toVar();
       const variance = (a: Node<'vec3'>) => footprint ? footprint[0].dot(a).pow2().add(footprint[1].dot(a).pow2()).div(3) : float(0);
       const energy = mix(float(1), r.detail.a.mul(.85).add(.18), structure.x).mul(r.field.a);
       const spectralLobe = (across: Node<'vec3'>, along: Node<'vec3'>) => {
