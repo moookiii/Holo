@@ -48,3 +48,12 @@ test('edited live resources are not reused and release after teardown is harmles
   old.release(); assert.deepEqual(destroyed, [1]);
   pool.dispose(); next.release(true); pool.dispose(); assert.deepEqual(destroyed, [1, 2]);
 });
+
+test('teardown also releases an edited live entry replaced under the same key', async () => {
+  const destroyed: number[] = [];
+  const pool = new WarmResourcePool<number>(10, 3, () => 1, v => destroyed.push(v));
+  const old = pool.acquire('card', async () => 0); await old.pending; old.invalidate();
+  const next = pool.acquire('card', async () => 2); await next.pending;
+  pool.dispose(); old.release(); next.release();
+  assert.deepEqual(destroyed.sort(), [0, 2]);
+});
