@@ -18,6 +18,7 @@ export class CardMotion {
   mode: InteractionMode;
   zoom = 1;
   targetZoom = 1;
+  hoverTiltScale = 1;
   dragging = false;
   /** Opt-in precision inspection; ordinary viewer hover is unchanged. */
   precise = false;
@@ -77,7 +78,7 @@ export class CardMotion {
     const px = Math.max(-1.5, Math.min(1.5, x)), py = Math.max(-1.5, Math.min(1.5, y));
     const rollX = Math.max(-1, Math.min(1, px)), rollY = Math.max(-1, Math.min(1, py));
     // Recede the edge in the pointer's direction: right -> right edge back; down -> bottom edge back.
-    this.hoverTarget.set(py * .20, px * .24, -rollX * rollY * .065);
+    this.hoverTarget.set(py * .20 * this.hoverTiltScale, px * .24 * this.hoverTiltScale, -rollX * rollY * .065);
   }
   update(dt: number) {
     dt = Math.max(0, Math.min(dt, 0.05));

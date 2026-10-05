@@ -65,6 +65,7 @@ async function start() {
   startupMark('environmentReady');
   const initialMode: InteractionMode = 'combined';
   const motion = new CardMotion(initialMode);
+  motion.hoverTiltScale = 1.5;
   const resetPositionStart = new Vector3();
   let resetPositionElapsed = -1;
   const worldUnitsPerPixel = (depth: number) => 2 * depth * Math.tan(camera.fov * Math.PI / 360) / container.clientHeight;
