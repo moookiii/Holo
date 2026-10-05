@@ -93,13 +93,13 @@ export function sheetCurve(progress: number, side: -1 | 1, height = .42) {
 export function sheetPoint(u: number, progress: number, side: -1 | 1) { return sheetCurve(progress, side)(u); }
 
 export class BinderNavigation {
-  spread = 1;
+  spread = 0;
   binder = 0;
   turn?: { from: number; to: number; direction: -1 | 1; elapsed: number; progress: number; velocity: number; target: number; dragging: boolean };
   count: number;
   constructor(count = 0) { this.count = count; }
   setCount(count: number) { this.count = count; this.binder = Math.min(this.binder, binderCount(count) - 1); this.spread = clampSpread(this.spread); this.turn = undefined; }
-  selectBinder(binder: number) { this.binder = Math.max(0, Math.min(binderCount(this.count) - 1, binder)); this.spread = 1; this.turn = undefined; }
+  selectBinder(binder: number) { this.binder = Math.max(0, Math.min(binderCount(this.count) - 1, binder)); this.spread = 0; this.turn = undefined; }
   begin(direction: -1 | 1, dragging = false) {
     if (this.turn) return false;
     const to = clampSpread(this.spread + direction, this.count);

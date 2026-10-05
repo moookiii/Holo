@@ -11,21 +11,22 @@ test('all 40 faces and multiple binders cover every favorite exactly once', () =
   assert.deepEqual(spreadFaces(1),[1,2]);
   assert.deepEqual(spreadFaces(20),[39]);
 });
-test('starts open and turns through every sheet past page six, then back to the cover', () => {
-  const nav = new BinderNavigation(0); assert.equal(nav.spread,1);
-  for(let target=2;target<=20;target++) { assert.ok(nav.begin(1)); assert.equal(nav.begin(1),false); settle(nav); assert.equal(nav.spread,target); }
+test('starts with the first front on the right and turns through every sheet', () => {
+  const nav = new BinderNavigation(0); assert.equal(nav.spread,0);
+  assert.deepEqual(spreadFaces(nav.spread),[0]);
+  for(let target=1;target<=20;target++) { assert.ok(nav.begin(1)); assert.equal(nav.begin(1),false); settle(nav); assert.equal(nav.spread,target); }
   assert.equal(nav.begin(1),false);
   for(let target=19;target>=0;target--) { assert.ok(nav.begin(-1)); settle(nav); assert.equal(nav.spread,target); }
   assert.equal(nav.begin(-1),false);
 });
 test('drag follows pointer, returns below threshold, completes above, and can be cancelled', () => {
   const nav=new BinderNavigation(1000);
-  for(const [progress,cancel,expected] of [[.2,false,1],[.8,true,1],[.8,false,2]] as const) {
+  for(const [progress,cancel,expected] of [[.2,false,0],[.8,true,0],[.8,false,1]] as const) {
     assert.ok(nav.begin(1,true)); nav.drag(progress); nav.advance(.016); assert.equal(nav.turn?.progress,progress);
     nav.release(cancel); settle(nav); assert.equal(nav.spread,expected);
   }
-  nav.selectBinder(2); assert.equal(nav.binder,2); assert.equal(nav.spread,1);
-  nav.setCount(480); assert.equal(nav.binder,0); assert.equal(nav.spread,1);
+  nav.selectBinder(2); assert.equal(nav.binder,2); assert.equal(nav.spread,0);
+  nav.setCount(480); assert.equal(nav.binder,0); assert.equal(nav.spread,0);
 });
 test('deformation lands in registration for both directions',()=>{
   for(const side of [-1,1] as const) {
