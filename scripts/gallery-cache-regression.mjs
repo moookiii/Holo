@@ -46,7 +46,8 @@ async function phase(name, action, viewer = false) {
   if (page.url() !== 'about:blank') await page.evaluate(() => { window.__frames = []; });
   const start = Date.now(); await action();
   await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
-  if (viewer) await page.waitForFunction(() => !window.__holo.gallery.instance().active && document.querySelector('#loading').hidden, null, { timeout: 120000 });
+  if (viewer) await page.waitForFunction(() => !window.__holo.gallery.instance().active && document.querySelector('#loading').hidden
+    && getComputedStyle(document.querySelector('#loading')).opacity === '0', null, { timeout: 120000 });
   else await ready();
   const row = { name, ms: Date.now() - start, ...await snapshot() }; report.phases.push(row);
   await page.screenshot({ path: join(out, `${name}.png`) });
