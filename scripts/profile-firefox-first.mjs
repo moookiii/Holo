@@ -6,7 +6,7 @@ page.on('pageerror', e => console.log(String(e)));
 try {
   await page.goto('http://127.0.0.1:5173/');
   await page.waitForFunction(() => window.__holo?.gallery.stats()?.visible > 0, null, { timeout: 120000 });
-  const result = await page.evaluate(async () => {
+  const result = await page.evaluate(async (probeFence) => {
     const h = window.__holo, rows = [], nodes = h.renderer._nodes, backend = h.renderer.backend;
     const build = nodes.getForRenderAsync;
     nodes.getForRenderAsync = async function (...args) {
@@ -17,7 +17,7 @@ try {
     backend.createRenderPipeline = function (object, promises) {
       const start = performance.now(), count = promises?.length ?? 0;
       const complete = backend._completeCompile;
-      backend._completeCompile = function (...args) {
+      if (probeFence) backend._completeCompile = function (...args) {
         const gl = backend.gl, sync = gl.fenceSync(gl.SYNC_GPU_COMMANDS_COMPLETE, 0);
         gl.flush();
         promises.push(new Promise((resolve, reject) => {
@@ -34,14 +34,15 @@ try {
       let result;
       try { result = create.call(this, object, promises); }
       finally { backend._completeCompile = complete; }
-      rows.push({ stage: 'driver-submit', ms: performance.now() - start, material: object.material.type, fragmentLength: object.pipeline.fragmentProgram.code.length });
+      rows.push({ stage: 'driver-submit', ms: performance.now() - start, material: object.material.type, fragmentLength: object.pipeline.fragmentProgram.code.length, shader: object.pipeline.fragmentProgram.code });
       if (promises) void Promise.all(promises.slice(count)).then(() => rows.push({ stage: 'driver-ready', ms: performance.now() - start, material: object.material.type }));
       return result;
     };
     const start = performance.now(); await h.gallery.close('alakazam-base-set');
     return { ms: performance.now() - start, rows, opening: h.opening(), parallel: !!backend.parallel };
-  });
+  }, !!process.env.PROBE_FENCE);
   await mkdir('artifacts/firefox-first', { recursive: true });
   await writeFile('artifacts/firefox-first/report.json', JSON.stringify(result, null, 2));
+  for (const [i, row] of result.rows.entries()) if (row.shader) { await writeFile(`artifacts/firefox-first/shader-${i}.glsl`, row.shader); delete row.shader; }
   console.log(JSON.stringify(result, null, 2));
 } finally { await browser.close(); }
