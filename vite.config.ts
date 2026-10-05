@@ -1,6 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
-import { cacheRevision, cacheRevisionPlugin } from './scripts/cache-revision';
+import { cacheRevision, cacheRevisionPlugin } from './scripts/cache-revision.ts';
 
 export default defineConfig(({ command }) => ({
   // GitHub Pages hosts this repo at /Holo/.

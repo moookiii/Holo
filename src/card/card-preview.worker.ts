@@ -32,7 +32,7 @@ async function prepare(card: CardDefinition, signal: AbortSignal, decodeSvg: (bl
   const key = await previewKey(card);
   const cached = key ? await persistentCards.get<CardPreview>(key) : undefined;
   signal.throwIfAborted();
-  if (cached?.images?.length === PREVIEW_ARRAY_SIZES.length && cached.images.every((image, index) =>
+  if (Array.isArray(cached?.images) && cached.images.length === PREVIEW_ARRAY_SIZES.length && cached.images.every((image, index) =>
     image instanceof Uint8Array && image.length === PREVIEW_ARRAY_SIZES[index][0] * PREVIEW_ARRAY_SIZES[index][1] * 4)
     && cached.parameters instanceof Float32Array && cached.parameters.length === PREVIEW_PARAMETER_COLUMNS * 4) {
     persistentHits++; return cached;

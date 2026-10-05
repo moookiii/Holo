@@ -7,7 +7,8 @@ let bytes = 0;
 export const assetCacheMetrics = { downloads: 0, avoidedDownloads: 0, memoryHits: 0 };
 
 export function resolveCardAsset(path: string) {
-  return /^(blob:|data:|https?:\/\/)/.test(path) ? path : `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
+  const base = import.meta.env.BASE_URL;
+  return /^(blob:|data:|https?:\/\/)/.test(path) || path.startsWith(base) ? path : `${base}${path.replace(/^\/+/, '')}`;
 }
 
 /** Shared by gallery workers and full-resolution viewer loading. A per-URL
@@ -34,6 +35,7 @@ export async function cachedCardAsset(path: string): Promise<Blob> {
       assetCacheMetrics.downloads++;
       const response = await fetch(url, { signal: AbortSignal.timeout(20000) });
       if (!response.ok) throw new Error(`Unable to load ${url} (${response.status})`);
+      if (response.headers.get('content-type')?.includes('text/html')) throw new Error(`Expected a card asset at ${url}, received HTML`);
       const blob = await response.blob();
       if (key) await persistentCards.set(key, blob, blob.size);
       return blob;
