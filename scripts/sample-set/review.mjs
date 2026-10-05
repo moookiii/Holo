@@ -61,6 +61,7 @@ try {
   const dialog = page.locator('.pokemon-browser');
   await dialog.getByRole('button', { name: 'Pokémon', exact: false }).filter({ hasText: 'Browse series' }).click();
   await dialog.getByRole('button', { name: 'E-Card', exact: true }).click({ timeout: 60000 });
+  await dialog.getByRole('button', { name: /Pokémon e-Card Sample Set/ }).waitFor({ state: 'visible', timeout: 60000 });
   const setNames = await dialog.locator('.pokemon-pack-tile strong').allTextContents();
   assert.equal(setNames[0], 'Pokémon e-Card Sample Set');
   await dialog.getByRole('button', { name: /Pokémon e-Card Sample Set/ }).click();
