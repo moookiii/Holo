@@ -352,7 +352,7 @@ async function start() {
       await previous;
       if (generation !== loadGeneration || disposed) return;
       if (managed) {
-        lease = acquireViewer(next, true);
+        lease = acquireViewer(next, !import.meta.env.DEV || !new URLSearchParams(location.search).has('serial-card-preparation'));
         const resource = await lease.pending;
         markOpening(timing, 'cpuReady');
         if (generation !== loadGeneration || disposed) return;

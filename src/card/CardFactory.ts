@@ -308,7 +308,21 @@ export class CardFactory {
         if (!this.geometries.has(key)) this.geometries.set(key, createMetalReliefGeometry(definition.dimensions, frontHeight, backHeight, definition.construction.frontReliefCm, definition.construction.backReliefCm));
       } else this.geometries.set(key, createCardGeometry(definition.dimensions));
     }
-    let fields: ProfileFields = precompile ? {} : await fieldsReady;
+    // Each generated slot must have a distinct texture before compilation:
+    // Three aliases sampler uniforms by texture UUID. Sharing neutral textures
+    // here would incorrectly bind one foil region's field to another later.
+    const placeholders: Texture[] = [];
+    const placeholderField = (layer?: FoilLayer): PatternTextures | undefined => {
+      if (!layer || ['radial', 'plain', 'secret'].includes(layer.structure.field)) return undefined;
+      const make = (values: number[]) => {
+        const texture = new DataTexture(new Uint8Array(values), 1, 1, RGBAFormat, UnsignedByteType);
+        texture.needsUpdate = true; placeholders.push(texture); return texture;
+      };
+      return { direction: make([255, 128, 85, 255]), relief: make([128, 128, 128, 128]) };
+    };
+    let fields: ProfileFields = precompile ? {
+      primary: placeholderField(profile), secondary: placeholderField(profile.secondary), stamp: placeholderField(profile.stamp),
+    } : await fieldsReady;
     check();
     const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile,
       definition.substrate, maps, definition.frontBorderColor, physical.recessedName, physical);
@@ -345,6 +359,7 @@ export class CardFactory {
       instance.mesh.frustumCulled = true;
       return instance;
     } catch (error) { instance.dispose(); throw error; }
+    finally { placeholders.forEach(texture => texture.dispose()); }
   }
   inUse(id: string) { return [...this.instances].some(card => card.definition.id === id); }
   /** Conservative decoded CPU + GPU mip storage estimate for a resource domain.
