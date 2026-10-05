@@ -108,9 +108,9 @@ class CpuPatternCache {
     this.worker.onerror = event => { for (const task of this.pending.values()) task.reject(new Error(event.message)); this.pending.clear(); };
   }
   get(spec: PatternSpec, motif?: CpuImage, signal?: AbortSignal) {
+    signal?.throwIfAborted();
     const key = JSON.stringify([spec, motif?.source, motif?.width, motif?.height]);
     if (!this.cache.has(key)) this.cache.set(key, new Promise<FieldData>((resolve, reject) => {
-      if (signal?.aborted) { reject(signal.reason); return; }
       const id = ++this.sequence;
       let motifImage: { width: number; height: number; data: Uint8Array } | undefined;
       if (motif) {
@@ -121,7 +121,7 @@ class CpuPatternCache {
       }
       this.pending.set(id, { resolve, reject });
       this.worker.postMessage({ id, spec, motifImage }, motifImage ? [motifImage.data.buffer] : []);
-    }));
+    }).catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
   dispose() { this.worker.terminate(); for (const task of this.pending.values()) task.reject(new Error('CPU pattern cache disposed')); this.pending.clear(); this.cache.clear(); }

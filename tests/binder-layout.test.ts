@@ -1,41 +1,38 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { BINDER, BinderNavigation, clampSpread, pocket, sheetPoint, spreadCount, spreadIndices } from '../src/binder/BinderLayout.ts';
-
-test('photo layout has 12 pockets / page and 24 / spread without duplication', () => {
+import { BINDER, BinderNavigation, binderCount, pocket, sheetPoint, spreadCount, spreadIndices, spreadFaces } from '../src/binder/BinderLayout.ts';
+const settle = (nav: BinderNavigation) => { for (let i=0; i<300 && nav.turn; i++) nav.advance(1/60); assert.equal(nav.turn, undefined); };
+test('all 40 faces and multiple binders cover every favorite exactly once', () => {
   assert.equal(BINDER.columns * BINDER.rows, 12);
-  for (const count of [0, 1, 9, 10, 12, 13, 18, 19, 24, 25, 47, 48, 49, 10000]) {
-    const indices = Array.from({ length: spreadCount(count) }, (_, s) => spreadIndices(s, count)).flat();
-    assert.deepEqual(indices, Array.from({ length: count }, (_, i) => i));
-    assert.ok(spreadIndices(spreadCount(count) - 1, count).length <= 24);
-    assert.equal(clampSpread(99999, count), spreadCount(count) - 1);
+  for (const count of [0,1,12,24,73,479,480,481,960,961,10000]) {
+    const indices = Array.from({length:binderCount(count)},(_,b)=>Array.from({length:spreadCount()},(_,s)=>spreadIndices(s,count,b)).flat()).flat();
+    assert.deepEqual(indices,Array.from({length:count},(_,i)=>i));
   }
+  assert.deepEqual(spreadFaces(1),[1,2]);
+  assert.deepEqual(spreadFaces(20),[39]);
 });
-test('rapid turn input is locked, endpoints are clamped and repeated reversals stay consistent', () => {
-  const nav = new BinderNavigation(73);
-  assert.equal(nav.begin(-1), false);
-  for (let cycle = 0; cycle < 20; cycle++) {
-    assert.equal(nav.begin(1), true);
-    for (let i = 0; i < 50; i++) assert.equal(nav.begin(i % 2 ? 1 : -1), false);
-    for (let i = 0; i < 30; i++) nav.advance(.05);
-    assert.equal(nav.spread, 1);
-    assert.equal(nav.begin(-1), true);
-    for (let i = 0; i < 30; i++) nav.advance(.05);
-    assert.equal(nav.spread, 0);
-  }
-  nav.spread = 3; nav.setCount(1); assert.equal(nav.spread, 0);
+test('starts open and turns through every sheet past page six, then back to the cover', () => {
+  const nav = new BinderNavigation(0); assert.equal(nav.spread,1);
+  for(let target=2;target<=20;target++) { assert.ok(nav.begin(1)); assert.equal(nav.begin(1),false); settle(nav); assert.equal(nav.spread,target); }
+  assert.equal(nav.begin(1),false);
+  for(let target=19;target>=0;target--) { assert.ok(nav.begin(-1)); settle(nav); assert.equal(nav.spread,target); }
+  assert.equal(nav.begin(-1),false);
 });
-test('sheet bends instead of turning as a rigid rectangle and lands in registration', () => {
-  const start = sheetPoint(BINDER.pageWidth, 0, 1), end = sheetPoint(BINDER.pageWidth, 1, 1);
-  assert.ok(Math.abs(start.x - (BINDER.pageWidth + BINDER.hinge)) < 1e-6);
-  assert.ok(Math.abs(end.x - (-BINDER.hinge - BINDER.pageWidth)) < 1e-6);
-  assert.ok(Math.abs(start.z - .42) < 1e-6 && Math.abs(end.z - .42) < 1e-6);
-  const inner = sheetPoint(4, .4, 1), outer = sheetPoint(27, .4, 1);
-  assert.ok(Math.abs(inner.angle - outer.angle) > .25);
-  assert.ok(outer.z > inner.z);
-  for (let i = 0; i < 12; i++) {
-    const left = pocket(i, -1), right = pocket(i, 1);
-    assert.equal(left.y, right.y);
-    assert.ok(left.u > 0 && left.u < BINDER.pageWidth);
+test('drag follows pointer, returns below threshold, completes above, and can be cancelled', () => {
+  const nav=new BinderNavigation(1000);
+  for(const [progress,cancel,expected] of [[.2,false,1],[.8,true,1],[.8,false,2]] as const) {
+    assert.ok(nav.begin(1,true)); nav.drag(progress); nav.advance(.016); assert.equal(nav.turn?.progress,progress);
+    nav.release(cancel); settle(nav); assert.equal(nav.spread,expected);
   }
+  nav.selectBinder(2); assert.equal(nav.binder,2); assert.equal(nav.spread,1);
+  nav.setCount(480); assert.equal(nav.binder,0); assert.equal(nav.spread,1);
+});
+test('deformation lands in registration for both directions',()=>{
+  for(const side of [-1,1] as const) {
+    const start=sheetPoint(BINDER.pageWidth,0,side),end=sheetPoint(BINDER.pageWidth,1,side);
+    assert.ok(Math.abs(start.x-side*(BINDER.pageWidth+BINDER.hinge))<1e-6);
+    assert.ok(Math.abs(end.x+side*(BINDER.pageWidth+BINDER.hinge))<1e-6);
+    assert.ok(Math.abs(end.z-.42)<1e-6);
+  }
+  for(let i=0;i<12;i++) assert.equal(pocket(i,-1).y,pocket(i,1).y);
 });
