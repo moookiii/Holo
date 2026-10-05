@@ -11,6 +11,31 @@ export function galleryOpticalLayers(parameters: Float32Array): GalleryOpticalLa
   });
 }
 
+/** Prune a mechanism only when its effective prepared mask is exactly zero
+ * everywhere. A declared secondary finish does not imply secondary coverage.
+ * Reverse foil and secret names may take coverage from the artwork alpha. */
+export function galleryPreviewOpticalLayers(parameters: Float32Array, images: readonly Uint8Array[]) {
+  const layers = galleryOpticalLayers(parameters);
+  const coverage = images[1], artwork = images[0];
+  const present = [false, false, false];
+  for (let i = 0; i < coverage.length && !present.every(Boolean); i += 4)
+    for (let layer = 0; layer < 3; layer++) present[layer] ||= coverage[i + layer] !== 0;
+  const reverse = parameters[34 * 4], secret = parameters[34 * 4 + 2];
+  let artworkCoverage = false;
+  if (reverse !== 0 || secret !== 0)
+    for (let i = 3; i < artwork.length && !artworkCoverage; i += 4) artworkCoverage = artwork[i] !== 0;
+  const effective = [
+    !Number.isFinite(reverse) || (reverse !== 1 && present[0]) || (reverse !== 0 && artworkCoverage),
+    !Number.isFinite(secret) || (secret !== 1 && present[1]) || (secret !== 0 && artworkCoverage),
+    present[2],
+  ];
+  return layers.map((layer, index) => {
+    const enabled = layer.enabled && effective[index];
+    return { ...layer, enabled, secret: enabled && layer.secret,
+      glints: enabled && layer.glints, iridescence: enabled && layer.iridescence };
+  });
+}
+
 export function galleryBatchKey(layers: GalleryOpticalLayer[]) {
   return layers.map(layer => !layer.enabled ? '-' : layer.secret ? 's' : layer.glints ? 'g' : 'f').join('')
     + (layers.some(layer => layer.iridescence) ? ':i' : '');

@@ -230,7 +230,10 @@ export class Gallery {
       const entry = this.entries.get(item.slot)!, button = this.buttons.get(item.id)!;
       const previewBytes = entry.preview ? entry.preview.images.reduce((sum, image) => sum + image.byteLength,
         entry.preview.parameters.byteLength) : 0;
-      if (entry.preview && this.uploadBudget.allows(previewBytes)) {
+      // Overscan may populate the CPU cache, but only a visible card starts GPU
+      // uploads or shader compilation. A scroll must not inherit cold optical
+      // programs belonging to rows the user has never seen.
+      if (item.visible && entry.preview && this.uploadBudget.allows(previewBytes)) {
         const preview = entry.preview; entry.preview = undefined; entry.uploading = true;
         void this.graphics.upload(item.slot, preview).then(() => {
           if (!this.disposed && this.residency.owns(item.slot, item.token)) entry.ready = true;

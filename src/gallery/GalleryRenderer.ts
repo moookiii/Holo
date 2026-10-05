@@ -6,7 +6,7 @@ import { PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/Ca
 import { PREVIEW_PARAMETER_COLUMNS } from '../card/PreviewOptics';
 import { GalleryMaterial } from './GalleryMaterial';
 import { GALLERY_CAPACITY } from './GalleryLayout';
-import { galleryBatchKey, galleryOpticalLayers, galleryShaderLayers } from './GalleryBatch';
+import { galleryBatchKey, galleryPreviewOpticalLayers, galleryShaderLayers } from './GalleryBatch';
 
 interface Batch { mesh: InstancedMesh; edge: InstancedMesh; material: GalleryMaterial; compilation: Promise<void>; }
 interface GeometryBatch { face: ReturnType<typeof createGalleryCardGeometry>; edgeGeometry: ReturnType<typeof createGalleryCardGeometry>; edge: InstancedMesh; compilation: Promise<void>; }
@@ -48,7 +48,7 @@ export class GalleryRenderer {
     this.parameterTexture.needsUpdate = true;
     this.uploads++;
     const dimensions = galleryGeometryDimensions(preview.dimensions), geometryKey = JSON.stringify(dimensions);
-    const layers = galleryShaderLayers(galleryOpticalLayers(preview.parameters)), key = `${galleryBatchKey(layers)}:${geometryKey}`;
+    const layers = galleryShaderLayers(galleryPreviewOpticalLayers(preview.parameters, preview.images)), key = `${galleryBatchKey(layers)}:${geometryKey}`;
     let batch = this.batches.get(key);
     if (!batch) {
       const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers);
