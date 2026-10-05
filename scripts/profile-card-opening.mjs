@@ -25,7 +25,7 @@ const sampleIds = await page.evaluate(() => {
   return { visible: g.filtered[Number(document.querySelector('.gallery-card').dataset.cardIndex)].id,
     print: h.cards.find(c => c.profile === 'print-only' && !c.imported && !c.construction).id };
 });
-for (const [name, id] of [['cold-etched', 'pokemon:sv08.5-156:holo'], ['repeat-etched', 'pokemon:sv08.5-156:holo'], ['cold-holo', 'alakazam-base-set'], ['repeat-holo', 'alakazam-base-set'], ['already-in-gallery', sampleIds.visible], ['non-holo', sampleIds.print], ['repeat-non-holo', sampleIds.print]]) {
+for (const [name, id] of [['already-in-gallery', sampleIds.visible], ['cold-etched', 'pokemon:sv08.5-156:holo'], ['repeat-etched', 'pokemon:sv08.5-156:holo'], ['cold-holo', 'blastoise-base-set'], ['repeat-holo', 'blastoise-base-set'], ['non-holo', sampleIds.print], ['repeat-non-holo', sampleIds.print]]) {
   results.push(await page.evaluate(async ([name, id]) => {
     const h = window.__holo;
     if (!h.cards.some(c => c.id === id)) throw new Error(`Unknown benchmark card ${id}`);
@@ -41,8 +41,8 @@ for (const [name, id] of [['cold-etched', 'pokemon:sv08.5-156:holo'], ['repeat-e
   await page.evaluate(() => window.__holo.gallery.open());
 }
 // Real Gallery pointer hover followed immediately by a click, then settled hover.
-for (const [name, delay] of [['hover-immediate', 10], ['hover-prepared', 2000]]) {
-  const button = page.locator('.gallery-card').first();
+for (const [name, delay, index] of [['hover-immediate', 10, 3], ['hover-prepared', 3500, 4]]) {
+  const button = page.locator('.gallery-card').nth(index);
   await button.hover(); await page.waitForTimeout(delay);
   const start = Date.now(); await button.click();
   await page.waitForFunction(() => !window.__holo.gallery.stats().active && document.querySelector('#loading').hidden, null, { timeout: 120000 });
