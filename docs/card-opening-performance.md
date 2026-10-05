@@ -2,6 +2,30 @@
 
 Implementation and review: October 4, 2026. Baseline source: `6d0242d8` (before the optimization). Tests use the existing local assets, including the user's uncommitted mask edits, identically for both versions.
 
+## Firefox correction and cross-card reuse
+
+The earlier Chromium numbers below did not establish an improvement for the user's Firefox workflow. Before cross-card shader sharing, the Firefox matrix still measured Alakazam at 12,779 ms (9,360 ms compilation), Sylveon at 15,906 ms, and Blastoise at 11,090 ms. Exact-card cache hits were fast, but new cards were not materially faster. The task was not solved by the resident-card pool.
+
+A captured GLSL comparison isolated redundant shader variants: Base Set cards differed only in substrate colors, stock-grain offsets, and glint seeds. Those values were embedded as literals, defeating Three's source-keyed program cache. They now use per-material uniforms. Seed offsets are still calculated on the CPU before conversion to GPU floats, preserving the original rounding and deterministic patterns. Card crop/layout coordinates, border colors, and crossed-facet seeds also use uniforms. Material instances and textures remain independent.
+
+Sequential Firefox/WebGL measurements on the same local hardware:
+
+| First visit to each card, in order | Before uniforms | After uniforms | New GPU pipelines after change |
+| --- | ---: | ---: | ---: |
+| Alakazam | 9,758 ms | 9,475 ms | 3 |
+| Blastoise | 7,701 ms | 2,218 ms | 0 |
+| Chansey | 7,348 ms | 2,166 ms | 0 |
+
+These are single samples, not latency guarantees. A later run during other repository activity measured 11,218 / 3,915 / 2,858 ms respectively and again zero new pipelines for the second and third cards. This establishes actual different-card program reuse; it does not establish fast first-ever compilation, or universal sharing across structurally different materials. Source captures and reports are in `artifacts/cross-card-before`, `artifacts/cross-card-uniforms`, and `artifacts/cross-card-final`. `scripts/profile-cross-card.mjs` asserts no new pipelines for subsequent Base Set cards.
+
+The matching Alakazam screenshots were pixel-identical after the uniform conversion. The original Blastoise capture still had a loading overlay and is unsuitable for pixel comparison; Chansey differed by at most four channel levels. These captures do not prove appearance equivalence at all light angles. No authored card maps or optical profile values were changed by this work.
+
+First-ever Firefox compilation remains slow (roughly 9–11 seconds total in these runs). Its WebGL backend did not expose parallel shader compilation on the tested driver. Moving this compilation into Gallery without addressing the synchronous stall could merely move the freeze earlier. The full opening-speed goal remains incomplete. Program reuse lasts while a compatible program has a live renderer reference; the three-domain resource budget can evict the last compatible reference.
+
+Full-resolution deterministic pattern fields are now revisioned and persisted, unlike the earlier implementation described below. Firefox validation must take precedence over the historical Chromium-only conclusions.
+
+## Earlier Chromium investigation (historical)
+
 ## What the profile found
 
 Gallery already keeps the renderer, scene, camera, lighting, render target, and its reduced preview infrastructure alive. Opening a card nevertheless created a new `CardFactory`; returning to Gallery disposed that factory. Every repeat therefore decoded full-resolution images again, packed masks again, regenerated manufacturing fields, allocated textures and materials, uploaded them, and built/compiled the material graphs again. Browser downloads were already shared through the revisioned persistent asset cache.
@@ -66,10 +90,10 @@ The prepared hover's click-to-CPU-ready measurement was 0.1 ms. Resident repeat 
 
 The lifecycle browser test passed zoom, flip, actual pointer drag, profile-edit isolation, return-to-Gallery cancellation, rapid switching with exactly one correct visible card mesh, two-sided Ancient Mew foil, constructed metal geometry, and bounded LRU eviction. No browser page errors occurred. The first 30 frame intervals after a cold etched open ranged from 1.3 to 8.1 ms in that headless run; no delayed post-opening upload/compile hitch was observed. This is not a real-display frame-rate guarantee.
 
-Before/after captures were reviewed for Sylveon, conventional holo, and non-holo rendering. No card definitions, materials, optical profiles, map settings, authored normals, protection/foil masks, roughness, or source assets were changed. The user's eight pre-existing PNG edits remain uncommitted and untouched by this work. Screenshot review found no visible regression; it does not prove identical output on every GPU, light angle, or supported printing.
+Before/after captures were reviewed for Sylveon, conventional holo, and non-holo rendering. At that stage, no card material code or authored assets had changed. Subsequent shader specialization and uniform conversion are described above; authored assets remain outside this performance change. Screenshot review found no visible regression; it does not prove identical output on every GPU, light angle, or supported printing.
 
 The unit suite reports 246 passes and 27 failures; the pre-change checkout reports the same 27 failure names. These concern existing catalog/asset/registration expectations, with no new failing test. New resource ownership, pending-job sharing, failure retry, invalidation, LRU eviction, superseded-entry teardown, and telemetry lifetime tests pass.
 
-First-ever full-quality compilation and procedural manufacturing generation remain the dominant cost. A Gallery-only card is faster but **not near-immediate** until its full-quality resources are resident. Persistent reload retains downloaded assets, not GPU programs or full-quality manufacturing arrays. The implementation deliberately avoids compiling/uploading every visible Gallery card, which would compete with Gallery rendering. The new domain budget does not bound pre-existing pack/authoring caches, and comprehensive real-device Gallery frame-time and backend coverage remain outside these local WebGPU measurements.
+First-ever full-quality compilation and procedural manufacturing generation remain the dominant cost. A Gallery-only card is faster but **not near-immediate** until its full-quality resources are resident. Persistent reload now retains downloaded assets and full-quality manufacturing arrays, but not GPU programs. The implementation deliberately avoids compiling/uploading every visible Gallery card, which would compete with Gallery rendering. The new domain budget does not bound pre-existing pack/authoring caches, and comprehensive real-device Gallery frame-time and backend coverage remain outside these local WebGPU measurements.
 
 Development diagnostics: `window.__holo.opening()` exposes bounded event/stage histories, resource-pool statistics, decoded texture and packed-map hit/miss counters, downloaded-asset counters, and persistent-cache metrics. Events cover metadata, transition start, CPU readiness, upload readiness, residency hit, resource readiness, first full-quality submission, and interaction scheduling. Stage timers cover image decode, map packing, procedural fields, total CPU/material preparation, upload/readiness, and shader compilation. No new production console logging is emitted.
