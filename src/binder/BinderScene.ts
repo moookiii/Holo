@@ -25,7 +25,7 @@ function perforatedSeams() {
   return geometry;
 }
 
-interface Surface { mesh: Mesh; original: Float32Array; offset: number; }
+interface Surface { mesh: Mesh; offset: number; }
 export class BinderPage {
   readonly group = new Group();
   readonly cards = new Map<number, CardInstance>();
@@ -39,41 +39,52 @@ export class BinderPage {
   private orientation = uniform(1);
   private pageMaterials: Material[] = [];
   get hitMesh() { this.hit.matrixWorld.copy(this.group.matrixWorld); return this.hit; }
-  constructor(readonly index: number, readonly side: -1 | 1, private materials: { backing: Material; plastic: Material; weld: Material }) {
+  constructor(readonly index: number, readonly side: -1 | 1, private materials: { backing: Material; plastic: Material; weld: Material }, sharedGeometry?: Map<Material, BufferGeometry>) {
     this.group.name = `binder-page:${index}`;
     this.poseTexture.minFilter = this.poseTexture.magFilter = LinearFilter; this.poseTexture.generateMipmaps = false;
-    this.surface(new PlaneGeometry(BINDER.pageWidth, BINDER.pageHeight, 96, 12), 0, 0, .42, materials.backing);
-    // A separate physical film above the card, with a little tension at each lip.
-    for (let i = 0; i < 12; i++) {
-      const { u, y } = pocket(i, side);
-      const geometry = new PlaneGeometry(6.8, 9.1, 40, 52);
-      const pos = geometry.getAttribute('position');
-      for (let v = 0; v < pos.count; v++) {
-        const x = pos.getX(v), yy = pos.getY(v);
-        const lip = Math.exp(-(((yy - 4.34) / .15) ** 2)) * .055;
-        const margin = Math.exp(-Math.min(3.4 - Math.abs(x), 4.55 - Math.abs(yy)) * 5);
-        pos.setZ(v, lip + .028 * margin * Math.sin(x * 2.2 + yy * 1.7 + i) + .014 * Math.sin(x * 1.4 + i) * Math.sin(yy * 1.1));
+    const templates = sharedGeometry ?? new Map<Material, BufferGeometry>();
+    if (!templates.size) {
+      this.surface(new PlaneGeometry(BINDER.pageWidth, BINDER.pageHeight, 96, 12), 0, 0, .42, materials.backing);
+      // A separate physical film above the card, with a little tension at each lip.
+      for (let i = 0; i < 12; i++) {
+        const { u, y } = pocket(i, side);
+        const geometry = new PlaneGeometry(6.8, 9.1, 40, 52);
+        const pos = geometry.getAttribute('position');
+        for (let v = 0; v < pos.count; v++) {
+          const x = pos.getX(v), yy = pos.getY(v);
+          const lip = Math.exp(-(((yy - 4.34) / .15) ** 2)) * .055;
+          const margin = Math.exp(-Math.min(3.4 - Math.abs(x), 4.55 - Math.abs(yy)) * 5);
+          pos.setZ(v, lip + .028 * margin * Math.sin(x * 2.2 + yy * 1.7 + i) + .014 * Math.sin(x * 1.4 + i) * Math.sin(yy * 1.1));
+        }
+        geometry.computeVertexNormals();
+        this.surface(geometry, u - BINDER.pageWidth / 2, y, .555, materials.plastic);
+        // Double welds and an open top lip distinguish sleeve film from glass.
+        for (const dx of [-3.49, -3.42, 3.42, 3.49])
+          this.surface(new PlaneGeometry(.035, 9.24, 1, 12), u - BINDER.pageWidth / 2 + dx, y, .54, materials.weld);
+        for (const dy of [-4.64, -4.56, 4.58])
+          this.surface(new PlaneGeometry(6.98, .035, 20, 1), u - BINDER.pageWidth / 2, y + dy, .54, materials.weld);
       }
-      geometry.computeVertexNormals();
-      this.surface(geometry, u - BINDER.pageWidth / 2, y, .555, materials.plastic);
-      // Double welds and an open top lip distinguish sleeve film from glass.
-      for (const dx of [-3.49, -3.42, 3.42, 3.49])
-        this.surface(new PlaneGeometry(.035, 9.24, 1, 12), u - BINDER.pageWidth / 2 + dx, y, .54, materials.weld);
-      for (const dy of [-4.64, -4.56, 4.58])
-        this.surface(new PlaneGeometry(6.98, .035, 20, 1), u - BINDER.pageWidth / 2, y + dy, .54, materials.weld);
+      this.surface(perforatedSeams(), -BINDER.pageWidth / 2, 0, .57, materials.weld);
+      // Three draw calls per face. Dense film and weld geometry remains static;
+      // a tiny sampled curve drives all vertices on the GPU during a drag.
+      const grouped = new Map<Material, Surface[]>();
+      for (const surface of this.surfaces) { const material = surface.mesh.material as Material; const group = grouped.get(material) ?? []; group.push(surface); grouped.set(material, group); }
+      for (const [source, surfaces] of grouped) {
+        const inputs = surfaces.map(s => { const g = s.mesh.geometry; if (!g.index) return g; const plain = g.toNonIndexed(); this.geometries.add(plain); return plain; });
+        const geometry = mergeGeometries(inputs, false)!;
+        surfaces.forEach(s => s.mesh.removeFromParent()); templates.set(source, geometry);
+      }
+      // Only the three merged buffers survive. The source planes and temporary
+      // non-indexed copies are not used by rendering or page deformation.
+      this.geometries.forEach(geometry => geometry.dispose()); this.geometries.clear();
+      this.surfaces = [];
     }
-    this.surface(perforatedSeams(), -BINDER.pageWidth / 2, 0, .57, materials.weld);
     const hitGeometry = new PlaneGeometry(BINDER.pageWidth, BINDER.pageHeight, 96, 4);
     this.geometries.add(hitGeometry); this.hit = new Mesh(hitGeometry, materials.backing); this.hit.matrixAutoUpdate = false;
-    // Three draw calls per face. Dense film and weld geometry remains static;
-    // a tiny sampled curve drives all vertices on the GPU during a drag.
-    const grouped = new Map<Material, Surface[]>();
-    for (const surface of this.surfaces) { const material = surface.mesh.material as Material; const group = grouped.get(material) ?? []; group.push(surface); grouped.set(material, group); }
-    this.surfaces = [];
-    for (const [source, surfaces] of grouped) {
-      const inputs = surfaces.map(s => { const g = s.mesh.geometry; if (!g.index) return g; const plain = g.toNonIndexed(); this.geometries.add(plain); return plain; });
-      const geometry = mergeGeometries(inputs, false)!;
-      surfaces.forEach(s => s.mesh.removeFromParent()); this.geometries.add(geometry);
+    // Immutable surface vertices are identical for every page on this side.
+    // Pose textures, materials and mutable raycast geometry remain per page.
+    for (const [source, geometry] of templates) {
+      if (!sharedGeometry) this.geometries.add(geometry);
       const material = (source as MeshStandardNodeMaterial).clone();
       material.positionNode = Fn(() => {
         const sample = texture(this.poseTexture, vec2(positionGeometry.x.div(BINDER.pageWidth).mul(512).add(.5).div(513), .5)).level(float(0)).toVar();
@@ -84,14 +95,14 @@ export class BinderPage {
       })();
       this.pageMaterials.push(material);
       const mesh = new Mesh(geometry, material); mesh.frustumCulled = false; this.group.add(mesh);
-      this.surfaces.push({ mesh, original: new Float32Array(0), offset: source === materials.backing ? 0 : 1 });
+      this.surfaces.push({ mesh, offset: source === materials.backing ? 0 : 1 });
     }
     this.pose();
   }
   private surface(geometry: BufferGeometry, x: number, y: number, offset: number, material: Material) {
     geometry.translate(x + BINDER.pageWidth / 2, y, offset - .42);
     const mesh = new Mesh(geometry, material); mesh.frustumCulled = false;
-    this.surfaces.push({ mesh, original: new Float32Array(geometry.getAttribute('position').array), offset });
+    this.surfaces.push({ mesh, offset });
     this.geometries.add(geometry); this.group.add(mesh);
   }
   attach(slot: number, card: CardInstance) { this.cards.set(slot, card); this.group.add(card.mesh); this.lastPose = ''; this.pose(); }
@@ -154,6 +165,13 @@ export class BinderScene {
   readonly group = new Group();
   readonly pages = new Map<number, BinderPage>();
   private geometries: BufferGeometry[] = [];
+  private pageGeometry = new Map<-1 | 1, Map<Material, BufferGeometry>>();
+  private createPage(index: number) {
+    const side = faceSide(index);
+    let geometry = this.pageGeometry.get(side);
+    if (!geometry) { geometry = new Map(); this.pageGeometry.set(side, geometry); }
+    return new BinderPage(index, side, this.materials, geometry);
+  }
   private sheets: { body: Mesh; edge: Mesh; bodyOriginal: Float32Array; edgeOriginal: Float32Array }[] = [];
   private stackPose = '';
   private grain = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/leather-grain.png`);
@@ -296,9 +314,9 @@ export class BinderScene {
   }
   page(index: number) {
     let page = this.pages.get(index);
-    if (!page) { page = new BinderPage(index, faceSide(index), this.materials); this.pages.set(index, page); this.group.add(page.group); }
+    if (!page) { page = this.createPage(index); this.pages.set(index, page); this.group.add(page.group); }
     return page;
   }
   retain(indices: Set<number>) { for (const [index, page] of this.pages) if (!indices.has(index)) { page.dispose(); this.pages.delete(index); } }
-  dispose() { this.retain(new Set()); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); for (const t of [this.grain, this.weave, this.weaveNormal, this.sleeveNormal]) t.dispose(); this.group.removeFromParent(); }
+  dispose() { this.retain(new Set()); this.pageGeometry.forEach(templates => templates.forEach(g => g.dispose())); this.pageGeometry.clear(); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); for (const t of [this.grain, this.weave, this.weaveNormal, this.sleeveNormal]) t.dispose(); this.group.removeFromParent(); }
 }

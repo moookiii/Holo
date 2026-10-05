@@ -130,7 +130,10 @@ export class FavoritesBinder {
   }
   show(cards: CardDefinition[]) {
     this.cards = cards; this.navigation.setCount(cards.length); this.active = true; this.pending = false;
-    this.root.hidden = false; this.physical.group.visible = true; this.status.textContent = '';
+    // Present only after the cold shell has finished asynchronous preparation.
+    // Rendering it while its textures load builds shaders synchronously and
+    // blocks the very asset/decode completions this request is waiting for.
+    this.root.hidden = false; this.physical.group.visible = this.shellReady; this.status.textContent = '';
     this.savedCamera = { position: this.options.camera.position.clone(), far: this.options.camera.far };
     this.options.camera.far = 250; this.options.camera.updateProjectionMatrix();
     this.factory ??= this.options.factory(); this.refreshLight(); this.reconcile(); this.queuePreparation(); this.stage.focus({ preventScroll: true });
