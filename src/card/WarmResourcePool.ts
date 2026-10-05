@@ -52,5 +52,9 @@ export class WarmResourcePool<T> {
   }
   stats() { return { hits: this.hits, misses: this.misses, evictions: this.evictions, entries: this.entries.size,
     bytes: [...this.entries.values()].reduce((n, e) => n + e.bytes, 0), budget: this.budget }; }
-  dispose() { this.disposed = true; for (const entry of this.entries.values()) if (entry.value) this.destroy(entry.value); this.entries.clear(); }
+  dispose() {
+    this.disposed = true;
+    for (const entry of this.entries.values()) if (entry.value !== undefined) { this.destroy(entry.value); entry.value = undefined; }
+    this.entries.clear();
+  }
 }

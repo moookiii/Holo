@@ -76,4 +76,7 @@ test('resource observers can be removed out of order without retaining factories
   first.dispose(); backend.createTexture();
   assert.equal(first.stats.textureAllocations, 0); assert.equal(second.stats.textureAllocations, 1);
   second.dispose(); assert.equal(backend.createTexture, original);
+  const third = new ResourceTelemetry(backend);
+  first.dispose(); backend.createTexture(); assert.equal(third.stats.textureAllocations, 1);
+  third.dispose(); assert.equal(backend.createTexture, original);
 });

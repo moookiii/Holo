@@ -39,3 +39,12 @@ test('LRU count bound retains the most recently used entries', async () => {
   assert.deepEqual(destroyed, ['b']); assert.equal(pool.stats().entries, 2);
   pool.dispose();
 });
+
+test('edited live resources are not reused and release after teardown is harmless', async () => {
+  const destroyed: number[] = [];
+  const pool = new WarmResourcePool<number>(10, 3, () => 1, v => destroyed.push(v));
+  const old = pool.acquire('card', async () => 1); await old.pending; old.invalidate();
+  const next = pool.acquire('card', async () => 2); assert.equal(await next.pending, 2);
+  old.release(); assert.deepEqual(destroyed, [1]);
+  pool.dispose(); next.release(true); pool.dispose(); assert.deepEqual(destroyed, [1, 2]);
+});

@@ -8,6 +8,7 @@ const restorers = new WeakMap<Backend, (() => void)[]>();
 export class ResourceTelemetry {
   readonly stats = { textureAllocations: 0, textureUploads: 0, textureUploadCpuMs: 0, mipmapCalls: 0, mipmapCpuMs: 0 };
   private observers: Set<ResourceTelemetry>;
+  private disposed = false;
   private backend: Backend;
   constructor(backend: Backend) {
     this.backend = backend;
@@ -35,6 +36,7 @@ export class ResourceTelemetry {
     }
   }
   dispose() {
+    if (this.disposed) return; this.disposed = true;
     this.observers.delete(this);
     if (!this.observers.size) {
       restorers.get(this.backend)?.forEach(restore => restore());
