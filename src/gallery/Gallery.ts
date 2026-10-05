@@ -15,6 +15,7 @@ import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
 import { gallerySkimLightY } from './GallerySkim';
+import { browserGalleryFavorites } from './GalleryFavorites';
 import { profiles } from '../materials/profiles';
 import { printVariantLabel, type PrintVariant } from '../pokemon/types';
 
@@ -29,6 +30,10 @@ export class Gallery {
   private tools = document.createElement('details');
   private search = document.createElement('input');
   private filters = new Map<string, HTMLSelectElement>();
+  private favorites = browserGalleryFavorites();
+  private favoritesOnly = false;
+  private favoriteFilter = document.createElement('button');
+  private favoriteAnnouncement = document.createElement('span');
   readonly query: GalleryQuery = { search: '' };
   readonly tilt = { ...defaultTilt };
   readonly graphics: GalleryRenderer;
@@ -86,10 +91,22 @@ export class Gallery {
       };
       this.filters.set(facet.key, select); label.append(select); filters.append(label);
     }
+    const favoriteFilter = this.favoriteFilter;
+    favoriteFilter.type = 'button'; favoriteFilter.className = 'gallery-favorites-filter';
+    favoriteFilter.textContent = '★'; favoriteFilter.setAttribute('aria-label', 'Show favorites only');
+    favoriteFilter.setAttribute('aria-pressed', 'false');
+    favoriteFilter.title = 'Show favorites only · Shift + Click to favorite';
+    favoriteFilter.onclick = () => {
+      this.favoritesOnly = !this.favoritesOnly;
+      favoriteFilter.setAttribute('aria-pressed', String(this.favoritesOnly));
+      this.applyFilters();
+    };
+    filters.append(favoriteFilter);
     const clear = document.createElement('button'); clear.textContent = 'Clear filters';
     clear.onclick = () => {
       this.search.value = this.query.search = '';
       for (const facet of facets) delete this.query[facet.key];
+      this.favoritesOnly = false; favoriteFilter.setAttribute('aria-pressed', 'false');
       this.refreshFacetOptions(); this.applyFilters();
     }; filters.append(clear);
     const light = document.createElement('div'); light.className = 'gallery-light';
@@ -101,8 +118,11 @@ export class Gallery {
     this.viewport.className = 'gallery-viewport'; this.viewport.tabIndex = 0; this.viewport.setAttribute('aria-label', 'Scrollable card collection');
     this.content.className = 'gallery-content'; this.viewport.append(this.content);
     this.status.className = 'gallery-status'; this.status.setAttribute('role', 'status');
+    this.favoriteAnnouncement.className = 'gallery-favorite-announcement';
+    this.favoriteAnnouncement.setAttribute('role', 'status');
+    this.favoriteAnnouncement.setAttribute('aria-atomic', 'true');
     const toolbar = document.createElement('div'); toolbar.className = 'gallery-toolbar'; toolbar.append(header, tools);
-    this.root.append(toolbar, this.viewport, this.status); document.body.append(this.root);
+    this.root.append(toolbar, this.viewport, this.status, this.favoriteAnnouncement); document.body.append(this.root);
     const signal = this.abort.signal;
     this.viewport.addEventListener('scroll', () => { this.dirty = true; }, { passive: true, signal });
     this.viewport.addEventListener('pointermove', event => { if (event.pointerType !== 'touch') this.pointer = { x: event.clientX, y: event.clientY }; }, { passive: true, signal });
@@ -175,7 +195,7 @@ export class Gallery {
   private needsPreview(entry: Entry) { return !entry.ready && !entry.uploading && !entry.preview && !entry.error; }
   private applyFilters(reset = true) {
     this.scrollPreparation.reset();
-    this.filtered = this.catalog.filter(this.query);
+    this.filtered = this.favorites.filter(this.catalog.filter(this.query), this.favoritesOnly);
     this.count.textContent = `${this.filtered.length.toLocaleString()} cards`;
     this.status.textContent = this.filtered.length ? '' : 'No cards match. Try clearing a filter.';
     if (reset) this.viewport.scrollTop = 0;
@@ -230,11 +250,37 @@ export class Gallery {
       if (!button) {
         button = document.createElement('button'); button.className = 'gallery-card';
         button.setAttribute('aria-label', `Open ${card.title}, ${gallerySetName(card)}, ${card.number}`);
+        button.title = 'Shift + Click to favorite'; button.dataset.cardId = card.id;
+        const favorite = document.createElement('span'); favorite.className = 'gallery-favorite-indicator';
+        favorite.textContent = '★'; favorite.setAttribute('aria-hidden', 'true');
         const name = document.createElement('span'); name.className = 'gallery-card-name'; name.textContent = card.title;
         const detail = document.createElement('span'); detail.className = 'gallery-card-detail'; detail.textContent = `${gallerySetName(card)} · ${card.number}`;
         const placeholder = document.createElement('span'); placeholder.className = 'gallery-placeholder'; placeholder.textContent = 'Loading…';
-        button.append(placeholder, name, detail);
-        button.onclick = () => { const item = this.assigned.find(item => item.id === card.id), entry = item && this.entries.get(item.slot); if (entry?.error) { entry.error = undefined; return; } void this.transition(() => this.options.open(card.id)); };
+        button.append(placeholder, name, detail, favorite);
+        this.refreshFavorite(button, card);
+        button.onclick = event => {
+          if (event.shiftKey && event.button === 0 && event.detail > 0) {
+            event.preventDefault(); event.stopPropagation();
+            if (this.loading) return;
+            const added = this.favorites.toggle(card.id);
+            this.refreshFavorite(button!, card);
+            this.favoriteAnnouncement.textContent = `${card.title} ${added ? 'added to' : 'removed from'} Favorites`;
+            if (!this.reduced.matches) {
+              for (const animation of favorite.getAnimations()) animation.cancel();
+              favorite.animate([{ opacity: 1, transform: 'scale(1.25)' }, { opacity: added ? 1 : 0, transform: 'scale(1)' }], { duration: 220, easing: 'ease-out' });
+            }
+            if (this.favoritesOnly) {
+              const focused = document.activeElement === button;
+              const currentIndex = Number(button!.dataset.cardIndex);
+              this.applyFilters(false); this.reconcile();
+              if (focused) (this.buttons.get(this.filtered[Math.min(currentIndex, this.filtered.length - 1)]?.id) ?? this.favoriteFilter).focus({ preventScroll: true });
+            }
+            return;
+          }
+          const item = this.assigned.find(item => item.id === card.id), entry = item && this.entries.get(item.slot);
+          if (entry?.error) { entry.error = undefined; return; }
+          void this.transition(() => this.options.open(card.id));
+        };
         button.onpointerenter = () => this.options.hover?.(card.id);
         button.onpointerleave = () => this.options.hover?.();
         button.onfocus = () => this.options.hover?.(card.id);
@@ -246,6 +292,11 @@ export class Gallery {
       Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + (this.layout.cell - cardWidth) / 2}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row}px`, width: `${cardWidth}px`, height: `${cardHeight + 54}px` });
       button.style.setProperty('--card-height', `${cardHeight}px`);
     }
+  }
+  private refreshFavorite(button: HTMLButtonElement, card: CardDefinition) {
+    const favorite = this.favorites.has(card.id);
+    button.classList.toggle('is-favorite', favorite);
+    button.setAttribute('aria-label', `Open ${card.title}, ${gallerySetName(card)}, ${card.number}${favorite ? ', Favorite' : ''}`);
   }
   update(dt: number, width: number, height: number) {
     if (!this.active || this.disposed) return;
