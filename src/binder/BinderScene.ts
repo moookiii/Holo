@@ -2,7 +2,7 @@ import { Group, Mesh, MeshStandardNodeMaterial, MeshPhysicalNodeMaterial, PlaneG
   BoxGeometry, DoubleSide, BufferGeometry, Float32BufferAttribute, TextureLoader, RepeatWrapping, Vector2, DataTexture, FloatType, RGBAFormat, LinearFilter,
   Shape, Path, ExtrudeGeometry, CatmullRomCurve3, CurvePath, LineCurve3, QuadraticBezierCurve3, Color, Vector3, TubeGeometry, InstancedMesh, Matrix4, Quaternion, type Material } from 'three/webgpu';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { mergeGeometries, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 import { BINDER, pocket, sheetCurve, sheetPoint, restingPoint, faceSide, faceHeight } from './BinderLayout';
 import type { CardInstance } from '../card/CardInstance';
 import { float, normalView, positionViewDirection, texture, vec2, vec3, positionGeometry, normalLocal, Fn, uniform } from 'three/tsl';
@@ -164,7 +164,7 @@ export class BinderScene {
     cover: new MeshStandardNodeMaterial({ color: '#4c4f55', roughness: .64, metalness: .03 }),
     piping: new MeshStandardNodeMaterial({ color: '#454950', roughness: .58 }),
     fabric: new MeshPhysicalNodeMaterial({ color: '#464a50', roughness: .72, sheen: .55, sheenRoughness: .65, sheenColor: '#8a8d91', side: DoubleSide }),
-    teeth: new MeshPhysicalNodeMaterial({ color: '#80858d', roughness: .24, metalness: .82, clearcoat: .3, clearcoatRoughness: .18 }),
+    teeth: new MeshPhysicalNodeMaterial({ color: '#80858d', roughness: .38, metalness: .82 }),
     edge: new MeshPhysicalNodeMaterial({ color: '#929da7', roughness: .31, transparent: true, opacity: .22, depthWrite: false, side: DoubleSide }),
     backing: new MeshStandardNodeMaterial({ color: '#34383e', roughness: .78, side: DoubleSide }),
     plastic: new MeshPhysicalNodeMaterial({ color: '#e5e9ee', transparent: true, opacity: .1,
@@ -248,6 +248,11 @@ export class BinderScene {
     tooth.moveTo(-.052,-.105); tooth.lineTo(.052,-.105); tooth.lineTo(.052,-.025); tooth.lineTo(.079,.015);
     tooth.lineTo(.079,.08); tooth.lineTo(.026,.107); tooth.lineTo(-.026,.107); tooth.lineTo(-.079,.08); tooth.lineTo(-.079,.015); tooth.lineTo(-.052,-.025); tooth.closePath();
     const toothGeometry = new ExtrudeGeometry(tooth, { depth: .065, bevelEnabled: true, bevelSize: .012, bevelThickness: .012, bevelSegments: 3 });
+    // Smooth bevel facets so subpixel faces do not flash in otherwise dark metal.
+    // Work at a larger scale to keep the normal welder's tolerance below the bevel size.
+    toothGeometry.scale(100, 100, 100);
+    toCreasedNormals(toothGeometry);
+    toothGeometry.scale(.01, .01, .01);
     const stitchGeometry = new BoxGeometry(.115, .023, .015);
     this.geometries.push(toothGeometry, stitchGeometry);
     const teeth = new InstancedMesh(toothGeometry, this.materials.teeth, count * 2);
