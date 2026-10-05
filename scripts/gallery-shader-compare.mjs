@@ -11,14 +11,20 @@ try {
   for (const version of ['baseline', 'optimized']) {
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
     const page = await context.newPage();
-    if (version === 'baseline') await page.route('**/src/gallery/GalleryMaterial.ts*', route => route.fulfill({ contentType: 'text/javascript', body: baseline }));
+    if (version === 'baseline') {
+      await page.route('**/src/gallery/GalleryMaterial.ts*', route => route.fulfill({ contentType: 'text/javascript', body: baseline }));
+      if (process.env.GALLERY_COMPARE_RENDERER) {
+        const renderer = await readFile(process.env.GALLERY_COMPARE_RENDERER, 'utf8');
+        await page.route('**/src/gallery/GalleryRenderer.ts*', route => route.fulfill({ contentType: 'text/javascript', body: renderer }));
+      }
+    }
     await page.addInitScript(() => {
       window.__shaderCapture = []; let debug;
       Object.defineProperty(window, '__holo', { configurable: true, get: () => debug, set(value) {
         debug = value; const backend = value.renderer.backend, create = backend.createRenderPipeline;
         backend.createRenderPipeline = function(object, promises) {
           const started = performance.now(), result = create.call(this, object, promises);
-          if (object.object.name.startsWith('Gallery optics')) window.__shaderCapture.push({ name: object.object.name,
+          if (object.object.name.startsWith('Gallery ')) window.__shaderCapture.push({ name: object.object.name,
             ms: performance.now() - started, code: object.pipeline.fragmentProgram.code, vertex: object.pipeline.vertexProgram.code });
           return result;
         };
