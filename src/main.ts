@@ -372,9 +372,8 @@ async function start() {
       if (card) card.visible = false;
       pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
-      while (!disposed && gallery.active && !gallery.openingReady) {
-        await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
-      }
+      // The gallery controls are usable while individual cards prepare. Its
+      // own readiness flags still track when every visible shader has painted.
     } finally { galleryOpening = false; setLoading(false); }
   };
   const browsePacksFromGallery = async () => {
