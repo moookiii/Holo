@@ -19,7 +19,7 @@ await page.evaluate(() => {
   }
 });
 const results = [];
-for (const [name, id] of [['cold-etched', 'sv08.5-156:holo'], ['repeat-etched', 'sv08.5-156:holo'], ['cold-holo', 'alakazam-base-set'], ['repeat-holo', 'alakazam-base-set']]) {
+for (const [name, id] of [['cold-etched', 'pokemon:sv08.5-156:holo'], ['repeat-etched', 'pokemon:sv08.5-156:holo'], ['cold-holo', 'alakazam-base-set'], ['repeat-holo', 'alakazam-base-set']]) {
   results.push(await page.evaluate(async ([name, id]) => {
     const h = window.__holo;
     if (!h.cards.some(c => c.id === id)) throw new Error(`Unknown benchmark card ${id}`);
@@ -34,3 +34,4 @@ await mkdir(`artifacts/card-opening-${label}`, { recursive: true });
 await writeFile(`artifacts/card-opening-${label}/report.json`, JSON.stringify({ results, errors }, null, 2));
 console.log(JSON.stringify({ times: results.map(({name,ms,stages})=>({name,ms,stages})), errors }, null, 2));
 await browser.close();
+
