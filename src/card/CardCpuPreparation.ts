@@ -128,6 +128,7 @@ class CpuPatternCache {
 }
 
 interface PreviewMetrics {
+  pixels: { hits: number; misses: number; avoidedDecodes: number; decodes: number; decodeMs: number; bytes: number; budget: number; persistentHits: number };
   preparations: number; persistentHits: number; preparationMs: number;
   persistent: { hits: number; misses: number; writes: number; errors: number; evictions: number; bytes: number; readMs: number; writeMs: number; budget: number };
   assets: { downloads: number; avoidedDownloads: number; memoryHits: number };
@@ -344,6 +345,9 @@ export class CardCpuPreparation {
       persistentHits: sum(m => m.persistent.hits), persistentMisses: sum(m => m.persistent.misses), persistentErrors: sum(m => m.persistent.errors),
       persistentReadMs: sum(m => m.persistent.readMs), persistentWriteMs: sum(m => m.persistent.writeMs),
       persistentBytes: Math.max(0, ...workers.map(m => m.persistent.bytes)), persistentBudget: Math.max(0, ...workers.map(m => m.persistent.budget)),
+      decodedInputHits: sum(m => m.pixels.hits), decodedInputMisses: sum(m => m.pixels.misses),
+      avoidedDecodes: sum(m => m.pixels.avoidedDecodes), imageDecodes: sum(m => m.pixels.decodes), imageDecodeMs: sum(m => m.pixels.decodeMs),
+      decodedInputBytes: sum(m => m.pixels.bytes), decodedInputBudget: sum(m => m.pixels.budget), persistentPixelHits: sum(m => m.pixels.persistentHits),
       downloads: sum(m => m.assets.downloads), avoidedDownloads: sum(m => m.assets.avoidedDownloads) };
   }
   dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewWorkers.forEach(worker => worker.dispose()); this.previewWorkers = []; this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }

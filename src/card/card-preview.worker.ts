@@ -1,6 +1,6 @@
 /// <reference lib="webworker" />
 import type { CardDefinition } from './CardDefinition';
-import { prepareCardPreview, PREVIEW_ARRAY_SIZES } from './CardPreviewPreparation';
+import { prepareCardPreview, PREVIEW_ARRAY_SIZES, previewPixels } from './CardPreviewPreparation';
 import { generateField } from '../materials/patterns/ManufacturingField';
 import { generateMotifField } from '../materials/patterns/MotifField';
 import { cardCacheRevision, persistentCards } from '../assets/PersistentCardCache';
@@ -70,7 +70,7 @@ self.onmessage = (event: MessageEvent<Incoming>) => {
   });
   void prepare(message.card, controller.signal, decodeSvg).then(preview => {
     if (!controller.signal.aborted) self.postMessage({ type: 'ready', id: message.id, preview,
-      metrics: { preparations, persistentHits, preparationMs, persistent: persistentCards.stats(), assets: { ...assetCacheMetrics } } },
+      metrics: { preparations, persistentHits, preparationMs, persistent: persistentCards.stats(), assets: { ...assetCacheMetrics }, pixels: previewPixels.stats() } },
       { transfer: [...preview.images.map(image => image.buffer), preview.parameters.buffer] });
   }).catch(error => {
     if (!controller.signal.aborted) self.postMessage({ type: 'error', id: message.id, error: String(error) });

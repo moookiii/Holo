@@ -8,8 +8,11 @@ import type { MotifImage } from '../materials/patterns/MotifField';
 import { previewOptics, PREVIEW_PARAMETER_COLUMNS } from './PreviewOptics';
 import { PreviewReadQueue } from './PreviewReadQueue';
 import { cachedCardAsset } from '../assets/CachedCardAssets';
+import { cardCacheRevision, persistentCards } from '../assets/PersistentCardCache';
+import { PreviewPixelCache } from './PreviewPixelCache';
 
 const previewReads = new PreviewReadQueue();
+export const previewPixels = new PreviewPixelCache();
 
 export const PREVIEW_WIDTH = 512, PREVIEW_HEIGHT = 720;
 export const PREVIEW_MAP_WIDTH = 128, PREVIEW_MAP_HEIGHT = 180;
@@ -26,7 +29,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   decodeSvg?: (blob: Blob, width: number, height: number) => Promise<Uint8Array>): Promise<CardPreview> {
   const width = PREVIEW_MAP_WIDTH, height = PREVIEW_MAP_HEIGHT;
   const blobs = new Map<string, Promise<Blob>>(), decoded = new Map<string, Promise<Uint8Array>>();
-  const decode = async (path: string, w: number, h: number) => {
+  const decode = async (path: string, w: number, h: number, signal: AbortSignal) => {
     signal.throwIfAborted();
     const url = /^(blob:|data:|https?:\/\/)/.test(path) ? path : `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
     if (!blobs.has(url)) blobs.set(url, cachedCardAsset(url));
@@ -49,7 +52,29 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   };
   const read = (path: string, w = width, h = height) => {
     const key = JSON.stringify([path, w, h]);
-    if (!decoded.has(key)) decoded.set(key, previewReads.run(signal, () => decode(path, w, h)));
+    if (!decoded.has(key)) decoded.set(key, previewPixels.read(key, signal, async sharedSignal => {
+      // Mutable remote/imported sources retain normal HTTP semantics. Authored
+      // inputs are versioned by source + preparation code, just like previews.
+      const local = !/^(https?:|blob:|data:)/.test(path);
+      const diskKey = local ? `pixels-v1:${await cardCacheRevision()}:${key}` : undefined;
+      const load = async () => {
+        sharedSignal.throwIfAborted();
+        const stored = diskKey ? await persistentCards.get<Uint8Array>(diskKey) : undefined;
+        sharedSignal.throwIfAborted();
+        if (stored instanceof Uint8Array && stored.length === w * h * 4) {
+          previewPixels.metrics.persistentHits++; return stored;
+        }
+        const pixels = await previewReads.run(sharedSignal, async () => {
+          const started = performance.now(); previewPixels.metrics.decodes++;
+          try { return await decode(path, w, h, sharedSignal); }
+          finally { previewPixels.metrics.decodeMs += performance.now() - started; }
+        });
+        if (diskKey) await persistentCards.set(diskKey, pixels, pixels.byteLength);
+        return pixels;
+      };
+      // Keep the lock through persistence so different workers decode once.
+      return diskKey && navigator.locks ? navigator.locks.request(diskKey, { signal: sharedSignal }, load) : load();
+    }));
     return decoded.get(key)!;
   };
   const profile = resolveCardProfile(card), paths = { ...resolveCoverageMaps(card), ...profile.maps };
