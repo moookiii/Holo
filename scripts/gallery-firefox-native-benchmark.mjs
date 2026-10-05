@@ -71,10 +71,11 @@ async function measure(name, action) {
       let lit = 0; for (let i = 0; i < bytes.length; i += 4) if (Math.max(bytes[i], bytes[i+1], bytes[i+2]) > 35) lit++;
       return [{ card: card.getAttribute('aria-label'), litFraction: lit / (bytes.length / 4) }];
     });
-    const info = gl.getExtension('WEBGL_debug_renderer_info');
+    const info = gl?.getExtension('WEBGL_debug_renderer_info');
     return JSON.stringify({ gallery: g.stats(), cpu: h.cpuPreparation.stats(), startup: h.startupTiming, artwork,
-      browserReportedRenderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER),
-      parallelCompile: !!gl.getExtension('KHR_parallel_shader_compile'), frameMs: h.stats().frameMs });
+      backend: h.renderer.backend.constructor.name,
+      browserReportedRenderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl?.getParameter(gl.RENDERER),
+      parallelCompile: !!gl?.getExtension('KHR_parallel_shader_compile'), frameMs: h.stats().frameMs });
   })()`));
   const row = { name, readyMs, paintedMs, ...state }; report.phases.push(row);
   await writeFile(join(out, `${name}.png`), Buffer.from(capture.data, 'base64'));
@@ -92,6 +93,9 @@ try {
     const viewer = new URL(url); viewer.searchParams.set('lab', '');
     await call('browsingContext.navigate', { context, url: viewer.href, wait: 'interactive' });
     await evaluate(`new Promise(resolve => { function tick() { if (window.__holo?.lab && document.querySelector('#loading').hidden) resolve(); else requestAnimationFrame(tick); } tick(); })`);
+    // Lab is the existing route that starts a viewer without opening Gallery.
+    // Remove its overlay and restore the normal canvas before measuring the click.
+    await evaluate(`window.__holo.lab.dispose(); new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)))`);
     report.preOpeningGallery = await evaluate('!!window.__holo.gallery.instance()');
     await measure('first-open-from-viewer', () => evaluate(`document.querySelector('#gallery-open').click()`));
   } else await measure('cold-navigation', () => call('browsingContext.navigate', { context, url, wait: 'interactive' }));
