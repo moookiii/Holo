@@ -10,7 +10,7 @@ import {
   Texture,
 } from 'three/webgpu';
 import { cachedCardAsset } from './CachedCardAssets';
-import { openingStage } from '../rendering/CardOpeningTiming';
+import { openingStage, openingCache } from '../rendering/CardOpeningTiming';
 
 function resolveAssetUrl(url: string): string {
   // Leave runtime/external URLs unchanged.
@@ -67,6 +67,7 @@ export class AssetManager {
   load(url: string, color: boolean): Promise<Texture> {
     const resolvedUrl = resolveAssetUrl(url);
     const key = `${color ? 'srgb' : 'data'}:${resolvedUrl}`;
+    openingCache('decoded-texture', this.cache.has(key));
 
     if (!this.cache.has(key)) {
       this.cache.set(

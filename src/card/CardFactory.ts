@@ -46,6 +46,7 @@ export class CardFactory {
 
   setBackgroundPaused(paused: boolean) { this.patterns.setBackgroundPaused(paused); }
   async prepareProfile(profile: HolographicProfile, definition: CardDefinition, priority = 0, patterns = this.patterns, upload = true): Promise<ProfileFields> {
+    const started = performance.now();
     const aspect = definition.dimensions.width / definition.dimensions.height;
     const prepareLayer = async (layer: FoilLayer | undefined, seed: number, motifPath?: string) => {
       // Radial and plain layers are analytic in the material and contain no
@@ -64,7 +65,7 @@ export class CardFactory {
       prepareLayer(profile.secondary, definition.seed + 8191, definition.maps?.secondaryMotif),
       prepareLayer(profile.stamp, definition.seed + 16381, definition.maps?.stampMotif),
     ]);
-    return { primary, secondary, stamp };
+    openingStage('procedural-fields', started); return { primary, secondary, stamp };
   }
 
   async realizeCardGpu(prepared: PreparedCardCpu, signal?: AbortSignal, compile = true): Promise<CardInstance> {
@@ -188,9 +189,8 @@ export class CardFactory {
         if (renderObject.material instanceof PrintFrontMaterial) this.gpuStats.printPipelines++;
         if (renderObject.material instanceof HolographicMaterial) this.gpuStats.holoPipelines++;
       }
-      // Three r186 waits for each driver pipeline before building the next
-      // material. Independent gallery face/edge pipelines (and Ancient Mew's
-      // front/reverse/edge) can compile together.
+    // Three r186 waits for each driver pipeline before building the next
+      // material. Independent face/reverse/edge pipelines can compile together.
       // Keep node-building yields and the final GPU readiness boundary intact.
       if (overlap && objects.has(renderObject.object) && args[1]) {
         const pending: Promise<unknown>[] = [];

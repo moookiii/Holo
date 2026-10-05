@@ -32,7 +32,7 @@ import { alphaCards } from './magic/AlphaCatalog';
 import { magicDefinition } from './magic/materials';
 import { resolveMagicProduct } from './magic/products';
 import { WarmResourcePool } from './card/WarmResourcePool';
-import { beginOpening, markOpening, openingStages, openingEvents } from './rendering/CardOpeningTiming';
+import { beginOpening, markOpening, openingStages, openingEvents, openingCacheCounters } from './rendering/CardOpeningTiming';
 import { assetCacheMetrics } from './assets/CachedCardAssets';
 import { persistentCards } from './assets/PersistentCardCache';
 
@@ -320,11 +320,12 @@ async function start() {
     }
   };
   const setCard = async (id: string, fromGallery = false) => {
+    const timing = beginOpening(id);
     const next = cards.find(c => c.id === id);
     if (!next) throw new Error(`Unknown card: ${id}`);
     if (disposed) return;
     const generation = ++loadGeneration;
-    const timing = beginOpening(id); markOpening(timing, 'metadataResolved');
+    markOpening(timing, 'metadataResolved');
     clearTimeout(hoverTimer);
     cancelWarmup(); factory.setBackgroundPaused(true);
     requestedCardId = id;
@@ -332,6 +333,7 @@ async function start() {
     setLoading(true, definition.id === id ? 'Loading card…' : 'Loading next card…');
     markOpening(timing, 'transitionBegins');
     let lease: ReturnType<typeof viewerResources.acquire> | undefined;
+    let candidateFactory: CardFactory | undefined;
     try {
     ++profileGeneration;
     const managed = !next.imported && !new URLSearchParams(location.search).has('lab');
@@ -358,6 +360,7 @@ async function start() {
           resource.ready = true;
         } else markOpening(timing, 'residentHit');
         candidate = resource.instance;
+        candidateFactory = resource.factory;
       } else candidate = await factory.create(next, undefined, true, 0, new URLSearchParams(location.search).has('lab'));
     } finally { finish(); }
     if (generation !== loadGeneration || disposed) { if (!pooledInstances.has(candidate)) candidate.dispose(); return; }
@@ -372,7 +375,7 @@ async function start() {
     card.quaternion.copy(motion.orientation); scene.add(card);
     card.visible = true;
     if (fromGallery) {
-      galleryFocusFactory = viewerLease ? (await viewerLease.pending).factory : undefined;
+      galleryFocusFactory = candidateFactory;
       gallery?.hide(); document.body.classList.remove('gallery-mode'); viewerUI.inert = false; pointer.setEnabled(true);
       motion.reset(); card.position.set(0, 0, 0);
     }
@@ -430,6 +433,9 @@ async function start() {
     document.querySelector<HTMLButtonElement>('#gallery-open')?.focus({ preventScroll: true });
   };
   const openGallery = async () => {
+    if (gallery?.active && pendingLoads.size) {
+      ++loadGeneration; ++profileGeneration; setLoading(false); return;
+    }
     if (disposed || galleryOpening || gallery?.active || pack || packRequest || packBrowser) return;
     startupMark('galleryOpenRequested');
     galleryOpening = true; cancelWarmup(); ui?.close();
@@ -447,7 +453,7 @@ async function start() {
         startupMark('galleryResourcesReady');
       }
       ++loadGeneration; ++profileGeneration;
-      if (galleryFocusFactory) { releaseViewer(); galleryFocusFactory = undefined; }
+      if (viewerLease || galleryFocusFactory) { releaseViewer(); galleryFocusFactory = undefined; }
       if (card) card.visible = false;
       pointer.setEnabled(false); viewerUI.inert = true;
       document.body.classList.add('gallery-mode'); gallery.show();
@@ -559,7 +565,7 @@ async function start() {
   // Development control surface also powers repeatable visual captures. No tuning UI in presentation.
   const debug = {
     ready: true, renderer, scene, camera, lighting, motion, factory, cpuPreparation, startupTiming, startupPipelines,
-    opening: () => ({ events: openingEvents, stages: openingStages, resources: viewerResources.stats(), assets: assetCacheMetrics, persistent: persistentCards.metrics }),
+    opening: () => ({ events: openingEvents, stages: openingStages, caches: openingCacheCounters, resources: viewerResources.stats(), assets: assetCacheMetrics, persistent: persistentCards.metrics }),
     gallery: { open: openGallery, close: leaveGallery, stats: () => gallery?.stats(), instance: () => gallery },
     pack: {
       open: openPack, browse: browsePacks, close: closePack, reset: () => browsePacks(), setSeed: (seed: number) => { cancelWarmup(); packSeed = seed >>> 0; },

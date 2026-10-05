@@ -2,6 +2,10 @@
  * it is deliberately not labelled GPU execution time. */
 export const openingStages: { stage: string; ms: number; at: number }[] = [];
 export const openingEvents: { id: string; at: number; marks: Record<string, number> }[] = [];
+export const openingCacheCounters: Record<string, number> = {};
+export function openingCache(tier: string, hit: boolean) {
+  if (import.meta.env.DEV) { const key = `${tier}:${hit ? 'hit' : 'miss'}`; openingCacheCounters[key] = (openingCacheCounters[key] ?? 0) + 1; }
+}
 export function openingStage(stage: string, start: number) {
   if (!import.meta.env.DEV) return;
   openingStages.push({ stage, ms: performance.now() - start, at: start });

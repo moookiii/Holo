@@ -3,6 +3,7 @@ import type { CardDefinition, CardLayout } from '../card/CardDefinition';
 import { AssetManager } from './AssetManager';
 import { resolveCoverageMaps } from './CardCoverage';
 import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from './MapPacking';
+import { openingCache, openingStage } from '../rendering/CardOpeningTiming';
 
 export interface CardMaterialMaps {
   proceduralFoil?: CardDefinition['proceduralFoil'];
@@ -36,6 +37,7 @@ export class CardMapLoader {
   load(card: CardDefinition, aspect: number, needsAnniversary = false): Promise<CardMaterialMaps> {
     if (card.construction) aspect = card.dimensions.width / card.dimensions.height;
     const key = JSON.stringify([card.id, card.coverageMode, card.maps, card.mapSettings, card.construction, card.layout, aspect, needsAnniversary]);
+    openingCache('packed-maps', this.cache.has(key));
     this.released.delete(card.id);
     if (!this.keys.has(card.id)) this.keys.set(card.id, new Set());
     this.keys.get(card.id)!.add(key);
@@ -75,10 +77,12 @@ export class CardMapLoader {
         const failure = decoded.find(result => result.status === 'rejected');
         if (failure?.status === 'rejected') throw failure.reason;
         if (anniversary) anniversaryImage = await createImageBitmap(anniversary.image as HTMLImageElement);
+        const packingStarted = performance.now();
         const packed = await new Promise<PackedMaps>((resolve, reject) => {
           const id = ++this.sequence; this.pending.set(id, { resolve, reject });
           this.worker.postMessage({ id, aspect, images, anniversary: anniversaryImage, defaultPrimary: wholeFront ? 255 : 0 }, [...Object.values(images), ...(anniversaryImage ? [anniversaryImage] : [])]);
         });
+        openingStage('map-packing', packingStarted);
         if (this.released.has(card.id)) throw new Error('The imported card was removed.');
         const make = (bytes: Uint8Array) => {
           const texture = new DataTexture(bytes, packed.width, packed.height, RGBAFormat, UnsignedByteType);
