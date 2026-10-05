@@ -39,3 +39,11 @@ The existing local catalog adapter, card registry, gallery query, fixed-collecti
 The existing collection-opening screen displays all ten fixed cards in checklist order. It is labeled **demonstration collection**, not a folder sold at retail. There is no booster recipe, random seed, wrapper, pull odds, reverse variant or invented chase card. The list represents the documented demo checklist; it does **not** claim every attendee received a sealed ten-card package. Original packaging, allocation to participants and exact production/survival counts are not established. The E3 four-card pack belongs to a different group and is not used here.
 
 To reproduce assets: run `node scripts/sample-set/fetch-sources.mjs`, then `python scripts/sample-set/prepare-assets.py` with Pillow available. Sources, native dimensions, SHA-256 hashes and transformations ship with the assets. Review captures are saved under `artifacts/sample-set/`; automated integration coverage is `tests/pokemon-sample-set.test.ts` and `scripts/sample-set/review.mjs`.
+
+## Verification
+
+Production build passed. All 13 focused Sample Set, Southern Islands collection and adapter tests passed. The complete suite had 240 passes / 27 failures; the pre-change source reproduced the same 27 named failures (235 passes before the five new Sample tests), with no new failures. Baseline source was tested in an isolated artifact directory against the same local assets, without changing the working checkout.
+
+The live WebGPU review passed every card viewer, set filtering, name search, gallery-to-viewer navigation, chronological E-Card browsing, fixed collection opening and product-to-viewer navigation. No browser console errors, warnings or failed requests were recorded. Front, tilted, specular, dark-light and Japanese-back captures were inspected; full e-Reader borders remained visible and no foil appeared. This establishes runtime behavior and visual registration, not measured physical stock or groove depth. Original packaging, exact event day, participant allocation and higher-resolution exact clean fronts remain unresolved.
+
+Unrelated sets and shaders were not edited. Eight Southern Islands / Wizards Promo PNG modifications already present at task start were left untouched and excluded from every commit.

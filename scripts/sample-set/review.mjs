@@ -69,6 +69,9 @@ try {
   await dialog.getByRole('button', { name: /Open demonstration collection/ }).click();
   await page.waitForFunction(() => document.querySelectorAll('.pokemon-collection-card').length === 10);
   assert.deepEqual(await dialog.locator('.pokemon-collection-card').evaluateAll(elements => elements.map(e => e.dataset.cardId)), ids.map(id => `sp-${id}`));
+  await dialog.locator('.pokemon-collection-card img').evaluateAll(images => Promise.all(images.map(image => {
+    image.loading = 'eager'; return image.decode();
+  })));
   await page.screenshot({ path: `${output}/demonstration-open.png` });
   await dialog.locator('[data-card-id="sp-016"]').click();
   await page.waitForFunction(() => window.__holo.stats().card === 'pokemon:sp-016:normal');
