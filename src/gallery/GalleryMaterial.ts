@@ -128,7 +128,8 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), preview = param(34);
     const metal = artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
     const primary = mix(masks.r, artwork.a, preview.x);
-    const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) => layers[index].enabled ? mask : float(0));
+    const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) =>
+      layers[index].enabled ? mask.mul(param(index * 8 + 7).w) : float(0));
     this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index), field: image(3 + index), detail: image(6 + index),
       glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06).toVar() }));

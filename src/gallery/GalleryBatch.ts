@@ -15,3 +15,11 @@ export function galleryBatchKey(layers: GalleryOpticalLayer[]) {
   return layers.map(layer => !layer.enabled ? '-' : layer.secret ? 's' : layer.glints ? 'g' : 'f').join('')
     + (layers.some(layer => layer.iridescence) ? ':i' : '');
 }
+
+/** A nonfoil card can use the basic foil program with a zero layer mask.
+ * Sharing that program avoids a second driver compilation on first opening. */
+export function galleryShaderLayers(layers: GalleryOpticalLayer[]) {
+  return layers.every(layer => !layer.enabled)
+    ? layers.map((layer, index) => index === 0 ? { ...layer, enabled: true } : layer)
+    : layers;
+}
