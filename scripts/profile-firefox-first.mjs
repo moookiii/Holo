@@ -6,7 +6,7 @@ page.on('pageerror', e => console.log(String(e)));
 try {
   await page.goto(process.env.PROFILE_URL || 'http://127.0.0.1:5173/');
   await page.waitForFunction(() => window.__holo?.gallery.stats()?.visible > 0, null, { timeout: 120000 });
-  const result = await page.evaluate(async (probeFence) => {
+  const result = await page.evaluate(async ({ probeFence, probeWorker }) => {
     const h = window.__holo, rows = [], nodes = h.renderer._nodes, backend = h.renderer.backend;
     const build = nodes.getForRenderAsync;
     nodes.getForRenderAsync = async function (...args) {
@@ -14,7 +14,29 @@ try {
       finally { rows.push({ stage: 'nodes', ms: performance.now() - start, material: args[0].material.type }); }
     };
     const create = backend.createRenderPipeline;
+    const workers = [];
     backend.createRenderPipeline = function (object, promises) {
+      if (probeWorker) {
+        const worker = new Worker(URL.createObjectURL(new Blob([`onmessage = e => {
+          try { const gl = new OffscreenCanvas(1, 1).getContext('webgl2');
+            const p = gl.createProgram();
+            for (const [type, source] of [[gl.VERTEX_SHADER,e.data.vertex],[gl.FRAGMENT_SHADER,e.data.fragment]]) {
+              const s=gl.createShader(type);gl.shaderSource(s,source);gl.compileShader(s);gl.attachShader(p,s);
+            }
+            gl.linkProgram(p); const ok=gl.getProgramParameter(p,gl.LINK_STATUS);postMessage({ok,error:gl.getProgramInfoLog(p)});
+          } catch(error) {postMessage({ok:false,error:String(error)});}
+        };`], { type: 'application/javascript' })));
+        workers.push(worker);
+        promises.push(new Promise((resolve, reject) => {
+          worker.onmessage = event => {
+            const started=performance.now();
+            try { create.call(backend, object, []); rows.push({stage:'main-after-worker',ms:performance.now()-started,warm:event.data}); resolve(); }
+            catch(error) { reject(error); }
+          };
+          worker.postMessage({vertex:object.pipeline.vertexProgram.code,fragment:object.pipeline.fragmentProgram.code});
+        }));
+        return;
+      }
       const start = performance.now(), count = promises?.length ?? 0;
       const complete = backend._completeCompile;
       if (probeFence) backend._completeCompile = function (...args) {
@@ -39,10 +61,11 @@ try {
       return result;
     };
     const start = performance.now(); await h.gallery.close('alakazam-base-set');
+    workers.forEach(worker => worker.terminate());
     const gl = backend.gl, info = gl?.getExtension('WEBGL_debug_renderer_info');
     return { ms: performance.now() - start, rows, opening: h.opening(), parallel: !!backend.parallel, backend: backend.constructor.name,
       driver: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : undefined };
-  }, !!process.env.PROBE_FENCE);
+  }, { probeFence: !!process.env.PROBE_FENCE, probeWorker: !!process.env.PROBE_WORKER });
   await mkdir('artifacts/firefox-first', { recursive: true });
   await writeFile('artifacts/firefox-first/report.json', JSON.stringify(result, null, 2));
   for (const [i, row] of result.rows.entries()) if (row.shader) { await writeFile(`artifacts/firefox-first/shader-${i}.glsl`, row.shader); delete row.shader; }
