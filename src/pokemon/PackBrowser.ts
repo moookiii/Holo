@@ -19,6 +19,8 @@ import { implementationFor } from '../yugioh/catalog/implementations';
 import { magicSets } from '../magic/AlphaCatalog';
 import { magicProducts, alphaArtwork, resolveMagicProduct } from '../magic/products';
 import type { MagicSet } from '../magic/types';
+import type { VendingMachine } from '../vending/VendingMachine';
+import type { VendingSelection } from '../vending/types';
 
 export interface PackBrowserDependencies {
   definitions: readonly CardDefinition[];
@@ -32,7 +34,10 @@ export class PackBrowser {
   readonly selection: { series?: CatalogEntry; set?: PokemonSet; booster?: PokemonBooster } = {};
   private task = new SelectionTask();
   private body = document.createElement('div');
-  private status = document.createElement('p');
+  private classicStatus = document.createElement('p');
+  private get status() { return this.vending?.status ?? this.classicStatus; }
+  private vending?: VendingMachine;
+  private vendingLoading = false;
   private heading = document.createElement('h2');
   private back = document.createElement('button');
   private prepared?: PreparedPack;
@@ -50,11 +55,38 @@ export class PackBrowser {
     const header = document.createElement('header'), close = document.createElement('button');
     close.textContent = 'Close'; close.onclick = () => this.dispose();
     this.back.textContent = '← Back'; this.back.onclick = () => this.goBack();
-    header.append(this.back, this.heading, close); this.body.className = 'pokemon-browser-grid';
+    const vending = document.createElement('button'); vending.textContent = 'Vending Machine';
+    vending.onclick = () => void this.showVending();
+    header.append(this.back, this.heading, vending, close); this.body.className = 'pokemon-browser-grid';
     this.status.setAttribute('role', 'status'); this.status.setAttribute('aria-live', 'polite');
     this.root.append(header, this.status, this.body);
     this.root.addEventListener('cancel', e => { e.preventDefault(); this.dispose(); });
     document.body.append(this.root); this.root.showModal(); this.types();
+  }
+  private async showVending() {
+    if (this.vendingLoading || this.vending || this.disposed || this.root.getAttribute('aria-busy') === 'true') return;
+    this.vendingLoading = true;
+    performance.mark('vending-entry');
+    try {
+      const { VendingMachine } = await import('../vending/VendingMachine');
+      if (this.disposed) return;
+      this.task.cancel();
+      this.vending = new VendingMachine({ classic: () => this.showClassic(), close: () => this.dispose(),
+        dispense: selection => this.dispenseSelection(selection) });
+      this.root.classList.add('vending-active'); this.root.append(this.vending.root);
+      this.vending.root.querySelector<HTMLButtonElement>('.vm-exits button')?.focus();
+    } catch (error) { this.classicStatus.textContent = error instanceof Error ? error.message : 'Unable to load vending machine.'; }
+    finally { this.vendingLoading = false; }
+  }
+  private showClassic() {
+    this.task.cancel(); this.vending?.dispose(); this.vending = undefined;
+    this.root.classList.remove('vending-active'); this.root.setAttribute('aria-busy', 'false');
+    this.root.querySelector<HTMLButtonElement>('header button:nth-last-child(2)')?.focus();
+  }
+  private dispenseSelection(selection: VendingSelection) {
+    if (selection.game === 'pokemon') { this.selection.set = selection.set; this.choose(selection.artwork); }
+    else if (selection.game === 'yugioh') this.chooseYugioh(selection.set, selection.productId);
+    else this.chooseMagic(selection.productId);
   }
   private screen(title: string, status = '') {
     this.task.cancel(); this.prepared = undefined; this.retry = undefined; this.root.setAttribute('aria-busy', 'false');
@@ -73,11 +105,13 @@ export class PackBrowser {
     button.onclick = action; this.body.append(button); return button;
   }
   private async run(label: string, work: (request: AbortController) => Promise<void>, retry: () => void) {
+    this.vending?.setBusy(true);
     const request = this.task.begin(); this.status.textContent = label; this.root.setAttribute('aria-busy', 'true'); this.retry = retry;
     try { await work(request); }
     catch (error) {
       if (!this.task.current(request) || this.disposed) return;
       this.status.textContent = error instanceof Error ? error.message : 'Unable to load this pack.';
+      if (this.vending) { this.vending.fail(error, retry); return; }
       this.body.querySelector('.pokemon-retry')?.remove();
       const button = this.button('Retry', retry); button.classList.add('pokemon-retry');
     } finally { if (this.task.current(request)) this.root.setAttribute('aria-busy', 'false'); }
@@ -343,6 +377,7 @@ export class PackBrowser {
         if (this.disposed) return;
         this.root.showModal();
         this.status.textContent = `Unable to open: ${error instanceof Error ? error.message : 'Please retry.'}`;
+        if (this.vending) { this.vending.fail(error, () => { this.vending?.setBusy(true); openPack(); }); return; }
         this.body.replaceChildren();
         const retry = this.button('Retry Open Pack', openPack);
         retry.classList.add('pokemon-open'); retry.focus();
@@ -367,5 +402,5 @@ export class PackBrowser {
       default: this.dispose();
     }
   }
-  dispose() { if (this.disposed) return; this.disposed = true; this.task.cancel(); this.prepared = undefined; this.root.close(); this.root.remove(); this.deps.close(); }
+  dispose() { if (this.disposed) return; this.disposed = true; this.task.cancel(); this.vending?.dispose(); this.prepared = undefined; this.root.close(); this.root.remove(); this.deps.close(); }
 }

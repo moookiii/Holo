@@ -1,4 +1,4 @@
-import { chromium } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
@@ -6,15 +6,17 @@ import { join } from 'node:path';
 
 const out = join(process.cwd(), 'artifacts', 'ancient-mew-loading');
 await mkdir(out, { recursive: true });
-let executablePath = chromium.executablePath();
+const engine = process.env.HOLO_BROWSER === 'firefox' ? firefox : chromium;
+const browserName = engine.name();
+let executablePath = engine.executablePath();
 if (!existsSync(executablePath)) {
   const root = join(process.env.LOCALAPPDATA || '', 'ms-playwright');
-  for (const version of (await readdir(root)).filter(name => /^chromium-\d+$/.test(name)).sort().reverse()) {
-    const candidate = join(root, version, 'chrome-win64', 'chrome.exe');
+  for (const version of (await readdir(root)).filter(name => new RegExp(`^${browserName}-\\d+$`).test(name)).sort().reverse()) {
+    const candidate = browserName === 'firefox' ? join(root, version, 'firefox', 'firefox.exe') : join(root, version, 'chrome-win64', 'chrome.exe');
     if (existsSync(candidate)) { executablePath = candidate; break; }
   }
 }
-const browser = await chromium.launch({ executablePath, headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
+const browser = await engine.launch({ executablePath, headless: true, ...(browserName === 'chromium' ? { args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] } : {}) });
 try {
   const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   const errors = [];
@@ -115,7 +117,7 @@ try {
     await writeFile(join(out, `${process.env.REVIEW_SUFFIX || 'current'}-${i}.glsl`), pipeline.fragment);
     delete pipeline.fragment;
   }
-  const report = { backend, generation, openingMs, stages, shaders, pipelines, edits, errors };
+  const report = { browser: browserName, backend, generation, openingMs, stages, shaders, pipelines, edits, errors };
   await writeFile(join(out, `${process.env.REVIEW_SUFFIX || 'current'}.json`), JSON.stringify(report, null, 2));
   console.log(JSON.stringify(report));
 } finally { await browser.close(); }
