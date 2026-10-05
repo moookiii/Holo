@@ -2,6 +2,7 @@ import './binder.css';
 import { Raycaster, Vector2, Vector3, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
+import type { CardInstance } from '../card/CardInstance';
 import type { CardCpuPreparation, PreparedCardCpu } from '../card/CardCpuPreparation';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { galleryLightingControls } from '../gallery/GalleryLighting';
@@ -27,6 +28,8 @@ export class FavoritesBinder {
   private job?: Promise<void>;
   private cards: CardDefinition[] = [];
   private loaded = new Set<string>();
+  // Least recently visited first. Keep full GPU instances across page-pool reuse.
+  private cachedCards = new Map<string, CardInstance>();
   private failed = new Set<string>();
   private pending = false;
   private opening = false;
@@ -137,16 +140,32 @@ export class FavoritesBinder {
     const revision = ++this.revision; this.pending = true; this.updateControls();
     await this.suspendPreparation();
     if (!this.active || revision !== this.revision) return;
+    this.clearCachedCards();
     this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); this.cards = cards;
     this.navigation.setCount(cards.length); if (binder !== undefined) this.navigation.selectBinder(binder);
     this.status.textContent = ''; this.pending = false; this.reconcile(); this.queuePreparation();
   }
   async selectBinder(binder: number) { if (!this.busy()) await this.replaceCollection(this.cards, binder); }
   private reconcile() {
-    const keep = new Set(this.windowSpreads().flatMap(spreadFaces)); this.physical.retain(keep);
+    const keep = new Set(this.windowSpreads().flatMap(spreadFaces));
+    for (const [face, page] of this.physical.pages) if (!keep.has(face)) {
+      for (const [slot, card] of page.cards) {
+        card.mesh.removeFromParent(); this.cachedCards.set(`${face}:${slot}`, card);
+      }
+      page.cards.clear();
+    }
+    this.physical.retain(keep);
     for (const key of this.loaded) if (!keep.has(Number(key.split(':')[0]))) this.loaded.delete(key);
     for (const key of this.failed) if (!keep.has(Number(key.split(':')[0]))) this.failed.delete(key);
-    for (const face of keep) this.physical.page(face);
+    for (const face of keep) {
+      const page = this.physical.page(face);
+      for (let slot = 0; slot < BINDER.perPage; slot++) {
+        const key = `${face}:${slot}`, card = this.cachedCards.get(key);
+        if (!card) continue;
+        this.cachedCards.delete(key); page.attach(slot, card); this.loaded.add(key);
+      }
+    }
+    this.trimCachedCards();
     const visible = new Set(spreadFaces(this.navigation.spread));
     for (const [index, page] of this.physical.pages) { page.group.visible = visible.has(index); page.pose(); }
     this.physical.stack(this.navigation.spread);
@@ -166,6 +185,18 @@ export class FavoritesBinder {
     if (this.selector.options.length !== binderCount(this.cards.length)) this.selector.replaceChildren(...Array.from({ length: binderCount(this.cards.length) }, (_, i) => new Option(`Binder ${i + 1} of ${binderCount(this.cards.length)}`, String(i))));
     this.selector.value = String(n.binder); this.selector.disabled = this.busy() || this.selector.options.length === 1;
     this.root.setAttribute('aria-busy', String(this.pending || this.opening));
+  }
+  private trimCachedCards() {
+    // Share the existing 72-card residency ceiling with the active window.
+    // Empty pages do not evict prepared cards needed on the return journey.
+    while (this.loaded.size + this.cachedCards.size > BINDER.perSpread * 3) {
+      const key = this.cachedCards.keys().next().value;
+      if (key === undefined) break;
+      this.cachedCards.get(key)!.dispose(); this.cachedCards.delete(key);
+    }
+  }
+  private clearCachedCards() {
+    this.cachedCards.forEach(card => card.dispose()); this.cachedCards.clear();
   }
   private queuePreparation() {
     const revision = ++this.revision; this.queuedRevision = revision; this.request?.abort();
@@ -227,7 +258,7 @@ export class FavoritesBinder {
             if (request.signal.aborted || !this.active) { instance.dispose(); return; }
             const page = this.physical.pages.get(pageIndex);
             if (!page) { instance.dispose(); continue; }
-            page.attach(slot, instance); this.loaded.add(key);
+            page.attach(slot, instance); this.loaded.add(key); this.trimCachedCards();
             await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
           } catch (error) {
             instance?.dispose(); if (request.signal.aborted) return;
@@ -284,7 +315,7 @@ export class FavoritesBinder {
     this.restoreLighting(); this.active = false; this.root.hidden = true; this.physical.group.visible = false;
     this.request?.abort(); this.queuedRevision = -1; this.revision++; this.drag = undefined;
     const domain = this.factory; this.factory = undefined;
-    const release = () => { this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
+    const release = () => { this.clearCachedCards(); this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
     if (this.job) void this.job.finally(release); else release();
     this.navigation.turn = undefined;
     if (this.savedCamera) { this.options.camera.position.copy(this.savedCamera.position); this.options.camera.far = this.savedCamera.far; this.options.camera.updateProjectionMatrix(); this.savedCamera = undefined; }
@@ -340,7 +371,7 @@ export class FavoritesBinder {
       spread: this.navigation.spread, spreads: 21, turning: !!this.navigation.turn, dragging: !!this.navigation.turn?.dragging,
       turnProgress: this.navigation.turn?.progress ?? 0, preparing: this.pending, active: this.active, filtered: this.cards.length,
       visible: ready, visibleExpected: this.indices().length, visibleFailed: [...this.failed].filter(key => faces.has(Number(key.split(':')[0]))).length,
-      residentCards: this.loaded.size, residentPages: this.physical.pages.size, pending: Number(!!this.job),
+      residentCards: this.loaded.size + this.cachedCards.size, cachedCards: this.cachedCards.size, residentPages: this.physical.pages.size, pending: Number(!!this.job),
       neighborsReady: this.windowSpreads().every(s => this.indices(s).every(i => this.loaded.has(`${this.face(i)}:${i % 12}`))),
       residentGpuBytes: this.factory?.retainedBytes(), domCards: this.buttons.size, factory: this.factory?.stats() };
   }
