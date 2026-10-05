@@ -66,14 +66,19 @@ async function measure(name, action) {
     const viewport = g.viewport.getBoundingClientRect();
     const artwork = [...document.querySelectorAll('.gallery-card.is-ready')].flatMap(card => {
       const r = card.getBoundingClientRect(), height = parseFloat(card.style.getPropertyValue('--card-height'));
-      if (r.top < viewport.top || r.top + height > viewport.bottom) return [];
-      const bytes = ctx.getImageData(Math.round(r.left + r.width * .2), Math.round(r.top + height * .6), Math.round(r.width * .6), Math.round(height * .25)).data;
+      const visibleTop = Math.max(r.top, viewport.top), visibleBottom = Math.min(r.top + height, viewport.bottom, image.height);
+      if (visibleBottom <= visibleTop) return [];
+      const full = r.top >= viewport.top && r.top + height <= viewport.bottom;
+      const top = full ? r.top + height * .6 : visibleTop, bottom = full ? r.top + height * .85 : visibleBottom;
+      const bytes = ctx.getImageData(Math.round(r.left + r.width * .2), Math.floor(top), Math.round(r.width * .6), Math.max(1, Math.floor(bottom) - Math.floor(top))).data;
       let lit = 0; for (let i = 0; i < bytes.length; i += 4) if (Math.max(bytes[i], bytes[i+1], bytes[i+2]) > 35) lit++;
       return [{ card: card.getAttribute('aria-label'), litFraction: lit / (bytes.length / 4) }];
     });
     const info = gl?.getExtension('WEBGL_debug_renderer_info');
     return JSON.stringify({ gallery: g.stats(), cpu: h.cpuPreparation.stats(), startup: h.startupTiming, artwork,
-      backend: h.renderer.backend.constructor.name,
+      backend: h.renderer.backend.constructor.name, webgpu: h.renderer.backend.isWebGPUBackend === true,
+      webgl: h.renderer.backend.isWebGLBackend === true, samples: h.renderer.samples,
+      compatibilityMode: h.renderer.backend.compatibilityMode, deviceFeatures: h.renderer.backend.device ? [...h.renderer.backend.device.features] : undefined,
       browserReportedRenderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl?.getParameter(gl.RENDERER),
       parallelCompile: !!gl?.getExtension('KHR_parallel_shader_compile'), frameMs: h.stats().frameMs });
   })()`));
