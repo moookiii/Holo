@@ -1,3 +1,4 @@
+import { sampleSetDefinitions } from './SampleSetCards.ts';
 import { neoDestinyDefinitions } from './NeoDestinyCards.ts';
 import { neoRevelationDefinitions } from './NeoRevelationCards.ts';
 import { southernIslandsDefinitions } from './SouthernIslandsCards.ts';
@@ -131,7 +132,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, phantomCorridorCard, porygonNeonCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...neoDiscoveryDefinitions, ...neoRevelationDefinitions, ...neoDestinyDefinitions, ...legendaryCollectionDefinitions, ...southernIslandsDefinitions, ...wizardsPromoDefinitions, {
+export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, phantomCorridorCard, porygonNeonCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...neoDiscoveryDefinitions, ...neoRevelationDefinitions, ...neoDestinyDefinitions, ...legendaryCollectionDefinitions, ...sampleSetDefinitions, ...southernIslandsDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',

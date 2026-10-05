@@ -1,4 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
+import { SAMPLE_SET_ID } from './SampleSetCatalog.ts';
+import { sampleSetDefinition } from '../card/SampleSetCards.ts';
 import type { PokemonCard, PrintVariant } from './types.ts';
 import { wotcPrinting } from '../card/WotcCards.ts';
 import { PRISMATIC_SET_ID } from './PrismaticCatalog.ts';
@@ -41,6 +43,7 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
   return 'pokemon-sheen';
 }
 export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[], packSetId?: string): CardDefinition {
+  if (card.setId === SAMPLE_SET_ID) return sampleSetDefinition(card.id, variant);
   if (isSvTcglSet(card.setId)) return svTcglDefinition(card.id, variant);
   if (card.setId === POKEMON_151_ID) return pokemon151Definition(card.id, variant);
   if (card.setId === PRISMATIC_SET_ID) return prismaticDefinition(card.id, variant);

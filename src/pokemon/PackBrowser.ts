@@ -250,15 +250,16 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => series.id === 'neo' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
+      sets.sort((a, b) => series.id === 'neo' || series.id === 'ecard' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
         packAvailability(set.id).label));
     }, () => this.sets());
   }
   private collectionDetail(product: PokemonCollectionProduct) {
     this.collection = product; this.step = 'collection';
     this.screen(product.name, product.note);
-    const button = this.button('Open collection folder', () => this.openCollection(product), product.artwork,
-      `${product.cardIds.length} fixed cards · complete English collection`);
+    const demo = product.kind === 'demonstration-collection';
+    const button = this.button(demo ? 'Open demonstration collection' : 'Open collection folder', () => this.openCollection(product), product.artwork,
+      `${product.cardIds.length} fixed cards · ${demo ? 'complete demo checklist · non-holo' : 'complete English collection'}`);
     button.classList.add('pokemon-collection-folder');
   }
   private openCollection(product: PokemonCollectionProduct) {

@@ -1,3 +1,4 @@
+import { SAMPLE_SET_ID, sampleSet, sampleSetCard } from './SampleSetCatalog.ts';
 import { NEO_DESTINY_ID, neoDestinyCard, neoDestinySet } from './NeoDestinyCatalog.ts';
 import { NEO_REVELATION_ID, neoRevelationCard, neoRevelationSet } from './NeoRevelationCatalog.ts';
 import { SOUTHERN_ISLANDS_ID, southernIslandsCard, southernIslandsSet } from './SouthernIslandsCatalog.ts';
@@ -77,6 +78,12 @@ export class TcgdexAdapter {
       const sets = serie.sets
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
+      if (seriesId === 'ecard') {
+        const old = sets.findIndex(set => set.id === SAMPLE_SET_ID);
+        if (old >= 0) sets.splice(old, 1);
+        // August 2002 precedes Expedition (September), Aquapolis and Skyridge.
+        sets.unshift({ id: sampleSet.id, name: sampleSet.name, logo: sampleSet.logo });
+      }
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'sv') {
         const local = [...svTcglSets, pokemon151Set, prismaticSet];
@@ -117,6 +124,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === SAMPLE_SET_ID) return { ...sampleSet, series: { ...sampleSet.series }, cardIds: [...sampleSet.cardIds], boosters: [] };
       if (isSvTcglSet(id)) return svTcglSet(id);
       if (id === POKEMON_151_ID) return { ...pokemon151Set, series: { ...pokemon151Set.series }, cardIds: [...pokemon151Set.cardIds], boosters: pokemon151Set.boosters.map(b => ({ ...b })) };
       if (id === SOUTHERN_ISLANDS_ID) return { ...southernIslandsSet, series: { ...southernIslandsSet.series }, cardIds: [...southernIslandsSet.cardIds], boosters: [] };
@@ -147,6 +155,11 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === SAMPLE_SET_ID) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return sampleSetCard(id);
+      }
+      if (id.startsWith(SAMPLE_SET_ID + '-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (isSvTcglSet(set.id)) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return svTcglCard(id);
