@@ -146,5 +146,16 @@ try {
   await evaluate('window.__holo.gallery.close()');
   await measure('open-from-viewer', () => evaluate(`document.querySelector('#gallery-open').click()`));
   if (report.errors.length) throw new Error(report.errors.join('\n'));
-} catch (error) { report.failure = String(error); process.exitCode = 1; console.error(error); }
+} catch (error) {
+  report.failure = String(error); process.exitCode = 1; console.error(error);
+  try {
+    report.failureState = JSON.parse(await evaluate(`JSON.stringify((() => {
+      const g = window.__holo?.gallery.instance();
+      return { stats: g?.stats(), query: g?.query, stages: window.__galleryStages,
+        entries: g?.assigned.map(item => { const entry = g.entries.get(item.slot); return { ...item,
+          ready: entry?.ready, uploading: entry?.uploading, error: entry?.error, preview: !!entry?.preview }; }) };
+    })())`));
+    const capture = await screenshot(); await writeFile(join(out, 'failure.png'), Buffer.from(capture.data, 'base64'));
+  } catch (diagnosticError) { report.diagnosticFailure = String(diagnosticError); }
+}
 finally { await writeFile(join(out, 'report.json'), JSON.stringify(report, null, 2)); try { await call('browser.close'); } catch {} socket.close(); firefox.kill(); }
