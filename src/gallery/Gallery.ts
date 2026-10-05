@@ -201,12 +201,14 @@ export class Gallery {
       const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
         ? compareGallerySetNames(a, b) : a.localeCompare(b));
       const selected = this.query[facet.key] ?? '';
+      if (facet.key === 'finish' && values.includes('holo')) values.push('regular-holo');
       if (selected && !values.includes(selected)) delete this.query[facet.key];
       select.replaceChildren(new Option(`Any ${facet.label.toLowerCase()}`, ''), ...values.map(value => new Option(facet.key === 'finish'
-        ? profiles.find(p => p.id === value)?.name ?? printVariantLabel(value as PrintVariant) ?? value : value, value)));
+        ? value === 'regular-holo' ? 'Regular holo' : value === 'holo' ? 'All holo finishes'
+          : profiles.find(p => p.id === value)?.name ?? printVariantLabel(value as PrintVariant) ?? value : value, value)));
       select.value = this.query[facet.key] ?? '';
       const active = this.query[facet.key];
-      if (active) cards = cards.filter(card => facet.value(card) === active);
+      if (active) cards = cards.filter(card => facet.value(card) === (active === 'regular-holo' ? 'holo' : active));
     }
   }
   hide() {

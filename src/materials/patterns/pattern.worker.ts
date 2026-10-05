@@ -20,8 +20,10 @@ self.onmessage = async (event: MessageEvent<{ id: number; spec: PatternSpec; mot
     if (event.data.notifyStarted) self.postMessage({ id, started: true });
     const field = valid ? stored : spec.kind === 'symbol-foil' && spec.motif
       ? generateMotifField(spec.seed, spec.aspect, spec.scale, height ?? 2048, spec.motif, motifImage) : generateField(spec, height, motifImage);
-    // Complete structured cloning before transferring ownership to the caller.
-    if (key && !valid) await persistentCards.set(key, field, field.direction.byteLength + field.relief.byteLength);
+    // Wait only for the cache's snapshot, not its disk commit, before transfer.
+    if (key && !valid) await new Promise<void>(resolve => {
+      void persistentCards.set(key, field, field.direction.byteLength + field.relief.byteLength, resolve);
+    });
     self.postMessage({ id, field, persistentHit: !!valid }, { transfer: [field.direction.buffer, field.relief.buffer] });
   } catch (error) { self.postMessage({ id, error: String(error) }); }
 };

@@ -19,8 +19,13 @@ try {
   const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
   page.on('pageerror', error => errors.push(String(error)));
   await page.routeWebSocket('**', socket => socket.close());
-  await page.goto(process.env.BINDER_URL || 'http://127.0.0.1:5173/?backend=webgpu');
-  await page.waitForFunction(() => window.__holo?.gallery.stats()?.active, null, { timeout: 120000 });
+  const url = new URL(process.env.BINDER_URL || 'http://127.0.0.1:5173/?backend=webgpu');
+  url.searchParams.set('benchmark-cold-viewer', '1');
+  await page.goto(url.href);
+  await page.waitForFunction(() => {
+    const stats = window.__holo?.gallery.stats();
+    return stats?.active && stats.visibleExpected > 0 && stats.visible === stats.visibleExpected && !stats.visibleFailed;
+  }, null, { timeout: 120000 });
   await page.evaluate(() => {
     const gallery = window.__holo.gallery.instance();
     gallery.favorites.ids = new Set(gallery.catalog.cards().slice(0, 73).map(card => card.id));
@@ -84,7 +89,28 @@ try {
   report.reopened = await page.evaluate(() => window.__holo.gallery.stats());
   assert.equal(report.reopened.visibleFailed, 0);
   assert.ok(report.reopened.residentCards <= 72);
+  report.cacheSnapshot = await page.evaluate(async () => {
+    const { PersistentCardCache } = await import('/src/assets/PersistentCardCache.ts');
+    const cache = new PersistentCardCache('holo-snapshot-check', 16);
+    const source = new Uint8Array([1, 27, 128, 255]);
+    let snapshot;
+    const ready = new Promise(resolve => { snapshot = resolve; });
+    const writing = cache.set('transfer', source, source.byteLength, snapshot);
+    await ready;
+    structuredClone(source, { transfer: [source.buffer] });
+    await writing;
+    const restored = await cache.get('transfer');
+    const rejected = new PersistentCardCache('holo-snapshot-budget-check', 0);
+    let notified = false;
+    await rejected.set('too-large', new Uint8Array(4), 4, () => { notified = true; });
+    return { detached: source.byteLength === 0, restored: Array.from(restored), rejectedWriteNotified: notified };
+  });
+  assert.deepEqual(report.cacheSnapshot, { detached: true, restored: [1, 27, 128, 255], rejectedWriteNotified: true });
   assert.deepEqual(errors, []);
+  if (process.env.BINDER_MAX_VISIBLE_MS) {
+    assert.ok(report.cold.timing.visibleMs <= Number(process.env.BINDER_MAX_VISIBLE_MS),
+      `Cold visible spread took ${report.cold.timing.visibleMs.toFixed(1)} ms; budget ${process.env.BINDER_MAX_VISIBLE_MS} ms`);
+  }
   console.log(JSON.stringify(report));
 } finally {
   await writeFile(join(out, 'cold-load-report.json'), JSON.stringify(report, null, 2));

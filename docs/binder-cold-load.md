@@ -38,3 +38,26 @@ Texture dimensions, filtering, material profiles, geometry and shader effects
 are unchanged. The baseline and optimized 60-card runs retained the same GPU
 bytes and texture/material counts. The existing motion check also passed with
 zero new pipelines or textures during page lift and fourteen page turns.
+
+## Strict cold-click budget
+
+The check now waits for the gallery's visible cards to finish before clicking,
+and disables speculative viewer preparation. Set `BINDER_MAX_VISIBLE_MS=1000`
+to enforce the requested one-second full-spread budget. This budget currently
+fails; background preparation and prepared-card viewer timings do not count.
+
+Uniform packed RGBA maps are now represented by their exact single texel and
+shared within a factory. Nonuniform maps retain all their original pixels.
+This reduced the 60-card sample's retained GPU bytes from 4,095,298,170 to
+2,848,162,190, without changing any sampled channel values. Foil workers also
+transfer their finished fields once IndexedDB has cloned them, allowing disk
+commit to finish independently. The browser check verifies persisted bytes
+after transferring/detaching the original buffer, including the budget-rejected
+write callback path.
+
+The updated strict WebGPU sample took 15.8 s for the visible spread and 33.2 s
+including neighbors. Separate fresh-context cold card opens measured 1.10 s
+for Bulbasaur print, 2.94 s for Sylveon 156, and 2.43 s for Base Set Blastoise.
+Sylveon's interval from upload completion to resource readiness was 1.80 s.
+These results do not meet one second; they identify shader compilation and
+full-resolution preparation as remaining costs, not a successful budget result.

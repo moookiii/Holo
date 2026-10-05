@@ -1,3 +1,4 @@
+import { EXPEDITION_ID, expeditionSet, expeditionCard } from './ExpeditionCatalog.ts';
 import { SAMPLE_SET_ID, sampleSet, sampleSetCard } from './SampleSetCatalog.ts';
 import { NEO_DESTINY_ID, neoDestinyCard, neoDestinySet } from './NeoDestinyCatalog.ts';
 import { NEO_REVELATION_ID, neoRevelationCard, neoRevelationSet } from './NeoRevelationCatalog.ts';
@@ -79,10 +80,16 @@ export class TcgdexAdapter {
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'ecard') {
+        const expedition = sets.findIndex(set => set.id === EXPEDITION_ID);
+        if (expedition >= 0) sets.splice(expedition, 1);
+        sets.unshift({ id: expeditionSet.id, name: expeditionSet.name, logo: expeditionSet.logo });
         const old = sets.findIndex(set => set.id === SAMPLE_SET_ID);
         if (old >= 0) sets.splice(old, 1);
         // August 2002 precedes Expedition (September), Aquapolis and Skyridge.
         sets.unshift({ id: sampleSet.id, name: sampleSet.name, logo: sampleSet.logo });
+        const chronology = [SAMPLE_SET_ID, EXPEDITION_ID, 'ecard2', 'ecard3'];
+        sets.sort((a,b) => (chronology.indexOf(a.id) < 0 ? 99 : chronology.indexOf(a.id))
+          - (chronology.indexOf(b.id) < 0 ? 99 : chronology.indexOf(b.id)));
       }
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'sv') {
@@ -124,6 +131,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (id === EXPEDITION_ID) return { ...expeditionSet, series: { ...expeditionSet.series }, cardIds: [...expeditionSet.cardIds], boosters: expeditionSet.boosters.map(b => ({ ...b })) };
       if (id === SAMPLE_SET_ID) return { ...sampleSet, series: { ...sampleSet.series }, cardIds: [...sampleSet.cardIds], boosters: [] };
       if (isSvTcglSet(id)) return svTcglSet(id);
       if (id === POKEMON_151_ID) return { ...pokemon151Set, series: { ...pokemon151Set.series }, cardIds: [...pokemon151Set.cardIds], boosters: pokemon151Set.boosters.map(b => ({ ...b })) };
@@ -155,6 +163,11 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === EXPEDITION_ID) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return expeditionCard(id);
+      }
+      if (id.startsWith(EXPEDITION_ID + '-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === SAMPLE_SET_ID) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return sampleSetCard(id);

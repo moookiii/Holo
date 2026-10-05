@@ -24,10 +24,34 @@ export function pocket(index: number, side: -1 | 1) {
 
 /** The bound edge rises from the centre; the sheet settles onto its own stack. */
 export function restingPoint(u: number, side: -1 | 1, height: number) {
-  const lift = (2.75 - height) * Math.exp(-u / 1.4);
-  const arch = .24 * Math.sin(Math.PI * u / BINDER.pageWidth);
-  const slope = -lift / 1.4 + .24 * Math.PI / BINDER.pageWidth * Math.cos(Math.PI * u / BINDER.pageWidth);
-  return { x: side * (BINDER.hinge + u), z: height + lift + arch, angle: -side * Math.atan(slope) };
+  const profile = (distance: number) => {
+    const lift = (2.75 - height) * Math.exp(-distance / 1.4);
+    return { z: height + lift + .24 * Math.sin(Math.PI * distance / BINDER.pageWidth),
+      slope: -lift / 1.4 + .24 * Math.PI / BINDER.pageWidth * Math.cos(Math.PI * distance / BINDER.pageWidth) };
+  };
+  // Rigid cards support the sheet across each pocket. Confine bending to the
+  // empty channels so the spine crown cannot intersect the inner card edges.
+  const halfPocket = 3.4;
+  const centers = Array.from({ length: BINDER.columns }, (_, column) => pocket(column, 1).u);
+  const plane = (center: number, distance: number) => {
+    const p = profile(center);
+    return { z: p.z + p.slope * (distance - center), slope: p.slope };
+  };
+  let left = 0, start = profile(0), right = BINDER.pageWidth, end = profile(right);
+  for (const center of centers) {
+    if (u >= center - halfPocket && u <= center + halfPocket) {
+      const p = plane(center, u);
+      return { x: side * (BINDER.hinge + u), z: p.z, angle: -side * Math.atan(p.slope) };
+    }
+    if (u > center + halfPocket) { left = center + halfPocket; start = plane(center, left); }
+    else { right = center - halfPocket; end = plane(center, right); break; }
+  }
+  const width = right - left, t = (u - left) / width;
+  const z = (2*t*t*t - 3*t*t + 1)*start.z + (t*t*t - 2*t*t + t)*width*start.slope
+    + (-2*t*t*t + 3*t*t)*end.z + (t*t*t - t*t)*width*end.slope;
+  const slope = (6*t*t - 6*t)*(start.z - end.z)/width
+    + (3*t*t - 4*t + 1)*start.slope + (3*t*t - 2*t)*end.slope;
+  return { x: side * (BINDER.hinge + u), z, angle: -side * Math.atan(slope) };
 }
 
 /** Arc-length integration preserves sheet width while a curvature wave crosses it.

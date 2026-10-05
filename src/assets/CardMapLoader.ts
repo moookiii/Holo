@@ -85,7 +85,7 @@ export class CardMapLoader {
         openingStage('map-packing', packingStarted);
         if (this.released.has(card.id)) throw new Error('The imported card was removed.');
         const make = (bytes: Uint8Array) => {
-          const texture = new DataTexture(bytes, packed.width, packed.height, RGBAFormat, UnsignedByteType);
+          const texture = new DataTexture(bytes, bytes.length === 4 ? 1 : packed.width, bytes.length === 4 ? 1 : packed.height, RGBAFormat, UnsignedByteType);
           // Canvas rows start at the top, just like the original print images.
           texture.flipY = true;
           texture.colorSpace = NoColorSpace; texture.minFilter = LinearMipmapLinearFilter; texture.magFilter = LinearFilter;

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { BINDER, BinderNavigation, binderCount, pocket, sheetPoint, spreadCount, spreadIndices, spreadFaces } from '../src/binder/BinderLayout.ts';
+import { BINDER, BinderNavigation, binderCount, pocket, restingPoint, faceHeight, sheetPoint, spreadCount, spreadIndices, spreadFaces } from '../src/binder/BinderLayout.ts';
 const settle = (nav: BinderNavigation) => { for (let i=0; i<300 && nav.turn; i++) nav.advance(1/60); assert.equal(nav.turn, undefined); };
 test('all 40 faces and multiple binders cover every favorite exactly once', () => {
   assert.equal(BINDER.columns * BINDER.rows, 12);
@@ -35,4 +35,18 @@ test('deformation lands in registration for both directions',()=>{
     assert.ok(Math.abs(end.z-.42)<1e-6);
   }
   for(let i=0;i<12;i++) assert.equal(pocket(i,-1).y,pocket(i,1).y);
+});
+
+test('resting pockets stay planar beneath rigid cards at every stack height', () => {
+  for (let face = 0; face < BINDER.faces; face++) for (const side of [-1, 1] as const) {
+    for (let column = 0; column < BINDER.columns; column++) {
+      const { u } = pocket(column, side), center = restingPoint(u, side, faceHeight(face));
+      for (let dx = -BINDER.cardWidth / 2; dx <= BINDER.cardWidth / 2; dx += .1) {
+        const point = restingPoint(u + dx, side, faceHeight(face));
+        const expectedZ = center.z - side * Math.tan(center.angle) * dx;
+        assert.ok(Math.abs(point.z - expectedZ) < 1e-10, `face ${face}, column ${column}, offset ${dx}`);
+        assert.ok(Math.abs(point.angle - center.angle) < 1e-10);
+      }
+    }
+  }
 });

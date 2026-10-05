@@ -21,6 +21,7 @@ const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
   'ex6-83': { reverse: 'squirtle-frlg-reverse' },
 };
 export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string {
+  if (card.setId === 'ecard1' && variant === 'holo') return 'print-only';
   if (isSvTcglSet(card.setId)) return svTcglProfile(card.id, variant);
   if (card.setId === POKEMON_151_ID) return pokemon151Profile(card.id, variant);
   if (card.setId === PRISMATIC_SET_ID) return prismaticProfile(card.id, variant);

@@ -1,5 +1,6 @@
 /// <reference lib="webworker" />
 import { packMapChannels, type PackedMapKey } from './MapPacking';
+import { compactConstantRgba } from './ConstantTexture';
 
 self.onmessage = (event: MessageEvent<{ id: number; aspect: number; defaultPrimary: number; anniversary?: ImageBitmap; images: Partial<Record<PackedMapKey, ImageBitmap>> }>) => {
   const { id, aspect, images, defaultPrimary, anniversary } = event.data;
@@ -33,6 +34,10 @@ self.onmessage = (event: MessageEvent<{ id: number; aspect: number; defaultPrima
         maps.hologram[i+3]=Math.round(logo[i+3]*(white*.38+outline*.62+.07)*protection);
       }
     }
+    maps.coverage = compactConstantRgba(maps.coverage);
+    maps.surface = compactConstantRgba(maps.surface);
+    maps.pattern = compactConstantRgba(maps.pattern);
+    if (maps.hologram) maps.hologram = compactConstantRgba(maps.hologram);
     self.postMessage({ id, maps }, [maps.coverage.buffer, maps.surface.buffer, maps.pattern.buffer, ...(maps.hologram ? [maps.hologram.buffer] : [])]);
   } catch (error) { self.postMessage({ id, error: error instanceof Error ? error.message : String(error) }); }
   finally { Object.values(images).forEach(image => image.close()); anniversary?.close(); }

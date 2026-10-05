@@ -1,3 +1,4 @@
+import { expeditionDefinitions } from './ExpeditionCards.ts';
 import { neoDestinyDefinitions } from './NeoDestinyCards.ts';
 import { neoRevelationDefinitions } from './NeoRevelationCards.ts';
 import { southernIslandsDefinitions } from './SouthernIslandsCards.ts';
@@ -17,6 +18,7 @@ import type { PrintVariant, PrintEdition } from '../pokemon/types.ts';
 
 /** Exact set + number + print lookup, shared by picker and pack preparation. */
 const prints = new Map<string, CardDefinition>([
+  ...expeditionDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...southernIslandsDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}`, card] as const),
   ...neoDestinyDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}:${card.pokemon!.edition}`, card] as const),
   ...neoRevelationDefinitions.map(card => [`${card.pokemon!.id}:${card.pokemon!.variant}:${card.pokemon!.edition}`, card] as const),

@@ -1,3 +1,4 @@
+import { expeditionDefinitions } from './ExpeditionCards.ts';
 import { sampleSetDefinitions } from './SampleSetCards.ts';
 import { neoDestinyDefinitions } from './NeoDestinyCards.ts';
 import { neoRevelationDefinitions } from './NeoRevelationCards.ts';
@@ -132,7 +133,7 @@ export interface CardDefinition {
   layout?: CardLayout;
 }
 
-export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, phantomCorridorCard, porygonNeonCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...neoDiscoveryDefinitions, ...neoRevelationDefinitions, ...neoDestinyDefinitions, ...legendaryCollectionDefinitions, ...sampleSetDefinitions, ...southernIslandsDefinitions, ...wizardsPromoDefinitions, {
+export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, phantomCorridorCard, porygonNeonCard, ...signalForestCards, ...nonHoloCards, ...holoBulkCards.filter(card => !card.id.startsWith('holo-pokemon-expedition-')), ...expeditionDefinitions, ...yugiohTopCards, ...metalCollectibles, ...baseSetCards, ...jungleDefinitions, ...fossilDefinitions, ...baseSet2Definitions, ...teamRocketDefinitions, ...gymHeroesDefinitions, ...gymChallengeDefinitions, ...neoGenesisDefinitions, ...neoDiscoveryDefinitions, ...neoRevelationDefinitions, ...neoDestinyDefinitions, ...legendaryCollectionDefinitions, ...sampleSetDefinitions, ...southernIslandsDefinitions, ...wizardsPromoDefinitions, {
   id: 'nocturne', title: 'Nocturne', franchise: 'Original',
   set: 'Atelier', number: '01', dimensions: DIMENSIONS.standard,
   front: '/cards/nocturne/front.svg', back: '/cards/nocturne/back.svg',
@@ -195,19 +196,6 @@ export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, ph
     image: 'https://images.pokemontcg.io/sv2/135_hires.png',
     metadata: 'https://www.pokemon.com/us/pokemon-tcg/pokemon-cards/series/sv02/135/',
     notes: 'Unmodified 734 × 1021 source. Regular Paldea Evolved Mirage printing, distinct from reverse-holo and promotional Cosmos variants. Authored artwork/subject and silver-border masks are estimates; multi-angle physical matching remains pending.',
-  },
-}, {
-  id: 'charizard-expedition-reverse', title: 'Charizard', franchise: 'Pokémon',
-  set: 'Expedition · Reverse holo', number: '40/165', dimensions: DIMENSIONS.standard,
-  layout: { artwork: [54/600, 93/825, 580/600, 400/825], innerFrame: [52/600, 18/825, 582/600, 777/825] },
-  front: '/cards/charizard-expedition-reverse/front.png', back: '/cards/pokemon/back.jpg',
-  coverageMode: 'reverse',
-  maps: { reverseFoil: '/cards/charizard-expedition-reverse/reverse-foil.svg', protection: '/cards/charizard-expedition-reverse/protection.png', laminate: '/cards/charizard-expedition-reverse/laminate.svg' },
-  profile: 'pokemon-e-reader', seed: 2002040,
-  source: {
-    image: 'https://images.pokemontcg.io/ecard1/40_hires.png',
-    metadata: 'https://github.com/PokemonTCG/pokemon-tcg-data/blob/master/cards/en/ecard1.json',
-    notes: 'Unmodified 600 × 825 nonfoil print supplies the artwork. Reverse foil is reconstructed under the red body ink, with authored protection for lettering, yellow e-reader rails, picture, evolution badge and energy symbols. Static physical photographs guide coverage; empirical angular matching remains pending.',
   },
 }, {
   id: 'squirtle-frlg-reverse', title: 'Squirtle', franchise: 'Pokémon',
@@ -312,3 +300,4 @@ export const cards: CardDefinition[] = [micaeCard, slimeCard, ancientMewCard, ph
     metadata: 'Black Lotus; illustration credited to Christopher Rush in the supplied print',
     notes: 'Exact 672 × 936 supplied front and user-selected gold-bordered Collector’s Edition back retained. Petals and text have separate optical protection. Specialty foil is an experimental viewer treatment, not a historical foil-printing claim.' },
 }];
+

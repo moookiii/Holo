@@ -67,9 +67,9 @@ export class PersistentCardCache {
     } catch { this.metrics.errors++; this.metrics.misses++; return undefined; }
     finally { this.metrics.readMs += performance.now() - started; }
   }
-  async set(key: string, value: unknown, bytes: number) {
+  async set(key: string, value: unknown, bytes: number, snapshotReady?: () => void) {
     const started = performance.now(), db = await this.open();
-    if (!db || bytes > this.budget || bytes < 0) return;
+    if (!db || bytes > this.budget || bytes < 0) { snapshotReady?.(); return; }
     try {
       await new Promise<void>((resolve, reject) => {
         const tx = db.transaction(['data', 'meta', 'totals'], 'readwrite');
@@ -79,7 +79,11 @@ export class PersistentCardCache {
           const total = totals.get('bytes');
           total.onsuccess = () => {
             let size = (total.result ?? 0) - (old.result?.bytes ?? 0) + bytes;
-            data.put(value, key); meta.put({ key, bytes, used: Date.now() } satisfies Metadata);
+            data.put(value, key);
+            // IndexedDB owns its structured clone now. Callers may transfer
+            // their buffers while the disk transaction finishes independently.
+            snapshotReady?.(); snapshotReady = undefined;
+            meta.put({ key, bytes, used: Date.now() } satisfies Metadata);
             const finish = () => { totals.put(size, 'bytes'); this.metrics.bytes = size; };
             if (size <= this.budget) return finish();
             const cursor = meta.index('used').openCursor();
@@ -96,7 +100,7 @@ export class PersistentCardCache {
       });
       this.metrics.writes++;
     } catch { this.metrics.errors++; }
-    finally { this.metrics.writeMs += performance.now() - started; }
+    finally { snapshotReady?.(); this.metrics.writeMs += performance.now() - started; }
   }
   stats() { return { ...this.metrics, budget: this.budget }; }
 }

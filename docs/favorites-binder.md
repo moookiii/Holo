@@ -71,3 +71,12 @@ GPU card realization, per-texture uploads, compilation and attachment wait while
 page turn or orbit drag is active. Already-started GPU operations can finish, but
 subsequent loading steps yield until motion settles. The pause callback is optional
 in CardFactory, so normal viewer/gallery uploads retain their existing behavior.
+
+Lift/landing readiness uses six reusable page faces (three per side). Their film
+textures and single-pass, double-sided surface pipelines are prepared before reveal.
+Turning a page only hides its underlying stack sheet; landing changes the geometry
+of that one sheet. Neighbor-window changes reuse page geometry/materials, and heavy
+card preparation waits 180 ms after settlement. `scripts/binder-motion-check.mjs`
+asserts zero new pipelines/textures at lift and across fourteen landings, stable
+page identities, and records landing update durations. Use BINDER_URL to check
+WebGL as well as its default WebGPU backend.

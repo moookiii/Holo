@@ -198,6 +198,7 @@ export type GalleryQuery = { search: string } & Partial<Record<typeof facets[num
 
 function matchesFacet(card: CardDefinition, facet: typeof facets[number], selected: string) {
   const value = facet.value(card);
+  if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'regular-holo') return value === 'holo';
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'holo')
     return value === 'holo' || value === 'reverse' || value === 'pokeball-reverse' || value === 'masterball-reverse';
   return value === selected;

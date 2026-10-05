@@ -17,11 +17,12 @@ async function collection(count){
  await page.waitForFunction(n=>window.__holo.gallery.stats().filtered===n,count);await ready();
 }
 async function turn(direction,target){
- await page.getByRole('button',{name:direction===1?'Next binder spread':'Previous binder spread',exact:true}).click({timeout:60000});
+ await page.locator('.binder-stage').focus(); await page.keyboard.press(direction===1?'ArrowRight':'ArrowLeft');
  await page.waitForFunction(target=>{const s=window.__holo.gallery.stats();return s.spread===target&&!s.turning;},target,{timeout:60000});
  const s=await state();assert.equal(s.leftStack+s.rightStack,20);assert.ok(s.residentPages<=6);report.turns.push(s.spread); console.log("spread",s.spread);
 }
 try{
+ await page.routeWebSocket('**', socket => socket.close());
  await page.goto(process.env.BINDER_URL||'http://127.0.0.1:5173/?backend=webgl',{waitUntil:'domcontentloaded'});
  await page.waitForFunction(()=>window.__holo?.gallery.stats()?.active,null,{timeout:120000});
  await collection(0);await page.getByLabel('Gallery lighting',{exact:true}).last().selectOption('Soft');await page.waitForTimeout(1000);await capture('empty-corrected');

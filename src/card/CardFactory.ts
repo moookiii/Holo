@@ -90,7 +90,9 @@ export class CardFactory {
       releases.push(lease.release); resources.add(lease.texture); return lease.texture;
     };
     const bytesTexture = (bytes: Uint8Array, width: number, height: number, flipY = true) => {
-      const lease = this.textures.acquire(bytes, width * height * 4 * 4 / 3, () => {
+      const constant = bytes.length === 4;
+      if (constant) width = height = 1;
+      const lease = this.textures.acquire(constant ? `rgba:${flipY}:${bytes.join(',')}` : bytes, width * height * 4 * 4 / 3, () => {
         const texture = new DataTexture(bytes, width, height, RGBAFormat, UnsignedByteType);
         texture.flipY = flipY; texture.colorSpace = NoColorSpace; texture.minFilter = LinearMipmapLinearFilter;
         texture.magFilter = LinearFilter; texture.anisotropy = 8; texture.generateMipmaps = true; texture.needsUpdate = true; return texture;
