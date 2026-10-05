@@ -147,7 +147,6 @@ export class FavoritesBinder {
     this.next.disabled = this.busy() || this.navigation.spread >= spreadCount(this.cards.length) - 1;
     this.indicator.textContent = `Pages ${this.navigation.spread * 2 + 1}–${this.navigation.spread * 2 + 2} / ${spreadCount(this.cards.length) * 2} · ${this.cards.length} cards`;
     this.root.setAttribute('aria-busy', String(this.busy()));
-    if (!this.cards.length) this.status.textContent = 'Your collection starts here. Shift + click cards in the gallery to favorite them.';
   }
   /** One realization/compile at a time. Neighbor work starts only after the spread
    * is complete; each upload yields, and foreground inspection aborts this queue. */
