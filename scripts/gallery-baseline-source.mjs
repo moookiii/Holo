@@ -10,7 +10,7 @@ const root = resolve('artifacts/gallery-baseline-source'); mkdirSync(root, { rec
 const archive = resolve('artifacts/gallery-baseline-source.tar');
 writeFileSync(archive, execFileSync('git', ['archive', ref, 'src', 'tests', 'vite.config.ts', 'package.json', 'tsconfig.json', 'index.html'], { maxBuffer: 64 * 1024 * 1024 }));
 execFileSync('tar', ['-xf', archive, '-C', root]);
-for (const name of ['node_modules', 'public']) if (!existsSync(resolve(root, name))) symlinkSync(resolve(name), resolve(root, name), 'junction');
+for (const name of ['node_modules', 'public', 'scripts', 'docs', 'research']) if (!existsSync(resolve(root, name))) symlinkSync(resolve(name), resolve(root, name), 'junction');
 // Unblock the two pre-existing native Node resolution errors for an honest
 // baseline assertion comparison; no runtime/card data changes.
 const definition = resolve(root, 'src/card/CardDefinition.ts');
