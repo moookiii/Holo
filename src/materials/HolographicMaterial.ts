@@ -300,14 +300,16 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       ? mix(print, vec3(...frontBorderColor).mul(borderVariation), outerBorder)
       : print;
     // Secondary regions take priority where authored masks overlap; energies do not add twice.
-    const stampMask = this.surfaceTextureNode.a.mul(controls.hasStamp), stamp = stampMask.mul(this.stampOptics.enabled);
-    const extended = this.patternTextureNode.a.mul(controls.hasExtendedFoil, controls.extendedCoverage);
+    const stampMask = Fn(() => controls.hasStamp.value > 0 ? this.surfaceTextureNode.a.mul(controls.hasStamp) : float(0))();
+    const stamp = Fn(() => this.activeShaders[2] ? stampMask.mul(this.stampOptics.enabled) : float(0))();
+    const extended = Fn(() => controls.hasExtendedFoil.value > 0 && controls.extendedCoverage.value > 0
+      ? this.patternTextureNode.a.mul(controls.hasExtendedFoil, controls.extendedCoverage) : float(0))();
     // Publisher logo geometry is packed into an otherwise unused data channel.
     // It receives its own reflected material beneath the protected printed ink.
     const logoShape = this.hologramTextureNode.a;
     const printTransmission = print.dot(vec3(.2126, .7152, .0722)).smoothstep(.025, .22);
-    const watermark = logoShape.mul(controls.anniversary, printTransmission);
-    const secondary = mix(mask.g, watermark, controls.anniversary).mul(this.secondaryOptics.enabled, stamp.oneMinus());
+    const watermark = Fn(() => controls.anniversary.value > 0 ? logoShape.mul(controls.anniversary, printTransmission) : float(0))();
+    const secondary = Fn(() => this.activeShaders[1] ? mix(mask.g, watermark, controls.anniversary).mul(this.secondaryOptics.enabled, stamp.oneMinus()) : float(0))();
     // No segmentation or generated per-card maps: deliberately approximate shared
     // layout coverage for remote prints. Exact authored cards never set this flag.
     const procedural = cardMaps?.proceduralFoil;
@@ -315,7 +317,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       : procedural === 'reverse' ? inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus())
       : procedural === 'artwork' ? inside(layout.artwork) : float(0);
     const artCoverage = mask.r.max(extended).max(genericCoverage);
-    const primary = mix(artCoverage, this.hologramTextureNode.g, this.optics.imageHologram).mul(this.optics.enabled, secondary.oneMinus(), stamp.oneMinus());
+    const primary = Fn(() => this.optics.imageHologram.value > 0 ? mix(artCoverage, this.hologramTextureNode.g, this.optics.imageHologram) : artCoverage)()
+      .mul(this.optics.enabled, secondary.oneMinus(), stamp.oneMinus());
     const metal = mask.b.mul(secondary.oneMinus()).max(stampMask.mul(this.stampOptics.enabled.oneMinus()));
     this.regions = [
       { coverage: primary, optics: this.optics, seed, field: this.fieldTextureNode, details: this.reliefTextureNode, pattern: this.patternTextureNode.r, followsAuthoredSurface: !!cardMaps?.direction && cardMaps.hasNormal },
@@ -541,6 +544,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
           u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts].map(Number).join('')).join('/')
       + (this.compactOptics ? ':mew:' + [this.useIridescence, this.useAnisotropy, this.usesHeightRelief(),
         this.surfaceControls.hasNormal.value > 0, this.surfaceControls.anniversary.value > 0,
+        this.surfaceControls.hasStamp.value > 0, this.surfaceControls.hasExtendedFoil.value > 0, this.surfaceControls.extendedCoverage.value > 0,
         ...[this.optics, this.secondaryOptics, this.stampOptics].map(u => u.patternRelief.value > 0)].map(Number).join('') : '');
   }
   private usesHeightRelief() {
