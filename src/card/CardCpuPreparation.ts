@@ -94,18 +94,27 @@ class CpuAssetCache {
 }
 
 class CpuPatternCache {
-  private worker = new Worker(new URL('../materials/patterns/pattern.worker.ts', import.meta.url), { type: 'module' });
+  private workers: Worker[] = [];
+  private workerLimit = Math.min(3, Math.max(1, Math.floor((navigator.hardwareConcurrency || 2) / 2)));
+  private loads = new Map<Worker, number>();
   private sequence = 0;
   private pending = new Map<number, { resolve: (field: FieldData) => void; reject: (error: Error) => void }>();
   private cache = new Map<string, Promise<FieldData>>();
-  constructor() {
-    this.worker.onmessage = (event: MessageEvent<{ id: number; field?: FieldData; error?: string }>) => {
+  private createWorker() {
+    const worker = new Worker(new URL('../materials/patterns/pattern.worker.ts', import.meta.url), { type: 'module' });
+    this.workers.push(worker); this.loads.set(worker, 0);
+    worker.onmessage = (event: MessageEvent<{ id: number; field?: FieldData; error?: string }>) => {
+      this.loads.set(worker, Math.max(0, this.loads.get(worker)! - 1));
       const task = this.pending.get(event.data.id); if (!task) return;
       this.pending.delete(event.data.id);
       if (event.data.error || !event.data.field) task.reject(new Error(event.data.error ?? 'Pattern worker failed'));
       else task.resolve(event.data.field);
     };
-    this.worker.onerror = event => { for (const task of this.pending.values()) task.reject(new Error(event.message)); this.pending.clear(); };
+    worker.onerror = event => {
+      for (const task of this.pending.values()) task.reject(new Error(event.message));
+      this.pending.clear(); this.workers.forEach(worker => worker.terminate()); this.workers = []; this.loads.clear();
+    };
+    return worker;
   }
   get(spec: PatternSpec, motif?: CpuImage, signal?: AbortSignal) {
     signal?.throwIfAborted();
@@ -120,11 +129,15 @@ class CpuPatternCache {
         motifImage = { width: motif.width, height: motif.height, data };
       }
       this.pending.set(id, { resolve, reject });
-      this.worker.postMessage({ id, spec, motifImage }, motifImage ? [motifImage.data.buffer] : []);
+      let worker = this.workers.find(worker => this.loads.get(worker) === 0);
+      if (!worker && this.workers.length < this.workerLimit) worker = this.createWorker();
+      worker ??= this.workers.reduce((least, candidate) => this.loads.get(candidate)! < this.loads.get(least)! ? candidate : least);
+      this.loads.set(worker, this.loads.get(worker)! + 1);
+      worker.postMessage({ id, spec, motifImage }, motifImage ? [motifImage.data.buffer] : []);
     }).catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
-  dispose() { this.worker.terminate(); for (const task of this.pending.values()) task.reject(new Error('CPU pattern cache disposed')); this.pending.clear(); this.cache.clear(); }
+  dispose() { this.workers.forEach(worker => worker.terminate()); this.workers = []; this.loads.clear(); for (const task of this.pending.values()) task.reject(new Error('CPU pattern cache disposed')); this.pending.clear(); this.cache.clear(); }
 }
 
 interface PreviewMetrics {
@@ -251,7 +264,7 @@ export class CardCpuPreparation {
   /** Reuse pack preparation only when the complete definition is compatible. */
   async cached(card: CardDefinition): Promise<PreparedCardCpu | undefined> {
     const profile = resolveCardProfile(card), aspect = card.dimensions.width / card.dimensions.height;
-    const key = JSON.stringify([card.id, profile.id, this.mapKey(card, profile, aspect, profile.watermark === 'quarter-century')]);
+    const key = this.preparationKey(card, profile, aspect);
     const pending = this.cache.get(key);
     if (!pending) return undefined;
     const value = await pending.catch(() => undefined);
@@ -271,6 +284,9 @@ export class CardCpuPreparation {
   private mapKey(card: CardDefinition, profile: HolographicProfile, aspect: number, anniversary: boolean) {
     return JSON.stringify([card.id, card.maps, card.mapSettings, card.layout, profile.maps, aspect, anniversary]);
   }
+  private preparationKey(card: CardDefinition, profile: HolographicProfile, aspect: number) {
+    return JSON.stringify([card.id, profile.id, this.mapKey(card, profile, aspect, profile.watermark === 'quarter-century'), card.backProfile, card.backMaps]);
+  }
   private async prepareMaps(card: CardDefinition, profile: HolographicProfile, aspect: number, anniversary: boolean, signal: AbortSignal): Promise<PreparedMapsCpu> {
     if (profile.id === 'print-only') {
       const paths = { ...card.maps, ...profile.maps };
@@ -287,7 +303,9 @@ export class CardCpuPreparation {
     const wholeFront = card.imported && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
     const clone = async (path: string) => { const image = await this.assets.image(path, signal); const bitmap = await createImageBitmap(image.bitmap); return { bitmap, width: bitmap.width, height: bitmap.height }; };
     const packedInputs: Partial<Record<PackedMapKey, CpuImage>> = {};
-    for (const name of PACKED_MAP_KEYS) if (paths[name]) packedInputs[name] = await clone(paths[name]!);
+    await Promise.all(PACKED_MAP_KEYS.map(async name => {
+      if (paths[name]) packedInputs[name] = await clone(paths[name]!);
+    }));
     const anniversaryImage = anniversary ? await clone('/materials/ygo-25th.webp') : undefined;
     let packed: PackedMaps | undefined;
     if (Object.keys(packedInputs).length || anniversary || wholeFront) packed = await (this.maps ??= new CpuMapCache()).get(JSON.stringify([paths, aspect, anniversary, wholeFront]), aspect, packedInputs, anniversaryImage, wholeFront ? 255 : 0);
@@ -312,7 +330,7 @@ export class CardCpuPreparation {
   async prepare(card: CardDefinition, signal: AbortSignal): Promise<PreparedCardCpu> {
     if (this.disposed) throw new Error('CPU preparation disposed');
     const profile = resolveCardProfile(card), aspect = card.dimensions.width / card.dimensions.height, anniversary = profile.watermark === 'quarter-century';
-    const key = JSON.stringify([card.id, profile.id, this.mapKey(card, profile, aspect, anniversary), card.backProfile, card.backMaps]);
+    const key = this.preparationKey(card, profile, aspect);
     if (this.cache.has(key)) { this.hitCount++; return this.cache.get(key)!; }
     this.missCount++;
     if (!this.cache.has(key)) this.cache.set(key, (async () => {

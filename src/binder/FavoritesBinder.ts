@@ -2,7 +2,7 @@ import './binder.css';
 import { Raycaster, Vector2, Vector3, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
-import type { CardCpuPreparation } from '../card/CardCpuPreparation';
+import type { CardCpuPreparation, PreparedCardCpu } from '../card/CardCpuPreparation';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { galleryLightingControls } from '../gallery/GalleryLighting';
 import { BinderScene } from './BinderScene';
@@ -164,13 +164,32 @@ export class FavoritesBinder {
       const request = new AbortController(), domain = this.factory; this.request = request;
       const indices = this.windowSpreads().flatMap(s => this.indices(s));
       const job = (async () => {
-        for (const index of indices) {
+        // Fetch/decode the next few full-quality cards while the GPU prepares
+        // this one. Keep the window bounded and in visible-spread order.
+        const preparations = new Map<number, Promise<{ value?: PreparedCardCpu; error?: unknown; failed?: true }>>();
+        const prepareAhead = (offset: number, count = 3) => {
           if (request.signal.aborted || !this.active) return;
+          for (const index of indices.slice(offset, offset + count)) {
+            const key = `${this.face(index)}:${index % 12}`;
+            if (preparations.has(index) || this.loaded.has(key) || this.failed.has(key) || this.cards[index].construction) continue;
+            preparations.set(index, this.cpuReady(this.cards[index], request.signal).then(
+              value => ({ value }), error => ({ error, failed: true }),
+            ));
+          }
+        };
+        prepareAhead(0, 1);
+        for (const [offset, index] of indices.entries()) {
+          if (request.signal.aborted || !this.active) return;
+          prepareAhead(offset, offset === 0 ? 1 : 3);
           const pageIndex = this.face(index), slot = index % 12, key = `${pageIndex}:${slot}`;
           if (this.loaded.has(key) || this.failed.has(key)) continue;
           const card = this.cards[index]; let instance;
           try {
-            const prepared = card.construction ? undefined : await this.cpuReady(card, request.signal);
+            const result = await preparations.get(index);
+            preparations.delete(index);
+            prepareAhead(offset + 1);
+            if (result?.failed) throw result.error;
+            const prepared = result?.value;
             await this.waitForMotion(request.signal);
             if (request.signal.aborted) return;
             instance = prepared ? await domain.realizeCardGpu(prepared, request.signal, false) : await domain.create(card, request.signal, false);
