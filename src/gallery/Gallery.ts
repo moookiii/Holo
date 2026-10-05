@@ -9,6 +9,7 @@ import { GalleryResidency } from './GalleryResidency';
 import { GalleryUploadBudget } from './GalleryUploadBudget';
 import { GalleryPerformance } from './GalleryPerformance';
 import { GalleryScrollPreparation } from './GalleryScrollPreparation';
+import { galleryPreparationIndices } from './GalleryPreparationRange';
 import { galleryCardSize, galleryLayout } from './GalleryLayout';
 import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
@@ -195,11 +196,22 @@ export class Gallery {
       return top <= this.viewport.clientHeight && top + galleryCardSize(card.dimensions, this.layout.cell).cardHeight >= 0;
     });
     // Overscan owns CPU preparation only. It cannot evict a resident texture.
+    const previousAssigned = this.assigned;
     this.assigned = this.residency.reconcile(onScreen.map(card => card.id));
     const onScreenIds = new Set(onScreen.map(card => card.id));
-    this.nearCards = visible.filter(card => !onScreenIds.has(card.id));
-    if (this.scrollDirection > 0) this.nearCards.reverse();
+    const firstVisible = visible.findIndex(card => onScreenIds.has(card.id));
+    const lastVisible = visible.findLastIndex(card => onScreenIds.has(card.id));
+    this.nearCards = firstVisible < 0 ? [] : galleryPreparationIndices(this.filtered.length, this.layout.columns,
+      this.layout.start + firstVisible, this.layout.start + lastVisible, this.scrollDirection).map(index => this.filtered[index]);
     const nearIds = new Set(this.nearCards.map(card => card.id));
+    // A card just behind the viewport remains useful. Move its existing job
+    // into the CPU lookahead pool instead of aborting and decoding it again.
+    for (const item of previousAssigned) {
+      const request = this.requests.get(item.slot);
+      if (request && !onScreenIds.has(item.id) && nearIds.has(item.id)) {
+        this.requests.delete(item.slot); this.nearRequests.set(item.id, request);
+      }
+    }
     for (const id of this.nearFailed) if (!nearIds.has(id)) this.nearFailed.delete(id);
     for (const [id, request] of this.nearRequests) if (!nearIds.has(id) && !onScreenIds.has(id)) { request.abort(); this.nearRequests.delete(id); }
     const wanted = new Set(visible.map(c => c.id));
@@ -299,9 +311,13 @@ export class Gallery {
         && this.requests.size + this.nearRequests.size < PREVIEW_CONCURRENCY && !this.loading && prepareCold) {
         const request = new AbortController(); this.requests.set(item.slot, request);
         void this.options.cpu.preparePreview(card, request.signal).then(preview => {
-          if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed) entry.preview = preview;
+          if (!request.signal.aborted && this.residency.owns(item.slot, item.token) && !this.disposed
+            && this.assigned.some(current => current.slot === item.slot && current.token === item.token)) entry.preview = preview;
         }).catch(error => { if (!request.signal.aborted && this.residency.owns(item.slot, item.token)) entry.error = String(error); })
-          .finally(() => { if (this.requests.get(item.slot) === request) this.requests.delete(item.slot); });
+          .finally(() => {
+            if (this.requests.get(item.slot) === request) this.requests.delete(item.slot);
+            if (this.nearRequests.get(item.id) === request) this.nearRequests.delete(item.id);
+          });
       }
     }
     for (const card of this.nearCards) {
