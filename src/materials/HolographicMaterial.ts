@@ -1,6 +1,6 @@
 import type { PhysicalCardProfile } from './PhysicalCardProfile';
 import { inspection } from '../lighting/inspection';
-import { MeshPhysicalNodeMaterial, PhysicalLightingModel, Texture, DataTexture, Vector3, RGBAFormat, UnsignedByteType, type Node, type NodeBuilder } from 'three/webgpu';
+import { MeshPhysicalNodeMaterial, PhysicalLightingModel, Texture, DataTexture, Vector3, Vector4, RGBAFormat, UnsignedByteType, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
 import { texture, uniform, float, vec2, vec3, mix, exp, If, Fn, uv, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, tangentGeometry, bitangentView, normalMap } from 'three/tsl';
@@ -290,14 +290,17 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.setProfile(profile);
     const print = this.printTextureNode.rgb, mask = this.coverageTextureNode;
     const layout = cardMaps?.layout ?? DEFAULT_FOIL_LAYOUT, printPoint = vec2(uv().x, uv().y.oneMinus());
-    const inside = (rect: [number, number, number, number]) => printPoint.x.sub(rect[0]).min(float(rect[2]).sub(printPoint.x))
-      .min(printPoint.y.sub(rect[1])).min(float(rect[3]).sub(printPoint.y)).smoothstep(0, .001);
+    const inside = (rect: [number, number, number, number]) => {
+      const bounds = uniform(new Vector4(...rect));
+      return printPoint.x.sub(bounds.x).min(bounds.z.sub(printPoint.x))
+        .min(printPoint.y.sub(bounds.y)).min(bounds.w.sub(printPoint.y)).smoothstep(0, .001);
+    };
     // The supplied scan has a neutral charcoal margin outside the printed card.
     // Keep its fine grain, but bring its average tone onto the inner black keyline.
     const outerBorder = inside(layout.innerFrame).oneMinus();
     const borderVariation = print.dot(vec3(.2126, .7152, .0722)).div(.01444).sub(1).mul(.28).add(1).clamp(.84, 1.16);
     const correctedPrint = frontBorderColor
-      ? mix(print, vec3(...frontBorderColor).mul(borderVariation), outerBorder)
+      ? mix(print, uniform(new Vector3(...frontBorderColor)).mul(borderVariation), outerBorder)
       : print;
     // Secondary regions take priority where authored masks overlap; energies do not add twice.
     const stampMask = Fn(() => controls.hasStamp.value > 0 ? this.surfaceTextureNode.a.mul(controls.hasStamp) : float(0))();

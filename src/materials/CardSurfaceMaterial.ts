@@ -2,7 +2,7 @@ import { reliefNormal } from './layers/ReliefLayer';
 import { StockSurfaceLayer } from './layers/StockSurfaceLayer';
 import type { PhysicalCardProfile } from './PhysicalCardProfile';
 import type { Node } from 'three/webgpu';
-import { MeshPhysicalNodeMaterial, MeshStandardNodeMaterial, Color, Texture } from 'three/webgpu';
+import { MeshPhysicalNodeMaterial, MeshStandardNodeMaterial, Color, Texture, Vector2 } from 'three/webgpu';
 import { texture, mix, vec2, uv, positionLocal, sin, float, uniform, normalViewGeometry, vec3, mx_noise_float } from 'three/tsl';
 
 export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { clearcoat: number; clearcoatRoughness: number; }, crop?: [number, number, number, number], physical?: PhysicalCardProfile, seed = 0) {
@@ -11,7 +11,7 @@ export function createPrintMaterial(art: Texture, coverage: Texture, finish?: { 
   // white flashes, especially beneath the pack's narrow studio emitters.
   const material = new MeshPhysicalNodeMaterial({ clearcoat: finish?.clearcoat ?? 0.34, clearcoatRoughness: finish?.clearcoatRoughness ?? 0.42, roughness: 0.44, metalness: 0.08, envMapIntensity: 0.65 });
   // Register the photographed print to the card without resampling the asset.
-  const printUV = crop ? uv().mul(vec2(crop[2] - crop[0], crop[3] - crop[1])).add(vec2(crop[0], 1 - crop[3])) : uv();
+  const printUV = crop ? uv().mul(uniform(new Vector2(crop[2] - crop[0], crop[3] - crop[1]))).add(uniform(new Vector2(crop[0], 1 - crop[3]))) : uv();
   const print = texture(art, printUV);
   const metal = texture(coverage).b;
   material.colorNode = print.rgb;

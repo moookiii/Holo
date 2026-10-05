@@ -1,5 +1,5 @@
 import type { Node } from 'three/webgpu';
-import { uv, vec2, vec3, float, exp, mix, normalView, positionViewDirection } from 'three/tsl';
+import { uniform, uv, vec2, vec3, float, exp, mix, normalView, positionViewDirection } from 'three/tsl';
 import { stableHash } from './PatternLayer';
 import { spectrum } from './DiffractionLayer';
 
@@ -11,7 +11,7 @@ type CrossedFacetOptics = Record<'aspect' | 'facetTilt' | 'scale' | 'spread' | '
 export function crossedFacets(light: Node<'vec3'>, tangent: Node<'vec3'>, bitangent: Node<'vec3'>,
   normal: Node<'vec3'>, field: Node<'vec4'>, details: Node<'vec4'>, u: CrossedFacetOptics, seed: number | Node<'float'>,
   footprint?: [Node<'vec3'>, Node<'vec3'>]) {
-  const seedNode = typeof seed === 'number' ? float(seed) : seed;
+  const seedNode = typeof seed === 'number' ? uniform(seed) : seed;
   const p = uv().mul(vec2(u.aspect, 1));
   const momentum = light.add(positionViewDirection).toVar();
   const half = momentum.normalize().toVar();
