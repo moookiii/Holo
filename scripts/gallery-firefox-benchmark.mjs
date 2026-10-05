@@ -23,6 +23,9 @@ if (process.platform === 'win32') {
 const report = { browser: 'Firefox', version: browser.version(), headless: options.headless, physicalAdapters, url, viewport: { width: 1440, height: 1100 }, phases: [], errors: [], requests: [] };
 const page = await browser.newPage({ viewport: report.viewport, deviceScaleFactor: 1 });
 page.on('pageerror', error => report.errors.push(String(error)));
+page.on('console', message => {
+  if (message.type() === 'error' && /shader|program|WebGL|THREE|TSL/i.test(message.text())) report.errors.push(message.text());
+});
 const requests = new Map();
 page.on('request', request => requests.set(request, Date.now()));
 page.on('requestfinished', async request => {
@@ -83,10 +86,27 @@ async function measure(name, action) {
   } catch (error) { timeout = String(error); }
   const row = { name, ms: Date.now() - started, timeout, ...await state() };
   if (row.readyCards !== row.visibleCards || row.gallery?.visible < row.visibleCards) row.timeout ??= 'Visible cards were not ready on the presented frame';
-  report.phases.push(row); await page.screenshot({ path: join(out, `${name}.png`) });
+  const screenshot = await page.screenshot({ path: join(out, `${name}.png`) });
+  row.artwork = await page.evaluate(async encoded => {
+    const image = new Image(); image.src = `data:image/png;base64,${encoded}`; await image.decode();
+    const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height;
+    const context = canvas.getContext('2d'); context.drawImage(image, 0, 0);
+    const viewport = document.querySelector('.gallery-viewport').getBoundingClientRect();
+    return [...document.querySelectorAll('.gallery-card.is-ready')].flatMap(card => {
+      const rect = card.getBoundingClientRect(), height = parseFloat(card.style.getPropertyValue('--card-height'));
+      if (rect.top < viewport.top || rect.top + height > viewport.bottom) return [];
+      const bytes = context.getImageData(Math.round(rect.left + rect.width * .2), Math.round(rect.top + height * .6),
+        Math.round(rect.width * .6), Math.round(height * .25)).data;
+      let lit = 0;
+      for (let i = 0; i < bytes.length; i += 4) if (Math.max(bytes[i], bytes[i + 1], bytes[i + 2]) > 35) lit++;
+      return [{ card: card.getAttribute('aria-label'), litFraction: lit / (bytes.length / 4) }];
+    });
+  }, screenshot.toString('base64'));
+  if (!row.artwork.length || row.artwork.some(card => card.litFraction < .1)) row.timeout ??= 'Rendered artwork is black or absent';
+  report.phases.push(row);
   await writeFile(join(out, 'report.json'), JSON.stringify(report, null, 2));
   console.log(JSON.stringify({ name, ms: row.ms, timeout, visible: row.visibleCards, ready: row.readyCards, failed: row.gallery?.failed, cpu: row.cpu }));
-  return !timeout;
+  return !row.timeout;
 }
 try {
   let opened;
