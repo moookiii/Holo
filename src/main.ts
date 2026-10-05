@@ -362,11 +362,14 @@ async function start() {
     try {
       // Give the loading wheel a frame before allocating the Gallery resources.
       await new Promise<void>(resolve => requestAnimationFrame(() => requestAnimationFrame(() => resolve())));
+      startupMark('gallerySchedulingReady');
       if (disposed) return;
       if (!gallery) {
         const { Gallery } = await import('./gallery/Gallery');
+        startupMark('galleryModuleReady');
         if (disposed) return;
         gallery = new Gallery({ cards, scene, camera, cpu: cpuPreparation, lighting, compile: mesh => factory.compile(mesh), open: leaveGallery, close: () => leaveGallery(), pack: browsePacksFromGallery });
+        startupMark('galleryResourcesReady');
       }
       ++loadGeneration; ++profileGeneration;
       if (galleryFocusFactory) { activeCard.dispose(); galleryFocusFactory.dispose(); galleryFocusFactory = undefined; }
