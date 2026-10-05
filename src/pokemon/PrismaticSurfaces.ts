@@ -63,7 +63,7 @@ export function prismaticSurface(id: string, variant: PrintVariant): PrismaticSu
   const surface = surfaces[prismaticSurfaceKey(id, variant)];
   if (!surface) throw new PrismaticSurfaceUnavailable(id, variant);
   if (surface.profile !== printing.profileId || !surface.maps.foil || !surface.maps.protection || !surface.evidence
-    || (surface.textured && (!surface.maps.height || !surface.maps.normal || !surface.maps.roughness))) {
+    || (surface.textured && (!surface.maps.normal || !surface.maps.roughness))) {
     throw new Error(`Incomplete authored surface: ${id}:${variant}`);
   }
   return surface;

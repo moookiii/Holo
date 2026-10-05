@@ -19,7 +19,7 @@ AUTHORED = set()
 PUBLIC_BASE = '/cards/pokemon/151'
 PROFILE_PREFIX = 'pokemon151_'
 FOIL_NATIVE = False
-OMIT_HEIGHT = False
+OMIT_HEIGHT = True
 
 
 def digest(path):

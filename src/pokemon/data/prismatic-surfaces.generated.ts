@@ -23,7 +23,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/001-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/001-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/001-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/001-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/001-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/001-pokeball-reverse-evidence.json",
@@ -38,7 +37,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/001-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/001-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/001-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/001-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/001-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/001-masterball-reverse-evidence.json",
@@ -65,7 +63,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/002-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/002-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/002-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/002-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/002-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/002-pokeball-reverse-evidence.json",
@@ -80,7 +77,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/002-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/002-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/002-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/002-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/002-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/002-masterball-reverse-evidence.json",
@@ -107,7 +103,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/003-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/003-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/003-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/003-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/003-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/003-pokeball-reverse-evidence.json",
@@ -122,7 +117,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/003-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/003-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/003-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/003-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/003-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/003-masterball-reverse-evidence.json",
@@ -149,7 +143,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/004-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/004-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/004-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/004-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/004-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/004-pokeball-reverse-evidence.json",
@@ -164,7 +157,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/004-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/004-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/004-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/004-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/004-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/004-masterball-reverse-evidence.json",
@@ -203,7 +195,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/005-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/005-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/005-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/005-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/005-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/005-pokeball-reverse-evidence.json",
@@ -218,7 +209,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/005-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/005-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/005-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/005-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/005-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/005-masterball-reverse-evidence.json",
@@ -233,7 +223,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/006-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/006-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/006-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/006-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/006-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/006-holo-evidence.json",
@@ -260,7 +249,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/007-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/007-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/007-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/007-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/007-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/007-pokeball-reverse-evidence.json",
@@ -275,7 +263,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/007-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/007-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/007-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/007-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/007-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/007-masterball-reverse-evidence.json",
@@ -314,7 +301,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/008-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/008-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/008-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/008-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/008-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/008-pokeball-reverse-evidence.json",
@@ -329,7 +315,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/008-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/008-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/008-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/008-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/008-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/008-masterball-reverse-evidence.json",
@@ -356,7 +341,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/009-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/009-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/009-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/009-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/009-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/009-pokeball-reverse-evidence.json",
@@ -371,7 +355,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/009-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/009-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/009-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/009-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/009-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/009-masterball-reverse-evidence.json",
@@ -398,7 +381,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/010-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/010-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/010-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/010-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/010-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/010-pokeball-reverse-evidence.json",
@@ -413,7 +395,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/010-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/010-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/010-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/010-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/010-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/010-masterball-reverse-evidence.json",
@@ -440,7 +421,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/012-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/012-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/012-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/012-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/012-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/012-holo-evidence.json",
@@ -479,7 +459,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/013-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/013-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/013-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/013-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/013-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/013-pokeball-reverse-evidence.json",
@@ -494,7 +473,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/013-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/013-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/013-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/013-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/013-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/013-masterball-reverse-evidence.json",
@@ -509,7 +487,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/014-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/014-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/014-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/014-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/014-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/014-holo-evidence.json",
@@ -536,7 +513,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/015-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/015-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/015-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/015-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/015-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/015-pokeball-reverse-evidence.json",
@@ -551,7 +527,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/015-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/015-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/015-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/015-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/015-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/015-masterball-reverse-evidence.json",
@@ -578,7 +553,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/016-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/016-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/016-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/016-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/016-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/016-pokeball-reverse-evidence.json",
@@ -593,7 +567,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/016-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/016-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/016-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/016-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/016-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/016-masterball-reverse-evidence.json",
@@ -608,7 +581,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/017-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/017-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/017-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/017-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/017-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/017-holo-evidence.json",
@@ -635,7 +607,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/018-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/018-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/018-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/018-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/018-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/018-pokeball-reverse-evidence.json",
@@ -650,7 +621,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/018-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/018-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/018-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/018-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/018-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/018-masterball-reverse-evidence.json",
@@ -677,7 +647,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/019-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/019-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/019-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/019-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/019-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/019-pokeball-reverse-evidence.json",
@@ -692,7 +661,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/019-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/019-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/019-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/019-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/019-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/019-masterball-reverse-evidence.json",
@@ -719,7 +687,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/020-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/020-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/020-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/020-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/020-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/020-pokeball-reverse-evidence.json",
@@ -734,7 +701,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/020-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/020-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/020-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/020-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/020-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/020-masterball-reverse-evidence.json",
@@ -761,7 +727,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/021-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/021-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/021-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/021-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/021-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/021-pokeball-reverse-evidence.json",
@@ -776,7 +741,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/021-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/021-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/021-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/021-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/021-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/021-masterball-reverse-evidence.json",
@@ -815,7 +779,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/022-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/022-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/022-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/022-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/022-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/022-pokeball-reverse-evidence.json",
@@ -830,7 +793,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/022-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/022-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/022-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/022-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/022-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/022-masterball-reverse-evidence.json",
@@ -845,7 +807,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/023-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/023-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/023-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/023-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/023-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/023-holo-evidence.json",
@@ -872,7 +833,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/024-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/024-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/024-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/024-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/024-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/024-pokeball-reverse-evidence.json",
@@ -887,7 +847,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/024-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/024-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/024-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/024-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/024-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/024-masterball-reverse-evidence.json",
@@ -926,7 +885,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/025-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/025-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/025-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/025-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/025-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/025-pokeball-reverse-evidence.json",
@@ -941,7 +899,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/025-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/025-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/025-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/025-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/025-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/025-masterball-reverse-evidence.json",
@@ -956,7 +913,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/026-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/026-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/026-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/026-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/026-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/026-holo-evidence.json",
@@ -971,7 +927,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/027-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/027-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/027-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/027-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/027-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/027-holo-evidence.json",
@@ -1022,7 +977,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/029-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/029-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/029-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/029-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/029-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/029-pokeball-reverse-evidence.json",
@@ -1037,7 +991,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/029-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/029-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/029-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/029-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/029-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/029-masterball-reverse-evidence.json",
@@ -1052,7 +1005,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/030-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/030-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/030-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/030-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/030-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/030-holo-evidence.json",
@@ -1115,7 +1067,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/033-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/033-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/033-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/033-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/033-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/033-pokeball-reverse-evidence.json",
@@ -1130,7 +1081,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/033-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/033-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/033-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/033-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/033-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/033-masterball-reverse-evidence.json",
@@ -1145,7 +1095,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/034-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/034-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/034-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/034-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/034-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/034-holo-evidence.json",
@@ -1172,7 +1121,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/035-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/035-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/035-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/035-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/035-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/035-pokeball-reverse-evidence.json",
@@ -1187,7 +1135,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/035-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/035-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/035-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/035-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/035-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/035-masterball-reverse-evidence.json",
@@ -1214,7 +1161,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/036-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/036-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/036-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/036-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/036-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/036-pokeball-reverse-evidence.json",
@@ -1229,7 +1175,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/036-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/036-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/036-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/036-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/036-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/036-masterball-reverse-evidence.json",
@@ -1268,7 +1213,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/037-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/037-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/037-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/037-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/037-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/037-pokeball-reverse-evidence.json",
@@ -1283,7 +1227,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/037-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/037-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/037-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/037-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/037-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/037-masterball-reverse-evidence.json",
@@ -1310,7 +1253,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/038-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/038-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/038-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/038-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/038-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/038-pokeball-reverse-evidence.json",
@@ -1325,7 +1267,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/038-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/038-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/038-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/038-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/038-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/038-masterball-reverse-evidence.json",
@@ -1352,7 +1293,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/039-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/039-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/039-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/039-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/039-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/039-pokeball-reverse-evidence.json",
@@ -1367,7 +1307,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/039-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/039-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/039-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/039-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/039-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/039-masterball-reverse-evidence.json",
@@ -1406,7 +1345,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/040-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/040-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/040-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/040-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/040-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/040-pokeball-reverse-evidence.json",
@@ -1421,7 +1359,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/040-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/040-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/040-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/040-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/040-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/040-masterball-reverse-evidence.json",
@@ -1436,7 +1373,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/041-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/041-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/041-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/041-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/041-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/041-holo-evidence.json",
@@ -1463,7 +1399,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/042-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/042-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/042-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/042-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/042-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/042-pokeball-reverse-evidence.json",
@@ -1478,7 +1413,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/042-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/042-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/042-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/042-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/042-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/042-masterball-reverse-evidence.json",
@@ -1517,7 +1451,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/043-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/043-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/043-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/043-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/043-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/043-pokeball-reverse-evidence.json",
@@ -1532,7 +1465,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/043-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/043-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/043-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/043-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/043-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/043-masterball-reverse-evidence.json",
@@ -1571,7 +1503,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/044-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/044-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/044-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/044-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/044-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/044-pokeball-reverse-evidence.json",
@@ -1586,7 +1517,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/044-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/044-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/044-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/044-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/044-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/044-masterball-reverse-evidence.json",
@@ -1625,7 +1555,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/045-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/045-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/045-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/045-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/045-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/045-pokeball-reverse-evidence.json",
@@ -1640,7 +1569,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/045-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/045-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/045-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/045-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/045-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/045-masterball-reverse-evidence.json",
@@ -1679,7 +1607,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/046-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/046-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/046-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/046-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/046-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/046-pokeball-reverse-evidence.json",
@@ -1694,7 +1621,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/046-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/046-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/046-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/046-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/046-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/046-masterball-reverse-evidence.json",
@@ -1721,7 +1647,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/047-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/047-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/047-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/047-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/047-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/047-pokeball-reverse-evidence.json",
@@ -1736,7 +1661,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/047-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/047-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/047-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/047-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/047-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/047-masterball-reverse-evidence.json",
@@ -1763,7 +1687,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/048-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/048-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/048-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/048-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/048-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/048-pokeball-reverse-evidence.json",
@@ -1778,7 +1701,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/048-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/048-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/048-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/048-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/048-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/048-masterball-reverse-evidence.json",
@@ -1817,7 +1739,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/049-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/049-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/049-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/049-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/049-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/049-pokeball-reverse-evidence.json",
@@ -1832,7 +1753,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/049-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/049-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/049-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/049-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/049-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/049-masterball-reverse-evidence.json",
@@ -1859,7 +1779,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/050-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/050-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/050-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/050-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/050-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/050-pokeball-reverse-evidence.json",
@@ -1874,7 +1793,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/050-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/050-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/050-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/050-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/050-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/050-masterball-reverse-evidence.json",
@@ -1913,7 +1831,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/052-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/052-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/052-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/052-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/052-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/052-pokeball-reverse-evidence.json",
@@ -1928,7 +1845,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/052-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/052-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/052-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/052-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/052-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/052-masterball-reverse-evidence.json",
@@ -1955,7 +1871,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/053-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/053-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/053-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/053-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/053-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/053-pokeball-reverse-evidence.json",
@@ -1970,7 +1885,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/053-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/053-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/053-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/053-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/053-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/053-masterball-reverse-evidence.json",
@@ -2009,7 +1923,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/054-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/054-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/054-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/054-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/054-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/054-pokeball-reverse-evidence.json",
@@ -2024,7 +1937,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/054-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/054-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/054-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/054-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/054-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/054-masterball-reverse-evidence.json",
@@ -2051,7 +1963,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/055-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/055-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/055-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/055-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/055-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/055-pokeball-reverse-evidence.json",
@@ -2066,7 +1977,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/055-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/055-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/055-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/055-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/055-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/055-masterball-reverse-evidence.json",
@@ -2117,7 +2027,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/057-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/057-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/057-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/057-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/057-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/057-pokeball-reverse-evidence.json",
@@ -2132,7 +2041,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/057-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/057-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/057-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/057-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/057-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/057-masterball-reverse-evidence.json",
@@ -2147,7 +2055,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/058-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/058-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/058-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/058-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/058-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/058-holo-evidence.json",
@@ -2186,7 +2093,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/059-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/059-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/059-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/059-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/059-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/059-pokeball-reverse-evidence.json",
@@ -2201,7 +2107,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/059-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/059-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/059-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/059-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/059-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/059-masterball-reverse-evidence.json",
@@ -2216,7 +2121,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/060-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/060-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/060-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/060-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/060-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/060-holo-evidence.json",
@@ -2243,7 +2147,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/061-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/061-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/061-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/061-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/061-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/061-pokeball-reverse-evidence.json",
@@ -2258,7 +2161,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/061-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/061-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/061-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/061-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/061-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/061-masterball-reverse-evidence.json",
@@ -2285,7 +2187,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/062-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/062-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/062-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/062-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/062-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/062-pokeball-reverse-evidence.json",
@@ -2300,7 +2201,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/062-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/062-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/062-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/062-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/062-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/062-masterball-reverse-evidence.json",
@@ -2327,7 +2227,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/063-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/063-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/063-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/063-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/063-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/063-pokeball-reverse-evidence.json",
@@ -2342,7 +2241,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/063-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/063-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/063-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/063-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/063-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/063-masterball-reverse-evidence.json",
@@ -2393,7 +2291,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/065-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/065-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/065-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/065-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/065-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/065-pokeball-reverse-evidence.json",
@@ -2408,7 +2305,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/065-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/065-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/065-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/065-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/065-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/065-masterball-reverse-evidence.json",
@@ -2435,7 +2331,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/066-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/066-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/066-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/066-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/066-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/066-pokeball-reverse-evidence.json",
@@ -2450,7 +2345,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/066-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/066-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/066-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/066-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/066-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/066-masterball-reverse-evidence.json",
@@ -2477,7 +2371,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/067-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/067-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/067-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/067-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/067-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/067-pokeball-reverse-evidence.json",
@@ -2492,7 +2385,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/067-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/067-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/067-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/067-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/067-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/067-masterball-reverse-evidence.json",
@@ -2519,7 +2411,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/068-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/068-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/068-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/068-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/068-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/068-pokeball-reverse-evidence.json",
@@ -2534,7 +2425,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/068-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/068-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/068-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/068-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/068-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/068-masterball-reverse-evidence.json",
@@ -2561,7 +2451,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/069-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/069-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/069-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/069-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/069-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/069-pokeball-reverse-evidence.json",
@@ -2576,7 +2465,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/069-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/069-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/069-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/069-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/069-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/069-masterball-reverse-evidence.json",
@@ -2615,7 +2503,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/070-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/070-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/070-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/070-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/070-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/070-pokeball-reverse-evidence.json",
@@ -2630,7 +2517,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/070-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/070-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/070-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/070-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/070-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/070-masterball-reverse-evidence.json",
@@ -2657,7 +2543,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/071-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/071-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/071-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/071-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/071-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/071-pokeball-reverse-evidence.json",
@@ -2672,7 +2557,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/071-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/071-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/071-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/071-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/071-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/071-masterball-reverse-evidence.json",
@@ -2699,7 +2583,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/072-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/072-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/072-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/072-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/072-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/072-pokeball-reverse-evidence.json",
@@ -2714,7 +2597,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/072-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/072-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/072-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/072-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/072-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/072-masterball-reverse-evidence.json",
@@ -2729,7 +2611,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/073-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/073-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/073-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/073-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/073-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/073-holo-evidence.json",
@@ -2756,7 +2637,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/074-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/074-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/074-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/074-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/074-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/074-pokeball-reverse-evidence.json",
@@ -2771,7 +2651,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/074-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/074-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/074-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/074-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/074-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/074-masterball-reverse-evidence.json",
@@ -2786,7 +2665,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/075-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/075-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/075-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/075-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/075-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/075-holo-evidence.json",
@@ -2825,7 +2703,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/077-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/077-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/077-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/077-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/077-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/077-pokeball-reverse-evidence.json",
@@ -2840,7 +2717,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/077-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/077-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/077-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/077-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/077-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/077-masterball-reverse-evidence.json",
@@ -2879,7 +2755,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/078-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/078-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/078-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/078-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/078-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/078-pokeball-reverse-evidence.json",
@@ -2894,7 +2769,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/078-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/078-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/078-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/078-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/078-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/078-masterball-reverse-evidence.json",
@@ -2921,7 +2795,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/079-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/079-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/079-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/079-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/079-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/079-pokeball-reverse-evidence.json",
@@ -2936,7 +2809,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/079-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/079-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/079-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/079-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/079-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/079-masterball-reverse-evidence.json",
@@ -2975,7 +2847,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/080-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/080-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/080-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/080-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/080-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/080-pokeball-reverse-evidence.json",
@@ -2990,7 +2861,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/080-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/080-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/080-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/080-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/080-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/080-masterball-reverse-evidence.json",
@@ -3017,7 +2887,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/081-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/081-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/081-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/081-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/081-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/081-pokeball-reverse-evidence.json",
@@ -3032,7 +2901,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/081-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/081-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/081-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/081-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/081-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/081-masterball-reverse-evidence.json",
@@ -3071,7 +2939,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/083-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/083-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/083-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/083-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/083-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/083-pokeball-reverse-evidence.json",
@@ -3086,7 +2953,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/083-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/083-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/083-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/083-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/083-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/083-masterball-reverse-evidence.json",
@@ -3113,7 +2979,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/084-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/084-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/084-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/084-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/084-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/084-pokeball-reverse-evidence.json",
@@ -3128,7 +2993,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/084-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/084-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/084-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/084-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/084-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/084-masterball-reverse-evidence.json",
@@ -3155,7 +3019,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/085-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/085-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/085-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/085-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/085-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/085-pokeball-reverse-evidence.json",
@@ -3170,7 +3033,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/085-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/085-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/085-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/085-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/085-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/085-masterball-reverse-evidence.json",
@@ -3197,7 +3059,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/086-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/086-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/086-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/086-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/086-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/086-pokeball-reverse-evidence.json",
@@ -3212,7 +3073,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/086-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/086-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/086-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/086-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/086-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/086-masterball-reverse-evidence.json",
@@ -3239,7 +3099,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/087-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/087-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/087-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/087-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/087-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/087-pokeball-reverse-evidence.json",
@@ -3254,7 +3113,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/087-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/087-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/087-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/087-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/087-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/087-masterball-reverse-evidence.json",
@@ -3281,7 +3139,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/088-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/088-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/088-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/088-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/088-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/088-pokeball-reverse-evidence.json",
@@ -3296,7 +3153,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/088-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/088-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/088-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/088-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/088-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/088-masterball-reverse-evidence.json",
@@ -3323,7 +3179,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/089-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/089-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/089-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/089-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/089-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/089-pokeball-reverse-evidence.json",
@@ -3338,7 +3193,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/089-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/089-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/089-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/089-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/089-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/089-masterball-reverse-evidence.json",
@@ -3365,7 +3219,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/090-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/090-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/090-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/090-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/090-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/090-pokeball-reverse-evidence.json",
@@ -3380,7 +3233,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/090-masterball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/090-masterball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/090-masterball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/090-masterball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/090-masterball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/090-masterball-reverse-evidence.json",
@@ -3407,7 +3259,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/092-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/092-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/092-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/092-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/092-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/092-holo-evidence.json",
@@ -3434,7 +3285,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/093-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/093-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/093-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/093-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/093-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/093-pokeball-reverse-evidence.json",
@@ -3461,7 +3311,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/094-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/094-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/094-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/094-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/094-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/094-pokeball-reverse-evidence.json",
@@ -3488,7 +3337,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/095-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/095-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/095-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/095-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/095-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/095-pokeball-reverse-evidence.json",
@@ -3515,7 +3363,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/096-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/096-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/096-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/096-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/096-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/096-pokeball-reverse-evidence.json",
@@ -3542,7 +3389,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/097-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/097-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/097-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/097-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/097-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/097-pokeball-reverse-evidence.json",
@@ -3569,7 +3415,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/098-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/098-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/098-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/098-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/098-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/098-pokeball-reverse-evidence.json",
@@ -3596,7 +3441,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/099-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/099-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/099-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/099-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/099-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/099-pokeball-reverse-evidence.json",
@@ -3623,7 +3467,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/100-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/100-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/100-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/100-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/100-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/100-pokeball-reverse-evidence.json",
@@ -3650,7 +3493,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/101-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/101-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/101-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/101-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/101-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/101-pokeball-reverse-evidence.json",
@@ -3677,7 +3519,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/102-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/102-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/102-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/102-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/102-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/102-pokeball-reverse-evidence.json",
@@ -3704,7 +3545,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/103-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/103-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/103-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/103-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/103-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/103-pokeball-reverse-evidence.json",
@@ -3731,7 +3571,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/104-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/104-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/104-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/104-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/104-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/104-pokeball-reverse-evidence.json",
@@ -3758,7 +3597,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/105-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/105-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/105-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/105-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/105-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/105-pokeball-reverse-evidence.json",
@@ -3785,7 +3623,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/106-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/106-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/106-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/106-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/106-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/106-pokeball-reverse-evidence.json",
@@ -3812,7 +3649,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/107-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/107-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/107-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/107-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/107-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/107-pokeball-reverse-evidence.json",
@@ -3839,7 +3675,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/108-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/108-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/108-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/108-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/108-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/108-pokeball-reverse-evidence.json",
@@ -3866,7 +3701,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/109-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/109-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/109-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/109-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/109-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/109-pokeball-reverse-evidence.json",
@@ -3893,7 +3727,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/110-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/110-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/110-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/110-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/110-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/110-pokeball-reverse-evidence.json",
@@ -3920,7 +3753,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/111-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/111-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/111-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/111-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/111-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/111-pokeball-reverse-evidence.json",
@@ -3947,7 +3779,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/112-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/112-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/112-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/112-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/112-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/112-pokeball-reverse-evidence.json",
@@ -3974,7 +3805,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/113-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/113-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/113-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/113-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/113-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/113-pokeball-reverse-evidence.json",
@@ -4001,7 +3831,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/114-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/114-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/114-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/114-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/114-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/114-pokeball-reverse-evidence.json",
@@ -4028,7 +3857,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/115-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/115-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/115-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/115-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/115-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/115-pokeball-reverse-evidence.json",
@@ -4043,7 +3871,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-evidence.json",
@@ -4058,7 +3885,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-evidence.json",
@@ -4085,7 +3911,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/118-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/118-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/118-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/118-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/118-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/118-pokeball-reverse-evidence.json",
@@ -4100,7 +3925,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-evidence.json",
@@ -4127,7 +3951,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/120-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/120-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/120-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/120-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/120-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/120-pokeball-reverse-evidence.json",
@@ -4154,7 +3977,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/121-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/121-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/121-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/121-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/121-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/121-pokeball-reverse-evidence.json",
@@ -4181,7 +4003,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/122-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/122-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/122-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/122-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/122-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/122-pokeball-reverse-evidence.json",
@@ -4208,7 +4029,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/123-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/123-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/123-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/123-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/123-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/123-pokeball-reverse-evidence.json",
@@ -4235,7 +4055,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/124-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/124-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/124-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/124-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/124-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/124-pokeball-reverse-evidence.json",
@@ -4262,7 +4081,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/125-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/125-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/125-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/125-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/125-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/125-pokeball-reverse-evidence.json",
@@ -4289,7 +4107,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/126-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/126-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/126-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/126-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/126-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/126-pokeball-reverse-evidence.json",
@@ -4316,7 +4133,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/127-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/127-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/127-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/127-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/127-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/127-pokeball-reverse-evidence.json",
@@ -4331,7 +4147,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-evidence.json",
@@ -4346,7 +4161,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-evidence.json",
@@ -4373,7 +4187,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/130-pokeball-reverse-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/130-pokeball-reverse-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/130-pokeball-reverse-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/130-pokeball-reverse-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/130-pokeball-reverse-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/130-pokeball-reverse-evidence.json",
@@ -4388,7 +4201,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-evidence.json",
@@ -4403,7 +4215,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/132-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/132-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/132-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/132-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/132-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/132-holo-evidence.json",
@@ -4418,7 +4229,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/133-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/133-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/133-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/133-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/133-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/133-holo-evidence.json",
@@ -4433,7 +4243,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/134-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/134-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/134-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/134-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/134-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/134-holo-evidence.json",
@@ -4448,7 +4257,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/135-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/135-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/135-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/135-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/135-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/135-holo-evidence.json",
@@ -4463,7 +4271,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/136-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/136-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/136-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/136-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/136-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/136-holo-evidence.json",
@@ -4478,7 +4285,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/137-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/137-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/137-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/137-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/137-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/137-holo-evidence.json",
@@ -4493,7 +4299,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/138-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/138-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/138-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/138-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/138-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/138-holo-evidence.json",
@@ -4508,7 +4313,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/139-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/139-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/139-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/139-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/139-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/139-holo-evidence.json",
@@ -4523,7 +4327,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/140-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/140-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/140-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/140-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/140-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/140-holo-evidence.json",
@@ -4538,7 +4341,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/141-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/141-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/141-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/141-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/141-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/141-holo-evidence.json",
@@ -4553,7 +4355,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/142-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/142-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/142-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/142-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/142-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/142-holo-evidence.json",
@@ -4568,7 +4369,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/143-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/143-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/143-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/143-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/143-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/143-holo-evidence.json",
@@ -4584,7 +4384,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/144-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/144-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/144-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/144-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/144-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/144-holo-evidence.json",
@@ -4599,7 +4398,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/145-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/145-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/145-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/145-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/145-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/145-holo-evidence.json",
@@ -4615,7 +4413,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/146-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/146-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/146-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/146-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/146-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/146-holo-evidence.json",
@@ -4630,7 +4427,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/147-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/147-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/147-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/147-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/147-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/147-holo-evidence.json",
@@ -4645,7 +4441,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/148-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/148-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/148-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/148-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/148-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/148-holo-evidence.json",
@@ -4661,7 +4456,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/149-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/149-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/149-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/149-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/149-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/149-holo-evidence.json",
@@ -4677,7 +4471,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/150-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/150-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/150-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/150-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/150-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/150-holo-evidence.json",
@@ -4692,7 +4485,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/151-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/151-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/151-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/151-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/151-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/151-holo-evidence.json",
@@ -4707,7 +4499,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/152-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/152-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/152-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/152-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/152-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/152-holo-evidence.json",
@@ -4723,7 +4514,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/153-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/153-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/153-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/153-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/153-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/153-holo-evidence.json",
@@ -4738,7 +4528,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/154-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/154-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/154-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/154-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/154-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/154-holo-evidence.json",
@@ -4754,7 +4543,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/155-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/155-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/155-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/155-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/155-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/155-holo-evidence.json",
@@ -4770,7 +4558,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/156-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/156-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/156-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/156-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/156-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/156-holo-evidence.json",
@@ -4785,7 +4572,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/157-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/157-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/157-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/157-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/157-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/157-holo-evidence.json",
@@ -4800,7 +4586,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/158-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/158-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/158-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/158-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/158-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/158-holo-evidence.json",
@@ -4815,7 +4600,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/159-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/159-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/159-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/159-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/159-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/159-holo-evidence.json",
@@ -4830,7 +4614,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/160-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/160-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/160-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/160-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/160-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/160-holo-evidence.json",
@@ -4846,7 +4629,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/161-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/161-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/161-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/161-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/161-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/161-holo-evidence.json",
@@ -4861,7 +4643,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/162-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/162-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/162-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/162-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/162-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/162-holo-evidence.json",
@@ -4876,7 +4657,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/163-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/163-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/163-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/163-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/163-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/163-holo-evidence.json",
@@ -4891,7 +4671,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/164-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/164-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/164-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/164-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/164-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/164-holo-evidence.json",
@@ -4906,7 +4685,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/165-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/165-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/165-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/165-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/165-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/165-holo-evidence.json",
@@ -4921,7 +4699,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/166-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/166-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/166-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/166-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/166-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/166-holo-evidence.json",
@@ -4937,7 +4714,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/167-holo-protection.png",
       "secondaryFoil": "/cards/pokemon/prismatic-evolutions/tcgl/167-holo-secondary-foil.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/167-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/167-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/167-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/167-holo-evidence.json",
@@ -4952,7 +4728,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/168-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/168-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/168-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/168-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/168-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/168-holo-evidence.json",
@@ -4967,7 +4742,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/169-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/169-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/169-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/169-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/169-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/169-holo-evidence.json",
@@ -4982,7 +4756,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/170-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/170-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/170-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/170-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/170-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/170-holo-evidence.json",
@@ -4997,7 +4770,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/171-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/171-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/171-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/171-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/171-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/171-holo-evidence.json",
@@ -5012,7 +4784,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/172-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/172-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/172-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/172-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/172-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/172-holo-evidence.json",
@@ -5027,7 +4798,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/173-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/173-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/173-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/173-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/173-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/173-holo-evidence.json",
@@ -5042,7 +4812,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/174-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/174-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/174-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/174-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/174-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/174-holo-evidence.json",
@@ -5057,7 +4826,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/175-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/175-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/175-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/175-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/175-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/175-holo-evidence.json",
@@ -5072,7 +4840,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/176-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/176-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/176-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/176-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/176-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/176-holo-evidence.json",
@@ -5087,7 +4854,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/177-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/177-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/177-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/177-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/177-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/177-holo-evidence.json",
@@ -5102,7 +4868,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/178-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/178-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/178-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/178-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/178-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/178-holo-evidence.json",
@@ -5117,7 +4882,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/179-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/179-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/179-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/179-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/179-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/179-holo-evidence.json",
@@ -5132,7 +4896,6 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/180-holo-foil.png",
       "protection": "/cards/pokemon/prismatic-evolutions/tcgl/180-holo-protection.png",
       "normal": "/cards/pokemon/prismatic-evolutions/tcgl/180-holo-normal.png",
-      "height": "/cards/pokemon/prismatic-evolutions/tcgl/180-holo-height.png",
       "roughness": "/cards/pokemon/prismatic-evolutions/tcgl/180-holo-roughness.png"
     },
     "evidence": "/cards/pokemon/prismatic-evolutions/tcgl/180-holo-evidence.json",

@@ -113,10 +113,9 @@ def convert(printing,record_review):
         normal=normal*alpha[...,None]+np.array([0,0,1],np.float32)*(1-alpha[...,None])
         encoded=np.rint(np.clip(normal*.5+.5,0,1)*255).astype(np.uint8)
         png(OUT/(prefix+'normal.png'),encoded)
-        png(OUT/(prefix+'height.png'),np.rint((.5+(height-.5)*.25)*255).astype(np.uint8))
         roughness=(.30+.105*body)*(1-secondary)+.27*secondary
         png(OUT/(prefix+'roughness.png'),np.rint(roughness*255).astype(np.uint8))
-        for name in ('normal','height','roughness'):maps[name]='/cards/pokemon/prismatic-evolutions/tcgl/'+prefix+name+'.png'
+        for name in ('normal','roughness'):maps[name]='/cards/pokemon/prismatic-evolutions/tcgl/'+prefix+name+'.png'
         if not np.all(encoded[protection==1]==[128,128,255]):raise ValueError('Protected normal is not flat')
     treatment={'rare':'regular_holo','double rare':'ex_holo','ace spec rare':'ace_spec','ultra rare':'fullart_texture','special illustration rare':'sir_texture','hyper rare':'gold'}.get(printing['rarity'].lower())
     if variant!='holo':treatment={'reverse':'standard_reverse','pokeball-reverse':'pokeball_reverse','masterball-reverse':'masterball_reverse'}[variant]
