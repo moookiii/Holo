@@ -47,18 +47,21 @@ export class PersistentCardCache {
     if (!db) { this.metrics.misses++; return undefined; }
     try {
       const value = await new Promise<T | undefined>((resolve, reject) => {
-        const tx = db.transaction(['data', 'meta'], 'readwrite');
+        // Binary reads may run concurrently across workers. Updating LRU
+        // metadata must not take an exclusive lock on all card pixel data.
+        const tx = db.transaction('data', 'readonly');
         const request = tx.objectStore('data').get(key);
         let result: T | undefined;
         request.onsuccess = () => {
           result = request.result;
-          if (result !== undefined) {
-            const meta = tx.objectStore('meta'), read = meta.get(key);
-            read.onsuccess = () => { if (read.result) meta.put({ ...read.result, used: Date.now() }); };
-          }
         };
         tx.oncomplete = () => resolve(result); tx.onabort = tx.onerror = () => reject(tx.error);
       });
+      if (value !== undefined) {
+        const touch = db.transaction('meta', 'readwrite'), meta = touch.objectStore('meta'), read = meta.get(key);
+        read.onsuccess = () => { if (read.result) meta.put({ ...read.result, used: Date.now() }); };
+        touch.onerror = () => { this.metrics.errors++; };
+      }
       this.metrics[value === undefined ? 'misses' : 'hits']++;
       return value;
     } catch { this.metrics.errors++; this.metrics.misses++; return undefined; }
