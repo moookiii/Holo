@@ -1,4 +1,4 @@
-import { firefox } from 'playwright';
+import { chromium, firefox } from 'playwright';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import { join, resolve } from 'node:path';
@@ -7,17 +7,19 @@ import assert from 'node:assert/strict';
 const url = process.env.GALLERY_URL || 'http://127.0.0.1:4180/Holo/?backend=webgl';
 const out = resolve('artifacts/gallery-cache', process.env.GALLERY_RUN || 'after');
 await mkdir(out, { recursive: true });
-const options = { headless: true, viewport: { width: 1440, height: 1100 } };
-if (!existsSync(firefox.executablePath())) {
-  for (const version of (await readdir(join(process.env.LOCALAPPDATA, 'ms-playwright'))).filter(name => /^firefox-\d+$/.test(name)).sort().reverse()) {
-    const path = join(process.env.LOCALAPPDATA, 'ms-playwright', version, 'firefox', 'firefox.exe');
+const browserName = process.env.GALLERY_BROWSER || 'firefox', engine = browserName === 'chromium' ? chromium : firefox;
+const options = { headless: true, viewport: { width: 1440, height: 1100 },
+  ...(browserName === 'chromium' ? { args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] } : {}) };
+if (!existsSync(engine.executablePath())) {
+  for (const version of (await readdir(join(process.env.LOCALAPPDATA, 'ms-playwright'))).filter(name => name.startsWith(browserName + '-')).sort().reverse()) {
+    const path = join(process.env.LOCALAPPDATA, 'ms-playwright', version, ...(browserName === 'firefox' ? ['firefox', 'firefox.exe'] : ['chrome-win64', 'chrome.exe']));
     if (existsSync(path)) { options.executablePath = path; break; }
   }
 }
-const report = { url, phases: [], errors: [] };
+const report = { url, browserName, phases: [], errors: [] };
 let context, page;
 async function launch() {
-  context = await firefox.launchPersistentContext(join(out, 'profile'), options);
+  context = await engine.launchPersistentContext(join(out, 'profile'), options);
   page = context.pages()[0] || await context.newPage();
   page.on('pageerror', error => report.errors.push(String(error)));
   await page.addInitScript(() => {
