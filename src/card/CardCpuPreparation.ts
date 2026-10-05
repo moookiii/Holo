@@ -8,6 +8,8 @@ import type { FieldData, PatternSpec } from '../materials/patterns/Manufacturing
 import type { CardPreview } from './CardPreviewPreparation';
 import { CardPreviewCache } from './CardPreviewCache';
 import type { MotifImage } from '../materials/patterns/MotifField';
+import { cachedCardAsset } from '../assets/CachedCardAssets';
+import { SharedPreparation } from './SharedPreparation';
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
 export interface PreparedMapsCpu {
@@ -54,9 +56,7 @@ class CpuAssetCache {
         for (let attempt = 0; ; attempt++) {
           signal.throwIfAborted();
           try {
-            const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(20000)]) });
-            if (!response.ok) throw new Error(`Unable to load ${url} (${response.status})`);
-            return await response.blob();
+            return await cachedCardAsset(url);
           } catch (error) {
             if (signal.aborted) throw error;
             if (attempt >= 2) throw new Error(`Unable to load ${url}. Retry preparation.`, { cause: error });
@@ -127,14 +127,21 @@ class CpuPatternCache {
   dispose() { this.worker.terminate(); for (const task of this.pending.values()) task.reject(new Error('CPU pattern cache disposed')); this.pending.clear(); this.cache.clear(); }
 }
 
+interface PreviewMetrics {
+  preparations: number; persistentHits: number; preparationMs: number;
+  persistent: { hits: number; misses: number; writes: number; errors: number; evictions: number; bytes: number; readMs: number; writeMs: number; budget: number };
+  assets: { downloads: number; avoidedDownloads: number; memoryHits: number };
+}
 class CpuPreviewWorker {
+  metrics?: PreviewMetrics;
   private worker = new Worker(new URL('./card-preview.worker.ts', import.meta.url), { type: 'module' });
   private sequence = 0;
   private pending = new Map<number, { resolve: (preview: CardPreview) => void; reject: (error: Error) => void }>();
   get pendingCount() { return this.pending.size; }
   constructor() {
-    this.worker.onmessage = (event: MessageEvent<{ type: string; id: number; svgId?: number; blob?: Blob; width?: number; height?: number; preview?: CardPreview; error?: string }>) => {
+    this.worker.onmessage = (event: MessageEvent<{ type: string; id: number; svgId?: number; blob?: Blob; width?: number; height?: number; preview?: CardPreview; error?: string; metrics?: PreviewMetrics }>) => {
       const message = event.data;
+      if (message.metrics) this.metrics = message.metrics;
       if (message.type === 'svg' && message.blob && message.svgId !== undefined) {
         void this.decodeSvg(message.blob, message.width!, message.height!).then(pixels => {
           this.worker.postMessage({ type: 'svg-result', id: message.id, svgId: message.svgId, pixels }, [pixels.buffer]);
@@ -217,6 +224,7 @@ export class CardCpuPreparation {
   private previewWorkers: CpuPreviewWorker[] = [];
   private previewWorkerLimit = Math.min(4, Math.max(1, Math.floor(navigator.hardwareConcurrency / 2)));
   private previews = new CardPreviewCache();
+  private previewJobs = new SharedPreparation<CardPreview>();
   private previewPreparations = 0;
   cachedPreview(card: CardDefinition) { return this.disposed ? undefined : this.previews.get(card); }
   async preparePreview(card: CardDefinition, signal: AbortSignal) {
@@ -224,6 +232,7 @@ export class CardCpuPreparation {
     if (this.disposed) throw new Error('CPU preparation disposed');
     const cached = this.cachedPreview(card);
     if (cached) return cached;
+    return this.previewJobs.run(JSON.stringify(card), signal, async signal => {
     this.previewPreparations++;
     let worker = this.previewWorkers.find(candidate => candidate.pendingCount === 0);
     if (!worker && this.previewWorkers.length < this.previewWorkerLimit) {
@@ -235,6 +244,7 @@ export class CardCpuPreparation {
     if (this.disposed) throw new Error('CPU preparation disposed');
     this.previews.set(card, preview);
     return preview;
+    });
   }
   /** Reuse pack preparation only when the complete definition is compatible. */
   async cached(card: CardDefinition): Promise<PreparedCardCpu | undefined> {
@@ -324,6 +334,16 @@ export class CardCpuPreparation {
     })().catch(error => { this.cache.delete(key); throw error; }));
     return this.cache.get(key)!;
   }
-  stats() { return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0, ...this.previews.stats(), previewPreparations: this.previewPreparations, previewWorkers: this.previewWorkers.length }; }
+  stats() {
+    const workers = this.previewWorkers.flatMap(worker => worker.metrics ? [worker.metrics] : []);
+    const sum = (value: (metrics: PreviewMetrics) => number) => workers.reduce((total, metrics) => total + value(metrics), 0);
+    return { hits: this.hitCount, misses: this.missCount, entries: this.cache.size, mapMs: this.mapMs, patternMs: this.patternMs, gpuCalls: 0,
+      ...this.previews.stats(), previewRequests: this.previewPreparations, previewPreparations: sum(m => m.preparations), previewWorkers: this.previewWorkers.length,
+      previewDeduplicated: this.previewJobs.hits, persistentPreviewHits: sum(m => m.persistentHits), previewPreparationMs: sum(m => m.preparationMs),
+      persistentHits: sum(m => m.persistent.hits), persistentMisses: sum(m => m.persistent.misses), persistentErrors: sum(m => m.persistent.errors),
+      persistentReadMs: sum(m => m.persistent.readMs), persistentWriteMs: sum(m => m.persistent.writeMs),
+      persistentBytes: Math.max(0, ...workers.map(m => m.persistent.bytes)), persistentBudget: Math.max(0, ...workers.map(m => m.persistent.budget)),
+      downloads: sum(m => m.assets.downloads), avoidedDownloads: sum(m => m.assets.avoidedDownloads) };
+  }
   dispose() { this.disposed = true; this.assets.clear(); this.patterns?.dispose(); this.previewWorkers.forEach(worker => worker.dispose()); this.previewWorkers = []; this.maps?.dispose(); this.cache.clear(); this.previews.clear(); }
 }

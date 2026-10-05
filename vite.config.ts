@@ -1,11 +1,13 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'node:path';
+import { cacheRevision, cacheRevisionPlugin } from './scripts/cache-revision';
 
 export default defineConfig(({ command }) => ({
   // GitHub Pages hosts this repo at /Holo/.
   // Keep local development at /.
   base: command === 'build' ? '/Holo/' : '/',
-  plugins: [{
+  define: { __HOLO_CACHE_REVISION__: JSON.stringify(command === 'build' ? cacheRevision() : 'development') },
+  plugins: [cacheRevisionPlugin(), {
     name: 'artifact-route-entry',
     enforce: 'post',
     generateBundle(_options, bundle) {

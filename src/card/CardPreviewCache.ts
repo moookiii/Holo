@@ -6,12 +6,14 @@ export class CardPreviewCache {
   private entries = new Map<string, { preview: CardPreview; bytes: number }>();
   private bytes = 0;
   private hits = 0;
+  private misses = 0;
+  private evictions = 0;
   readonly budget: number;
-  constructor(budget = 96 * 1024 * 1024) { this.budget = budget; }
+  constructor(budget = 192 * 1024 * 1024) { this.budget = budget; }
   get(card: CardDefinition) {
     // Include seed, layout, fallback and coverage mode as well as map/profile data.
     const key = JSON.stringify(card), entry = this.entries.get(key);
-    if (!entry) return undefined;
+    if (!entry) { this.misses++; return undefined; }
     this.entries.delete(key); this.entries.set(key, entry); this.hits++;
     return entry.preview;
   }
@@ -25,8 +27,10 @@ export class CardPreviewCache {
     while (this.bytes > this.budget) {
       const oldest = this.entries.keys().next().value!;
       this.bytes -= this.entries.get(oldest)!.bytes; this.entries.delete(oldest);
+      this.evictions++;
     }
   }
-  stats() { return { previewBytes: this.bytes, previewBudget: this.budget, previewCacheEntries: this.entries.size, previewCacheHits: this.hits }; }
+  stats() { return { previewBytes: this.bytes, previewBudget: this.budget, previewCacheEntries: this.entries.size, previewCacheHits: this.hits,
+    previewCacheMisses: this.misses, previewCacheEvictions: this.evictions }; }
   clear() { this.entries.clear(); this.bytes = 0; }
 }

@@ -7,6 +7,7 @@ import type { FieldData, PatternSpec } from '../materials/patterns/Manufacturing
 import type { MotifImage } from '../materials/patterns/MotifField';
 import { previewOptics, PREVIEW_PARAMETER_COLUMNS } from './PreviewOptics';
 import { PreviewReadQueue } from './PreviewReadQueue';
+import { cachedCardAsset } from '../assets/CachedCardAssets';
 
 const previewReads = new PreviewReadQueue();
 
@@ -28,11 +29,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const decode = async (path: string, w: number, h: number) => {
     signal.throwIfAborted();
     const url = /^(blob:|data:|https?:\/\/)/.test(path) ? path : `${import.meta.env.BASE_URL}${path.replace(/^\/+/, '')}`;
-    if (!blobs.has(url)) blobs.set(url, (async () => {
-      const response = await fetch(url, { signal: AbortSignal.any([signal, AbortSignal.timeout(15000)]) });
-      if (!response.ok) throw new Error(`Preview unavailable (${response.status})`);
-      return response.blob();
-    })());
+    if (!blobs.has(url)) blobs.set(url, cachedCardAsset(url));
     const blob = await blobs.get(url)!;
     if (blob.type.includes('svg') && decodeSvg) return decodeSvg(blob, w, h);
     let image: ImageBitmap;

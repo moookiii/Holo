@@ -9,6 +9,7 @@ import {
   UnsignedByteType,
   Texture,
 } from 'three/webgpu';
+import { cachedCardAsset } from './CachedCardAssets';
 
 function resolveAssetUrl(url: string): string {
   // Leave runtime/external URLs unchanged.
@@ -69,7 +70,11 @@ export class AssetManager {
     if (!this.cache.has(key)) {
       this.cache.set(
         key,
-        this.loader.loadAsync(resolvedUrl).then((texture) => {
+        cachedCardAsset(resolvedUrl).then(async blob => {
+          const objectUrl = URL.createObjectURL(blob);
+          try { return await this.loader.loadAsync(objectUrl); }
+          finally { URL.revokeObjectURL(objectUrl); }
+        }).then((texture) => {
           texture.colorSpace = color ? SRGBColorSpace : NoColorSpace;
           texture.anisotropy = this.anisotropy;
           texture.minFilter = LinearMipmapLinearFilter;
