@@ -1,5 +1,6 @@
 import { DataTexture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, type Texture } from 'three/webgpu';
 import type { FieldData, PatternSpec } from './ManufacturingField';
+import { openingCache } from '../../rendering/CardOpeningTiming';
 
 export interface PatternTextures { direction: Texture; relief: Texture; }
 export class PatternCache {
@@ -16,11 +17,12 @@ export class PatternCache {
   constructor(workerCount = 1) {
     this.workers = Array.from({ length: workerCount }, () => new Worker(new URL('./pattern.worker.ts', import.meta.url), { type: 'module' }));
     for (const worker of this.workers) {
-      worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string }>) => {
+      worker.onmessage = (event: MessageEvent<{ id: number; field: FieldData; error?: string; persistentHit?: boolean }>) => {
         this.busy.delete(worker);
         const task = this.requests.get(event.data.id); if (!task) { this.dispatch(); return; }
         this.requests.delete(event.data.id);
-        if (event.data.error) task.reject(new Error(event.data.error)); else task.resolve(event.data.field);
+        if (event.data.error) task.reject(new Error(event.data.error));
+        else { openingCache('persistent-manufacturing-field', !!event.data.persistentHit); task.resolve(event.data.field); }
         this.dispatch();
       };
       worker.onerror = e => {
