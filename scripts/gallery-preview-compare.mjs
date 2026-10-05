@@ -1,12 +1,12 @@
 import { firefox } from 'playwright';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
-import { transformWithEsbuild } from 'vite';
+import { transformWithOxc } from 'vite';
 const url = process.env.GALLERY_URL || 'http://127.0.0.1:5174';
 const out = join(process.cwd(), 'artifacts', 'gallery-preview-compare');
 await mkdir(out, { recursive: true });
 const source = await readFile('artifacts/gallery-baseline-source/src/card/CardPreviewPreparation.ts', 'utf8');
-const { code } = await transformWithEsbuild(source, 'baseline.ts', { loader: 'ts', target: 'es2022' });
+const { code } = await transformWithOxc(source, 'baseline.ts');
 const baseline = code.replace(/from '(\.[^']+)'/g, (_match, path) => `from '${new URL(`${path}.ts`, 'http://placeholder/src/card/').pathname}'`)
   .replace(/from "(\.[^"]+)"/g, (_match, path) => `from '${new URL(`${path}.ts`, 'http://placeholder/src/card/').pathname}'`)
   .replaceAll('import.meta.env.BASE_URL', JSON.stringify('/'));
