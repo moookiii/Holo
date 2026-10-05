@@ -37,8 +37,8 @@ interface OpticalRegion {
 }
 export interface ProfileFields { primary?: PatternTextures; secondary?: PatternTextures; stamp?: PatternTextures; }
 
-// Ancient Mew has two foil regions and several light sources. Emit its exact
-// seven-band response once instead of inlining it for every region and light.
+// Emit the exact seven-band response once rather than inlining it for every
+// region/light. Firefox's synchronous GLSL linker is sensitive to graph size.
 const ancientMewSpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'float'>[]) => spectrum(path, bandwidth, secondary, variance))
   .setLayout({ name: 'ancientMewSpectrum', type: 'vec3', inputs: [
     { name: 'path', type: 'float' }, { name: 'bandwidth', type: 'float' },
@@ -263,7 +263,10 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   }
   constructor(art: Texture, coverage: Texture, surface: Texture, seed: number, profile = masterPrism, substrate?: CardDefinition['substrate'], private cardMaps?: CardMaterialMaps, frontBorderColor?: CardDefinition['frontBorderColor'], recessedName = false, coatedStock: boolean | PhysicalCardProfile = false) {
     super({ clearcoat: 0.72, clearcoatRoughness: 0.2, metalness: 0.5, roughness: 0.3, envMapIntensity: 0.65 });
-    this.compactOptics = profile.id === 'pokemon-ancient-mew' || profile.id === 'pokemon-ancient-mew-back';
+    // Specialize only mathematically inactive mechanisms. opticalFeatureKey()
+    // invalidates these branches when a profile or authoring control enables
+    // them; every active mechanism keeps its full original calculation.
+    this.compactOptics = true;
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
     this.neutralHologram.needsUpdate = true;
     this.hologramTextureNode = texture(cardMaps?.hologram ?? this.neutralHologram);
