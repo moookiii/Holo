@@ -17,10 +17,7 @@ export class FavoritesBinder {
   readonly root = document.createElement('section');
   readonly navigation = new BinderNavigation();
   private stage = document.createElement('div');
-  private indicator = document.createElement('span');
   private status = document.createElement('p');
-  private previous = document.createElement('button');
-  private next = document.createElement('button');
   private selector = document.createElement('select');
   private buttons = new Map<string, HTMLButtonElement>();
   private refreshLight: () => void;
@@ -54,14 +51,8 @@ export class FavoritesBinder {
     header.append(title, this.selector, light, exit);
     this.stage.className = 'binder-stage'; this.stage.tabIndex = 0;
     this.stage.setAttribute('aria-label', 'Grab a page to turn it. Drag outside the binder to rotate. Click a card to inspect.');
-    this.previous.textContent = '‹'; this.previous.setAttribute('aria-label', 'Previous binder spread');
-    this.next.textContent = '›'; this.next.setAttribute('aria-label', 'Next binder spread');
-    this.previous.onclick = () => this.turn(-1); this.next.onclick = () => this.turn(1);
-    const controls = document.createElement('div'); controls.className = 'binder-controls'; this.indicator.setAttribute('aria-live', 'polite');
-    controls.append(this.previous, this.indicator, this.next);
-    const hint = document.createElement('span'); hint.className = 'binder-hint'; hint.textContent = 'Grab a page to turn · Drag outside the binder to rotate · Click a card to inspect';
     this.status.className = 'binder-status'; this.status.setAttribute('role', 'status');
-    this.root.append(header, this.stage, controls, hint, this.status); document.body.append(this.root);
+    this.root.append(header, this.stage, this.status); document.body.append(this.root);
     this.physical.group.visible = false; options.scene.add(this.physical.group);
     const signal = this.abort.signal;
     this.stage.addEventListener('pointerdown', e => {
@@ -161,10 +152,6 @@ export class FavoritesBinder {
   }
   private updateControls() {
     const n = this.navigation;
-    this.previous.disabled = this.busy() || n.spread === 0; this.next.disabled = this.busy() || n.spread === 20;
-    const pages = spreadFaces(n.spread).map(face => face + 1);
-    const count = Math.min(480, Math.max(0, this.cards.length - n.binder * 480));
-    this.indicator.textContent = `Pages ${pages.join('–')} / 40 · ${count} / 480 cards`;
     if (this.selector.options.length !== binderCount(this.cards.length)) this.selector.replaceChildren(...Array.from({ length: binderCount(this.cards.length) }, (_, i) => new Option(`Binder ${i + 1} of ${binderCount(this.cards.length)}`, String(i))));
     this.selector.value = String(n.binder); this.selector.disabled = this.busy() || this.selector.options.length === 1;
     this.root.setAttribute('aria-busy', String(this.pending || this.opening));
