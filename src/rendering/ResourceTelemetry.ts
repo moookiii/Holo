@@ -8,7 +8,9 @@ const restorers = new WeakMap<Backend, (() => void)[]>();
 export class ResourceTelemetry {
   readonly stats = { textureAllocations: 0, textureUploads: 0, textureUploadCpuMs: 0, mipmapCalls: 0, mipmapCpuMs: 0 };
   private observers: Set<ResourceTelemetry>;
-  constructor(private backend: Backend) {
+  private backend: Backend;
+  constructor(backend: Backend) {
+    this.backend = backend;
     let listeners = observers.get(backend);
     const installed = !!listeners;
     if (!listeners) { listeners = new Set(); observers.set(backend, listeners); }

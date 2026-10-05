@@ -4,7 +4,13 @@ export class WarmResourcePool<T> {
   private entries = new Map<string, { pending: Promise<T>; value?: T; refs: number; bytes: number; invalid: boolean }>();
   hits = 0; misses = 0; evictions = 0;
   private disposed = false;
-  constructor(private budget: number, private limit: number, private size: (value: T) => number, private destroy: (value: T) => void) {}
+  private budget: number;
+  private limit: number;
+  private size: (value: T) => number;
+  private destroy: (value: T) => void;
+  constructor(budget: number, limit: number, size: (value: T) => number, destroy: (value: T) => void) {
+    this.budget = budget; this.limit = limit; this.size = size; this.destroy = destroy;
+  }
   acquire(key: string, create: () => Promise<T>) {
     if (this.disposed) throw new Error('Resource pool disposed');
     let entry = this.entries.get(key);
