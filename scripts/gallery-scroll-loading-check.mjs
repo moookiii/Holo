@@ -19,14 +19,14 @@ const page = await browser.newPage({ viewport: { width: 1440, height: 1100 } });
 const report = { url, errors: [], passes: [] };
 page.on('pageerror', e => report.errors.push(String(e)));
 try {
-  await page.goto(url);
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.waitForFunction(() => window.__holo?.gallery.instance()?.openingReady && document.querySelector('#loading').hidden,
     null, { timeout: 120000 });
   // Warm the current viewport only; every pass starts at the same scroll offset.
   await page.waitForFunction(() => !window.__holo.gallery.stats().pending, null, { timeout: 120000 });
   for (const name of ['cold-scroll', 'resident-return', 'persistent-scroll']) {
     if (name === 'persistent-scroll') {
-      await page.reload();
+      await page.reload({ waitUntil: 'domcontentloaded', timeout: 120000 });
       await page.waitForFunction(() => window.__holo?.gallery.instance()?.openingReady && document.querySelector('#loading').hidden,
         null, { timeout: 120000 });
     }
