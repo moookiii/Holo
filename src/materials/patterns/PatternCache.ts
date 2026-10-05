@@ -1,6 +1,6 @@
 import { DataTexture, RGBAFormat, UnsignedByteType, LinearMipmapLinearFilter, LinearFilter, NoColorSpace, type Texture } from 'three/webgpu';
 import type { FieldData, PatternSpec } from './ManufacturingField';
-import { openingCache } from '../../rendering/CardOpeningTiming';
+import { openingCache } from '../../rendering/CardOpeningTiming.ts';
 
 export interface PatternTextures { direction: Texture; relief: Texture; }
 export class PatternCache {

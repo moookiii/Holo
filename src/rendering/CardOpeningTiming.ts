@@ -4,15 +4,15 @@ export const openingStages: { stage: string; ms: number; at: number }[] = [];
 export const openingEvents: { id: string; at: number; marks: Record<string, number> }[] = [];
 export const openingCacheCounters: Record<string, number> = {};
 export function openingCache(tier: string, hit: boolean) {
-  if (import.meta.env.DEV) { const key = `${tier}:${hit ? 'hit' : 'miss'}`; openingCacheCounters[key] = (openingCacheCounters[key] ?? 0) + 1; }
+  if (import.meta.env?.DEV) { const key = `${tier}:${hit ? 'hit' : 'miss'}`; openingCacheCounters[key] = (openingCacheCounters[key] ?? 0) + 1; }
 }
 export function openingStage(stage: string, start: number) {
-  if (!import.meta.env.DEV) return;
+  if (!import.meta.env?.DEV) return;
   openingStages.push({ stage, ms: performance.now() - start, at: start });
   if (openingStages.length > 300) openingStages.shift();
 }
 export function beginOpening(id: string) {
-  if (!import.meta.env.DEV) return undefined;
+  if (!import.meta.env?.DEV) return undefined;
   const event = { id, at: performance.now(), marks: {} as Record<string, number> };
   openingEvents.push(event); if (openingEvents.length > 30) openingEvents.shift(); return event;
 }
