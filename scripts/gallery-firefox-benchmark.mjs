@@ -2,12 +2,13 @@ import { firefox } from 'playwright';
 import { existsSync } from 'node:fs';
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const url = process.env.GALLERY_URL || 'http://127.0.0.1:5174/';
 const label = process.env.GALLERY_RUN || 'baseline';
 const out = join(process.cwd(), 'artifacts', 'gallery-firefox', label);
 await mkdir(out, { recursive: true });
-const options = { headless: true };
+const options = { headless: process.env.GALLERY_HEADED !== '1' };
 if (!existsSync(firefox.executablePath())) {
   for (const folder of (await readdir(join(process.env.LOCALAPPDATA, 'ms-playwright'))).filter(name => /^firefox-\d+$/.test(name)).sort().reverse()) {
     const path = join(process.env.LOCALAPPDATA, 'ms-playwright', folder, 'firefox', 'firefox.exe');
@@ -15,7 +16,11 @@ if (!existsSync(firefox.executablePath())) {
   }
 }
 const browser = await firefox.launch(options);
-const report = { browser: 'Firefox', url, viewport: { width: 1440, height: 1100 }, phases: [], errors: [], requests: [] };
+let physicalAdapters;
+if (process.platform === 'win32') {
+  try { physicalAdapters = JSON.parse(execFileSync('powershell.exe', ['-NoProfile', '-Command', 'Get-CimInstance Win32_VideoController | Select-Object Name,DriverVersion | ConvertTo-Json -Compress'], { encoding: 'utf8', windowsHide: true })); } catch {}
+}
+const report = { browser: 'Firefox', version: browser.version(), headless: options.headless, physicalAdapters, url, viewport: { width: 1440, height: 1100 }, phases: [], errors: [], requests: [] };
 const page = await browser.newPage({ viewport: report.viewport, deviceScaleFactor: 1 });
 page.on('pageerror', error => report.errors.push(String(error)));
 const requests = new Map();
@@ -51,7 +56,7 @@ async function state() {
     }) : [];
     const gl = h?.renderer.backend.gl, info = gl?.getExtension('WEBGL_debug_renderer_info');
     return { gallery: gallery?.stats(), cpu: h?.cpuPreparation.stats(), loading: !document.querySelector('#loading')?.hidden,
-      gpu: gl ? { renderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), parallelCompile: !!gl.getExtension('KHR_parallel_shader_compile') } : undefined,
+      gpu: gl ? { browserReportedRenderer: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER), parallelCompile: !!gl.getExtension('KHR_parallel_shader_compile') } : undefined,
       visibleCards: cards.length, readyCards: cards.filter(card => card.classList.contains('is-ready')).length,
       entries: gallery ? [...gallery.entries].filter(([, entry]) => entry.error).map(([slot, entry]) => ({ slot, error: entry.error })) : [],
       instrumentation: window.__galleryBench, startup: h?.startupTiming };
@@ -84,13 +89,21 @@ async function measure(name, action) {
   return !timeout;
 }
 try {
-  if (await measure('cold-navigation', () => page.goto(url, { waitUntil: 'domcontentloaded' }))) {
+  let opened;
+  if (process.env.GALLERY_START_VIEWER === '1') {
+    const viewerUrl = new URL(url); viewerUrl.searchParams.set('lab', '');
+    await page.goto(viewerUrl.href, { waitUntil: 'domcontentloaded' });
+    await page.waitForFunction(() => window.__holo?.lab && document.querySelector('#loading')?.hidden, null, { timeout: 120000 });
+    opened = await measure('first-open-from-viewer', () => page.getByRole('button', { name: 'Gallery', exact: true }).click());
+  } else opened = await measure('cold-navigation', () => page.goto(url, { waitUntil: 'domcontentloaded' }));
+  if (opened) {
     await measure('scroll-new', () => page.locator('.gallery-viewport').evaluate(el => { el.scrollTop += el.clientHeight; }));
     await measure('scroll-return', () => page.locator('.gallery-viewport').evaluate(el => { el.scrollTop = 0; }));
     await measure('search-lugia', () => page.getByRole('searchbox', { name: 'Search gallery cards' }).fill('Lugia'));
     await measure('search-clear', () => page.getByRole('searchbox', { name: 'Search gallery cards' }).fill(''));
     await page.evaluate(() => window.__holo.gallery.close());
     await measure('open-from-viewer', () => page.getByRole('button', { name: 'Gallery', exact: true }).click());
+    if (process.env.GALLERY_RELOAD === '1') await measure('reload-navigation', () => page.reload({ waitUntil: 'domcontentloaded' }));
   }
 } finally {
   await writeFile(join(out, 'report.json'), JSON.stringify(report, null, 2));
