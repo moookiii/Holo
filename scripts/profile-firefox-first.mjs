@@ -6,8 +6,16 @@ page.on('pageerror', e => console.log(String(e)));
 try {
   await page.goto(process.env.PROFILE_URL || 'http://127.0.0.1:5173/');
   await page.waitForFunction(() => window.__holo?.gallery.stats()?.visible > 0, null, { timeout: 120000 });
-  const result = await page.evaluate(async ({ probeFence, probeWorker }) => {
+  const result = await page.evaluate(async ({ probeFence, probeWorker, probePragma }) => {
     const h = window.__holo, rows = [], nodes = h.renderer._nodes, backend = h.renderer.backend;
+    if (probePragma) {
+      const program = backend.createProgram;
+      backend.createProgram = function (stage) {
+        const source = stage.code;
+        stage.code = source.replace(/(#version[^\n]*\n)/, '$1#pragma optimize(off)\n');
+        try { return program.call(this, stage); } finally { stage.code = source; }
+      };
+    }
     const build = nodes.getForRenderAsync;
     nodes.getForRenderAsync = async function (...args) {
       const start = performance.now(); try { return await build.apply(this, args); }
@@ -65,7 +73,7 @@ try {
     const gl = backend.gl, info = gl?.getExtension('WEBGL_debug_renderer_info');
     return { ms: performance.now() - start, rows, opening: h.opening(), parallel: !!backend.parallel, backend: backend.constructor.name,
       driver: info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : undefined };
-  }, { probeFence: !!process.env.PROBE_FENCE, probeWorker: !!process.env.PROBE_WORKER });
+  }, { probeFence: !!process.env.PROBE_FENCE, probeWorker: !!process.env.PROBE_WORKER, probePragma: !!process.env.PROBE_PRAGMA });
   await mkdir('artifacts/firefox-first', { recursive: true });
   await writeFile('artifacts/firefox-first/report.json', JSON.stringify(result, null, 2));
   for (const [i, row] of result.rows.entries()) if (row.shader) { await writeFile(`artifacts/firefox-first/shader-${i}.glsl`, row.shader); delete row.shader; }
