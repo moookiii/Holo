@@ -187,10 +187,10 @@ export class FavoritesBinder {
             ));
           }
         };
-        prepareAhead(0, 1);
+        prepareAhead(0);
         for (const [offset, index] of indices.entries()) {
           if (request.signal.aborted || !this.active) return;
-          prepareAhead(offset, offset === 0 ? 1 : 3);
+          prepareAhead(offset);
           const pageIndex = this.face(index), slot = index % 12, key = `${pageIndex}:${slot}`;
           if (this.loaded.has(key) || this.failed.has(key)) continue;
           const card = this.cards[index]; let instance;

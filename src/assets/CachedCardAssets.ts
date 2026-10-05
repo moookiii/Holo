@@ -36,7 +36,9 @@ export async function cachedCardAsset(path: string): Promise<Blob> {
       if (!response.ok) throw new Error(`Unable to load ${url} (${response.status})`);
       if (response.headers.get('content-type')?.includes('text/html')) throw new Error(`Expected a card asset at ${url}, received HTML`);
       const blob = await response.blob();
-      if (key) await persistentCards.set(key, blob, blob.size);
+      // The downloaded Blob is immutable. Decode it immediately; persistence
+      // is an optional copy and must not put disk writes on the display path.
+      if (key) void persistentCards.set(key, blob, blob.size);
       return blob;
     };
     const blob = key && navigator.locks ? await navigator.locks.request(key, load) : await load();
