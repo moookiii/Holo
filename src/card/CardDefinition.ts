@@ -25,7 +25,7 @@ import { wizardsPromoDefinitions } from './WizardsPromoCards.ts';
 import { signalForestCards } from './SignalForestCards.ts';
 import { porygonNeonCard } from './PorygonNeonCard.ts';
 import type { CardLayout } from './CardLayout';
-export { DEFAULT_FOIL_LAYOUT, type CardLayout } from './CardLayout';
+export { DEFAULT_FOIL_LAYOUT, type CardLayout } from './CardLayout.ts';
 
 export type Franchise = 'Original' | 'Pokémon' | 'Yu-Gi-Oh!' | 'Magic: The Gathering';
 
