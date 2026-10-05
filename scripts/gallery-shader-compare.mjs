@@ -2,15 +2,18 @@ import { firefox } from 'playwright';
 import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 const url = process.env.GALLERY_URL || 'http://127.0.0.1:5174/';
-const out = join(process.cwd(), 'artifacts', 'gallery-shader-compare');
+const out = join(process.cwd(), 'artifacts', process.env.GALLERY_COMPARE_OUT || 'gallery-shader-compare');
 await mkdir(out, { recursive: true });
-const baseline = await readFile('artifacts/gallery-material-before-optimization.js', 'utf8');
+const baseline = await readFile(process.env.GALLERY_COMPARE_BASELINE || 'artifacts/gallery-material-before-optimization.js', 'utf8');
 const browser = await firefox.launch({ headless: true, executablePath: join(process.env.LOCALAPPDATA, 'ms-playwright', 'firefox-1543', 'firefox', 'firefox.exe') });
 const report = [];
 try {
   for (const version of ['baseline', 'optimized']) {
     const context = await browser.newContext({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
     const page = await context.newPage();
+    const errors = [];
+    page.on('pageerror', error => errors.push(String(error)));
+    page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); });
     if (version === 'baseline') {
       await page.route('**/src/gallery/GalleryMaterial.ts*', route => route.fulfill({ contentType: 'text/javascript', body: baseline }));
       if (process.env.GALLERY_COMPARE_RENDERER) {
@@ -41,11 +44,27 @@ try {
       for (const lighting of ['Studio', 'Skim', 'Low key', 'Blacklight']) {
         await page.evaluate(preset => { const l = window.__holo.lighting; l.setPreset(preset); l.playing = false; l.phase = .8; l.applied = ''; }, lighting);
         await page.mouse.move(5, 5); await page.waitForTimeout(150);
-        await page.screenshot({ path: join(out, `${version}-${fixture}-${lighting.replaceAll(' ', '-')}.png`) });
+        const capture = await page.screenshot({ path: join(out, `${version}-${fixture}-${lighting.replaceAll(' ', '-')}.png`) });
+        const lit = await page.evaluate(async base64 => {
+          const image = new Image(); image.src = 'data:image/png;base64,' + base64; await image.decode();
+          const canvas = document.createElement('canvas'); canvas.width = image.width; canvas.height = image.height;
+          const ctx = canvas.getContext('2d'); ctx.drawImage(image, 0, 0);
+          const viewport = document.querySelector('.gallery-viewport').getBoundingClientRect();
+          return [...document.querySelectorAll('.gallery-card.is-ready')].flatMap(card => {
+            const r = card.getBoundingClientRect(), height = parseFloat(card.style.getPropertyValue('--card-height'));
+            const top = Math.max(r.top, viewport.top), bottom = Math.min(r.top + height, viewport.bottom, image.height);
+            if (bottom <= top) return [];
+            const data = ctx.getImageData(Math.round(r.left + r.width * .2), Math.floor(top), Math.round(r.width * .6), Math.max(1, Math.floor(bottom)-Math.floor(top))).data;
+            let count = 0; for (let i=0; i<data.length; i+=4) if (Math.max(data[i],data[i+1],data[i+2])>35) count++;
+            return [count/(data.length/4)];
+          });
+        }, capture.toString('base64'));
+        if (!lit.length || lit.some(fraction => fraction < .1)) throw new Error(`${version}/${fixture}/${lighting}: black or absent artwork`);
       }
       console.log(version, fixture, 'captured');
     }
     const shaders = await page.evaluate(() => window.__shaderCapture);
+    if (errors.length) throw new Error(`${version}: ${errors.join('\n')}`);
     for (const [index, shader] of shaders.entries()) {
       await writeFile(join(out, `${version}-${index}.glsl`), shader.code);
       await writeFile(join(out, `${version}-${index}.vert.glsl`), shader.vertex);
