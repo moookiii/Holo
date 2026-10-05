@@ -29,7 +29,13 @@ export class PersistentCardCache {
             db.createObjectStore('meta', { keyPath: 'key' }).createIndex('used', 'used');
             db.createObjectStore('totals');
           };
-          request.onsuccess = () => { request.result.onversionchange = () => request.result.close(); resolve(request.result); };
+          request.onsuccess = () => {
+            const db = request.result;
+            db.onversionchange = () => db.close();
+            const total = db.transaction('totals').objectStore('totals').get('bytes');
+            total.onsuccess = () => { this.metrics.bytes = total.result ?? 0; };
+            resolve(db);
+          };
           request.onerror = () => { this.metrics.errors++; resolve(undefined); };
           request.onblocked = () => resolve(undefined);
         });

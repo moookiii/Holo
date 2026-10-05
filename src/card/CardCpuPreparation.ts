@@ -226,11 +226,12 @@ export class CardCpuPreparation {
   private previews = new CardPreviewCache();
   private previewJobs = new SharedPreparation<CardPreview>();
   private previewPreparations = 0;
-  cachedPreview(card: CardDefinition) { return this.disposed ? undefined : this.previews.get(card); }
+  hasPreview(card: CardDefinition) { return !this.disposed && this.previews.has(card); }
+  cachedPreview(card: CardDefinition) { return this.disposed ? undefined : this.previews.get(card, false); }
   async preparePreview(card: CardDefinition, signal: AbortSignal) {
     signal.throwIfAborted();
     if (this.disposed) throw new Error('CPU preparation disposed');
-    const cached = this.cachedPreview(card);
+    const cached = this.previews.get(card);
     if (cached) return cached;
     return this.previewJobs.run(JSON.stringify(card), signal, async signal => {
     this.previewPreparations++;

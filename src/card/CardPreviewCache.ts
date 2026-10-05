@@ -10,10 +10,11 @@ export class CardPreviewCache {
   private evictions = 0;
   readonly budget: number;
   constructor(budget = 192 * 1024 * 1024) { this.budget = budget; }
-  get(card: CardDefinition) {
+  has(card: CardDefinition) { return this.entries.has(JSON.stringify(card)); }
+  get(card: CardDefinition, countMiss = true) {
     // Include seed, layout, fallback and coverage mode as well as map/profile data.
     const key = JSON.stringify(card), entry = this.entries.get(key);
-    if (!entry) { this.misses++; return undefined; }
+    if (!entry) { if (countMiss) this.misses++; return undefined; }
     this.entries.delete(key); this.entries.set(key, entry); this.hits++;
     return entry.preview;
   }

@@ -293,7 +293,7 @@ export class Gallery {
     }
     for (const card of this.nearCards) {
       if (this.loading || this.requests.size + this.nearRequests.size >= PREVIEW_CONCURRENCY) break;
-      if (this.nearRequests.has(card.id) || this.nearFailed.has(card.id) || this.options.cpu.cachedPreview(card)) continue;
+      if (this.nearRequests.has(card.id) || this.nearFailed.has(card.id) || this.options.cpu.hasPreview(card)) continue;
       const request = new AbortController(); this.nearRequests.set(card.id, request);
       void this.options.cpu.preparePreview(card, request.signal).catch(() => { if (!request.signal.aborted) this.nearFailed.add(card.id); })
         .finally(() => { if (this.nearRequests.get(card.id) === request) this.nearRequests.delete(card.id); });

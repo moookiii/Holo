@@ -32,7 +32,7 @@ try {
         set: 'Test', number: String(i), front: '/front.png', back: '/back.png', profile: 'print-only', seed: i,
         dimensions: { width: 6.3, height: 8.8, thickness: .032, cornerRadius: .3, bevel: .007 } }));
       const cache = new CardPreviewCache(), jobs = [], uploads = [];
-      const cpu = { cachedPreview: card => cache.get(card), preparePreview: (card, signal) => new Promise((resolve, reject) => {
+      const cpu = { hasPreview: card => cache.has(card), cachedPreview: card => cache.get(card), preparePreview: (card, signal) => new Promise((resolve, reject) => {
         const job = { card, signal, complete: () => { cache.set(card, preview); resolve(preview); } };
         jobs.push(job); signal.addEventListener('abort', () => reject(signal.reason), { once: true });
       }) };
