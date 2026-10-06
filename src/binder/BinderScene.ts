@@ -182,6 +182,7 @@ export class BinderScene {
     cover: new MeshStandardNodeMaterial({ color: '#4c4f55', roughness: .64, metalness: .03 }),
     piping: new MeshStandardNodeMaterial({ color: '#454950', roughness: .58 }),
     fabric: new MeshPhysicalNodeMaterial({ color: '#464a50', roughness: .72, sheen: .55, sheenRoughness: .65, sheenColor: '#8a8d91', side: DoubleSide }),
+    spineFabric: new MeshPhysicalNodeMaterial({ color: '#464a50', roughness: .78, sheen: .3, sheenRoughness: .75, sheenColor: '#8a8d91', side: DoubleSide }),
     teeth: new MeshPhysicalNodeMaterial({ color: '#80858d', roughness: .38, metalness: .82 }),
     edge: new MeshPhysicalNodeMaterial({ color: '#929da7', roughness: .31, transparent: true, opacity: .22, depthWrite: false, side: DoubleSide }),
     backing: new MeshStandardNodeMaterial({ color: '#34383e', roughness: .78, side: DoubleSide }),
@@ -197,6 +198,7 @@ export class BinderScene {
     this.materials.cover.bumpMap = this.grain; this.materials.cover.bumpScale = .024;
     for (const texture of [this.weave, this.weaveNormal]) { texture.wrapS = texture.wrapT = RepeatWrapping; texture.repeat.set(6, 6); texture.anisotropy = 8; }
     this.materials.fabric.map = this.weave; this.materials.fabric.normalMap = this.weaveNormal; this.materials.fabric.normalScale = new Vector2(.65, .65);
+    this.materials.spineFabric.map = this.weave; this.materials.spineFabric.normalMap = this.weaveNormal; this.materials.spineFabric.normalScale = new Vector2(.18, .18);
     this.materials.plastic.normalMap = this.sleeveNormal; this.materials.plastic.normalScale = new Vector2(.7, .7);
     this.materials.plastic.clearcoatNormalMap = this.sleeveNormal;
     this.materials.plastic.opacityNode = float(.028).add(float(1).sub(normalView.dot(positionViewDirection).abs()).pow(3).mul(.55));
@@ -218,9 +220,7 @@ export class BinderScene {
       }
       cushion.computeVertexNormals(); this.solid(cushion, center, 0, -.05, this.materials.fabric);
     }
-    this.solid(slab(.72, 30.6, .45, .24), 0, 0, 2.48, this.materials.fabric);
-    this.solid(new BoxGeometry(.06, 31.5, .045), -.32, 0, .28, this.materials.stitch);
-    this.solid(new BoxGeometry(.06, 31.5, .045), .32, 0, .28, this.materials.stitch);
+    this.spine();
     this.zipper();
     for (let i = 0; i < BINDER.sheets; i++) {
       const bodyGeometry = new PlaneGeometry(BINDER.pageWidth, BINDER.pageHeight, 96, 2);
@@ -238,6 +238,47 @@ export class BinderScene {
     }
     this.stack(1);
   }
+  private spine() {
+    // A sewn fabric gusset joins the panel lining to the raised page binding.
+    // Keep its shoulders below the existing sheet curve, including the empty side.
+    const section = new Shape();
+    section.moveTo(-1.3, .08);
+    section.bezierCurveTo(-.86, .08, -.72, .26, -.65, .72);
+    section.bezierCurveTo(-.57, 1.25, -.52, 2.18, -.35, 2.44);
+    section.quadraticCurveTo(0, 2.6, .35, 2.44);
+    section.bezierCurveTo(.52, 2.18, .57, 1.25, .65, .72);
+    section.bezierCurveTo(.72, .26, .86, .08, 1.3, .08);
+    section.lineTo(1.3, -.08); section.lineTo(-1.3, -.08); section.closePath();
+    const gusset = new ExtrudeGeometry(section, { depth: 31.9, bevelEnabled: true,
+      bevelSize: .035, bevelThickness: .06, bevelSegments: 3, curveSegments: 24 });
+    gusset.rotateX(Math.PI / 2); gusset.translate(0, 15.95, 0);
+    const position = gusset.getAttribute('position'), uv = gusset.getAttribute('uv');
+    // Unwrap along the cross-section instead of projecting X onto vertical
+    // walls; projection collapses the weave at the sides of the binding.
+    const contour = section.getPoints(96), lengths = [0];
+    for (let j = 1; j < contour.length; j++) lengths.push(lengths[j - 1] + contour[j].distanceTo(contour[j - 1]));
+    for (let i = 0; i < uv.count; i++) {
+      const x = position.getX(i), z = position.getZ(i); let nearest = Infinity, distance = 0;
+      for (let j = 1; j < contour.length; j++) {
+        const a = contour[j - 1], b = contour[j], dx = b.x - a.x, dz = b.y - a.y;
+        const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.y) * dz) / (dx * dx + dz * dz)));
+        const error = (x - a.x - t * dx) ** 2 + (z - a.y - t * dz) ** 2;
+        if (error < nearest) { nearest = error; distance = lengths[j - 1] + t * (lengths[j] - lengths[j - 1]); }
+      }
+      uv.setXY(i, distance / 31.55, position.getY(i) / 32.65 + .5);
+    }
+    const support = this.solid(gusset, 0, 0, 0, this.materials.spineFabric);
+    support.name = 'continuous-fabric-spine';
+    this.solid(slab(.72, 30.6, .45, .24), 0, 0, 2.48, this.materials.fabric).name = 'sewn-spine-cap';
+    // The seam belongs on the attached foot, rather than below the raised cap.
+    for (const side of [-1, 1]) {
+      const geometry = new BoxGeometry(.024, .11, .018);
+      this.geometries.push(geometry);
+      const stitches = new InstancedMesh(geometry, this.materials.stitch, 158), matrix = new Matrix4();
+      for (let i = 0; i < 158; i++) { matrix.makeTranslation(side * 1.12, -15.7 + i * .2, .115); stitches.setMatrixAt(i, matrix); }
+      stitches.name = 'spine-attachment-stitching'; this.group.add(stitches);
+    }
+  }
   private zipper() {
     const curve = new CurvePath<Vector3>(), x = 32.4, y = 16.9, r = 1.3;
     const v = (a: number, b: number) => new Vector3(a, b, .28);
@@ -246,26 +287,37 @@ export class BinderScene {
     curve.add(new LineCurve3(v(x-r,y),v(-x+r,y))); curve.add(new QuadraticBezierCurve3(v(-x+r,y),v(-x,y),v(-x,y-r)));
     curve.add(new LineCurve3(v(-x,y-r),v(-x,-y+r))); curve.add(new QuadraticBezierCurve3(v(-x,-y+r),v(-x,-y),v(-x+r,-y)));
     const count = Math.ceil(curve.getLength() / .22), samples = curve.getSpacedPoints(count);
-    const ribbon: number[] = [], uv: number[] = [];
+    const ribbon: number[] = [], uv: number[] = [], indices: number[] = [];
     const offsets = (i: number, offset: number, z: number) => {
       const t = Math.min(1, i / count), p = curve.getPointAt(t), tangent = curve.getTangentAt(t);
       return new Vector3(p.x + tangent.y * offset, p.y - tangent.x * offset, z);
     };
-    for (let i = 0; i < count; i++) {
-      const a = offsets(i, -.36, .22), b = offsets(i, .36, .22), c = offsets(i + 1, -.36, .22), d = offsets(i + 1, .36, .22);
-      for (const p of [a, b, c, b, d, c]) ribbon.push(p.x, p.y, p.z);
-      uv.push(i / count, 0, i / count, 1, (i + 1) / count, 0, i / count, 1, (i + 1) / count, 1, (i + 1) / count, 0);
+    // Closed tape cross-section: attached feet, rounded woven shoulders and a
+    // raised chain bed. Real thickness remains visible when the binder tilts.
+    const profile = [[-.46,.12],[-.40,.20],[-.30,.27],[-.18,.345],[0,.36],
+      [.18,.345],[.30,.27],[.40,.20],[.46,.12],[.40,.055],[-.40,.055],[-.46,.12]];
+    const width = profile.length;
+    for (let i = 0; i <= count; i++) {
+      for (let j = 0; j < width; j++) {
+        const [offset, z] = profile[j], p = offsets(i, offset, z);
+        ribbon.push(p.x, p.y, p.z);
+        uv.push(i / count * curve.getLength() / 32, (offset + .46) / 32);
+        if (i < count && j < width - 1) {
+          const a = i * width + j, b = a + 1, c = a + width, d = c + 1;
+          indices.push(a, b, c, b, d, c);
+        }
+      }
     }
-    const tape = new BufferGeometry(); tape.setAttribute('position', new Float32BufferAttribute(ribbon, 3)); tape.setAttribute('uv', new Float32BufferAttribute(uv, 2)); tape.computeVertexNormals();
-    this.solid(tape, 0, 0, 0, this.materials.fabric);
+    const tape = new BufferGeometry(); tape.setAttribute('position', new Float32BufferAttribute(ribbon, 3)); tape.setAttribute('uv', new Float32BufferAttribute(uv, 2)); tape.setIndex(indices); tape.computeVertexNormals();
+    this.solid(tape, 0, 0, 0, this.materials.fabric).name = 'shaped-zipper-tape';
     for (const [offset, radius, material] of [[.53, .25, this.materials.cover], [-.11, .043, this.materials.piping], [.11, .043, this.materials.piping]] as const) {
-      const path = new CatmullRomCurve3(samples.slice(0, -1).map((_, i) => offsets(i, offset, offset === .53 ? .04 : .29)), true);
+      const path = new CatmullRomCurve3(samples.slice(0, -1).map((_, i) => offsets(i, offset, offset === .53 ? .04 : .375)), true);
       this.solid(new TubeGeometry(path, count, radius, 16, true), 0, 0, 0, material);
     }
     const tooth = new Shape();
     tooth.moveTo(-.052,-.105); tooth.lineTo(.052,-.105); tooth.lineTo(.052,-.025); tooth.lineTo(.079,.015);
     tooth.lineTo(.079,.08); tooth.lineTo(.026,.107); tooth.lineTo(-.026,.107); tooth.lineTo(-.079,.08); tooth.lineTo(-.079,.015); tooth.lineTo(-.052,-.025); tooth.closePath();
-    const toothGeometry = new ExtrudeGeometry(tooth, { depth: .065, bevelEnabled: true, bevelSize: .012, bevelThickness: .012, bevelSegments: 3 });
+    const toothGeometry = new ExtrudeGeometry(tooth, { depth: .095, bevelEnabled: true, bevelSize: .016, bevelThickness: .016, bevelSegments: 3 });
     // Smooth bevel facets so subpixel faces do not flash in otherwise dark metal.
     // Work at a larger scale to keep the normal welder's tolerance below the bevel size.
     toothGeometry.scale(100, 100, 100);
@@ -282,10 +334,10 @@ export class BinderScene {
       for (let row = 0; row < 2; row++) {
         const sample = i + (row ? .5 : 0), rowAngle = angle + (row ? Math.PI : 0);
         q.setFromAxisAngle(new Vector3(0, 0, 1), rowAngle);
-        matrix.compose(offsets(sample, row ? .12 : -.12, .33), q, new Vector3(1, 1, 1)); teeth.setMatrixAt(i * 2 + row, matrix);
+        matrix.compose(offsets(sample, row ? .12 : -.12, .38), q, new Vector3(1, 1, 1)); teeth.setMatrixAt(i * 2 + row, matrix);
         teeth.setColorAt(i * 2 + row, new Color().setScalar(.88 + .08 * Math.sin(i * 1.7)));
         q.setFromAxisAngle(new Vector3(0, 0, 1), angle);
-        matrix.compose(offsets(i, row ? .34 : -.34, .255), q, new Vector3(1, 1, 1)); stitches.setMatrixAt(i * 2 + row, matrix);
+        matrix.compose(offsets(i, row ? .37 : -.37, .235), q, new Vector3(1, 1, 1)); stitches.setMatrixAt(i * 2 + row, matrix);
       }
     }
     teeth.name = 'individual-zipper-teeth'; stitches.name = 'perimeter-stitching'; this.group.add(teeth, stitches);
