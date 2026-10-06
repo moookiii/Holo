@@ -14,7 +14,7 @@ export const expeditionRecipe: PokemonRecipe = {
   sources: ['https://www.pojo.com/Features/Sept2002/090602-WOTCMTMQuestions.html',
     'https://www.pojo.com/chrisbo/092002WotcChat.html',
     'https://api.tcgdex.net/v2/en/sets/ecard1'],
-  note: '2002 Expedition · 9 cards · 5 commons (a holo replaces one in 1:3 packs) + 2 uncommons + 1 non-holo rare + 1 reverse holo. No dedicated Energy slot or box guarantee. Uniform eligible cards are a simulation assumption; factory sheet frequencies are unverified. Regular holo animation is pending.',
+  note: '2002 Expedition · 9 cards · 5 commons (a holo replaces one in 1:3 packs) + 2 uncommons + 1 non-holo rare + 1 reverse holo. No dedicated Energy slot or box guarantee. Uniform eligible cards are a simulation assumption; factory sheet frequencies are unverified.',
   slots: [
     { id: 'common', count: 4, unique: true, outcomes: [{ weight: 1, rarities: ['Common'], variant: 'normal' }] },
     { id: 'common-or-holo', count: 1, outcomes: [

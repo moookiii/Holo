@@ -14,6 +14,7 @@ if (!existsSync(executablePath)) {
 }
 const backend = process.env.HOLO_BACKEND || 'webgl';
 const out = `artifacts/expedition/live/${backend}`;
+const reportName = process.env.EXPEDITION_CARD ? `report-${process.env.EXPEDITION_CARD}.json` : 'report.json';
 await mkdir(out, { recursive: true });
 const browser = await chromium.launch({ executablePath, headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] });
 const page = await browser.newPage({ viewport: { width: 850, height: 1050 } });
@@ -28,7 +29,8 @@ try {
   let cards = await page.evaluate(() => window.__holo.cards.filter(c => c.pokemon?.setId === 'ecard1' && c.pokemon.variant === 'holo').map(c => ({ id: c.id, title: c.title })));
   assert.equal(cards.length, 32);
   if (process.env.EXPEDITION_CARD) cards = cards.filter(c => c.id === `pokemon:ecard1-${process.env.EXPEDITION_CARD}:holo`);
-  const references = await page.evaluate(() => window.__holo.cards.filter(c => c.id === 'pokemon:base4-1:holo' || (c.title === 'Entei' && c.profile === 'pokemon-base-set-2-cosmos')).slice(0, 2).map(c => ({ id: c.id, title: c.title })));
+  const references = await page.evaluate(() => window.__holo.cards.filter(c => ['pokemon:base4-1:holo', 'pokemon:basep-34:holo'].includes(c.id)).map(c => ({ id: c.id, title: c.title })));
+  assert.equal(references.length, 2);
   for (const card of [...cards, ...references]) {
     await page.evaluate(async id => { await window.__holo.setCard(id, true); window.__holo.pose(0, 0); window.__holo.lighting.setPreset('Studio'); }, card.id);
     assert.equal(await page.evaluate(() => window.__holo.stats().profile), 'pokemon-base-set-2-cosmos');
@@ -63,7 +65,7 @@ try {
     await page.screenshot({ path: `${out}/${card.id.replaceAll(':', '-')}-moving.png` });
     await page.evaluate(() => window.__holo.lighting.setPreset('Studio'));
     report.push({ ...card, registration, captures: states.map(s => s[1]) });
-    await writeFile(`${out}/report.json`, JSON.stringify({ report, errors }, null, 2));
+    await writeFile(`${out}/${reportName}`, JSON.stringify({ report, errors }, null, 2));
     console.log(card.title, JSON.stringify(registration));
   }
   assert.deepEqual(errors, []);

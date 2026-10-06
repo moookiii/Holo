@@ -47,7 +47,8 @@ test('324 distinct Expedition prints register once and reuse the existing viewer
       }
       assert.equal(print.proceduralFoil,undefined);
       if (variant==='holo') {
-        assert.equal(print.profile,'print-only'); assert.equal(print.pokemon?.treatmentStatus,'deferred');
+        assert.equal(print.profile,'pokemon-base-set-2-cosmos'); assert.equal(print.pokemon?.treatmentStatus,undefined);
+        assert.equal(print.maps?.motif,`/cards/pokemon/expedition/maps/${n}-cosmos.png`);
         assert.equal(print.maps?.normal,undefined); assert.equal(print.maps?.height,undefined);
       } else if (variant==='reverse') assert.equal(print.profile,'pokemon-e-reader');
     }

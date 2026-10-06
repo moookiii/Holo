@@ -81,6 +81,11 @@ def rasterize(motifs):
     mask = np.zeros((1650, 1200), np.float32)
     for d in motifs:
         gain = .35+.65*d.get('brightness', 1)
+        if 'outline' in d:
+            image = Image.new('L', (2400, 3300)); draw = ImageDraw.Draw(image)
+            draw.polygon([(round(x*4), round(y*4)) for x, y in d['outline']], fill=255)
+            np.maximum(mask, np.array(image.resize((1200,1650),Image.Resampling.LANCZOS))/255*gain, out=mask)
+            continue
         if 'points' in d:
             image = Image.new('L', (2400, 3300)); draw = ImageDraw.Draw(image)
             draw.line([(round(x*4), round(y*4)) for x, y in d['points']], fill=255,
@@ -103,6 +108,8 @@ def rasterize(motifs):
 
 def inside_feature(candidate, feature):
     """Remove internal highlights, preserving dots outside a reviewed boundary."""
+    if 'outline' in feature:
+        return cv2.pointPolygonTest(np.array(feature['outline'],np.float32),tuple(map(float,candidate['center'])),False)>=0
     if 'center' not in feature:
         return False
     rx, ry = feature.get('radii', [feature['radius'], feature['radius']])
@@ -164,6 +171,8 @@ for n in range(1, 33):
         draw.text((2, (y-90)*2+2), str(y), fill='white', stroke_width=1, stroke_fill='black')
     grid.save(REVIEW/f'{n}-grid.png')
     report.append({'cardId': card_id, 'name': catalog[n-1]['name'], 'coordinateSize': [600, 825],
+                   'masterSource': f'https://assets.tcgdex.net/en/ecard/ecard1/{n}/high.png',
+                   'variant': f'English Expedition Base Set {n}/165 Holo Rare',
                    'masterSha256': sha(ASSETS/f'{n}.png'), 'protectionSha256': sha(ASSETS/f'maps/{n}-holo-protection.png'),
                    'windowSha256': sha(ASSETS/f'maps/{n}-holo-window.png'),
                    'transform': {'crop': None, 'flipY': False, 'offset': [0, 0]},
