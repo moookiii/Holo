@@ -44,6 +44,7 @@ const ancientMewSpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'flo
     { name: 'path', type: 'float' }, { name: 'bandwidth', type: 'float' },
     { name: 'secondary', type: 'float' }, { name: 'variance', type: 'float' },
   ] });
+const interpolateField = mix as unknown as <T extends 'float' | 'vec2'>(a: Node<T>, b: Node<T>, weight: Node<'float'>) => Node<T>;
 
 class HolographicLightingModel extends PhysicalLightingModel {
   constructor(private regions: OpticalRegion[], private sparkleCoverage: Node<'float'>, private crossedShaders: boolean[], private physicalGain: Node<'float'>,
@@ -97,9 +98,14 @@ class HolographicLightingModel extends PhysicalLightingModel {
         return;
       }
       const structure = radialStructure(u.scale, u.angle, u.aspect);
+      // Registered fields select the authored endpoint exactly. Do not compile
+      // a radial generator that contributes zero to every selected quantity.
+      // Include endpoint selection in the feature key for live profile edits.
+      const fieldSample = <T extends 'float' | 'vec2'>(procedural: Node<T>, authored: Node<T>): Node<T> =>
+        u.fieldBlend.value === 1 ? authored : u.fieldBlend.value === 0 ? procedural : interpolateField(procedural, authored, u.fieldBlend);
       const bitangent = bitangentView as unknown as Node<'vec3'>;
       const rotatedDirection = gratingDirection(region.field.rg, u.angle);
-      const direction = mix(structure.direction, rotatedDirection, u.fieldBlend).normalize();
+      const direction = fieldSample(structure.direction, rotatedDirection).normalize();
       const grating = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
       const foilNormal = normalView.toVar();
       if (region.followsAuthoredSurface) {
@@ -136,16 +142,17 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const gridGain = float(2.4);
       const grid = u.gridStrength.value !== 0
         ? mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength.mul(u.crossedFacets.oneMinus())).toVar() : float(1);
-      const spacing = mix(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5), u.fieldBlend);
+      const spacing = fieldSample(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5));
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
       const variance = (axis: Node<'vec3'>) => footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
       const gratingVariance = variance(grating), grooveVariance = variance(groove);
       const angularWidth = u.crossWidth.pow2().add(grooveVariance).sqrt();
       const transverse = momentum.dot(groove).div(angularWidth);
       const aperture = exp(transverse.pow2().mul(-0.5)).mul(u.crossWidth.div(angularWidth));
-      const etched = mix(structure.engraving, region.details.a, u.fieldBlend);
-      const patternCoverage = mix(float(1), region.field.a, u.fieldBlend);
-      const grooveEnergy = mix(float(1), etched.mul(0.85).add(0.18), u.engraving).mul(patternCoverage, region.pattern, grid);
+      const etched = fieldSample(structure.engraving, region.details.a);
+      const patternCoverage = fieldSample(float(1), region.field.a);
+      const grooveEnergy = (u.engraving.value === 0 ? float(1) : mix(float(1), etched.mul(0.85).add(0.18), u.engraving))
+        .mul(patternCoverage, region.pattern, grid);
       const response = this.compactOptics ? ancientMewSpectrum : spectrum;
       const spectral = response(path, u.bandwidth, u.secondary, gratingVariance.mul(u.period.mul(spacing).pow2())).mul(aperture, grooveEnergy, u.strength, u.crossing.oneMinus()).toVar();
       if (u.imageHologram.value > 0) If(u.imageHologram.greaterThan(0), () => {
@@ -164,16 +171,17 @@ class HolographicLightingModel extends PhysicalLightingModel {
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
-      const silver = foilNormal.dot(momentum.normalize()).max(0).pow(85).mul(patternCoverage, .25, u.fieldBlend, u.patternedSilver, region.pattern, grid);
+      const silver = u.patternedSilver.value === 0 || u.fieldBlend.value === 0 ? float(0)
+        : foilNormal.dot(momentum.normalize()).max(0).pow(85).mul(patternCoverage, .25, u.fieldBlend, u.patternedSilver, region.pattern, grid);
       const incident = foilNormal.dot(light).max(0);
       const visible = foilNormal.dot(positionViewDirection).max(0).sqrt();
       // Nacre needs a neutral, broad reflection lobe in addition to its
       // angle-dependent thin-film color. Keep it separate from diffraction so
       // a zero-strength grating (as used by Opal) still has a readable shine.
       const pearlHalf = foilNormal.dot(momentum.normalize()).max(0).pow(24);
-      const pearlSheen = pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
+      const pearlSheen = u.sheen.value === 0 ? float(0) : pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
-      const printFilter = mix(vec3(1), region.inkTransmission!, u.inkTransmission);
+      const printFilter = u.inkTransmission.value === 0 ? vec3(1) : mix(vec3(1), region.inkTransmission!, u.inkTransmission);
       const conventional = spectral.mul(u.spectralGain, u.spectralTint).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
       // Only direct illumination can reveal metallic printed die walls. The
       // authored normals select the ridges; no color/noise-derived relief or
@@ -183,7 +191,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const inkLobe = foilNormal.dot(half).max(0).pow(float(150).div(inkBroadening)).div(inkBroadening);
       const directAlignment = geometryNormal.dot(half).smoothstep(.90, .98);
       const ridge = foilNormal.sub(geometryNormal).length().smoothstep(.008, .075);
-      conventional.addAssign(region.inkReflection!.mul(inkLobe, directAlignment, ridge,
+      if (u.etchedInkSheen.value !== 0) conventional.addAssign(region.inkReflection!.mul(inkLobe, directAlignment, ridge,
         u.etchedInkSheen, u.neutralGain, incident, visible, region.pattern));
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(conventional
         .mul(region.coverage, data.lightColor as Node<'vec3'>));
@@ -544,7 +552,10 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts].map(Number).join('')).join('/')
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts,
+          u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
+          u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
+          u.etchedInkSheen.value !== 0].map(Number).join('')).join('/')
       + (this.compactOptics ? ':mew:' + [this.useIridescence, this.useAnisotropy, this.usesHeightRelief(),
         this.surfaceControls.hasNormal.value > 0, this.surfaceControls.anniversary.value > 0,
         this.surfaceControls.hasStamp.value > 0, this.surfaceControls.hasExtendedFoil.value > 0, this.surfaceControls.extendedCoverage.value > 0,

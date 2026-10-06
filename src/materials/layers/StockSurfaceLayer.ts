@@ -6,12 +6,12 @@ import { Fn, positionLocal, positionViewDirection, vec2, vec3, uniform, normalVi
 
 /** Continuous height and its analytic derivatives; all three describe one surface. */
 const relief = Fn(([point]: [Node<'vec2'>]) => {
-  const cell = point.floor(), f = point.fract();
-  const blend = f.pow3().mul(f.mul(f.mul(6).sub(15)).add(10));
-  const derivative = f.pow2().mul(f.sub(1).pow2()).mul(30);
+  const cell = point.floor().toVar(), f = point.fract().toVar();
+  const blend = f.pow3().mul(f.mul(f.mul(6).sub(15)).add(10)).toVar();
+  const derivative = f.pow2().mul(f.sub(1).pow2()).mul(30).toVar();
   const cells = stockCellNoise(cell).toVar();
   const a = cells.x, b = cells.y, c = cells.z, d = cells.w;
-  const cross = a.sub(b).sub(c).add(d);
+  const cross = a.sub(b).sub(c).add(d).toVar();
   return vec3(a.add(b.sub(a).mul(blend.x)).add(c.sub(a).mul(blend.y)).add(cross.mul(blend.x, blend.y)),
     b.sub(a).add(cross.mul(blend.y)).mul(derivative.x), c.sub(a).add(cross.mul(blend.x)).mul(derivative.y));
 }).setLayout({ name: 'coatedStockRelief', type: 'vec3', inputs: [{ name: 'point', type: 'vec2' }] });
@@ -66,7 +66,7 @@ export class StockSurfaceLayer {
       }
       return samplePoint;
     })();
-    const grain = relief(grainUV(displaced)), fine = relief(fineUV(displaced));
+    const grain = relief(grainUV(displaced)).toVar(), fine = relief(fineUV(displaced)).toVar();
     const grainSlope = vec2(grain.y.mul(.8).add(grain.z.mul(.6)), grain.z.mul(.8).sub(grain.y.mul(.6))).mul(scale, .72, visible);
     const fineSlope = vec2(fine.y.mul(.36).sub(fine.z.mul(.93295)), fine.y.mul(.93295).add(fine.z.mul(.36))).mul(fineScale, .28, fineVisible);
     this.slope = grainSlope.add(fineSlope).mul(depth, strength, -1);

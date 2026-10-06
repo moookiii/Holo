@@ -2,6 +2,7 @@ import { WebGPURenderer, RenderPipeline, Scene, PerspectiveCamera, Color, Neutra
 import { pass } from 'three/tsl';
 import { captureStartupPipelines, startupPipelines } from './LoadTiming';
 import { stabilizeShaderCodeOrder } from './StableShaderCode';
+import { eliminateShaderAliases } from './ShaderAliases';
 
 export async function createRenderer(container: HTMLElement) {
   const requestedBackend = new URLSearchParams(location.search).get('backend');
@@ -19,6 +20,14 @@ export async function createRenderer(container: HTMLElement) {
   await renderer.init();
   if ((renderer.backend as unknown as { isWebGLBackend?: boolean }).isWebGLBackend) renderer.debug.onNodeBuilderCreated = nodeBuilder => {
     const builder = nodeBuilder as unknown as { codes: Record<string, { code: string }[]>; getCodes: (stage: string) => string };
+    const shaderBuilder = nodeBuilder as unknown as { build: () => unknown; vertexShader: string; fragmentShader: string };
+    const build = shaderBuilder.build;
+    shaderBuilder.build = function() {
+      const result = build.call(this);
+      this.vertexShader = eliminateShaderAliases(this.vertexShader);
+      this.fragmentShader = eliminateShaderAliases(this.fragmentShader);
+      return result;
+    };
     const getCodes = builder.getCodes;
     builder.getCodes = function(stage) {
       stabilizeShaderCodeOrder(this.codes[stage]);

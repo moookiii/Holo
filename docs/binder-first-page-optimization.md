@@ -126,3 +126,55 @@ Cold-load frame P95 was 94.5 -> 99.9 ms, so this is a load-time improvement,
 not evidence of improved loading-animation smoothness. The populated turn
 again created no pipelines or textures. TypeScript, the production bundle and
 eight focused binder/material/pattern tests pass.
+
+## Firefox and the recorded eight-card page
+
+The earlier Chrome/WebGPU Base Set benchmark did not describe the supplied
+Firefox recording. Firefox defaults to WebGL here, and this machine's Firefox
+does not expose `KHR_parallel_shader_compile`. Its synchronous shader links
+block image decode callbacks as well as presentation. The recording ends with
+eight cards, including Ancient Mew, Jolteon ex 153 and Sylveon ex 156.
+
+`scripts/binder-recorded-load-check.mjs` now uses Firefox/WebGL at 2560 × 1392
+and those eight cards, including the 40 HP Base Set Pikachu. Readiness requires
+every expected card and another rendered frame, not the blank shell. It records
+CPU stages, actual pipeline sources and compilation durations. Set
+`BINDER_BASELINE=full` to supply the unchanged stock and holo implementations
+from `05536377`, and disable the new alias pass in that independent context.
+The test asserts that the baseline modules were actually intercepted.
+
+The code changes retain the same surface response:
+
+- Stock relief stores its cell, interpolation weights, derivatives and final
+  grain/fine samples explicitly, avoiding repeated expression expansion.
+- Registered optical fields select their authored endpoint directly. The
+  radial pattern generator is absent when its blend weight is exactly zero.
+  Fractional blending keeps the original interpolation.
+- Exactly zero engraving, sheen, metallic-ink sheen and ink-transmission
+  contributions omit their unused computations. Cache keys include every new
+  specialization, with browser checks for distinct enabled/disabled variants.
+- WebGL removes copies between identically typed immutable generated shader
+  temporaries. Expressions and their evaluation order remain unchanged. The
+  pass retains copies involving mutation, early reads, type conversion or
+  `out`/`inout` helpers or runtime loops, and never rewrites helper-function
+  bodies or bindings. Comments cannot participate in declaration/write analysis.
+
+An initial eight-card Firefox sample measured 49.0 s. Later unmodified-baseline
+samples fell to 26.90 and 23.95 s, so that whole improvement cannot be attributed
+to these edits. The final pair with the recorded Pikachu measured
+**23.95 -> 20.62 s (13.9%)**. Browser profiles are fresh, but machine load and
+driver caches outside the profile still vary. This remains much slower than
+the earlier WebGPU result; no fixed six-second Firefox claim is justified.
+
+With `BINDER_VISUAL=1`, the test compares all eight card bounds in Studio, Skim
+and Low key. The final comparisons cover 1,398,891 RGB channels: 392, 330 and
+288 channels differ, respectively, by at most one 8-bit level. The comparison
+excludes unrelated binder-shell geometry edits made by another task during
+testing. No card assets, masks, authored normals, optical settings, texture
+resolution, worker count or preparation concurrency were changed. No preload
+or warm-up was added. Fourteen focused tests, TypeScript and the production
+bundle pass. A final repetition with all safeguards and shader-error/variant
+assertions measured 23.42 s. Its three comparisons differ in 425, 395 and 303
+channels, respectively, still by at most one 8-bit level. This variation is why
+20.62 s should not be treated as a promised load time. The recorded-card page
+also completes on Chrome/WebGPU (11.16 s), without shader errors.
