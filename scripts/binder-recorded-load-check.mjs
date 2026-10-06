@@ -16,25 +16,28 @@ try {
     for (const [path, marker] of [
       ['src/materials/layers/StockSurfaceLayer.ts', 'const relief'],
       ...(process.env.BINDER_BASELINE === 'full' ? [['src/materials/HolographicMaterial.ts', 'const ancientMewSpectrum']] : []),
+      ...(process.env.BINDER_BASELINE === 'async' ? [['src/rendering/StudioRenderer.ts', 'export async function createRenderer']] : []),
     ]) {
-      const source = execFileSync('git', ['show', `05536377:${path}`], { encoding: 'utf8' });
+      const source = execFileSync('git', ['show', `${process.env.BINDER_BASELINE === 'async' ? '2aa774c8' : '05536377'}:${path}`], { encoding: 'utf8' });
       const transformed = (await transformWithOxc(source, path)).code;
       await page.route(`**/${path}*`, async route => {
         baselineRequests++;
         const response = await route.fetch(), current = await response.text();
         assert.ok(current.includes(marker) && transformed.includes(marker));
         // Retain Vite's resolved package/relative imports for the browser.
-        await route.fulfill({ response, body: current.slice(0, current.indexOf(marker))
+        const extra = path.endsWith('StudioRenderer.ts') ? 'import { eliminateShaderAliases } from "/src/rendering/ShaderAliases.ts";\n' : '';
+        await route.fulfill({ response, body: extra + current.slice(0, current.indexOf(marker))
           + transformed.slice(transformed.indexOf(marker)) });
       });
     }
     if (process.env.BINDER_BASELINE === 'full') await page.route('**/src/rendering/ShaderAliases.ts*', async route => {
       baselineRequests++;
-      await route.fulfill({ contentType: 'application/javascript', body: 'export function eliminateShaderAliases(code) { return code; }' });
+      await route.fulfill({ contentType: 'application/javascript', body: 'export function eliminateShaderAliases(code) { return code; } export function optimizeShaderBuilder() {}' });
     });
+
   }
-  page.on('pageerror', error => console.log('ERROR', String(error)));
   const errors = [];
+  page.on('pageerror', error => { errors.push(String(error)); console.log('ERROR', String(error)); });
   page.on('console', message => {
     if (message.type() !== 'error') return;
     const text = message.text();
@@ -79,6 +82,15 @@ try {
       return f;
     };
     const backend = window.__holo.renderer.backend, create = backend.createRenderPipeline;
+    wrap(window.__holo.renderer._nodes, 'getForRenderAsync');
+    if (backend.gl) for (const key of ['compileShader', 'linkProgram', 'getProgramParameter', 'clientWaitSync']) {
+      const original = backend.gl[key];
+      backend.gl[key] = function(...args) {
+        const at = performance.now();
+        try { return original.apply(this, args); }
+        finally { events.push({ stage: key, at: at - start, ms: performance.now() - at }); }
+      };
+    }
     window.recordedLoad.parallel = !!backend.parallel;
     backend.createRenderPipeline = function(object, promises) {
       window.recordedLoad.shaders.push({ material: object.material.name, vertex: object.pipeline.vertexProgram.code, fragment: object.pipeline.fragmentProgram.code });
@@ -89,7 +101,11 @@ try {
     g.favorites.ids = new Set(cards.map(c => c.id));
     const click = performance.now(); g.openBinder();
     window.recordedLoad.click = click;
-    const poll = () => {
+    let previousFrame = click;
+    window.recordedLoad.openingFrameMax = 0;
+    const poll = time => {
+      window.recordedLoad.openingFrameMax = Math.max(window.recordedLoad.openingFrameMax, time - previousFrame);
+      previousFrame = time;
       const s = g.stats();
       if (s.visible === s.visibleExpected && !s.visibleFailed) requestAnimationFrame(() => {
         window.recordedLoad.visibleMs = performance.now() - click;
@@ -117,7 +133,16 @@ try {
     for (const variant of variants) assert.equal(variant.distinct, variant.expected, `${variant.name} must invalidate inactive shader paths`);
   }
   const report = await page.evaluate(() => window.recordedLoad);
-  if (process.env.BINDER_BASELINE) assert.ok(baselineRequests >= (process.env.BINDER_BASELINE === 'full' ? 3 : 1));
+  report.frames = await page.evaluate(() => new Promise(resolve => {
+    const durations = []; let previous = performance.now();
+    const frame = time => {
+      durations.push(time - previous); previous = time;
+      if (durations.length < 90) requestAnimationFrame(frame);
+      else { durations.sort((a, b) => a - b); resolve({ median: durations[45], p95: durations[85], max: durations[89] }); }
+    };
+    requestAnimationFrame(frame);
+  }));
+  if (process.env.BINDER_BASELINE) assert.ok(baselineRequests >= ({ full: 3, async: 2 }[process.env.BINDER_BASELINE] || 1));
   assert.equal(report.stats.visibleFailed, 0);
   assert.equal(report.stats.visible, 8);
   assert.deepEqual(errors, [], 'No shader compile or render errors');
@@ -164,5 +189,5 @@ try {
       }
     }
   }
-  console.log(JSON.stringify({ visibleMs: report.visibleMs, backend: report.backend, parallel: report.parallel, cards: report.cards }));
+  console.log(JSON.stringify({ visibleMs: report.visibleMs, openingFrameMax: report.openingFrameMax, frames: report.frames, backend: report.backend, parallel: report.parallel, cards: report.cards }));
 } finally { await browser.close(); }

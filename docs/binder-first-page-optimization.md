@@ -178,3 +178,39 @@ assertions measured 23.42 s. Its three comparisons differ in 425, 395 and 303
 channels, respectively, still by at most one 8-bit level. This variation is why
 20.62 s should not be treated as a promised load time. The recorded-card page
 also completes on Chrome/WebGPU (11.16 s), without shader errors.
+
+## Apply the simplifier to asynchronous shader builds
+
+The WebGL simplifier was attached to `NodeBuilder.build()`, but Three r186's
+`compileAsync()` uses the separate `buildAsync()` implementation. Both paths
+finish in `buildCode()`. The hook now wraps that shared method, after shader
+source generation. A regression test exercises both entry points and verifies
+that vertex and fragment copies are eliminated without changing the result or
+building twice. All existing conservative alias-analysis safeguards remain.
+
+The recorded-page benchmark now records blocking WebGL calls, the longest
+opening frame, steady-state median/P95 frame intervals, and page errors.
+`BINDER_BASELINE=async` routes the prior renderer and unchanged stock shader
+from `2aa774c8`, retaining the current binder geometry and catalog. Baseline
+interception is asserted. The metric remains opening an unloaded binder through
+all eight cards presented; no work starts before the Favorites request.
+
+The retained-code comparison measured **34.311 -> 29.061 seconds (15.3%)**.
+The longest opening frame measured **4.328 -> 2.817 seconds**; steady-state
+frame median remained 16.66 ms and P95 measured 22.22 -> 16.68 ms. These are
+samples on a shared machine, not a guaranteed improvement on the user's device.
+They do **not** establish the requested twofold speedup. Shader linking still
+dominates. Reports are `recorded-retained-before.json` and
+`recorded-async-pass-only.json` under `artifacts/favorites-binder/`.
+
+All eight card bounds match within one RGB level in Studio, Skim and Low key
+(372, 327 and 287 changed channels out of 1,401,558). Fifteen focused tests,
+TypeScript and the production bundle pass. No assets, shader equations,
+material settings, preload behavior or binder presentation timing were changed.
+
+Discarded experiments included deferred page-wide shader completion, GPU-fence
+polling, cooperative graph scheduling, shader-local temporary declarations and
+a looped stock-noise implementation. Some combinations measured 17.9 seconds,
+but batching produced a 7.6-second opening pause and the isolated stock loop
+regressed total loading. None of those experiments remain in production code;
+their best timings must not be presented as the delivered performance.

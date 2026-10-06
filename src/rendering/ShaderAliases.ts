@@ -1,6 +1,18 @@
 /** Eliminate generated copies of immutable, identically typed temporaries.
  * Bindings, expressions and their evaluation order are untouched. This pass
  * only operates on Three's nodeVar variables in main, never helper functions. */
+export function optimizeShaderBuilder(builder: { buildCode(): unknown; vertexShader: string; fragmentShader: string }) {
+  // Both build() and buildAsync() finish here. Wrapping build() alone misses
+  // all shaders prepared through renderer.compileAsync().
+  const buildCode = builder.buildCode;
+  builder.buildCode = function() {
+    const result = buildCode.call(this);
+    this.vertexShader = eliminateShaderAliases(this.vertexShader);
+    this.fragmentShader = eliminateShaderAliases(this.fragmentShader);
+    return result;
+  };
+}
+
 export function eliminateShaderAliases(code: string) {
   const analyzed = code.replace(/\/\*[\s\S]*?\*\/|\/\/[^\n]*/g, comment => comment.replace(/[^\n]/g, ' '));
   const main = /void\s+main\s*\(\s*\)\s*\{/.exec(analyzed);

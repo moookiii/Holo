@@ -1,8 +1,30 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { eliminateShaderAliases } from '../src/rendering/ShaderAliases.ts';
+import { eliminateShaderAliases, optimizeShaderBuilder } from '../src/rendering/ShaderAliases.ts';
 
 const shader = (body: string, types = 'float nodeVar0;\nfloat nodeVar1;\nfloat nodeVar2;') => `${types}\nvoid main() {\n${body}\n}`;
+test('synchronous and asynchronous builds optimize only after shader source is generated', async () => {
+  for (const asynchronous of [false, true]) {
+    let generated = 0;
+    const builder = {
+      vertexShader: '', fragmentShader: '',
+      buildCode() {
+        generated++;
+        this.vertexShader = this.fragmentShader = shader('nodeVar0 = expensive();\nnodeVar1 = nodeVar0;\noutput = nodeVar1;');
+        return this;
+      },
+      build() { return this.buildCode(); },
+      async buildAsync() { await Promise.resolve(); return this.buildCode(); },
+    };
+    optimizeShaderBuilder(builder);
+    assert.equal(asynchronous ? await builder.buildAsync() : builder.build(), builder);
+    assert.equal(generated, 1);
+    for (const source of [builder.vertexShader, builder.fragmentShader]) {
+      assert.ok(source.includes('output = nodeVar0;'));
+      assert.ok(!source.includes('nodeVar1 ='));
+    }
+  }
+});
 test('immutable copy chains reuse the original computation without duplicating it', () => {
   const result = eliminateShaderAliases(shader('nodeVar0 = expensive();\nnodeVar1 = nodeVar0;\nnodeVar2 = nodeVar1;\noutput = nodeVar2;'));
   assert.ok(result.includes('output = nodeVar0;'));
