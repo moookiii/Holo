@@ -2,7 +2,7 @@
 .favorites-binder[hidden] { display: none; }
 .favorites-binder label[hidden], .favorites-binder button[hidden] { display: none; }
 .binder-header { position: relative; z-index: 2; }
-.binder-stage { position: absolute; inset: 98px 0 90px; touch-action: none; cursor: grab; outline: none; }
+.binder-stage { position: absolute; inset: 0; touch-action: none; cursor: grab; outline: none; }
 .binder-stage:active { cursor: grabbing; }
 .favorites-binder button:disabled { opacity: .28; cursor: default; }
 .binder-status { position: absolute; bottom: 92px; left: 50%; transform: translateX(-50%); font-size: 12px; padding: 10px 16px; border-radius: 6px; background: #111111dd; max-width: 80%; text-align: center; pointer-events: none; }
