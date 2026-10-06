@@ -29,7 +29,7 @@ try{
  for(const [n,variant] of [['1','normal'],['1','reverse'],['50b','normal'],['120','reverse'],['146','reverse'],['H01','holo'],['H16','holo'],['H31','holo'],['149','holo']]){
   const id=`pokemon:ecard2-${n}:${variant}`;
   await page.evaluate(async id=>{await window.__holo.setCard(id,true);window.__holo.pose(0,0);window.__holo.lighting.setPreset('Studio');},id);
-  const stats=await page.evaluate(()=>window.__holo.stats());assert.equal(stats.profile,variant==='reverse'?'pokemon-e-reader':'print-only');
+  const stats=await page.evaluate(()=>window.__holo.stats());assert.equal(stats.profile,variant==='reverse'?'pokemon-e-reader':n.startsWith('H')?'pokemon-base-set-2-cosmos':'print-only');
   await page.screenshot({path:`${out}/${n}-${variant}.png`});
   if(variant==='reverse'){await page.evaluate(()=>{window.__holo.pose(20,12);window.__holo.lighting.setPreset('Strip');});await page.screenshot({path:`${out}/${n}-grazing.png`});}
   report.viewers.push({id,profile:stats.profile});console.log('Viewer',id);

@@ -30,7 +30,7 @@ test('Aquapolis checklist retains a/b pairs, separate H cards and holo-only Crys
   for(const variant of card.variants){
    const def=pokemonDefinition(card,variant,cards);
    assert.equal(def.id,`pokemon:${card.id}:${variant}`);
-   assert.equal(def.profile,variant==='reverse'?'pokemon-e-reader':'print-only');
+   assert.equal(def.profile,variant==='reverse'?'pokemon-e-reader':h?'pokemon-base-set-2-cosmos':'print-only');
    assert.equal(def.proceduralFoil,undefined);
    assert.equal(def.maps?.normal,undefined);assert.equal(def.maps?.height,undefined);
    for(const path of Object.values(def.maps??{}))assert.ok(existsSync(`public${path}`),path);
@@ -71,15 +71,27 @@ test('Nine-card Aquapolis packs keep the rare and reverse; H cards replace a com
  assert.throws(()=>collatePokemon('ecard2','arcanine',1,aquapolisCards.slice(1)),/Incomplete/);
 });
 
-test('Prepared H geometry is separate, exact-source protection stays unchanged and inactive',()=>{
+test('Registered H Cosmos maps use existing optics and preserve exact-source protection',()=>{
  const evidence=JSON.parse(readFileSync('public/cards/pokemon/aquapolis/mask-evidence.json','utf8'));
+ const registration=JSON.parse(readFileSync('scripts/aquapolis/cosmos-registration.json','utf8'));
  assert.equal(evidence.length,32);
+ assert.equal(registration.length,32);
  for(const row of evidence){
   const path=`public/cards/pokemon/aquapolis/maps/${row.collectorNumber}-holo-protection.png`;
   assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'),row.samSha256);
   assert.deepEqual(row.transform,{scale:[1,1],translation:[0,0],crop:null,flipY:false});
   const def=aquapolisDefinitions.find(c=>c.pokemon?.id===row.cardId)!;
-  assert.equal(def.profile,'print-only');assert.equal(def.maps,undefined);
+  assert.equal(def.profile,'pokemon-base-set-2-cosmos');
+  assert.equal(def.maps?.protection,`/cards/pokemon/aquapolis/maps/${row.collectorNumber}-holo-protection.png`);
+  assert.equal(def.maps?.foil,`/cards/pokemon/aquapolis/maps/${row.collectorNumber}-holo-window.png`);
+  assert.equal(def.maps?.motif,`/cards/pokemon/aquapolis/maps/${row.collectorNumber}-cosmos.png`);
+  assert.equal(def.mapSettings?.embossStrength,0);
+  const placement=registration.find((r:{cardId:string})=>r.cardId===row.cardId);
+  assert.equal(placement.reviewStatus,'reviewed-visible-features');
+  assert.deepEqual(placement.coordinateSize,[600,825]);assert.deepEqual(placement.outputSize,[1200,1650]);
+  assert.equal(placement.protectionSha256,row.samSha256);
+  assert.equal(createHash('sha256').update(readFileSync(`public${def.maps!.motif}`)).digest('hex'),placement.motifSha256);
+  assert.ok(placement.motifs.length>0);
   assert.ok(existsSync(`public/cards/pokemon/aquapolis/maps/${row.collectorNumber}-holo-window.png`));
   assert.ok(existsSync(`public/cards/pokemon/aquapolis/maps/${row.collectorNumber}-cosmos.png`));
  }
