@@ -1,7 +1,7 @@
 /** Centimetres, matching CardDefinition. Four columns / three rows from the reference. */
 export const BINDER = { columns: 4, rows: 3, perPage: 12, perSpread: 24,
   sheets: 20, faces: 40, capacity: 480, spreads: 21, sheetThickness: .09,
-  pageWidth: 29.6, pageHeight: 30.3, hinge: .48,
+  pageWidth: 29.6, pageHeight: 30.3, hinge: .10,
   pitchX: 7.05, pitchY: 9.45, cardWidth: 6.3, cardHeight: 8.8 } as const;
 
 export function binderCount(count: number) { return Math.max(1, Math.ceil(count / BINDER.capacity)); }
@@ -22,15 +22,16 @@ export function pocket(index: number, side: -1 | 1) {
     y: BINDER.pitchY * (1 - Math.floor(index / BINDER.columns)) };
 }
 
-/** The bound edge rises from the centre; the sheet settles onto its own stack. */
+/** Sewn roots sit in a low gutter; each sheet settles onto its own stack. */
 export function restingPoint(u: number, side: -1 | 1, height: number) {
   const profile = (distance: number) => {
-    const lift = (2.75 - height) * Math.exp(-distance / 1.4);
+    const root = .26 + height * .12;
+    const lift = (root - height) * Math.exp(-distance / 1.4);
     return { z: height + lift + .24 * Math.sin(Math.PI * distance / BINDER.pageWidth),
       slope: -lift / 1.4 + .24 * Math.PI / BINDER.pageWidth * Math.cos(Math.PI * distance / BINDER.pageWidth) };
   };
   // Rigid cards support the sheet across each pocket. Confine bending to the
-  // empty channels so the spine crown cannot intersect the inner card edges.
+  // empty channels so the sewn gutter cannot bend the inner card edges.
   const halfPocket = 3.4;
   const centers = Array.from({ length: BINDER.columns }, (_, column) => pocket(column, 1).u);
   const plane = (center: number, distance: number) => {

@@ -51,3 +51,15 @@ test('resting pockets stay planar beneath rigid cards at every stack height', ()
     }
   }
 });
+
+test('sewn sheet roots stay low, closely joined, and ordered through the stack', () => {
+  let previous = 0;
+  for (let sheet = 1; sheet <= BINDER.sheets; sheet++) {
+    const height = .26 + sheet * BINDER.sheetThickness;
+    const left = restingPoint(0, -1, height), right = restingPoint(0, 1, height);
+    assert.ok(right.x - left.x <= .21, 'roots leave only a narrow sewn crease');
+    assert.ok(right.z > previous && right.z < .55, 'root layers stay ordered inside the low gutter');
+    assert.equal(left.z, right.z);
+    previous = right.z;
+  }
+});

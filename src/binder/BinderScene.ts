@@ -1,4 +1,4 @@
-import { Group, Mesh, MeshStandardNodeMaterial, MeshPhysicalNodeMaterial, PlaneGeometry,
+import { Group, Mesh, MeshStandardNodeMaterial, MeshPhysicalNodeMaterial, MeshBasicNodeMaterial, PlaneGeometry,
   BoxGeometry, DoubleSide, BufferGeometry, Float32BufferAttribute, TextureLoader, RepeatWrapping, Vector2, DataTexture, FloatType, RGBAFormat, LinearFilter,
   Shape, Path, ExtrudeGeometry, CatmullRomCurve3, CurvePath, LineCurve3, QuadraticBezierCurve3, Color, Vector3, TubeGeometry, InstancedMesh, Matrix4, Quaternion, type Material } from 'three/webgpu';
 import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
@@ -54,7 +54,7 @@ export class BinderPage {
           const x = pos.getX(v), yy = pos.getY(v);
           const lip = Math.exp(-(((yy - 4.34) / .15) ** 2)) * .055;
           const margin = Math.exp(-Math.min(3.4 - Math.abs(x), 4.55 - Math.abs(yy)) * 5);
-          pos.setZ(v, lip + .028 * margin * Math.sin(x * 2.2 + yy * 1.7 + i) + .014 * Math.sin(x * 1.4 + i) * Math.sin(yy * 1.1));
+          pos.setZ(v, lip + .012 * margin * Math.sin(x * 2.2 + yy * 1.7 + i) + .004 * Math.sin(x * 1.4 + i) * Math.sin(yy * 1.1));
         }
         geometry.computeVertexNormals();
         this.surface(geometry, u - BINDER.pageWidth / 2, y, .555, materials.plastic);
@@ -173,35 +173,45 @@ export class BinderScene {
     return new BinderPage(index, side, this.materials, geometry);
   }
   private sheets: { body: Mesh; edge: Mesh; bodyOriginal: Float32Array; edgeOriginal: Float32Array }[] = [];
+  private stackShadows: { side: -1 | 1; mesh: Mesh }[] = [];
   private stackPose = '';
   private grain = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/leather-grain.png`);
   private weave = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/nylon-weave.png`);
   private weaveNormal = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/nylon-normal.png`);
   private sleeveNormal = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/sleeve-normal.png`);
+  private stackShadow = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/stack-contact-shadow.png`);
   private materials = {
-    cover: new MeshStandardNodeMaterial({ color: '#4c4f55', roughness: .64, metalness: .03 }),
-    piping: new MeshStandardNodeMaterial({ color: '#454950', roughness: .58 }),
-    fabric: new MeshPhysicalNodeMaterial({ color: '#464a50', roughness: .72, sheen: .55, sheenRoughness: .65, sheenColor: '#8a8d91', side: DoubleSide }),
-    spineFabric: new MeshPhysicalNodeMaterial({ color: '#464a50', roughness: .78, sheen: .3, sheenRoughness: .75, sheenColor: '#8a8d91', side: DoubleSide }),
-    teeth: new MeshPhysicalNodeMaterial({ color: '#80858d', roughness: .38, metalness: .82 }),
-    edge: new MeshPhysicalNodeMaterial({ color: '#929da7', roughness: .31, transparent: true, opacity: .22, depthWrite: false, side: DoubleSide }),
-    backing: new MeshStandardNodeMaterial({ color: '#34383e', roughness: .78, side: DoubleSide }),
-    plastic: new MeshPhysicalNodeMaterial({ color: '#e5e9ee', transparent: true, opacity: .1,
-      roughness: .14, metalness: .05, clearcoat: 1, clearcoatRoughness: .12, ior: 1.46,
+    cover: new MeshStandardNodeMaterial({ color: '#e1d4bc', roughness: .83, metalness: 0 }),
+    piping: new MeshStandardNodeMaterial({ color: '#d9ccb3', roughness: .8 }),
+    fabric: new MeshPhysicalNodeMaterial({ color: '#eee5d4', roughness: .87, sheen: .16, sheenRoughness: .85, sheenColor: '#fff5e5', side: DoubleSide }),
+    spineFabric: new MeshPhysicalNodeMaterial({ color: '#e7dcc6', roughness: .9, sheen: .12, sheenRoughness: .9, sheenColor: '#fff5e5', side: DoubleSide }),
+    teeth: new MeshPhysicalNodeMaterial({ color: '#e2d7c3', roughness: .65, metalness: 0 }),
+    hardware: new MeshPhysicalNodeMaterial({ color: '#c7bdaa', roughness: .48, metalness: .45 }),
+    contact: new MeshBasicNodeMaterial({ transparent: true, opacity: .19, depthWrite: false }),
+    edge: new MeshPhysicalNodeMaterial({ color: '#eee7da', roughness: .48, transparent: true, opacity: .18, depthWrite: false, side: DoubleSide }),
+    backing: new MeshStandardNodeMaterial({ color: '#f0e9dc', roughness: .88, side: DoubleSide }),
+    plastic: new MeshPhysicalNodeMaterial({ color: '#fffaf0', transparent: true, opacity: .05,
+      roughness: .26, metalness: 0, clearcoat: .36, clearcoatRoughness: .23, ior: 1.46,
       depthWrite: false, side: DoubleSide }),
-    weld: new MeshPhysicalNodeMaterial({ color: '#777d83', roughness: .26, metalness: .15, clearcoat: 1, transparent: true, opacity: .54, depthWrite: false, side: DoubleSide }),
-    stitch: new MeshStandardNodeMaterial({ color: '#555358', roughness: .9 }),
+    weld: new MeshPhysicalNodeMaterial({ color: '#bfb49f', roughness: .65, metalness: 0, clearcoat: .08, transparent: true, opacity: .35, depthWrite: false, side: DoubleSide }),
+    stitch: new MeshStandardNodeMaterial({ color: '#c9bda5', roughness: .95 }),
   };
   constructor() {
     this.group.name = 'favorites-binder';
     this.grain.wrapS = this.grain.wrapT = RepeatWrapping; this.grain.repeat.set(9, 9);
-    this.materials.cover.bumpMap = this.grain; this.materials.cover.bumpScale = .024;
-    for (const texture of [this.weave, this.weaveNormal]) { texture.wrapS = texture.wrapT = RepeatWrapping; texture.repeat.set(6, 6); texture.anisotropy = 8; }
-    this.materials.fabric.map = this.weave; this.materials.fabric.normalMap = this.weaveNormal; this.materials.fabric.normalScale = new Vector2(.65, .65);
-    this.materials.spineFabric.map = this.weave; this.materials.spineFabric.normalMap = this.weaveNormal; this.materials.spineFabric.normalScale = new Vector2(.18, .18);
-    this.materials.plastic.normalMap = this.sleeveNormal; this.materials.plastic.normalScale = new Vector2(.7, .7);
+    this.materials.cover.bumpMap = this.grain; this.materials.cover.bumpScale = .007;
+    for (const texture of [this.weave, this.weaveNormal]) { texture.wrapS = texture.wrapT = RepeatWrapping; texture.repeat.set(12, 12); texture.anisotropy = 8; }
+    // Keep weave as fine surface relief, with only a small albedo variation.
+    // Multiplying ivory by the old black/white weave made it look like a grid.
+    for (const material of [this.materials.fabric, this.materials.spineFabric, this.materials.backing]) {
+      material.colorNode = vec3(material.color.r, material.color.g, material.color.b).mul(texture(this.weave).r.mul(.055).add(.945));
+      material.normalMap = this.weaveNormal; material.normalScale = new Vector2(.16, .16);
+    }
+    this.materials.plastic.normalMap = this.sleeveNormal; this.materials.plastic.normalScale = new Vector2(.16, .16);
     this.materials.plastic.clearcoatNormalMap = this.sleeveNormal;
-    this.materials.plastic.opacityNode = float(.028).add(float(1).sub(normalView.dot(positionViewDirection).abs()).pow(3).mul(.55));
+    this.materials.plastic.clearcoatNormalScale = new Vector2(.12, .12);
+    this.materials.plastic.opacityNode = float(.023).add(float(1).sub(normalView.dot(positionViewDirection).abs()).pow(4).mul(.24));
+    this.materials.contact.map = this.stackShadow;
     for (const side of [-1, 1] as const) {
       const center = side * 16.2;
       this.solid(slab(32.05, 33.15, .72, 1.18), center, 0, -.4, this.materials.cover);
@@ -214,11 +224,13 @@ export class BinderScene {
         const cx = Math.max(0, Math.abs(x) - 14.75), cy = Math.max(0, Math.abs(y) - 15.25);
         if (cx > 0 && cy > 0) { const length = Math.hypot(cx, cy); if (length > .8) { x = Math.sign(x) * (14.75 + cx / length * .8); y = Math.sign(y) * (15.25 + cy / length * .8); } }
         const edge = Math.max(0, Math.min(15.55 - Math.abs(x), 16.05 - Math.abs(y)));
-        const crown = .25 * (1 - Math.exp(-edge * 3));
-        const fold = .025 * Math.sin(x * 2.3 + y * 1.5) * edge * Math.exp(-edge * 3);
+        const crown = .16 * (1 - Math.exp(-edge * 3));
+        const fold = .015 * Math.sin(x * 2.3 + y * 1.5) * edge * Math.exp(-edge * 3);
         p.setXYZ(i, x, y, crown + fold);
       }
       cushion.computeVertexNormals(); this.solid(cushion, center, 0, -.05, this.materials.fabric);
+      const shadow = this.solid(new PlaneGeometry(30.8, 31.5), side * (BINDER.hinge + BINDER.pageWidth / 2), -.07, .165, this.materials.contact);
+      shadow.name = 'stack-contact-on-lining'; this.stackShadows.push({ side, mesh: shadow });
     }
     this.spine();
     this.zipper();
@@ -239,43 +251,25 @@ export class BinderScene {
     this.stack(1);
   }
   private spine() {
-    // A sewn fabric gusset joins the panel lining to the raised page binding.
-    // Keep its shoulders below the existing sheet curve, including the empty side.
-    const section = new Shape();
-    section.moveTo(-1.3, .08);
-    section.bezierCurveTo(-.86, .08, -.72, .26, -.65, .72);
-    section.bezierCurveTo(-.57, 1.25, -.52, 2.18, -.35, 2.44);
-    section.quadraticCurveTo(0, 2.6, .35, 2.44);
-    section.bezierCurveTo(.52, 2.18, .57, 1.25, .65, .72);
-    section.bezierCurveTo(.72, .26, .86, .08, 1.3, .08);
-    section.lineTo(1.3, -.08); section.lineTo(-1.3, -.08); section.closePath();
-    const gusset = new ExtrudeGeometry(section, { depth: 31.9, bevelEnabled: true,
-      bevelSize: .035, bevelThickness: .06, bevelSegments: 3, curveSegments: 24 });
-    gusset.rotateX(Math.PI / 2); gusset.translate(0, 15.95, 0);
-    const position = gusset.getAttribute('position'), uv = gusset.getAttribute('uv');
-    // Unwrap along the cross-section instead of projecting X onto vertical
-    // walls; projection collapses the weave at the sides of the binding.
-    const contour = section.getPoints(96), lengths = [0];
-    for (let j = 1; j < contour.length; j++) lengths.push(lengths[j - 1] + contour[j].distanceTo(contour[j - 1]));
-    for (let i = 0; i < uv.count; i++) {
-      const x = position.getX(i), z = position.getZ(i); let nearest = Infinity, distance = 0;
-      for (let j = 1; j < contour.length; j++) {
-        const a = contour[j - 1], b = contour[j], dx = b.x - a.x, dz = b.y - a.y;
-        const t = Math.max(0, Math.min(1, ((x - a.x) * dx + (z - a.y) * dz) / (dx * dx + dz * dz)));
-        const error = (x - a.x - t * dx) ** 2 + (z - a.y - t * dz) ** 2;
-        if (error < nearest) { nearest = error; distance = lengths[j - 1] + t * (lengths[j] - lengths[j - 1]); }
-      }
-      uv.setXY(i, distance / 31.55, position.getY(i) / 32.65 + .5);
+    // Continuous lining spans both covers and reaches beneath the zipper at
+    // both ends. There is no raised cap or open triangular hole in the gutter.
+    this.solid(slab(2.2, 34.45, .22, .3), 0, 0, -.04, this.materials.spineFabric).name = 'continuous-gutter-backing';
+    const lining = new PlaneGeometry(2.2, 34.4, 24, 120);
+    const position = lining.getAttribute('position'), uv = lining.getAttribute('uv');
+    for (let i = 0; i < position.count; i++) {
+      const x = position.getX(i), y = position.getY(i);
+      const shoulder = .055 * (1 - Math.exp(-x * x / .16));
+      const endCompression = .025 * Math.exp(-(((Math.abs(y) - 16.65) / .38) ** 2));
+      position.setZ(i, .085 + shoulder - endCompression);
+      uv.setXY(i, x / 32 + .5, y / 32 + .5);
     }
-    const support = this.solid(gusset, 0, 0, 0, this.materials.spineFabric);
-    support.name = 'continuous-fabric-spine';
-    this.solid(slab(.72, 30.6, .45, .24), 0, 0, 2.48, this.materials.fabric).name = 'sewn-spine-cap';
-    // The seam belongs on the attached foot, rather than below the raised cap.
+    lining.computeVertexNormals();
+    this.solid(lining, 0, 0, 0, this.materials.spineFabric).name = 'sewn-fabric-gutter';
     for (const side of [-1, 1]) {
-      const geometry = new BoxGeometry(.024, .11, .018);
+      const geometry = new BoxGeometry(.018, .095, .012);
       this.geometries.push(geometry);
       const stitches = new InstancedMesh(geometry, this.materials.stitch, 158), matrix = new Matrix4();
-      for (let i = 0; i < 158; i++) { matrix.makeTranslation(side * 1.12, -15.7 + i * .2, .115); stitches.setMatrixAt(i, matrix); }
+      for (let i = 0; i < 158; i++) { matrix.makeTranslation(side * .73, -15.7 + i * .2, .14); stitches.setMatrixAt(i, matrix); }
       stitches.name = 'spine-attachment-stitching'; this.group.add(stitches);
     }
   }
@@ -290,7 +284,10 @@ export class BinderScene {
     const ribbon: number[] = [], uv: number[] = [], indices: number[] = [];
     const offsets = (i: number, offset: number, z: number) => {
       const t = Math.min(1, i / count), p = curve.getPointAt(t), tangent = curve.getTangentAt(t);
-      return new Vector3(p.x + tangent.y * offset, p.y - tangent.x * offset, z);
+      // Gentle long-edge bow from fabric tension, rather than a perfect frame.
+      const edge = Math.max(0, (Math.abs(p.y) - 15) / 1.9);
+      const bow = .11 * Math.cos(p.x / 9) * edge;
+      return new Vector3(p.x + tangent.y * offset, p.y - tangent.x * offset + Math.sign(p.y) * bow, z + .025 * Math.cos(p.x / 8) * edge);
     };
     // Closed tape cross-section: attached feet, rounded woven shoulders and a
     // raised chain bed. Real thickness remains visible when the binder tilts.
@@ -310,7 +307,7 @@ export class BinderScene {
     }
     const tape = new BufferGeometry(); tape.setAttribute('position', new Float32BufferAttribute(ribbon, 3)); tape.setAttribute('uv', new Float32BufferAttribute(uv, 2)); tape.setIndex(indices); tape.computeVertexNormals();
     this.solid(tape, 0, 0, 0, this.materials.fabric).name = 'shaped-zipper-tape';
-    for (const [offset, radius, material] of [[.53, .25, this.materials.cover], [-.11, .043, this.materials.piping], [.11, .043, this.materials.piping]] as const) {
+    for (const [offset, radius, material] of [[.53, .18, this.materials.cover], [-.11, .032, this.materials.piping], [.11, .032, this.materials.piping]] as const) {
       const path = new CatmullRomCurve3(samples.slice(0, -1).map((_, i) => offsets(i, offset, offset === .53 ? .04 : .375)), true);
       this.solid(new TubeGeometry(path, count, radius, 16, true), 0, 0, 0, material);
     }
@@ -341,15 +338,16 @@ export class BinderScene {
       }
     }
     teeth.name = 'individual-zipper-teeth'; stitches.name = 'perimeter-stitching'; this.group.add(teeth, stitches);
-    this.solid(slab(.49, .62, .11, .16), .18, -16.94, .36, this.materials.teeth);
-    this.solid(slab(.23, .36, .1, .08), .18, -16.95, .48, this.materials.teeth);
+    this.solid(slab(.49, .62, .11, .16), .18, -17.04, .36, this.materials.hardware);
+    this.solid(slab(.23, .36, .1, .08), .18, -17.05, .48, this.materials.hardware);
     for (const dx of [-.18, .18]) this.solid(new RoundedBoxGeometry(.08, .38, .07, 3, .025), .18 + dx, -16.94, .45, this.materials.piping);
     const pullShape = roundedShape(.46, 1.35, .18); pullShape.holes.push(new Path(roundedShape(.23, .79, .09).getPoints(12)));
     const pull = new ExtrudeGeometry(pullShape, { depth: .065, bevelEnabled: true, bevelThickness: .02, bevelSize: .025, bevelSegments: 2 });
-    const tab = this.solid(pull, .23, -17.9, .32, this.materials.teeth); tab.rotation.z = -.18;
+    const tab = this.solid(pull, .23, -18, .32, this.materials.hardware); tab.rotation.z = -.18;
   }
   stack(spread: number, turningSheet?: number) {
     const key = `${spread}:${turningSheet}`; if (key === this.stackPose) return; this.stackPose = key;
+    for (const { side, mesh } of this.stackShadows) mesh.visible = side === -1 ? spread > 0 : spread < BINDER.sheets;
     for (let sheet = 0; sheet < BINDER.sheets; sheet++) {
       const side = sheet < spread ? -1 : 1;
       const z = .26 + (side === -1 ? sheet + 1 : BINDER.sheets - sheet) * BINDER.sheetThickness - .05;
@@ -370,5 +368,5 @@ export class BinderScene {
     return page;
   }
   retain(indices: Set<number>) { for (const [index, page] of this.pages) if (!indices.has(index)) { page.dispose(); this.pages.delete(index); } }
-  dispose() { this.retain(new Set()); this.pageGeometry.forEach(templates => templates.forEach(g => g.dispose())); this.pageGeometry.clear(); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); for (const t of [this.grain, this.weave, this.weaveNormal, this.sleeveNormal]) t.dispose(); this.group.removeFromParent(); }
+  dispose() { this.retain(new Set()); this.pageGeometry.forEach(templates => templates.forEach(g => g.dispose())); this.pageGeometry.clear(); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); for (const t of [this.grain, this.weave, this.weaveNormal, this.sleeveNormal, this.stackShadow]) t.dispose(); this.group.removeFromParent(); }
 }

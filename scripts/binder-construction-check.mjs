@@ -4,7 +4,7 @@ import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import assert from 'node:assert/strict';
 
-const out = join(process.cwd(), 'artifacts/binder-construction');
+const out = join(process.cwd(), 'artifacts/binder-natural');
 await mkdir(out, { recursive: true });
 let executablePath = chromium.executablePath();
 if (!existsSync(executablePath)) {
@@ -44,16 +44,26 @@ try {
   await page.evaluate(direction => window.__holo.gallery.instance().binder.turn(direction), direction);
   await page.waitForFunction(target => { const s = window.__holo.gallery.stats(); return s.spread === target && !s.turning; }, start + direction, { timeout: 60000 });
   await page.screenshot({ path: join(out, 'turned-page.png') }); captures.push('turned-page');
+  await page.evaluate(() => {
+    const gallery = window.__holo.gallery.instance(), cards = gallery.catalog.cards().slice(0, 36);
+    gallery.favorites.ids = new Set(cards.map(card => card.id)); gallery.binder.refresh(cards);
+    gallery.binder.tilt.targetX = -.065; gallery.binder.tilt.targetY = 0;
+  });
+  await page.waitForFunction(() => { const s = window.__holo.gallery.stats(); return !s.preparing && !s.pending && s.visible === s.visibleExpected && s.visible > 0 && !s.visibleFailed; }, null, { timeout: 240000 });
+  await page.waitForTimeout(700);
+  await page.screenshot({ path: join(out, 'cards-front.png') }); captures.push('cards-front');
   const geometry = await page.evaluate(() => {
     const group = window.__holo.gallery.instance().binder.physical.group;
-    return ['continuous-fabric-spine', 'shaped-zipper-tape'].map(name => {
+    if (group.getObjectByName('sewn-spine-cap') || group.getObjectByName('continuous-fabric-spine')) throw new Error('Raised center bar remains');
+    return ['continuous-gutter-backing', 'sewn-fabric-gutter', 'shaped-zipper-tape'].map(name => {
       const mesh = group.getObjectByName(name); mesh.geometry.computeBoundingBox();
       const box = mesh.geometry.boundingBox;
       return { name, min: box.min.toArray(), max: box.max.toArray() };
     });
   });
-  assert.ok(geometry[0].min[2] < 0 && geometry[0].max[2] > 2.25, 'spine bridges panel level and cap');
-  assert.ok(geometry[1].max[2] - geometry[1].min[2] > .25, 'tape has a raised cross-section');
+  assert.ok(geometry[0].min[1] < -17.1 && geometry[0].max[1] > 17.1 && geometry[0].max[2] > 0, 'gutter backing fills both end gaps through the zipper edge');
+  assert.ok(geometry[1].max[2] < .15, 'fabric gutter stays low without a raised center bar');
+  assert.ok(geometry[2].max[2] - geometry[2].min[2] > .25, 'tape retains thickness');
   assert.deepEqual(errors, []);
   await writeFile(join(out, 'review.json'), JSON.stringify({ captures, geometry, errors }, null, 2));
   console.log(JSON.stringify({ captures, geometry, errors }));
