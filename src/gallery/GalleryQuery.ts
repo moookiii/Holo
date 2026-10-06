@@ -35,6 +35,7 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ['Legendary Collection', '2002-05-24'],
   ['Pokémon e-Card Sample Set', '2002-08-01'],
   ['Expedition Base Set', '2002-09-15'],
+  ['Aquapolis', '2003-01-15'],
   ['EX FireRed & LeafGreen', '2004-09-01'],
   ['FireRed & LeafGreen', '2004-09-01'],
   ['Sun & Moon Base', '2017-02-03'],

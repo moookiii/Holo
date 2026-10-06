@@ -17,6 +17,8 @@ export function packAvailability(setId: string): { ready: boolean; label: string
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
   if (setId === 'ecard1') return { ready: true, label: 'Opening available · regular foil pending',
     detail: '165 numbered cards · 159 reverse holos · 32 regular holo prints with prepared SAM protections. Four original booster designs.' };
+  if (setId === 'ecard2') return { ready: true, label: 'Opening available · Cosmos pending',
+    detail: '154 numbered entries · 32 Holo Rares · 151 reverse holos. Four original booster designs. Four b-print scans are lower resolution.' };
   if (setId === 'neo4') return { ready: true, label: 'Opening available', detail: '113 cards · 1st Edition · 16 Cosmos holos + 8 subject-foil Shining cards.' };
   if (setId === 'neo3') return { ready: true, label: 'Opening available', detail: '66 cards · 1st Edition · 16 supplied holo protections. Cosmos dot placements deferred to the next pass.' };
   if (setId === 'gym1') return { ready: true, label: 'Opening available', detail: '132 cards · 1st Edition · 19 registered Cosmos holos and four original booster designs.' };
