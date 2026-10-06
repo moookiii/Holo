@@ -54,25 +54,39 @@ export function generateRegisteredStarField(spec: PatternSpec, height: number, r
   const microRow = noiseRows(width, height, 100, 440, seed + 97);
   const grainRow = noiseRows(width, height, 440, 370, seed + 139);
   const px = Int32Array.from({ length: width }, (_, ix) => Math.min(registered.width - 1, Math.floor((ix + .5) / height / spec.aspect * registered.width)));
+  // A stroke's horizontal shape is unchanged throughout its lattice row.
+  // Retain doubles so reuse does not change the encoded pattern bytes.
+  const columns = new Int32Array(width), horizontal = new Float64Array(width);
+  let cachedRow = -1;
+  let cells: { center: number; halfWidth: number; phase: number; phaseWeight: number; axis: number[]; spacing: number; vertical: number }[] = [];
   for (let iy = 0; iy < height; iy++) {
     const y = (iy + .5) / height, vy = y * 132, row = Math.floor(vy);
     const py = Math.min(registered.height - 1, Math.floor((1 - y) * registered.height));
     const ribbon = ribbonRow(iy), broad = broadRow(iy), micro = microRow(iy), grainBreak = grainRow(iy);
-    const shift = random(0, row, seed + 111);
-    let lastColumn = -1, phase = 0, alongCenter = 0, alongWidth = 0, vertical = 0, phaseWeight = 0, axis = [0, 0], spacing = 0;
-    for (let ix = 0; ix < width; ix++) {
-      const x = (ix + .5) / height, vx = x * 26 + shift, column = Math.floor(vx);
-      if (column !== lastColumn) {
-        lastColumn = column; phase = random(column, row, seed + 113);
-        const center = .22 + phase * .56, halfWidth = .09 + random(column, row, seed + 127) * .20;
-        alongCenter = .22 + random(column, row, seed + 131) * .56;
-        alongWidth = .08 + random(column, row, seed + 137) * .29;
-        vertical = Math.exp(-Math.pow((vy - row - center) / halfWidth, 2) * 2);
-        phaseWeight = smooth(.18, .70, phase);
-        axis = encodeGratingAxis(Math.PI / 2 + (phase - .5) * .10); spacing = .88 + phase * .25;
+    if (row !== cachedRow) {
+      cachedRow = row; cells = [];
+      const shift = random(0, row, seed + 111);
+      let lastColumn = -1, alongCenter = 0, alongWidth = 0;
+      for (let ix = 0; ix < width; ix++) {
+        const x = (ix + .5) / height, vx = x * 26 + shift, column = Math.floor(vx);
+        columns[ix] = column;
+        if (column !== lastColumn) {
+          lastColumn = column;
+          const phase = random(column, row, seed + 113);
+          cells[column] = { center: .22 + phase * .56, halfWidth: .09 + random(column, row, seed + 127) * .20,
+            phase, phaseWeight: smooth(.18, .70, phase), axis: encodeGratingAxis(Math.PI / 2 + (phase - .5) * .10),
+            spacing: .88 + phase * .25, vertical: 0 };
+          alongCenter = .22 + random(column, row, seed + 131) * .56;
+          alongWidth = .08 + random(column, row, seed + 137) * .29;
+        }
+        horizontal[ix] = Math.exp(-Math.pow((vx - column - alongCenter) / alongWidth, 2) * 2);
       }
+    }
+    for (const cell of cells) if (cell) cell.vertical = Math.exp(-Math.pow((vy - row - cell.center) / cell.halfWidth, 2) * 2);
+    for (let ix = 0; ix < width; ix++) {
+      const { vertical, phase, phaseWeight, axis, spacing } = cells[columns[ix]];
       const p = py * registered.width + px[ix], star = registered.data[p] / 255, identity = stars[labels[p]];
-      const stroke = vertical * Math.exp(-Math.pow((vx - column - alongCenter) / alongWidth, 2) * 2)
+      const stroke = vertical * horizontal[ix]
         * (.25 + grainBreak[ix] * .75) * phaseWeight;
       const sheetY = (broad[ix] - .5) * .08 + (phase - .5) * .24 * stroke;
       const amplitude = (.007 + smooth(.40, .83, ribbon[ix]) * .012 + micro[ix] * .002 + stroke * (.055 + phase * .14)) * (1 - star) + star * .86;

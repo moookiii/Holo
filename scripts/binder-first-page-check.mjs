@@ -1,6 +1,8 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { mkdir, writeFile } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
+import { transformWithOxc } from 'vite';
 
 const out = 'artifacts/favorites-binder';
 await mkdir(out, { recursive: true });
@@ -9,7 +11,10 @@ const browser = await chromium.launch({ channel: 'chrome', headless: true,
 const report = [];
 const edgeComparison = process.env.BINDER_COMPARE === 'edge';
 const backComparison = process.env.BINDER_COMPARE === 'back';
-const materialComparison = edgeComparison || backComparison;
+const starComparison = process.env.BINDER_COMPARE === 'stars';
+const materialComparison = edgeComparison || backComparison || starComparison;
+const previousStarSource = starComparison ? (await transformWithOxc(execFileSync('git', ['show',
+  'dcdd1350:src/materials/patterns/RegisteredStarField.ts'], { encoding: 'utf8' }), 'RegisteredStarField.ts')).code : undefined;
 const baselineBackShots = new Map();
 try {
   for (let run = 0; run < Number(process.env.BINDER_RUNS || 2); run++) {
@@ -17,6 +22,7 @@ try {
       // Independent contexts: no HTTP, IndexedDB, CPU or binder GPU reuse.
       const context = await browser.newContext({ viewport: { width: 1600, height: 1000 } });
       const page = await context.newPage(), errors = [];
+      let starBaselineRequests = 0;
       page.on('pageerror', error => errors.push(String(error)));
       page.on('console', message => {
         const text = message.text();
@@ -25,6 +31,11 @@ try {
         if (message.type() === 'error') errors.push(text);
       });
       await page.routeWebSocket('**', socket => socket.close());
+      if (baseline && starComparison) await page.route('**/src/materials/patterns/RegisteredStarField.ts*', async route => {
+        starBaselineRequests++;
+        const response = await route.fetch();
+        await route.fulfill({ response, body: previousStarSource });
+      });
       if (baseline && !materialComparison) await page.route('**/src/binder/BinderScene.ts*', async route => {
         const response = await route.fetch();
         const source = await response.text();
@@ -92,6 +103,7 @@ try {
         requestAnimationFrame(poll);
       }, { baseline, materialComparison });
       await page.waitForFunction(() => window.firstPageTiming.visibleMs, null, { timeout: 240000 });
+      if (baseline && starComparison) assert.ok(starBaselineRequests > 0, 'Reference generator must actually run in the worker');
       const result = await page.evaluate(() => {
         const binder = window.__holo.gallery.instance().binder;
         const pages = binder.physical.preparationPages ?? [...binder.physical.pages.values()];

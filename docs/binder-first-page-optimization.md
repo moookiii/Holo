@@ -93,3 +93,36 @@ Studio and grazing Skim light. All four comparisons have zero changed RGB
 channels and zero mean channel difference. Populated first turns still create
 no new pipelines or textures. No preload, reduced image resolution, reduced
 surface detail or deferred compilation on first presentation is involved.
+
+## Reuse invariant stroke calculations
+
+The registered Base Set star generator now evaluates each horizontal stroke
+shape once per lattice row instead of once per raster row. Phase, grating axis
+and spacing are also reused within that row; the vertical envelope still updates
+at every raster row. Float64 intermediates preserve the original arithmetic.
+Only about 18 KB of temporary row storage is added at production resolution,
+released with the worker job. Worker count, priority and card-load concurrency
+are unchanged. This is local reuse within a requested card's calculation,
+without preparing cards ahead of demand.
+
+`node --experimental-strip-types scripts/registered-star-row-check.mjs` compares
+against the generator at `dcdd1350`, alternating execution order across six
+production-size fields. All direction and relief bytes match exactly. Mean CPU
+generation time fell from 328.5 to 271.7 ms (17.3%); individual savings range
+from about 5% to 34%. Existing golden hashes also pass at three resolutions.
+
+`BINDER_COMPARE=stars` selects this isolated baseline in the first-page check;
+the reference module is supplied to the actual browser worker. Initial cold
+pairs measured 7.00 -> 6.87 s and 7.92 -> 6.15 s. The first pair briefly overlapped
+a focused test run, so it should not establish an end-to-end saving. Page-turn
+checks still show zero new pipelines/textures and all 24 cards presented.
+End-to-end timing and cold-load frame P95 remain variable; CPU byte equivalence
+and eliminated calculations are the repeatable evidence. No card assets,
+etched geometry, material finish or image resolution changed.
+
+The final isolated pair, with an assertion verifying that the baseline worker
+module was intercepted, measured 7.88 -> 6.07 s for all twelve cards rendered.
+Cold-load frame P95 was 94.5 -> 99.9 ms, so this is a load-time improvement,
+not evidence of improved loading-animation smoothness. The populated turn
+again created no pipelines or textures. TypeScript, the production bundle and
+eight focused binder/material/pattern tests pass.
