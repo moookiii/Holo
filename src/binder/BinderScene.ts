@@ -5,7 +5,7 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { mergeGeometries, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 import { BINDER, pocket, sheetCurve, sheetPoint, restingPoint, faceSide, faceHeight } from './BinderLayout';
 import type { CardInstance } from '../card/CardInstance';
-import { float, normalView, positionViewDirection, texture, vec2, vec3, positionGeometry, normalLocal, Fn, uniform } from 'three/tsl';
+import { float, normalView, positionViewDirection, texture, vec2, vec3, positionGeometry, normalLocal, normalMap, uv, Fn, uniform } from 'three/tsl';
 
 /** Raised annular weld impressions: open centres expose the dark separator. */
 function perforatedSeams() {
@@ -184,6 +184,7 @@ export class BinderScene {
     cover: new MeshStandardNodeMaterial({ color: '#e1d4bc', roughness: .83, metalness: 0 }),
     piping: new MeshStandardNodeMaterial({ color: '#d9ccb3', roughness: .8 }),
     fabric: new MeshPhysicalNodeMaterial({ color: '#eee5d4', roughness: .87, sheen: .16, sheenRoughness: .85, sheenColor: '#fff5e5', side: DoubleSide }),
+    leftLining: new MeshPhysicalNodeMaterial({ color: '#e1d4bc', roughness: .78, sheen: .3, sheenRoughness: .75, sheenColor: '#f3e8d2', side: DoubleSide }),
     spineFabric: new MeshPhysicalNodeMaterial({ color: '#e7dcc6', roughness: .9, sheen: .12, sheenRoughness: .9, sheenColor: '#fff5e5', side: DoubleSide }),
     teeth: new MeshPhysicalNodeMaterial({ color: '#e2d7c3', roughness: .65, metalness: 0 }),
     hardware: new MeshPhysicalNodeMaterial({ color: '#c7bdaa', roughness: .48, metalness: .45 }),
@@ -207,6 +208,11 @@ export class BinderScene {
       material.colorNode = vec3(material.color.r, material.color.g, material.color.b).mul(texture(this.weave).r.mul(.055).add(.945));
       material.normalMap = this.weaveNormal; material.normalScale = new Vector2(.16, .16);
     }
+    // Restore the charcoal lining's weave spacing and relief, tinted to the
+    // existing tan border. Explicit UVs leave the other fabrics unchanged.
+    const lining = this.materials.leftLining, liningUV = uv().mul(6);
+    lining.colorNode = vec3(lining.color.r, lining.color.g, lining.color.b).mul(texture(this.weave, liningUV).r.mul(.22).add(.78));
+    lining.normalNode = normalMap(texture(this.weaveNormal, liningUV), vec2(.65, .65));
     this.materials.plastic.normalMap = this.sleeveNormal; this.materials.plastic.normalScale = new Vector2(.16, .16);
     this.materials.plastic.clearcoatNormalMap = this.sleeveNormal;
     this.materials.plastic.clearcoatNormalScale = new Vector2(.12, .12);
@@ -215,20 +221,25 @@ export class BinderScene {
     for (const side of [-1, 1] as const) {
       const center = side * 16.2;
       this.solid(slab(32.05, 33.15, .72, 1.18), center, 0, -.4, this.materials.cover);
-      this.solid(slab(31.55, 32.65, .07, .94), center, 0, .04, this.materials.fabric);
+      const left = side === -1, width = left ? 32.3 : 31.1, height = left ? 33.9 : 32.1;
+      const liningMaterial = left ? this.materials.leftLining : this.materials.fabric;
+      this.solid(slab(left ? width : 31.55, left ? height : 32.65, .07, .94), center, 0, .04, liningMaterial);
       // Soft padding crowns above the shell, with compression folds at the seam.
-      const cushion = new PlaneGeometry(31.1, 32.1, 80, 80);
-      const p = cushion.getAttribute('position');
+      const cushion = new PlaneGeometry(width, height, 80, 80);
+      const p = cushion.getAttribute('position'), cushionUV = cushion.getAttribute('uv');
       for (let i = 0; i < p.count; i++) {
         let x = p.getX(i), y = p.getY(i);
-        const cx = Math.max(0, Math.abs(x) - 14.75), cy = Math.max(0, Math.abs(y) - 15.25);
-        if (cx > 0 && cy > 0) { const length = Math.hypot(cx, cy); if (length > .8) { x = Math.sign(x) * (14.75 + cx / length * .8); y = Math.sign(y) * (15.25 + cy / length * .8); } }
-        const edge = Math.max(0, Math.min(15.55 - Math.abs(x), 16.05 - Math.abs(y)));
+        const cornerX = width / 2 - .8, cornerY = height / 2 - .8;
+        const cx = Math.max(0, Math.abs(x) - cornerX), cy = Math.max(0, Math.abs(y) - cornerY);
+        if (cx > 0 && cy > 0) { const length = Math.hypot(cx, cy); if (length > .8) { x = Math.sign(x) * (cornerX + cx / length * .8); y = Math.sign(y) * (cornerY + cy / length * .8); } }
+        const edge = Math.max(0, Math.min(width / 2 - Math.abs(x), height / 2 - Math.abs(y)));
         const crown = .16 * (1 - Math.exp(-edge * 3));
         const fold = .015 * Math.sin(x * 2.3 + y * 1.5) * edge * Math.exp(-edge * 3);
         p.setXYZ(i, x, y, crown + fold);
+        if (left) cushionUV.setXY(i, x / width + .5, y / height + .5);
       }
-      cushion.computeVertexNormals(); this.solid(cushion, center, 0, -.05, this.materials.fabric);
+      cushion.computeVertexNormals();
+      this.solid(cushion, center, 0, left ? .09 : -.05, liningMaterial).name = left ? 'tan-woven-left-lining' : 'right-cover-padding';
       const shadow = this.solid(new PlaneGeometry(30.8, 31.5), side * (BINDER.hinge + BINDER.pageWidth / 2), -.07, .165, this.materials.contact);
       shadow.name = 'stack-contact-on-lining'; this.stackShadows.push({ side, mesh: shadow });
     }
