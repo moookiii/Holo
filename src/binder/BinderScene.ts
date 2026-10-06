@@ -5,7 +5,8 @@ import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.j
 import { mergeGeometries, toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
 import { BINDER, pocket, sheetCurve, sheetPoint, restingPoint, faceSide, faceHeight } from './BinderLayout';
 import type { CardInstance } from '../card/CardInstance';
-import { float, normalView, positionViewDirection, texture, vec2, vec3, positionGeometry, normalLocal, normalMap, uv, Fn, uniform } from 'three/tsl';
+import { BINDER_FINISHES, type BinderFinish } from './BinderFinish';
+import { float, normalView, positionViewDirection, texture, vec2, vec3, positionGeometry, normalLocal, normalMap, uv, Fn, uniform, reference } from 'three/tsl';
 
 /** Raised annular weld impressions: open centres expose the dark separator. */
 function perforatedSeams() {
@@ -86,6 +87,12 @@ export class BinderPage {
     for (const [source, geometry] of templates) {
       if (!sharedGeometry) this.geometries.add(geometry);
       const material = (source as MeshStandardNodeMaterial).clone();
+      // Page pose stays individual; finish properties follow the shared source
+      // so existing and pooled films/welds change with the shell immediately.
+      material.color = (source as MeshStandardNodeMaterial).color;
+      material.normalScale = (source as MeshStandardNodeMaterial).normalScale;
+      material.roughnessNode = reference('roughness', 'float', source);
+      material.metalnessNode = reference('metalness', 'float', source);
       material.positionNode = Fn(() => {
         const sample = texture(this.poseTexture, vec2(positionGeometry.x.div(BINDER.pageWidth).mul(512).add(.5).div(513), .5)).level(float(0)).toVar();
         const angle = sample.z, sin = angle.sin(), cos = angle.cos(), offset = positionGeometry.z.mul(this.reverse);
@@ -180,6 +187,8 @@ export class BinderScene {
   private weaveNormal = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/nylon-normal.png`);
   private sleeveNormal = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/sleeve-normal.png`);
   private stackShadow = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/stack-contact-shadow.png`);
+  private fabricContrast = uniform(.055);
+  private liningContrast = uniform(.22);
   private materials = {
     cover: new MeshStandardNodeMaterial({ color: '#e1d4bc', roughness: .83, metalness: 0 }),
     piping: new MeshStandardNodeMaterial({ color: '#d9ccb3', roughness: .8 }),
@@ -205,13 +214,13 @@ export class BinderScene {
     // Keep weave as fine surface relief, with only a small albedo variation.
     // Multiplying ivory by the old black/white weave made it look like a grid.
     for (const material of [this.materials.fabric, this.materials.spineFabric, this.materials.backing]) {
-      material.colorNode = vec3(material.color.r, material.color.g, material.color.b).mul(texture(this.weave).r.mul(.055).add(.945));
+      material.colorNode = uniform(material.color).mul(texture(this.weave).r.mul(this.fabricContrast).add(float(1).sub(this.fabricContrast)));
       material.normalMap = this.weaveNormal; material.normalScale = new Vector2(.16, .16);
     }
     // Restore the charcoal lining's weave spacing and relief, tinted to the
     // existing tan border. Explicit UVs leave the other fabrics unchanged.
     const lining = this.materials.leftLining, liningUV = uv().mul(6);
-    lining.colorNode = vec3(lining.color.r, lining.color.g, lining.color.b).mul(texture(this.weave, liningUV).r.mul(.22).add(.78));
+    lining.colorNode = uniform(lining.color).mul(texture(this.weave, liningUV).r.mul(this.liningContrast).add(float(1).sub(this.liningContrast)));
     lining.normalNode = normalMap(texture(this.weaveNormal, liningUV), vec2(.65, .65));
     this.materials.plastic.normalMap = this.sleeveNormal; this.materials.plastic.normalScale = new Vector2(.16, .16);
     this.materials.plastic.clearcoatNormalMap = this.sleeveNormal;
@@ -260,6 +269,22 @@ export class BinderScene {
       this.sheets.push({ body, edge, bodyOriginal: new Float32Array(bodyGeometry.getAttribute('position').array), edgeOriginal: new Float32Array(edgeGeometry.getAttribute('position').array) });
     }
     this.stack(1);
+  }
+  setFinish(finish: BinderFinish) {
+    const palette = BINDER_FINISHES[finish], charcoal = finish === 'charcoal';
+    for (const key of Object.keys(palette) as (keyof typeof palette)[]) {
+      const [color, roughness, metalness] = palette[key], material = this.materials[key];
+      material.color.set(color); material.roughness = roughness; material.metalness = metalness;
+    }
+    this.fabricContrast.value = charcoal ? .75 : .055;
+    this.liningContrast.value = charcoal ? .75 : .22;
+    this.materials.cover.bumpScale = charcoal ? .024 : .007;
+    for (const material of [this.materials.fabric, this.materials.spineFabric]) {
+      material.normalScale.setScalar(charcoal ? .65 : .16);
+      material.sheenColor.set(charcoal ? '#8a8d91' : '#fff5e5');
+    }
+    this.materials.leftLining.sheenColor.set(charcoal ? '#8a8d91' : '#f3e8d2');
+    this.materials.backing.normalScale.setScalar(charcoal ? 0 : .16);
   }
   private spine() {
     // Continuous lining spans both covers and reaches beneath the zipper at

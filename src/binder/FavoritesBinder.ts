@@ -7,6 +7,7 @@ import type { CardCpuPreparation, PreparedCardCpu } from '../card/CardCpuPrepara
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { galleryLightingControls } from '../gallery/GalleryLighting';
 import { BinderScene } from './BinderScene';
+import { BINDER_FINISH_STORAGE, type BinderFinish } from './BinderFinish';
 import { BINDER, BinderNavigation, binderCount, spreadFaces, spreadIndices, faceHeight } from './BinderLayout';
 
 interface Options {
@@ -60,6 +61,19 @@ export class FavoritesBinder {
     star.setAttribute('aria-label', 'Close Favorites binder'); star.title = 'Return to gallery';
     star.onclick = () => { void this.exit(); };
     filters.append(label, star);
+    const finishLabel = document.createElement('label'), finishCaption = document.createElement('span');
+    finishCaption.textContent = 'Binder color';
+    const finishSelect = document.createElement('select'); finishSelect.setAttribute('aria-label', 'Binder color');
+    finishSelect.append(new Option('Tan', 'tan'), new Option('Charcoal', 'charcoal'));
+    let finish: BinderFinish = 'tan';
+    try { if (localStorage.getItem(BINDER_FINISH_STORAGE) === 'charcoal') finish = 'charcoal'; } catch { /* Storage may be disabled. */ }
+    finishSelect.value = finish; this.physical.setFinish(finish);
+    finishSelect.onchange = () => {
+      const selected: BinderFinish = finishSelect.value === 'charcoal' ? 'charcoal' : 'tan';
+      this.physical.setFinish(selected);
+      try { localStorage.setItem(BINDER_FINISH_STORAGE, selected); } catch { /* The switch still works without storage. */ }
+    };
+    finishLabel.append(finishCaption, finishSelect); filters.append(finishLabel);
     const tools = document.createElement('div'); tools.className = 'gallery-tools'; tools.append(filters, light);
     const actions = document.createElement('div'); actions.className = 'gallery-header'; actions.append(exit);
     header.append(tools, actions);

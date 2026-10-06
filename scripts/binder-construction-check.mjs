@@ -26,6 +26,8 @@ try {
     gallery.favorites.ids = new Set(); gallery.openBinder();
   });
   await page.waitForFunction(() => { const s = window.__holo.gallery.stats(); return s.binder && !s.preparing && !s.pending; }, null, { timeout: 120000 });
+  const finish = page.getByLabel('Binder color', { exact: true });
+  await finish.selectOption('tan');
   for (const [name, lighting, x, y] of [
     ['front-soft', 'Soft', -.065, 0],
     ['tilt-soft', 'Soft', -.27, .23],
@@ -52,6 +54,20 @@ try {
   await page.waitForFunction(() => { const s = window.__holo.gallery.stats(); return !s.preparing && !s.pending && s.visible === s.visibleExpected && s.visible > 0 && !s.visibleFailed; }, null, { timeout: 240000 });
   await page.waitForTimeout(700);
   await page.screenshot({ path: join(out, 'cards-front.png') }); captures.push('cards-front');
+  const beforeSwitch = await page.evaluate(() => {
+    const b = window.__holo.gallery.instance().binder;
+    window.__binderFinishGroup = b.physical.group;
+    return { spread: window.__holo.gallery.stats().spread, visible: window.__holo.gallery.stats().visible };
+  });
+  await finish.selectOption('charcoal'); await page.waitForTimeout(700);
+  await page.screenshot({ path: join(out, 'charcoal-front.png') }); captures.push('charcoal-front');
+  const afterSwitch = await page.evaluate(() => {
+    const b = window.__holo.gallery.instance().binder;
+    if (window.__binderFinishGroup !== b.physical.group) throw new Error('Switch rebuilt the binder');
+    return { spread: window.__holo.gallery.stats().spread, visible: window.__holo.gallery.stats().visible };
+  });
+  assert.deepEqual(afterSwitch, beforeSwitch);
+  assert.equal(await page.evaluate(() => localStorage.getItem('holo.binder.finish')), 'charcoal');
   const geometry = await page.evaluate(() => {
     const group = window.__holo.gallery.instance().binder.physical.group;
     if (group.getObjectByName('sewn-spine-cap') || group.getObjectByName('continuous-fabric-spine')) throw new Error('Raised center bar remains');
@@ -64,6 +80,13 @@ try {
   assert.ok(geometry[0].min[1] < -17.1 && geometry[0].max[1] > 17.1 && geometry[0].max[2] > 0, 'gutter backing fills both end gaps through the zipper edge');
   assert.ok(geometry[1].max[2] < .15, 'fabric gutter stays low without a raised center bar');
   assert.ok(geometry[2].max[2] - geometry[2].min[2] > .25, 'tape retains thickness');
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => window.__holo?.gallery.stats()?.active, null, { timeout: 120000 });
+  await page.evaluate(() => { const g = window.__holo.gallery.instance(); g.favorites.ids = new Set(); g.openBinder(); });
+  await page.waitForFunction(() => { const s = window.__holo.gallery.stats(); return s.binder && !s.preparing && !s.pending; }, null, { timeout: 120000 });
+  assert.equal(await page.getByLabel('Binder color', { exact: true }).inputValue(), 'charcoal');
+  await page.getByLabel('Binder color', { exact: true }).selectOption('tan');
+  assert.equal(await page.evaluate(() => localStorage.getItem('holo.binder.finish')), 'tan');
   assert.deepEqual(errors, []);
   await writeFile(join(out, 'review.json'), JSON.stringify({ captures, geometry, errors }, null, 2));
   console.log(JSON.stringify({ captures, geometry, errors }));
