@@ -94,6 +94,19 @@ try {
       await page.screenshot({ path: join(out, `${number}-motion-${yaw + 40}.png`) });
     }
     report.push(await page.evaluate(() => window.__holo.stats()));
+    for (const preset of ['Low key', 'Strip', 'Moving light']) {
+      await page.evaluate(preset => { const h = window.__holo; h.lighting.setPreset(preset); h.lighting.playing = false; h.pose(0, 0, 0); }, preset);
+      for (const phase of preset === 'Moving light' ? [0, 1, 2, 3, 4, 5, 6, 7, 8] : [0]) {
+        await page.evaluate(phase => { window.__holo.lighting.phase = phase; window.__holo.lighting.update(0); }, phase);
+        await page.waitForTimeout(100);
+        await page.screenshot({ path: join(out, `${number}-${preset.replaceAll(' ', '-')}-${phase}.png`) });
+      }
+    }
+  }
+  for (const number of ['155', '156']) {
+    await page.evaluate(async number => { await window.__holo.setCard(`pokemon:sv08.5-${number}:holo`); window.__holo.lighting.setPreset('Studio'); window.__holo.pose(0, 0, 0); }, number);
+    await page.waitForTimeout(200);
+    await page.screenshot({ path: join(out, `reference-${number}-neutral.png`) });
   }
   await writeFile(join(out, 'report.json'), JSON.stringify({ report, galleryLoad, errors }, null, 2));
   console.log(JSON.stringify({ cards: report.map(x => ({ card: x.card, frameMs: x.frameMs })), errors }));
