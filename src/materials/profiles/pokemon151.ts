@@ -22,7 +22,7 @@ export const pokemon151Profiles: HolographicProfile[] = [
 pokemon151Profiles.push({ ...doubleRareProfile, id: 'pokemon151_ex_holo', name: '151 · Double Rare' });
 
 pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
-  ...tcglEtchedFinish, id: 'pokemon151_fullart_texture', name: '151 · Ultra Rare etched',
+  mapSettings: tcglEtchedFinish.mapSettings, id: 'pokemon151_fullart_texture', name: '151 · Ultra Rare etched',
   opticalModel: 'sv151-ultra',
   description: 'Exact TCGL etched metallic full-art foil with selective diagonal prismatic highlights.',
   diffraction: { ...reference('prismatic_sir_texture').diffraction, ...tcglEtchedFinish.diffraction },
