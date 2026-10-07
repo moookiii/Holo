@@ -48,13 +48,13 @@ export function ultraRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
     geometry.dot(half).smoothstep(.90, .98));
   const etched = spectral.mul(printFilter).add(silver)
     .mul(normal.dot(light).max(0), normal.dot(view).max(0).sqrt());
-  // A small share of the IR's continuous diagonal sheet response is visible
-  // in the physical Ultra Rare. Transport it through the authored etch normal,
-  // never into geometry or a second emboss. Reserve spectral energy for this
-  // contribution instead of placing a full-strength IR treatment over the art.
+  // Visible diagonal color in the physical Ultra Rare needs more energy than
+  // the initial subtle blend. Keep the metallic/ridge response unchanged and
+  // transport the IR sheet through the authored normal, without extra emboss.
+  // At the reference strength this remains 24% of the standalone IR response.
   const diagonal = illustrationRareReflection(light, view, tangent, bitangent, normal, {
     aspect: u.aspect, period: u.period, bandwidth: u.bandwidth,
-    strength: u.strength.mul(.28), secondary: u.secondary,
+    strength: u.strength.mul(.90), secondary: u.secondary,
     angle: float(Math.PI / 4), crossWidth: u.crossWidth,
   }, footprint).mul(printFilter);
   return etched.sub(spectral.mul(printFilter, .28,
