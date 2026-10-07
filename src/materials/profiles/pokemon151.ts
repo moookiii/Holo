@@ -28,7 +28,7 @@ pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
   diffraction: { ...reference('prismatic_sir_texture').diffraction, ...tcglEtchedFinish.diffraction },
   structure: { ...reference('prismatic_sir_texture').structure, ...tcglEtchedFinish.structure },
   glints: { ...reference('prismatic_sir_texture').glints, ...tcglEtchedFinish.glints },
-  surface: { ...reference('prismatic_sir_texture').surface, ...tcglEtchedFinish.surface },
+  surface: { ...reference('prismatic_sir_texture').surface, ...tcglEtchedFinish.surface, substrateReflection: .35 },
   secondary: undefined,
 });
 
