@@ -58,6 +58,23 @@ test('324 distinct Expedition prints register once and reuse the existing viewer
   assert.equal((await pokemonCatalog.cards(expeditionSet,signal)).length,165);
 });
 
+test('all 159 reverse lower panels use their own reviewed master registration and PNG', () => {
+  const evidence = JSON.parse(readFileSync('public/cards/pokemon/expedition/reverse-boundary-evidence.json','utf8'));
+  assert.equal(evidence.length,159);
+  for (const record of evidence) {
+    const card = expeditionDefinitions.find(c => c.pokemon?.id === record.cardId && c.pokemon.variant === 'reverse')!;
+    assert.equal(record.front,`public${card.front}`);
+    assert.equal(record.mask,`public${card.maps!.reverseFoil}`);
+    assert.equal(record.reviewStatus,'reviewed-lower-boundary');
+    assert.deepEqual(record.coordinateSize,[600,825]);
+    assert.deepEqual(record.transform,{crop:null,offset:[0,0],flipY:false});
+    for (const [path,hash] of [[record.front,record.frontSha256],[record.mask,record.maskSha256]])
+      assert.equal(createHash('sha256').update(readFileSync(path)).digest('hex'),hash,record.cardId);
+    const png = readFileSync(record.mask);
+    assert.deepEqual([png.readUInt32BE(16),png.readUInt32BE(20)],record.maskSize);
+  }
+});
+
 test('Expedition packs preserve the non-holo rare and replace a common at the documented holo rate', () => {
   assert.equal(expeditionRecipe.slots.reduce((n,s)=>n+s.count,0),9);
   let holos=0; const reverses=new Set<string>(); const commons=new Set<string>();

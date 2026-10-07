@@ -50,3 +50,58 @@ npm run build
 ```
 
 Use `--finalize` after editing explicit reviewed corrections. `--propose` changes only proposal data/review previews and requires a new manual review before finalization. The mask-preparation script does not write authored Cosmos maps.
+
+## Reverse-holo lower-panel registration
+
+All 159 reverse prints now have lower-panel coverage registered to their own
+active printed master. The earlier shared basic/evolved silhouettes drifted at
+the copyright curve, bottom e-Reader bars and side rails. Each full-card trace
+is saved in `scripts/expedition/reverse-boundaries.json`; the site's maps remain
+PNG files. Six legacy Trainer prints now reference their own numbered reverse
+PNG instead of sharing `trainer-legacy-reverse.png`.
+
+The offline authoring pass fits bounded RGB/yellow edge transitions, then
+reviews and corrects the proposals. Straight printed edges are constrained to
+straight traces so copyright lettering cannot scallop the perimeter. The ten
+Lightning cards have individually reviewed faint-border corrections, using
+smooth interpolated curves instead of tracing letters or barcode strokes.
+Trainer coverage follows the gray rules panel, its rounded lower bulge and
+copyright contour; the right reader rail and yellow illustration divider remain
+opaque. Their lower-left corners receive a separate constrained review.
+
+Coordinates are the complete 600×825 front, without cropping, UV offsets or
+flips. Output masks are opaque grayscale PNGs, 600×825 except the legacy
+Charizard 40 map, which retains 1200×1650. The supplied upper/name masks and
+Charizard's internal moon/divider cutouts are preserved in deduplicated PNG
+seeds. The clean fronts, regular-holo windows, SAM protection, Cosmos motifs,
+materials and other sets are untouched by this registration.
+
+`prepare-assets.py` reapplies the saved registration after its legacy geometry
+generation, so regeneration cannot restore the misaligned shared lower panels.
+The normal registration command rasterizes the saved traces rather than
+redetecting image content. `reverse-boundary-evidence.json` records the active
+front and output hashes, dimensions and transforms for each card.
+
+Native-resolution boundary sheets, individual full-card overlays and 2× bottom
+crops are saved in `artifacts/expedition/reverse-boundaries/`. The audit checks
+all 159 exact front hashes, original headers, opaque reader rails and
+byte-identical regeneration. The live check saves front, Strip grazing and Soft
+specular renders and compares realized lower coverage with the authored PNG.
+Border contrast on the yellow Lightning scans limits subpixel certainty;
+registration follows the visible printed frame and does not claim additional
+physical foil geometry hidden in those scans.
+
+Final validation: all 159 WebGL prints and 12 representative WebGPU prints
+(1, 2, 4, 31, 40, 124, 137, 139, 140, 154, 158, 159) passed with zero loaded
+coverage mismatches, zero bottom-rail coverage and no page errors. Each received
+front, grazing and specular captures. Native boundary sheets and individual
+problem areas were reviewed separately from these data checks; Alakazam,
+Blastoise, Lightning, Trainer and Energy renders received angled visual review.
+The five Expedition tests, offline audit and production build passed.
+
+```powershell
+python scripts/expedition/register-reverse-boundaries.py
+python scripts/expedition/audit-reverse-boundaries.py
+node scripts/expedition-reverse-boundary-check.mjs
+$env:HOLO_BACKEND='webgpu'; node scripts/expedition-reverse-boundary-check.mjs
+```

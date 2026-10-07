@@ -27,7 +27,7 @@ export const expeditionDefinitions: CardDefinition[] = expeditionCards.flatMap(c
       coverageMode: 'reverse' as const,
       maps: charizard ? { reverseFoil: `${base}/40-legacy-reverse.png`,
         protection: '/cards/charizard-expedition-reverse/protection.png', laminate: `${base}/40-legacy-laminate.png` }
-        : legacy ? { reverseFoil: `${base}/trainer-legacy-reverse.png`, laminate: `${base}/trainer-legacy-laminate.png` }
+        : legacy ? { reverseFoil: `${base}/${n}-reverse.png`, laminate: `${base}/trainer-legacy-laminate.png` }
         : { reverseFoil: `${base}/${n}-reverse.png` },
     } : {}),
     layout: charizard ? { artwork: [54/600,93/825,580/600,400/825], innerFrame: [52/600,18/825,582/600,777/825] }

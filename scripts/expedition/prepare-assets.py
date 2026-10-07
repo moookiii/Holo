@@ -1,6 +1,6 @@
 """Offline PNG geometry and compact thumbnails; never crops numbered fronts."""
 from pathlib import Path
-import json, hashlib, shutil
+import json, hashlib, shutil, subprocess, sys
 import numpy as np
 from PIL import Image, ImageDraw
 
@@ -19,7 +19,8 @@ for card in cards:
     thumb.save(THUMBS/f'{n}.webp', quality=85)
     if n > 159 or n in [40,139,140,141,143,146,147]: continue
     if card['category'] == 'Pokemon' and card.get('evolveFrom'):
-        # User-authored evolved frame; preserve the PNG verbatim on regeneration.
+        # Preserve the supplied upper frame; restore registered lower panels
+        # after legacy mask generation below.
         shutil.copyfile(ROOT/'scripts/expedition/evolved-reverse-mask.png', MAPS/f'{n}-reverse.png')
         continue
     # Existing e-reader body/name coverage, authored in full-card coordinates.
@@ -65,4 +66,5 @@ for row in records:
     output = ROOT/'public/packs/pokemon'/row['file']; im.save(output)
     row.update(crop=crop, dimensions=list(im.size),sha256=hashlib.sha256(output.read_bytes()).hexdigest())
 (ROOT/'scripts/expedition/wrapper-sources.json').write_text(json.dumps(records,indent=2)+'\n')
+subprocess.run([sys.executable,str(ROOT/'scripts/expedition/register-reverse-boundaries.py')],cwd=ROOT,check=True)
 print('Prepared full-front thumbnails, reverse coverage and four wrapper photographs.')

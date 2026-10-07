@@ -40,7 +40,7 @@ export class BinderPage {
   private orientation = uniform(1);
   private pageMaterials: Material[] = [];
   get hitMesh() { this.hit.matrixWorld.copy(this.group.matrixWorld); return this.hit; }
-  constructor(readonly index: number, readonly side: -1 | 1, private materials: { backing: Material; plastic: Material; weld: Material }, sharedGeometry?: Map<Material, BufferGeometry>) {
+  constructor(public index: number, readonly side: -1 | 1, private materials: { backing: Material; plastic: Material; weld: Material }, sharedGeometry?: Map<Material, BufferGeometry>) {
     this.group.name = `binder-page:${index}`;
     this.poseTexture.minFilter = this.poseTexture.magFilter = LinearFilter; this.poseTexture.generateMipmaps = false;
     const templates = sharedGeometry ?? new Map<Material, BufferGeometry>();
@@ -93,6 +93,9 @@ export class BinderPage {
       material.normalScale = (source as MeshStandardNodeMaterial).normalScale;
       material.roughnessNode = reference('roughness', 'float', source);
       material.metalnessNode = reference('metalness', 'float', source);
+      // These are zero-thickness films, not closed transparent volumes.
+      // One double-sided pass avoids creating front/back variants at lift-off.
+      material.forceSinglePass = true;
       material.positionNode = Fn(() => {
         const sample = texture(this.poseTexture, vec2(positionGeometry.x.div(BINDER.pageWidth).mul(512).add(.5).div(513), .5)).level(float(0)).toVar();
         const angle = sample.z, sin = angle.sin(), cos = angle.cos(), offset = positionGeometry.z.mul(this.reverse);
@@ -112,7 +115,9 @@ export class BinderPage {
     this.surfaces.push({ mesh, offset });
     this.geometries.add(geometry); this.group.add(mesh);
   }
-  attach(slot: number, card: CardInstance) { this.cards.set(slot, card); this.group.add(card.mesh); this.lastPose = ''; this.pose(); }
+  attach(slot: number, card: CardInstance) { this.cards.get(slot)?.dispose(); this.cards.set(slot, card); this.group.add(card.mesh); this.lastPose = ''; this.pose(); }
+  clearCards() { this.cards.forEach(card => { card.mesh.removeFromParent(); card.dispose(); }); this.cards.clear(); }
+  reuse(index: number) { this.index = index; this.group.name = `binder-page:${index}`; this.lastPose = ''; this.pose(); }
   pose(progress?: number, turningSide: -1 | 1 = this.side, reverse = false, height = faceHeight(this.index)) {
     const key = `${progress}:${turningSide}:${reverse}:${height}`;
     if (key === this.lastPose) return;
@@ -172,6 +177,9 @@ export class BinderScene {
   readonly group = new Group();
   readonly pages = new Map<number, BinderPage>();
   private geometries: BufferGeometry[] = [];
+  private sheets: { body: Mesh; edge: Mesh; bodyOriginal: Float32Array; edgeOriginal: Float32Array; side?: number }[] = [];
+  private stackShadows: { side: -1 | 1; mesh: Mesh }[] = [];
+  private pagePool: BinderPage[] = [];
   private pageGeometry = new Map<-1 | 1, Map<Material, BufferGeometry>>();
   private createPage(index: number) {
     const side = faceSide(index);
@@ -179,14 +187,20 @@ export class BinderScene {
     if (!geometry) { geometry = new Map(); this.pageGeometry.set(side, geometry); }
     return new BinderPage(index, side, this.materials, geometry);
   }
-  private sheets: { body: Mesh; edge: Mesh; bodyOriginal: Float32Array; edgeOriginal: Float32Array }[] = [];
-  private stackShadows: { side: -1 | 1; mesh: Mesh }[] = [];
   private stackPose = '';
-  private grain = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/leather-grain.png`);
-  private weave = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/nylon-weave.png`);
-  private weaveNormal = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/nylon-normal.png`);
-  private sleeveNormal = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/sleeve-normal.png`);
-  private stackShadow = new TextureLoader().load(`${import.meta.env.BASE_URL}binder/stack-contact-shadow.png`);
+  private stackSpread = -1;
+  private assetLoads: Promise<void>[] = [];
+  private loadTexture(name: string) {
+    let resolve!: () => void, reject!: (error: unknown) => void;
+    this.assetLoads.push(new Promise<void>((yes, no) => { resolve = yes; reject = no; }));
+    return new TextureLoader().load(`${import.meta.env.BASE_URL}binder/${name}`, () => resolve(), undefined, reject);
+  }
+  ready() { return Promise.all(this.assetLoads); }
+  private grain = this.loadTexture('leather-grain.png');
+  private weave = this.loadTexture('nylon-weave.png');
+  private weaveNormal = this.loadTexture('nylon-normal.png');
+  private sleeveNormal = this.loadTexture('sleeve-normal.png');
+  private stackShadow = this.loadTexture('stack-contact-shadow.png');
   private fabricContrast = uniform(.055);
   private liningContrast = uniform(.22);
   private materials = {
@@ -269,6 +283,12 @@ export class BinderScene {
       this.sheets.push({ body, edge, bodyOriginal: new Float32Array(bodyGeometry.getAttribute('position').array), edgeOriginal: new Float32Array(edgeGeometry.getAttribute('position').array) });
     }
     this.stack(1);
+    // The three-spread window needs at most three reusable faces per side.
+    // Build once so landing never allocates film geometry or new materials.
+    for (let i = 0; i < 6; i++) {
+      const page = this.createPage(i);
+      page.group.visible = false; this.group.add(page.group); this.pagePool.push(page);
+    }
   }
   setFinish(finish: BinderFinish) {
     const palette = BINDER_FINISHES[finish], charcoal = finish === 'charcoal';
@@ -383,11 +403,14 @@ export class BinderScene {
   }
   stack(spread: number, turningSheet?: number) {
     const key = `${spread}:${turningSheet}`; if (key === this.stackPose) return; this.stackPose = key;
+    const deform = this.stackSpread !== spread; this.stackSpread = spread;
     for (const { side, mesh } of this.stackShadows) mesh.visible = side === -1 ? spread > 0 : spread < BINDER.sheets;
     for (let sheet = 0; sheet < BINDER.sheets; sheet++) {
       const side = sheet < spread ? -1 : 1;
       const z = .26 + (side === -1 ? sheet + 1 : BINDER.sheets - sheet) * BINDER.sheetThickness - .05;
       const layer = this.sheets[sheet]; layer.body.visible = layer.edge.visible = sheet !== turningSheet;
+      if (!deform || layer.side === side) continue;
+      layer.side = side;
       for (const [mesh, original, offset] of [[layer.body, layer.bodyOriginal, 0], [layer.edge, layer.edgeOriginal, .025]] as const) {
         const pos = mesh.geometry.getAttribute('position');
         for (let i = 0; i < pos.count; i++) { const p = restingPoint(original[i * 3], side, z); pos.setXYZ(i, p.x, original[i * 3 + 1], p.z + offset); }
@@ -400,9 +423,14 @@ export class BinderScene {
   }
   page(index: number) {
     let page = this.pages.get(index);
-    if (!page) { page = this.createPage(index); this.pages.set(index, page); this.group.add(page.group); }
+    if (!page) {
+      const slot = this.pagePool.findIndex(candidate => candidate.side === faceSide(index));
+      page = slot >= 0 ? this.pagePool.splice(slot, 1)[0] : this.createPage(index);
+      page.reuse(index); this.pages.set(index, page); this.group.add(page.group);
+    }
     return page;
   }
-  retain(indices: Set<number>) { for (const [index, page] of this.pages) if (!indices.has(index)) { page.dispose(); this.pages.delete(index); } }
-  dispose() { this.retain(new Set()); this.pageGeometry.forEach(templates => templates.forEach(g => g.dispose())); this.pageGeometry.clear(); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); for (const t of [this.grain, this.weave, this.weaveNormal, this.sleeveNormal, this.stackShadow]) t.dispose(); this.group.removeFromParent(); }
+  get preparationPages() { return [...this.pages.values(), ...this.pagePool]; }
+  retain(indices: Set<number>) { for (const [index, page] of this.pages) if (!indices.has(index)) { page.clearCards(); page.group.visible = false; this.pages.delete(index); this.pagePool.push(page); } }
+  dispose() { this.retain(new Set()); this.pagePool.forEach(page => page.dispose()); this.pagePool = []; this.pageGeometry.forEach(templates => templates.forEach(g => g.dispose())); this.pageGeometry.clear(); this.geometries.forEach(g => g.dispose()); Object.values(this.materials).forEach(m => m.dispose()); for (const t of [this.grain, this.weave, this.weaveNormal, this.sleeveNormal, this.stackShadow]) t.dispose(); this.group.removeFromParent(); }
 }

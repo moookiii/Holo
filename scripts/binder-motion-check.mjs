@@ -37,10 +37,24 @@ try{
  await page.mouse.move(1350,500);await page.mouse.down();await page.mouse.move(1320,500);await page.waitForTimeout(180);
  const lift=await page.evaluate(()=>window.liftMetrics);assert.equal(lift.pipelines,0);assert.equal(lift.textures,0);assert.equal(lift.normals,0);
  await page.mouse.up();await page.waitForFunction(()=>!window.__holo.gallery.stats().turning);
- for(let target=2;target<=8;target++)await turn(1,target);
- for(let target=7;target>=1;target--)await turn(-1,target);
+ for(let target=1;target<=8;target++)await turn(1,target);
+ for(let target=7;target>=0;target--)await turn(-1,target);
  const finalPages=await page.evaluate(()=>window.__holo.gallery.instance().binder.physical.preparationPages.map(p=>p.group.uuid).sort());assert.deepEqual(finalPages,originalPages,'page geometry/materials must be reused across landings');
  report.motion=await page.evaluate(()=>window.liftMetrics);assert.equal(report.motion.pipelines,0);assert.equal(report.motion.textures,0);assert.deepEqual(errors,[]);
  console.log('MOTION',JSON.stringify({backend:await page.evaluate(()=>window.__holo.stats().backend),pipelines:report.motion.pipelines,textures:report.motion.textures,landingsMs:report.motion.landings}));
  await capture('motion-settled');
+ await collection(73);
+ await page.waitForFunction(()=>!window.__holo.gallery.stats().pending,null,{timeout:240000});
+ const before=await page.evaluate(()=>window.liftMetrics.landings.length);
+ await turn(1,1);
+ await page.waitForFunction(()=>!window.__holo.gallery.stats().pending,null,{timeout:240000});
+ await turn(1,2);
+ await ready();
+ report.populated=await state();
+ assert.equal(report.populated.visible,report.populated.visibleExpected);
+ assert.equal(report.populated.visibleFailed,0);
+ report.populatedLandings=await page.evaluate(n=>window.liftMetrics.landings.slice(n),before);
+ assert.ok(Math.max(...report.populatedLandings)<50,'populated landing update exceeded 50 ms');
+ await capture('motion-populated');
+ console.log('POPULATED',JSON.stringify({landingsMs:report.populatedLandings,visible:report.populated.visible}));
 }finally{await writeFile(join(out,'lift-landing-report.json'),JSON.stringify(report,null,2));await browser.close();}
