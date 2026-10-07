@@ -1,5 +1,5 @@
 import type { Node } from 'three/webgpu';
-import { float, vec2, vec3, uv, mix, exp, sin, cos } from 'three/tsl';
+import { float, vec2, vec3, uv, mix, sin, cos } from 'three/tsl';
 import { stableHash } from './PatternLayer';
 import { spectrum } from './DiffractionLayer';
 
@@ -15,41 +15,42 @@ export interface SpecialIllustrationOptics {
   aspect: Node<'float'>; strength: Node<'float'>; inkTransmission: Node<'float'>;
 }
 
-/** 151 SIR: an irregular reflective foil field, NOT a height/emboss generator.
- * TCGL normals remain the only relief. Fixed microreflectors have distributed
- * optical orientations; finite light size and pixel footprint integrate them.
- * Both production renderers call this exact kernel at every presentation size.
+/** Continuous foil distributions, not individually selected glints.
+ * Every texel contains optical slope and roughness. The exact TCGL map is still
+ * the only etched relief. A single mipmapped field is shared by both renderers;
+ * no particle occupancy, angular cutoff, runtime RNG or screen-space pattern.
  */
 export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   tangent: Node<'vec3'>, bitangent: Node<'vec3'>, geometry: Node<'vec3'>,
   normal: Node<'vec3'>, ink: Node<'vec3'>, u: SpecialIllustrationOptics,
+  micrograin: Node<'vec4'>,
   footprint?: [Node<'vec3'>, Node<'vec3'>]) {
   const p = uv().mul(vec2(u.aspect, 1));
   const cluster = patchNoise(p.mul(29), 17).toVar();
   const drift = patchNoise(p.mul(19).add(3.7), 83).toVar();
-  const lattice = p.mul(680);
-  const cell = lattice.floor();
-  const r = stableHash(cell, 113).toVar(), s = stableHash(cell, 271).toVar();
-  const grain = stableHash(cell, 419).toVar();
-  // Correlated inclinations make medium reflective patches; independent fine
-  // inclinations break each patch into many tiny, angle-selected reflections.
-  const tilt = vec2(cluster, drift).sub(.5).mul(.55);
-  const slope = vec2(r, s).sub(.5).mul(.72).add(tilt);
+  // Large patches change orientation, never micrograin coverage. The fine
+  // distributions overlap across the entire allowed foil region.
+  const tilt = vec2(cluster, drift).sub(.5).mul(.42);
+  const slope = micrograin.rg.sub(.5).mul(.34).add(tilt);
   const facet = normal.add(tangent.mul(slope.x)).add(bitangent.mul(slope.y)).normalize();
   const half = light.add(view).normalize();
   const lightVariance = footprint
     ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
-  const variance = lightVariance.add(.0028);
-  const lobe = exp(facet.dot(half).max(0).oneMinus().div(variance).negate())
-    .mul(float(.0028).div(variance));
-  const broadFacet = normal.add(tangent.mul(tilt.x)).add(bitangent.mul(tilt.y)).normalize();
-  const broadVariance = variance.add(.043);
-  const average = exp(broadFacet.dot(half).max(0).oneMinus().div(broadVariance).negate())
-    .mul(float(.0028).div(broadVariance));
-  // Unresolved grains converge to the distribution's energy, avoiding crawling
-  // points or a different low-resolution gallery sparkle implementation.
-  const resolved = lattice.fwidth().length().smoothstep(.7, 2.8).oneMinus();
-  const silver = mix(average, lobe.mul(grain.mul(1.3).add(.35)), resolved);
+  // Broad, long-tailed GGX distributions keep every illuminated texel active.
+  // Narrow exponentials previously selected isolated bright points with dark
+  // gaps. Roughness and small optical slopes now vary a continuous BRDF.
+  const alpha = micrograin.b.mul(.12).add(.20);
+  const alpha2 = alpha.pow2().add(lightVariance.mul(2));
+  const nh2 = facet.dot(half).max(0).pow2();
+  const distribution = alpha2.div(nh2.mul(alpha2.sub(1)).add(1).pow2().mul(Math.PI));
+  const broad2 = alpha2.add(.14);
+  const broad = broad2.div(nh2.mul(broad2.sub(1)).add(1).pow2().mul(Math.PI));
+  const nl = geometry.dot(light).max(0), nv = geometry.dot(view).max(0);
+  const k = alpha.add(1).pow2().div(8);
+  const visibility = float(1).div(nl.mul(k.oneMinus()).add(k)
+    .mul(nv.mul(k.oneMinus()).add(k), 4).max(.001));
+  const fresnel = half.dot(view).max(0).oneMinus().pow(5).mul(.94).add(.06);
+  const silver = distribution.mul(.72).add(broad.mul(.28)).mul(visibility, fresnel);
   const angle = cluster.mul(5.8).add(drift.mul(2.4));
   const axis = tangent.mul(cos(angle)).add(bitangent.mul(sin(angle)));
   const path = light.add(view).dot(axis).abs().mul(1.12);
@@ -57,8 +58,7 @@ export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'v
   // White/silver is the carrier. Spectral energy belongs to the same patches,
   // with no global directional band and no emissive or printed noise overlay.
   const tint = vec3(.82, .85, .88).add(color.mul(.65));
-  const envelope = cluster.mul(.9).add(.55);
+  const envelope = cluster.mul(.5).add(.75);
   const filter = mix(vec3(1), ink.pow(1.4).mul(.99).add(.01), u.inkTransmission);
-  return tint.mul(silver, envelope, 2.8, u.strength, filter,
-    geometry.dot(light).max(0), geometry.dot(view).max(0).sqrt());
+  return tint.mul(silver, envelope, 2.4, u.strength, filter, nl, nv.sqrt());
 }

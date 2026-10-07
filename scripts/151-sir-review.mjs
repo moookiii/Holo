@@ -65,12 +65,16 @@ try {
       });
       const parameters = new DataTexture(preview.parameters, 44, 1, RGBAFormat, FloatType);
       parameters.minFilter = parameters.magFilter = NearestFilter; parameters.needsUpdate = true;
-      const material = new GalleryMaterial(arrays, parameters, galleryOpticalLayers(preview.parameters));
+      const { AssetManager } = await import('/src/assets/AssetManager.ts');
+      const { pokemon151SirMicrograin } = await import('/src/materials/profiles/pokemon151SirSettings.ts');
+      const opticalAssets = new AssetManager();
+      const micrograin = await opticalAssets.load(pokemon151SirMicrograin, false);
+      const material = new GalleryMaterial(arrays, parameters, galleryOpticalLayers(preview.parameters), undefined, undefined, micrograin);
       let focus;
       h.scene.traverse(o => { if (Array.isArray(o.material) && o.material[0] === h.material()) focus = o; });
       const instance = new InstancedMesh(focus.geometry, [material, ...focus.material.slice(1)], 1);
       instance.frustumCulled = false; instance.visible = false; h.scene.add(instance);
-      window.review = { focus, instance, material, arrays, parameters, transform: new Object3D() };
+      window.review = { focus, instance, material, arrays, parameters, opticalAssets, transform: new Object3D() };
     }, number);
     for (const [name, yaw, pitch] of [['neutral', 0, 0], ['shallow', 12, 0], ['reflection', -15, -15]]) {
       await page.evaluate(([y, p]) => { window.__holo.pose(y, p, 0); window.review.focus.visible = true; window.review.instance.visible = false; }, [yaw, pitch]);
@@ -85,7 +89,7 @@ try {
     }
     await page.evaluate(() => {
       const r = window.review; r.focus.visible = true; r.instance.removeFromParent(); r.instance.dispose();
-      r.material.dispose(); r.arrays.forEach(t => t.dispose()); r.parameters.dispose();
+      r.material.dispose(); r.arrays.forEach(t => t.dispose()); r.parameters.dispose(); r.opticalAssets.dispose();
     });
     // Consecutive poses are saved for motion review; no time-dependent pattern.
     for (let yaw = -40; yaw <= 40; yaw += 5) {

@@ -3,7 +3,7 @@ import { prismaticProfiles } from './prismatic';
 import { pokemonProfiles } from './pokemon';
 import { doubleRareProfile } from './doubleRare';
 import { tcglEtchedFinish } from './tcglEtchedFinish';
-import { pokemon151SirSettings } from './pokemon151SirSettings';
+import { pokemon151SirSettings, pokemon151SirMicrograin } from './pokemon151SirSettings';
 
 function reference(id: string): HolographicProfile {
   const profile = [...prismaticProfiles, ...pokemonProfiles].find(profile => profile.id === id);
@@ -27,6 +27,7 @@ pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
   id: 'pokemon151_sir_texture', name: '151 · Special Illustration Rare', opticalModel: 'sv151-sir',
   description: 'Silver-dominant irregular reflective microstructure with clustered prismatic highlights and subordinate exact TCGL texture.',
   mapSettings: pokemon151SirSettings,
+  maps: { direction: pokemon151SirMicrograin },
   diffraction: { ...reference('prismatic_sir_texture').diffraction, ...tcglEtchedFinish.diffraction, strength: .82 },
   structure: { ...reference('prismatic_sir_texture').structure, ...tcglEtchedFinish.structure },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },

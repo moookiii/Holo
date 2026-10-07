@@ -2,6 +2,7 @@ import { createGalleryCardGeometry, galleryGeometryDimensions } from './GalleryG
 import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
 import { AssetManager } from '../assets/AssetManager';
 import { doubleRareProfile } from '../materials/profiles/doubleRare';
+import { pokemon151SirMicrograin } from '../materials/profiles/pokemon151SirSettings';
 import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, SRGBColorSpace, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { ULTRA_RARE_FULL_RES_GALLERY, PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/CardPreviewPreparation';
@@ -33,6 +34,7 @@ export class GalleryRenderer {
   private disposed = false;
   private opticalAssets?: AssetManager;
   private opticalBytes = 0;
+  private opticalTextures = new Set<string>();
   private transform = new Object3D();
   private visible = new Set<number>();
   private drawn = new Set<InstancedMesh>();
@@ -69,9 +71,12 @@ export class GalleryRenderer {
     // per-card field atlas turns the reference's pointed stars into blobs.
     const stars = layers.some(layer => layer.enabled && layer.doubleRare)
       ? await (this.opticalAssets ??= new AssetManager()).load(doubleRareProfile.maps!.direction!, false) : undefined;
+    const micrograin = layers.some(layer => layer.enabled && layer.specialIllustration)
+      ? await (this.opticalAssets ??= new AssetManager()).load(pokemon151SirMicrograin, false) : undefined;
     if (this.disposed) { this.opticalAssets?.dispose(); throw new Error('Gallery disposed'); }
-    if (stars && !this.opticalBytes) {
-      const image = stars.image as HTMLImageElement;
+    for (const optical of [stars, micrograin]) if (optical && !this.opticalTextures.has(optical.uuid)) {
+      this.opticalTextures.add(optical.uuid);
+      const image = optical.image as HTMLImageElement;
       let width = image.width, height = image.height;
       do {
         this.opticalBytes += width * height * 4;
@@ -95,7 +100,7 @@ export class GalleryRenderer {
           if (this.disposed) throw new Error('Gallery disposed');
         } catch (error) { assets.dispose(); throw error; }
       }
-      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars, exact);
+      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars, exact, micrograin);
       let geometry = this.geometries.get(geometryKey);
       const newGeometry = !geometry;
       if (!geometry) {
