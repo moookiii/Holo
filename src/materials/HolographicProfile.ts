@@ -5,7 +5,7 @@ import type { CardMapPaths } from '../card/CardDefinition';
 /** One optical material, independent of which printed region receives it. */
 export interface FoilLayer {
   /** Shared smooth-sheet optical kernel; independent of presentation tier. */
-  opticalModel?: 'sv151-illustration' | 'sv-double-rare' | 'sv151-ultra';
+  opticalModel?: 'sv151-illustration' | 'sv-double-rare' | 'sv151-ultra' | 'sv151-sir';
   /** Authoring switches; omitted values preserve the calibrated material exactly. */
   enabled?: boolean;
   disabledMechanisms?: Array<'diffraction' | 'sparkle' | 'relief' | 'varnish' | 'laminate' | 'reflection' | 'film' | 'image'>;

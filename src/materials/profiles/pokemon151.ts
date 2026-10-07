@@ -13,13 +13,29 @@ function reference(id: string): HolographicProfile {
 export const pokemon151Profiles: HolographicProfile[] = [
   ['regular_holo', 'Regular holo', 'prismatic_regular_holo'],
   ['standard_reverse', 'Standard reverse', 'prismatic_standard_reverse'],
-  ['sir_texture', 'SIR etched', 'prismatic_sir_texture'],
   ['gold', 'Gold etched', 'prismatic_gold'],
 ].map(([id, name, source]) => ({ ...reference(source), id: `pokemon151_${id}`, name: `151 · ${name}`,
   description: 'Exact TCGL printing foil coverage; optional preprocessed TCGL normal with the required Sylveon/Espeon finish.',
   secondary: undefined, mapSettings: { normalScale: 0, embossStrength: 0 },
 }));
 pokemon151Profiles.push({ ...doubleRareProfile, id: 'pokemon151_ex_holo', name: '151 · Double Rare' });
+
+/** Physical 151 reference supersedes the inherited Prismatic ridge finish.
+ * Preserve exact-card normals, roughness and coverage; no generated relief. */
+export const pokemon151SirSettings = {
+  normalScale: .18, embossStrength: 0, roughnessMode: 'absolute' as const, embossMaskFromNormalAlpha: false,
+};
+pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
+  id: 'pokemon151_sir_texture', name: '151 · Special Illustration Rare', opticalModel: 'sv151-sir',
+  description: 'Silver-dominant irregular reflective microstructure with clustered prismatic highlights and subordinate exact TCGL texture.',
+  mapSettings: pokemon151SirSettings,
+  diffraction: { ...reference('prismatic_sir_texture').diffraction, ...tcglEtchedFinish.diffraction, strength: .82 },
+  structure: { ...reference('prismatic_sir_texture').structure, ...tcglEtchedFinish.structure },
+  glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+  surface: { ...reference('prismatic_sir_texture').surface, ...tcglEtchedFinish.surface,
+    metalness: .35, substrateReflection: .24, etchedInkSheen: 0, inkTransmission: .92 },
+  secondary: undefined,
+});
 
 pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
   mapSettings: tcglEtchedFinish.mapSettings, id: 'pokemon151_fullart_texture', name: '151 · Ultra Rare etched',

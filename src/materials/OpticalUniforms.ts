@@ -6,6 +6,7 @@ export class OpticalUniforms {
   illustrationRare = false;
   doubleRare = false;
   ultraRare = false;
+  specialIllustration = false;
   enabled = uniform(1);
   spectralTint = uniform(new Vector3(1, 1, 1));
   spectralGain = uniform(1); sparkleGain = uniform(1); neutralGain = uniform(1);
@@ -44,6 +45,7 @@ export class OpticalUniforms {
     this.illustrationRare = p.opticalModel === 'sv151-illustration';
     this.doubleRare = p.opticalModel === 'sv-double-rare';
     this.ultraRare = p.opticalModel === 'sv151-ultra';
+    this.specialIllustration = p.opticalModel === 'sv151-sir';
     this.spectralTint.value.set(...(p.diffraction.tint ?? [1, 1, 1]));
     this.period.value = p.diffraction.period; this.bandwidth.value = p.diffraction.bandwidth;
     this.strength.value = p.diffraction.strength; this.secondary.value = p.diffraction.secondaryOrder;

@@ -8,6 +8,7 @@ import { spectrum } from '../materials/layers/DiffractionLayer';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { doubleRareReflection } from '../materials/layers/DoubleRareLayer';
 import { ultraRareReflection } from '../materials/layers/UltraRareLayer';
+import { specialIllustrationReflection } from '../materials/layers/SpecialIllustrationLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
@@ -72,8 +73,9 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
-      if (layer.ultraRare) {
-        const reflected = ultraRareReflection(light, positionViewDirection, tangentView, bitangent,
+      if (layer.ultraRare || layer.specialIllustration) {
+        const reflect = layer.specialIllustration ? specialIllustrationReflection : ultraRareReflection;
+        const reflected = reflect(light, positionViewDirection, tangentView, bitangent,
           geometric, normalView, r.ink.sub(.06).div(.94).max(0), {
             aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z, secondary: diffraction.w,
             angle: axis.x, crossWidth: axis.y, inkTransmission: surface.z, etchedInkSheen: r.secret.y,

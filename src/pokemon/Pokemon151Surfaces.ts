@@ -1,5 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { pokemon151SirSettings } from '../materials/profiles/pokemon151.ts';
 import { tcgl151Surfaces } from './data/151-surfaces.generated.ts';
 import { pokemon151Card, pokemon151Cards } from './Pokemon151Catalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
@@ -16,6 +17,7 @@ export function pokemon151Profile(id: string, variant: PrintVariant): string {
 export function pokemon151Definition(id: string, variant: PrintVariant): CardDefinition {
   const card = pokemon151Card(id), profile = pokemon151Profile(id, variant);
   const surface = surfaces.get(`${id}:${variant}`);
+  const sir = profile === 'pokemon151_sir_texture';
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: '151',
     number: `${card.localId}/165 · ${card.rarity} · ${printVariantLabel(variant)}`,
@@ -24,8 +26,8 @@ export function pokemon151Definition(id: string, variant: PrintVariant): CardDef
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
       maps: surface.maps,
-      mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured ? 'absolute' : 'profile' },
-      ...(surface.textured ? { profileOverrides: tcglEtchedFinish } : {}),
+      mapSettings: sir ? pokemon151SirSettings : { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured ? 'absolute' : 'profile' },
+      ...(surface.textured && !sir ? { profileOverrides: tcglEtchedFinish } : {}),
     } : {}),
     source: { image: card.front!, metadata: surface?.evidence ?? '/cards/pokemon/151/catalog.json',
       notes: 'Exact English TCGL 151 printing. Foil coverage and optional offline etched normal use this printing’s own sources.' },

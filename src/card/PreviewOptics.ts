@@ -40,7 +40,7 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   set(27, [profile.metallicInk?.metalness ?? .8, profile.metallicInk?.roughness ?? .28, card.dimensions.width / card.dimensions.height, profile.id === 'print-only' ? 1 : 0]);
   set(34, [card.coverageMode === 'reverse' && !!card.maps?.reverseFoil && !card.maps?.metallic ? 1 : 0,
     profile.structure.field === 'legendary-fireworks' ? 1 : 0, profile.structure.field === 'secret' && !!card.maps?.secondaryFoil ? 1 : 0,
-    profile.opticalModel === 'sv151-illustration' ? 1 : profile.opticalModel === 'sv-double-rare' ? 2 : profile.opticalModel === 'sv151-ultra' ? 3 : 0]);
+    profile.opticalModel === 'sv151-illustration' ? 1 : profile.opticalModel === 'sv-double-rare' ? 2 : profile.opticalModel === 'sv151-ultra' ? 3 : profile.opticalModel === 'sv151-sir' ? 4 : 0]);
   // Plain Ultra Rare has no secret-cut parameters; retain its ridge response.
   if (profile.opticalModel === 'sv151-ultra') set(37, [0, profile.surface.etchedInkSheen ?? 0, 0, 0]);
   set(35, [...(card.frontBorderColor ?? [0, 0, 0]), card.frontBorderColor ? 1 : 0]);
