@@ -2,6 +2,7 @@ import type { HolographicProfile } from '../HolographicProfile';
 import { prismaticProfiles } from './prismatic';
 import { pokemonProfiles } from './pokemon';
 import { doubleRareProfile } from './doubleRare';
+import { tcglEtchedFinish } from './tcglEtchedFinish';
 
 function reference(id: string): HolographicProfile {
   const profile = [...prismaticProfiles, ...pokemonProfiles].find(profile => profile.id === id);
@@ -12,7 +13,6 @@ function reference(id: string): HolographicProfile {
 export const pokemon151Profiles: HolographicProfile[] = [
   ['regular_holo', 'Regular holo', 'prismatic_regular_holo'],
   ['standard_reverse', 'Standard reverse', 'prismatic_standard_reverse'],
-  ['fullart_texture', 'Ultra Rare etched', 'prismatic_fullart_texture'],
   ['sir_texture', 'SIR etched', 'prismatic_sir_texture'],
   ['gold', 'Gold etched', 'prismatic_gold'],
 ].map(([id, name, source]) => ({ ...reference(source), id: `pokemon151_${id}`, name: `151 · ${name}`,
@@ -20,6 +20,17 @@ export const pokemon151Profiles: HolographicProfile[] = [
   secondary: undefined, mapSettings: { normalScale: 0, embossStrength: 0 },
 }));
 pokemon151Profiles.push({ ...doubleRareProfile, id: 'pokemon151_ex_holo', name: '151 · Double Rare' });
+
+pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
+  ...tcglEtchedFinish, id: 'pokemon151_fullart_texture', name: '151 · Ultra Rare etched',
+  opticalModel: 'sv151-ultra',
+  description: 'Exact TCGL etched metallic full-art foil with selective diagonal prismatic highlights.',
+  diffraction: { ...reference('prismatic_sir_texture').diffraction, ...tcglEtchedFinish.diffraction },
+  structure: { ...reference('prismatic_sir_texture').structure, ...tcglEtchedFinish.structure },
+  glints: { ...reference('prismatic_sir_texture').glints, ...tcglEtchedFinish.glints },
+  surface: { ...reference('prismatic_sir_texture').surface, ...tcglEtchedFinish.surface },
+  secondary: undefined,
+});
 
 // #166–181 are smooth Illustration Rares, not the etched ex/SIR printings.
 pokemon151Profiles.push({

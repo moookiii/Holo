@@ -10,6 +10,7 @@ import { secretRareReflection } from './layers/SecretRareLayer';
 import { spectrum } from './layers/DiffractionLayer';
 import { illustrationRareReflection } from './layers/IllustrationRareLayer';
 import { doubleRareReflection } from './layers/DoubleRareLayer';
+import { ultraRareReflection } from './layers/UltraRareLayer';
 import { radialStructure, gratingDirection } from './layers/PatternLayer';
 import { glints } from './layers/GlintLayer';
 import { crossedFacets } from './layers/CrossedFacetLayer';
@@ -81,6 +82,15 @@ class HolographicLightingModel extends PhysicalLightingModel {
     for (const [regionIndex, region] of this.regions.entries()) If(region.optics.enabled.greaterThan(0), () => {
       const u = region.optics;
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
+      if (u.ultraRare) {
+        const geometry = normalViewGeometry as unknown as Node<'vec3'>;
+        const bitangent = geometry.cross(tangentView).mul(tangentGeometry.w).normalize();
+        const reflected = ultraRareReflection(light, positionViewDirection, tangentView, bitangent,
+          geometry, normalView, region.inkReflection!, u, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(
+          region.pattern, region.coverage, data.lightColor as Node<'vec3'>));
+        return;
+      }
       if (u.illustrationRare || u.doubleRare) {
         const n = normalViewGeometry as unknown as Node<'vec3'>;
         const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
@@ -564,7 +574,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare,
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.ultraRare,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
           u.etchedInkSheen.value !== 0].map(Number).join('')).join('/')
