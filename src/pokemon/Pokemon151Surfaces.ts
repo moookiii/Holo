@@ -23,11 +23,7 @@ export function pokemon151Definition(id: string, variant: PrintVariant): CardDef
     pickerHidden: !surface, galleryVisible: variant === 'normal', pokemon: { ...card, variant, materialProfile: profile },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
-      maps: { ...surface.maps, ...(profile === 'pokemon151_illustration_holo' ? {
-        pattern: `/cards/pokemon/151/ir/${card.localId}-transmission.png`,
-        metallic: `/cards/pokemon/151/ir/${card.localId}-silver.png`,
-        protection: `/cards/pokemon/151/ir/${card.localId}-protection.png`,
-      } : {}) },
+      maps: surface.maps,
       mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured ? 'absolute' : 'profile' },
       ...(surface.textured ? { profileOverrides: tcglEtchedFinish } : {}),
     } : {}),
