@@ -95,12 +95,10 @@ for card in cards:
   mask=Image.new('L',(2400,3300),0);draw=ImageDraw.Draw(mask)
   def polygon(points,fill=232):draw.polygon([(x*4,y*4) for x,y in points],fill=fill)
   def rounded(box,radius):draw.rounded_rectangle(tuple(v*4 for v in box),radius*4,fill=232)
-  if card['category']=='Pokemon' and card.get('stage')=='Stage1':
-   # User-authored Stage 1 geometry, supplied as Primeape 29's full-card PNG.
-   mask=Image.open(ROOT/'scripts/aquapolis/stage1-reverse-mask.png').convert('L')
+  if card['category']=='Pokemon' and card.get('evolveFrom'):
+   # User-authored evolved geometry, supplied as Primeape 29's full-card PNG.
+   mask=Image.open(ROOT/'scripts/aquapolis/evolved-reverse-mask.png').convert('L')
    assert mask.size==(600,825)
-  elif card['category']=='Pokemon' and card.get('evolveFrom'):
-   mask=Image.open(ROOT/'scripts/expedition/evolved-reverse-mask.png').convert('L')
   else:
    if card['category']=='Trainer':
     polygon([(308,69),(585,69),(585,13),(364,13)])
@@ -114,8 +112,8 @@ for card in cards:
     polygon([(98,22),(581,22),(581,91),(142,91),(104,104),(67,130),(67,56)])
     polygon([(65,382),(84,396),(142,409),(180,409),(180,420),(578,420),(578,753),(548,753),(516,775),(257,775),(241,757),(106,756),(79,747),(65,726)])
    mask=mask.resize((600,825),Image.Resampling.LANCZOS)
-  if card['category']=='Pokemon' and card.get('stage')=='Stage1':
-   shutil.copyfile(ROOT/'scripts/aquapolis/stage1-reverse-mask.png',MAPS/f'{n}-reverse.png')
+  if card['category']=='Pokemon' and card.get('evolveFrom'):
+   shutil.copyfile(ROOT/'scripts/aquapolis/evolved-reverse-mask.png',MAPS/f'{n}-reverse.png')
   else:
    mask.save(MAPS/f'{n}-reverse.png')
   # Review reverse coverage against the complete actual master, including low-resolution b sources.
