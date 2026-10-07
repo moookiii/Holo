@@ -53,7 +53,6 @@ try {
       const h = window.__holo;
       const { DataArrayTexture, DataTexture, FloatType, RGBAFormat, LinearFilter, NearestFilter, SRGBColorSpace, InstancedMesh, Object3D } = await import('/node_modules/three/build/three.webgpu.js');
       const { GalleryMaterial } = await import('/src/gallery/GalleryMaterial.ts');
-      const { doubleRareProfile } = await import('/src/materials/profiles/doubleRare.ts');
       const { galleryOpticalLayers } = await import('/src/gallery/GalleryBatch.ts');
       const { PREVIEW_ARRAY_SIZES } = await import('/src/card/CardPreviewPreparation.ts');
       const definition = h.cards.find(c => c.id === `pokemon:sv03.5-${number}:holo`);
@@ -66,9 +65,7 @@ try {
       });
       const parameters = new DataTexture(preview.parameters, 44, 1, RGBAFormat, FloatType);
       parameters.minFilter = parameters.magFilter = NearestFilter; parameters.needsUpdate = true;
-      const stars = await h.factory.assets.load(doubleRareProfile.maps.direction, false);
-      const exact = Object.fromEntries(await Promise.all(Object.entries(preview.ultraRareMaps).map(async ([k, path]) => [k, await h.factory.assets.load(path, k === 'front')])));
-      const material = new GalleryMaterial(arrays, parameters, galleryOpticalLayers(preview.parameters), undefined, exact);
+      const material = new GalleryMaterial(arrays, parameters, galleryOpticalLayers(preview.parameters));
       let focus;
       h.scene.traverse(o => { if (Array.isArray(o.material) && o.material[0] === h.material()) focus = o; });
       const instance = new InstancedMesh(focus.geometry, [material, ...focus.material.slice(1)], 1);
