@@ -1,39 +1,38 @@
 # Scarlet & Violet Double Rare foil
 
-This pass changes the smooth `SUN_PILLAR` Double Rare material. It does not change any front, foil PNG, protection PNG, cutout, coverage composition or generated surface registration. Etched `SV_ULTRA` Double Rares retain their previous material and authored normals.
+The smooth `SUN_PILLAR` Double Rare finish now has diagonal spectral reflection and visible four/eight-ray cast-and-cure stars. Viewer and gallery use one authoritative profile and reflection kernel. Existing fronts, TCGL foil images, protection, cutouts and coverage composition remain unchanged. Etched `SV_ULTRA` variants retain their existing treatment.
 
-## Source inspection
+## Source and reference
 
-Inspected the preserved TCGL export and raw foil images before editing the material. Charizard ex 006/165 is `sv3-5_6`, variant `Charizardex_sv3-5_6_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross`; Blastoise ex 009/165 is `sv3-5_9`, variant `Blastoiseex_sv3-5_9_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross`. Both report `foil.type: SUN_PILLAR`, `foil.mask: HOLO`.
+Inspected `images.tcgl.png.foil`, `foil.type` and `foil.mask` for Charizard ex 006/165 and Blastoise ex 009/165. Both are `SUN_PILLAR` / `HOLO`:
 
-Their `images.tcgl.png.foil` sources are:
+- Charizard: `sv3-5_6`, `Charizardex_sv3-5_6_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross`.
+- Blastoise: `sv3-5_9`, `Blastoiseex_sv3-5_9_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross`.
 
-- https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_006_std.foil.png
-- https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_009_std.foil.png
+The exact foil sources are `https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_006_std.foil.png` and the analogous `009` URL. Raw sources preserved under `research/tcgl/151-set/raw/` are 367x512 RGBA, with paired 733x1024 fronts. Existing 1800x2475 foil/protection maps are retained byte for byte. `double-rare-evidence.json` records source/variant IDs and hashes for all twelve 151 Double Rares.
 
-Both raw foil images are 367×512 RGBA, paired with 733×1024 fronts. The existing 1800×2475 source-derived foil and protection PNGs are retained byte for byte. No new transformation, crop, flip, mask interpretation or asset replacement is performed. Raw sources remain in `research/tcgl/151-set/raw/`. `double-rare-evidence.json` records all twelve 151 Double Rare variants, URLs, raw hashes and unchanged runtime map hashes.
+Reviewed the [supplied video](https://www.youtube.com/watch?v=yMT7XDgcfFQ) in-browser at 10, 15 and 20 seconds. The 15-second close-up shows large pointed stars; the 20-second pose shows receding stars and broad diagonal spectral bands. The TCGL image supplies the original card-specific foil intensity and fine spatial detail, but does not fully express the large star layer visible in the video.
 
-The source foil contains the card-specific star detail, printed boundaries and continuous foil intensities. Those remain the spatial input through the existing coverage pipeline. It does not provide measured optical normals or calibrated angular response. No generated stars or image-brightness normals are added.
+`scripts/tcgl/double-rare-stars.json` records 66 fixed four/eight-ray motifs reconstructed from that close-up in full-card 600x825 coordinates. Placement is approximate, not a claim of identical physical-copy registration. `author_double_rare_optics.py` rasterizes a separate 1200x1650 PNG: RG stores fixed optical inclinations, B star reflectivity, A 255. It never reads or writes cutouts. This optical texture is clipped only by the existing authoritative coverage.
 
 ## Material
 
-The former 151 profile used the `vertical-line` generator at scale 310, alternating strong/weak cut amplitudes, synthetic facet inclinations, an additional silver-cut lobe, and high unfiltered substrate reflection. Those mechanisms made repeated lines and broad pale reflections dominate.
+The previous correction lacked a diagonal grating axis and omitted the large stars. The original treatment also used repeated vertical cuts and synthetic facets that dominated the surface.
 
-`profiles/doubleRare.ts` is the authoritative finish. `layers/DoubleRareLayer.ts` is shared by `HolographicMaterial` and `GalleryMaterial`, selected by a dedicated gallery batch key. Other SV and Prismatic smooth SUN_PILLAR Double Rares resolve this same finish. Their etched variants explicitly retain the previous profile path.
+`profiles/doubleRare.ts` and `layers/DoubleRareLayer.ts` now combine a -pi/4 diagonal axis, broad unequal optical domains and fixed star facets. The source foil drives spatial intensity; view/light direction drives wavelength selection and reflective flashes; material parameters control bandwidth, angular selectivity and ink absorption. Optical inclinations are estimated, not measured manufacturing geometry.
 
-The foil image supplies spatial detail; light/view momentum selects wavelengths and reflection angle; material controls set bandwidth, angular aperture, backing reflection and ink absorption. A small continuous optical bow localizes the spectral pillar without repeated UV bands. It redirects only the optical grating, not the surface normal. This bow and the numerical optical settings are an approximation, not measured manufacturing geometry.
+Reflection enters direct specular with actual light color and finite-area-light convolution. Both terms pass through the existing print filter and original coverage. No emissive output, random sparkle, extra relief or per-frame CPU texture construction is used.
 
-Reflection enters direct specular under actual light, with finite-area-light convolution. There is no emissive output, clock-driven animation, random sparkle, added emboss, or per-frame CPU pattern construction. Neutral zero-order flashes are narrow; spectral and neutral light pass through the print filter. Existing CPU preparation, GPU realization and caches remain in use. No extra GPU texture is required.
+Gallery and viewer sample the same full-resolution star texture and evaluate the same kernel. Gallery loads one shared texture lazily, retains mipmaps/anisotropy and includes its mip chain in memory accounting. Existing gallery front/coverage downsampling still produces small pixel differences.
 
 ## Validation
 
-`node scripts/double-rare-review.mjs` saves production-renderer captures under `artifacts/double-rare-review/` for Charizard and Blastoise: neutral, ±12° tilt, reflection, grazing, and 17 consecutive rotation poses. It also switches between production viewer and instanced gallery materials on the same geometry, camera, lighting and transform at three poses. No GPU/page errors occurred. Saved captures show removal of the repeated cut structure, readable neutral artwork, moving localized color and retained source stars.
+`node scripts/double-rare-review.mjs` tests Charizard 006 and Blastoise 009 at neutral, shallow tilt, strong reflection, grazing angles and 17 consecutive rotation poses. It also compares viewer/gallery materials on identical geometry, camera, lighting and transform at three poses and checks actual gallery loading. Captures are under `artifacts/double-rare-diagonal-stars-final/`, including rotation WebPs. The diagonal response and recognizable stars are visible through the sequence; printed artwork remains readable.
 
-Gallery/viewer mean absolute RGB error on card pixels is 2.51–3.19 / 255. They use identical optical calculations; existing gallery image/map downsampling still produces fine-detail differences. They are not pixel-identical at enlarged comparison scale.
+- Production build passed.
+- Nine focused affected tests passed, including byte hashes of all twelve 151 Double Rare foil/protection pairs.
+- Renderer review completed with no page/shader errors; actual Double Rare gallery loaded without failed cards.
+- Gallery/viewer mean absolute RGB difference is approximately 2.49-3.26 / 255 on card pixels; the remaining difference includes existing print/coverage atlas resolution.
+- The prior full-suite run had 275 passes and 29 failures, identical by name to the original-module baseline. This correction reran affected checks and the build.
 
-- Build and TypeScript check passed.
-- Four focused tests passed, including byte hashes of all twelve 151 Double Rare foil/protection pairs and distinct gallery dispatch.
-- Full existing suite: 275 passed, 29 failed. Running with original versions of this pass's existing modules restored through a test loader produced exactly the same 29 failing test names. Logs are in `artifacts/double-rare-tests.log` and `artifacts/double-rare-baseline-tests.log`.
-- No public card asset changed in this pass. Unrelated workspace edits were excluded from the commit.
-
-The supplied YouTube reference could not be fetched (throttled). Physical matching to its motion remains unverified. Strong direct light still produces the existing printed-stock/laminate highlight, especially over protected print; this pass leaves protection and its boundaries authoritative. Captures establish rendered behavior, not measured physical foil accuracy.
+Existing stock/laminate highlights over protected print remain governed by the original material boundaries. Captures demonstrate rendered behavior, not measured physical foil accuracy. The user reviewed the result and accepted this correction as complete. Unrelated workspace edits are excluded from the commit.

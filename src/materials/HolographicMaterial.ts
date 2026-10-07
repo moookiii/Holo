@@ -84,7 +84,9 @@ class HolographicLightingModel extends PhysicalLightingModel {
       if (u.illustrationRare || u.doubleRare) {
         const n = normalViewGeometry as unknown as Node<'vec3'>;
         const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
-        const reflected = (u.doubleRare ? doubleRareReflection : illustrationRareReflection)(light, positionViewDirection, tangentView, b, n, u, footprint);
+        const reflected = u.doubleRare
+          ? doubleRareReflection(light, positionViewDirection, tangentView, b, n, u, region.field, footprint)
+          : illustrationRareReflection(light, positionViewDirection, tangentView, b, n, u, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern,
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), u.spectralGain, region.coverage, data.lightColor as Node<'vec3'>));
         return;

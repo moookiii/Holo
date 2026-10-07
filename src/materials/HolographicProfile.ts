@@ -101,6 +101,7 @@ export interface FoilOverrides {
   surface?: Partial<FoilLayer['surface']>;
 }
 export interface CardProfileOverrides extends FoilOverrides {
+  maps?: HolographicProfile['maps'];
   mapSettings?: HolographicProfile['mapSettings'];
   secondaryProfile?: string;
   secondary?: FoilOverrides;

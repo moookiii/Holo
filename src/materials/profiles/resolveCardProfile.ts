@@ -24,6 +24,7 @@ export function resolveCardProfile(card: CardDefinition, id = card.profile): Hol
   const stamp = changes.stampProfile ? getProfile(changes.stampProfile) : base.stamp;
   return {
     ...base, ...overrideLayer(base, changes),
+    maps: changes.maps ? { ...base.maps, ...changes.maps } : base.maps,
     secondary: secondary ? overrideLayer(secondary, changes.secondary) : undefined,
     stamp: stamp ? overrideLayer(stamp, changes.stamp) : undefined,
     metallicInk: changes.metallicInk ?? base.metallicInk,

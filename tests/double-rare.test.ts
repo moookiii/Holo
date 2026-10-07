@@ -42,4 +42,13 @@ test('source-driven Double Rare has no generated relief, cut field, or random st
   assert.equal(p.glints.strength, 0);
   assert.equal(p.mapSettings?.embossStrength, 0);
   assert.equal(p.surface.inkTransmission, 1);
+  assert.equal(p.diffraction.direction, -Math.PI / 4);
+  assert.deepEqual(Object.keys(p.maps!), ['direction'], 'Optical texture must not override any cutout or protection map');
+  const registration = JSON.parse(readFileSync('scripts/tcgl/double-rare-stars.json', 'utf8'));
+  assert.equal(registration.reference, 'https://www.youtube.com/watch?v=yMT7XDgcfFQ');
+  assert.equal(registration.stars.length, 66);
+  assert.deepEqual([...new Set(registration.stars.map((s: number[]) => s[3]))].sort(), [4, 8]);
+  const png = readFileSync(`public${p.maps!.direction}`);
+  assert.equal(png.readUInt32BE(16), 1200);
+  assert.equal(png.readUInt32BE(20), 1650);
 });

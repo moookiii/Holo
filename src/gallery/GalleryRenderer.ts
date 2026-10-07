@@ -1,5 +1,7 @@
 import { createGalleryCardGeometry, galleryGeometryDimensions } from './GalleryGeometry';
 import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
+import { AssetManager } from '../assets/AssetManager';
+import { doubleRareProfile } from '../materials/profiles/doubleRare';
 import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, SRGBColorSpace, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/CardPreviewPreparation';
@@ -29,6 +31,8 @@ export class GalleryRenderer {
   private slots = new Map<number, Batch>();
   private compilation = Promise.resolve();
   private disposed = false;
+  private opticalAssets?: AssetManager;
+  private opticalBytes = 0;
   private transform = new Object3D();
   private visible = new Set<number>();
   private drawn = new Set<InstancedMesh>();
@@ -49,9 +53,23 @@ export class GalleryRenderer {
     this.uploads++;
     const dimensions = galleryGeometryDimensions(preview.dimensions), geometryKey = JSON.stringify(dimensions);
     const layers = galleryShaderLayers(galleryPreviewOpticalLayers(preview.parameters, preview.images)), key = `${galleryBatchKey(layers)}:${geometryKey}`;
+    // One lazy, shared full-resolution die per gallery. Reducing this to the
+    // per-card field atlas turns the reference's pointed stars into blobs.
+    const stars = layers.some(layer => layer.enabled && layer.doubleRare)
+      ? await (this.opticalAssets ??= new AssetManager()).load(doubleRareProfile.maps!.direction!, false) : undefined;
+    if (this.disposed) { this.opticalAssets?.dispose(); throw new Error('Gallery disposed'); }
+    if (stars && !this.opticalBytes) {
+      const image = stars.image as HTMLImageElement;
+      let width = image.width, height = image.height;
+      do {
+        this.opticalBytes += width * height * 4;
+        if (width === 1 && height === 1) break;
+        width = Math.max(1, Math.floor(width / 2)); height = Math.max(1, Math.floor(height / 2));
+      } while (true);
+    }
     let batch = this.batches.get(key);
     if (!batch) {
-      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers);
+      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars);
       let geometry = this.geometries.get(geometryKey);
       const newGeometry = !geometry;
       if (!geometry) {
@@ -124,6 +142,6 @@ export class GalleryRenderer {
     this.visible.add(slot);
   }
   updateLighting(_lighting: StudioLighting, _camera: PerspectiveCamera) { /* Uses the scene's actual shared lights. */ }
-  stats() { return { gpuBudgetBytes: this.capacity * PREVIEW_BYTES, gpuAllocatedBytes: this.capacity * PREVIEW_BYTES, capacity: this.capacity, visible: this.visible.size, uploads: this.uploads, materials: this.batches.size, textureArrays: this.arrays.length }; }
-  dispose() { this.disposed = true; this.mesh.removeFromParent(); for (const { mesh, material } of this.batches.values()) { mesh.dispose(); material.dispose(); } this.batches.clear(); this.slots.clear(); this.geometries.forEach(({ face, edgeGeometry, edge }) => { face.dispose(); edgeGeometry.dispose(); edge.dispose(); }); this.geometries.clear(); this.drawn.clear(); this.edge.dispose(); this.arrays.forEach(t => t.dispose()); this.parameterTexture.dispose(); }
+  stats() { return { gpuBudgetBytes: this.capacity * PREVIEW_BYTES + this.opticalBytes, gpuAllocatedBytes: this.capacity * PREVIEW_BYTES + this.opticalBytes, capacity: this.capacity, visible: this.visible.size, uploads: this.uploads, materials: this.batches.size, textureArrays: this.arrays.length }; }
+  dispose() { this.disposed = true; this.opticalAssets?.dispose(); this.mesh.removeFromParent(); for (const { mesh, material } of this.batches.values()) { mesh.dispose(); material.dispose(); } this.batches.clear(); this.slots.clear(); this.geometries.forEach(({ face, edgeGeometry, edge }) => { face.dispose(); edgeGeometry.dispose(); edge.dispose(); }); this.geometries.clear(); this.drawn.clear(); this.edge.dispose(); this.arrays.forEach(t => t.dispose()); this.parameterTexture.dispose(); }
 }

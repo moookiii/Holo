@@ -71,10 +71,13 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
       if (layer.illustrationRare || layer.doubleRare) {
-        const reflected = (layer.doubleRare ? doubleRareReflection : illustrationRareReflection)(light, positionViewDirection, tangentView, bitangent, geometric, {
+        const optics = {
           aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
           secondary: diffraction.w, angle: axis.x, crossWidth: axis.y,
-        }, footprint);
+        };
+        const reflected = layer.doubleRare
+          ? doubleRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, optics, r.field, footprint)
+          : illustrationRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, optics, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a,
           mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
         continue;
@@ -136,9 +139,11 @@ class GalleryLightingModel extends PhysicalLightingModel {
 
 export class GalleryMaterial extends MeshPhysicalNodeMaterial {
   private regions: Region[];
-  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[]) {
+  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[], doubleRareStars?: Texture) {
     super({ clearcoat: .2, clearcoatRoughness: .34, roughness: .48, metalness: .015, envMapIntensity: .65, alphaTest: .5 });
     this.name = 'Gallery shared optical material';
+    if (layers.some(layer => layer.enabled && layer.doubleRare) && !doubleRareStars)
+      throw new Error('Double Rare gallery requires the full-resolution reference star texture');
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
     const imageValues = arrays.map(array => texture(array, coord).depth(layer).toVar());
     const image = (index: number) => imageValues[index];
@@ -152,7 +157,8 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const primary = mix(masks.r, artwork.a, preview.x);
     const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) =>
       layers[index].enabled ? mask.mul(param(index * 8 + 7).w) : float(0));
-    this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index), field: image(3 + index), detail: image(6 + index),
+    this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index),
+      field: layers[index].doubleRare && doubleRareStars ? texture(doubleRareStars, uv()) : image(3 + index), detail: image(6 + index),
       glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
       parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06).toVar() }));
     const activeRegions = this.regions.filter((_, index) => layers[index].enabled);

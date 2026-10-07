@@ -1,51 +1,51 @@
 {
   "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv3-5.en-US.json",
   "referenceVideo": "https://www.youtube.com/watch?v=yMT7XDgcfFQ",
-  "referenceVideoReview": "Unavailable: web fetch throttled. No claim of video-based physical matching.",
-  "method": "Read existing continuous TCGL foil intensity and protection through unchanged coverage composition. All stars and spatial artwork detail come from these PNGs. No maps generated or modified. Flat SUN_PILLAR reflection only; etched SV_ULTRA excluded.",
-  "optics": "Shared direct-light spectral kernel, finite-light angular convolution, narrow neutral zero order, ink filtering, restrained backing. Continuous optical bow is an estimated response, not measured geometry.",
-  "captures": "artifacts/double-rare-review",
+  "referenceVideoReview": "Reviewed the supplied video in-browser at 10, 15 and 20 seconds. The near-front 15-second view shows large pointed four/eight-ray cast-and-cure stars; at 20 seconds the stars recede while broad diagonal spectral reflection remains. Registration is approximate, not measured exact-copy placement.",
+  "method": "Unchanged TCGL foil intensity and authoritative protection compose coverage. A separate reference-reconstructed optical texture supplies 66 fixed four/eight-ray stars missing at this scale in the TCGL image. No front, foil, protection, cutout or coverage changes. Smooth SUN_PILLAR only; etched SV_ULTRA excluded.",
+  "optics": "One shared direct-light kernel with diagonal grating axis -pi/4, broad unequal optical domains, finite-light convolution, ink filtering and fixed star facets. No emissive output, random motifs or runtime CPU texture generation. Optical inclinations and roughness are approximations, not measured manufacturing data.",
+  "captures": "artifacts/double-rare-diagonal-stars-final",
   "galleryParity": [
     {
       "card": "006",
       "pose": "neutral",
-      "meanAbsoluteRgbError": 2.9606255682154083,
-      "p95": 11.666666666666666
-    },
-    {
-      "card": "006",
-      "pose": "shallow",
-      "meanAbsoluteRgbError": 2.989066400479651,
+      "meanAbsoluteRgbError": 2.769611460718134,
       "p95": 11.0
     },
     {
       "card": "006",
+      "pose": "shallow",
+      "meanAbsoluteRgbError": 3.1068478255639964,
+      "p95": 11.333333333333334
+    },
+    {
+      "card": "006",
       "pose": "reflection",
-      "meanAbsoluteRgbError": 2.5081932283350086,
-      "p95": 9.333333333333334
+      "meanAbsoluteRgbError": 2.4854331866376618,
+      "p95": 9.0
     },
     {
       "card": "009",
       "pose": "neutral",
-      "meanAbsoluteRgbError": 3.187711778883256,
-      "p95": 12.0
+      "meanAbsoluteRgbError": 3.0519027798073886,
+      "p95": 11.666666666666666
     },
     {
       "card": "009",
       "pose": "shallow",
-      "meanAbsoluteRgbError": 3.14925253381089,
-      "p95": 11.333333333333334
+      "meanAbsoluteRgbError": 3.256210898721976,
+      "p95": 12.0
     },
     {
       "card": "009",
       "pose": "reflection",
-      "meanAbsoluteRgbError": 2.75725466898288,
+      "meanAbsoluteRgbError": 2.725566315465867,
       "p95": 10.0
     }
   ],
   "tests": {
-    "focused": "4 passed",
-    "full": "275 passed; 29 failures identical by name to baseline with original modules"
+    "focused": "9 passed: Double Rare preservation/dispatch/source, IR dispatch, gallery batches/preview optics/upload budget.",
+    "full": "Prior pass: 275 passed, 29 failures identical by name to baseline. Full suite was not rerun for this correction; focused affected checks and build were rerun."
   },
   "cards": [
     {
@@ -528,5 +528,17 @@
         }
       }
     }
-  ]
+  ],
+  "galleryImplementation": "Same kernel and full-resolution optical star PNG in viewer and gallery. Gallery loads one shared texture lazily, preserves mipmaps/anisotropy, and includes its mip chain in memory accounting. Existing print/coverage atlas resolution produces small pixel differences.",
+  "starOpticalAsset": {
+    "path": "public\\materials\\sv-double-rare-stars.png",
+    "dimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "062db590409225fbf93cd6ae51fcc2a8f8aea3cb21f9730f6491356b9051a0c4",
+    "registration": "scripts/tcgl/double-rare-stars.json",
+    "converter": "scripts/tcgl/author_double_rare_optics.py",
+    "channels": "RG fixed optical inclination; B star reflectivity; A 255. Not a coverage, protection or relief map."
+  }
 }

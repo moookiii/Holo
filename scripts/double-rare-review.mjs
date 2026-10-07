@@ -3,7 +3,7 @@ import { mkdir, writeFile, readdir } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
 
-const out = join(process.cwd(), 'artifacts/double-rare-review');
+const out = join(process.cwd(), 'artifacts', process.env.CAPTURE_NAME || 'double-rare-diagonal-stars');
 await mkdir(out, { recursive: true });
 const options = { headless: true, args: ['--enable-unsafe-webgpu', '--ignore-gpu-blocklist'] };
 if (!existsSync(chromium.executablePath())) {
@@ -22,6 +22,18 @@ const report = [];
 try {
   await page.goto(process.env.HOLO_URL || 'http://127.0.0.1:5173/');
   await page.waitForFunction(() => window.__holo?.gallery.instance()?.active, null, { timeout: 90000 });
+  await page.evaluate(() => {
+    const gallery = window.__holo.gallery.instance();
+    Object.assign(gallery.query, { search: '', set: '151', rarity: 'Double Rare' });
+    gallery.applyFilters();
+  });
+  await page.waitForFunction(() => {
+    const s = window.__holo.gallery.stats();
+    return s.filtered > 0 && s.visible > 0 && s.pending === 0;
+  }, null, { timeout: 90000 });
+  const galleryLoad = await page.evaluate(() => window.__holo.gallery.stats());
+  if (galleryLoad.failed || galleryLoad.visibleFailed) throw new Error('Double Rare gallery upload failed');
+  await page.screenshot({ path: join(out, 'gallery-loaded.png') });
   await page.evaluate(async () => { await window.__holo.gallery.close(); window.__holo.hideUI(); });
   for (const number of ['006', '009']) {
     await page.evaluate(async number => {
@@ -41,6 +53,7 @@ try {
       const h = window.__holo;
       const { DataArrayTexture, DataTexture, FloatType, RGBAFormat, LinearFilter, NearestFilter, SRGBColorSpace, InstancedMesh, Object3D } = await import('/node_modules/three/build/three.webgpu.js');
       const { GalleryMaterial } = await import('/src/gallery/GalleryMaterial.ts');
+      const { doubleRareProfile } = await import('/src/materials/profiles/doubleRare.ts');
       const { galleryOpticalLayers } = await import('/src/gallery/GalleryBatch.ts');
       const { PREVIEW_ARRAY_SIZES } = await import('/src/card/CardPreviewPreparation.ts');
       const definition = h.cards.find(c => c.id === `pokemon:sv03.5-${number}:holo`);
@@ -53,7 +66,8 @@ try {
       });
       const parameters = new DataTexture(preview.parameters, 44, 1, RGBAFormat, FloatType);
       parameters.minFilter = parameters.magFilter = NearestFilter; parameters.needsUpdate = true;
-      const material = new GalleryMaterial(arrays, parameters, galleryOpticalLayers(preview.parameters));
+      const stars = await h.factory.assets.load(doubleRareProfile.maps.direction, false);
+      const material = new GalleryMaterial(arrays, parameters, galleryOpticalLayers(preview.parameters), stars);
       let focus;
       h.scene.traverse(o => { if (Array.isArray(o.material) && o.material[0] === h.material()) focus = o; });
       const instance = new InstancedMesh(focus.geometry, [material, ...focus.material.slice(1)], 1);
@@ -83,7 +97,7 @@ try {
     }
     report.push(await page.evaluate(() => window.__holo.stats()));
   }
-  await writeFile(join(out, 'report.json'), JSON.stringify({ report, errors }, null, 2));
+  await writeFile(join(out, 'report.json'), JSON.stringify({ report, galleryLoad, errors }, null, 2));
   console.log(JSON.stringify({ cards: report.map(x => ({ card: x.card, frameMs: x.frameMs })), errors }));
   if (errors.length) process.exitCode = 1;
 } finally { await browser.close(); }
