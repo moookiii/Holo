@@ -37,10 +37,13 @@ export function ultraRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const spectral = mix(vec3(neutral), color, .68).mul(aperture, reflection, u.strength);
   const printFilter = mix(vec3(1), ink.mul(.94).add(.06), u.inkTransmission);
   const ridge = normal.sub(geometry).length().smoothstep(.008, .075);
-  const ridgeBroadening = halfVariance.mul(90).add(1);
-  const ridgeLobe = normal.dot(half).max(0).pow(float(90).div(ridgeBroadening)).div(ridgeBroadening);
-  const silver = mix(ink, vec3(1), .22).mul(ridgeLobe, ridge, u.etchedInkSheen,
-    geometry.dot(half).smoothstep(.86, .98));
+  // Match the reference etched-ink lobe: do not introduce an unfiltered white
+  // floor into dark printing. The physical substrate supplies neutral silver;
+  // this term only reveals the actual authored die walls under direct light.
+  const ridgeBroadening = halfVariance.mul(150).add(1);
+  const ridgeLobe = normal.dot(half).max(0).pow(float(150).div(ridgeBroadening)).div(ridgeBroadening);
+  const silver = ink.mul(ridgeLobe, ridge, u.etchedInkSheen,
+    geometry.dot(half).smoothstep(.90, .98));
   return spectral.mul(printFilter).add(silver)
     .mul(normal.dot(light).max(0), normal.dot(view).max(0).sqrt());
 }
