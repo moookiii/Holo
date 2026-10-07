@@ -3,6 +3,7 @@ import { uniform } from 'three/tsl';
 import type { FoilLayer } from './HolographicProfile';
 
 export class OpticalUniforms {
+  illustrationRare = false;
   enabled = uniform(1);
   spectralTint = uniform(new Vector3(1, 1, 1));
   spectralGain = uniform(1); sparkleGain = uniform(1); neutralGain = uniform(1);
@@ -38,6 +39,7 @@ export class OpticalUniforms {
   apply(p: FoilLayer | undefined) {
     this.enabled.value = p && p.enabled !== false ? 1 : 0;
     if (!p) return;
+    this.illustrationRare = p.opticalModel === 'sv151-illustration';
     this.spectralTint.value.set(...(p.diffraction.tint ?? [1, 1, 1]));
     this.period.value = p.diffraction.period; this.bandwidth.value = p.diffraction.bandwidth;
     this.strength.value = p.diffraction.strength; this.secondary.value = p.diffraction.secondaryOrder;

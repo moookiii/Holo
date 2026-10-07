@@ -5,6 +5,7 @@ import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNo
 import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
+import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
@@ -68,6 +69,15 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
+      if (layer.illustrationRare) {
+        const reflected = illustrationRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
+          aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
+          secondary: diffraction.w, angle: axis.x, crossWidth: axis.y,
+        }, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a,
+          mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
+        continue;
+      }
       if (layer.secret) {
         const reflected = secretRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
           scale: r.secret.x, cutAngle: r.secret.y, cutWidth: r.secret.z, facetTilt: r.secret.w,

@@ -39,7 +39,8 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   set(26, [...(profile.metallicInk?.color ?? [1, 1, 1]), profile.metallicInk?.color ? 1 : 0]);
   set(27, [profile.metallicInk?.metalness ?? .8, profile.metallicInk?.roughness ?? .28, card.dimensions.width / card.dimensions.height, profile.id === 'print-only' ? 1 : 0]);
   set(34, [card.coverageMode === 'reverse' && !!card.maps?.reverseFoil && !card.maps?.metallic ? 1 : 0,
-    profile.structure.field === 'legendary-fireworks' ? 1 : 0, profile.structure.field === 'secret' && !!card.maps?.secondaryFoil ? 1 : 0, 0]);
+    profile.structure.field === 'legendary-fireworks' ? 1 : 0, profile.structure.field === 'secret' && !!card.maps?.secondaryFoil ? 1 : 0,
+    profile.opticalModel === 'sv151-illustration' ? 1 : 0]);
   set(35, [...(card.frontBorderColor ?? [0, 0, 0]), card.frontBorderColor ? 1 : 0]);
   set(36, (card.layout ?? DEFAULT_FOIL_LAYOUT).innerFrame);
   const physical = resolvePhysicalCardProfile(card);
