@@ -1,5 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { doubleRareProfile } from '../materials/profiles/doubleRare.ts';
 import { tcglSvSurfaces } from './data/sv-tcgl-surfaces.generated.ts';
 import { svTcglCard, svTcglCards, svTcglCollectorNumber } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
@@ -25,6 +26,8 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
       maps: surface.maps,
       mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured ? 'absolute' : 'profile' },
       ...(surface.textured ? { profileOverrides: tcglEtchedFinish } : {}),
+      ...(!surface.textured && surface.foilType === 'SUN_PILLAR' && card.rarity === 'Double Rare'
+        ? { profileOverrides: doubleRareProfile } : {}),
     } : {}),
     source: { image: card.front!, metadata: surface?.evidence ?? `/cards/pokemon/tcgl-sv/${card.setId}/catalog.json`,
       notes: 'Exact English TCGL retail printing. Foil coverage and optional offline etch normal use this printing’s own sources.' },

@@ -1,4 +1,4 @@
-export interface GalleryOpticalLayer { enabled: boolean; secret: boolean; glints: boolean; iridescence: boolean; illustrationRare?: boolean; }
+export interface GalleryOpticalLayer { enabled: boolean; secret: boolean; glints: boolean; iridescence: boolean; illustrationRare?: boolean; doubleRare?: boolean; }
 
 /** Select shader mechanisms from the same packed controls used for rendering.
  * Cards in a batch still retain their individual masks and optical values. */
@@ -6,7 +6,8 @@ export function galleryOpticalLayers(parameters: Float32Array): GalleryOpticalLa
   return Array.from({ length: 3 }, (_, index) => {
     const enabled = parameters[index * 32 + 31] > 0;
     const secret = enabled && parameters[(37 + index) * 4] > 0;
-    return { enabled, secret, ...(index === 0 && parameters[34 * 4 + 3] === 1 ? { illustrationRare: true } : {}), glints: enabled && !secret && parameters[(28 + index * 2) * 4 + 3] > 0,
+    return { enabled, secret, ...(index === 0 && parameters[34 * 4 + 3] === 1 ? { illustrationRare: true } : {}),
+      ...(index === 0 && parameters[34 * 4 + 3] === 2 ? { doubleRare: true } : {}), glints: enabled && !secret && parameters[(28 + index * 2) * 4 + 3] > 0,
       iridescence: enabled && parameters[index * 32 + 26] > 0 };
   });
 }
@@ -37,7 +38,7 @@ export function galleryPreviewOpticalLayers(parameters: Float32Array, images: re
 }
 
 export function galleryBatchKey(layers: GalleryOpticalLayer[]) {
-  return layers.map(layer => !layer.enabled ? '-' : layer.illustrationRare ? 'a' : layer.secret ? 's' : layer.glints ? 'g' : 'f').join('')
+  return layers.map(layer => !layer.enabled ? '-' : layer.doubleRare ? 'd' : layer.illustrationRare ? 'a' : layer.secret ? 's' : layer.glints ? 'g' : 'f').join('')
     + (layers.some(layer => layer.iridescence) ? ':i' : '');
 }
 

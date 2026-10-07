@@ -1,4 +1,5 @@
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { doubleRareProfile } from '../materials/profiles/doubleRare.ts';
 import { tcglPrismaticSurfaces } from './data/prismatic-surfaces.generated.ts';
 import { prismaticEnergyPickerCards } from './PrismaticEnergySurfaces.ts';
 import { DIMENSIONS, type CardDefinition, type CardMapPaths } from '../card/CardDefinition.ts';
@@ -43,6 +44,8 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = Object.fromEntries(
     layout: legacyLayouts[key] ?? { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     mapSettings: { normalScale: record.textured ? 1 : 0, embossStrength: 0, roughnessMode: record.textured ? 'absolute' : 'profile' },
     ...(record.textured ? { profileOverrides: tcglEtchedFinish } : {}),
+    ...(!record.textured && record.foilType === 'SUN_PILLAR' && record.profile === 'prismatic_ex_holo'
+      ? { profileOverrides: doubleRareProfile } : {}),
   } satisfies PrismaticSurface];
 }));
 export const prismaticSurfaceKey = (id: string, variant: PrintVariant) => `${id}:${variant}`;

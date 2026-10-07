@@ -5,6 +5,7 @@ import { yugiohPrintingProfile } from './YugiohPrinting';
 
 function overrideLayer(base: FoilLayer, changes: FoilOverrides = {}): FoilLayer {
   return {
+    opticalModel: changes.opticalModel ?? base.opticalModel,
     ...(base.enabled !== undefined ? { enabled: base.enabled } : {}),
     ...(base.disabledMechanisms ? { disabledMechanisms: [...base.disabledMechanisms] } : {}),
     diffraction: { ...base.diffraction, ...changes.diffraction },

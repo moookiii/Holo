@@ -1,0 +1,532 @@
+{
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv3-5.en-US.json",
+  "referenceVideo": "https://www.youtube.com/watch?v=yMT7XDgcfFQ",
+  "referenceVideoReview": "Unavailable: web fetch throttled. No claim of video-based physical matching.",
+  "method": "Read existing continuous TCGL foil intensity and protection through unchanged coverage composition. All stars and spatial artwork detail come from these PNGs. No maps generated or modified. Flat SUN_PILLAR reflection only; etched SV_ULTRA excluded.",
+  "optics": "Shared direct-light spectral kernel, finite-light angular convolution, narrow neutral zero order, ink filtering, restrained backing. Continuous optical bow is an estimated response, not measured geometry.",
+  "captures": "artifacts/double-rare-review",
+  "galleryParity": [
+    {
+      "card": "006",
+      "pose": "neutral",
+      "meanAbsoluteRgbError": 2.9606255682154083,
+      "p95": 11.666666666666666
+    },
+    {
+      "card": "006",
+      "pose": "shallow",
+      "meanAbsoluteRgbError": 2.989066400479651,
+      "p95": 11.0
+    },
+    {
+      "card": "006",
+      "pose": "reflection",
+      "meanAbsoluteRgbError": 2.5081932283350086,
+      "p95": 9.333333333333334
+    },
+    {
+      "card": "009",
+      "pose": "neutral",
+      "meanAbsoluteRgbError": 3.187711778883256,
+      "p95": 12.0
+    },
+    {
+      "card": "009",
+      "pose": "shallow",
+      "meanAbsoluteRgbError": 3.14925253381089,
+      "p95": 11.333333333333334
+    },
+    {
+      "card": "009",
+      "pose": "reflection",
+      "meanAbsoluteRgbError": 2.75725466898288,
+      "p95": 10.0
+    }
+  ],
+  "tests": {
+    "focused": "4 passed",
+    "full": "275 passed; 29 failures identical by name to baseline with original modules"
+  },
+  "cards": [
+    {
+      "cardId": "sv03.5-003",
+      "tcglCardId": "sv3-5_3",
+      "tcglVariantId": "Venusaurex_sv3-5_3_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_003_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_003_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_003_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "c7ea12d174ffeb28fa81bf49fb1869cc120b84b4463bda1341febc065fc3f23b"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/003-holo-foil.png",
+          "sha256": "9770b9856da8be05eadf6926d5ec136fdc613b49b5476f7d0648b58c88af2ebe",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/003-holo-protection.png",
+          "sha256": "d81fce91680f66f959ff554cf3680bcd6ee98683f4e36b6d1683a9136488bc10",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-006",
+      "tcglCardId": "sv3-5_6",
+      "tcglVariantId": "Charizardex_sv3-5_6_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_006_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_006_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_006_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "a25a28f9ee575421df128fbd52f46c7d39b9273b9865466d10e809376145d06f"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/006-holo-foil.png",
+          "sha256": "04221bdd9b2404d09edb60eb0c5bb4eeda53944e5245ffc590d5d9b11202acb9",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/006-holo-protection.png",
+          "sha256": "d8dea03100199d1cdca62ab68dc89333d5dde1b8eecd5e01faeccf3c33163efa",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-009",
+      "tcglCardId": "sv3-5_9",
+      "tcglVariantId": "Blastoiseex_sv3-5_9_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_009_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_009_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_009_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "d29a94372f5feb17068b49ea3afe777f89dd5aee4fde784eb0546952d8e7b7bb"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/009-holo-foil.png",
+          "sha256": "c6fba36df09e49e1cf33731fdb6caee98c3c88499a8fb9dc82f944031bd90d72",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/009-holo-protection.png",
+          "sha256": "c2fac1283e0b39de822f02fa1f42c4d3b671f83d7599e16241305f4061c89f04",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-024",
+      "tcglCardId": "sv3-5_24",
+      "tcglVariantId": "Arbokex_sv3-5_24_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_024_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_024_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_024_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "bb0ea4b57ce623c735cf8b571b7793baea1080ab4ded7e672138f98660f63fff"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/024-holo-foil.png",
+          "sha256": "5171fc6f86de15a22d347d9eb1f9316d2239e28e817915a28f449c80fb5c82c8",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/024-holo-protection.png",
+          "sha256": "cbbb4bc5d37ef2e04426b05053e1123e99995812d2618e63547c2adf45801ae3",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-038",
+      "tcglCardId": "sv3-5_38",
+      "tcglVariantId": "Ninetalesex_sv3-5_38_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_038_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_038_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_038_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "29b46948befb6bd443b30dcf07b007439679f25af4f39ac61fc3e3e053cb506f"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/038-holo-foil.png",
+          "sha256": "dc68a3d997be8e09e8c159627d538d581b59816dfdc0d66c93fa253322922e95",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/038-holo-protection.png",
+          "sha256": "6ad3fd3124abe2ff4aaae1e024c1ecadbb674f0bb9a90e851dd69e1f1548aec8",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-040",
+      "tcglCardId": "sv3-5_40",
+      "tcglVariantId": "Wigglytuffex_sv3-5_40_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_040_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_040_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_040_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "8ded264599f0c840ac299692a2aaf6c88e8c39182e271d8d2f9f6132c5bc8b2d"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/040-holo-foil.png",
+          "sha256": "6bca4bfd741f6a78eceb398652ade6278b12c8406ebcbe98bb0aaee2911943c2",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/040-holo-protection.png",
+          "sha256": "1f673320e70224a0797027fd7e9bac69be664882e226ffe882b8c2896d00bcb3",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-065",
+      "tcglCardId": "sv3-5_65",
+      "tcglVariantId": "Alakazamex_sv3-5_65_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_065_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_065_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_065_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "e3282f1d9fd1a6e7e662755bbed2ec0cbde1f356cf2651e4681e0da5155bcdee"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/065-holo-foil.png",
+          "sha256": "85daf40eed9f217afd567e5509a61438f4cb4eb5eba8555af4e2f57d372ae7d5",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/065-holo-protection.png",
+          "sha256": "5c30602da9cce31e91189c8ae6bee997c66031d7b068ecbc0d6b4aa3fc30f03a",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-076",
+      "tcglCardId": "sv3-5_76",
+      "tcglVariantId": "Golemex_sv3-5_76_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_076_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_076_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_076_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "65a3704092891a09fca401fdae79887486f43d69ea94725e1eb17ec0b6248680"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/076-holo-foil.png",
+          "sha256": "c74a21c0215dd5ae8922e78fa082c73222e12425ca5ecf2b6afb055883604f8e",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/076-holo-protection.png",
+          "sha256": "ac54d5b577455fee2c268ff8b97bb56c920f2e4b23833999e0430025102bd35c",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-115",
+      "tcglCardId": "sv3-5_115",
+      "tcglVariantId": "Kangaskhanex_sv3-5_115_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_115_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_115_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_115_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "71d75a4b9eee04a404b6bd58ddcbe0469def28f04ac6830b65293f1562c91316"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/115-holo-foil.png",
+          "sha256": "25668076392bdfad5365e0dd9f21ab25ced224737d0309dcb2563d57b8c69754",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/115-holo-protection.png",
+          "sha256": "dbc170a58907975fa5cfc66117ceae401b7a64b0fc4373601a488cd29eb67432",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-124",
+      "tcglCardId": "sv3-5_124",
+      "tcglVariantId": "Jynxex_sv3-5_124_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_124_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_124_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_124_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "2d3f452dde87a8d7f8b90c9887e8c0c20bfa3e918d5f1916dd98a6f8e0159d8d"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/124-holo-foil.png",
+          "sha256": "1cfd66a17440e7095433aad6cb9adf2e903b912f1695f53c6d23f43ed3f8c515",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/124-holo-protection.png",
+          "sha256": "8ae1910d8e4a082c019fd1b45d5d0106d0e70a1ff618a7e8dedb0dfa14682401",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-145",
+      "tcglCardId": "sv3-5_145",
+      "tcglVariantId": "Zapdosex_sv3-5_145_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_145_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_145_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_145_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "0d23c00677301dd1d30192966530fce1950451c661d15848264dc31a6fd5a3a0"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/145-holo-foil.png",
+          "sha256": "1abd304be18c0e6ccbc7bfa80b2886a64a64ae0732763b4a44cd0186f4ecde66",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/145-holo-protection.png",
+          "sha256": "7cb08cff13ccd62783efacddb57fddadb6e91f4b02219199c393426be22c1aa2",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    },
+    {
+      "cardId": "sv03.5-151",
+      "tcglCardId": "sv3-5_151",
+      "tcglVariantId": "Mewex_sv3-5_151_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+      "foil": {
+        "type": "SUN_PILLAR",
+        "mask": "HOLO"
+      },
+      "images.tcgl.png.foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_151_std.foil.png",
+      "rawFoil": {
+        "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv3-5/sv3-5_en_151_std.foil.png",
+        "file": "research/tcgl/151-set/raw/sv3-5_en_151_std.foil.png",
+        "dimensions": [
+          367,
+          512
+        ],
+        "mode": "RGBA",
+        "sha256": "3b1f83683144cf03b2cf55a1087e279aff9f69da6a5c626ca1e081629a2f8d7e"
+      },
+      "existingMaps": {
+        "foil": {
+          "path": "public/cards/pokemon/151/tcgl/151-holo-foil.png",
+          "sha256": "2fafb02452c622865fe72c04b0e48fd401e84f25fd4adbd4d2f40b39762e1996",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        },
+        "protection": {
+          "path": "public/cards/pokemon/151/tcgl/151-holo-protection.png",
+          "sha256": "8c71feee56bc40f7689deb5bbb63ce04d7f2a19be0c12d7d3a106929f516d552",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "unchanged": true
+        }
+      }
+    }
+  ]
+}

@@ -6,6 +6,7 @@ import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, norma
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
+import { doubleRareReflection } from '../materials/layers/DoubleRareLayer';
 import { microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
@@ -69,8 +70,8 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
-      if (layer.illustrationRare) {
-        const reflected = illustrationRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
+      if (layer.illustrationRare || layer.doubleRare) {
+        const reflected = (layer.doubleRare ? doubleRareReflection : illustrationRareReflection)(light, positionViewDirection, tangentView, bitangent, geometric, {
           aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
           secondary: diffraction.w, angle: axis.x, crossWidth: axis.y,
         }, footprint);
