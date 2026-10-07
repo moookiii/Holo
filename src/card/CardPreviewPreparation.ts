@@ -19,7 +19,8 @@ export const PREVIEW_MAP_WIDTH = 128, PREVIEW_MAP_HEIGHT = 180;
 export const PREVIEW_FIELD_WIDTH = 256, PREVIEW_FIELD_HEIGHT = 360;
 export const PREVIEW_ARRAY_SIZES = [[PREVIEW_WIDTH, PREVIEW_HEIGHT], ...Array.from({ length: 8 }, (_, i) =>
   i === 2 || i === 5 ? [PREVIEW_FIELD_WIDTH, PREVIEW_FIELD_HEIGHT] : [PREVIEW_MAP_WIDTH, PREVIEW_MAP_HEIGHT])] as const;
-export interface CardPreview { images: Uint8Array[]; parameters: Float32Array; dimensions?: CardDefinition['dimensions']; }
+export interface UltraRareMapPaths { front: string; normal: string; roughness: string; foil: string; protection: string; }
+export interface CardPreview { images: Uint8Array[]; parameters: Float32Array; dimensions?: CardDefinition['dimensions']; ultraRareMaps?: UltraRareMapPaths; }
 export const PREVIEW_BYTES = PREVIEW_ARRAY_SIZES.reduce((sum, [w, h]) => sum + w * h * 4, 0) + PREVIEW_PARAMETER_COLUMNS * 16;
 type PrepareField = (spec: PatternSpec, height: number, motif?: MotifImage) => Promise<FieldData>;
 
@@ -191,5 +192,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     // sparkle protection without repurposing the film-thickness detail map.
     coverage[i + 3] = packed.surface[i + 2];
   }
-  return { images: [front, coverage, normal, ...fields, ...details], parameters, dimensions: card.dimensions };
+  const ultraRareMaps = profile.opticalModel === 'sv151-ultra' && paths.normal && paths.roughness && paths.foil && paths.protection
+    ? { front: card.front, normal: paths.normal, roughness: paths.roughness, foil: paths.foil, protection: paths.protection } : undefined;
+  return { images: [front, coverage, normal, ...fields, ...details], parameters, dimensions: card.dimensions, ultraRareMaps };
 }
