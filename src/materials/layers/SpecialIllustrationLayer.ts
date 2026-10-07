@@ -31,7 +31,7 @@ export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'v
   // Large patches change orientation, never micrograin coverage. The fine
   // distributions overlap across the entire allowed foil region.
   const tilt = vec2(cluster, drift).sub(.5).mul(.42);
-  const slope = micrograin.rg.sub(.5).mul(.34).add(tilt);
+  const slope = micrograin.rg.sub(.5).mul(.52).add(tilt);
   const facet = normal.add(tangent.mul(slope.x)).add(bitangent.mul(slope.y)).normalize();
   const half = light.add(view).normalize();
   const lightVariance = footprint
@@ -39,7 +39,7 @@ export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'v
   // Broad, long-tailed GGX distributions keep every illuminated texel active.
   // Narrow exponentials previously selected isolated bright points with dark
   // gaps. Roughness and small optical slopes now vary a continuous BRDF.
-  const alpha = micrograin.b.mul(.12).add(.20);
+  const alpha = micrograin.b.mul(.18).add(.16);
   const alpha2 = alpha.pow2().add(lightVariance.mul(2));
   const nh2 = facet.dot(half).max(0).pow2();
   const distribution = alpha2.div(nh2.mul(alpha2.sub(1)).add(1).pow2().mul(Math.PI));
@@ -50,7 +50,10 @@ export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'v
   const visibility = float(1).div(nl.mul(k.oneMinus()).add(k)
     .mul(nv.mul(k.oneMinus()).add(k), 4).max(.001));
   const fresnel = half.dot(view).max(0).oneMinus().pow(5).mul(.94).add(.06);
-  const silver = distribution.mul(.72).add(broad.mul(.28)).mul(visibility, fresnel);
+  // Continuous reflectance variation, bounded away from zero. This survives
+  // between bright patches; it is never a threshold selecting isolated dots.
+  const reflectance = micrograin.b.mul(1.5).add(.25);
+  const silver = distribution.mul(.72).add(broad.mul(.28)).mul(visibility, fresnel, reflectance);
   const angle = cluster.mul(5.8).add(drift.mul(2.4));
   const axis = tangent.mul(cos(angle)).add(bitangent.mul(sin(angle)));
   const path = light.add(view).dot(axis).abs().mul(1.12);
@@ -60,5 +63,5 @@ export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'v
   const tint = vec3(.82, .85, .88).add(color.mul(.65));
   const envelope = cluster.mul(.5).add(.75);
   const filter = mix(vec3(1), ink.pow(1.4).mul(.99).add(.01), u.inkTransmission);
-  return tint.mul(silver, envelope, 2.4, u.strength, filter, nl, nv.sqrt());
+  return tint.mul(silver, envelope, 8, u.strength, filter, nl, nv.sqrt());
 }
