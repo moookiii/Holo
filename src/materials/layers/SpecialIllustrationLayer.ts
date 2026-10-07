@@ -56,9 +56,9 @@ export function specialIllustrationReflection(light: Node<'vec3'>, view: Node<'v
   const color = spectrum(path, float(.065), float(.035), lightVariance.mul(2));
   // White/silver is the carrier. Spectral energy belongs to the same patches,
   // with no global directional band and no emissive or printed noise overlay.
-  const tint = vec3(.90, .92, .94).add(color.mul(.38));
+  const tint = vec3(.82, .85, .88).add(color.mul(.65));
   const envelope = cluster.mul(.9).add(.55);
-  const filter = mix(vec3(1), ink.mul(.97).add(.03), u.inkTransmission);
-  return tint.mul(silver, envelope, 8, u.strength, filter,
+  const filter = mix(vec3(1), ink.pow(1.4).mul(.99).add(.01), u.inkTransmission);
+  return tint.mul(silver, envelope, 2.8, u.strength, filter,
     geometry.dot(light).max(0), geometry.dot(view).max(0).sqrt());
 }

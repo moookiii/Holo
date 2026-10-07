@@ -35,7 +35,7 @@ try {
   if (galleryLoad.failed || galleryLoad.visibleFailed) throw new Error('SIR gallery upload failed');
   await page.screenshot({ path: join(out, 'gallery-loaded.png') });
   await page.evaluate(async () => { await window.__holo.gallery.close(); window.__holo.hideUI(); });
-  for (const number of ['199', '198', '202']) {
+  for (const number of (process.env.REVIEW_CARDS || '199,198,202').split(',')) {
     await page.evaluate(async number => {
       const h = window.__holo;
       await h.setCard(`pokemon:sv03.5-${number}:holo`);
@@ -94,6 +94,11 @@ try {
       await page.screenshot({ path: join(out, `${number}-motion-${yaw + 40}.png`) });
     }
     report.push(await page.evaluate(() => window.__holo.stats()));
+    for (let frame = 0; frame <= 72; frame++) {
+      await page.evaluate(yaw => window.__holo.pose(yaw, -8, 0), frame * 5);
+      await page.waitForTimeout(70);
+      await page.screenshot({ path: join(out, `${number}-rotation-${String(frame).padStart(3, '0')}.png`) });
+    }
     for (const preset of ['Low key', 'Strip', 'Moving light']) {
       await page.evaluate(preset => { const h = window.__holo; h.lighting.setPreset(preset); h.lighting.playing = false; h.pose(0, 0, 0); }, preset);
       for (const phase of preset === 'Moving light' ? [0, 1, 2, 3, 4, 5, 6, 7, 8] : [0]) {

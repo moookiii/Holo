@@ -23,7 +23,7 @@ pokemon151Profiles.push({ ...doubleRareProfile, id: 'pokemon151_ex_holo', name: 
 /** Physical 151 reference supersedes the inherited Prismatic ridge finish.
  * Preserve exact-card normals, roughness and coverage; no generated relief. */
 export const pokemon151SirSettings = {
-  normalScale: .18, embossStrength: 0, roughnessMode: 'absolute' as const, embossMaskFromNormalAlpha: false,
+  normalScale: .12, embossStrength: 0, roughnessMode: 'absolute' as const, embossMaskFromNormalAlpha: false,
 };
 pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
   id: 'pokemon151_sir_texture', name: '151 · Special Illustration Rare', opticalModel: 'sv151-sir',
@@ -33,7 +33,7 @@ pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
   structure: { ...reference('prismatic_sir_texture').structure, ...tcglEtchedFinish.structure },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
   surface: { ...reference('prismatic_sir_texture').surface, ...tcglEtchedFinish.surface,
-    metalness: .35, substrateReflection: .24, etchedInkSheen: 0, inkTransmission: .92 },
+    metalness: .35, substrateReflection: .24, etchedInkSheen: 0, inkTransmission: 1 },
   secondary: undefined,
 });
 
