@@ -22,6 +22,7 @@ const gallerySpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'float'
   ] });
 
 interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; }
+export interface UltraRareTextures { front: Texture; normal: Texture; roughness: Texture; foil: Texture; protection: Texture; }
 
 /** Uses the viewer's wavelength response and grating momentum under actual
  * incident light. Foil energy enters directSpecular, never the printed color. */
@@ -149,7 +150,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
 
 export class GalleryMaterial extends MeshPhysicalNodeMaterial {
   private regions: Region[];
-  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[], doubleRareStars?: Texture) {
+  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[], doubleRareStars?: Texture, ultraRare?: UltraRareTextures) {
     super({ clearcoat: .2, clearcoatRoughness: .34, roughness: .48, metalness: .015, envMapIntensity: .65, alphaTest: .5 });
     this.name = 'Gallery shared optical material';
     if (layers.some(layer => layer.enabled && layer.doubleRare) && !doubleRareStars)
@@ -162,9 +163,13 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
       if (!parameterValues.has(column)) parameterValues.set(column, textureLoad(parameterTexture, ivec2(column, layer.toInt())).toVar());
       return parameterValues.get(column)!;
     };
-    const artwork = image(0), print = artwork.rgb, masks = image(1), normal = image(2), preview = param(34);
-    const metal = artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
-    const primary = mix(masks.r, artwork.a, preview.x);
+    const artwork = image(0), print = ultraRare ? texture(ultraRare.front, uv()).rgb : artwork.rgb;
+    const masks = image(1), normal = image(2), preview = param(34);
+    const metal = ultraRare ? float(0) : artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
+    // Same authoritative coverage; only sampling resolution differs from the
+    // generic atlas. These source masks are never authored or modified here.
+    const primary = ultraRare ? texture(ultraRare.foil, uv()).r.mul(texture(ultraRare.protection, uv()).r.oneMinus())
+      : mix(masks.r, artwork.a, preview.x);
     const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) =>
       layers[index].enabled ? mask.mul(param(index * 8 + 7).w) : float(0));
     this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index),
@@ -185,11 +190,12 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const darkening = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
     this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
     const cutSlope = image(6).rg.sub(.5).mul(param(2).y, param(2).z, primary, preview.y);
-    this.normalNode = normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
+    this.normalNode = ultraRare ? normalMap(texture(ultraRare.normal, uv()).rgb)
+      : normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
     const variance = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     const patternRoughness = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
-    this.roughnessNode = normal.a.add(variance).add(patternRoughness).clamp(.045, 1);
+    this.roughnessNode = (ultraRare ? texture(ultraRare.roughness, uv()).r : normal.a).add(variance).add(patternRoughness).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
     const grain = param(40), finish = param(41), stockCard = param(42), registration = param(43);

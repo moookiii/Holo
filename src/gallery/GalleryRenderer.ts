@@ -4,13 +4,13 @@ import { AssetManager } from '../assets/AssetManager';
 import { doubleRareProfile } from '../materials/profiles/doubleRare';
 import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, SRGBColorSpace, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { StudioLighting } from '../lighting/StudioLighting';
-import { PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/CardPreviewPreparation';
+import { ULTRA_RARE_FULL_RES_GALLERY, PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/CardPreviewPreparation';
 import { PREVIEW_PARAMETER_COLUMNS } from '../card/PreviewOptics';
-import { GalleryMaterial } from './GalleryMaterial';
+import { GalleryMaterial, type UltraRareTextures } from './GalleryMaterial';
 import { GALLERY_CAPACITY } from './GalleryLayout';
 import { galleryBatchKey, galleryPreviewOpticalLayers, galleryShaderLayers } from './GalleryBatch';
 
-interface Batch { mesh: InstancedMesh; edge: InstancedMesh; material: GalleryMaterial; compilation: Promise<void>; }
+interface Batch { mesh: InstancedMesh; edge: InstancedMesh; material: GalleryMaterial; compilation: Promise<void>; assets?: AssetManager; bytes?: number; }
 interface GeometryBatch { face: ReturnType<typeof createGalleryCardGeometry>; edgeGeometry: ReturnType<typeof createGalleryCardGeometry>; edge: InstancedMesh; compilation: Promise<void>; }
 
 /** Instanced draws share nine fixed-size texture arrays. Shader batches include
@@ -52,7 +52,19 @@ export class GalleryRenderer {
     this.parameterTexture.needsUpdate = true;
     this.uploads++;
     const dimensions = galleryGeometryDimensions(preview.dimensions), geometryKey = JSON.stringify(dimensions);
-    const layers = galleryShaderLayers(galleryPreviewOpticalLayers(preview.parameters, preview.images)), key = `${galleryBatchKey(layers)}:${geometryKey}`;
+    // Gate cached previews too: old metadata must not reactivate heavy uploads.
+    const exactMaps = ULTRA_RARE_FULL_RES_GALLERY ? preview.ultraRareMaps : undefined;
+    const layers = galleryShaderLayers(galleryPreviewOpticalLayers(preview.parameters, preview.images));
+    const key = `${galleryBatchKey(layers)}:${geometryKey}:${exactMaps ? JSON.stringify(exactMaps) : ''}`;
+    // Release exact-card textures when their last resident slot is reassigned.
+    // No full-set texture array or preload: only uploaded cards own these maps.
+    const previous = this.slots.get(slot);
+    this.slots.delete(slot);
+    if (previous?.assets && previous !== this.batches.get(key) && ![...this.slots.values()].includes(previous)) {
+      for (const [oldKey, batch] of this.batches) if (batch === previous) this.batches.delete(oldKey);
+      this.drawn.delete(previous.mesh); previous.mesh.removeFromParent(); previous.mesh.dispose();
+      previous.material.dispose(); previous.assets.dispose();
+    }
     // One lazy, shared full-resolution die per gallery. Reducing this to the
     // per-card field atlas turns the reference's pointed stars into blobs.
     const stars = layers.some(layer => layer.enabled && layer.doubleRare)
@@ -69,7 +81,21 @@ export class GalleryRenderer {
     }
     let batch = this.batches.get(key);
     if (!batch) {
-      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars);
+      let assets: AssetManager | undefined, exact: UltraRareTextures | undefined, bytes = 0;
+      if (exactMaps) {
+        assets = new AssetManager();
+        try {
+          exact = Object.fromEntries(await Promise.all(Object.entries(exactMaps).map(async ([name, path]) =>
+            [name, await assets!.load(path, name === 'front')])) ) as unknown as UltraRareTextures;
+          for (const texture of Object.values(exact)) {
+            let { width, height } = texture.image as HTMLImageElement;
+            do { bytes += width * height * 4; if (width === 1 && height === 1) break;
+              width = Math.max(1, Math.floor(width / 2)); height = Math.max(1, Math.floor(height / 2)); } while (true);
+          }
+          if (this.disposed) throw new Error('Gallery disposed');
+        } catch (error) { assets.dispose(); throw error; }
+      }
+      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars, exact);
       let geometry = this.geometries.get(geometryKey);
       const newGeometry = !geometry;
       if (!geometry) {
@@ -90,11 +116,11 @@ export class GalleryRenderer {
       this.clear(mesh); this.mesh.add(mesh);
       const compilation = Promise.all([geometry.compilation, this.queueCompile(mesh, newGeometry ? geometry.edge : undefined)]).then(() => {});
       if (newGeometry) geometry.compilation = compilation;
-      batch = { mesh, edge: geometry.edge, material, compilation }; this.batches.set(key, batch);
+      batch = { mesh, edge: geometry.edge, material, compilation, assets, bytes }; this.batches.set(key, batch);
       const created = batch;
       compilation.catch(() => {
         if (this.batches.get(key) === created) this.batches.delete(key);
-        mesh.removeFromParent(); mesh.dispose(); material.dispose();
+        mesh.removeFromParent(); mesh.dispose(); material.dispose(); assets?.dispose();
       });
     }
     this.slots.set(slot, batch);
@@ -142,6 +168,7 @@ export class GalleryRenderer {
     this.visible.add(slot);
   }
   updateLighting(_lighting: StudioLighting, _camera: PerspectiveCamera) { /* Uses the scene's actual shared lights. */ }
-  stats() { return { gpuBudgetBytes: this.capacity * PREVIEW_BYTES + this.opticalBytes, gpuAllocatedBytes: this.capacity * PREVIEW_BYTES + this.opticalBytes, capacity: this.capacity, visible: this.visible.size, uploads: this.uploads, materials: this.batches.size, textureArrays: this.arrays.length }; }
-  dispose() { this.disposed = true; this.opticalAssets?.dispose(); this.mesh.removeFromParent(); for (const { mesh, material } of this.batches.values()) { mesh.dispose(); material.dispose(); } this.batches.clear(); this.slots.clear(); this.geometries.forEach(({ face, edgeGeometry, edge }) => { face.dispose(); edgeGeometry.dispose(); edge.dispose(); }); this.geometries.clear(); this.drawn.clear(); this.edge.dispose(); this.arrays.forEach(t => t.dispose()); this.parameterTexture.dispose(); }
+  stats() { const bytes = this.capacity * PREVIEW_BYTES + this.opticalBytes + [...this.batches.values()].reduce((sum, batch) => sum + (batch.bytes ?? 0), 0);
+    return { gpuBudgetBytes: bytes, gpuAllocatedBytes: bytes, capacity: this.capacity, visible: this.visible.size, uploads: this.uploads, materials: this.batches.size, textureArrays: this.arrays.length }; }
+  dispose() { this.disposed = true; this.opticalAssets?.dispose(); this.mesh.removeFromParent(); for (const { mesh, material, assets } of this.batches.values()) { mesh.dispose(); material.dispose(); assets?.dispose(); } this.batches.clear(); this.slots.clear(); this.geometries.forEach(({ face, edgeGeometry, edge }) => { face.dispose(); edgeGeometry.dispose(); edge.dispose(); }); this.geometries.clear(); this.drawn.clear(); this.edge.dispose(); this.arrays.forEach(t => t.dispose()); this.parameterTexture.dispose(); }
 }
