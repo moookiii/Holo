@@ -1,6 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
-import { pokemon151SirSettings } from '../materials/profiles/pokemon151.ts';
+import { pokemon151SirSettings } from '../materials/profiles/pokemon151SirSettings.ts';
 import { tcgl151Surfaces } from './data/151-surfaces.generated.ts';
 import { pokemon151Card, pokemon151Cards } from './Pokemon151Catalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';

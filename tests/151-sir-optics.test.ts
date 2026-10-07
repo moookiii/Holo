@@ -4,6 +4,7 @@ import { readFileSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { tcgl151Surfaces } from '../src/pokemon/data/151-surfaces.generated.ts';
 import { galleryOpticalLayers, galleryBatchKey, galleryPreviewOpticalLayers } from '../src/gallery/GalleryBatch.ts';
+import { pokemon151Definition } from '../src/pokemon/Pokemon151Surfaces.ts';
 
 test('all seven 151 SIRs retain byte-identical art, authoritative masks and exact TCGL relief', () => {
   const cards = tcgl151Surfaces.filter(s => s.profile === 'pokemon151_sir_texture');
@@ -13,6 +14,10 @@ test('all seven 151 SIRs retain byte-identical art, authoritative masks and exac
     assert.match(evidence.tcglVariantId, /_SpecialIllustrationRare_SvUltra_Etched$/);
     assert.deepEqual(evidence.mapSize, [1800, 2475]);
     assert.equal(card.maps.height, undefined);
+    const definition = pokemon151Definition(card.cardId, 'holo');
+    assert.ok(definition.mapSettings!.normalScale! > 0 && definition.mapSettings!.normalScale! < .2);
+    assert.equal(definition.mapSettings?.embossStrength, 0);
+    assert.equal(definition.profileOverrides, undefined, 'legacy finish cannot override the SIR profile');
     const hash = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
     for (const path of Object.values(card.maps))
       assert.equal(hash(`public${path}`), evidence.maps[path.split('/').at(-1)!], `${card.cardId}: ${path}`);

@@ -3,6 +3,7 @@ import { prismaticProfiles } from './prismatic';
 import { pokemonProfiles } from './pokemon';
 import { doubleRareProfile } from './doubleRare';
 import { tcglEtchedFinish } from './tcglEtchedFinish';
+import { pokemon151SirSettings } from './pokemon151SirSettings';
 
 function reference(id: string): HolographicProfile {
   const profile = [...prismaticProfiles, ...pokemonProfiles].find(profile => profile.id === id);
@@ -22,9 +23,6 @@ pokemon151Profiles.push({ ...doubleRareProfile, id: 'pokemon151_ex_holo', name: 
 
 /** Physical 151 reference supersedes the inherited Prismatic ridge finish.
  * Preserve exact-card normals, roughness and coverage; no generated relief. */
-export const pokemon151SirSettings = {
-  normalScale: .12, embossStrength: 0, roughnessMode: 'absolute' as const, embossMaskFromNormalAlpha: false,
-};
 pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
   id: 'pokemon151_sir_texture', name: '151 · Special Illustration Rare', opticalModel: 'sv151-sir',
   description: 'Silver-dominant irregular reflective microstructure with clustered prismatic highlights and subordinate exact TCGL texture.',
