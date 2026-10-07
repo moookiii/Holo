@@ -1,8 +1,10 @@
 import type { Node } from 'three/webgpu';
 import { float, vec3, cos, sin, exp, mix } from 'three/tsl';
 import { spectrum } from './DiffractionLayer';
+import { illustrationRareReflection } from './IllustrationRareLayer';
 
 export interface UltraRareOptics {
+  aspect: Node<'float'>;
   period: Node<'float'>; bandwidth: Node<'float'>; strength: Node<'float'>;
   secondary: Node<'float'>; angle: Node<'float'>; crossWidth: Node<'float'>;
   inkTransmission: Node<'float'>; etchedInkSheen: Node<'float'>;
@@ -44,6 +46,17 @@ export function ultraRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const ridgeLobe = normal.dot(half).max(0).pow(float(150).div(ridgeBroadening)).div(ridgeBroadening);
   const silver = ink.mul(ridgeLobe, ridge, u.etchedInkSheen,
     geometry.dot(half).smoothstep(.90, .98));
-  return spectral.mul(printFilter).add(silver)
+  const etched = spectral.mul(printFilter).add(silver)
     .mul(normal.dot(light).max(0), normal.dot(view).max(0).sqrt());
+  // A small share of the IR's continuous diagonal sheet response is visible
+  // in the physical Ultra Rare. Transport it through the authored etch normal,
+  // never into geometry or a second emboss. Reserve spectral energy for this
+  // contribution instead of placing a full-strength IR treatment over the art.
+  const diagonal = illustrationRareReflection(light, view, tangent, bitangent, normal, {
+    aspect: u.aspect, period: u.period, bandwidth: u.bandwidth,
+    strength: u.strength.mul(.28), secondary: u.secondary,
+    angle: float(Math.PI / 4), crossWidth: u.crossWidth,
+  }, footprint).mul(printFilter);
+  return etched.sub(spectral.mul(printFilter, .28,
+    normal.dot(light).max(0), normal.dot(view).max(0).sqrt())).add(diagonal);
 }

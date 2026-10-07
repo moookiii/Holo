@@ -75,7 +75,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       if (layer.ultraRare) {
         const reflected = ultraRareReflection(light, positionViewDirection, tangentView, bitangent,
           geometric, normalView, r.ink.sub(.06).div(.94).max(0), {
-            period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z, secondary: diffraction.w,
+            aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z, secondary: diffraction.w,
             angle: axis.x, crossWidth: axis.y, inkTransmission: surface.z, etchedInkSheen: r.secret.y,
           }, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a, data.lightColor as Node<'vec3'>));
