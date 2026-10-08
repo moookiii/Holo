@@ -18,6 +18,8 @@ export const svTcglCards: readonly PokemonCard[] = catalogSets.flatMap(set => se
   front: `${set.assets}/${card.front}`, thumbnail: `${set.assets}/${card.front}`,
 })));
 const byId = new Map(svTcglCards.map(card => [card.id, card]));
+/** Shared pack Energy IDs (sve-001) are distinct from TCGL print IDs (sve-1). */
+export const isSvTcglCard = (id: string): boolean => byId.has(id);
 export const svTcglSets: readonly PokemonSet[] = catalogSets.map(set => ({
   id: set.id, name: set.name, logo: set.logo ?? undefined, releaseDate: set.releaseDate,
   series: { id: 'sv', name: 'Scarlet & Violet' }, era: 'sv',
