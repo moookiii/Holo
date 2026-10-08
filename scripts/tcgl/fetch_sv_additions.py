@@ -99,7 +99,8 @@ def main():
             front_path=assets/front_name; raw_front=ROOT/saved[e['images']['tcgl']['png']['front']]['file']
             if not front_path.exists(): os.link(raw_front,front_path)
             elif front_path.read_bytes()!=raw_front.read_bytes(): raise ValueError('Front changed '+card_id)
-            rarity=e['rarity']['designation'].replace('_',' ').title().replace('Ace Spec','ACE SPEC')
+            # Some alternate stamped releases have no printed rarity field.
+            rarity=e.get('rarity',{}).get('designation','PROMO').replace('_',' ').title().replace('Ace Spec','ACE SPEC')
             sources={kind:{'url':url,**saved[url]} for kind,url in e['images']['tcgl']['png'].items()}
             printing={'cardId':card_id,'number':number,'name':e['name'],'rarity':rarity,'variant':variant,'suffix':suffix,
                       'tcglCardId':tcgl['cardID'],'tcglVariantId':tcgl['longFormID'],'foil':e.get('foil'),'sources':sources,
