@@ -39,6 +39,8 @@ test('ball optical batches are isolated from existing finishes and keep sparkle 
     assert.equal(profile.structure.relief, 0);
     assert.equal(profile.mapSettings?.normalScale, 0);
     assert.equal(profile.mapSettings?.embossStrength, 0);
-    assert.ok(profile.glints.strength > 0 && profile.diffraction.strength > 0);
+    assert.ok(profile.diffraction.strength > 0);
+    assert.equal(profile.glints.strength > 0, profile.id === 'bw-masterball-reverse');
+    if (profile.id === 'bw-pokeball-reverse') assert.equal(profile.glints.density, 0);
   }
 });
