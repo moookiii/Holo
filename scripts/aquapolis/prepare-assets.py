@@ -122,17 +122,6 @@ for card in cards:
   Image.fromarray(arr.astype('uint8')).save(REVIEW/f'{n}-reverse.png')
 
 (BASE/'mask-evidence.json').write_text(json.dumps(evidence,indent=2)+'\n')
-product=json.loads((ROOT/'research/aquapolis/wrapper-product.json').read_text())
-wrappers=[]
-for i,design in enumerate(['tyranitar','entei','arcanine','scizor']):
- source=ROOT/f'research/aquapolis/wrapper-{i}.png';im=Image.open(source).convert('RGB');arr=np.array(im)
- candidate=(np.max(arr,axis=2)>25).astype('uint8');count,labels,stats,_=cv2.connectedComponentsWithStats(candidate)
- component=np.where(labels==1+np.argmax(stats[1:,cv2.CC_STAT_AREA]),255,0).astype('uint8')
- contours,_=cv2.findContours(component,cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_NONE)
- alpha=np.zeros_like(component);cv2.drawContours(alpha,contours,-1,255,cv2.FILLED)
- x,y,w,h=cv2.boundingRect(alpha);rgba=np.dstack([arr,alpha])[y:y+h,x:x+w]
- target=ROOT/f'public/packs/pokemon/ecard2-{design}.png';Image.fromarray(rgba).save(target)
- wrappers.append({'design':design,'url':'https:'+product['images'][i],'sourcePage':'https://loosepacks.com/products/aquapolis-unlimited-short-crimp','sourceSha256':sha(source),
-  'sha256':sha(target),'crop':[x,y,x+w,y+h],'dimensions':[w,h],'method':'Filled outer wrapper silhouette removes black background and tapered side gaps; tight crop; seals retained; no rotation or stretch.'})
-(ROOT/'scripts/aquapolis/wrapper-sources.json').write_text(json.dumps(wrappers,indent=2)+'\n')
+import runpy
+runpy.run_path(str(ROOT/'scripts/aquapolis/crop-wrappers.py'),run_name='__main__')
 print('Prepared 32 unchanged supplied SAM protections, 32 registered windows, 32 empty motifs, 151 reverse maps, 186 thumbnails and four tightly cropped wrappers.')

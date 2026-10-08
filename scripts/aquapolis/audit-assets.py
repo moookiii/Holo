@@ -53,6 +53,7 @@ for w in wrappers:
  p=ROOT/f"public/packs/pokemon/ecard2-{w['design']}.png";im=Image.open(p);im.load()
  assert im.mode=='RGBA' and list(im.size)==w['dimensions']
  assert im.getchannel('A').getbbox()==(0,0,*im.size)
+ assert im.getchannel('A').getextrema()==(255,255), 'Wrapper must have no transparent tapered gaps'
  assert sha(p)==w['sha256']
 thumbs=list((BASE/'thumbnails').glob('*.webp'));assert len(thumbs)==186
 for p in thumbs:Image.open(p).load()
