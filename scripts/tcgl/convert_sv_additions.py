@@ -71,6 +71,8 @@ def main():
                 evidence['finishReview']='Existing localized gold metallic-ink material reused with the exact TCGL Worlds logo mask. No fabricated stamp geometry; physical calibration pending.'
             if p['variant'] in ('pokeball-reverse','masterball-reverse') and '_CastAndCure_' in p['tcglVariantId']:
                 evidence['finishReview']='Exact TCGL coverage preserved. Cast-and-cure Poké Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized.'
+            if '_CastAndCure_SouthernCross' in p['tcglVariantId']:
+                evidence['finishReview']='Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending.'
             evidence['rendererReady']=True
             path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
             print(set_id+' '+p['number']+' '+p['variant']+' '+result['profile'],flush=True)

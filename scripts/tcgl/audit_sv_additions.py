@@ -1,5 +1,6 @@
 """Verify preserved TCGL bytes and every added offline PNG; record finish gaps."""
 from concurrent.futures import ThreadPoolExecutor
+from collections import Counter
 from pathlib import Path
 import hashlib,json
 import numpy as np
@@ -43,17 +44,10 @@ def main():
         for p in ps:
             kind='cast-and-cure-pokeball' if '_CastAndCure_SVPokeBall' in p['tcglVariantId'] else 'cast-and-cure-masterball' if '_CastAndCure_SVMasterBall' in p['tcglVariantId'] else 'black-white-rare' if p['rarity']=='Black White Rare' else 'cosmos-placement' if p['foil'] and p['foil']['type']=='COSMOS' else None
             if kind:gaps[kind].append({'cardId':p['cardId'],'name':p['name'],'variant':p['variant'],'tcglVariantId':p['tcglVariantId']})
-            if p['foil'] and '_CastAndCure_SouthernCross' in p['tcglVariantId']:
-                # This finish already has an authored shader; do not count it
-                # as a missing Poké Ball/Master Ball cast-and-cure symbol layer.
-                ep=ROOT/f'public/cards/pokemon/tcgl-sv/{set_id}/tcgl/{p["number"]}-{p["variant"]}-evidence.json'
-                evidence=json.loads(ep.read_text(encoding='utf-8'))
-                evidence['finishReview']='Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending.'
-                ep.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
     with ThreadPoolExecutor(max_workers=4) as pool: list(pool.map(audit,all_printings))
     report={'status':'passed','sets':sets,'cards':sum(s['cards'] for s in sets),'printings':len(all_printings),
             'foilPrintings':sum(s['foilPrintings'] for s in sets),'etchedPrintings':sum(s['etchedPrintings'] for s in sets),
-            'sourceDimensions':{'frontAndEtch':[733,1024],'foil':[367,512]},'normalDimensions':[1800,2475],
+            'sourceDimensions':{kind:dict(Counter('x'.join(map(str,p['sources'][kind]['dimensions'])) for p in all_printings if kind in p['sources'])) for kind in ('front','foil','etch')},'normalDimensions':[1800,2475],
             'normalConversion':{'polarity':'1 - mean RGB','resize':'full-domain bilinear','crop':None,'flip':False,'offset':[0,0],
                 'derivative':'OpenCV Scharr CV_32F scale 1/32 before protection','slopeGain':1.03,'encoding':'opaque RGB OpenGL +Y','activeHeightEmboss':False},
             'integrity':'All source/front/output SHA-256 hashes and PNG dimensions passed. All fully protected normal pixels are (128,128,255). Cosmos motifs are empty PNGs.',
