@@ -55,7 +55,7 @@ test('missing SV products retain every exact printing and its own front/maps', (
   assert.equal(ids.size, 1190);
 });
 
-test('BW ball variants apply supplied basic/evolved masks using the existing smooth material', () => {
+test('BW ball variants keep supplied basic/evolved patterns separate from their silver backing', () => {
   for (const id of ['sv10.5w-001', 'sv10.5b-001', 'sv10.5b-002']) {
     for (const variant of ['pokeball-reverse', 'masterball-reverse'] as const) {
       const surface = surfaces.get(`${id}:${variant}`); assert.ok(surface);
@@ -64,8 +64,10 @@ test('BW ball variants apply supplied basic/evolved masks using the existing smo
       assert.equal(evidence.ballMask.status, 'applied');
       assert.equal(evidence.ballMask.layout, id === 'sv10.5b-002' ? 'evolved' : 'basic');
       assert.equal(evidence.ballMask.kind, variant === 'pokeball-reverse' ? 'poke' : 'master');
-      assert.equal(surface.profile, 'prismatic_standard_reverse');
-      assert.match(evidence.finishReview, /no new shader/);
+      assert.equal(surface.profile, variant === 'pokeball-reverse' ? 'bw-pokeball-reverse' : 'bw-masterball-reverse');
+      assert.ok(surface.maps.pattern && surface.maps.direction);
+      assert.notEqual(surface.maps.pattern, surface.maps.foil);
+      assert.match(evidence.finishReview, /continuous silver/);
       assert.equal(surface.maps.normal, undefined);
     }
   }
