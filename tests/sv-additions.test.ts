@@ -55,13 +55,17 @@ test('missing SV products retain every exact printing and its own front/maps', (
   assert.equal(ids.size, 1190);
 });
 
-test('Poké Ball and Master Ball variants preserve coverage and declare missing cast-and-cure optics', () => {
-  for (const id of ['sv10.5w-001', 'sv10.5b-001']) {
+test('BW ball variants apply supplied basic/evolved masks using the existing smooth material', () => {
+  for (const id of ['sv10.5w-001', 'sv10.5b-001', 'sv10.5b-002']) {
     for (const variant of ['pokeball-reverse', 'masterball-reverse'] as const) {
       const surface = surfaces.get(`${id}:${variant}`); assert.ok(surface);
       const evidence = JSON.parse(readFileSync(publicFile(surface.evidence), 'utf8'));
       assert.match(evidence.tcglVariantId, /CastAndCure/);
-      assert.match(evidence.finishReview, /effect pending/);
+      assert.equal(evidence.ballMask.status, 'applied');
+      assert.equal(evidence.ballMask.layout, id === 'sv10.5b-002' ? 'evolved' : 'basic');
+      assert.equal(evidence.ballMask.kind, variant === 'pokeball-reverse' ? 'poke' : 'master');
+      assert.equal(surface.profile, 'prismatic_standard_reverse');
+      assert.match(evidence.finishReview, /no new shader/);
       assert.equal(surface.maps.normal, undefined);
     }
   }
