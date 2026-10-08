@@ -9,6 +9,17 @@ const pixel = (r: number, g = r, b = r, a = 255) => [r, g, b, a];
 const profiles = [masterPrism, { ...masterPrism, id: 'print-only' }, { ...masterPrism, id: 'pokemon-test', family: 'Pokémon' as const }];
 const minimal = { title: 'Local original', front: 'front.png', back: 'back.jpg' };
 
+test('saved set-specific gold IDs migrate to Gold Etched, including independent foil regions', () => {
+  const library = [...profiles, { ...masterPrism, id: 'gold-etched', family: 'Pokémon' as const }];
+  for (const profile of ['prismatic_gold', 'pokemon151_gold', 'sv_tcgl_gold']) {
+    const parsed = parseCardImportManifest({ ...minimal, franchise: 'Pokémon', profile,
+      profileOverrides: { secondaryProfile: profile, stampProfile: profile } }, library);
+    assert.equal(parsed.profile, 'gold-etched');
+    assert.equal(parsed.profileOverrides?.secondaryProfile, 'gold-etched');
+    assert.equal(parsed.profileOverrides?.stampProfile, 'gold-etched');
+  }
+});
+
 test('motif imports retain separate CPU symbols and reject invalid manufacturing settings', () => {
   const motif = { symbols: ['ball', 'star'], arrangement: 'scattered', size: .3, smallScale: .5, rotation: 0, curvature: .2 };
   const input = { ...minimal, profile: 'master-prism', maps: { motif: 'ball.png', secondaryMotif: 'glyph.png', stampMotif: 'seal.png' },

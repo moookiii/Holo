@@ -1,4 +1,5 @@
 import type { CardDefinition } from '../card/CardDefinition';
+import { canonicalProfileId } from '../materials/profiles/ProfileAliases.ts';
 import { compareGallerySetNames, gallerySetName } from '../gallery/GalleryQuery';
 import { lightPresets, type StudioLighting, type LightPreset } from '../lighting/StudioLighting';
 
@@ -50,6 +51,7 @@ export function createUI(root: HTMLElement, cards: CardDefinition[], profiles: P
   let selectedCard = cards[0].id;
   let selectedProfile = cards[0].profile;
   const selectProfile = (id: string) => {
+    id = canonicalProfileId(id);
     selectedProfile = id;
     // Debug scripts can apply a non-presentation treatment without mislabeling it
     // or adding it to the list of selectable treatments.

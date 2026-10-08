@@ -1,6 +1,7 @@
 import { DIMENSIONS, type CardDefinition, type CardDimensions, type CardMapPaths, type Franchise } from '../card/CardDefinition.ts';
 import type { CardProfileOverrides, FoilOverrides, HolographicProfile } from '../materials/HolographicProfile';
 import { resolveCoverageMaps } from './CardCoverage.ts';
+import { canonicalProfileId } from '../materials/profiles/ProfileAliases.ts';
 import { MOTIF_SYMBOLS, type MotifSpec } from '../materials/patterns/MotifField.ts';
 
 export type CardImportSpec = Omit<CardDefinition, 'id' | 'imported'>;
@@ -70,7 +71,7 @@ function profileOverrides(value: unknown, profiles: readonly HolographicProfile[
   for (const region of ['secondary', 'stamp'] as const) {
     const key = `${region}Profile` as const;
     if (source[key] !== undefined) {
-      const id = string(source[key], `profileOverrides.${key}`);
+      const id = canonicalProfileId(string(source[key], `profileOverrides.${key}`));
       if (!profiles.some(p => p.id === id)) throw new Error(`Unknown ${region} profile: ${id}.`);
       result[key] = id;
     }
@@ -108,7 +109,7 @@ export function parseCardImportManifest(value: unknown, profiles: readonly Holog
   if (source.version !== undefined && source.version !== 1) throw new Error('This card manifest version is not supported.');
   const franchise = string(source.franchise, 'franchise', 'Original') as Franchise;
   if (!['Original', 'Pokémon', 'Yu-Gi-Oh!', 'Magic: The Gathering'].includes(franchise)) throw new Error('Choose Original, Pokémon, Yu-Gi-Oh!, or Magic: The Gathering as the franchise.');
-  const profile = string(source.profile, 'profile', 'print-only'), base = profiles.find(p => p.id === profile);
+  const profile = canonicalProfileId(string(source.profile, 'profile', 'print-only')), base = profiles.find(p => p.id === profile);
   if (!base) throw new Error(`Unknown foil profile: ${profile}.`);
   if (profile !== 'print-only' && base.family !== franchise) throw new Error('The primary foil profile must belong to the selected franchise.');
   let construction: CardDefinition['construction'];

@@ -1,6 +1,7 @@
 import type { CardDefinition } from '../../card/CardDefinition';
 import type { FoilLayer, FoilOverrides, HolographicProfile } from '../HolographicProfile';
 import { getProfile } from './index';
+import { canonicalProfileId } from './ProfileAliases.ts';
 import { yugiohPrintingProfile } from './YugiohPrinting';
 
 function overrideLayer(base: FoilLayer, changes: FoilOverrides = {}): FoilLayer {
@@ -18,7 +19,7 @@ function overrideLayer(base: FoilLayer, changes: FoilOverrides = {}): FoilLayer 
 /** Per-print tuning never mutates a shared profile or bleeds into another card. */
 export function resolveCardProfile(card: CardDefinition, id = card.profile): HolographicProfile {
   const selected = id === card.profile && card.yugioh ? yugiohPrintingProfile(card.yugioh) : id;
-  const base = getProfile(selected), changes = id === card.profile ? card.profileOverrides : undefined;
+  const base = getProfile(selected), changes = canonicalProfileId(id) === canonicalProfileId(card.profile) ? card.profileOverrides : undefined;
   if (!changes) return base;
   const secondary = changes.secondaryProfile ? getProfile(changes.secondaryProfile) : base.secondary;
   const stamp = changes.stampProfile ? getProfile(changes.stampProfile) : base.stamp;

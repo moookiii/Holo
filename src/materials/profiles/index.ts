@@ -12,9 +12,13 @@ import { magicProfiles } from './magic';
 import { printOnly, firstMovieGold } from './print';
 import { mintedGold } from './metal';
 import { signalForestEtched } from './signalForest';
-export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold];
+import { canonicalProfileId } from './ProfileAliases.ts';
+const goldEtched = { ...prismaticProfiles.find(p => p.id === 'prismatic_gold')!, id: 'gold-etched', name: 'Gold Etched' };
+export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold]
+  .filter(p => canonicalProfileId(p.id) === p.id);
+profiles.push(goldEtched);
 export function getProfile(id: string) {
-  const profile = profiles.find(p => p.id === id);
+  const profile = profiles.find(p => p.id === canonicalProfileId(id));
   if (!profile) throw new Error(`Unknown foil profile: ${id}`);
   return profile;
 }

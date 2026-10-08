@@ -8,14 +8,16 @@ import { prismaticPickerCards } from '../src/pokemon/PrismaticSurfaces.ts';
 import { goldEtchedFinish } from '../src/materials/profiles/goldEtchedFinish.ts';
 import { tcglEtchedFinish } from '../src/materials/profiles/tcglEtchedFinish.ts';
 import { galleryBatchKey, galleryOpticalLayers } from '../src/gallery/GalleryBatch.ts';
+import { canonicalProfileId } from '../src/materials/profiles/ProfileAliases.ts';
 
 const cards = [...svTcglPickerCards(), ...pokemon151PickerCards(), ...prismaticPickerCards()];
-const gold = cards.filter(card => card.profile.endsWith('_gold') && card.maps?.normal);
+const gold = cards.filter(card => card.profile === 'gold-etched' && card.maps?.normal);
 const hash = (path: string) => createHash('sha256').update(readFileSync(path)).digest('hex');
 
 test('every exact gold printing opts into the finish without changing the TCGL die or print assets', () => {
   assert.ok(gold.length > 50);
   assert.ok(gold.some(card => card.id === 'pokemon:sv04-265:holo'));
+  assert.equal(gold.length, 63);
   for (const card of gold) {
     assert.equal(card.profileOverrides, goldEtchedFinish, card.id);
     assert.equal(card.mapSettings?.normalScale, 1);
@@ -30,6 +32,12 @@ test('every exact gold printing opts into the finish without changing the TCGL d
     assert.deepEqual(evidence.mapSize, [1800, 2475]);
     assert.match(evidence.tcglVariantId, /_HyperRare(?:BasicEnergy)?_.*_Etched$/);
   }
+});
+
+test('historical gold profile names resolve to the one Gold Etched material', () => {
+  for (const id of ['prismatic_gold', 'pokemon151_gold', 'sv_tcgl_gold', 'gold-etched'])
+    assert.equal(canonicalProfileId(id), 'gold-etched');
+  assert.equal(canonicalProfileId('pokemon151_sir_texture'), 'pokemon151_sir_texture');
 });
 
 test('gold calibration stays isolated from SIR, Ultra Rare, ex and smooth gold printings', () => {

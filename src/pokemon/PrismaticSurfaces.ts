@@ -1,5 +1,6 @@
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
+import { canonicalProfileId } from '../materials/profiles/ProfileAliases.ts';
 import { doubleRareProfile } from '../materials/profiles/doubleRare.ts';
 import { tcglPrismaticSurfaces } from './data/prismatic-surfaces.generated.ts';
 import { prismaticEnergyPickerCards } from './PrismaticEnergySurfaces.ts';
@@ -74,12 +75,12 @@ export function prismaticSurface(id: string, variant: PrintVariant): PrismaticSu
 }
 
 export function prismaticProfile(id: string, variant: PrintVariant): string {
-  return prismaticSurface(id, variant)?.profile ?? 'print-only';
+  return canonicalProfileId(prismaticSurface(id, variant)?.profile ?? 'print-only');
 }
 
 export function prismaticDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = prismaticCard(id), surface = prismaticSurface(id, variant);
-  const profile = surface?.profile ?? 'print-only';
+  const profile = canonicalProfileId(surface?.profile ?? 'print-only');
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${card.localId}/131 · ${card.rarity} · ${printVariantLabel(variant)}`,

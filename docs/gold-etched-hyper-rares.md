@@ -1,7 +1,9 @@
 # Gold etched Hyper Rare reflection calibration
 
-The shared `prismatic_gold`, `pokemon151_gold` and `sv_tcgl_gold` profiles use
-`goldEtchedFinish`. All 63 currently registered etched gold printings receive
+The single `gold-etched` profile, displayed as **Gold Etched**, uses
+`goldEtchedFinish`. Historical `prismatic_gold`, `pokemon151_gold` and
+`sv_tcgl_gold` IDs resolve to it for saved-manifest compatibility and are absent
+from the public profile library. All 63 registered etched gold printings receive
 the response in both the viewer and gallery. This is a material refinement in
 the existing renderer, not a new renderer or replacement relief workflow.
 

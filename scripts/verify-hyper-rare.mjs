@@ -32,7 +32,7 @@ try {
       h.hideUI(); h.lighting.playing = false;
     });
     const inventory = await page.evaluate(() => window.__holo.cards
-      .filter(c => c.profile.endsWith('_gold')).map(c => ({ id: c.id, title: c.title, set: c.set,
+      .filter(c => c.profile === 'gold-etched').map(c => ({ id: c.id, title: c.title, set: c.set,
         profile: c.profile, textured: !!c.maps?.normal, source: c.source, maps: c.maps })));
     await writeFile(join(root, 'inventory.json'), JSON.stringify(inventory, null, 2));
     const capture = async (name, light, yaw, pitch, roll = 0) => {
