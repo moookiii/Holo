@@ -30,8 +30,9 @@ def audit(p):
         assert evidence['normalScale']==1 and evidence['embossStrength']==0
         assert not (base/'tcgl'/(stem+'height.png')).exists()
     if p['foil']['type']=='COSMOS':
-        with Image.open(base/'tcgl'/f'{p["number"]}-{p["variant"]}-motif.png') as im:
-            assert im.size==(1200,1650) and im.getextrema()==(0,0)
+        assert evidence['reusedProfile']=='svp-cosmos'
+        assert evidence['cosmosPlacement']['status']=='shared-sheet'
+        assert not any(name.endswith('-motif.png') for name in evidence['maps'])
 
 def main():
     all_printings=[];sets=[];gaps={key:[] for key in ['cast-and-cure-pokeball','cast-and-cure-masterball','black-white-rare','cosmos-placement']}
@@ -42,7 +43,7 @@ def main():
                      'foilPrintings':sum('foil' in p['sources'] for p in ps),'etchedPrintings':sum('etch' in p['sources'] for p in ps),
                      'exports':source['exportSources']})
         for p in ps:
-            kind='cast-and-cure-pokeball' if '_CastAndCure_SVPokeBall' in p['tcglVariantId'] else 'cast-and-cure-masterball' if '_CastAndCure_SVMasterBall' in p['tcglVariantId'] else 'black-white-rare' if p['rarity']=='Black White Rare' else 'cosmos-placement' if p['foil'] and p['foil']['type']=='COSMOS' else None
+            kind='cast-and-cure-pokeball' if '_CastAndCure_SVPokeBall' in p['tcglVariantId'] else 'cast-and-cure-masterball' if '_CastAndCure_SVMasterBall' in p['tcglVariantId'] else 'black-white-rare' if p['rarity']=='Black White Rare' else None
             if kind:gaps[kind].append({'cardId':p['cardId'],'name':p['name'],'variant':p['variant'],'tcglVariantId':p['tcglVariantId']})
     with ThreadPoolExecutor(max_workers=4) as pool: list(pool.map(audit,all_printings))
     report={'status':'passed','sets':sets,'cards':sum(s['cards'] for s in sets),'printings':len(all_printings),
@@ -50,8 +51,9 @@ def main():
             'sourceDimensions':{kind:dict(Counter('x'.join(map(str,p['sources'][kind]['dimensions'])) for p in all_printings if kind in p['sources'])) for kind in ('front','foil','etch')},'normalDimensions':[1800,2475],
             'normalConversion':{'polarity':'1 - mean RGB','resize':'full-domain bilinear','crop':None,'flip':False,'offset':[0,0],
                 'derivative':'OpenCV Scharr CV_32F scale 1/32 before protection','slopeGain':1.03,'encoding':'opaque RGB OpenGL +Y','activeHeightEmboss':False},
-            'integrity':'All source/front/output SHA-256 hashes and PNG dimensions passed. All fully protected normal pixels are (128,128,255). Cosmos motifs are empty PNGs.',
-            'newShadersAdded':0,'missingShaderFamilies':2,'pendingTcglPatternAssetFamilies':0,'suppliedBallMasksApplied':304,'missingFinishCounts':{k:len(v) for k,v in gaps.items()},'pending':gaps,
+            'integrity':'All source/front/output SHA-256 hashes and PNG dimensions passed. All fully protected normal pixels are (128,128,255). Cosmos uses the user-approved shared SVP Cosmos sheet with exact TCGL coverage.',
+            'sharedCosmosPrintings':sum(p['foil'] is not None and p['foil']['type']=='COSMOS' for p in all_printings),
+            'cosmosProfile':'svp-cosmos','cosmosPlacementPending':0,'pendingTcglPatternAssetFamilies':0,'suppliedBallMasksApplied':304,'missingFinishCounts':{k:len(v) for k,v in gaps.items()},'pending':gaps,
             'visualReview':'Source-family sheets inspected. Sampled live render review is separate; individual high-zoom/angled-photo validation remains pending for unsampled cards.',
             'packOpening':'Catalog/gallery additions only. No invented pack odds or non-TCGL wrapper art; these added products remain browse-only.'}
     (ROOT/'public/cards/pokemon/tcgl-sv/additions-audit.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')

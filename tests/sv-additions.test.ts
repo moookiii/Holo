@@ -46,8 +46,8 @@ test('missing SV products retain every exact printing and its own front/maps', (
           assert.ok(surface.maps.normal); assert.equal(surface.maps.height, undefined);
         }
         if (surface.foilType === 'COSMOS') {
-          assert.equal(surface.profile, 'pokemon-base-set-2-cosmos');
-          assert.ok(surface.maps.motif); assert.equal(evidence.cosmosPlacement.status, 'pending');
+          assert.equal(surface.profile, 'svp-cosmos');
+          assert.equal(surface.maps.motif, undefined); assert.equal(evidence.cosmosPlacement.status, 'shared-sheet');
         }
       }
     }

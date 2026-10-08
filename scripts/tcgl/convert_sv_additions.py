@@ -15,7 +15,7 @@ def profile(p):
     if 'etch' in p['sources']: return 'prismatic_sir_texture'
     if variant=='pokeball-reverse': return 'prismatic_pokeball_reverse'
     if variant=='masterball-reverse': return 'prismatic_masterball_reverse'
-    if foil=='COSMOS': return 'pokemon-base-set-2-cosmos'
+    if foil=='COSMOS': return 'svp-cosmos'
     if foil=='TINSEL': return 'pokemon-tinsel'
     if foil=='CRACKED_ICE': return 'pokemon-cracked-ice'
     if foil=='ACE_FOIL': return 'pokemon-ace-spec'
@@ -56,11 +56,7 @@ def main():
                 'reusedProfile':result['profile'],'individualVisualReview':'pending except source-family samples',
                 'physicalPhotoReview':'pending; TCGL geometry does not measure depth'})
             if p['foil']['type']=='COSMOS':
-                motif=converter.OUT/(p['number']+'-'+p['variant']+'-motif.png')
-                converter.png(motif,np.zeros((1650,1200),np.uint8))
-                result['maps']['motif']=converter.PUBLIC_BASE+'/tcgl/'+motif.name
-                evidence['cosmosPlacement']={'status':'pending','reason':'TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots.'}
-                evidence['maps'][motif.name]=converter.digest(motif);evidence['mapDimensions'][motif.name]=[1200,1650]
+                evidence['cosmosPlacement']={'status':'shared-sheet','profile':'svp-cosmos','reason':'User approved common Cosmos placement for clean TCGL fronts. Exact per-card foil/protection remains active.'}
             if p['rarity']=='Black White Rare':
                 evidence['finishReview']='Existing etched reference reused; dedicated Black/White Rare ink/foil angular response remains unimplemented.'
             if p['foil']['type']=='STAMPED':

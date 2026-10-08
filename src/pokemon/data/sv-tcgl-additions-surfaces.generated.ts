@@ -13526,12 +13526,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-17",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/17-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/17-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/17-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/17-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/17-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13551,12 +13550,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-19",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/19-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/19-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/19-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/19-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/19-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13564,12 +13562,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-20",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/20-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/20-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/20-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/20-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/20-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13577,12 +13574,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-21",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/21-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/21-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/21-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/21-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/21-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13590,12 +13586,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-22",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/22-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/22-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/22-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/22-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/22-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13603,12 +13598,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-27",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/27-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/27-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/27-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/27-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/27-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13616,12 +13610,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-28",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/28-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/28-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/28-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/28-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/28-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13677,12 +13670,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-33",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/33-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/33-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/33-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/33-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/33-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13726,12 +13718,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-37",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/37-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/37-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/37-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/37-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/37-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13739,12 +13730,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-38",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/38-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/38-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/38-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/38-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/38-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13752,12 +13742,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-39",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/39-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/39-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/39-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/39-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/39-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13789,12 +13778,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-42",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/42-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/42-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/42-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/42-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/42-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13802,12 +13790,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-43",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/43-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/43-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/43-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/43-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/43-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13815,12 +13802,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-44",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/44-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/44-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/44-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/44-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/44-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13828,12 +13814,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-45",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/45-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/45-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/45-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/45-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/45-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13841,12 +13826,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-46",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/46-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/46-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/46-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/46-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/46-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13854,12 +13838,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-47",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/47-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/47-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/47-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/47-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/47-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13867,12 +13850,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-48",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/48-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/48-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/48-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/48-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/48-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13880,12 +13862,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-49",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/49-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/49-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/49-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/49-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/49-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13893,12 +13874,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-50",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/50-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/50-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/50-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/50-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/50-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13906,12 +13886,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-51",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/51-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/51-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/51-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/51-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/51-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13919,12 +13898,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-52",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/52-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/52-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/52-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/52-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/52-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13932,12 +13910,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-53",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/53-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/53-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/53-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/53-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/53-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13957,12 +13934,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-55",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/55-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/55-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/55-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/55-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/55-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13970,12 +13946,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-56",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/56-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/56-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/56-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/56-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/56-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13983,12 +13958,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-57",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/57-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/57-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/57-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/57-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/57-holo-evidence.json",
     "foilType": "COSMOS"
@@ -13996,12 +13970,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-58",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/58-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/58-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/58-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/58-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/58-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14009,12 +13982,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-59",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/59-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/59-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/59-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/59-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/59-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14022,12 +13994,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-60",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/60-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/60-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/60-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/60-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/60-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14035,12 +14006,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-61",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/61-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/61-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/61-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/61-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/61-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14048,12 +14018,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-62",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/62-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/62-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/62-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/62-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/62-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14061,12 +14030,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-63",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/63-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/63-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/63-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/63-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/63-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14074,12 +14042,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-64",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/64-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/64-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/64-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/64-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/64-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14087,12 +14054,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-65",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/65-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/65-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/65-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/65-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/65-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14100,12 +14066,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-66",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/66-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/66-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/66-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/66-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/66-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14113,12 +14078,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-67",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/67-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/67-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/67-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/67-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/67-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14126,12 +14090,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-68",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/68-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/68-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/68-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/68-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/68-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14139,12 +14102,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-69",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/69-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/69-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/69-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/69-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/69-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14152,12 +14114,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-70",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/70-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/70-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/70-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/70-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/70-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14165,12 +14126,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-71",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/71-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/71-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/71-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/71-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/71-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14202,12 +14162,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-74",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/74-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/74-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/74-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/74-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/74-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14215,12 +14174,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-75",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/75-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/75-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/75-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/75-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/75-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14228,12 +14186,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-76",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/76-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/76-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/76-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/76-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/76-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14241,12 +14198,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-77",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/77-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/77-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/77-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/77-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/77-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14254,12 +14210,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-78",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/78-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/78-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/78-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/78-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/78-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14267,12 +14222,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-79",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/79-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/79-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/79-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/79-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/79-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14280,12 +14234,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-80",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/80-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/80-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/80-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/80-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/80-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14293,12 +14246,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-81",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/81-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/81-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/81-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/81-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/81-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14306,12 +14258,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-82",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/82-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/82-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/82-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/82-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/82-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14319,12 +14270,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-83",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/83-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/83-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/83-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/83-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/83-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14332,12 +14282,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-84",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/84-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/84-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/84-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/84-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/84-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14357,12 +14306,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-86",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/86-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/86-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/86-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/86-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/86-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14370,12 +14318,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-87",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/87-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/87-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/87-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/87-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/87-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14383,12 +14330,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-88",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/88-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/88-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/88-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/88-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/88-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14396,12 +14342,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-89",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/89-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/89-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/89-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/89-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/89-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14409,12 +14354,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-90",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/90-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/90-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/90-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/90-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/90-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14422,12 +14366,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-91",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/91-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/91-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/91-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/91-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/91-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14435,12 +14378,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-92",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/92-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/92-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/92-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/92-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/92-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14448,12 +14390,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-93",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/93-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/93-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/93-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/93-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/93-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14461,12 +14402,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-94",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/94-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/94-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/94-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/94-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/94-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14474,12 +14414,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-95",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/95-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/95-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/95-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/95-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/95-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14525,12 +14464,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-99",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/99-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/99-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/99-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/99-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/99-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14538,12 +14476,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-100",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/100-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/100-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/100-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/100-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/100-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14551,12 +14488,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-101",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/101-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/101-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/101-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/101-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/101-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14564,12 +14500,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-102",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/102-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/102-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/102-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/102-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/102-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14577,12 +14512,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-103",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/103-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/103-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/103-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/103-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/103-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14590,12 +14524,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-104",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/104-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/104-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/104-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/104-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/104-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14603,12 +14536,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-105",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/105-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/105-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/105-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/105-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/105-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14616,12 +14548,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-106",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/106-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/106-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/106-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/106-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/106-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14629,12 +14560,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-107",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/107-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/107-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/107-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/107-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/107-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14642,12 +14572,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-108",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/108-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/108-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/108-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/108-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/108-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14655,12 +14584,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-109",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/109-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/109-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/109-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/109-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/109-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14668,12 +14596,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-110",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/110-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/110-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/110-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/110-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/110-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14789,12 +14716,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-120",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/120-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/120-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/120-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/120-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/120-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14802,12 +14728,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-121",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/121-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/121-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/121-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/121-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/121-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14815,12 +14740,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-122",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/122-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/122-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/122-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/122-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/122-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14828,12 +14752,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-123",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/123-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/123-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/123-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/123-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/123-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14841,12 +14764,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-124",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/124-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/124-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/124-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/124-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/124-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14854,12 +14776,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-125",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/125-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/125-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/125-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/125-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/125-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14879,12 +14800,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-127",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/127-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/127-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/127-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/127-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/127-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14892,12 +14812,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-128",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/128-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/128-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/128-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/128-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/128-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14905,12 +14824,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-129",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/129-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/129-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/129-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/129-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/129-holo-evidence.json",
     "foilType": "COSMOS"
@@ -14918,12 +14836,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-130",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/130-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/130-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/130-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/130-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/130-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15039,12 +14956,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-140",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/140-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/140-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/140-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/140-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/140-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15052,12 +14968,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-141",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/141-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/141-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/141-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/141-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/141-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15065,12 +14980,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-142",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/142-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/142-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/142-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/142-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/142-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15078,12 +14992,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-143",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/143-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/143-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/143-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/143-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/143-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15091,12 +15004,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-144",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/144-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/144-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/144-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/144-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/144-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15104,12 +15016,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-145",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/145-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/145-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/145-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/145-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/145-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15117,12 +15028,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-146",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/146-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/146-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/146-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/146-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/146-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15130,12 +15040,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-147",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/147-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/147-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/147-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/147-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/147-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15143,12 +15052,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-148",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/148-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/148-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/148-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/148-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/148-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15156,12 +15064,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-149",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/149-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/149-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/149-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/149-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/149-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15169,12 +15076,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-150",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/150-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/150-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/150-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/150-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/150-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15194,12 +15100,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-152",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/152-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/152-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/152-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/152-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/152-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15207,12 +15112,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-153",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/153-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/153-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/153-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/153-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/153-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15220,12 +15124,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-154",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/154-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/154-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/154-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/154-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/154-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15233,12 +15136,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-155",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/155-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/155-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/155-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/155-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/155-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15396,12 +15298,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-167",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/167-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/167-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/167-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/167-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/167-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15409,12 +15310,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-168",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/168-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/168-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/168-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/168-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/168-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15422,12 +15322,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-169",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/169-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/169-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/169-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/169-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/169-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15435,12 +15334,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-170",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/170-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/170-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/170-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/170-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/170-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15448,12 +15346,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-171",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/171-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/171-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/171-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/171-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/171-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15461,12 +15358,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-172",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/172-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/172-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/172-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/172-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/172-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15474,12 +15370,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-173",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/173-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/173-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/173-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/173-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/173-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15487,12 +15382,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-174",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/174-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/174-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/174-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/174-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/174-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15500,12 +15394,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-175",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/175-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/175-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/175-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/175-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/175-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15513,12 +15406,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-176",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/176-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/176-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/176-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/176-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/176-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15526,12 +15418,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-177",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/177-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/177-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/177-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/177-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/177-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15539,12 +15430,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-178",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/178-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/178-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/178-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/178-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/178-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15552,12 +15442,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-179",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/179-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/179-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/179-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/179-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/179-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15565,12 +15454,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-180",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/180-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/180-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/180-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/180-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/180-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15578,12 +15466,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-181",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/181-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/181-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/181-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/181-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/181-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15603,12 +15490,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-183",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/183-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/183-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/183-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/183-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/183-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15616,12 +15502,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-184",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/184-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/184-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/184-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/184-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/184-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15629,12 +15514,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-185",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/185-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/185-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/185-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/185-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/185-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15642,12 +15526,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-186",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/186-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/186-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/186-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/186-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/186-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15655,12 +15538,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-187",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/187-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/187-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/187-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/187-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/187-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15668,12 +15550,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-188",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/188-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/188-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/188-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/188-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/188-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15705,12 +15586,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-191",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/191-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/191-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/191-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/191-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/191-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15718,12 +15598,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-192",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/192-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/192-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/192-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/192-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/192-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15745,12 +15624,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-194",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/194-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/194-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/194-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/194-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/194-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15782,12 +15660,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-197",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/197-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/197-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/197-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/197-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/197-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15795,12 +15672,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-198",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/198-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/198-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/198-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/198-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/198-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15808,12 +15684,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-199",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/199-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/199-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/199-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/199-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/199-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15947,12 +15822,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-210",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/210-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/210-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/210-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/210-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/210-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15960,12 +15834,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-211",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/211-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/211-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/211-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/211-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/211-holo-evidence.json",
     "foilType": "COSMOS"
@@ -15973,12 +15846,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-212",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/212-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/212-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/212-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/212-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/212-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16010,12 +15882,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-215",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/215-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/215-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/215-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/215-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/215-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16023,12 +15894,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-216",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/216-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/216-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/216-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/216-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/216-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16060,12 +15930,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-219",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/219-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/219-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/219-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/219-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/219-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16181,12 +16050,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-229",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/229-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/229-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/229-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/229-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/229-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16254,12 +16122,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-235",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/235-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/235-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/235-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/235-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/235-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16267,12 +16134,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-236",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/236-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/236-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svalt/tcgl/236-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/236-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/236-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16280,12 +16146,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-1-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/1-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/1-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/1-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/1-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/1-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16293,12 +16158,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-2-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/2-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/2-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/2-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/2-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/2-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16306,12 +16170,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-3-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/3-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/3-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/3-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/3-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/3-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16319,12 +16182,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-4-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/4-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/4-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/4-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/4-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/4-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16332,12 +16194,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-5-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/5-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/5-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/5-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/5-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/5-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16345,12 +16206,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-6-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/6-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/6-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/6-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/6-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/6-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16358,12 +16218,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-7-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/7-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/7-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/7-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/7-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/7-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16371,12 +16230,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sve-8-ph",
     "variant": "reverse",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sve/tcgl/8-ph-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/8-ph-reverse-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/sve/tcgl/8-ph-reverse-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/sve/tcgl/8-ph-reverse-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sve/tcgl/8-ph-reverse-evidence.json",
     "foilType": "COSMOS"
@@ -16672,12 +16530,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-9",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/9-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/9-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/9-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/9-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/9-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16685,12 +16542,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-10",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/10-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/10-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/10-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/10-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/10-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16698,12 +16554,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-11",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/11-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/11-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/11-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/11-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/11-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16711,12 +16566,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-12",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/12-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/12-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/12-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/12-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/12-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16832,12 +16686,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-23",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/23-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/23-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/23-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/23-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/23-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16845,12 +16698,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-24",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/24-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/24-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/24-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/24-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/24-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16858,12 +16710,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-25",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/25-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/25-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/25-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/25-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/25-holo-evidence.json",
     "foilType": "COSMOS"
@@ -16871,12 +16722,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-26",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/26-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/26-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/26-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/26-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/26-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17040,12 +16890,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-40",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/40-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/40-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/40-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/40-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/40-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17053,12 +16902,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-41",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/41-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/41-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/41-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/41-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/41-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17066,12 +16914,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-42",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/42-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/42-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/42-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/42-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/42-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17079,12 +16926,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-43",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/43-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/43-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/43-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/43-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/43-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17104,12 +16950,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-46",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/46-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/46-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/46-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/46-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/46-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17117,12 +16962,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-47",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/47-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/47-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/47-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/47-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/47-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17130,12 +16974,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-48",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/48-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/48-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/48-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/48-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/48-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17291,12 +17134,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-61",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/61-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/61-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/61-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/61-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/61-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17304,12 +17146,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-62",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/62-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/62-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/62-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/62-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/62-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17317,12 +17158,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-63",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/63-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/63-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/63-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/63-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/63-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17330,12 +17170,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-64",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/64-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/64-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/64-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/64-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/64-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17697,12 +17536,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-93",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/93-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/93-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/93-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/93-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/93-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17710,12 +17548,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-94",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/94-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/94-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/94-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/94-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/94-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17723,12 +17560,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-95",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/95-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/95-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/95-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/95-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/95-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17736,12 +17572,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-96",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/96-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/96-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/96-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/96-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/96-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17773,12 +17608,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-99",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/99-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/99-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/99-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/99-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/99-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17906,12 +17740,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-119",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/119-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/119-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/119-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/119-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/119-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17919,12 +17752,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-120",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/120-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/120-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/120-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/120-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/120-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17932,12 +17764,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-121",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/121-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/121-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/121-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/121-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/121-holo-evidence.json",
     "foilType": "COSMOS"
@@ -17945,12 +17776,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-122",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/122-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/122-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/122-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/122-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/122-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18134,12 +17964,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-137",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/137-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/137-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/137-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/137-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/137-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18147,12 +17976,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-138",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/138-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/138-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/138-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/138-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/138-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18160,12 +17988,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-139",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/139-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/139-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/139-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/139-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/139-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18173,12 +18000,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-140",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/140-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/140-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/140-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/140-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/140-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18270,12 +18096,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-149",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/149-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/149-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/149-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/149-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/149-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18331,12 +18156,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-155",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/155-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/155-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/155-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/155-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/155-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18344,12 +18168,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-156",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/156-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/156-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/156-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/156-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/156-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18357,12 +18180,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-157",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/157-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/157-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/157-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/157-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/157-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18370,12 +18192,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-158",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/158-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/158-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/158-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/158-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/158-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18487,12 +18308,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-167",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/167-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/167-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/167-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/167-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/167-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18500,12 +18320,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-168",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/168-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/168-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/168-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/168-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/168-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18513,12 +18332,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-169",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/169-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/169-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/169-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/169-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/169-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18526,12 +18344,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-170",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/170-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/170-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/170-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/170-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/170-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18539,12 +18356,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-171",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/171-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/171-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/171-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/171-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/171-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18552,12 +18368,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-172",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/172-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/172-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/172-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/172-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/172-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18715,12 +18530,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-185",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/185-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/185-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/185-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/185-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/185-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18728,12 +18542,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-186",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/186-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/186-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/186-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/186-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/186-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18741,12 +18554,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-187",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/187-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/187-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/187-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/187-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/187-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18754,12 +18566,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-188",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/188-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/188-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/188-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/188-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/188-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18857,12 +18668,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-199",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/199-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/199-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/199-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/199-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/199-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18870,12 +18680,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-200",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/200-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/200-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/200-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/200-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/200-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18883,12 +18692,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-201",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/201-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/201-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/201-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/201-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/201-holo-evidence.json",
     "foilType": "COSMOS"
@@ -18896,12 +18704,11 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-202",
     "variant": "holo",
-    "profile": "pokemon-base-set-2-cosmos",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/202-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/202-holo-protection.png",
-      "motif": "/cards/pokemon/tcgl-sv/svp/tcgl/202-holo-motif.png"
+      "protection": "/cards/pokemon/tcgl-sv/svp/tcgl/202-holo-protection.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svp/tcgl/202-holo-evidence.json",
     "foilType": "COSMOS"

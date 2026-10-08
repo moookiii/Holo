@@ -56,8 +56,7 @@
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
     "140-holo-foil.png": "bfb81e6d76d3c64d3657022007021cdb9d79a23a421ff73e2b0ec8270bd4da46",
-    "140-holo-protection.png": "2318bc191f1638254b0a573dd78cdf72060660d1a71d1fbf570dcdbcf9b182db",
-    "140-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "140-holo-protection.png": "2318bc191f1638254b0a573dd78cdf72060660d1a71d1fbf570dcdbcf9b182db"
   },
   "holoFrontSha256": "2040cee3de8ea8ad491e771864dbd84c0f045abc35ad6f99e171d03bebed8c36",
   "mapDimensions": {
@@ -68,10 +67,6 @@
     "140-holo-protection.png": [
       1800,
       2475
-    ],
-    "140-holo-motif.png": [
-      1200,
-      1650
     ]
   },
   "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
@@ -170,11 +165,12 @@
     }
   },
   "frontFile": "140.png",
-  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "reusedProfile": "svp-cosmos",
   "individualVisualReview": "pending except source-family samples",
   "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+    "status": "shared-sheet",
+    "profile": "svp-cosmos",
+    "reason": "User approved shared placement on clean TCGL fronts. Exact per-card coverage/protection retained."
   }
 }

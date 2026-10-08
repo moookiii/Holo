@@ -1,8 +1,8 @@
-# Cosmos printings awaiting motif placement
+# Cosmos printings using the shared SVP sheet
 
 193 printings: 51 SV Black Star Promos, 134 alternate printings, and 8 PH Basic Energy reverses. These are printings, not 193 distinct Pokémon.
 
-The TCGL foil coverage is registered. Animated circles/swirl placement is pending. Alternate IDs are internal TCGL catalog IDs; the printed collector numbers and set icons below identify the actual cards.
+The TCGL foil coverage is registered. All listed printings now use SVP Cosmos with shared animated circles/swirl placement, as requested. Alternate IDs are internal TCGL catalog IDs; the printed collector numbers and set icons below identify the actual cards.
 
 ## SV Black Star Promos — 51
 

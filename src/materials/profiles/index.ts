@@ -9,6 +9,7 @@ import { pokemon151Profiles } from './pokemon151';
 import { svTcglProfiles } from './svTcgl';
 import { blackWhiteRareProfiles } from './blackWhiteRare';
 import { bwBallReverseProfiles } from './bwBallReverse';
+import { svpCosmos } from './svpCosmos';
 import { yugiohProfiles } from './yugioh';
 import { magicProfiles } from './magic';
 import { printOnly, firstMovieGold } from './print';
@@ -20,6 +21,7 @@ export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, phantomC
   .filter(p => canonicalProfileId(p.id) === p.id);
 profiles.push(goldEtched);
 profiles.push(...bwBallReverseProfiles, ...blackWhiteRareProfiles);
+profiles.push(svpCosmos);
 export function getProfile(id: string) {
   const profile = profiles.find(p => p.id === canonicalProfileId(id));
   if (!profile) throw new Error(`Unknown foil profile: ${id}`);
