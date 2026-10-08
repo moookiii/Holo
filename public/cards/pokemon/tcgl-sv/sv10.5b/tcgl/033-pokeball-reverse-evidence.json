@@ -47,7 +47,7 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Exact TCGL continuous coverage multiplied by the user-supplied stage-specific ball PNG in full-card UV coordinates.",
+  "foilMethod": "Exact TCGL continuous coverage with decoded black floor removed. Separate user-supplied full-card pattern mask clips only the optical symbol response.",
   "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
@@ -55,7 +55,7 @@
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "033-pokeball-reverse-foil.png": "018f14a00a11caf92b857b395fa29f2e663051b6fd1904a4c78320e74933ef43",
+    "033-pokeball-reverse-foil.png": "865f92a4dad102271150a65c506344d1988abc5537fe4c27c995b74129ef6b7a",
     "033-pokeball-reverse-protection.png": "26f363ee9e6eb7e7cd163d709cec3d2d29255a57ec98c8d7a1152a5b7ff39652"
   },
   "holoFrontSha256": "eb8d17e6890fa66a64a8b8bf82f7f1bb16e1730af50c02949cf59669f41f7843",
@@ -165,10 +165,10 @@
     }
   },
   "frontFile": "033-pokeball-reverse.png",
-  "reusedProfile": "prismatic_standard_reverse",
+  "reusedProfile": "bw-pokeball-reverse",
   "individualVisualReview": "pending except source-family samples",
   "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
-  "finishReview": "User-supplied ball pattern applied with existing smooth silver reverse material; no new shader or etched relief.",
+  "finishReview": "Dedicated BW Pok\u00e9 Ball/Master Ball cast-and-cure spectrum and fine cap grain over continuous silver; shared viewer/gallery optical kernel; no etched relief.",
   "ballMask": {
     "status": "applied",
     "source": "User-supplied pokeball basic.png",
@@ -181,7 +181,16 @@
     "kind": "poke",
     "layout": "basic",
     "cardStage": "BASIC",
-    "method": "Full UV bilinear resize of mean RGB times alpha; multiply exact TCGL foil coverage. Keep protection PNG unchanged. No crop, offset, flip, normal or height conversion.",
-    "physicalReview": "Supplied pattern and layout; independent physical-copy calibration pending."
+    "method": "Unchanged full-card PNG controls pattern visibility separately from continuous exact TCGL foil coverage. Cap interiors from local mask occupancy control fine optical grain. Protection unchanged. No crop, offset, flip, normal or height conversion.",
+    "physicalReview": "Calibrated against supplied Snivy Pok\u00e9 Ball and Master Ball photos; dynamic physical-copy calibration remains approximate.",
+    "optics": {
+      "file": "public/materials/bw-ball-masks/poke-basic-optics.png",
+      "sha256": "ff5272b7b9a615f20a499bf8acb5a7ac550e70720a6a58de6833b71c67cae237",
+      "dimensions": [
+        743,
+        1038
+      ],
+      "encoding": "RG neutral 128; B cap-interior grain weight; A opaque 255. Optical data only, no normal or height."
+    }
   }
 }

@@ -4776,11 +4776,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-001",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4788,11 +4790,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-001",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/001-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4812,11 +4816,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-002",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4824,11 +4830,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-002",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/002-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4860,11 +4868,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-004",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4872,11 +4882,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-004",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/004-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4896,11 +4908,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-005",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4908,11 +4922,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-005",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/005-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4932,11 +4948,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-006",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4944,11 +4962,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-006",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/006-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4968,11 +4988,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-007",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -4980,11 +5002,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-007",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/007-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5004,11 +5028,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-008",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5016,11 +5042,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-008",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/008-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5040,11 +5068,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-009",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5052,11 +5082,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-009",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/009-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5076,11 +5108,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-010",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5088,11 +5122,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-010",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/010-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5112,11 +5148,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-011",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5124,11 +5162,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-011",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/011-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5160,11 +5200,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-012",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/012-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/012-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/012-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/012-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5184,11 +5226,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-013",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5196,11 +5240,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-013",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/013-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5220,11 +5266,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-014",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5232,11 +5280,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-014",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/014-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5256,11 +5306,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-015",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5268,11 +5320,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-015",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/015-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5304,11 +5358,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-016",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5316,11 +5372,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-016",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/016-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5340,11 +5398,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-017",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5352,11 +5412,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-017",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/017-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5376,11 +5438,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-018",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5388,11 +5452,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-018",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/018-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5412,11 +5478,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-019",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5424,11 +5492,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-019",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/019-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5448,11 +5518,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-020",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5460,11 +5532,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-020",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/020-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5484,11 +5558,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-021",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5496,11 +5572,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-021",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/021-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5520,11 +5598,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-022",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5532,11 +5612,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-022",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/022-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5568,11 +5650,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-023",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5580,11 +5664,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-023",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/023-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5604,11 +5690,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-024",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5616,11 +5704,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-024",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/024-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5640,11 +5730,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-025",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5652,11 +5744,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-025",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/025-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5688,11 +5782,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-026",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5700,11 +5796,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-026",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/026-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5724,11 +5822,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-027",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5736,11 +5836,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-027",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/027-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5772,11 +5874,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-029",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5784,11 +5888,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-029",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/029-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5808,11 +5914,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-030",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5820,11 +5928,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-030",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/030-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5844,11 +5954,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-031",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5856,11 +5968,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-031",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/031-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5880,11 +5994,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-032",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5892,11 +6008,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-032",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/032-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5928,11 +6046,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-033",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5940,11 +6060,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-033",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/033-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5976,11 +6098,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-035",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -5988,11 +6112,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-035",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/035-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6012,11 +6138,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-036",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6024,11 +6152,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-036",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/036-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6048,11 +6178,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-037",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6060,11 +6192,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-037",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/037-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6084,11 +6218,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-038",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6096,11 +6232,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-038",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/038-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6120,11 +6258,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-039",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6132,11 +6272,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-039",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/039-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6156,11 +6298,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-040",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6168,11 +6312,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-040",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/040-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6192,11 +6338,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-041",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6204,11 +6352,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-041",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/041-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6228,11 +6378,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-042",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6240,11 +6392,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-042",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/042-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6264,11 +6418,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-043",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6276,11 +6432,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-043",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/043-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6312,11 +6470,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-045",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6324,11 +6484,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-045",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/045-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6360,11 +6522,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-047",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6372,11 +6536,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-047",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/047-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6396,11 +6562,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-048",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6408,11 +6576,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-048",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/048-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6444,11 +6614,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-049",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6456,11 +6628,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-049",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/049-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6480,11 +6654,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-050",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6492,11 +6668,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-050",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/050-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6516,11 +6694,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-051",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6528,11 +6708,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-051",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/051-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6552,11 +6734,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-052",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6564,11 +6748,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-052",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/052-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6600,11 +6786,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-053",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6612,11 +6800,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-053",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/053-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6636,11 +6826,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-054",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6648,11 +6840,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-054",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/054-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6672,11 +6866,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-055",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6684,11 +6880,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-055",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/055-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6708,11 +6906,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-056",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6720,11 +6920,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-056",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/056-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6744,11 +6946,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-057",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6756,11 +6960,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-057",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/057-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6780,11 +6986,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-058",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6792,11 +7000,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-058",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/058-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6816,11 +7026,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-059",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6828,11 +7040,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-059",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/059-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6852,11 +7066,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-060",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6864,11 +7080,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-060",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/060-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6888,11 +7106,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-061",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6900,11 +7120,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-061",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/061-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6924,11 +7146,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-062",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6936,11 +7160,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-062",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/062-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6972,11 +7198,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-063",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -6984,11 +7212,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-063",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/063-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7008,11 +7238,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-064",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7020,11 +7252,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-064",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/064-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7044,11 +7278,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-065",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7056,11 +7292,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-065",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/065-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7092,11 +7330,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-066",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7104,11 +7344,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-066",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/066-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7140,11 +7382,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-068",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7152,11 +7396,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-068",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/068-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7176,11 +7422,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-069",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7188,11 +7436,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-069",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/069-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7224,11 +7474,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-070",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7236,11 +7488,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-070",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/070-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7260,11 +7514,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-071",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7272,11 +7528,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-071",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/071-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7296,11 +7554,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-072",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7308,11 +7568,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-072",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/072-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7332,11 +7594,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-073",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7344,11 +7608,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-073",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/073-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7368,11 +7634,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-074",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7380,11 +7648,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-074",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/074-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7404,11 +7674,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-075",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7416,11 +7688,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-075",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/075-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7440,11 +7714,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-076",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7452,11 +7728,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-076",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/076-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7476,11 +7754,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-077",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7488,11 +7768,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-077",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/077-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7512,11 +7794,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-078",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7524,11 +7808,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-078",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/078-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7548,11 +7834,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-079",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/079-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/079-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/079-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/079-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7572,11 +7860,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-080",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/080-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/080-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/080-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/080-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7596,11 +7886,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-081",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/081-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/081-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/081-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/081-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7620,11 +7912,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-082",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/082-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/082-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/082-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/082-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7644,11 +7938,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-083",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/083-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/083-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/083-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/083-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7668,11 +7964,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-084",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/084-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/084-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/084-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/084-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7692,11 +7990,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-085",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/085-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/085-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/085-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/085-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -7716,11 +8016,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5b-086",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/086-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/086-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/086-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5b/tcgl/086-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8806,11 +9108,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-001",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8818,11 +9122,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-001",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/001-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8842,11 +9148,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-002",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8854,11 +9162,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-002",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/002-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8878,11 +9188,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-003",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8890,11 +9202,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-003",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/003-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8914,11 +9228,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-004",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8926,11 +9242,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-004",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/004-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8962,11 +9280,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-006",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8974,11 +9294,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-006",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/006-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -8998,11 +9320,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-007",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9010,11 +9334,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-007",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/007-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9034,11 +9360,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-008",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9046,11 +9374,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-008",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/008-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9070,11 +9400,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-009",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9082,11 +9414,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-009",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/009-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9118,11 +9452,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-010",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9130,11 +9466,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-010",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/010-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9154,11 +9492,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-011",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9166,11 +9506,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-011",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/011-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9190,11 +9532,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-012",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9202,11 +9546,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-012",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/012-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9238,11 +9584,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-013",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9250,11 +9598,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-013",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/013-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9274,11 +9624,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-014",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9286,11 +9638,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-014",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/014-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9310,11 +9664,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-015",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9322,11 +9678,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-015",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/015-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9346,11 +9704,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-016",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9358,11 +9718,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-016",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/016-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9382,11 +9744,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-017",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9394,11 +9758,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-017",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/017-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9430,11 +9796,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-018",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9442,11 +9810,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-018",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/018-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9466,11 +9836,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-019",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9478,11 +9850,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-019",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/019-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9514,11 +9888,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-021",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9526,11 +9902,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-021",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/021-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9550,11 +9928,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-022",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9562,11 +9942,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-022",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/022-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9598,11 +9980,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-023",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9610,11 +9994,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-023",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/023-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9634,11 +10020,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-024",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9646,11 +10034,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-024",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/024-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9670,11 +10060,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-025",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9682,11 +10074,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-025",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/025-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9706,11 +10100,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-026",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9718,11 +10114,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-026",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/026-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9742,11 +10140,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-027",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9754,11 +10154,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-027",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/027-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9778,11 +10180,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-028",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9790,11 +10194,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-028",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/028-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9814,11 +10220,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-029",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9826,11 +10234,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-029",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/029-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9862,11 +10272,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-031",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9874,11 +10286,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-031",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/031-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9898,11 +10312,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-032",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9910,11 +10326,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-032",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/032-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9934,11 +10352,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-033",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9946,11 +10366,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-033",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/033-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9970,11 +10392,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-034",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -9982,11 +10406,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-034",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/034-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10006,11 +10432,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-035",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10018,11 +10446,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-035",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/035-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10042,11 +10472,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-036",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10054,11 +10486,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-036",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/036-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10078,11 +10512,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-037",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10090,11 +10526,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-037",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/037-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10114,11 +10552,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-038",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10126,11 +10566,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-038",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/038-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10150,11 +10592,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-039",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10162,11 +10606,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-039",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/039-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10198,11 +10644,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-040",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10210,11 +10658,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-040",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/040-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10234,11 +10684,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-041",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10246,11 +10698,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-041",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/041-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10270,11 +10724,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-042",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10282,11 +10738,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-042",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/042-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10318,11 +10776,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-043",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10330,11 +10790,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-043",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/043-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10354,11 +10816,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-044",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10366,11 +10830,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-044",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/044-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10402,11 +10868,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-046",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10414,11 +10882,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-046",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/046-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10438,11 +10908,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-047",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10450,11 +10922,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-047",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/047-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10474,11 +10948,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-048",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10486,11 +10962,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-048",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/048-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10510,11 +10988,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-049",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10522,11 +11002,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-049",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/049-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10546,11 +11028,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-050",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10558,11 +11042,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-050",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/050-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10594,11 +11080,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-051",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10606,11 +11094,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-051",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/051-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10630,11 +11120,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-052",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10642,11 +11134,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-052",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/052-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10666,11 +11160,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-053",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10678,11 +11174,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-053",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/053-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10714,11 +11212,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-054",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10726,11 +11226,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-054",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/054-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10750,11 +11252,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-055",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10762,11 +11266,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-055",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/055-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10786,11 +11292,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-056",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10798,11 +11306,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-056",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/056-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10822,11 +11332,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-057",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10834,11 +11346,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-057",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/057-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10858,11 +11372,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-058",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10870,11 +11386,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-058",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/058-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10894,11 +11412,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-059",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10906,11 +11426,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-059",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/059-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10930,11 +11452,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-060",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10942,11 +11466,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-060",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/060-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10966,11 +11492,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-061",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -10978,11 +11506,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-061",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/061-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11014,11 +11544,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-062",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11026,11 +11558,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-062",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/062-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11050,11 +11584,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-063",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11062,11 +11598,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-063",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/063-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11086,11 +11624,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-064",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11098,11 +11638,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-064",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/064-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11122,11 +11664,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-065",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11134,11 +11678,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-065",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/065-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11158,11 +11704,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-066",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11170,11 +11718,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-066",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/066-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11206,11 +11756,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-068",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11218,11 +11770,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-068",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/068-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11242,11 +11796,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-069",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11254,11 +11810,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-069",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/069-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11278,11 +11836,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-070",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11290,11 +11850,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-070",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/070-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11314,11 +11876,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-071",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11326,11 +11890,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-071",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/071-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11350,11 +11916,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-072",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11362,11 +11930,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-072",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/072-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11386,11 +11956,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-073",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11398,11 +11970,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-073",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/073-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11422,11 +11996,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-074",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11434,11 +12010,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-074",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/074-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11458,11 +12036,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-075",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11470,11 +12050,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-075",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/075-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11494,11 +12076,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-076",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-evolved.png",
+      "direction": "/materials/bw-ball-masks/poke-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11506,11 +12090,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-076",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-evolved.png",
+      "direction": "/materials/bw-ball-masks/master-evolved-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/076-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11554,11 +12140,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-078",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11566,11 +12154,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-078",
     "variant": "masterball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-masterball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-masterball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-masterball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-masterball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/master-basic.png",
+      "direction": "/materials/bw-ball-masks/master-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/078-masterball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11590,11 +12180,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-079",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/079-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/079-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/079-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/079-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11614,11 +12206,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-080",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/080-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/080-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/080-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/080-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11638,11 +12232,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-081",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/081-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/081-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/081-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/081-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11662,11 +12258,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-082",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/082-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/082-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/082-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/082-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11686,11 +12284,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-083",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/083-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/083-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/083-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/083-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11710,11 +12310,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-084",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/084-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/084-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/084-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/084-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11734,11 +12336,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-085",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/085-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/085-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/085-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/085-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -11758,11 +12362,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv10.5w-086",
     "variant": "pokeball-reverse",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/086-pokeball-reverse-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/086-pokeball-reverse-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/086-pokeball-reverse-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10.5w/tcgl/086-pokeball-reverse-evidence.json",
     "foilType": "FLAT_SILVER"
@@ -15251,11 +15857,13 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svalt-203",
     "variant": "holo",
-    "profile": "prismatic_standard_reverse",
+    "profile": "bw-pokeball-reverse",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svalt/tcgl/203-holo-foil.png",
-      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/203-holo-protection.png"
+      "protection": "/cards/pokemon/tcgl-sv/svalt/tcgl/203-holo-protection.png",
+      "pattern": "/materials/bw-ball-masks/poke-basic.png",
+      "direction": "/materials/bw-ball-masks/poke-basic-optics.png"
     },
     "evidence": "/cards/pokemon/tcgl-sv/svalt/tcgl/203-holo-evidence.json",
     "foilType": "FLAT_SILVER"

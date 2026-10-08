@@ -47,7 +47,7 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Exact TCGL continuous coverage multiplied by the user-supplied stage-specific ball PNG in full-card UV coordinates.",
+  "foilMethod": "Exact TCGL continuous coverage with decoded black floor removed. Separate user-supplied full-card pattern mask clips only the optical symbol response.",
   "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
@@ -55,7 +55,7 @@
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "025-masterball-reverse-foil.png": "e3db1ec74a987d3b687c6f1e4afd4fcf00dfa6732c2d299415252c0bc61c053f",
+    "025-masterball-reverse-foil.png": "aa2a9a2e5467aa6f71647dcbec818ed0745ad985e98ef1406735a8b8922d1598",
     "025-masterball-reverse-protection.png": "46f0489c9788ed0a5e8deb8a436850501100497b1ec1ab56bb2782ced2805cc5"
   },
   "holoFrontSha256": "5b4fac72061729fdac204027f3e368d2c392badde8853723e78f13162b199e22",
@@ -170,10 +170,10 @@
     }
   },
   "frontFile": "025-masterball-reverse.png",
-  "reusedProfile": "prismatic_standard_reverse",
+  "reusedProfile": "bw-masterball-reverse",
   "individualVisualReview": "pending except source-family samples",
   "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
-  "finishReview": "User-supplied ball pattern applied with existing smooth silver reverse material; no new shader or etched relief.",
+  "finishReview": "Dedicated BW Pok\u00e9 Ball/Master Ball cast-and-cure spectrum and fine cap grain over continuous silver; shared viewer/gallery optical kernel; no etched relief.",
   "ballMask": {
     "status": "applied",
     "source": "User-supplied master basic.png",
@@ -186,7 +186,16 @@
     "kind": "master",
     "layout": "basic",
     "cardStage": "BASIC",
-    "method": "Full UV bilinear resize of mean RGB times alpha; multiply exact TCGL foil coverage. Keep protection PNG unchanged. No crop, offset, flip, normal or height conversion.",
-    "physicalReview": "Supplied pattern and layout; independent physical-copy calibration pending."
+    "method": "Unchanged full-card PNG controls pattern visibility separately from continuous exact TCGL foil coverage. Cap interiors from local mask occupancy control fine optical grain. Protection unchanged. No crop, offset, flip, normal or height conversion.",
+    "physicalReview": "Calibrated against supplied Snivy Pok\u00e9 Ball and Master Ball photos; dynamic physical-copy calibration remains approximate.",
+    "optics": {
+      "file": "public/materials/bw-ball-masks/master-basic-optics.png",
+      "sha256": "c2336373986b56cf2bf9ebe14455f4231ecef97047fb036b0cb518779254e0e2",
+      "dimensions": [
+        743,
+        1038
+      ],
+      "encoding": "RG neutral 128; B cap-interior grain weight; A opaque 255. Optical data only, no normal or height."
+    }
   }
 }
