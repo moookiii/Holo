@@ -100,7 +100,9 @@ export class TcgdexAdapter {
         const local = [...svTcglSets, pokemon151Set, prismaticSet];
         for (const set of local) if (!sets.some(s => s.id === set.id)) sets.push({ id: set.id, name: set.name, logo: set.logo });
         const dates = new Map(local.map(set => [set.id, set.releaseDate]));
-        sets.sort((a, b) => (dates.get(a.id) ?? '9999').localeCompare(dates.get(b.id) ?? '9999'));
+        // Official product launch: two fixed mini decks, September 29, 2023.
+        dates.set('mfb', '2023-09-29');
+        sets.sort((a, b) => (dates.get(a.id) ?? '9999').localeCompare(dates.get(b.id) ?? '9999') || a.id.localeCompare(b.id));
       }
       if (seriesId === 'base') {
         // Local audited sets follow release order, even if discovery is unordered.
