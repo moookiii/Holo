@@ -25,13 +25,6 @@ export const prismaticProfiles: HolographicProfile[] = [{
   glints: { density: 0, scale: 780, sharpness: 340, strength: 0, spread: .16 },
   surface: { metalness: .68, roughness: .30, laminate: .20, laminateRoughness: .31, foilReflectance: .055, sheen: 0 },
 }, {
-  id: 'prismatic_ace_spec', name: 'Prismatic · ACE SPEC', family: 'Pokémon', status: 'development',
-  description: 'Exact TCGL ACE SPEC foil coverage and etched asset, interpreted with the single authored-normal Sylveon/Espeon response. Magenta remains printed ink; extra shader emboss is disabled.',
-  diffraction: { period: 1.15, bandwidth: .052, strength: .65, secondaryOrder: .10, direction: 0, crossWidth: .45, facetCoupling: 1 },
-  structure: { field: 'ace-spec', scale: 440, engraving: 0, relief: 0, facetTilt: .85, reflectionCoupling: .18, normalVariance: .12 },
-  glints: { density: 0, scale: 610, sharpness: 280, strength: 0, spread: .20 },
-  surface: { metalness: .72, roughness: .31, laminate: .20, laminateRoughness: .30, foilReflectance: .09, sheen: 0, inkTransmission: 1 },
-}, {
   id: 'prismatic_fullart_texture', name: 'Prismatic · Full-art etched', family: 'Pokémon', status: 'development',
   description: 'Exact TCGL full-art Trainer foil coverage and precomputed etched normals. Each printing uses its own source geometry with the final Sylveon/Espeon finish. Physical depth remains estimated.',
   diffraction: { period: 1.18, bandwidth: .032, strength: .48, secondaryOrder: .04, direction: -.55, crossWidth: .22, facetCoupling: 0, followsAuthoredNormals: true },

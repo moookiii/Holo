@@ -421,30 +421,23 @@ test('regular holo foreground windows and print protection stay specific to each
   assert.equal(hashes.size, 7);
 });
 
-test('all six ACE SPEC printings use individual coverage and no invented relief', () => {
-  const profilesById = new Map(prismaticProfiles.map(profile => [profile.id, profile]));
-  const hashes = new Set<string>();
+test('all six Prismatic ACE SPEC printings use the shared shader without etched overrides', () => {
+  assert.equal(prismaticProfiles.some(profile => profile.id === 'prismatic_ace_spec'), false);
+  const masks = new Set<string>();
   for (const number of ['116', '117', '119', '128', '129', '131']) {
     const card = pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'holo', []);
-    assert.equal(card.profile, 'prismatic_ace_spec');
+    assert.equal(card.profile, 'pokemon-ace-spec');
     assert.equal(card.pickerHidden, false);
-    assert.equal(card.proceduralFoil, undefined);
-    assert.equal(card.maps?.height, undefined);
-    assert.equal(card.maps?.normal, undefined);
-    const evidence = JSON.parse(readFileSync(new URL(`maps/${number}-holo-evidence.json`, path), 'utf8'));
-    assert.equal(evidence.cardId, card.pokemon?.id);
-    assert.equal(evidence.variant, card.pokemon?.variant);
-    assert.equal(evidence.textured, false);
-    assert.ok(evidence.references.length > 0);
-    for (const [file, hash] of Object.entries(evidence.maps)) {
-      assert.equal(createHash('sha256').update(readFileSync(new URL(`maps/${file}`, path))).digest('hex'), hash);
-    }
-    hashes.add(evidence.maps[`${number}-holo-foil.png`]);
-    assert.equal(profilesById.get(card.profile)?.structure.relief, 0);
-    assert.equal(profilesById.get(card.profile)?.glints.strength, 0);
+    assert.equal(card.profileOverrides, undefined);
+    assert.equal(card.mapSettings?.normalScale, 0);
+    assert.equal(card.mapSettings?.embossStrength, 0);
+    assert.equal(card.mapSettings?.roughnessMode, 'profile');
+    assert.ok(card.maps?.foil);
+    assert.ok(card.maps?.protection);
+    masks.add(card.maps!.foil!);
     assert.throws(() => pokemonDefinition(prismaticCard(`sv08.5-${number}`), 'pokeball-reverse', []), /Invalid/);
   }
-  assert.equal(hashes.size, 6, 'Different devices must not share a single foil mask');
+  assert.equal(masks.size, 6, 'Each printing retains its own coverage');
 });
 
 test('Atticus has five authored PNG channels and only its exact printing is enabled', () => {

@@ -81,8 +81,8 @@ frame is shared, while each silhouette is authored in `regular-regions.json`.
 Use `--cards 040` to rebuild only one exact card. Generation rasterizes directly
 to antialiased grayscale PNG; the site references PNG masks only.
 
-`prismatic_ace_spec` uses the existing horizontal diamond optical sheet with
-zero raised relief and zero sparkle glints. Separate maps for Max Rod 116,
+`pokemon-ace-spec` uses the shared ACE SPEC horizontal diamond optical sheet.
+These six cards disable authored normals and etched-finish overrides so the shared shader controls their response. Separate maps for Max Rod 116,
 Maximum Belt 117, Prime Catcher 119, Scoop Up Cyclone 128, Sparkling Crystal 129
 and Treasure Tracker 131 preserve each opaque device/crystal silhouette. Exact
 internal windows restore photographed foil in the displays, liquid vials,

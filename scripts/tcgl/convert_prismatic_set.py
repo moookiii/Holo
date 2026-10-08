@@ -128,7 +128,7 @@ def convert(printing,record_review):
       'limitations':'TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained. No front brightness becomes height or normal.',
       'maps':{Path(path).name:digest(ROOT/'public'/path.lstrip('/')) for path in maps.values()},'holoFrontSha256':digest(front)}
     ep=OUT/(prefix+'evidence.json');ep.write_text(json.dumps(evidence,indent=2)+'\n')
-    return {'cardId':printing['cardId'],'variant':variant,'profile':'prismatic_'+treatment,'textured':raw_etch is not None,
+    return {'cardId':printing['cardId'],'variant':variant,'profile':'pokemon-ace-spec' if treatment == 'ace_spec' else 'prismatic_'+treatment,'textured':raw_etch is not None,
             'maps':maps,'evidence':'/cards/pokemon/prismatic-evolutions/tcgl/'+ep.name,'foilType':printing['foil']['type']}
 
 

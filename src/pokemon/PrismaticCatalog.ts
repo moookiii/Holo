@@ -70,7 +70,7 @@ export function prismaticPrinting(id: string, variant: PrintVariant): PrismaticP
   }
   const textured = ['pokeball-reverse', 'masterball-reverse', 'fullart-texture', 'sir-texture', 'gold'].includes(treatment);
   return { cardId: id, variant, treatment, textured, inScope: true,
-    profileId: treatment === 'non-holo' ? 'print-only' : `prismatic_${treatment.replaceAll('-', '_')}` };
+    profileId: treatment === 'non-holo' ? 'print-only' : treatment === 'ace-spec' ? 'pokemon-ace-spec' : `prismatic_${treatment.replaceAll('-', '_')}` };
 }
 
 /** All 447 English retail printings, including the 100 standard reverses. */

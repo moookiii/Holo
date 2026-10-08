@@ -3865,7 +3865,7 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
   {
     "cardId": "sv08.5-116",
     "variant": "holo",
-    "profile": "prismatic_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/116-holo-foil.png",
@@ -3879,7 +3879,7 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
   {
     "cardId": "sv08.5-117",
     "variant": "holo",
-    "profile": "prismatic_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/117-holo-foil.png",
@@ -3919,7 +3919,7 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
   {
     "cardId": "sv08.5-119",
     "variant": "holo",
-    "profile": "prismatic_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/119-holo-foil.png",
@@ -4141,7 +4141,7 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
   {
     "cardId": "sv08.5-128",
     "variant": "holo",
-    "profile": "prismatic_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/128-holo-foil.png",
@@ -4155,7 +4155,7 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
   {
     "cardId": "sv08.5-129",
     "variant": "holo",
-    "profile": "prismatic_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/129-holo-foil.png",
@@ -4195,7 +4195,7 @@ export const tcglPrismaticSurfaces: readonly TcglPrismaticSurface[] = [
   {
     "cardId": "sv08.5-131",
     "variant": "holo",
-    "profile": "prismatic_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/prismatic-evolutions/tcgl/131-holo-foil.png",
