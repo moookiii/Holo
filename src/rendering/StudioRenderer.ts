@@ -17,7 +17,16 @@ export async function createRenderer(container: HTMLElement) {
   renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
   renderer.setSize(container.clientWidth, container.clientHeight);
   container.appendChild(renderer.domElement);
-  await renderer.init();
+  try {
+    await renderer.init();
+  } catch (error) {
+    renderer.domElement.remove();
+    if ((renderer.backend as { isWebGLBackend?: boolean }).isWebGLBackend &&
+        renderer.domElement.getContext('webgl2') === null) {
+      throw new Error('WebGL 2 is unavailable in this browser. Enable hardware acceleration or open the studio in a browser with WebGPU or WebGL 2 support.', { cause: error });
+    }
+    throw error;
+  }
   if ((renderer.backend as unknown as { isWebGLBackend?: boolean }).isWebGLBackend) renderer.debug.onNodeBuilderCreated = nodeBuilder => {
     const builder = nodeBuilder as unknown as { codes: Record<string, { code: string }[]>; getCodes: (stage: string) => string };
     const shaderBuilder = nodeBuilder as unknown as { buildCode: () => unknown; vertexShader: string; fragmentShader: string };
