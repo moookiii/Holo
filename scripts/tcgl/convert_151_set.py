@@ -146,7 +146,10 @@ def convert(printing,record_review):
       'maps':{Path(path).name:digest(ROOT/'public'/path.lstrip('/')) for path in maps.values()},'holoFrontSha256':digest(front)}
     evidence['mapDimensions']={Path(path).name:list(Image.open(ROOT/'public'/path.lstrip('/')).size) for path in maps.values()}
     ep=OUT/(prefix+'evidence.json');ep.write_text(json.dumps(evidence,indent=2)+'\n')
-    return {'cardId':printing['cardId'],'variant':variant,'profile':PROFILE_PREFIX+treatment,'textured':raw_etch is not None,
+    profile=PROFILE_PREFIX+treatment
+    if PROFILE_PREFIX=='sv_tcgl_' and treatment=='ex_holo':
+        profile='prismatic_sir_texture' if raw_etch is not None else 'pokemon151_ex_holo'
+    return {'cardId':printing['cardId'],'variant':variant,'profile':profile,'textured':raw_etch is not None,
             'maps':maps,'evidence':PUBLIC_BASE+'/tcgl/'+ep.name,'foilType':printing['foil']['type']}
 
 

@@ -2,7 +2,6 @@ import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
 import { canonicalProfileId } from '../materials/profiles/ProfileAliases.ts';
-import { doubleRareProfile } from '../materials/profiles/doubleRare.ts';
 import { tcglSvSurfaces } from './data/sv-tcgl-surfaces.generated.ts';
 import { svTcglCard, svTcglCards, svTcglCollectorNumber, svTcglFront, svTcgdexNonfoilSource, svNonfoilImageProvider } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
@@ -30,8 +29,6 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
       maps: surface.maps,
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
       ...(surface.textured && profile !== 'pokemon-ace-spec' ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
-      ...(!surface.textured && surface.foilType === 'SUN_PILLAR' && profile !== 'sv_tcgl_illustration_holo' && (card.rarity === 'Double Rare' || card.setId === 'svp' && card.suffix === 'ex' || card.setId === 'svalt' && card.suffix === 'ex')
-        ? { profileOverrides: doubleRareProfile } : {}),
     } : {}),
     source: { image: front, metadata: fallbackSource ?? surface?.evidence ?? `/cards/pokemon/tcgl-sv/${card.setId}/catalog.json`,
       notes: fallbackSource ? `English nonfoil printing. Image provider: ${svNonfoilImageProvider(id)}; metadata: TCGdex. Source and original image hash recorded; print-only material.` : 'Exact English TCGL retail printing. Foil coverage and optional offline etch normal use this printing’s own sources.' },

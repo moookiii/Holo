@@ -106,23 +106,52 @@ test('SV Black Star illustration promos retain their exact TCGL treatment instea
       assert.equal(definition.maps, s.maps);
     } else {
       assert.match(evidence.tcglVariantId, /_DoubleRare_/);
-      assert.equal(definition.profile, 'sv_tcgl_illustration_holo', s.cardId);
+      assert.equal(definition.profile, 'pokemon151_ex_holo', s.cardId);
       assert.equal(definition.profileOverrides?.opticalModel, undefined, s.cardId);
     }
   }
   assert.equal(illustrationCount, 29);
 });
 
-test('retired lower Double Rare profile resolves to Illustration Rare for every old registration', () => {
+test('retired lower profile keeps Illustration Rare only for non-Double-Rare printings', () => {
   assert.equal(canonicalProfileId('sv_tcgl_ex_holo'), 'sv_tcgl_illustration_holo');
   assert.equal(canonicalProfileId('pokemon151_ex_holo'), 'pokemon151_ex_holo');
   let redirected = 0;
   for (const surface of tcglSvSurfaces.filter(s => s.profile === 'sv_tcgl_ex_holo')) {
+    const evidence = JSON.parse(readFileSync(publicFile(surface.evidence), 'utf8'));
+    assert.doesNotMatch(evidence.tcglVariantId, /_DoubleRareC?_/);
     const card = svTcglDefinition(surface.cardId, surface.variant);
     assert.equal(card.profile, 'sv_tcgl_illustration_holo');
     assert.equal(card.profileOverrides?.opticalModel, undefined);
     assert.equal(card.maps, surface.maps);
     redirected++;
   }
-  assert.ok(redirected > 0);
+  assert.equal(redirected, 20);
+});
+
+test('exact smooth Double Rares use 151 Double Rare while etched and illustration sources stay distinct', () => {
+  let smooth = 0, etched = 0;
+  for (const surface of tcglSvSurfaces) {
+    const evidence = JSON.parse(readFileSync(publicFile(surface.evidence), 'utf8'));
+    if (!/_DoubleRareC?_/.test(evidence.tcglVariantId)) continue;
+    const card = svTcglDefinition(surface.cardId, surface.variant);
+    assert.equal(card.maps, surface.maps);
+    if (!surface.textured && surface.foilType === 'SUN_PILLAR') {
+      smooth++;
+      assert.equal(card.profile, 'pokemon151_ex_holo', surface.cardId);
+      assert.equal(card.profileOverrides, undefined);
+      assert.equal(card.mapSettings?.normalScale, 0);
+    } else if (surface.textured) {
+      etched++;
+      assert.notEqual(card.profile, 'sv_tcgl_illustration_holo', surface.cardId);
+      assert.notEqual(card.profile, 'pokemon151_ex_holo', surface.cardId);
+      assert.equal(card.mapSettings?.normalScale, 1);
+      assert.equal(card.profileOverrides?.diffraction?.followsAuthoredNormals, true);
+    }
+  }
+  assert.equal(smooth, 217);
+  assert.ok(etched >= 40);
+  for (const id of ['svp-27', 'svp-29']) {
+    assert.equal(svTcglDefinition(id, 'holo').profile, 'sv_tcgl_illustration_holo');
+  }
 });
