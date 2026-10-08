@@ -8,6 +8,7 @@ from PIL import Image
 import convert_151_set as converter
 from convert_sv_sets import black_floor
 from fetch_sv_additions import PRODUCTS, ROOT
+from apply_bw_ball_masks import apply as apply_ball_mask
 
 def profile(p):
     foil=p['foil']['type']; rarity=p['rarity']; variant=p['variant']
@@ -73,6 +74,8 @@ def main():
                 evidence['finishReview']='Exact TCGL coverage preserved. Cast-and-cure Poké Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized.'
             if '_CastAndCure_SouthernCross' in p['tcglVariantId']:
                 evidence['finishReview']='Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending.'
+            if (ROOT/'public/materials/bw-ball-masks/poke-basic.png').exists():
+                apply_ball_mask(p,result,evidence)
             evidence['rendererReady']=True
             path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
             print(set_id+' '+p['number']+' '+p['variant']+' '+result['profile'],flush=True)
