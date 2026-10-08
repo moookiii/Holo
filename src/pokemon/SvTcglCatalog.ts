@@ -29,3 +29,9 @@ export function svTcglCollectorNumber(id: string): string {
   const card = svTcglCard(id);
   return records.get(card.setId)!.cards.find(record => record.id === id)!.collectorNumber;
 }
+/** A reverse or promotional printing can have different printed TCGL art. */
+export function svTcglFront(id: string, variant: import('./types.ts').PrintVariant): string {
+  const card = svTcglCard(id), set = records.get(card.setId)!;
+  const record = set.cards.find(record => record.id === id)!;
+  return `${set.assets}/${record.variantFronts?.[variant] ?? record.front}`;
+}

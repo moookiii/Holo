@@ -77,7 +77,7 @@ def source_regions(foil, etch, black_floor=33/255):
 
 def convert(printing,record_review):
     number=printing['number'];variant=printing['variant']; sources=printing['sources']
-    front=ASSETS/(number+'.png')
+    front=ASSETS/printing.get('frontFile',number+'.png')
     if record_review:
         printing['alignmentReview']={'status':'reviewed','verticalFlip':False,'cropOrOffset':False,
           'method':'Exact TCGL front, foil and etch with colored coverage overlay on unchanged Holo front, inspected before conversion.',
@@ -135,6 +135,7 @@ def convert(printing,record_review):
         if not np.all(encoded[protection==1]==[128,128,255]):raise ValueError('Protected normal is not flat')
     treatment={'illustration rare':'illustration_holo','rare':'regular_holo','double rare':'ex_holo','ace spec rare':'ace_spec','ultra rare':'fullart_texture','special illustration rare':'sir_texture','hyper rare':'gold'}.get(printing['rarity'].lower())
     if variant!='holo':treatment={'reverse':'standard_reverse','pokeball-reverse':'pokeball_reverse','masterball-reverse':'masterball_reverse'}[variant]
+    treatment=printing.get('treatment',treatment)
     if not treatment:raise ValueError('Unknown rarity: '+printing['rarity'])
     evidence={'cardId':printing['cardId'],'variant':variant,'tcglCardId':printing['tcglCardId'],'tcglVariantId':printing['tcglVariantId'],
       'sources':sources,'alignmentReview':review,'textured':raw_etch is not None,'rendererReady':False,'mapSize':list(SIZE),
