@@ -27,12 +27,14 @@ TCGL foil masks supply continuous grayscale coverage with the encoded black floo
 
 Smooth cards reuse the current regular holo, reverse, Double Rare/SUN_PILLAR, Tinsel and Cracked Ice implementations. Southern Cross Double Rares reuse the existing cast-and-cure star response. The three Paradise Resort Worlds logo masks reuse the existing localized gold metallic-ink material, with zero primary foil coverage.
 
-## Deferred effects: two shader families
+## Deferred effects: one shader family and one TCGL asset dependency
 
 | Missing family | Exact affected printings | Current behavior |
 | --- | ---: | --- |
-| Cast-and-Cure Poké Ball / Master Ball | 160 Poké Ball + 144 Master Ball | Exact coverage and front; existing smooth material. The export identifies `CastAndCure_SVPokeBall` / `SVMasterBall` but supplies no optical symbol texture in its card PNGs. No symbol geometry is synthesized. |
+| TCGL Cast-and-Cure Poké Ball / Master Ball pattern assets | 160 Poké Ball + 144 Master Ball | Source acquisition pending, not an established new-shader requirement. Exact coverage and front are imported; the shared TCGL optical pattern assets must also come from TCGL. Existing smooth material is a temporary fallback. No symbol geometry is synthesized. |
 | Black/White Rare | 4 | Exact TCGL etches and coverage with the required shared etched finish. A dedicated ink/foil angular response remains unimplemented. |
+
+Follow-up source check: Malie's public resource page links processed card exports and raw card databases, but no shared material/texture archive. The raw database index contains 1,690 card databases and no foil/material/texture/shader asset entries. Snivy's exact raw entry identifies `CastAndCure_SVPokeBall` in `longFormID`, with `Foil Effect: FlatSilver` and `Foil Mask: Reverse`; it contains no texture URL or material reference. Its exported foil PNG was inspected separately and contains coverage, without ball symbols. No TCGL installation was found in the local uninstall registry or standard application/cache folders checked. This establishes a gap in the available exports, not absence from the TCGL client. A client bundle or extracted TCGL asset source is needed to continue. Source references: https://malie.io/static/ and https://cdn.malie.io/file/malie-io/tcgl/databases/index.json.
 
 **Cosmos placement is a separate asset task, not a new shader:** 193 promo/alternate/Energy printings reuse `pokemon-base-set-2-cosmos` with empty 1200×1650 motif PNGs. TCGL coverage does not establish physical-copy dot placement. They are explicitly marked pending; no random dots or relief are added. All affected identities are enumerated in [the audit](../public/cards/pokemon/tcgl-sv/additions-audit.json).
 

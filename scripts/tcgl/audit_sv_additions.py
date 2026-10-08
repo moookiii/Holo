@@ -51,7 +51,7 @@ def main():
             'normalConversion':{'polarity':'1 - mean RGB','resize':'full-domain bilinear','crop':None,'flip':False,'offset':[0,0],
                 'derivative':'OpenCV Scharr CV_32F scale 1/32 before protection','slopeGain':1.03,'encoding':'opaque RGB OpenGL +Y','activeHeightEmboss':False},
             'integrity':'All source/front/output SHA-256 hashes and PNG dimensions passed. All fully protected normal pixels are (128,128,255). Cosmos motifs are empty PNGs.',
-            'newShadersAdded':0,'missingShaderFamilies':2,'missingFinishCounts':{k:len(v) for k,v in gaps.items()},'pending':gaps,
+            'newShadersAdded':0,'missingShaderFamilies':1,'pendingTcglPatternAssetFamilies':1,'missingFinishCounts':{k:len(v) for k,v in gaps.items()},'pending':gaps,
             'visualReview':'Source-family sheets inspected. Sampled live render review is separate; individual high-zoom/angled-photo validation remains pending for unsampled cards.',
             'packOpening':'Catalog/gallery additions only. No invented pack odds or non-TCGL wrapper art; these added products remain browse-only.'}
     (ROOT/'public/cards/pokemon/tcgl-sv/additions-audit.json').write_text(json.dumps(report,indent=2)+'\n',encoding='utf-8')
