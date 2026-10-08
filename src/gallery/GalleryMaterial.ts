@@ -8,6 +8,7 @@ import { spectrum } from '../materials/layers/DiffractionLayer';
 import { pixelVariance, normalPixelVariance } from '../materials/layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { doubleRareReflection } from '../materials/layers/DoubleRareLayer';
+import { blackWhiteRareReflection } from '../materials/layers/BlackWhiteRareLayer';
 import { ballReverseReflection } from '../materials/layers/BallReverseLayer';
 import { ultraRareReflection } from '../materials/layers/UltraRareLayer';
 import { specialIllustrationReflection } from '../materials/layers/SpecialIllustrationLayer';
@@ -75,13 +76,16 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
-      if (layer.ultraRare || layer.specialIllustration) {
+      if (layer.ultraRare || layer.specialIllustration || layer.blackWhiteRare) {
         const optics = {
             aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z, secondary: diffraction.w,
             angle: axis.x, crossWidth: axis.y, inkTransmission: surface.z, etchedInkSheen: r.secret.y,
         };
         const ink = r.ink.sub(.06).div(.94).max(0);
-        const reflected = layer.specialIllustration
+        const reflected = layer.blackWhiteRare
+          ? blackWhiteRareReflection(light, positionViewDirection, tangentView, bitangent,
+            geometric, normalView, ink, optics, footprint)
+          : layer.specialIllustration
           ? specialIllustrationReflection(light, positionViewDirection, tangentView, bitangent,
             geometric, normalView, ink, optics, r.field, footprint)
           : ultraRareReflection(light, positionViewDirection, tangentView, bitangent,

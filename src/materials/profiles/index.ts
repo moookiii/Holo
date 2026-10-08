@@ -7,6 +7,7 @@ import { neoDestinyShining } from './neoDestiny';
 import { prismaticProfiles } from './prismatic';
 import { pokemon151Profiles } from './pokemon151';
 import { svTcglProfiles } from './svTcgl';
+import { blackWhiteRareProfiles } from './blackWhiteRare';
 import { bwBallReverseProfiles } from './bwBallReverse';
 import { yugiohProfiles } from './yugioh';
 import { magicProfiles } from './magic';
@@ -18,7 +19,7 @@ const goldEtched = { ...prismaticProfiles.find(p => p.id === 'prismatic_gold')!,
 export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold]
   .filter(p => canonicalProfileId(p.id) === p.id);
 profiles.push(goldEtched);
-profiles.push(...bwBallReverseProfiles);
+profiles.push(...bwBallReverseProfiles, ...blackWhiteRareProfiles);
 export function getProfile(id: string) {
   const profile = profiles.find(p => p.id === canonicalProfileId(id));
   if (!profile) throw new Error(`Unknown foil profile: ${id}`);

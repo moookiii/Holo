@@ -6,6 +6,7 @@ export class OpticalUniforms {
   illustrationRare = false;
   doubleRare = false;
   ballReverse = false;
+  blackWhiteRare = false;
   ultraRare = false;
   specialIllustration = false;
   enabled = uniform(1);
@@ -48,6 +49,7 @@ export class OpticalUniforms {
     if (!p) return;
     this.illustrationRare = p.opticalModel === 'sv151-illustration';
     this.doubleRare = p.opticalModel === 'sv-double-rare';
+    this.blackWhiteRare = p.opticalModel === 'sv-black-white-rare';
     this.ballReverse = p.opticalModel === 'sv-ball-reverse';
     this.ultraRare = p.opticalModel === 'sv151-ultra';
     this.specialIllustration = p.opticalModel === 'sv151-sir';
