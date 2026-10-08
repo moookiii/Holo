@@ -4,6 +4,7 @@ import { existsSync, readFileSync } from 'node:fs';
 import { tcglSvSets } from '../src/pokemon/data/sv-tcgl.generated.ts';
 import { tcglSvSurfaces } from '../src/pokemon/data/sv-tcgl-surfaces.generated.ts';
 import { svTcglDefinition } from '../src/pokemon/SvTcglSurfaces.ts';
+import { canonicalProfileId } from '../src/materials/profiles/ProfileAliases.ts';
 import { svTcglFront, svTcglSet } from '../src/pokemon/SvTcglCatalog.ts';
 
 const counts = new Map([['sv04.5', 245], ['sv06.5', 99], ['sv10.5w', 173], ['sv10.5b', 172], ['svp', 216], ['svalt', 237], ['sve', 48]]);
@@ -105,8 +106,23 @@ test('SV Black Star illustration promos retain their exact TCGL treatment instea
       assert.equal(definition.maps, s.maps);
     } else {
       assert.match(evidence.tcglVariantId, /_DoubleRare_/);
-      assert.equal(definition.profileOverrides?.opticalModel, 'sv-double-rare', s.cardId);
+      assert.equal(definition.profile, 'sv_tcgl_illustration_holo', s.cardId);
+      assert.equal(definition.profileOverrides?.opticalModel, undefined, s.cardId);
     }
   }
   assert.equal(illustrationCount, 29);
+});
+
+test('retired lower Double Rare profile resolves to Illustration Rare for every old registration', () => {
+  assert.equal(canonicalProfileId('sv_tcgl_ex_holo'), 'sv_tcgl_illustration_holo');
+  assert.equal(canonicalProfileId('pokemon151_ex_holo'), 'pokemon151_ex_holo');
+  let redirected = 0;
+  for (const surface of tcglSvSurfaces.filter(s => s.profile === 'sv_tcgl_ex_holo')) {
+    const card = svTcglDefinition(surface.cardId, surface.variant);
+    assert.equal(card.profile, 'sv_tcgl_illustration_holo');
+    assert.equal(card.profileOverrides?.opticalModel, undefined);
+    assert.equal(card.maps, surface.maps);
+    redirected++;
+  }
+  assert.ok(redirected > 0);
 });
