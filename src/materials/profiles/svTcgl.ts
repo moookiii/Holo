@@ -16,15 +16,5 @@ export const svTcglProfiles: HolographicProfile[] = pokemon151Profiles.map(profi
     surface: { metalness: .72, roughness: .30, laminate: .12, laminateRoughness: .31, foilReflectance: .06, sheen: 0 },
   } : {}),
   id: profile.id.replace('pokemon151_', 'sv_tcgl_'),
-  name: profile.name.replace('151 · ', 'TCGL · '),
+  name: profile.name.replace('151 Â· ', 'TCGL Â· '),
 }));
-// Preserve the separate TCGL ACE SPEC response independently of Prismatic.
-svTcglProfiles.push({
-  id: 'sv_tcgl_ace_spec', name: 'TCGL � ACE SPEC', family: 'Pokémon', status: 'development',
-  description: 'Exact TCGL ACE SPEC foil coverage and etched asset, interpreted with the single authored-normal Sylveon/Espeon response. Magenta remains printed ink; extra shader emboss is disabled.',
-  diffraction: { period: 1.15, bandwidth: .052, strength: .65, secondaryOrder: .10, direction: 0, crossWidth: .45, facetCoupling: 1 },
-  structure: { field: 'ace-spec', scale: 440, engraving: 0, relief: 0, facetTilt: .85, reflectionCoupling: .18, normalVariance: .12 },
-  glints: { density: 0, scale: 610, sharpness: 280, strength: 0, spread: .20 },
-  surface: { metalness: .72, roughness: .31, laminate: .20, laminateRoughness: .30, foilReflectance: .09, sheen: 0, inkTransmission: 1 },
-  secondary: undefined, mapSettings: { normalScale: 0, embossStrength: 0 },
-});

@@ -15599,7 +15599,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-141",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/141-holo-foil.png",
@@ -15733,7 +15733,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-152",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/152-holo-foil.png",
@@ -15747,7 +15747,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-153",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/153-holo-foil.png",
@@ -15761,7 +15761,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-154",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/154-holo-foil.png",
@@ -15799,7 +15799,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-157",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/157-holo-foil.png",
@@ -15813,7 +15813,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-158",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/158-holo-foil.png",
@@ -15863,7 +15863,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv05-162",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv05/tcgl/162-holo-foil.png",
@@ -18635,7 +18635,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06-152",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/152-holo-foil.png",
@@ -18757,7 +18757,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06-162",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/162-holo-foil.png",
@@ -18771,7 +18771,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06-163",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/163-holo-foil.png",
@@ -18785,7 +18785,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06-164",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/164-holo-foil.png",
@@ -18799,7 +18799,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06-165",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/165-holo-foil.png",
@@ -18825,7 +18825,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06-167",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06/tcgl/167-holo-foil.png",
@@ -21407,7 +21407,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv07-134",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/134-holo-foil.png",
@@ -21433,7 +21433,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv07-136",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/136-holo-foil.png",
@@ -21507,7 +21507,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv07-142",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv07/tcgl/142-holo-foil.png",
@@ -24099,7 +24099,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-162",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/162-holo-foil.png",
@@ -24125,7 +24125,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-164",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/164-holo-foil.png",
@@ -24271,7 +24271,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-176",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/176-holo-foil.png",
@@ -24345,7 +24345,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-182",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/182-holo-foil.png",
@@ -24359,7 +24359,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-183",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/183-holo-foil.png",
@@ -24385,7 +24385,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-185",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/185-holo-foil.png",
@@ -24399,7 +24399,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-186",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/186-holo-foil.png",
@@ -24461,7 +24461,7 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv08-191",
     "variant": "holo",
-    "profile": "sv_tcgl_ace_spec",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv08/tcgl/191-holo-foil.png",

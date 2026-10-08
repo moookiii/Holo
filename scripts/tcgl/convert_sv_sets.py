@@ -39,6 +39,7 @@ def main():
             if 'foil' in p['sources']:p['foilBlackFloor'],p['foilBlackFloorRgb']=black_floor(p['sources']['foil'])
         def build(p):
             result=converter.convert(p,False)
+            if result and result['profile'] == 'sv_tcgl_ace_spec':result['profile']='pokemon-ace-spec'
             if result:print(set_id+' '+p['number']+' '+p['variant']+' converted',flush=True)
             return result
         # These inspection-only copies were emitted by this new set pipeline;
