@@ -5,6 +5,7 @@ import type { FoilLayer } from './HolographicProfile';
 export class OpticalUniforms {
   illustrationRare = false;
   doubleRare = false;
+  ballReverse = false;
   ultraRare = false;
   specialIllustration = false;
   enabled = uniform(1);
@@ -47,6 +48,7 @@ export class OpticalUniforms {
     if (!p) return;
     this.illustrationRare = p.opticalModel === 'sv151-illustration';
     this.doubleRare = p.opticalModel === 'sv-double-rare';
+    this.ballReverse = p.opticalModel === 'sv-ball-reverse';
     this.ultraRare = p.opticalModel === 'sv151-ultra';
     this.specialIllustration = p.opticalModel === 'sv151-sir';
     this.spectralTint.value.set(...(p.diffraction.tint ?? [1, 1, 1]));

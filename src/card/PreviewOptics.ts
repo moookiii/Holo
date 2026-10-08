@@ -33,7 +33,7 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     set(base + 6, [s.normalVariance ?? 0, f.patternRoughness ?? 0, disabled.has('film') ? 0 : f.iridescence ?? 0, f.filmIOR ?? 1.5]);
     set(base + 7, [f.filmMin ?? 200, f.filmMax ?? 600, f.pearlBody ?? 0, enabled ? 1 : 0]);
     const g = layer.glints;
-    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && (g.microdiamond || (g.metallicGrain && d.normalFiltering) || s.field === 'starlight') && !disabled.has('sparkle') ? g.strength : 0]);
+    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && (layer.opticalModel === 'sv-ball-reverse' || g.microdiamond || (g.metallicGrain && d.normalFiltering) || s.field === 'starlight') && !disabled.has('sparkle') ? g.strength : 0]);
     set(29 + index * 2, [g.spread, card.dimensions.width / card.dimensions.height, card.seed + [0, 8191, 16381][index], s.field === 'starlight' ? s.scale : g.metallicGrain && d.normalFiltering ? -1 : 0]);
   });
   set(24, [...(card.substrate?.color ?? [.27, .31, .30]), card.substrate ? 1 - card.substrate.printRetention : profile.structure.field === 'secret' ? 0 : .1]);
@@ -42,7 +42,7 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   set(27, [profile.metallicInk?.metalness ?? .8, profile.metallicInk?.roughness ?? .28, card.dimensions.width / card.dimensions.height, profile.id === 'print-only' ? 1 : 0]);
   set(34, [card.coverageMode === 'reverse' && !!card.maps?.reverseFoil && !card.maps?.metallic ? 1 : 0,
     profile.structure.field === 'legendary-fireworks' ? 1 : 0, profile.structure.field === 'secret' && !!card.maps?.secondaryFoil ? 1 : 0,
-    profile.opticalModel === 'sv151-illustration' ? 1 : profile.opticalModel === 'sv-double-rare' ? 2 : profile.opticalModel === 'sv151-ultra' ? 3 : profile.opticalModel === 'sv151-sir' ? 4 : 0]);
+    profile.opticalModel === 'sv151-illustration' ? 1 : profile.opticalModel === 'sv-double-rare' ? 2 : profile.opticalModel === 'sv151-ultra' ? 3 : profile.opticalModel === 'sv151-sir' ? 4 : profile.opticalModel === 'sv-ball-reverse' ? 5 : 0]);
   // Plain Ultra Rare has no secret-cut parameters; retain its ridge response.
   if (profile.opticalModel === 'sv151-ultra') set(37, [0, profile.surface.etchedInkSheen ?? 0, 0, 0]);
   set(35, [...(card.frontBorderColor ?? [0, 0, 0]), card.frontBorderColor ? 1 : 0]);
