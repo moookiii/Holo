@@ -47,7 +47,7 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Exact TCGL continuous coverage multiplied by the user-supplied stage-specific ball PNG in full-card UV coordinates.",
   "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
@@ -55,7 +55,7 @@
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "058-pokeball-reverse-foil.png": "a8c47971b1bcb69fea7964d56bc5583b06af0d35608869a24d065b54e9fd861e",
+    "058-pokeball-reverse-foil.png": "491d9415a0e1942e7cca187f3d6648ea354f2a6cb1cda86e2122bdb4019be6be",
     "058-pokeball-reverse-protection.png": "290ec07f958017bfd707cf7d7654403242445e45801e7c32b8ff05b7fec43062"
   },
   "holoFrontSha256": "1f117a3da386163227c49aadcac747b194daeda38310a6ef8f84b4bdc056f05b",
@@ -157,8 +157,23 @@
     }
   },
   "frontFile": "058-pokeball-reverse.png",
-  "reusedProfile": "prismatic_pokeball_reverse",
+  "reusedProfile": "prismatic_standard_reverse",
   "individualVisualReview": "pending except source-family samples",
   "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
-  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+  "finishReview": "User-supplied ball pattern applied with existing smooth silver reverse material; no new shader or etched relief.",
+  "ballMask": {
+    "status": "applied",
+    "source": "User-supplied poke evo.png",
+    "file": "public/materials/bw-ball-masks/poke-evolved.png",
+    "sha256": "2a1a2ff81ed11f2840bf83eaec7280b77314ffa61ca82fb93a5b93108ea0a102",
+    "dimensions": [
+      743,
+      1038
+    ],
+    "kind": "poke",
+    "layout": "evolved",
+    "cardStage": "STAGE1",
+    "method": "Full UV bilinear resize of mean RGB times alpha; multiply exact TCGL foil coverage. Keep protection PNG unchanged. No crop, offset, flip, normal or height conversion.",
+    "physicalReview": "Supplied pattern and layout; independent physical-copy calibration pending."
+  }
 }

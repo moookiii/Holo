@@ -47,7 +47,7 @@
     2475
   ],
   "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
-  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilMethod": "Exact TCGL continuous coverage multiplied by the user-supplied stage-specific ball PNG in full-card UV coordinates.",
   "foilBlackFloor": 0.12941176470588237,
   "protectedBodyRegions": [],
   "retainedRegions": [],
@@ -55,7 +55,7 @@
   "embossStrength": 0,
   "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
   "maps": {
-    "050-masterball-reverse-foil.png": "8df2eef591a7f17d73b6b64d179f22c8783e8a2e304b6cfd66fd04b31b619259",
+    "050-masterball-reverse-foil.png": "e7e9da3f8500be28f02564a97cf592b4791b1a8f5f6d08c1539eaf0a5bedd75f",
     "050-masterball-reverse-protection.png": "c82bd2676f3d88af0d7433b49dcc4749377acfd6c9930c3355d27e227266a081"
   },
   "holoFrontSha256": "703bbd1ecfd1037f46a75bf04f28b486b2cfe48f9b235d89f041ef6f69cb2a0c",
@@ -157,8 +157,23 @@
     }
   },
   "frontFile": "050-masterball-reverse.png",
-  "reusedProfile": "prismatic_masterball_reverse",
+  "reusedProfile": "prismatic_standard_reverse",
   "individualVisualReview": "pending except source-family samples",
   "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
-  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+  "finishReview": "User-supplied ball pattern applied with existing smooth silver reverse material; no new shader or etched relief.",
+  "ballMask": {
+    "status": "applied",
+    "source": "User-supplied master basic.png",
+    "file": "public/materials/bw-ball-masks/master-basic.png",
+    "sha256": "d95407e09a8ebcaa1cd93faac43000fcc35e640bddee33a25adcc94eff4b915a",
+    "dimensions": [
+      743,
+      1038
+    ],
+    "kind": "master",
+    "layout": "basic",
+    "cardStage": "BASIC",
+    "method": "Full UV bilinear resize of mean RGB times alpha; multiply exact TCGL foil coverage. Keep protection PNG unchanged. No crop, offset, flip, normal or height conversion.",
+    "physicalReview": "Supplied pattern and layout; independent physical-copy calibration pending."
+  }
 }
