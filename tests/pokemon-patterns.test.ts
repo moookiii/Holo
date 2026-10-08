@@ -30,6 +30,25 @@ test('ACE SPEC diamond inclinations remain continuous across cell and band bound
   assert.ok(maximum <= 12, `discontinuous foil normal: ${maximum}/255 between adjacent texels`);
 });
 
+test('ACE SPEC gallery fields average unresolved microcuts while retaining diamond inclinations', () => {
+  for (const height of [180, 360, 720]) {
+    const field = generatePokemonField('ace-spec', 2024, 6.3 / 8.8, 440, height);
+    const amplitudes = new Set<number>(), grains = new Set<number>(), slopes = new Set<number>();
+    for (let i = 0; i < field.direction.length; i += 4) {
+      amplitudes.add(field.direction[i + 3]);
+      grains.add(field.relief[i + 3]);
+      slopes.add(field.relief[i + 1]);
+    }
+    assert.equal(amplitudes.size, 1, 'subpixel dash coverage must not beat against preview pixels');
+    assert.equal(grains.size, 1, 'unresolved grain must not leave a rectangular roughness grid');
+    assert.ok(slopes.size > 100, 'the broad diamond response must remain');
+  }
+  const viewer = generatePokemonField('ace-spec', 2024, 6.3 / 8.8, 440, 2048);
+  const amplitudes = new Set<number>();
+  for (let i = 3; i < viewer.direction.length; i += 4) amplitudes.add(viewer.direction[i]);
+  assert.ok(amplitudes.size > 100, 'resolved viewer striations must retain their detail');
+});
+
 test('smooth directional films have continuous sheet normals without tile seams or physical ridges', () => {
   for (const kind of ['e-reader', 'sheen', 'water-web', 'mirage'] as const) {
     const field = generatePokemonDirectionalField(kind, 2023135, .716, 800, 512);

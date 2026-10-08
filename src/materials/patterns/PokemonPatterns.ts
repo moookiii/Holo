@@ -117,11 +117,19 @@ export function generatePokemonField(kind: PokemonPatternKind, seed: number, asp
       const strand = 1 - smooth(.16 - aa, .16 + aa, Math.abs(y * scale - row - .5));
       const along = x * scale * .72 - col;
       const dash = strand * smooth(.02, .12, along) * (1 - smooth(.82, .98, along));
+      // Below two samples per microcut, the rows and dash ends alias into a
+      // rectangular grid in gallery previews. Fade to their integrated area
+      // and mean phase before sampling; keep the resolved diamond bands.
+      // Full-size viewer fields retain the original striations unchanged.
+      const microDetail = 1 - smooth(.25, .5, scale / height);
+      const meanDash = .32 * .83;
+      const filteredPhase = (phase - .5) * microDetail;
       nx = bandSlope * .32;
-      ny = bandSlope + (phase - .5) * .018;
+      ny = bandSlope + filteredPhase * .018;
       angle = Math.PI / 2;
-      spacing = .96 + .045 * Math.sin((x + y) * 17) + (phase - .5) * .025;
-      amplitude = .10 + dash * (.61 + phase * .18); grain = .40 + dash * .51;
+      spacing = .96 + .045 * Math.sin((x + y) * 17) + filteredPhase * .025;
+      amplitude = .10 + meanDash * .70 + (dash * (.61 + phase * .18) - meanDash * .70) * microDetail;
+      grain = .40 + (meanDash + (dash - meanDash) * microDetail) * .51;
     }
     const i = (iy * width + ix) * 4, axis = encodeGratingAxis(angle);
     direction[i] = Math.round(axis[0]); direction[i + 1] = Math.round(axis[1]);
