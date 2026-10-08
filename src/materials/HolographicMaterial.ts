@@ -8,6 +8,7 @@ import { masterPrism, type HolographicProfile } from './HolographicProfile';
 import { OpticalUniforms } from './OpticalUniforms';
 import { secretRareReflection } from './layers/SecretRareLayer';
 import { spectrum } from './layers/DiffractionLayer';
+import { pixelVariance, normalPixelVariance } from './layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from './layers/IllustrationRareLayer';
 import { doubleRareReflection } from './layers/DoubleRareLayer';
 import { ultraRareReflection } from './layers/UltraRareLayer';
@@ -170,7 +171,10 @@ class HolographicLightingModel extends PhysicalLightingModel {
         ? mix(float(1), selected.mul(gridGain).add(.48), u.gridStrength.mul(u.crossedFacets.oneMinus())).toVar() : float(1);
       const spacing = fieldSample(structure.phase.mul(0.09).add(0.96), region.field.b.mul(1.5).add(.5));
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
-      const variance = (axis: Node<'vec3'>) => footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
+      const variance = (axis: Node<'vec3'>) => {
+        const source = footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
+        return u.normalFiltering.value > 0 ? source.add(pixelVariance(momentum.dot(axis)).mul(u.normalFiltering)) : source;
+      };
       const gratingVariance = variance(grating), grooveVariance = variance(groove);
       const angularWidth = u.crossWidth.pow2().add(grooveVariance).sqrt();
       const transverse = momentum.dot(groove).div(angularWidth);
@@ -193,7 +197,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
       const sparkle = u.glintStrength.value !== 0
-        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints, microdiamond: u.microdiamondGlints, metallicGrain: u.metallicGrain }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
+        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints, microdiamond: u.microdiamondGlints, metallicGrain: u.metallicGrain, filterMetallicGrain: u.normalFiltering.value > 0 }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
@@ -208,12 +212,16 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const pearlSheen = u.sheen.value === 0 ? float(0) : pearlHalf.mul(u.sheen, patternCoverage, region.pattern);
       // Reflected specular, before physical clearcoat attenuation and tone mapping.
       const printFilter = u.inkTransmission.value === 0 ? vec3(1) : mix(vec3(1), region.inkTransmission!, u.inkTransmission);
-      const conventional = spectral.mul(u.spectralGain, u.spectralTint).add(sparkle.mul(grid, u.sparkleGain)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
+      // Partially inked gold trim still exposes metal (Cape's broad bands,
+      // Super Rod's reel). Do not threshold it away with a white-only mask.
+      const grainCoverage = u.metallicGrain && u.normalFiltering.value > 0 ? region.coverage.smoothstep(.12, .80) : float(1);
+      const conventional = spectral.mul(u.spectralGain, u.spectralTint).add(sparkle.mul(grid, u.sparkleGain, grainCoverage)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
       // Only direct illumination can reveal metallic printed die walls. The
       // authored normals select the ridges; no color/noise-derived relief or
       // ambient term is introduced. Integrate the source's angular footprint.
       const half = momentum.normalize();
-      const inkBroadening = halfVariance.mul(150).add(1);
+      const inkVariance = u.normalFiltering.value > 0 ? halfVariance.add(normalPixelVariance(foilNormal).mul(u.normalFiltering)) : halfVariance;
+      const inkBroadening = inkVariance.mul(150).add(1);
       const inkLobe = foilNormal.dot(half).max(0).pow(float(150).div(inkBroadening)).div(inkBroadening);
       const directAlignment = geometryNormal.dot(half).smoothstep(.90, .98);
       const ridge = foilNormal.sub(geometryNormal).length().smoothstep(.008, .075);
@@ -397,6 +405,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.colorNode = mix(this.colorNode, vec3(.25, .27, .28), imageCoverage.clamp(0, 1));
     if (this.nameRecess) this.colorNode = this.colorNode.mul(this.nameRecess.occlusion);
     this.metalnessNode = mix(mix(mix(float(.015), this.optics.metalness, primary), this.secondaryOptics.metalness, secondary), this.stampOptics.metalness, stamp).max(metal.mul(this.inkMetalness));
+    this.specularColorNode = Fn(() => this.optics.inkSpecular.value > 0
+      ? mix(vec3(1), correctedPrint, this.optics.inkSpecular) : vec3(1))();
     const foilRoughness = mix(mix(mix(float(.48), this.optics.roughness, primary), this.secondaryOptics.roughness, secondary), this.stampOptics.roughness, stamp).sub(metal.mul(.12)).max(.12);
     const normalVariance = this.reliefTextureNode.rg.fwidth().length().mul(this.optics.normalVariance, primary)
       .add(this.secondaryReliefTextureNode.rg.fwidth().length().mul(this.secondaryOptics.normalVariance, secondary))
@@ -409,7 +419,16 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       .add(this.stampFieldTextureNode.a.mul(this.stampOptics.patternRoughness, stamp)).clamp(.045, 1);
     const metalNormalVariance = this.normalTextureNode.rgb.fwidth().length().mul(this.inkNormalFiltering, controls.hasNormal, metal).min(.14);
     const unfilteredRoughness = this.roughnessNode as Node<'float'>;
-    this.roughnessNode = mix(unfilteredRoughness, unfilteredRoughness.pow2().add(metalNormalVariance).sqrt().clamp(.045, 1), this.inkNormalFiltering.sign());
+    this.roughnessNode = Fn(() => {
+      const roughness = (this.regions.reduce<Node<'float'>>((r, region) =>
+        r.add(region.optics.coverageRoughness.mul(region.coverage.oneMinus(), region.optics.enabled)),
+        mix(unfilteredRoughness, unfilteredRoughness.pow2().add(metalNormalVariance).sqrt().clamp(.045, 1), this.inkNormalFiltering.sign()))).clamp(.045, 1);
+      // Widen the BRDF only by the unresolved normal variation. Full-resolution
+      // die walls and their tangent-normal amplitude remain untouched.
+      return this.optics.normalFiltering.value > 0
+        ? roughness.pow(4).add(normalPixelVariance(this.normalTextureNode.rgb.mul(2)).mul(this.optics.normalFiltering, controls.hasNormal, primary)).pow(.25).clamp(.045, 1)
+        : roughness;
+    })();
     this.clearcoatNode = mix(mix(this.optics.laminate, this.secondaryOptics.laminate, secondary), this.stampOptics.laminate, stamp).mul(mask.a);
     this.clearcoatRoughnessNode = mix(mix(this.optics.laminateRoughness, this.secondaryOptics.laminateRoughness, secondary), this.stampOptics.laminateRoughness, stamp);
     const frame = inside(layout.innerFrame).mul(inside(layout.artwork).oneMinus(), primary, this.optics.frameVarnish);
@@ -581,7 +600,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
           u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.ultraRare, u.specialIllustration,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
-          u.etchedInkSheen.value !== 0].map(Number).join('')).join('/')
+          u.etchedInkSheen.value !== 0, u.normalFiltering.value > 0, u.inkSpecular.value > 0].map(Number).join('')).join('/')
       + (this.compactOptics ? ':mew:' + [this.useIridescence, this.useAnisotropy, this.usesHeightRelief(),
         this.surfaceControls.hasNormal.value > 0, this.surfaceControls.anniversary.value > 0,
         this.surfaceControls.hasStamp.value > 0, this.surfaceControls.hasExtendedFoil.value > 0, this.surfaceControls.extendedCoverage.value > 0,

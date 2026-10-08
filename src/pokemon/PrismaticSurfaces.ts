@@ -1,4 +1,5 @@
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
 import { doubleRareProfile } from '../materials/profiles/doubleRare.ts';
 import { tcglPrismaticSurfaces } from './data/prismatic-surfaces.generated.ts';
 import { prismaticEnergyPickerCards } from './PrismaticEnergySurfaces.ts';
@@ -43,7 +44,7 @@ const surfaces: Readonly<Record<string, PrismaticSurface>> = Object.fromEntries(
     profile: record.profile, maps: record.maps, evidence: record.evidence, textured: record.textured,
     layout: legacyLayouts[key] ?? { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     mapSettings: { normalScale: record.textured && record.profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: record.textured && record.profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
-    ...(record.textured && record.profile !== 'pokemon-ace-spec' ? { profileOverrides: tcglEtchedFinish } : {}),
+    ...(record.textured && record.profile !== 'pokemon-ace-spec' ? { profileOverrides: record.profile === 'prismatic_gold' ? goldEtchedFinish : tcglEtchedFinish } : {}),
     ...(!record.textured && record.foilType === 'SUN_PILLAR' && record.profile === 'prismatic_ex_holo'
       ? { profileOverrides: doubleRareProfile } : {}),
   } satisfies PrismaticSurface];

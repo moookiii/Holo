@@ -37,6 +37,9 @@ export class OpticalUniforms {
   inkDensity = uniform(1);
   substrateReflection = uniform(1);
   etchedInkSheen = uniform(0);
+  normalFiltering = uniform(0);
+  coverageRoughness = uniform(0);
+  inkSpecular = uniform(0);
   imageHologram = uniform(0); imageDepth = uniform(.18); imageContrast = uniform(1.5); imageWidth = uniform(.22); cardHeight = uniform(8.8);
   iridescence = uniform(0); filmIOR = uniform(1.5); filmMin = uniform(200); filmMax = uniform(600); pearlBody = uniform(0);
   apply(p: FoilLayer | undefined) {
@@ -79,6 +82,9 @@ export class OpticalUniforms {
     this.inkDensity.value = p.surface.inkDensity ?? 1;
     this.substrateReflection.value = p.surface.substrateReflection ?? 1;
     this.etchedInkSheen.value = p.surface.etchedInkSheen ?? 0;
+    this.normalFiltering.value = p.diffraction.normalFiltering ?? 0;
+    this.coverageRoughness.value = p.surface.coverageRoughness ?? 0;
+    this.inkSpecular.value = p.surface.inkSpecular ?? 0;
     this.substrateDarkening.value = p.surface.substrateDarkening ?? 0;
     this.varnishRelief.value = p.surface.varnishRelief ?? 0;
     this.frameVarnish.value = p.surface.frameVarnish ?? 0;

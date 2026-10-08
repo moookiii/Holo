@@ -1,5 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
 import { doubleRareProfile } from '../materials/profiles/doubleRare.ts';
 import { tcglSvSurfaces } from './data/sv-tcgl-surfaces.generated.ts';
 import { svTcglCard, svTcglCards, svTcglCollectorNumber } from './SvTcglCatalog.ts';
@@ -25,7 +26,7 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
     ...(surface ? {
       maps: surface.maps,
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
-      ...(surface.textured && profile !== 'pokemon-ace-spec' ? { profileOverrides: tcglEtchedFinish } : {}),
+      ...(surface.textured && profile !== 'pokemon-ace-spec' ? { profileOverrides: profile === 'sv_tcgl_gold' ? goldEtchedFinish : tcglEtchedFinish } : {}),
       ...(!surface.textured && surface.foilType === 'SUN_PILLAR' && card.rarity === 'Double Rare'
         ? { profileOverrides: doubleRareProfile } : {}),
     } : {}),

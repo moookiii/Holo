@@ -1,4 +1,5 @@
 import type { HolographicProfile } from '../HolographicProfile';
+import { goldEtchedFinish } from './goldEtchedFinish.ts';
 
 /** Prismatic retail surfaces. Coverage is always supplied by an exact printing.
  * Each printing supplies the exact TCGL foil mask and optional etched normal.
@@ -47,6 +48,14 @@ for (const [id, name] of [
   prismaticProfiles.push({ ...etchedReference, id, name,
     description: 'Exact-printing TCGL foil mask and optional offline TCGL etched normal. Single authored-normal response with the Sylveon/Espeon finish; no extra emboss.',
     secondary: undefined,
+    ...(id === 'prismatic_gold' ? {
+      diffraction: { ...etchedReference.diffraction, ...goldEtchedFinish.diffraction },
+      surface: { ...etchedReference.surface, ...goldEtchedFinish.surface },
+      structure: { ...etchedReference.structure, ...goldEtchedFinish.structure },
+      glints: { ...etchedReference.glints, ...goldEtchedFinish.glints },
+      mapSettings: goldEtchedFinish.mapSettings,
+      description: 'Gold etched Hyper Rare foil calibrated against Luxurious Cape photos: exact TCGL die, ink-filtered reflections and dense metallic grain in strong foil coverage.',
+    } : {}),
   });
 }
 prismaticProfiles.push({

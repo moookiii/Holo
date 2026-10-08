@@ -1,5 +1,6 @@
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
+import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
 import { pokemon151SirSettings } from '../materials/profiles/pokemon151SirSettings.ts';
 import { tcgl151Surfaces } from './data/151-surfaces.generated.ts';
 import { pokemon151Card, pokemon151Cards } from './Pokemon151Catalog.ts';
@@ -27,7 +28,7 @@ export function pokemon151Definition(id: string, variant: PrintVariant): CardDef
     ...(surface ? {
       maps: surface.maps,
       mapSettings: sir ? pokemon151SirSettings : { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured ? 'absolute' : 'profile' },
-      ...(surface.textured && !sir ? { profileOverrides: tcglEtchedFinish } : {}),
+      ...(surface.textured && !sir ? { profileOverrides: profile === 'pokemon151_gold' ? goldEtchedFinish : tcglEtchedFinish } : {}),
     } : {}),
     source: { image: card.front!, metadata: surface?.evidence ?? '/cards/pokemon/151/catalog.json',
       notes: 'Exact English TCGL 151 printing. Foil coverage and optional offline etched normal use this printing’s own sources.' },

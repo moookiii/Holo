@@ -12,15 +12,17 @@ export interface GlintUniforms {
   ordered?: Node<'float'>;
   microdiamond?: boolean;
   metallicGrain?: boolean;
+  filterMetallicGrain?: boolean;
 }
 
-export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number) {
+export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>) {
   if (settings.microdiamond) return microdiamondGlints(lightDirection, settings, seed);
   const ordered = settings.ordered ?? float(0);
   const point = uv().mul(vec2(settings.aspect ?? float(.716), 1));
   const lattice = mix(point, vec2(point.x.add(point.y), point.y.sub(point.x)), ordered).mul(settings.scale);
   const cell = lattice.floor();
-  const r1 = stableHash(cell, uniform(seed)), r2 = stableHash(cell, uniform(seed + 17.3)), r3 = stableHash(cell, uniform(seed + 76.1));
+  const offsetSeed = (offset: number) => typeof seed === 'number' ? uniform(seed + offset) : seed.add(offset);
+  const r1 = stableHash(cell, offsetSeed(0)), r2 = stableHash(cell, offsetSeed(17.3)), r3 = stableHash(cell, offsetSeed(76.1));
   const center = mix(vec2(mix(float(.25), float(.75), r1), mix(float(.25), float(.75), r2)), vec2(.5), ordered);
   const local = lattice.fract().sub(center);
   const radius = settings.metallicGrain
@@ -37,6 +39,16 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
   const half = lightDirection.add(positionViewDirection).normalize();
   const angular = normal.dot(half).max(0).pow(settings.sharpness);
   const color = settings.metallicGrain ? vec3(1, .99, .98) : vec3(1, .97, .91);
+  if (settings.metallicGrain && settings.filterMetallicGrain) {
+    // Dense rounded grains integrate to an aggregate lobe once a pixel covers
+    // multiple grains. Fading only the stochastic residual avoids crawling
+    // cell IDs and sparkling aliases during distant/grazing motion.
+    const resolved = lattice.fwidth().max(.001).x.max(lattice.fwidth().y).smoothstep(.7, 1.7).oneMinus();
+    const averageArea = float(.29);
+    const broadening = settings.sharpness.mul(settings.spread.pow2()).add(1);
+    const aggregate = normalView.dot(half).max(0).pow(settings.sharpness.div(broadening)).div(broadening);
+    return color.mul(mix(aggregate.mul(averageArea), spot.mul(integratedArea, occupied, angular), resolved), settings.strength);
+  }
   return color.mul(spot, integratedArea, occupied, angular, settings.strength);
 }
 

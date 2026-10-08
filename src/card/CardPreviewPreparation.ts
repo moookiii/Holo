@@ -190,6 +190,8 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const mode = settings.roughnessMode ?? (inputs.roughness ? 'absolute' : 'profile');
     if (mode === 'absolute') roughness = packed.surface[i + 1] / 255;
     if (mode === 'offset') roughness += (packed.surface[i + 1] - 128) / 255 * .35;
+    for (let layer = 0; layer < 3; layer++) if (layers[layer]?.enabled !== false)
+      roughness += (layers[layer]?.surface.coverageRoughness ?? 0) * (1 - masks[layer]);
     normal[i + 3] = Math.round(Math.max(.045, Math.min(1, roughness)) * 255);
     // Metallic coverage lives in artwork alpha; use the freed channel for
     // sparkle protection without repurposing the film-thickness detail map.

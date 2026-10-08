@@ -17,6 +17,8 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     set(index * 8 + 6, [0, 0, 0, 1.5]);
     if (!layer) return;
     const d = layer.diffraction, s = layer.structure, f = layer.surface;
+    // Generic authored-grating filtering uses the otherwise unused cut row.
+    if (d.normalFiltering) set(37 + index, [0, f.etchedInkSheen ?? 0, d.normalFiltering, f.inkSpecular ?? 0]);
     if (s.field === 'secret') set(37 + index, [s.scale, s.cutAngle ?? Math.PI / 4, s.cutWidth ?? .26, s.facetTilt ?? 0]);
     const disabled = new Set(layer.disabledMechanisms), enabled = layer.enabled !== false && profile.id !== 'print-only';
     const base = index * 8;
@@ -31,8 +33,8 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     set(base + 6, [s.normalVariance ?? 0, f.patternRoughness ?? 0, disabled.has('film') ? 0 : f.iridescence ?? 0, f.filmIOR ?? 1.5]);
     set(base + 7, [f.filmMin ?? 200, f.filmMax ?? 600, f.pearlBody ?? 0, enabled ? 1 : 0]);
     const g = layer.glints;
-    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && (g.microdiamond || s.field === 'starlight') && !disabled.has('sparkle') ? g.strength : 0]);
-    set(29 + index * 2, [g.spread, card.dimensions.width / card.dimensions.height, card.seed + [0, 8191, 16381][index], s.field === 'starlight' ? s.scale : 0]);
+    set(28 + index * 2, [g.density, g.scale, g.sharpness, enabled && (g.microdiamond || (g.metallicGrain && d.normalFiltering) || s.field === 'starlight') && !disabled.has('sparkle') ? g.strength : 0]);
+    set(29 + index * 2, [g.spread, card.dimensions.width / card.dimensions.height, card.seed + [0, 8191, 16381][index], s.field === 'starlight' ? s.scale : g.metallicGrain && d.normalFiltering ? -1 : 0]);
   });
   set(24, [...(card.substrate?.color ?? [.27, .31, .30]), card.substrate ? 1 - card.substrate.printRetention : profile.structure.field === 'secret' ? 0 : .1]);
   set(25, [...(card.substrate?.backgroundColor ?? [0, 0, 0]), card.substrate?.backgroundColor ? 1 : 0]);

@@ -25,6 +25,8 @@ export interface FoilLayer {
     facetCoupling?: number;
     /** Project even a uniform sheet axis onto the card's authored etched normals. */
     followsAuthoredNormals?: boolean;
+    /** Integrate authored-normal diffraction over the pixel footprint (0 disables). */
+    normalFiltering?: number;
   };
   structure: { field: 'radial' | 'symbol-foil' | PatternKind; engraving: number; scale: number; relief: number; facetTilt?: number; patternRelief?: number; normalVariance?: number;
     /** Analytic Secret Rare die: radians in +Y-up card space; fractional row coverage. */
@@ -54,6 +56,10 @@ export interface FoilLayer {
     substrateReflection?: number;
     /** Ink-colored reflection on authored etched ridges, from direct lights only. */
     etchedInkSheen?: number;
+    /** Additional ink roughness where the exact foil map attenuates metal coverage. */
+    coverageRoughness?: number;
+    /** Filter the dielectric reflection through colored ink over the foil. */
+    inkSpecular?: number;
     /** Thin-film interference, independent of the etched diffraction grating. Thickness is nm. */
     iridescence?: number; filmIOR?: number; filmMin?: number; filmMax?: number; pearlBody?: number;
     /** Absorbing finish on the foil substrate; printed regions keep their color. */

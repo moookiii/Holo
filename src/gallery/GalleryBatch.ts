@@ -1,4 +1,4 @@
-export interface GalleryOpticalLayer { enabled: boolean; secret: boolean; glints: boolean; iridescence: boolean; illustrationRare?: boolean; doubleRare?: boolean; ultraRare?: boolean; specialIllustration?: boolean; }
+export interface GalleryOpticalLayer { enabled: boolean; secret: boolean; glints: boolean; iridescence: boolean; illustrationRare?: boolean; doubleRare?: boolean; ultraRare?: boolean; specialIllustration?: boolean; normalFiltering?: boolean; metallicGrain?: boolean; }
 
 /** Select shader mechanisms from the same packed controls used for rendering.
  * Cards in a batch still retain their individual masks and optical values. */
@@ -7,6 +7,8 @@ export function galleryOpticalLayers(parameters: Float32Array): GalleryOpticalLa
     const enabled = parameters[index * 32 + 31] > 0;
     const secret = enabled && parameters[(37 + index) * 4] > 0;
     return { enabled, secret, ...(index === 0 && parameters[34 * 4 + 3] === 1 ? { illustrationRare: true } : {}),
+      ...(parameters[(29 + index * 2) * 4 + 3] === -1 ? { metallicGrain: true } : {}),
+      ...(!secret && parameters[34 * 4 + 3] === 0 && parameters[(37 + index) * 4 + 2] > 0 ? { normalFiltering: true } : {}),
       ...(index === 0 && parameters[34 * 4 + 3] === 2 ? { doubleRare: true } : {}),
       ...(index === 0 && parameters[34 * 4 + 3] === 4 ? { specialIllustration: true } : {}),
       ...(index === 0 && parameters[34 * 4 + 3] === 3 ? { ultraRare: true } : {}), glints: enabled && !secret && parameters[(28 + index * 2) * 4 + 3] > 0,
@@ -41,7 +43,9 @@ export function galleryPreviewOpticalLayers(parameters: Float32Array, images: re
 
 export function galleryBatchKey(layers: GalleryOpticalLayer[]) {
   return layers.map(layer => !layer.enabled ? '-' : layer.specialIllustration ? 'p' : layer.ultraRare ? 'u' : layer.doubleRare ? 'd' : layer.illustrationRare ? 'a' : layer.secret ? 's' : layer.glints ? 'g' : 'f').join('')
-    + (layers.some(layer => layer.iridescence) ? ':i' : '');
+    + (layers.some(layer => layer.iridescence) ? ':i' : '')
+    + (layers.some(layer => layer.enabled && layer.normalFiltering) ? ':filtered-' + layers.map(layer => +(layer.enabled && !!layer.normalFiltering)).join('') : '')
+    + (layers.some(layer => layer.enabled && layer.metallicGrain) ? ':grain-' + layers.map(layer => +(layer.enabled && !!layer.metallicGrain)).join('') : '');
 }
 
 /** A nonfoil card can use the basic foil program with a zero layer mask.

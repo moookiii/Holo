@@ -17,7 +17,7 @@ export const pokemon151Profiles: HolographicProfile[] = [
   ['gold', 'Gold etched', 'prismatic_gold'],
 ].map(([id, name, source]) => ({ ...reference(source), id: `pokemon151_${id}`, name: `151 · ${name}`,
   description: 'Exact TCGL printing foil coverage; optional preprocessed TCGL normal with the required Sylveon/Espeon finish.',
-  secondary: undefined, mapSettings: { normalScale: 0, embossStrength: 0 },
+  secondary: undefined, mapSettings: source === 'prismatic_gold' ? reference(source).mapSettings : { normalScale: 0, embossStrength: 0 },
 }));
 pokemon151Profiles.push({ ...doubleRareProfile, id: 'pokemon151_ex_holo', name: '151 · Double Rare' });
 

@@ -5,11 +5,12 @@ import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNo
 import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
+import { pixelVariance, normalPixelVariance } from '../materials/layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { doubleRareReflection } from '../materials/layers/DoubleRareLayer';
 import { ultraRareReflection } from '../materials/layers/UltraRareLayer';
 import { specialIllustrationReflection } from '../materials/layers/SpecialIllustrationLayer';
-import { microdiamondGlints } from '../materials/layers/GlintLayer';
+import { glints, microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
 import type { GalleryOpticalLayer } from './GalleryBatch';
@@ -110,7 +111,10 @@ class GalleryLightingModel extends PhysicalLightingModel {
       if (!this.frames.has(r)) this.frames.set(r, this.createFrame(r));
       const { n, grating, groove, spacing } = this.frames.get(r)!;
       const momentum = light.add(positionViewDirection).toVar();
-      const variance = (a: Node<'vec3'>) => footprint ? footprint[0].dot(a).pow2().add(footprint[1].dot(a).pow2()).div(3) : float(0);
+      const variance = (a: Node<'vec3'>) => {
+        const source = footprint ? footprint[0].dot(a).pow2().add(footprint[1].dot(a).pow2()).div(3) : float(0);
+        return layer.normalFiltering ? source.add(pixelVariance(momentum.dot(a)).mul(r.secret.z)) : source;
+      };
       const energy = mix(float(1), r.detail.a.mul(.85).add(.18), structure.x).mul(r.field.a);
       const spectralLobe = (across: Node<'vec3'>, along: Node<'vec3'>) => {
         const width = axis.y.pow2().add(variance(along)).sqrt();
@@ -128,9 +132,18 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const broadening = halfVariance.mul(r.glint.z).add(1);
       // Absent foil layers have zeroed glint parameters. Keep pow(0, 0)
       // out of their angular response: NaN survives a later zero mask.
-      const sparkle = layer.glints ? microdiamondGlints(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.max(1).div(broadening),
-        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001) }, r.glintSurface.z).mul(r.sparkle, r.field.a) : vec3(0);
-      const contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
+      const sparkle = layer.glints ? (layer.metallicGrain ? glints : microdiamondGlints)(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.max(1).div(broadening),
+        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001), metallicGrain: !!layer.metallicGrain, filterMetallicGrain: !!layer.normalFiltering }, r.glintSurface.z)
+        .mul(r.sparkle, r.field.a, layer.metallicGrain ? r.mask.smoothstep(.12, .80) : float(1)) : vec3(0);
+      let contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
+      if (layer.normalFiltering) {
+        // Same authored ridge response and pixel integration as the viewer.
+        const ridgeWidth = halfVariance.add(normalPixelVariance(n).mul(r.secret.z)).mul(150).add(1);
+        const ridgeLobe = n.dot(half).max(0).pow(float(150).div(ridgeWidth)).div(ridgeWidth);
+        const ridge = n.sub(geometric).length().smoothstep(.008, .075);
+        contribution = contribution.add(r.ink.sub(.06).div(.94).max(0).mul(ridgeLobe, ridge,
+          geometric.dot(half).smoothstep(.90, .98), r.secret.y, incident, visible, r.field.a));
+      }
       (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(contribution.mul(r.mask, data.lightColor as Node<'vec3'>));
       }
     }
@@ -202,9 +215,12 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     this.normalNode = ultraRare ? normalMap(texture(ultraRare.normal, uv()).rgb)
       : normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
+    if (layers[0].normalFiltering) this.specularColorNode = mix(vec3(1), basePrint, this.regions[0].secret.w);
     const variance = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     const patternRoughness = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
     this.roughnessNode = (ultraRare ? texture(ultraRare.roughness, uv()).r : normal.a).add(variance).add(patternRoughness).clamp(.045, 1);
+    if (layers[0].normalFiltering) this.roughnessNode = (this.roughnessNode as Node<'float'>).pow(4)
+      .add(normalPixelVariance(normal.rgb.mul(2)).mul(this.regions[0].secret.z, primary)).pow(.25).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
     const grain = param(40), finish = param(41), stockCard = param(42), registration = param(43);
