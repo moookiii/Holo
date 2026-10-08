@@ -24,19 +24,26 @@ def apply(p,record,evidence):
     floor,_=black_floor(p['sources']['foil'])
     coverage=np.clip((raw[...,:3].mean(2)-floor)/(1-floor),0,1)*raw[...,3]
     mask=np.asarray(Image.open(source).convert('RGBA'),np.float32)/255
-    pattern=cv2.resize(mask[...,:3].mean(2)*mask[...,3],(raw.shape[1],raw.shape[0]),interpolation=cv2.INTER_LINEAR)
     out=ROOT/'public'/record['maps']['foil'].lstrip('/')
-    converter.png(out,np.rint(coverage*pattern*255).astype(np.uint8))
-    record['profile']='prismatic_standard_reverse'
+    # Keep continuous metal separate from the symbol die. Pattern visibility
+    # gates diffraction/glints, never removes the smooth silver between symbols.
+    converter.png(out,np.rint(coverage*255).astype(np.uint8))
+    record['maps']['pattern']='/materials/bw-ball-masks/'+source.name
+    optics=MASK_DIR/f'{kind}-{layout}-optics.png'
+    if not optics.exists():raise ValueError('Prepare shared optical PNGs first')
+    record['maps']['direction']='/materials/bw-ball-masks/'+optics.name
+    record['profile']='bw-pokeball-reverse' if kind=='poke' else 'bw-masterball-reverse'
     evidence['reusedProfile']=record['profile']
     evidence['ballMask']={'status':'applied','source':'User-supplied '+INPUTS[f'{kind}-{layout}'],
         'file':source.relative_to(ROOT).as_posix(),'sha256':converter.digest(source),'dimensions':[mask.shape[1],mask.shape[0]],
         'kind':kind,'layout':layout,'cardStage':stage,
-        'method':'Full UV bilinear resize of mean RGB times alpha; multiply exact TCGL foil coverage. Keep protection PNG unchanged. No crop, offset, flip, normal or height conversion.',
-        'physicalReview':'Supplied pattern and layout; independent physical-copy calibration pending.'}
+        'method':'Unchanged full-card PNG controls pattern visibility separately from continuous exact TCGL foil coverage. Cap interiors from local mask occupancy control fine optical grain. Protection unchanged. No crop, offset, flip, normal or height conversion.',
+        'physicalReview':'Calibrated against supplied Snivy Poké Ball and Master Ball photos; dynamic physical-copy calibration remains approximate.',
+        'optics':{'file':optics.relative_to(ROOT).as_posix(),'sha256':converter.digest(optics),'dimensions':[mask.shape[1],mask.shape[0]],
+            'encoding':'RG neutral 128; B cap-interior grain weight; A opaque 255. Optical data only, no normal or height.'}}
     evidence['maps'][out.name]=converter.digest(out)
-    evidence['foilMethod']='Exact TCGL continuous coverage multiplied by the user-supplied stage-specific ball PNG in full-card UV coordinates.'
-    evidence['finishReview']='User-supplied ball pattern applied with existing smooth silver reverse material; no new shader or etched relief.'
+    evidence['foilMethod']='Exact TCGL continuous coverage with decoded black floor removed. Separate user-supplied full-card pattern mask clips only the optical symbol response.'
+    evidence['finishReview']='Dedicated BW Poké Ball/Master Ball cast-and-cure spectrum and fine cap grain over continuous silver; shared viewer/gallery optical kernel; no etched relief.'
     return True
 
 def main():
@@ -44,7 +51,12 @@ def main():
     for key,name in INPUTS.items():
         source=Path('C:/Users/jpall/Pictures')/name;out=MASK_DIR/f'{key}.png'
         if not out.exists():shutil.copyfile(source,out)
-        elif out.read_bytes()!=source.read_bytes():raise ValueError('Preserved supplied mask changed: '+name)
+        elif source.exists() and out.read_bytes()!=source.read_bytes():raise ValueError('Preserved supplied mask changed: '+name)
+        rgba=np.asarray(Image.open(out).convert('RGBA'),np.float32)/255
+        occupancy=cv2.boxFilter(rgba[...,:3].mean(2)*rgba[...,3],-1,(11,11),borderType=cv2.BORDER_REPLICATE)
+        cap=np.clip((occupancy-.55)/.4,0,1)
+        field=np.full(rgba.shape,128,np.uint8);field[...,2]=np.rint(cap*255).astype(np.uint8);field[...,3]=255
+        converter.png(MASK_DIR/f'{key}-optics.png',field)
     counts=Counter()
     for set_id in ('sv10.5b','sv10.5w','svalt'):
         base=ROOT/f'public/cards/pokemon/tcgl-sv/{set_id}/tcgl'
