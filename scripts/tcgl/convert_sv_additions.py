@@ -18,14 +18,15 @@ def profile(p):
     if foil=='TINSEL': return 'pokemon-tinsel'
     if foil=='CRACKED_ICE': return 'pokemon-cracked-ice'
     if foil=='ACE_FOIL': return 'pokemon-ace-spec'
-    if foil in ('FLAT_SILVER','STAMPED'): return 'sv_tcgl_standard_reverse'
+    if foil=='STAMPED': return 'pokemon-first-movie-gold'
+    if foil=='FLAT_SILVER': return 'sv_tcgl_standard_reverse'
     if foil=='SV_HOLO': return 'sv_tcgl_regular_holo'
     if foil=='SUN_PILLAR': return 'sv_tcgl_illustration_holo' if rarity=='Illustration Rare' else 'sv_tcgl_ex_holo'
     if foil=='SV_ULTRA': return 'prismatic_ex_holo'
     raise ValueError('Unclassified TCGL finish '+foil)
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--sets',nargs='+',default=list(PRODUCTS));parser.add_argument('--register-only',action='store_true');args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--sets',nargs='+',default=list(PRODUCTS));parser.add_argument('--register-only',action='store_true');parser.add_argument('--numbers',nargs='+');args=parser.parse_args()
     cv2.setNumThreads(1);converter.FOIL_NATIVE=True;converter.OMIT_HEIGHT=True
     for set_id in ([] if args.register_only else args.sets):
         converter.ASSETS=ROOT/f'public/cards/pokemon/tcgl-sv/{set_id}'
@@ -36,7 +37,7 @@ def main():
         review_path=ROOT/f'artifacts/sv-tcgl/source-review/{set_id}/review.json'
         review=json.loads(review_path.read_text(encoding='utf-8'))
         if not review.get('inspected'): raise ValueError('Inspect source review first: '+set_id)
-        selected=[p for p in source['printings'] if 'foil' in p['sources']]
+        selected=[p for p in source['printings'] if 'foil' in p['sources'] and (not args.numbers or p['number'] in args.numbers)]
         for p in selected:
             front=converter.ASSETS/p['frontFile']
             if converter.digest(front)!=p['sources']['front']['sha256']: raise ValueError('Printing front changed')
@@ -62,7 +63,12 @@ def main():
             if p['rarity']=='Black White Rare':
                 evidence['finishReview']='Existing etched reference reused; dedicated Black/White Rare ink/foil angular response remains unimplemented.'
             if p['foil']['type']=='STAMPED':
-                evidence['finishReview']='Exact TCGL foil coverage with existing smooth silver response; stamped promo angular response remains unimplemented.'
+                result['maps']['metallic']=result['maps']['foil']
+                empty=converter.OUT/'stamp-no-foil.png'
+                converter.png(empty,np.zeros((512,367),np.uint8))
+                result['maps']['foil']=converter.PUBLIC_BASE+'/tcgl/'+empty.name
+                evidence['maps'][empty.name]=converter.digest(empty);evidence['mapDimensions'][empty.name]=[367,512]
+                evidence['finishReview']='Existing localized gold metallic-ink material reused with the exact TCGL Worlds logo mask. No fabricated stamp geometry; physical calibration pending.'
             if p['variant'] in ('pokeball-reverse','masterball-reverse') and '_CastAndCure_' in p['tcglVariantId']:
                 evidence['finishReview']='Exact TCGL coverage preserved. Cast-and-cure Poké Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized.'
             evidence['rendererReady']=True
@@ -70,6 +76,10 @@ def main():
             print(set_id+' '+p['number']+' '+p['variant']+' '+result['profile'],flush=True)
             return result
         with ThreadPoolExecutor(max_workers=4) as pool: records=list(pool.map(build,selected))
+        if args.numbers:
+            previous=json.loads((converter.OUT/'manifest.json').read_text(encoding='utf-8'))
+            keys={(p['cardId'],p['variant']) for p in selected}
+            records=[p for p in previous if (p['cardId'],p['variant']) not in keys]+records
         (converter.OUT/'manifest.json').write_text(json.dumps(records,indent=2)+'\n',encoding='utf-8')
         source_path.write_text(json.dumps(source,indent=2)+'\n',encoding='utf-8')
         print(f'{set_id}: converted {len(records)} exact foil printings',flush=True)

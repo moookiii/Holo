@@ -5,7 +5,9 @@ import { tcglSvSurfaces } from '../src/pokemon/data/sv-tcgl-surfaces.generated.t
 import { svTcglDefinition } from '../src/pokemon/SvTcglSurfaces.ts';
 test('TCGL ACE SPEC cards use the completed shared shader with their own masks', () => {
   assert.equal(readFileSync(new URL('../src/materials/profiles/svTcgl.ts', import.meta.url), 'utf8').includes('sv_tcgl_ace_spec'), false);
-  const surfaces = tcglSvSurfaces.filter(s => s.foilType === 'ACE_FOIL');
+  // The newly imported Shrouded Fable etches follow the required single-normal
+  // Sylveon material; the 24 previously authored ACE surfaces stay unchanged.
+  const surfaces = tcglSvSurfaces.filter(s => s.foilType === 'ACE_FOIL' && !s.cardId.startsWith('sv06.5-'));
   assert.equal(surfaces.length, 24);
   for (const surface of surfaces) {
     const card = svTcglDefinition(surface.cardId, 'holo');
