@@ -1,0 +1,136 @@
+{
+  "provider": "User supplied",
+  "metadataProvider": "TCGdex",
+  "cardId": "svp-102",
+  "tcgdexId": "svp-102",
+  "variant": "normal",
+  "metadataUrl": "https://api.tcgdex.net/v2/en/cards/svp-102",
+  "imageUrl": null,
+  "dimensions": [
+    733,
+    1024
+  ],
+  "imageSha256": "ec7fa3d0a77dd77a83ecc5d7a90cac1fc964a72f723b196f03a370be586ceb98",
+  "metadataSha256": "e39e120972f24c0d8a500c698a4d4ac7d837e33277b718d90780f5758acf5ea7",
+  "sourceDimensions": [
+    733,
+    1024
+  ],
+  "cropPixels": null,
+  "outputSha256": "ec7fa3d0a77dd77a83ecc5d7a90cac1fc964a72f723b196f03a370be586ceb98",
+  "metadata": {
+    "category": "Pokemon",
+    "id": "svp-102",
+    "illustrator": "Miranda Branley",
+    "localId": "102",
+    "name": "Oddish",
+    "rarity": "Promo",
+    "set": {
+      "cardCount": {
+        "official": 225,
+        "total": 226
+      },
+      "id": "svp",
+      "name": "SVP Black Star Promos"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": false,
+      "normal": true,
+      "reverse": false,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard",
+        "thirdParty": {
+          "cardmarket": 740398,
+          "tcgplayer": 525293
+        },
+        "variantId": "endfynwn4n10gzq",
+        "pricing": {
+          "cardmarket": {
+            "updated": "2026-10-07T22:54:32.994Z",
+            "unit": "EUR",
+            "idProduct": 740398,
+            "avg": 13.73,
+            "low": 16.99,
+            "trend": 15.06,
+            "avg1": 16.78,
+            "avg7": 15.34,
+            "avg30": 13.53,
+            "avg-holo": null,
+            "low-holo": null,
+            "trend-holo": 0,
+            "avg1-holo": null,
+            "avg7-holo": null,
+            "avg30-holo": null
+          },
+          "tcgplayer": null
+        }
+      }
+    ],
+    "dexId": [
+      43
+    ],
+    "hp": 60,
+    "types": [
+      "Grass"
+    ],
+    "description": "During the day, it stays in the cold underground to avoid the sun. It grows by bathing in moonlight.",
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Grass"
+        ],
+        "name": "Razor Leaf",
+        "damage": 10
+      },
+      {
+        "cost": [
+          "Grass",
+          "Grass"
+        ],
+        "name": "Grass Knot",
+        "effect": "This attack does 20 damage for each {C} in your opponent's Active Pok\u00e9mon's Retreat Cost.",
+        "damage": "20\u00d7"
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fire",
+        "value": "x2"
+      }
+    ],
+    "retreat": 1,
+    "regulationMark": "G",
+    "legal": {
+      "standard": false,
+      "expanded": true
+    },
+    "updated": "2026-06-17T18:43:13+01:00",
+    "pricing": {
+      "cardmarket": {
+        "updated": "2026-10-07T22:54:32.994Z",
+        "unit": "EUR",
+        "idProduct": 740398,
+        "avg": 13.73,
+        "low": 16.99,
+        "trend": 15.06,
+        "avg1": 16.78,
+        "avg7": 15.34,
+        "avg30": 13.53,
+        "avg-holo": null,
+        "low-holo": null,
+        "trend-holo": 0,
+        "avg1-holo": null,
+        "avg7-holo": null,
+        "avg30-holo": null
+      },
+      "tcgplayer": null
+    }
+  },
+  "finish": "Print only; only the nonfoil printing is imported. No foil inferred from artwork."
+}

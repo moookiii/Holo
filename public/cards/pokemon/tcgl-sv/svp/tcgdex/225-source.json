@@ -1,0 +1,118 @@
+{
+  "provider": "TCGdex",
+  "metadataProvider": "TCGdex",
+  "cardId": "svp-225",
+  "tcgdexId": "svp-225",
+  "variant": "normal",
+  "metadataUrl": "https://api.tcgdex.net/v2/en/cards/svp-225",
+  "imageUrl": "https://assets.tcgdex.net/en/sv/svp/225/high.png",
+  "dimensions": [
+    600,
+    825
+  ],
+  "imageSha256": "161bcf74de78794a4142eb38875b7e408fb9bab4f6fdd1e2b297a8a11a396181",
+  "metadataSha256": "f84aa374bcb37889fd67a93d76c96f99e77bd98a75ef6233740d1d390ba204ec",
+  "sourceDimensions": [
+    600,
+    825
+  ],
+  "cropPixels": null,
+  "outputSha256": "161bcf74de78794a4142eb38875b7e408fb9bab4f6fdd1e2b297a8a11a396181",
+  "metadata": {
+    "category": "Pokemon",
+    "id": "svp-225",
+    "illustrator": "DOM",
+    "localId": "225",
+    "name": "Pikachu",
+    "rarity": "Promo",
+    "set": {
+      "cardCount": {
+        "official": 225,
+        "total": 226
+      },
+      "id": "svp",
+      "name": "SVP Black Star Promos"
+    },
+    "variants": {
+      "firstEdition": false,
+      "holo": false,
+      "normal": true,
+      "reverse": true,
+      "wPromo": false
+    },
+    "variants_detailed": [
+      {
+        "type": "normal",
+        "size": "standard",
+        "stamp": [
+          "worlds-2025"
+        ],
+        "thirdParty": {
+          "tcgplayer": 648631
+        },
+        "variantId": "2fnyg4g538et3q356alcw4xm2id",
+        "pricing": {
+          "cardmarket": null,
+          "tcgplayer": null
+        }
+      },
+      {
+        "type": "reverse",
+        "size": "standard",
+        "stamp": [
+          "winner"
+        ],
+        "foil": "league",
+        "thirdParty": {
+          "tcgplayer": 649940
+        },
+        "variantId": "1gg9815m9sif9bamkyn72d6z8u12ev",
+        "pricing": {
+          "cardmarket": null,
+          "tcgplayer": null
+        }
+      }
+    ],
+    "dexId": [
+      25
+    ],
+    "cameoDexIds": [
+      995
+    ],
+    "hp": 70,
+    "types": [
+      "Lightning"
+    ],
+    "stage": "Basic",
+    "attacks": [
+      {
+        "cost": [
+          "Lightning",
+          "Lightning",
+          "Colorless"
+        ],
+        "name": "Scrappy Spark",
+        "effect": "Flip a coin until you get tails. This attack does 30 more damage for each heads.",
+        "damage": "30+"
+      }
+    ],
+    "weaknesses": [
+      {
+        "type": "Fighting",
+        "value": "\u00d72"
+      }
+    ],
+    "retreat": 1,
+    "regulationMark": "I",
+    "legal": {
+      "standard": true,
+      "expanded": true
+    },
+    "updated": "2026-09-06T11:00:03+01:00",
+    "pricing": {
+      "cardmarket": null,
+      "tcgplayer": null
+    }
+  },
+  "finish": "Print only; only the nonfoil printing is imported. No foil inferred from artwork."
+}

@@ -4,12 +4,31 @@ import { existsSync, readFileSync } from 'node:fs';
 import { tcglSvSets } from '../src/pokemon/data/sv-tcgl.generated.ts';
 import { tcglSvSurfaces } from '../src/pokemon/data/sv-tcgl-surfaces.generated.ts';
 import { svTcglDefinition } from '../src/pokemon/SvTcglSurfaces.ts';
-import { svTcglFront } from '../src/pokemon/SvTcglCatalog.ts';
+import { svTcglFront, svTcglSet } from '../src/pokemon/SvTcglCatalog.ts';
 
 const counts = new Map([['sv04.5', 245], ['sv06.5', 99], ['sv10.5w', 173], ['sv10.5b', 172], ['svp', 216], ['svalt', 237], ['sve', 48]]);
 const added = tcglSvSets.filter(set => counts.has(set.id));
 const surfaces = new Map(tcglSvSurfaces.map(s => [`${s.cardId}:${s.variant}`, s]));
 const publicFile = (path: string) => new URL(`../public${path}`, import.meta.url);
+
+test('SVP nonfoil supplements remain browsable with truthful provenance and no inferred foil', () => {
+  const promos = svTcglSet('svp');
+  for (const n of [85, 102, 190, 213, 214, 225, 500]) {
+    const id = `svp-${n}`;
+    assert.ok(promos.cardIds.includes(id));
+    assert.equal(promos.cardIds.filter(value => value === id).length, 1);
+    const card = svTcglDefinition(id, 'normal');
+    assert.equal(card.profile, 'print-only');
+    assert.equal(card.pickerHidden, false);
+    assert.deepEqual(card.pokemon?.variants, ['normal']);
+    assert.equal(card.maps, undefined);
+    assert.ok(existsSync(publicFile(card.front)));
+    const evidence = JSON.parse(readFileSync(publicFile(card.source!.metadata!), 'utf8'));
+    assert.equal(evidence.provider, [85, 102, 190].includes(n) ? 'User supplied' : 'TCGdex');
+    assert.equal(evidence.variant, 'normal');
+    assert.throws(() => svTcglDefinition(id, 'holo'), /Invalid TCGL printing/);
+  }
+});
 
 test('missing SV products retain every exact printing and its own front/maps', () => {
   assert.equal(added.length, counts.size);

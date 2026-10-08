@@ -28,3 +28,9 @@ Comparison with the [TCGdex SVP checklist](https://api.tcgdex.net/v2/en/sets/svp
 Standard TCGL front URL probes for all ten returned HTTP 404. These cards have not been fabricated or replaced with other artwork. Their exact TCGL sources remain required before importing them; absence in the checked export does not prove they will never become available.
 
 A follow-up name search of the current SVBSP and SVALT exports found no Grey Felt Hat / Van Gogh entry under an alternate TCGL identifier.
+
+## Authorized nonfoil supplements
+
+The user subsequently approved TCGdex sources for missing nonfoil cards and supplied fronts for 085, 102 and 190. Seven nonfoil printings are now imported: **085, 102 and 190** from the supplied PNGs, and **213, 214, 225 and 500** from TCGdex. Original PNG bytes, source URLs, metadata and SHA-256 hashes are preserved. All seven use print-only materials and appear in the SVP catalog and card picker. 225's reverse printing has not been inferred or imported.
+
+The remaining gaps are **191, 192 and 215** (foil printings still require exact TCGL sources). TCGL catalogs, fronts and optical maps remain independent of these supplements. Run `scripts/tcgl/import_svp_nonfoil_tcgdex.py` to regenerate the supplement; preserved user-supplied images are used on subsequent runs, including from the checked-in fronts when research files are absent.

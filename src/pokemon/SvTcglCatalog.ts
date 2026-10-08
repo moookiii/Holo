@@ -1,16 +1,24 @@
 import { tcglSvSets } from './data/sv-tcgl.generated.ts';
+import { svpTcgdexNonfoil } from './data/svp-tcgdex-nonfoil.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
 import { localBoosterArt } from './boosterArt.ts';
 
-const records = new Map(tcglSvSets.map(set => [set.id, set]));
+const catalogSets = tcglSvSets.map(set => set.id === 'svp'
+  ? { ...set, cards: [...set.cards, ...svpTcgdexNonfoil].sort((a, b) => Number(a.localId) - Number(b.localId)) }
+  : set);
+const records = new Map(catalogSets.map(set => [set.id, set]));
+export const svTcgdexNonfoilSource = (id: string): string | undefined =>
+  svpTcgdexNonfoil.find(card => card.id === id)?.sourceEvidence;
+export const svNonfoilImageProvider = (id: string): string | undefined =>
+  svpTcgdexNonfoil.find(card => card.id === id)?.imageProvider;
 export const isSvTcglSet = (id: string): boolean => records.has(id);
-export const svTcglCards: readonly PokemonCard[] = tcglSvSets.flatMap(set => set.cards.map(card => ({
+export const svTcglCards: readonly PokemonCard[] = catalogSets.flatMap(set => set.cards.map(card => ({
   ...card, setId: set.id, setName: set.name, seriesId: 'sv', seriesName: 'Scarlet & Violet', era: 'sv',
   variants: [...card.variants], types: card.types ? [...card.types] : undefined, foil: { ...card.foil },
   front: `${set.assets}/${card.front}`, thumbnail: `${set.assets}/${card.front}`,
 })));
 const byId = new Map(svTcglCards.map(card => [card.id, card]));
-export const svTcglSets: readonly PokemonSet[] = tcglSvSets.map(set => ({
+export const svTcglSets: readonly PokemonSet[] = catalogSets.map(set => ({
   id: set.id, name: set.name, logo: set.logo ?? undefined, releaseDate: set.releaseDate,
   series: { id: 'sv', name: 'Scarlet & Violet' }, era: 'sv',
   cardIds: set.cards.map(card => card.id), boosters: localBoosterArt(set.id) ?? [],
