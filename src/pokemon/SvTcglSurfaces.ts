@@ -27,7 +27,7 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
       maps: surface.maps,
-      mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile', embossMaskFromNormalAlpha: false },
+      mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
       ...(surface.textured && profile !== 'pokemon-ace-spec' ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
       ...(!surface.textured && surface.foilType === 'SUN_PILLAR' && (card.rarity === 'Double Rare' || card.setId === 'svp' && card.suffix === 'ex' || card.setId === 'svalt' && card.suffix === 'ex')
         ? { profileOverrides: doubleRareProfile } : {}),
