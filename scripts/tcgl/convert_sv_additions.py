@@ -63,6 +63,8 @@ def main():
                 evidence['finishReview']='Existing etched reference reused; dedicated Black/White Rare ink/foil angular response remains unimplemented.'
             if p['foil']['type']=='STAMPED':
                 evidence['finishReview']='Exact TCGL foil coverage with existing smooth silver response; stamped promo angular response remains unimplemented.'
+            if '_CastAndCure_' in p['tcglVariantId']:
+                evidence['finishReview']='Exact TCGL coverage preserved. Cast-and-cure Poké Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized.'
             evidence['rendererReady']=True
             path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
             print(set_id+' '+p['number']+' '+p['variant']+' '+result['profile'],flush=True)
