@@ -12,6 +12,7 @@ import { replaysForSet } from './SvPackReplays';
 import { packAvailability } from './availability';
 import { boundedMap, SelectionTask } from './requests';
 import type { CatalogEntry, PokemonBooster, PokemonCard, PokemonSet } from './types';
+import { printVariantLabel } from './types';
 import { pokemonDefinition } from './materials';
 import { fallbackWrapper, prepareWrapper, usableCardFront } from './assets';
 import { WIZARDS_PROMO_ID } from './WizardsPromoCatalog';
@@ -28,7 +29,7 @@ export interface PackBrowserDependencies {
   definitions: readonly CardDefinition[];
   prepare: (definition: PackDefinition, seed: number, cards: readonly CardDefinition[], signal: AbortSignal, progress: (done: number, total: number) => void) => Promise<PreparedPack>;
   open: (pack: PreparedPack) => Promise<void>;
-  viewCard: (id: string) => Promise<void>;
+  viewCard: (id: string, definition?: CardDefinition) => Promise<void>;
   close: () => void;
 }
 export class PackBrowser {
@@ -252,7 +253,7 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => series.id === 'neo' || series.id === 'ecard' || series.id === 'sv' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
+      sets.sort((a, b) => series.id === 'neo' || series.id === 'ecard' || series.id === 'sv' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : ['svp', 'svalt', 'sve', 'mfb'].includes(set.id) ? this.catalogCards(set) : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
         packAvailability(set.id).label));
     }, () => this.sets());
   }
@@ -311,6 +312,34 @@ export class PackBrowser {
         button.classList.add('pokemon-promo-card');
       }
     }, () => this.promoCards());
+  }
+  private catalogCards(entry: CatalogEntry) {
+    this.step = 'cards'; this.selection.set = undefined; this.selection.booster = undefined;
+    this.screen(entry.name, 'Choose a card printing to view.');
+    void this.run('Loading card catalog…', async request => {
+      const set = await pokemonCatalog.set(entry.id, request.signal);
+      const cards = await pokemonCatalog.cards(set, request.signal, (done, total) => {
+        if (this.task.current(request)) this.status.textContent = `Loading cards · ${done} / ${total}`;
+      });
+      if (!this.task.current(request)) return;
+      this.selection.set = set;
+      const printings = cards.flatMap(card => card.variants.map(variant => ({ card, variant })))
+        .sort((a, b) => a.card.localId.localeCompare(b.card.localId, undefined, { numeric: true }));
+      this.status.textContent = `${cards.length} cards · ${printings.length} printings · choose a card to view.`;
+      for (const { card, variant } of printings) {
+        const definition = pokemonDefinition(card, variant, this.deps.definitions);
+        const button = this.button(`#${card.localId} · ${card.name}`, () => {
+          if (this.disposed || this.root.getAttribute('aria-busy') === 'true') return;
+          this.root.close();
+          void this.deps.viewCard(definition.id, definition).then(() => this.dispose(), error => {
+            if (this.disposed) return;
+            this.root.showModal(); this.status.textContent = error instanceof Error ? error.message : 'Unable to open this card.';
+          });
+        }, definition.front || card.thumbnail, definition.front ? printVariantLabel(variant) : 'Exact card image unavailable');
+        button.disabled = !definition.front;
+        button.classList.add('pokemon-promo-card'); button.dataset.cardId = card.id; button.dataset.variant = variant;
+      }
+    }, () => this.catalogCards(entry));
   }
   private boosters(id: string) {
     this.step = 'boosters'; this.selection.set = undefined; this.selection.booster = undefined; this.metadata = undefined;

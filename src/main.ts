@@ -271,7 +271,10 @@ async function start() {
         prepare: (definition, seed, definitions, signal, progress) => prepareExactPack(definition, seed, definitions, signal,
           (card, signal) => cpuPreparation.prepare(card, signal), progress),
         open: prepared => openPack(prepared.definition.id, prepared),
-        viewCard: id => { returnToGalleryFromPackBrowser = false; return setCard(id); },
+        viewCard: (id, definition) => {
+          if (definition && !cards.some(card => card.id === id)) { cards.push(definition); ui?.refreshCards(); }
+          returnToGalleryFromPackBrowser = false; return setCard(id, !!gallery?.active);
+        },
         close: () => {
           packBrowser = undefined;
           if (returnToGalleryFromPackBrowser && !pack && !packRequest) {

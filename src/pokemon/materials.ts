@@ -10,6 +10,7 @@ import { POKEMON_151_ID } from './Pokemon151Catalog.ts';
 import { pokemon151Definition, pokemon151Profile } from './Pokemon151Surfaces.ts';
 import { isSvTcglCard } from './SvTcglCatalog.ts';
 import { svTcglDefinition, svTcglProfile } from './SvTcglSurfaces.ts';
+import { myFirstBattleDefinition } from './MyFirstBattleCatalog.ts';
 
 /** Stable identities for existing authored printings, never a name-only match. */
 const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
@@ -44,6 +45,10 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
   return 'pokemon-sheen';
 }
 export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[], packSetId?: string): CardDefinition {
+  if (card.setId === 'mfb') {
+    if (variant !== 'normal') throw new Error('My First Battle has no foil printing.');
+    return myFirstBattleDefinition(card);
+  }
   if (card.setId === SAMPLE_SET_ID) return sampleSetDefinition(card.id, variant);
   if (isSvTcglCard(card.id)) return svTcglDefinition(card.id, variant);
   if (card.setId === POKEMON_151_ID) return pokemon151Definition(card.id, variant);

@@ -21,6 +21,7 @@ import { JUNGLE_SET_ID, jungleCard, jungleSet } from './JungleCatalog.ts';
 import { WIZARDS_PROMO_ID, wizardsPromoCard, wizardsPromoSet } from './WizardsPromoCatalog.ts';
 import { POKEMON_151_ID, pokemon151Card, pokemon151Set } from './Pokemon151Catalog.ts';
 import { isSvTcglSet, svTcglCard, svTcglSet, svTcglSets } from './SvTcglCatalog.ts';
+import { myFirstBattleCard, myFirstBattleSet } from './MyFirstBattleCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -141,6 +142,7 @@ export class TcgdexAdapter {
       if (id === AQUAPOLIS_ID) return { ...aquapolisSet, series: { ...aquapolisSet.series }, cardIds: [...aquapolisSet.cardIds], boosters: aquapolisSet.boosters.map(b => ({ ...b })) };
       if (id === SAMPLE_SET_ID) return { ...sampleSet, series: { ...sampleSet.series }, cardIds: [...sampleSet.cardIds], boosters: [] };
       if (isSvTcglSet(id)) return svTcglSet(id);
+      if (id === 'mfb') return { ...myFirstBattleSet, cardIds: [...myFirstBattleSet.cardIds] };
       if (id === POKEMON_151_ID) return { ...pokemon151Set, series: { ...pokemon151Set.series }, cardIds: [...pokemon151Set.cardIds], boosters: pokemon151Set.boosters.map(b => ({ ...b })) };
       if (id === SOUTHERN_ISLANDS_ID) return { ...southernIslandsSet, series: { ...southernIslandsSet.series }, cardIds: [...southernIslandsSet.cardIds], boosters: [] };
       if (id === NEO_DESTINY_ID) return { ...neoDestinySet, series: { ...neoDestinySet.series }, cardIds: [...neoDestinySet.cardIds], boosters: neoDestinySet.boosters.map(b => ({ ...b })) };
@@ -170,6 +172,7 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (set.id === 'mfb') return myFirstBattleCard(id);
       if (set.id === EXPEDITION_ID) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return expeditionCard(id);
