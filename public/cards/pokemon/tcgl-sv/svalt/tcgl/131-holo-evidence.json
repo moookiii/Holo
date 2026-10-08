@@ -1,0 +1,126 @@
+{
+  "cardId": "svalt-131",
+  "variant": "holo",
+  "tcglCardId": "svalt_131",
+  "tcglVariantId": "BasicGEnergy_sve_9_alt_CommonBasicEnergy_CrackedIce_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sve_en_009_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sve_en_009_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3a067f209a957aeb409b972134b3dceb3300decac3c96ef5544979698f5db4fc"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sve_en_009_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sve_en_009_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d7d2a5bf8aee5a0786008902ae5735e8bd14dad7bbcbb7926fdea8783db0aac6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "3a067f209a957aeb409b972134b3dceb3300decac3c96ef5544979698f5db4fc"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "131-holo-foil.png": "165eaa843c6134db2996be3ae6bd6201cd8ea9c80d11b8dd58a7d218c58013c6",
+    "131-holo-protection.png": "66293011b466569dc109b32b8c16c1518021a0c34201c2a2a307548cab5306cc"
+  },
+  "holoFrontSha256": "3a067f209a957aeb409b972134b3dceb3300decac3c96ef5544979698f5db4fc",
+  "mapDimensions": {
+    "131-holo-foil.png": [
+      367,
+      512
+    ],
+    "131-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Basic {G} Energy",
+    "card_type": "ENERGY",
+    "subtype": "BASIC",
+    "lang": "en-US",
+    "foil": {
+      "type": "CRACKED_ICE",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "set_icon": "SVE_EN",
+    "collector_number": {
+      "full": "009",
+      "numerator": "009",
+      "numeric": 9
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "types": [
+      "GRASS"
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_131",
+        "longFormID": "BasicGEnergy_sve_9_alt_CommonBasicEnergy_CrackedIce_Reverse",
+        "archetypeID": "0xf28ddbd4",
+        "reldate": "2024-10-31 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sve_en_009_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sve_en_009_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sve_en_009_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sve_en_009_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sve_en_009_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "131.png",
+  "reusedProfile": "pokemon-cracked-ice",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

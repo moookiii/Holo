@@ -1,0 +1,174 @@
+{
+  "cardId": "svp-127",
+  "variant": "holo",
+  "tcglCardId": "svbsp_127",
+  "tcglVariantId": "WalkingWakeex_svbsp_127_std_DoubleRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_127_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_127_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "001d6fb16dc5c540c0ef9c85b95f4dcdd6ade7b88c82944cb8c2bb235852bcc2"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_127_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_127_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4f01b7156a1edbbe0d8db932783dd91e7fa0d354da48c7b87a2c1f16b7c865a2"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "001d6fb16dc5c540c0ef9c85b95f4dcdd6ade7b88c82944cb8c2bb235852bcc2"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "127-holo-foil.png": "083cf356b71b4896f4eb214d4865add9e88dd7c81dbb0a712ec7a72eb7c72034",
+    "127-holo-protection.png": "ac7feb22d2aefd501b3c6a5ddb315bf79fd80e212c4dd3f79cd29fee3d233323"
+  },
+  "holoFrontSha256": "001d6fb16dc5c540c0ef9c85b95f4dcdd6ade7b88c82944cb8c2bb235852bcc2",
+  "mapDimensions": {
+    "127-holo-foil.png": [
+      367,
+      512
+    ],
+    "127-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Walking Wake ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. takuyoa",
+      "list": [
+        "takuyoa"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "127",
+      "numerator": "127",
+      "numeric": 127
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "ANCIENT",
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 220,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Azure Seas",
+        "text": "Damage from attacks used by this Pok\u00e9mon isn't affected by any effects on your opponent's Active Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Catharsis Roar",
+        "text": "If your opponent's Active Pok\u00e9mon is affected by a Special Condition, this attack does 120 more damage.",
+        "cost": [
+          "WATER",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 120,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_127",
+        "longFormID": "WalkingWakeex_svbsp_127_std_DoubleRare_SunPillar_Holo",
+        "archetypeID": "0x963b26c9",
+        "reldate": "2024-05-22 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_127_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_127_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_127_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_127_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_127_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "127.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

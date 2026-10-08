@@ -1,0 +1,185 @@
+{
+  "cardId": "svalt-104",
+  "variant": "holo",
+  "tcglCardId": "svalt_104",
+  "tcglVariantId": "Espathra_sv4_81_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_081_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_081_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c2bd9d1f182c3e961ecb54b1bb8f0d8e630e9212101e4663288347e40a9dab63"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_081_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_081_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "dc4eb7aa8f0400b6cd72579f97c579c1eff067ee8d496a16c811c41531773765"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "c2bd9d1f182c3e961ecb54b1bb8f0d8e630e9212101e4663288347e40a9dab63"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "104-holo-foil.png": "4a0defec9028b77de869764325520ad638ae97f5d8a73494d983852ddee53a54",
+    "104-holo-protection.png": "a365a86eb51e5ccf73b24dac0cbf4fd64320b21586164aa4e6808e00ff070d84",
+    "104-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "c2bd9d1f182c3e961ecb54b1bb8f0d8e630e9212101e4663288347e40a9dab63",
+  "mapDimensions": {
+    "104-holo-foil.png": [
+      367,
+      512
+    ],
+    "104-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "104-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Espathra",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Teeziro",
+      "list": [
+        "Teeziro"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAR_EN",
+    "collector_number": {
+      "full": "081/182",
+      "numerator": "081",
+      "denominator": "182",
+      "numeric": 81
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Flittle",
+    "hp": 120,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It emits psychic power from the gaps between its multicolored frills and sprints at speeds greater than 120 mph.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Stance",
+        "text": "When you play this Pok\u00e9mon from your hand to evolve 1 of your Pok\u00e9mon during your turn, you may prevent all damage from and effects of attacks from your opponent's Pok\u00e9mon done to this Pok\u00e9mon until the end of your opponent's next turn."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Glittering Eyes",
+        "text": "If Tulip is in your discard pile, this attack does 70 more damage.",
+        "cost": [
+          "PSYCHIC",
+          "PSYCHIC"
+        ],
+        "damage": {
+          "amount": 70,
+          "suffix": "+"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_104",
+        "longFormID": "Espathra_sv4_81_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x41e0c2bd",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_081_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_081_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_081_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_081_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv4_en_081_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "104.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

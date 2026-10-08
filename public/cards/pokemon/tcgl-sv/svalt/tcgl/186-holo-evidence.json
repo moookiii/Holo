@@ -1,0 +1,180 @@
+{
+  "cardId": "svalt-186",
+  "variant": "holo",
+  "tcglCardId": "svalt_186",
+  "tcglVariantId": "Rabsca_sv8_14_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8_en_014_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv8_en_014_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "247da3d5a965a37db644e20056049f2eeef5547f518bf3f9c6c4a7d45b8ac63a"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8_en_014_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv8_en_014_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b8c683d4203931453456fa34095c8b13f53333f8e3ef51d39f7d7ad7ec4fb4b5"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "247da3d5a965a37db644e20056049f2eeef5547f518bf3f9c6c4a7d45b8ac63a"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "186-holo-foil.png": "a903213ef266d25f1270c9c063f42397044bcde906519d00533b280492bba0c7",
+    "186-holo-protection.png": "68b5466a8e46f696b8068892a906452103565ac700abde1b782b72d6961d9ed3",
+    "186-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "247da3d5a965a37db644e20056049f2eeef5547f518bf3f9c6c4a7d45b8ac63a",
+  "mapDimensions": {
+    "186-holo-foil.png": [
+      367,
+      512
+    ],
+    "186-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "186-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Rabsca",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Masako Tomii",
+      "list": [
+        "Masako Tomii"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SSP_EN",
+    "collector_number": {
+      "full": "014/191",
+      "numerator": "014",
+      "denominator": "191",
+      "numeric": 14
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Rellor",
+    "hp": 70,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "An infant sleeps inside the ball. Rabsca rolls the ball soothingly with its legs to ensure the infant sleeps comfortably.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Triple Draw",
+        "text": "Draw 3 cards.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Counterturn",
+        "text": "If there are 3 or fewer cards in your deck, this attack does 200 more damage.",
+        "cost": [
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 40,
+          "suffix": "+"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_186",
+        "longFormID": "Rabsca_sv8_14_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x71714ead",
+        "reldate": "2025-05-29 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8_en_014_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8_en_014_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8_en_014_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8_en_014_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv8_en_014_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "186.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

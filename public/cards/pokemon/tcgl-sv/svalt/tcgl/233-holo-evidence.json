@@ -1,0 +1,173 @@
+{
+  "cardId": "svalt-233",
+  "variant": "holo",
+  "tcglCardId": "svalt_233",
+  "tcglVariantId": "Reshiramex_rsv10-5_20_alt_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/rsv10-5_en_020_alt.png",
+      "file": "research/tcgl/svalt-set/raw/rsv10-5_en_020_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6f701b0a74c58fa0ea5f72e85cde238734e1eacbbccb64327a668e070c6ca3ff"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/rsv10-5_en_020_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/rsv10-5_en_020_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "0626d8cb451db2fd93b85e602c8a45ada1ad66b37adb8a9eac71b883c6c2d61e"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "6f701b0a74c58fa0ea5f72e85cde238734e1eacbbccb64327a668e070c6ca3ff"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "233-holo-foil.png": "f676540a5fe9c91ba80253c77240d2d2f9c2df2ac3aa3aa9de33b7ae3df77b21",
+    "233-holo-protection.png": "c2675d1d00d18d7520f00084c67c392a8122e75882f4e154a0417de84f506b01"
+  },
+  "holoFrontSha256": "6f701b0a74c58fa0ea5f72e85cde238734e1eacbbccb64327a668e070c6ca3ff",
+  "mapDimensions": {
+    "233-holo-foil.png": [
+      367,
+      512
+    ],
+    "233-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Reshiram ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "020/086",
+      "numerator": "020",
+      "denominator": "086",
+      "numeric": 20
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 230,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Slash",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Blazing Burst",
+        "text": "This attack does 50 more damage for each Prize card your opponent has taken. Discard an Energy from this Pok\u00e9mon.",
+        "cost": [
+          "FIRE",
+          "FIRE",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 130,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_233",
+        "longFormID": "Reshiramex_rsv10-5_20_alt_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+        "archetypeID": "0x1564e5af",
+        "reldate": "2026-01-29 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/rsv10-5_en_020_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/rsv10-5_en_020_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/rsv10-5_en_020_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/rsv10-5_en_020_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/rsv10-5_en_020_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "233.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending."
+}

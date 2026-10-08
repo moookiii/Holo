@@ -1,0 +1,175 @@
+{
+  "cardId": "svp-8",
+  "variant": "holo",
+  "tcglCardId": "svbsp_8",
+  "tcglVariantId": "Revavroom_svbsp_8_std_Rare_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_008_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_008_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7f00acc4acdf954d14fad6cced20893e1d81b60da439e9dd0f37aa677ffd4270"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_008_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_008_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "82843a46ef4c1e71190fe032af18ed83da95a92dd93bbe91d693e0a7cfc862fb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "7f00acc4acdf954d14fad6cced20893e1d81b60da439e9dd0f37aa677ffd4270"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "8-holo-foil.png": "01161046ce420bcb54cb01ab7bdcab7cf8e77cda809a520b003760c9c950c8db",
+    "8-holo-protection.png": "ea809504f382ee0971659955e1a477b5f7512bdeb7044eeb545f8f2676fc5ee9"
+  },
+  "holoFrontSha256": "7f00acc4acdf954d14fad6cced20893e1d81b60da439e9dd0f37aa677ffd4270",
+  "mapDimensions": {
+    "8-holo-foil.png": [
+      367,
+      512
+    ],
+    "8-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Revavroom",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. DOM",
+      "list": [
+        "DOM"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "008",
+      "numerator": "008",
+      "numeric": 8
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Varoom",
+    "hp": 140,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "It creates a gas out of poison and minerals from rocks. It then detonates the gas in its cylinders\u2014 now numbering eight\u2014to generate energy.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Rumbling Engine",
+        "text": "You must discard an Energy card from your hand in order to use this Ability. Once during your turn, you may draw cards until you have 6 cards in your hand."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Knock Away",
+        "text": "Flip a coin. If heads, this attack does 90 more damage.",
+        "cost": [
+          "METAL",
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 90,
+          "suffix": "+"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_8",
+        "longFormID": "Revavroom_svbsp_8_std_Rare_SvHolo_Holo",
+        "archetypeID": "0x1cdc60ad",
+        "reldate": "2023-03-30 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_008_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_008_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_008_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_008_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_008_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "8.png",
+  "reusedProfile": "sv_tcgl_regular_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

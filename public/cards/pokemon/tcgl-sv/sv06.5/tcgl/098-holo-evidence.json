@@ -1,0 +1,152 @@
+{
+  "cardId": "sv06.5-098",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_98",
+  "tcglVariantId": "BasicDEnergy_sv6-5_98_std_HyperRareBasicEnergy_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_098_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_098_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d5940d34c1cad912b7628e153db6974e7147550ce76e75cefa6843c5cc470980"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_098_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_098_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "ad7928f6bd485c222416ee66c77d279aa55a3bf48e786262c25d147778b9eb06"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_098_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_098_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8f3c054082a9a4d34002134c1da426f9a7d92f792be1da5615ebf8418a883e18"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "d5940d34c1cad912b7628e153db6974e7147550ce76e75cefa6843c5cc470980"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "098-holo-foil.png": "2d56727ba323d8d8b05e97ba5d4b9a14f059e19ee7a4c13732d00e1e6c93b277",
+    "098-holo-protection.png": "bfc87d00ad5cb64989f5b8721681c34837a5134b7981a09c87119bea49c9d02b",
+    "098-holo-normal.png": "aed12caa7fe0d394629ce1dcbb786fa713574c4a3ad21a16027d9bd82a5e7b7a",
+    "098-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "d5940d34c1cad912b7628e153db6974e7147550ce76e75cefa6843c5cc470980",
+  "mapDimensions": {
+    "098-holo-foil.png": [
+      367,
+      512
+    ],
+    "098-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "098-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "098-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Basic {D} Energy",
+    "card_type": "ENERGY",
+    "subtype": "BASIC",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "098/064",
+      "numerator": "098",
+      "denominator": "064",
+      "numeric": 98
+    },
+    "rarity": {
+      "designation": "HYPER_RARE",
+      "icon": "THREE_GOLD_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "types": [
+      "DARKNESS"
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_98",
+        "longFormID": "BasicDEnergy_sv6-5_98_std_HyperRareBasicEnergy_SvUltra_Etched",
+        "archetypeID": "0xd4b126c0",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_098_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_098_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_098_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_098_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_098_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_098_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_098_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "098.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,177 @@
+{
+  "cardId": "sv10.5b-020",
+  "variant": "masterball-reverse",
+  "tcglCardId": "zsv10-5_20_mph",
+  "tcglVariantId": "Palpitoad_zsv10-5_20_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_020_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_020_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "736428860d007e06a156e6093b9d32cfa8b53f3b8c5e23c5080f2a4e64e99f73"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_020_mph.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_020_mph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "31612afc203618247c0832fd009b883dc961cc53ecdceccbed9eaab3ac4711a5"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "736428860d007e06a156e6093b9d32cfa8b53f3b8c5e23c5080f2a4e64e99f73"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "020-masterball-reverse-foil.png": "d1b6f3f3bd40999d252db851c7ea995984815175ce3ece4c01bdf5bed207f342",
+    "020-masterball-reverse-protection.png": "e65b4171f0597dc0599da3a7cb73c1b0a324d8964432a078f080e61cfe921465"
+  },
+  "holoFrontSha256": "736428860d007e06a156e6093b9d32cfa8b53f3b8c5e23c5080f2a4e64e99f73",
+  "mapDimensions": {
+    "020-masterball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "020-masterball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Palpitoad",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Yukihiro Tada",
+      "list": [
+        "Yukihiro Tada"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "020/086",
+      "numerator": "020",
+      "denominator": "086",
+      "numeric": 20
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Tympole",
+    "hp": 90,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "When they vibrate the bumps on their heads, they can make waves in water or earthquake-like vibrations on land.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Round",
+        "text": "This attack does 40 damage for each of your Pok\u00e9mon in play that has the Round attack.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 40,
+          "suffix": "\u00d7"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Wave Splash",
+        "cost": [
+          "WATER",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 60
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_20_mph",
+        "longFormID": "Palpitoad_zsv10-5_20_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall",
+        "archetypeID": "0xfaeb71b3",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_020_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_020_mph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_020_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_020_mph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_020_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "020-masterball-reverse.png",
+  "reusedProfile": "prismatic_masterball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

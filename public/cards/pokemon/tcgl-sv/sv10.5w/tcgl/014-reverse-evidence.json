@@ -1,0 +1,169 @@
+{
+  "cardId": "sv10.5w-014",
+  "variant": "reverse",
+  "tcglCardId": "rsv10-5_14_ph",
+  "tcglVariantId": "Pansear_rsv10-5_14_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_014_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_014_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5ba37144b4555e8a2e30d257b18804bf898ed42c0cb1d21346f82bf14f382c33"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_014_ph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_014_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b34b88b37bb9df4bf3bad43d540324cbfc27a55208b6ab000ece85c13c03ab4f"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "5ba37144b4555e8a2e30d257b18804bf898ed42c0cb1d21346f82bf14f382c33"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "014-reverse-foil.png": "88c5a2597bd3fb5c01a7105fec801cea783d180616cb542c7cf61ef561187bac",
+    "014-reverse-protection.png": "7a8fba906f8631a52be40e636aa15b3ff099989b6f1ea39f02620ddd156a3038"
+  },
+  "holoFrontSha256": "5ba37144b4555e8a2e30d257b18804bf898ed42c0cb1d21346f82bf14f382c33",
+  "mapDimensions": {
+    "014-reverse-foil.png": [
+      367,
+      512
+    ],
+    "014-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Pansear",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Julie Hang",
+      "list": [
+        "Julie Hang"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "014/086",
+      "numerator": "014",
+      "denominator": "086",
+      "numeric": 14
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "When it is angered, the temperature of its head tuft reaches 600\u00b0 F. It uses its tuft to roast berries.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Collect",
+        "text": "Draw a card.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Scratch",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_14_ph",
+        "longFormID": "Pansear_rsv10-5_14_ph_Common_FlatSilver_Reverse",
+        "archetypeID": "0x202c72c8",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_014_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_014_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_014_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_014_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_014_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "014-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

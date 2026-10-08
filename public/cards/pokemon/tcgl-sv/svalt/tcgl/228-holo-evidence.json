@@ -1,0 +1,178 @@
+{
+  "cardId": "svalt-228",
+  "variant": "holo",
+  "tcglCardId": "svalt_228",
+  "tcglVariantId": "Lugiaex_sv8-5_82_alt_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_082_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_082_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a25d7088a8f3c650a719124efffeaf8ef6081c70fca216a28b727ed3ee15afe6"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_082_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_082_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a554e3074955e1b4de19ea299199f2abd4bf5dbbe53b16b293ca78356b470008"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "a25d7088a8f3c650a719124efffeaf8ef6081c70fca216a28b727ed3ee15afe6"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "228-holo-foil.png": "b153ea3a9a419d631dfd8f5c23536ccb51ebda3819a23046edbb959a14cc862f",
+    "228-holo-protection.png": "e853a2ca2da44ab890bc68d6da18c84d1cf0fa08d233d15ae6329e28705ee7d8"
+  },
+  "holoFrontSha256": "a25d7088a8f3c650a719124efffeaf8ef6081c70fca216a28b727ed3ee15afe6",
+  "mapDimensions": {
+    "228-holo-foil.png": [
+      367,
+      512
+    ],
+    "228-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Lugia ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "PRE_EN",
+    "collector_number": {
+      "full": "082/131",
+      "numerator": "082",
+      "denominator": "131",
+      "numeric": 82
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 220,
+    "types": [
+      "COLORLESS"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Hyper Whirlpool",
+        "text": "Flip a coin until you get tails. For each heads, discard an Energy from your opponent's Active Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 140
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_228",
+        "longFormID": "Lugiaex_sv8-5_82_alt_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+        "archetypeID": "0x02d5437a",
+        "reldate": "2025-09-04 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_082_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_082_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_082_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_082_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv8-5_en_082_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "228.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending."
+}

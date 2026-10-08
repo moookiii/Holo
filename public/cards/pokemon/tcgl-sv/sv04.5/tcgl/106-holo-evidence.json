@@ -1,0 +1,194 @@
+{
+  "cardId": "sv04.5-106",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_106",
+  "tcglVariantId": "Capsakid_sv4-5_106_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_106_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_106_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "30d85db9f37503b4665fe2b34363f60a7a3a68873a8c6657307443efccdeff92"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_106_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_106_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e880bf0ebfc5dc790131f969355fe4c987cd229b8c954bd45368cd94c3953f72"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_106_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_106_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "122726c7e2ff1c389ac32b4281391530b1724d47185ef9377a033c9ec589c0c5"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "30d85db9f37503b4665fe2b34363f60a7a3a68873a8c6657307443efccdeff92"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "106-holo-foil.png": "d7486b756e52842345be2cfe87c1b1467a808daa4b386ab694413216b4c41e6e",
+    "106-holo-protection.png": "181b8a2cd07561e47f5f743347610af52e120b06acaa6ebcdbc4c5cd98228035",
+    "106-holo-normal.png": "7c4dfb1642cefe85790005fccf40ecf75410b0eeb0cfdd442b0279cfde0e4347",
+    "106-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "30d85db9f37503b4665fe2b34363f60a7a3a68873a8c6657307443efccdeff92",
+  "mapDimensions": {
+    "106-holo-foil.png": [
+      367,
+      512
+    ],
+    "106-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "106-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "106-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Capsakid",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. OKACHEKE",
+      "list": [
+        "OKACHEKE"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "106/091",
+      "numerator": "106",
+      "denominator": "091",
+      "numeric": 106
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Traditional Paldean dishes can be extremely spicy because they include the shed front teeth of Capsakid among their ingredients.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Increasing Spice",
+        "text": "Search your deck for a Basic {R} Energy card and attach it to this Pok\u00e9mon. Then, shuffle your deck.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Playful Kick",
+        "cost": [
+          "GRASS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_106",
+        "longFormID": "Capsakid_sv4-5_106_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0x9db9d8e9",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_106_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_106_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_106_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_106_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_106_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_106_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_106_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "106.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

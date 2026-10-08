@@ -1,0 +1,162 @@
+{
+  "cardId": "sv10.5w-137",
+  "variant": "holo",
+  "tcglCardId": "rsv10-5_137",
+  "tcglVariantId": "Liepard_rsv10-5_137_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_137_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_137_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0cf537a689b7ce5bbdf02ee970d5798116f632dae8de9226fca11838826a5909"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_137_std.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_137_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "056d2896a7a24b822de2555a9825e61205c2d14393fb22ff39dcc7dcab87a206"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "0cf537a689b7ce5bbdf02ee970d5798116f632dae8de9226fca11838826a5909"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "137-holo-foil.png": "b4b1e9ad578f8a265dffe95027dd6c5d7db33b30d3921e2bb1ff3b05a70b42d4",
+    "137-holo-protection.png": "6f235bed2bcc92802c055b190074c58f6d5445fde589d6aa0f1024bc3520c50a"
+  },
+  "holoFrontSha256": "0cf537a689b7ce5bbdf02ee970d5798116f632dae8de9226fca11838826a5909",
+  "mapDimensions": {
+    "137-holo-foil.png": [
+      367,
+      512
+    ],
+    "137-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Liepard",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. matazo",
+      "list": [
+        "matazo"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "137/086",
+      "numerator": "137",
+      "denominator": "086",
+      "numeric": 137
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Purrloin",
+    "hp": 110,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "These Pok\u00e9mon vanish and appear unexpectedly. Many Trainers are drawn to their beautiful form and fur.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Knock Off",
+        "text": "Discard a random card from your opponent's hand.",
+        "cost": [
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_137",
+        "longFormID": "Liepard_rsv10-5_137_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x8bdf6d7e",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_137_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_137_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_137_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_137_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_137_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "137.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

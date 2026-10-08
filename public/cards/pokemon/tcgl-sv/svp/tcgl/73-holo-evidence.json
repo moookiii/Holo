@@ -1,0 +1,279 @@
+{
+  "cardId": "svp-73",
+  "variant": "holo",
+  "tcglCardId": "svbsp_73",
+  "tcglVariantId": "IronTreadsex_svbsp_73_std_ShinyUltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_073_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_073_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f22c2b32accbcafbbc07408406637814baebba57f895e5e474a5abd934854abe"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_073_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_073_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "544795c3858712c4e5c9ae21f1239a984415e4ee78a27ad20ca4e691cc91de14"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_073_std.etch.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_073_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "71b9867467ce679a290f0472cc48b82f72d767bc22ea2ebec43d94a3aa3ce235"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "f22c2b32accbcafbbc07408406637814baebba57f895e5e474a5abd934854abe"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12287581699346405,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 245,
+      "texturedInteriorFraction": 0.5555555555555556
+    },
+    {
+      "areaAtFoilResolution": 715,
+      "texturedInteriorFraction": 0.545
+    },
+    {
+      "areaAtFoilResolution": 323,
+      "texturedInteriorFraction": 0.4557823129251701
+    },
+    {
+      "areaAtFoilResolution": 699,
+      "texturedInteriorFraction": 0.4010989010989011
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 0.5544554455445545
+    },
+    {
+      "areaAtFoilResolution": 192,
+      "texturedInteriorFraction": 0.47058823529411764
+    },
+    {
+      "areaAtFoilResolution": 231,
+      "texturedInteriorFraction": 0.4752475247524752
+    },
+    {
+      "areaAtFoilResolution": 232,
+      "texturedInteriorFraction": 0.6842105263157895
+    },
+    {
+      "areaAtFoilResolution": 281,
+      "texturedInteriorFraction": 0.4166666666666667
+    },
+    {
+      "areaAtFoilResolution": 242,
+      "texturedInteriorFraction": 0.5512820512820513
+    },
+    {
+      "areaAtFoilResolution": 313,
+      "texturedInteriorFraction": 0.40310077519379844
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.525
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 0.47674418604651164
+    },
+    {
+      "areaAtFoilResolution": 383,
+      "texturedInteriorFraction": 0.4580152671755725
+    },
+    {
+      "areaAtFoilResolution": 341,
+      "texturedInteriorFraction": 0.5042016806722689
+    },
+    {
+      "areaAtFoilResolution": 164,
+      "texturedInteriorFraction": 0.5263157894736842
+    },
+    {
+      "areaAtFoilResolution": 246,
+      "texturedInteriorFraction": 0.5616438356164384
+    },
+    {
+      "areaAtFoilResolution": 322,
+      "texturedInteriorFraction": 0.416
+    },
+    {
+      "areaAtFoilResolution": 163,
+      "texturedInteriorFraction": 0.6721311475409836
+    },
+    {
+      "areaAtFoilResolution": 165,
+      "texturedInteriorFraction": 0.6111111111111112
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "73-holo-foil.png": "cb23b3426c23ddf91abdff476db79cc8f663f2ffecf918dc96b5d62699820594",
+    "73-holo-protection.png": "8497716074404eed69130e3863bc1c3167cf2c3d4e7b026b87f2db1ff125ae9d",
+    "73-holo-normal.png": "e38a1f28e205402ec6e37ba54074aac270836b971c69cd31c84c9e415b6b0c0b",
+    "73-holo-roughness.png": "650fba704b53f8a4d17a9cbeb38a0f27556c5aa4f15271253a0ef7b44f967a46"
+  },
+  "holoFrontSha256": "f22c2b32accbcafbbc07408406637814baebba57f895e5e474a5abd934854abe",
+  "mapDimensions": {
+    "73-holo-foil.png": [
+      367,
+      512
+    ],
+    "73-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "73-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "73-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Iron Treads ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "073",
+      "numerator": "073",
+      "numeric": 73
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "FUTURE",
+      "EX_LOWER",
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 220,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Iron-Clad Roll",
+        "text": "After doing damage, you may discard all Future Booster Energy Capsules from this Pok\u00e9mon. If you do, during your opponent's next turn, this Pok\u00e9mon takes 150 less damage from attacks (after applying Weakness and Resistance).",
+        "cost": [
+          "METAL",
+          "METAL",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 150
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_73",
+        "longFormID": "IronTreadsex_svbsp_73_std_ShinyUltraRare_SunPillar_Etched",
+        "archetypeID": "0x997c5c21",
+        "reldate": "2024-02-08 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_073_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_073_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_073_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_073_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_073_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_073_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_073_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "73.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

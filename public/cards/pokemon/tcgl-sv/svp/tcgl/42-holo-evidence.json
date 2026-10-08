@@ -1,0 +1,185 @@
+{
+  "cardId": "svp-42",
+  "variant": "holo",
+  "tcglCardId": "svbsp_42",
+  "tcglVariantId": "Houndstone_svbsp_42_std_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_042_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_042_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8546cc77e9ad163868fedc28adc88a30809b1aa6d67636c97c008f35db8cc183"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_042_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_042_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c6db4dad20e3b808b394caa1e6e872f7b2ffd3ad234e78500a2f726a8d0e0977"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "8546cc77e9ad163868fedc28adc88a30809b1aa6d67636c97c008f35db8cc183"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "42-holo-foil.png": "d78b4e750d180787b37ff98a0ca3c5121be89ad2df525253807d0750c3cb7d58",
+    "42-holo-protection.png": "d642ba4cf16b02d5d06b29faf35f919f87343c4f94290f6a533835a822d80902",
+    "42-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "8546cc77e9ad163868fedc28adc88a30809b1aa6d67636c97c008f35db8cc183",
+  "mapDimensions": {
+    "42-holo-foil.png": [
+      367,
+      512
+    ],
+    "42-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "42-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Houndstone",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Pani Kobayashi",
+      "list": [
+        "Pani Kobayashi"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "042",
+      "numerator": "042",
+      "numeric": 42
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Greavard",
+    "hp": 130,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "Houndstone spends most of its time sleeping in graveyards. Among all the dog Pok\u00e9mon, this one is most loyal to its master.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Delve",
+        "text": "Put up to 2 Item cards from your discard pile into your hand.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Spooky Shot",
+        "cost": [
+          "PSYCHIC",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 100
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_42",
+        "longFormID": "Houndstone_svbsp_42_std_Rare_Cosmos_Holo",
+        "archetypeID": "0x9c51aa45",
+        "reldate": "2023-08-10 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_042_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_042_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_042_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_042_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_042_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "42.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

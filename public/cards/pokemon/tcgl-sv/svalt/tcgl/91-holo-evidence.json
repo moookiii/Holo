@@ -1,0 +1,177 @@
+{
+  "cardId": "svalt-91",
+  "variant": "holo",
+  "tcglCardId": "svalt_91",
+  "tcglVariantId": "Honedge_sv4_131_alt_Common_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_131_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_131_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4db498388382cd62ef87bcb4509edb169a26094881d37c252bc6946a7be8fccb"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_131_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_131_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "44372be598b761423023f068fbe70b357f992a2590a6fb730425abfe61f2c54c"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "4db498388382cd62ef87bcb4509edb169a26094881d37c252bc6946a7be8fccb"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "91-holo-foil.png": "79cbfe99fc414d2ed284d7f12547c84e076991de0044ea03503984da3e5a8588",
+    "91-holo-protection.png": "71ad90e1d49339b329466b7563661848d437af27eb98a6174205bbf935aa2c25",
+    "91-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "4db498388382cd62ef87bcb4509edb169a26094881d37c252bc6946a7be8fccb",
+  "mapDimensions": {
+    "91-holo-foil.png": [
+      367,
+      512
+    ],
+    "91-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "91-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Honedge",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Nagomi Nijo",
+      "list": [
+        "Nagomi Nijo"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAR_EN",
+    "collector_number": {
+      "full": "131/182",
+      "numerator": "131",
+      "denominator": "182",
+      "numeric": 131
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "The blue eye on the sword\u2019s handguard is the true body of Honedge. With its old cloth, it drains people\u2019s lives away.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Reckless Charge",
+        "text": "This Pok\u00e9mon also does 10 damage to itself.",
+        "cost": [
+          "METAL"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_91",
+        "longFormID": "Honedge_sv4_131_alt_Common_Cosmos_Holo",
+        "archetypeID": "0x9ba55381",
+        "reldate": "2024-08-22 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_131_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_131_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_131_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_131_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv4_en_131_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "91.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

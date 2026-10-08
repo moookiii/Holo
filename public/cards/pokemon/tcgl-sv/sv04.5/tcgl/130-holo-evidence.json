@@ -1,0 +1,192 @@
+{
+  "cardId": "sv04.5-130",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_130",
+  "tcglVariantId": "Baxcalibur_sv4-5_130_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_130_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_130_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c0a98f99e803a62e2710333424b69d9331bfcdd7b7e9bedb3108a92fe8e729d6"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_130_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_130_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c4f3cef7f79e561feb992d72f0d10cb077c3173b4ffde1cf3375838dd7dae9ca"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_130_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_130_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4487e3e1eb92150f1599bf3c414be5a1c7ff06105d3a78ad2df93a37304451dc"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "c0a98f99e803a62e2710333424b69d9331bfcdd7b7e9bedb3108a92fe8e729d6"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "130-holo-foil.png": "5ccf8860031a7f58f3cc6cfd68508fc1630caf1b809ecc0a1b03d7dae00c0bab",
+    "130-holo-protection.png": "3e6bcedc5fa6798f6eecdd80ed57da817bca347614b3a77bffc7789450851dfa",
+    "130-holo-normal.png": "b30dc091a47431d2419ed119a63fadcee0f5fae99f459a836f6bc2a166e6acbb",
+    "130-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "c0a98f99e803a62e2710333424b69d9331bfcdd7b7e9bedb3108a92fe8e729d6",
+  "mapDimensions": {
+    "130-holo-foil.png": [
+      367,
+      512
+    ],
+    "130-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "130-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "130-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Baxcalibur",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. GOSSAN",
+      "list": [
+        "GOSSAN"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "130/091",
+      "numerator": "130",
+      "denominator": "091",
+      "numeric": 130
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Arctibax",
+    "hp": 160,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "This Pok\u00e9mon blasts cryogenic air out from its mouth. This air can instantly freeze even liquid-hot lava.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Super Cold",
+        "text": "As often as you like during your turn, you may attach a Basic {W} Energy card from your hand to 1 of your Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Buster Tail",
+        "cost": [
+          "WATER",
+          "WATER",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 130
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_130",
+        "longFormID": "Baxcalibur_sv4-5_130_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0x009af521",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_130_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_130_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_130_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_130_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_130_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_130_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_130_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "130.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

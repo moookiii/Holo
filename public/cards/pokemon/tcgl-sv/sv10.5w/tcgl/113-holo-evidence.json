@@ -1,0 +1,176 @@
+{
+  "cardId": "sv10.5w-113",
+  "variant": "holo",
+  "tcglCardId": "rsv10-5_113",
+  "tcglVariantId": "Vanilluxe_rsv10-5_113_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_113_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_113_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b840b073ec06e98b21ffbe35e5b2c583b1a9a9de3a30d0ca6449eb87403ec07b"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_113_std.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_113_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4ce7b62f4a894cdc61a75fb04d1197e93150c23bc1c907e2d8ee6b31c590a1a6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "b840b073ec06e98b21ffbe35e5b2c583b1a9a9de3a30d0ca6449eb87403ec07b"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "113-holo-foil.png": "1a73cc2402cf7150c0013de594838a1888466a4041184bf2c7a68c8835af5cdc",
+    "113-holo-protection.png": "00942fba7c12dbbc59aefd7121c899aec37cb23e1b063b36b9da6960ff4d8d83"
+  },
+  "holoFrontSha256": "b840b073ec06e98b21ffbe35e5b2c583b1a9a9de3a30d0ca6449eb87403ec07b",
+  "mapDimensions": {
+    "113-holo-foil.png": [
+      367,
+      512
+    ],
+    "113-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Vanilluxe",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. aoki",
+      "list": [
+        "aoki"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "113/086",
+      "numerator": "113",
+      "denominator": "086",
+      "numeric": 113
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Vanillish",
+    "hp": 150,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Swallowing large amounts of water, they make snow clouds inside their bodies and attack their foes with violent blizzards.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Ram",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 60
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Double Freeze",
+        "text": "Flip 2 coins. This attack does 90 damage for each heads. If either of them is heads, your opponent's Active Pok\u00e9mon is now Paralyzed.",
+        "cost": [
+          "WATER",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 90,
+          "suffix": "\u00d7"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_113",
+        "longFormID": "Vanilluxe_rsv10-5_113_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x3ce5ef9b",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_113_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_113_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_113_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_113_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_113_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "113.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,179 @@
+{
+  "cardId": "svp-17",
+  "variant": "holo",
+  "tcglCardId": "svbsp_17",
+  "tcglVariantId": "Lucarioex_svbsp_17_std_DoubleRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_017_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_017_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "72a36d799d2e0d850c7e3ec67e750e8b466d71f114a87e0c0f5446c404421607"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_017_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_017_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4fcb1fb90a1a1b232bb1291e509f104abd4db0cce5ec4f9cf3bfa47f926adefb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "72a36d799d2e0d850c7e3ec67e750e8b466d71f114a87e0c0f5446c404421607"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "17-holo-foil.png": "8e9c7b292ec119614315b7690c506103dd8bd6e5a91b486bed673fdb75433bd7",
+    "17-holo-protection.png": "246e265acf3fc8863082249bccf0a2b31b998bf320a86a541a0530ff4a422f9d"
+  },
+  "holoFrontSha256": "72a36d799d2e0d850c7e3ec67e750e8b466d71f114a87e0c0f5446c404421607",
+  "mapDimensions": {
+    "17-holo-foil.png": [
+      367,
+      512
+    ],
+    "17-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Lucario ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "017",
+      "numerator": "017",
+      "numeric": 17
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Riolu",
+    "hp": 260,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "PSYCHIC"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Low Sweep",
+        "cost": [
+          "FIGHTING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 60
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Aura Sphere",
+        "text": "This attack also does 50 damage to 1 of your opponent's Benched Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "FIGHTING",
+          "FIGHTING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 160
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_17",
+        "longFormID": "Lucarioex_svbsp_17_std_DoubleRare_SunPillar_Holo",
+        "archetypeID": "0xf9e6ff04",
+        "reldate": "2023-05-04 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_017_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_017_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_017_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_017_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_017_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "17.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

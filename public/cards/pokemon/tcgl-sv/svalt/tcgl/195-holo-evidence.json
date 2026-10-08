@@ -1,0 +1,171 @@
+{
+  "cardId": "svalt-195",
+  "variant": "holo",
+  "tcglCardId": "svalt_195",
+  "tcglVariantId": "Crabominable_sv7_149_alt_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_149_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_149_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "47888bf1875d14b92457aa2d3d7a2cac567fb6d85a0afae1305c238b12de8907"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_149_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_149_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "90505dff5b13eb9d266a51f994c26ca403ecda7e627ab28070e4c7d87cfd72ff"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "47888bf1875d14b92457aa2d3d7a2cac567fb6d85a0afae1305c238b12de8907"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "195-holo-foil.png": "262efcdff2eb2167ebdb616bb925c5b6d831711d4dd881868034813683e314a6",
+    "195-holo-protection.png": "fdcf0db6a0161b9f0d9ec150fa93e34dfe41322771d50987694d72fe06800b8e"
+  },
+  "holoFrontSha256": "47888bf1875d14b92457aa2d3d7a2cac567fb6d85a0afae1305c238b12de8907",
+  "mapDimensions": {
+    "195-holo-foil.png": [
+      367,
+      512
+    ],
+    "195-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Crabominable",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Mitsuhiro Arita",
+      "list": [
+        "Mitsuhiro Arita"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "149/142",
+      "numerator": "149",
+      "denominator": "142",
+      "numeric": 149
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Crabrawler",
+    "hp": 160,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "Though its punches are powerful, this Pok\u00e9mon\u2019s movements are sluggish. It blows icy bubbles from its mouth to immobilize its opponents.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Food Prep",
+        "text": "Attacks used by this Pok\u00e9mon cost {C} less for each Kofu card in your discard pile."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Haymaker",
+        "text": "During your next turn, this Pok\u00e9mon can't use Haymaker.",
+        "cost": [
+          "WATER",
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 250
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_195",
+        "longFormID": "Crabominable_sv7_149_alt_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0xf272b13d",
+        "reldate": "2025-08-21 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_149_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_149_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_149_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_149_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_149_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "195.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

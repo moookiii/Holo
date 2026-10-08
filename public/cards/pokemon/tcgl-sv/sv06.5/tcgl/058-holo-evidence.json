@@ -1,0 +1,191 @@
+{
+  "cardId": "sv06.5-058",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_58",
+  "tcglVariantId": "DangerousLaser_sv6-5_58_std_Ace_AceFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_058_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_058_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "92043b002db8036d8db855149c3f47586183a7eeb30190b05578be13400a070d"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_058_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_058_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "7a017bccc0fb5a5e82bf2765a34413250f33a6322b13f054ea34dbbad0d75df2"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_058_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_058_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c79d608a89e5d43549731991268be2735523421593cf6341ff7dd71749c2b273"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "92043b002db8036d8db855149c3f47586183a7eeb30190b05578be13400a070d"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 3226,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3192,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3468,
+      "texturedInteriorFraction": 0.4765358361774744
+    },
+    {
+      "areaAtFoilResolution": 19881,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "058-holo-foil.png": "1241aaddbac73954db7e795ea0b5b035e56d7649614ef18822bfd350fef0f35d",
+    "058-holo-protection.png": "fa912ca0c6e75784c60bdf0ea1c6051ac2977b3482be70921a65b10c39bd29e3",
+    "058-holo-normal.png": "63709f95a151433bae76451926e9cc1fd5df9dca31db50f7773d3dcf5942bfbe",
+    "058-holo-roughness.png": "397b134a64ca5ba893418ac1406fa56af48008e2e35b36e3dd2b84f24f5e9a2b"
+  },
+  "holoFrontSha256": "92043b002db8036d8db855149c3f47586183a7eeb30190b05578be13400a070d",
+  "mapDimensions": {
+    "058-holo-foil.png": [
+      367,
+      512
+    ],
+    "058-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "058-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "058-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Dangerous Laser",
+    "card_type": "TRAINER",
+    "subtype": "ITEM",
+    "lang": "en-US",
+    "foil": {
+      "type": "ACE_FOIL",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. inose yukie",
+      "list": [
+        "inose yukie"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "058/064",
+      "numerator": "058",
+      "denominator": "064",
+      "numeric": 58
+    },
+    "rarity": {
+      "designation": "ACE_SPEC_RARE",
+      "icon": "PINK_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "ACE_SPEC",
+      "ITEM"
+    ],
+    "text": [
+      {
+        "kind": "REMINDER",
+        "text": "You can't have more than 1 ACE SPEC card in your deck."
+      },
+      {
+        "kind": "TEXT_BOX",
+        "text": "Your opponent's Active Pok\u00e9mon is now Burned and Confused."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play any number of Item cards during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_58",
+        "longFormID": "DangerousLaser_sv6-5_58_std_Ace_AceFoil_Etched",
+        "archetypeID": "0xa90abdb6",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_058_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_058_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_058_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_058_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_058_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_058_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_058_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "058.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

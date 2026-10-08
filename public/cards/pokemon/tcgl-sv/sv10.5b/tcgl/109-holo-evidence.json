@@ -1,0 +1,161 @@
+{
+  "cardId": "sv10.5b-109",
+  "variant": "holo",
+  "tcglCardId": "zsv10-5_109",
+  "tcglVariantId": "Cubchoo_zsv10-5_109_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_109_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_109_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "62de4e144784772575ba561c2208fb726893ab1fefeaac36f405a64d695a09d8"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_109_std.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_109_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a95826861bc41e4119bea6a5f5ecbf9fd02f5bef4f1717968ac06054da7f08c3"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "62de4e144784772575ba561c2208fb726893ab1fefeaac36f405a64d695a09d8"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "109-holo-foil.png": "fe1a5e1d37dc6d00428f8fed43809c3010d677959aaa6d61b9afa36f850956c7",
+    "109-holo-protection.png": "f566512bacef0a853897a02708aa0fa4aab700d261ee6c9d1e6c36e4662d74cb"
+  },
+  "holoFrontSha256": "62de4e144784772575ba561c2208fb726893ab1fefeaac36f405a64d695a09d8",
+  "mapDimensions": {
+    "109-holo-foil.png": [
+      367,
+      512
+    ],
+    "109-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Cubchoo",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. osare",
+      "list": [
+        "osare"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "109/086",
+      "numerator": "109",
+      "denominator": "086",
+      "numeric": 109
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "When it is not feeling well, its mucus gets watery and the power of its Ice-type moves decreases.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Snotted Up",
+        "text": "During your opponent's next turn, the Defending Pok\u00e9mon can't use attacks.",
+        "cost": [
+          "WATER"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_109",
+        "longFormID": "Cubchoo_zsv10-5_109_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0xab82fbec",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_109_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_109_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_109_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_109_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_109_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "109.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,193 @@
+{
+  "cardId": "sv04.5-102",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_102",
+  "tcglVariantId": "Smoliv_sv4-5_102_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_102_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_102_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8504db6a5c3c6a96a924ebf3a50e109739f9c7ffd403da1b9306978b1939ff28"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_102_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_102_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b4384070f1e582c4156bbe0d50e0669dac9b64189f48176092745aad210b9734"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_102_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_102_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "90f514e745b5041a7e307067001c7128c1570f98ab90078e07c61e83d7badebb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "8504db6a5c3c6a96a924ebf3a50e109739f9c7ffd403da1b9306978b1939ff28"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "102-holo-foil.png": "9071af534ed6eeef12b73aa7664584a8216d3ae580a076276fa899b88ea2be01",
+    "102-holo-protection.png": "5da615e6dfa0c1327736fad84016d22019cafd39c82c068e7ff895dbe27e7116",
+    "102-holo-normal.png": "bac0065a46612f8168ec38b77792b0cfbac60a46063fced6e9ba960a53a52553",
+    "102-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "8504db6a5c3c6a96a924ebf3a50e109739f9c7ffd403da1b9306978b1939ff28",
+  "mapDimensions": {
+    "102-holo-foil.png": [
+      367,
+      512
+    ],
+    "102-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "102-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "102-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Smoliv",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. otumami",
+      "list": [
+        "otumami"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "102/091",
+      "numerator": "102",
+      "denominator": "091",
+      "numeric": 102
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It protects itself from enemies by emitting oil from the fruit on its head. This oil is bitter and astringent enough to make someone flinch.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Nutrients",
+        "text": "Heal 30 damage from 1 of your Pok\u00e9mon.",
+        "cost": [
+          "GRASS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Spray Fluid",
+        "cost": [
+          "GRASS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 20
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_102",
+        "longFormID": "Smoliv_sv4-5_102_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0x04d4dc11",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_102_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_102_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_102_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_102_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_102_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_102_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_102_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "102.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

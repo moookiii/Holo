@@ -1,0 +1,144 @@
+{
+  "cardId": "sv06.5-059",
+  "variant": "reverse",
+  "tcglCardId": "sv6-5_59_ph",
+  "tcglVariantId": "JaninesSecretArt_sv6-5_59_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_059_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_059_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "12f90795f810adec89caaf0476da274bc6840e3ae0e71e5e39a1309325055736"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_059_ph.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_059_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "f14ae5d6d2d4ed13b56a7db689762e3e22d9676e22dbeb1227e96513ccddc8cd"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "12f90795f810adec89caaf0476da274bc6840e3ae0e71e5e39a1309325055736"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "059-reverse-foil.png": "9471cfb4906d069099f3366f348c77d17a15b3f476e0c905fdb04eb81739ae94",
+    "059-reverse-protection.png": "b8bb8e6d2ce41821354057e483d11b2c5d41684ae8a336be4dd4560c4cd0c9fe"
+  },
+  "holoFrontSha256": "12f90795f810adec89caaf0476da274bc6840e3ae0e71e5e39a1309325055736",
+  "mapDimensions": {
+    "059-reverse-foil.png": [
+      367,
+      512
+    ],
+    "059-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Janine's Secret Art",
+    "card_type": "TRAINER",
+    "subtype": "SUPPORTER",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Taira Akitsu",
+      "list": [
+        "Taira Akitsu"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "059/064",
+      "numerator": "059",
+      "denominator": "064",
+      "numeric": 59
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "Choose up to 2 of your {D} Pok\u00e9mon. For each of those Pok\u00e9mon, search your deck for a Basic {D} Energy card and attach it to that Pok\u00e9mon. Then, shuffle your deck. If you attached Energy to your Active Pok\u00e9mon in this way, it is now Poisoned."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play only 1 Supporter card during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_59_ph",
+        "longFormID": "JaninesSecretArt_sv6-5_59_ph_Uncommon_FlatSilver_Reverse",
+        "archetypeID": "0xae34789f",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_059_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_059_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_059_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_059_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_059_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "059-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

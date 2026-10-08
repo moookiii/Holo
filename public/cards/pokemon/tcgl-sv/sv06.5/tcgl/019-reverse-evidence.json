@@ -1,0 +1,173 @@
+{
+  "cardId": "sv06.5-019",
+  "variant": "reverse",
+  "tcglCardId": "sv6-5_19_ph",
+  "tcglVariantId": "Dusclops_sv6-5_19_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_019_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_019_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f4422e13c9692e156d1b438b07d262f69fe576efb33fc2ffdda167f66b4d5c00"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_019_ph.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_019_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a5b4a78980c674b66f50155a365c33d8f636e71f1da3f5a2e5cdd13a5ecee118"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "f4422e13c9692e156d1b438b07d262f69fe576efb33fc2ffdda167f66b4d5c00"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "019-reverse-foil.png": "25ca87dc228194901c010c67e2a696f08179cd6b736fbc1d8d12f31def5cc261",
+    "019-reverse-protection.png": "0f6b7b95ceb992a7b6d937563f49f7bbd4163730ef974b8ac58ed51cb61cc6ce"
+  },
+  "holoFrontSha256": "f4422e13c9692e156d1b438b07d262f69fe576efb33fc2ffdda167f66b4d5c00",
+  "mapDimensions": {
+    "019-reverse-foil.png": [
+      367,
+      512
+    ],
+    "019-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Dusclops",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Aya Kusube",
+      "list": [
+        "Aya Kusube"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "019/064",
+      "numerator": "019",
+      "denominator": "064",
+      "numeric": 19
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Duskull",
+    "hp": 90,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Dusclops\u2019s true form is said to be a bright red eye burning within its body, but no one has ever seen such a thing.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Cursed Blast",
+        "text": "Once during your turn, you may put 5 damage counters on 1 of your opponent's Pok\u00e9mon. If you use this Ability, this Pok\u00e9mon is Knocked Out."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Will-O-Wisp",
+        "cost": [
+          "PSYCHIC",
+          "PSYCHIC"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_19_ph",
+        "longFormID": "Dusclops_sv6-5_19_ph_Common_FlatSilver_Reverse",
+        "archetypeID": "0xb7b14a78",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_019_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_019_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_019_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_019_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_019_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "019-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

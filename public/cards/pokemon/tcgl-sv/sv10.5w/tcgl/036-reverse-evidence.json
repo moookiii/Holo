@@ -1,0 +1,167 @@
+{
+  "cardId": "sv10.5w-036",
+  "variant": "reverse",
+  "tcglCardId": "rsv10-5_36_ph",
+  "tcglVariantId": "Woobat_rsv10-5_36_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_036_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_036_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e10ae45ac73f74b8e14cbad9a423b7712aa51e4514c5bdb6b610241dad16e693"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_036_ph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_036_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e3cdcb6b82a46aaca21a87a1793b84d3fa33ad3714cad923079e0f46e22b6340"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "e10ae45ac73f74b8e14cbad9a423b7712aa51e4514c5bdb6b610241dad16e693"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "036-reverse-foil.png": "9cad10754910965d8d357bf6ce46a525932214d741108ab652930b088044b105",
+    "036-reverse-protection.png": "ac59883a5ae7cc86a9eb7d82a1581910c90891793e947ee261ea2b82899a115d"
+  },
+  "holoFrontSha256": "e10ae45ac73f74b8e14cbad9a423b7712aa51e4514c5bdb6b610241dad16e693",
+  "mapDimensions": {
+    "036-reverse-foil.png": [
+      367,
+      512
+    ],
+    "036-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Woobat",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Wintr Wandr",
+      "list": [
+        "Wintr Wandr"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "036/086",
+      "numerator": "036",
+      "denominator": "086",
+      "numeric": 36
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Its habitat is dark forests and caves. It emits ultrasonic waves from its nose to learn about its surroundings.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Heart Stamp",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_36_ph",
+        "longFormID": "Woobat_rsv10-5_36_ph_Common_FlatSilver_Reverse",
+        "archetypeID": "0x360754eb",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_036_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_036_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_036_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_036_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_036_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "036-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

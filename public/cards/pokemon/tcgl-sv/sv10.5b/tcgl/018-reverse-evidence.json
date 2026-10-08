@@ -1,0 +1,162 @@
+{
+  "cardId": "sv10.5b-018",
+  "variant": "reverse",
+  "tcglCardId": "zsv10-5_18_ph",
+  "tcglVariantId": "Simipour_zsv10-5_18_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_018_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_018_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "82288b755fdef2379c62f59428e1cc441f267844323f7a4f7f60f13adc7ef7d5"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_018_ph.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_018_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "acaf7941438bd935bf24cd69d790ce04a63853c734a06957a48f83a5ce2f7e7c"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "82288b755fdef2379c62f59428e1cc441f267844323f7a4f7f60f13adc7ef7d5"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "018-reverse-foil.png": "a5a4ad5ab1ab40e5c71c0c66fd056371b91523304eb61e8a53f784ffaf1115ed",
+    "018-reverse-protection.png": "26087abe7d1dc98a58da87328506252829577032837c23b6780df3c7dc0a2b96"
+  },
+  "holoFrontSha256": "82288b755fdef2379c62f59428e1cc441f267844323f7a4f7f60f13adc7ef7d5",
+  "mapDimensions": {
+    "018-reverse-foil.png": [
+      367,
+      512
+    ],
+    "018-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Simipour",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Makura Tami",
+      "list": [
+        "Makura Tami"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "018/086",
+      "numerator": "018",
+      "denominator": "086",
+      "numeric": 18
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Panpour",
+    "hp": 100,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "The tuft on its head holds water. When the level runs low, it replenishes the tuft by siphoning up water with its tail.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Gentle Slap",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 70
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_18_ph",
+        "longFormID": "Simipour_zsv10-5_18_ph_Uncommon_FlatSilver_Reverse",
+        "archetypeID": "0x6d8096da",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_018_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_018_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_018_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_018_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_018_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "018-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

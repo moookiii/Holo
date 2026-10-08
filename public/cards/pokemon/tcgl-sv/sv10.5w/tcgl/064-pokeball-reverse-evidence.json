@@ -1,0 +1,176 @@
+{
+  "cardId": "sv10.5w-064",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "rsv10-5_64_sph",
+  "tcglVariantId": "Mandibuzz_rsv10-5_64_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_064_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_064_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "dacbb11fbd26d5a2b18917d988a9379623bd97581c3dc42e334888b9bb5c1f78"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_064_sph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_064_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b2daaf9f89164663b0448441677d32e80d5b057bc1c61a3f9cfe4bfb172a3d27"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "dacbb11fbd26d5a2b18917d988a9379623bd97581c3dc42e334888b9bb5c1f78"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "064-pokeball-reverse-foil.png": "0000d2e64b441b61c310d3442d518c3547ab8c6ff01a62db046900d33786950b",
+    "064-pokeball-reverse-protection.png": "3d4ff6919e45f41f4e74e803689bbee7019eea032242368b0a7e45d9c88ada0e"
+  },
+  "holoFrontSha256": "dacbb11fbd26d5a2b18917d988a9379623bd97581c3dc42e334888b9bb5c1f78",
+  "mapDimensions": {
+    "064-pokeball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "064-pokeball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Mandibuzz",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Pani Kobayashi",
+      "list": [
+        "Pani Kobayashi"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "064/086",
+      "numerator": "064",
+      "denominator": "086",
+      "numeric": 64
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Vullaby",
+    "hp": 110,
+    "types": [
+      "DARKNESS"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It makes a nest out of bones it finds. It grabs weakened prey in its talons and hauls it to its nest of bones.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Look for Prey",
+        "text": "Once during your turn, you may use this Ability. Your opponent reveals their hand, and you put a Basic Pok\u00e9mon with 70 HP or less that you find there onto your opponent's Bench."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Cutting Wind",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 90
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_64_sph",
+        "longFormID": "Mandibuzz_rsv10-5_64_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+        "archetypeID": "0xb34f590c",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_064_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_064_sph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_064_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_064_sph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_064_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "064-pokeball-reverse.png",
+  "reusedProfile": "prismatic_pokeball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

@@ -1,0 +1,179 @@
+{
+  "cardId": "sv06.5-012",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_12",
+  "tcglVariantId": "Kingdraex_sv6-5_12_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_012_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_012_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "85e9a8f1635e9a7b74a38a6f907c198a1dff89afe0109c78926ae374bd5bcf5c"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_012_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_012_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "1e315ca63a934abf7324ea76a6f9e1376b58e1213eaa9af6c92fa96d18cf20e9"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "85e9a8f1635e9a7b74a38a6f907c198a1dff89afe0109c78926ae374bd5bcf5c"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "012-holo-foil.png": "77d73a5c0df54f6643c7909637594c3cc167a06cec3293cbc9c805c6bc29c937",
+    "012-holo-protection.png": "7211ae12e47715bc1d9fbad3659fd164996f170e60c724694a5dcfb5866570a0"
+  },
+  "holoFrontSha256": "85e9a8f1635e9a7b74a38a6f907c198a1dff89afe0109c78926ae374bd5bcf5c",
+  "mapDimensions": {
+    "012-holo-foil.png": [
+      367,
+      512
+    ],
+    "012-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Kingdra ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. toriyufu",
+      "list": [
+        "toriyufu"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "012/064",
+      "numerator": "012",
+      "denominator": "064",
+      "numeric": 12
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Seadra",
+    "hp": 310,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "King's Order",
+        "text": "Put up to 3 {W} Pok\u00e9mon from your discard pile onto your Bench.",
+        "cost": [
+          "WATER"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Hydro Pump",
+        "text": "This attack does 50 more damage for each {W} Energy attached to this Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_12",
+        "longFormID": "Kingdraex_sv6-5_12_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+        "archetypeID": "0x7df4d171",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_012_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_012_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_012_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_012_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_012_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "012.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending."
+}

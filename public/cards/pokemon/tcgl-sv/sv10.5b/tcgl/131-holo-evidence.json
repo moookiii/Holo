@@ -1,0 +1,171 @@
+{
+  "cardId": "sv10.5b-131",
+  "variant": "holo",
+  "tcglCardId": "zsv10-5_131",
+  "tcglVariantId": "Landorus_zsv10-5_131_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_131_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_131_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c4b2abefcd3503ed9c02de6563e7e0e687843b723a2655bfb387882f841cb500"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_131_std.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_131_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b4b40b4a8dbf0ea2f96c0f240f96857a80c06bf8f75cfcc8658ccd51e928ac64"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "c4b2abefcd3503ed9c02de6563e7e0e687843b723a2655bfb387882f841cb500"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "131-holo-foil.png": "9a0cc760c51c01c14b056cfc480ea232213e222aceb67989e204261e74a6ad11",
+    "131-holo-protection.png": "7970149989489cf42c32a3e71a9fe2574f95811f5d6f88503f925bfe35b1a96e"
+  },
+  "holoFrontSha256": "c4b2abefcd3503ed9c02de6563e7e0e687843b723a2655bfb387882f841cb500",
+  "mapDimensions": {
+    "131-holo-foil.png": [
+      367,
+      512
+    ],
+    "131-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Landorus",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. SIE NANAHARA",
+      "list": [
+        "SIE NANAHARA"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "131/086",
+      "numerator": "131",
+      "denominator": "086",
+      "numeric": 131
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Lands visited by Landorus grant such bountiful crops that it has been hailed as \u201cThe Guardian of the Fields.\u201d",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Abundant Harvest",
+        "text": "Attach a Basic {F} Energy card from your discard pile to this Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Earthquake",
+        "text": "This attack also does 10 damage to each of your Benched Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "FIGHTING",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 110
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_131",
+        "longFormID": "Landorus_zsv10-5_131_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x3cd81b42",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_131_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_131_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_131_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_131_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_131_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "131.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

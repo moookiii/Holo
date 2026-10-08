@@ -1,0 +1,172 @@
+{
+  "cardId": "svalt-94",
+  "variant": "holo",
+  "tcglCardId": "svalt_94",
+  "tcglVariantId": "Dartrix_sv3_14_alt_Uncommon_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_014_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv3_en_014_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a97d3d5ba08122679d99801f21602129bfed234dbba60303ee1f8ae2cdcfba31"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_014_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv3_en_014_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "24cf390e1ce1c2cb34a5b192dc7b7316f4d1287e99f0790830124d25cf829432"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "a97d3d5ba08122679d99801f21602129bfed234dbba60303ee1f8ae2cdcfba31"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "94-holo-foil.png": "5f82ffc0b27ead8567668127a7c01971e9b533fd620b5ef7ef65bd824d4bcfa9",
+    "94-holo-protection.png": "8209b909209827ddc059d3a19316692a83cb8f11a84ad4e569d7ebfe45291bc5",
+    "94-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "a97d3d5ba08122679d99801f21602129bfed234dbba60303ee1f8ae2cdcfba31",
+  "mapDimensions": {
+    "94-holo-foil.png": [
+      367,
+      512
+    ],
+    "94-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "94-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Dartrix",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. sui",
+      "list": [
+        "sui"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "OBF_EN",
+    "collector_number": {
+      "full": "014/197",
+      "numerator": "014",
+      "denominator": "197",
+      "numeric": 14
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Rowlet",
+    "hp": 90,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Supremely sensitive to the presence of others, it can detect opponents standing behind it, flinging its sharp feathers to take them out.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Shoot Through",
+        "text": "This attack also does 20 damage to 1 of your opponent's Benched Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "GRASS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 40
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_94",
+        "longFormID": "Dartrix_sv3_14_alt_Uncommon_Cosmos_Holo",
+        "archetypeID": "0xcc994779",
+        "reldate": "2024-08-22 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv3_en_014_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv3_en_014_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_014_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_014_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv3_en_014_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "94.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

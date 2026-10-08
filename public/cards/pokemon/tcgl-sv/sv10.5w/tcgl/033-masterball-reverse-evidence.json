@@ -1,0 +1,162 @@
+{
+  "cardId": "sv10.5w-033",
+  "variant": "masterball-reverse",
+  "tcglCardId": "rsv10-5_33_mph",
+  "tcglVariantId": "Joltik_rsv10-5_33_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_033_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_033_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0b020ff3a6aa962be0339be12b617f0e91d7e2454ba592e00a7cddd7b7b1a728"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_033_mph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_033_mph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "3a7da2a670bc749cbfef3bb34f16225f418eef0944d9314cf80e5de4793f19e4"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "0b020ff3a6aa962be0339be12b617f0e91d7e2454ba592e00a7cddd7b7b1a728"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "033-masterball-reverse-foil.png": "34bd49e750abb2c1f8d044b5f184abc87c02a2f17dde4e1c14fbf745d4358afd",
+    "033-masterball-reverse-protection.png": "84a7c5262ff57b93bdfe24ed0d3e53a397b03f7c55488d03fe9ce178ecba6e80"
+  },
+  "holoFrontSha256": "0b020ff3a6aa962be0339be12b617f0e91d7e2454ba592e00a7cddd7b7b1a728",
+  "mapDimensions": {
+    "033-masterball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "033-masterball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Joltik",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Shimaris Yukichi",
+      "list": [
+        "Shimaris Yukichi"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "033/086",
+      "numerator": "033",
+      "denominator": "086",
+      "numeric": 33
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 40,
+    "types": [
+      "LIGHTNING"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Joltik that live in cities have learned a technique for sucking electricity from the outlets in houses.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Surprise Attack",
+        "text": "Flip a coin. If tails, this attack does nothing.",
+        "cost": [
+          "LIGHTNING"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_33_mph",
+        "longFormID": "Joltik_rsv10-5_33_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall",
+        "archetypeID": "0x26a0d489",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_033_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_033_mph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_033_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_033_mph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_033_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "033-masterball-reverse.png",
+  "reusedProfile": "prismatic_masterball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

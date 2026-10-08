@@ -1,0 +1,187 @@
+{
+  "cardId": "svp-50",
+  "variant": "holo",
+  "tcglCardId": "svbsp_50",
+  "tcglVariantId": "Alakazamex_svbsp_50_std_DoubleRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_050_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_050_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bc51badb688b6ac1133a5e55e63fc79e89ddcaa5821c7bc2e7a42621a65b027c"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_050_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_050_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "5d105af93a511b6ca1abd22dacf50c29a2d1d87a4a5e35e4141d7c095fe4f3de"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "bc51badb688b6ac1133a5e55e63fc79e89ddcaa5821c7bc2e7a42621a65b027c"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "50-holo-foil.png": "6351a3afdddc201f67fe0614fecddd0d0430a25d6afcbe2509ab859b84f8918a",
+    "50-holo-protection.png": "9faf3059e9f9921c58c36fa4142f4bf74ff5b731693a16aebc3fefe991f3d7fa"
+  },
+  "holoFrontSha256": "bc51badb688b6ac1133a5e55e63fc79e89ddcaa5821c7bc2e7a42621a65b027c",
+  "mapDimensions": {
+    "50-holo-foil.png": [
+      367,
+      512
+    ],
+    "50-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Alakazam ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Mitsuhiro Arita",
+      "list": [
+        "Mitsuhiro Arita"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "050",
+      "numerator": "050",
+      "numeric": 50
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Kadabra",
+    "hp": 310,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Mind Jack",
+        "text": "This attack does 30 more damage for each of your opponent's Benched Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 90,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Dimensional Hand",
+        "text": "This attack can be used even if this Pok\u00e9mon is on the Bench.",
+        "cost": [
+          "PSYCHIC",
+          "PSYCHIC"
+        ],
+        "damage": {
+          "amount": 120
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_50",
+        "longFormID": "Alakazamex_svbsp_50_std_DoubleRare_SunPillar_Holo",
+        "archetypeID": "0x4d1c07d8",
+        "reldate": "2023-10-05 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_050_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_050_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_050_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_050_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_050_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "50.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,175 @@
+{
+  "cardId": "svp-182",
+  "variant": "holo",
+  "tcglCardId": "svbsp_182",
+  "tcglVariantId": "IonosKilowattrel_svbsp_182_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_182_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_182_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6b59821840d0ac5f8363c315a66afd43a8d46424a296f90a11ac23e25e7b4ceb"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_182_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_182_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4247f6f994d6eca3ae00405bf0fcdbeb73dd81cd7540dc32794fa9bb1535612f"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "6b59821840d0ac5f8363c315a66afd43a8d46424a296f90a11ac23e25e7b4ceb"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "182-holo-foil.png": "1242981631683997beb962ed128dc428699e988608dba213bd01b9fe27b8922b",
+    "182-holo-protection.png": "b50b9007d6a04ebe4848cd2617687ba314e974aea4f820fbd2ab6ef546fec784"
+  },
+  "holoFrontSha256": "6b59821840d0ac5f8363c315a66afd43a8d46424a296f90a11ac23e25e7b4ceb",
+  "mapDimensions": {
+    "182-holo-foil.png": [
+      367,
+      512
+    ],
+    "182-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Iono's Kilowattrel",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. DOM",
+      "list": [
+        "DOM"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "182",
+      "numerator": "182",
+      "numeric": 182
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "TRAINERS_POKEMON"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Iono's Wattrel",
+    "hp": 120,
+    "types": [
+      "LIGHTNING"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Kilowattrel inflates its throat sac to amplify its electricity. By riding the wind, this Pok\u00e9mon can fly over 430 miles in a day.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Flashing Draw",
+        "text": "You must discard a Basic {L} Energy from this Pok\u00e9mon in order to use this Ability. Once during your turn, you may draw cards until you have 6 cards in your hand."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Mach Bolt",
+        "cost": [
+          "LIGHTNING",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 70
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_182",
+        "longFormID": "IonosKilowattrel_svbsp_182_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0xb1fdd83a",
+        "reldate": "2025-03-27 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_182_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_182_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_182_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_182_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_182_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "182.png",
+  "reusedProfile": "sv_tcgl_regular_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

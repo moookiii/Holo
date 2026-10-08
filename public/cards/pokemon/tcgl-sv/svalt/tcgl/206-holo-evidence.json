@@ -1,0 +1,177 @@
+{
+  "cardId": "svalt-206",
+  "variant": "holo",
+  "tcglCardId": "svalt_206",
+  "tcglVariantId": "Venusaurex_sv7_1_alt_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_001_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_001_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bd06981921d617d63303e2e9299c215d5cb7730946b55e4a090edc3ec23cd34e"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_001_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_001_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c6a5f805788bf3cee347a1fa678e773371eac96cbe2ca3ed8b445e36ab666904"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "bd06981921d617d63303e2e9299c215d5cb7730946b55e4a090edc3ec23cd34e"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "206-holo-foil.png": "604711338b0ae6bf644e9ee43625efdae284c0c970924cac684a2968e3d65f5f",
+    "206-holo-protection.png": "9ee80048629baa0c78fc15c1c7e1008bcf9892d0f1109244d9afd4210bd58aa0"
+  },
+  "holoFrontSha256": "bd06981921d617d63303e2e9299c215d5cb7730946b55e4a090edc3ec23cd34e",
+  "mapDimensions": {
+    "206-holo-foil.png": [
+      367,
+      512
+    ],
+    "206-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Venusaur ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Saki Hayashiro",
+      "list": [
+        "Saki Hayashiro"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "001/142",
+      "numerator": "001",
+      "denominator": "142",
+      "numeric": 1
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Ivysaur",
+    "hp": 340,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 4,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Tranquil Flower",
+        "text": "Once during your turn, if this Pok\u00e9mon is in the Active Spot, you may heal 60 damage from 1 of your Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Dangerous Toxwhip",
+        "text": "Your opponent's Active Pok\u00e9mon is now Confused and Poisoned.",
+        "cost": [
+          "GRASS",
+          "GRASS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 150
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_206",
+        "longFormID": "Venusaurex_sv7_1_alt_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+        "archetypeID": "0x7a075331",
+        "reldate": "2025-07-31 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_001_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_001_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_001_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_001_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_001_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "206.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Existing SUN_PILLAR and Southern Cross Double Rare material reused; no new shader. Physical-copy calibration remains pending."
+}

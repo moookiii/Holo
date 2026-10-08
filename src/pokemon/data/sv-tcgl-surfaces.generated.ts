@@ -1,6 +1,7 @@
 // Exact TCGL surfaces; generated offline.
 import type { CardMapPaths } from "../../card/CardDefinition.ts";
 export interface TcglSvSurface { cardId: string; variant: string; profile: string; textured: boolean; maps: CardMapPaths; evidence: string; foilType: string; }
+import { tcglSvAdditionalSurfaces } from "./sv-tcgl-additions-surfaces.generated.ts";
 export const tcglSvSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv01-001",
@@ -31013,5 +31014,6 @@ export const tcglSvSurfaces: readonly TcglSvSurface[] = [
     },
     "evidence": "/cards/pokemon/tcgl-sv/sv10/tcgl/244-holo-evidence.json",
     "foilType": "SV_ULTRA"
-  }
+  },
+  ...tcglSvAdditionalSurfaces
 ];

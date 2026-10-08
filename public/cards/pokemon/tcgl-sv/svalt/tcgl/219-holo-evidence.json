@@ -1,0 +1,171 @@
+{
+  "cardId": "svalt-219",
+  "variant": "holo",
+  "tcglCardId": "svalt_219",
+  "tcglVariantId": "Reshiram_sv7_22_alt_Uncommon_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_022_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_022_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ca7f84bccdfe7cc43ece2fd53d788d00b7ed64283a81bb01ca01c65849706f50"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_022_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_022_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a6efc492c84a84e2d7f5d31795d118ff49f31683ad63a5bf02c2552dcb16c65d"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "ca7f84bccdfe7cc43ece2fd53d788d00b7ed64283a81bb01ca01c65849706f50"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "219-holo-foil.png": "a7816eea40ef5e966ab56de02e0e971ea91642bdfe08ae09dbb9ffb3034d826c",
+    "219-holo-protection.png": "eaf29af4952cfcab59568770ebd9590507f305deeeea30c8ee2f5f060f21133f",
+    "219-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "ca7f84bccdfe7cc43ece2fd53d788d00b7ed64283a81bb01ca01c65849706f50",
+  "mapDimensions": {
+    "219-holo-foil.png": [
+      367,
+      512
+    ],
+    "219-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "219-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Reshiram",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Iwamoto05",
+      "list": [
+        "Iwamoto05"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "022/142",
+      "numerator": "022",
+      "denominator": "142",
+      "numeric": 22
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "This legendary Pok\u00e9mon can scorch the world with fire. It helps those who want to build a world of truth.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Heat Blast",
+        "cost": [
+          "FIRE",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 90
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_219",
+        "longFormID": "Reshiram_sv7_22_alt_Uncommon_Cosmos_Holo",
+        "archetypeID": "0xe4a00c5d",
+        "reldate": "2025-08-07 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_022_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_022_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_022_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_022_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_022_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "219.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

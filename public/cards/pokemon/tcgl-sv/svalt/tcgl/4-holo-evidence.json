@@ -1,0 +1,178 @@
+{
+  "cardId": "svalt-4",
+  "variant": "holo",
+  "tcglCardId": "svalt_4",
+  "tcglVariantId": "Greavard_sv1_105_alt_Common_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_105_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv1_en_105_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "201f1a6c4239cdc29ca9111ec1c977e5a2b80135511f99380efc5e8436eeaa9d"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_105_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv1_en_105_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "f049671fc5b8e41140a2378a6b41e3c60b11e96b85646df498789681cd2cb536"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "201f1a6c4239cdc29ca9111ec1c977e5a2b80135511f99380efc5e8436eeaa9d"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "4-holo-foil.png": "285d3388da0452e56140df37739d21ff02c25c31baa584367f4d1eefacab19bc",
+    "4-holo-protection.png": "2e2c4e9d3deed1b6e4ec8d0b995097d8f7b0db5db7874ed6564ed2e7d1f388c1"
+  },
+  "holoFrontSha256": "201f1a6c4239cdc29ca9111ec1c977e5a2b80135511f99380efc5e8436eeaa9d",
+  "mapDimensions": {
+    "4-holo-foil.png": [
+      367,
+      512
+    ],
+    "4-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Greavard",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Shin Nagasawa",
+      "list": [
+        "Shin Nagasawa"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVI_EN",
+    "collector_number": {
+      "full": "105/198",
+      "numerator": "105",
+      "denominator": "198",
+      "numeric": 105
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "BASIC",
+    "hp": 80,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "This friendly Pok\u00e9mon doesn\u2019t like being alone. Pay it even the slightest bit of attention, and it will follow you forever.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Underworld Stroll",
+        "text": "Your opponent reveals their hand. Choose a Supporter card you find there and put it on the bottom of their deck.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Sharp Fang",
+        "cost": [
+          "PSYCHIC",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_4",
+        "longFormID": "Greavard_sv1_105_alt_Common_SvHolo_Holo",
+        "archetypeID": "0xb5646941",
+        "reldate": "2023-03-02 18:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv1_en_105_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv1_en_105_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_105_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_105_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv1_en_105_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "4.png",
+  "reusedProfile": "sv_tcgl_regular_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

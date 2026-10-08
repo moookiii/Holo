@@ -1,0 +1,186 @@
+{
+  "cardId": "sv04.5-170",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_170",
+  "tcglVariantId": "Primeape_sv4-5_170_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_170_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_170_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "aa5851784e3a50bb62597b5e48f6b3226080fa25ab9f5a6a0035fc2dde2f452d"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_170_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_170_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "32a52b022c12eb49f949f98a0e8f7833c1a0e892c1577fa5f907c2475fede0e4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_170_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_170_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2e0a251e2505995b07c85fb495ad7abccba94b8d690db8caadf11defea902091"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "aa5851784e3a50bb62597b5e48f6b3226080fa25ab9f5a6a0035fc2dde2f452d"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "170-holo-foil.png": "c849028108a7075ac687c100fab1f0184a0e40d621257fb2b6f21851264639d3",
+    "170-holo-protection.png": "dafbb66d47d5c7afd3b0986930af90d18acbbe0943017512003e63b0956688a9",
+    "170-holo-normal.png": "4ed479f5f7667b9f1ea75706ba7a951111ed42b593165e1bc6a1582e7269de6e",
+    "170-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "aa5851784e3a50bb62597b5e48f6b3226080fa25ab9f5a6a0035fc2dde2f452d",
+  "mapDimensions": {
+    "170-holo-foil.png": [
+      367,
+      512
+    ],
+    "170-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "170-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "170-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Primeape",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Scav",
+      "list": [
+        "Scav"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "170/091",
+      "numerator": "170",
+      "denominator": "091",
+      "numeric": 170
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Mankey",
+    "hp": 90,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "PSYCHIC"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Some researchers theorize that Primeape remains angry even when inside a Pok\u00e9 Ball.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Raging Punch",
+        "text": "This Pok\u00e9mon also does 20 damage to itself.",
+        "cost": [
+          "FIGHTING"
+        ],
+        "damage": {
+          "amount": 70
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_170",
+        "longFormID": "Primeape_sv4-5_170_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0x546867cd",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_170_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_170_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_170_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_170_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_170_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_170_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_170_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "170.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

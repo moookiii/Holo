@@ -1,0 +1,189 @@
+{
+  "cardId": "sv04.5-201",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_201",
+  "tcglVariantId": "Ditto_sv4-5_201_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_201_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_201_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a32ebac5bc7404dfc858b86b4cd7967b70fcaf96e17902cb4da0a74968212c97"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_201_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_201_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "7db0b7430c6d463aaf7adc42cb16ea1e43df3f38e406a37310e1da28f101d6cb"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_201_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_201_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "88d99a1c3b95e3bb04f6649d94f857ee6055646e5a8a97bc31c5bb2387e0d3cc"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "a32ebac5bc7404dfc858b86b4cd7967b70fcaf96e17902cb4da0a74968212c97"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "201-holo-foil.png": "367623e315b1d09dfea7ab0df2b2b5733dc70f7b6365dc10e558bfde3940cae1",
+    "201-holo-protection.png": "f60b59f307c6c3b4662eb3df004b9569d2944d391cf8c5d34fc5eeb96397415d",
+    "201-holo-normal.png": "1bf36a43e8632ce40e68e9dbab32f6877aa62e72c2cf16671e89d5d2b1ad0099",
+    "201-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "a32ebac5bc7404dfc858b86b4cd7967b70fcaf96e17902cb4da0a74968212c97",
+  "mapDimensions": {
+    "201-holo-foil.png": [
+      367,
+      512
+    ],
+    "201-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "201-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "201-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Ditto",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 0313",
+      "list": [
+        "0313"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "201/091",
+      "numerator": "201",
+      "denominator": "091",
+      "numeric": 201
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "COLORLESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Its transformation ability is perfect. However, if made to laugh, it can\u2019t maintain its disguise.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Transformative Start",
+        "text": "Once during your first turn, if this Pok\u00e9mon is in the Active Spot, you may search your deck and choose a Basic Pok\u00e9mon you find there, except any Ditto. If you do, discard this Pok\u00e9mon and all attached cards, and put the chosen Pok\u00e9mon in its place. Then, shuffle your deck."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Splup",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_201",
+        "longFormID": "Ditto_sv4-5_201_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0xcf5b8421",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_201_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_201_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_201_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_201_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_201_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_201_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_201_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "201.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

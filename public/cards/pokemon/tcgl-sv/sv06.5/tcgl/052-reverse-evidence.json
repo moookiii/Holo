@@ -1,0 +1,160 @@
+{
+  "cardId": "sv06.5-052",
+  "variant": "reverse",
+  "tcglCardId": "sv6-5_52_ph",
+  "tcglVariantId": "Stufful_sv6-5_52_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_052_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_052_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a49ba31fc414b20f369b6843414d356723938aecbc086e71bf4fdb6c510add98"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_052_ph.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_052_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "252d9f759198195c5048587ca2e9f88330b75332c1c08bff34902ad10f1e1abb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "a49ba31fc414b20f369b6843414d356723938aecbc086e71bf4fdb6c510add98"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "052-reverse-foil.png": "2cf547d19d3b454a6c0347bed03b42c1c15bb115cfb1163c9084fcc7c62c5675",
+    "052-reverse-protection.png": "0e3febc344a110bb8425be797873ccdbc1fbea0a2b4c7a239ece0f3ee494af12"
+  },
+  "holoFrontSha256": "a49ba31fc414b20f369b6843414d356723938aecbc086e71bf4fdb6c510add98",
+  "mapDimensions": {
+    "052-reverse-foil.png": [
+      367,
+      512
+    ],
+    "052-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Stufful",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. ryoma uratsuka",
+      "list": [
+        "ryoma uratsuka"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "052/064",
+      "numerator": "052",
+      "denominator": "064",
+      "numeric": 52
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "BASIC",
+    "hp": 80,
+    "types": [
+      "COLORLESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Its fluffy fur is a delight to pet, but carelessly reaching out to touch this Pok\u00e9mon could result in painful retaliation.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Take Down",
+        "text": "This Pok\u00e9mon also does 10 damage to itself.",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_52_ph",
+        "longFormID": "Stufful_sv6-5_52_ph_Common_FlatSilver_Reverse",
+        "archetypeID": "0xaa010e2c",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_052_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_052_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_052_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_052_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_052_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "052-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

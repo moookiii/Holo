@@ -1,0 +1,165 @@
+{
+  "cardId": "sv10.5w-058",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "rsv10-5_58_sph",
+  "tcglVariantId": "Scrafty_rsv10-5_58_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_058_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_058_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ac8946a420e18314509f81f6097b5d1c5af5e2e547e86ebd66bfc7f647df7eba"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_058_sph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_058_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "3a1b177fea20e5758878a639db0949c027d68f947605c23ee86580d432b4d344"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "ac8946a420e18314509f81f6097b5d1c5af5e2e547e86ebd66bfc7f647df7eba"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "058-pokeball-reverse-foil.png": "1d48fac711e8826f167b1083874f82d34ce38a1ff3e31ed9e04d20e1be6de487",
+    "058-pokeball-reverse-protection.png": "fb20744f2325cc300096ec7625f33150a66facc63bfca8c92abebbaf86c357eb"
+  },
+  "holoFrontSha256": "ac8946a420e18314509f81f6097b5d1c5af5e2e547e86ebd66bfc7f647df7eba",
+  "mapDimensions": {
+    "058-pokeball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "058-pokeball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Scrafty",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. osare",
+      "list": [
+        "osare"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "058/086",
+      "numerator": "058",
+      "denominator": "086",
+      "numeric": 58
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Scraggy",
+    "hp": 120,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Groups of them beat up anything that enters their territory. Each can spit acidic liquid from its mouth.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Ruffians Attack",
+        "text": "Flip a coin for each {D} Pok\u00e9mon you have in play. This attack does 60 damage for each heads.",
+        "cost": [
+          "DARKNESS",
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 60,
+          "suffix": "\u00d7"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_58_sph",
+        "longFormID": "Scrafty_rsv10-5_58_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+        "archetypeID": "0x2d170f37",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_058_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_058_sph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_058_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_058_sph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_058_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "058-pokeball-reverse.png",
+  "reusedProfile": "prismatic_pokeball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

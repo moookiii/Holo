@@ -1,0 +1,303 @@
+{
+  "cardId": "sv06.5-015",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_15",
+  "tcglVariantId": "Revavroomex_sv6-5_15_std_DoubleRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_015_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_015_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "290ef92cea93e10afc7ea1be387ff4f1dd9a8313dc88872282a1449f790650f1"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_015_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_015_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "cb222eb4da872ccc543be0d3aec8a942aed9e855eb05265b3b343c4f26234a31"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_015_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_015_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9795d83683395d3f97b56bb13c1bd146cc1dcb983b9c1a85a0cb54a073d90785"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "290ef92cea93e10afc7ea1be387ff4f1dd9a8313dc88872282a1449f790650f1"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 215,
+      "texturedInteriorFraction": 0.46938775510204084
+    },
+    {
+      "areaAtFoilResolution": 523,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 240,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 622,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 256,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 301,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 156,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 616,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 2013,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 378,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 277,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 367,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 1160,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 234,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 876,
+      "texturedInteriorFraction": 0.5574387947269304
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 237,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 242,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 517,
+      "texturedInteriorFraction": 0.4892086330935252
+    },
+    {
+      "areaAtFoilResolution": 2860,
+      "texturedInteriorFraction": 0.46815834767641995
+    },
+    {
+      "areaAtFoilResolution": 228,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "015-holo-foil.png": "198debf6ebc4a548ab5e247f1558c7721303daa800eab09d87db79b5a17f6393",
+    "015-holo-protection.png": "38813d95ac46b53fb7e7f25dd6a701d0c278cfe5c29d6bd845342668257fce16",
+    "015-holo-normal.png": "ff773177359fdc497380415b7b9099eb8720f5e187f3df0489ef9e3f7a83f87f",
+    "015-holo-roughness.png": "5807989b1dfd6f3f30a682a463d468ee9ac2b2467f202a13d88f7044239ed102"
+  },
+  "holoFrontSha256": "290ef92cea93e10afc7ea1be387ff4f1dd9a8313dc88872282a1449f790650f1",
+  "mapDimensions": {
+    "015-holo-foil.png": [
+      367,
+      512
+    ],
+    "015-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "015-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "015-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Revavroom ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Mochizuki",
+      "list": [
+        "PLANETA Mochizuki"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "015/064",
+      "numerator": "015",
+      "denominator": "064",
+      "numeric": 15
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER",
+      "TERA"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Varoom",
+    "hp": 280,
+    "types": [
+      "LIGHTNING"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "EFFECT",
+        "name": "Tera",
+        "text": "As long as this Pok\u00e9mon is on your Bench, prevent all damage done to this Pok\u00e9mon by attacks (both yours and your opponent\u2019s)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Accelerator Flash",
+        "text": "If this Pok\u00e9mon moved from your Bench to the Active Spot this turn, this attack does 120 more damage.",
+        "cost": [
+          "METAL"
+        ],
+        "damage": {
+          "amount": 20,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Shattering Speed",
+        "text": "Discard this Pok\u00e9mon and all attached cards.",
+        "cost": [
+          "METAL",
+          "METAL",
+          "METAL"
+        ],
+        "damage": {
+          "amount": 250
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_15",
+        "longFormID": "Revavroomex_sv6-5_15_std_DoubleRareC_SvUltra_Etched",
+        "archetypeID": "0x38ff74b8",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_015_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_015_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_015_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_015_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_015_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_015_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_015_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "015.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

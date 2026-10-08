@@ -1,0 +1,182 @@
+{
+  "cardId": "sv04.5-024",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_24",
+  "tcglVariantId": "Exeggutor_sv4-5_24_std_Rare_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_024_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_024_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9313458d3652d7be004aa405899d52d3a89a70c9be03c2659e579b766229ce02"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_024_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_024_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "5ff1f62d42227e725aa11804b07df0fdbf5b3d67fff9251c567d001fb5ec9799"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "9313458d3652d7be004aa405899d52d3a89a70c9be03c2659e579b766229ce02"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "024-holo-foil.png": "e444dcfb4942ba6c711a01f6d146499dbd2b2764eebcda742187269c38e345cf",
+    "024-holo-protection.png": "4ba029ed30c27151f581049eac325e98a0dd39c736db501a49690db4172fa72f"
+  },
+  "holoFrontSha256": "9313458d3652d7be004aa405899d52d3a89a70c9be03c2659e579b766229ce02",
+  "mapDimensions": {
+    "024-holo-foil.png": [
+      367,
+      512
+    ],
+    "024-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Exeggutor",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Yoriyuki Ikegami",
+      "list": [
+        "Yoriyuki Ikegami"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "024/091",
+      "numerator": "024",
+      "denominator": "091",
+      "numeric": 24
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Exeggcute",
+    "hp": 130,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "When they work together, Exeggutor\u2019s three heads can put out powerful psychic energy. Cloudy days make this Pok\u00e9mon sluggish.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Hypnoblast",
+        "text": "Your opponent's Active Pok\u00e9mon is now Asleep.",
+        "cost": [
+          "PSYCHIC",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Psychic Loop",
+        "text": "Put 2 Energy attached to this Pok\u00e9mon into your hand.",
+        "cost": [
+          "PSYCHIC",
+          "PSYCHIC",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 160
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_24",
+        "longFormID": "Exeggutor_sv4-5_24_std_Rare_SvHolo_Holo",
+        "archetypeID": "0x9b0e2aff",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_024_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_024_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_024_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_024_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_024_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "024.png",
+  "reusedProfile": "sv_tcgl_regular_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

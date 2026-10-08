@@ -1,0 +1,165 @@
+{
+  "cardId": "svp-89",
+  "variant": "holo",
+  "tcglCardId": "svbsp_89",
+  "tcglVariantId": "Feraligatr_svbsp_89_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_089_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_089_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "fb4dffccf362e2bfd9ca959c418aa50ec66d024a3da88c984a4bd6013bca78da"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_089_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_089_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "2261986f023d9ccdd9fa8858a6ea156eed4f5dd440f2ee712a50f69463a6c098"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "fb4dffccf362e2bfd9ca959c418aa50ec66d024a3da88c984a4bd6013bca78da"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "89-holo-foil.png": "ac90a2b6017b26daa04f7d6acefa00cbb539809140b7bcd7c6f0b899ce8734e8",
+    "89-holo-protection.png": "190224d7c3f1451241a1822cdf76ff57ef93e7356e97b25bca5fbb2a18d36123"
+  },
+  "holoFrontSha256": "fb4dffccf362e2bfd9ca959c418aa50ec66d024a3da88c984a4bd6013bca78da",
+  "mapDimensions": {
+    "89-holo-foil.png": [
+      367,
+      512
+    ],
+    "89-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Feraligatr",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Kurata So",
+      "list": [
+        "Kurata So"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "089",
+      "numerator": "089",
+      "numeric": 89
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Croconaw",
+    "hp": 180,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "It usually moves slowly, but it goes at blinding speed when it attacks and bites prey.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Torrential Heart",
+        "text": "Once during your turn, you may put 5 damage counters on this Pok\u00e9mon. If you do, during this turn, attacks used by this Pok\u00e9mon do 120 more damage to your opponent's Active Pok\u00e9mon (before applying Weakness and Resistance)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Giant Wave",
+        "text": "During your next turn, this Pok\u00e9mon can't use Giant Wave.",
+        "cost": [
+          "WATER",
+          "WATER"
+        ],
+        "damage": {
+          "amount": 160
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_89",
+        "longFormID": "Feraligatr_svbsp_89_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0x38d3ce54",
+        "reldate": "2024-03-21 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_089_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_089_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_089_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_089_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_089_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "89.png",
+  "reusedProfile": "sv_tcgl_regular_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

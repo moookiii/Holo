@@ -1,0 +1,160 @@
+{
+  "cardId": "svalt-32",
+  "variant": "holo",
+  "tcglCardId": "svalt_32",
+  "tcglVariantId": "Charmander_svbsp_44_alt_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_044_alt.png",
+      "file": "research/tcgl/svalt-set/raw/svbsp_en_044_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "baf394fac42f02fc7d0750e4e473f49f8903d73efd0d0465edd7a046d9a313dd"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_044_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/svbsp_en_044_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "42d00165d60c3d49299d5a7c5601fa3031559823fdad444799981e1fd23ba736"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "baf394fac42f02fc7d0750e4e473f49f8903d73efd0d0465edd7a046d9a313dd"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "32-holo-foil.png": "e5a0cc15337f0fc5171a749e1c24b0659e639a5e08e3a2e5c7863fb7b86404d5",
+    "32-holo-protection.png": "f83295757a3311801421094ab9fff7f83e374948c4f5eb906f0619f422f9dd17"
+  },
+  "holoFrontSha256": "baf394fac42f02fc7d0750e4e473f49f8903d73efd0d0465edd7a046d9a313dd",
+  "mapDimensions": {
+    "32-holo-foil.png": [
+      367,
+      512
+    ],
+    "32-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Charmander",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. MINAMINAMI Take",
+      "list": [
+        "MINAMINAMI Take"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "044",
+      "numerator": "044",
+      "numeric": 44
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "From the time it is born, a flame burns at the tip of its tail. Its life would end if the flame were to go out.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Heat Tackle",
+        "text": "This Pok\u00e9mon also does 10 damage to itself.",
+        "cost": [
+          "FIRE"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_32",
+        "longFormID": "Charmander_svbsp_44_alt_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0xb0cdc48f",
+        "reldate": "2023-08-10 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/svbsp_en_044_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/svbsp_en_044_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_044_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_044_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/svbsp_en_044_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "32.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

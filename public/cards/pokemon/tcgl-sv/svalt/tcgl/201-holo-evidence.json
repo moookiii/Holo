@@ -1,0 +1,171 @@
+{
+  "cardId": "svalt-201",
+  "variant": "holo",
+  "tcglCardId": "svalt_201",
+  "tcglVariantId": "Snivy_zsv10-5_1_alt_Common_Tinsel_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/zsv10-5_en_001_alt.png",
+      "file": "research/tcgl/svalt-set/raw/zsv10-5_en_001_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "154447340c8e8f6371e0c2c458d03587cf9963b2ca289526657bbe1973b9946d"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/zsv10-5_en_001_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/zsv10-5_en_001_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "8fbcf810930d3aac3f8a9f9302b17ac9aaf1399c60f1c48a28465a3f0aab4aad"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "154447340c8e8f6371e0c2c458d03587cf9963b2ca289526657bbe1973b9946d"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "201-holo-foil.png": "181a7df593978e9e5795f0f46d106eddce6d0b3d9b18a55b8f0904f1d7d2f80a",
+    "201-holo-protection.png": "798027f5f863f356f235454ec88720217041b7984c7c31212b81e463007198ff"
+  },
+  "holoFrontSha256": "154447340c8e8f6371e0c2c458d03587cf9963b2ca289526657bbe1973b9946d",
+  "mapDimensions": {
+    "201-holo-foil.png": [
+      367,
+      512
+    ],
+    "201-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Snivy",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "TINSEL",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Susumu Maeya",
+      "list": [
+        "Susumu Maeya"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "001/086",
+      "numerator": "001",
+      "denominator": "086",
+      "numeric": 1
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It is very intelligent and calm. Being exposed to lots of sunlight makes its movements swifter.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Tackle",
+        "cost": [
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Vine Whip",
+        "cost": [
+          "GRASS",
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_201",
+        "longFormID": "Snivy_zsv10-5_1_alt_Common_Tinsel_Holo",
+        "archetypeID": "0x681d456a",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/zsv10-5_en_001_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/zsv10-5_en_001_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/zsv10-5_en_001_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/zsv10-5_en_001_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/zsv10-5_en_001_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "201.png",
+  "reusedProfile": "pokemon-tinsel",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

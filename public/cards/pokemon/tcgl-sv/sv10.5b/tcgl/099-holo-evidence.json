@@ -1,0 +1,161 @@
+{
+  "cardId": "sv10.5b-099",
+  "variant": "holo",
+  "tcglCardId": "zsv10-5_99",
+  "tcglVariantId": "Larvesta_zsv10-5_99_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_099_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_099_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d4df23c67d8eb5fff093edda21b004a08399bf27e1a403c03cd79570f34a8deb"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_099_std.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_099_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "16a48494c9a4b9e3ead6090be7c3c1db93ef2d2e66e34157211d1581b643a443"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "d4df23c67d8eb5fff093edda21b004a08399bf27e1a403c03cd79570f34a8deb"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "099-holo-foil.png": "b1a02f28cf97347b65f8061e198a693b954fee9ad73c5c20dc8eb13a467da26b",
+    "099-holo-protection.png": "d2e0acc636e796f975631df4e5c7e75ea7cb5aff396fa1aabeca306b62be4457"
+  },
+  "holoFrontSha256": "d4df23c67d8eb5fff093edda21b004a08399bf27e1a403c03cd79570f34a8deb",
+  "mapDimensions": {
+    "099-holo-foil.png": [
+      367,
+      512
+    ],
+    "099-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Larvesta",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Katsunori Sato",
+      "list": [
+        "Katsunori Sato"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "099/086",
+      "numerator": "099",
+      "denominator": "086",
+      "numeric": 99
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "This Pok\u00e9mon was believed to have been born from the sun. When it evolves, its entire body is engulfed in flames.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Peck Off",
+        "text": "Before doing damage, discard all Pok\u00e9mon Tools from your opponent's Active Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_99",
+        "longFormID": "Larvesta_zsv10-5_99_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0xfa0b396f",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_099_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_099_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_099_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_099_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_099_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "099.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

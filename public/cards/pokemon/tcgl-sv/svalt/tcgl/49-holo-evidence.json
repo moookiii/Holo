@@ -1,0 +1,194 @@
+{
+  "cardId": "svalt-49",
+  "variant": "holo",
+  "tcglCardId": "svalt_49",
+  "tcglVariantId": "IronJugulis_sv4_158_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_158_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_158_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8a8473e48d8653210659f323bccda829463c4bcd8e04a2c65f1d2fcf06f977f8"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_158_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_158_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e1828696d15f61ea1b1028fda4db0227c8710134688e0095e7d902be49040dfa"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "8a8473e48d8653210659f323bccda829463c4bcd8e04a2c65f1d2fcf06f977f8"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "49-holo-foil.png": "895cd4a7dc23305fbf2e6d3c2453ac0e3601ce41aee44acce8ce3c3c39ef1213",
+    "49-holo-protection.png": "87333c29b17ddde6b798c8e0ce13c7fe30195ad6436f1d369224d1c3bbb8b72b",
+    "49-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "8a8473e48d8653210659f323bccda829463c4bcd8e04a2c65f1d2fcf06f977f8",
+  "mapDimensions": {
+    "49-holo-foil.png": [
+      367,
+      512
+    ],
+    "49-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "49-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Iron Jugulis",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Souichirou Gunjima",
+      "list": [
+        "Souichirou Gunjima"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAR_EN",
+    "collector_number": {
+      "full": "158/182",
+      "numerator": "158",
+      "denominator": "182",
+      "numeric": 158
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "tags": [
+      "FUTURE"
+    ],
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "COLORLESS"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "It\u2019s possible that Iron Jugulis, an object described in an old book, may actually be this Pok\u00e9mon.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Homing Headbutt",
+        "text": "This attack does 50 damage to 3 of your opponent's Pok\u00e9mon that have any damage counters on them. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Baryon Beam",
+        "text": "If this Pok\u00e9mon has a Future Booster Energy Capsule attached, this attack can be used for {C}{C}{C}.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 150
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_49",
+        "longFormID": "IronJugulis_sv4_158_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x5aee0335",
+        "reldate": "2024-01-04 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_158_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_158_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_158_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_158_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv4_en_158_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "49.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

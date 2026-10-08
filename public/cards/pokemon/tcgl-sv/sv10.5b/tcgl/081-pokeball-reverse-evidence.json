@@ -1,0 +1,149 @@
+{
+  "cardId": "sv10.5b-081",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "zsv10-5_81_sph",
+  "tcglVariantId": "EnergyCoin_zsv10-5_81_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_081_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_081_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3639d484bd2c7941a5b67ef7a0722503e4c505bc723bdb6bfd64dfae77f88f27"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_081_sph.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_081_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "fcb560546e03bbd7c66816572f6fa600452d12096ee4c0b9888cfdd5e6bfbb56"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "3639d484bd2c7941a5b67ef7a0722503e4c505bc723bdb6bfd64dfae77f88f27"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "081-pokeball-reverse-foil.png": "ab72c4de07221503f159c6514e11c4091892f1115897d601d46125993556aa5c",
+    "081-pokeball-reverse-protection.png": "662b6022fec0a8799a7232738c9c650cc022a32142088d3d2d75b2457b2354d0"
+  },
+  "holoFrontSha256": "3639d484bd2c7941a5b67ef7a0722503e4c505bc723bdb6bfd64dfae77f88f27",
+  "mapDimensions": {
+    "081-pokeball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "081-pokeball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Energy Coin",
+    "card_type": "TRAINER",
+    "subtype": "ITEM",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Toyste Beach",
+      "list": [
+        "Toyste Beach"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "081/086",
+      "numerator": "081",
+      "denominator": "086",
+      "numeric": 81
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "ITEM"
+    ],
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "Flip 2 coins. If both of them are heads, search your deck for a Basic Energy card and attach it to 1 of your Pok\u00e9mon. Then, shuffle your deck."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play any number of Item cards during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_81_sph",
+        "longFormID": "EnergyCoin_zsv10-5_81_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+        "archetypeID": "0x5e973875",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_081_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_081_sph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_081_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_081_sph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_081_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "081-pokeball-reverse.png",
+  "reusedProfile": "prismatic_pokeball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

@@ -1,0 +1,166 @@
+{
+  "cardId": "svalt-111",
+  "variant": "holo",
+  "tcglCardId": "svalt_111",
+  "tcglVariantId": "Pecharunt_svbsp_129_alt_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_129_alt.png",
+      "file": "research/tcgl/svalt-set/raw/svbsp_en_129_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0ca70760fc183410716908a97b0f22282dbf99e9a49d2e47db232485d7676032"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_129_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/svbsp_en_129_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "791dfb8916cde046fd7a5b0cb5602d90171b4b3e32dea835efbc610766cc8d25"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "0ca70760fc183410716908a97b0f22282dbf99e9a49d2e47db232485d7676032"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "111-holo-foil.png": "3da63822cb2e84ed6b49b765ca16a89929afd52e21cc416e3ac731e13a826e78",
+    "111-holo-protection.png": "a82290bce86fe693ec7c4b7b402fe5338e62bbc3bf09f946589fe58c9124a2f9"
+  },
+  "holoFrontSha256": "0ca70760fc183410716908a97b0f22282dbf99e9a49d2e47db232485d7676032",
+  "mapDimensions": {
+    "111-holo-foil.png": [
+      367,
+      512
+    ],
+    "111-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Pecharunt",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. nagimiso",
+      "list": [
+        "nagimiso"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "129",
+      "numerator": "129",
+      "numeric": 129
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "BASIC",
+    "hp": 80,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Its peach-shaped shell serves as storage for a potent poison. It makes poisonous mochi and serves them to people and Pok\u00e9mon.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Toxic Subjugation",
+        "text": "As long as this Pok\u00e9mon is in the Active Spot, put 5 more damage counters on your opponent's Poisoned Pok\u00e9mon during Pok\u00e9mon Checkup."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Poison Chain",
+        "text": "Your opponent's Active Pok\u00e9mon is now Poisoned. During your opponent's next turn, that Pok\u00e9mon can't retreat.",
+        "cost": [
+          "DARKNESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_111",
+        "longFormID": "Pecharunt_svbsp_129_alt_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x0bf20806",
+        "reldate": "2024-08-22 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/svbsp_en_129_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/svbsp_en_129_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_129_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/svbsp_en_129_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/svbsp_en_129_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "111.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,122 @@
+{
+  "cardId": "sve-12-ph",
+  "variant": "reverse",
+  "tcglCardId": "sve_12_ph",
+  "tcglVariantId": "BasicLEnergy_sve_12_ph_CommonBasicEnergy_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_012_std.png",
+      "file": "research/tcgl/sve-set/raw/sve_en_012_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4bf6dbdba2caa2b3291a92ca49e61414e4be9373688b8a74a5cf7e58dcb30b07"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_012_ph.foil.png",
+      "file": "research/tcgl/sve-set/raw/sve_en_012_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d7d2a5bf8aee5a0786008902ae5735e8bd14dad7bbcbb7926fdea8783db0aac6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sve/page-01.jpg"
+    ],
+    "holoFrontSha256": "4bf6dbdba2caa2b3291a92ca49e61414e4be9373688b8a74a5cf7e58dcb30b07"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "12-ph-reverse-foil.png": "165eaa843c6134db2996be3ae6bd6201cd8ea9c80d11b8dd58a7d218c58013c6",
+    "12-ph-reverse-protection.png": "66293011b466569dc109b32b8c16c1518021a0c34201c2a2a307548cab5306cc"
+  },
+  "holoFrontSha256": "4bf6dbdba2caa2b3291a92ca49e61414e4be9373688b8a74a5cf7e58dcb30b07",
+  "mapDimensions": {
+    "12-ph-reverse-foil.png": [
+      367,
+      512
+    ],
+    "12-ph-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sve.en-US.json",
+  "exportEntry": {
+    "name": "Basic {L} Energy",
+    "card_type": "ENERGY",
+    "subtype": "BASIC",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "set_icon": "SVE_EN",
+    "collector_number": {
+      "full": "012",
+      "numerator": "012",
+      "numeric": 12
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "types": [
+      "LIGHTNING"
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sve_12_ph",
+        "longFormID": "BasicLEnergy_sve_12_ph_CommonBasicEnergy_FlatSilver_Reverse",
+        "archetypeID": "0xf78ead40",
+        "reldate": "2025-01-16 17:00:00+00:00",
+        "key": "sve"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sve/sve_en_012_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sve/sve_en_012_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_012_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_012_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sve/sve_en_012_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "12-ph.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

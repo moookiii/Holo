@@ -1,0 +1,188 @@
+{
+  "cardId": "svalt-212",
+  "variant": "holo",
+  "tcglCardId": "svalt_212",
+  "tcglVariantId": "Meltan_sv7_102_alt_Common_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_102_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_102_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f5f4d15c6e0c51248925d4f79fa3462d7592b016bd68d09a0491aab995f9986b"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_102_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_102_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "197959c278202bb1d707f60f5da76391e43ea626e7c575b2ff855b7dc12709fb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "f5f4d15c6e0c51248925d4f79fa3462d7592b016bd68d09a0491aab995f9986b"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "212-holo-foil.png": "4565ce7353c1c7d536fe6a40a0dd3859c6dae3995f309d93d55bae6d880872bd",
+    "212-holo-protection.png": "2bbd81c14c4c234cfe226d96e2f9c08ecafe1c9533da008ce7fb004139f9852e",
+    "212-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "f5f4d15c6e0c51248925d4f79fa3462d7592b016bd68d09a0491aab995f9986b",
+  "mapDimensions": {
+    "212-holo-foil.png": [
+      367,
+      512
+    ],
+    "212-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "212-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Meltan",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Yuka Morii",
+      "list": [
+        "Yuka Morii"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "102/142",
+      "numerator": "102",
+      "denominator": "142",
+      "numeric": 102
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It dissolves and eats metal. Circulating liquid metal within its body is how it generates energy.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Stampede",
+        "cost": [
+          "METAL"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Beam",
+        "cost": [
+          "METAL",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 40
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_212",
+        "longFormID": "Meltan_sv7_102_alt_Common_Cosmos_Holo",
+        "archetypeID": "0x3b9fa499",
+        "reldate": "2025-08-07 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_102_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_102_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_102_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_102_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_102_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "212.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

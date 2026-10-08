@@ -1,0 +1,158 @@
+{
+  "cardId": "svalt-47",
+  "variant": "holo",
+  "tcglCardId": "svalt_47",
+  "tcglVariantId": "AncientBoosterEnergyCapsule_sv4_159_alt_Uncommon_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_159_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_159_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6ded45d8a48adc29a4957c4fa01a46327b7fafd4d08861037fd7a0187cf571ff"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_159_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_159_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "713a82aa1fbd322029bd0cac4a5f8795615edaa04f4aef68a07f601bebb8af66"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "6ded45d8a48adc29a4957c4fa01a46327b7fafd4d08861037fd7a0187cf571ff"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "47-holo-foil.png": "0d726413e109500ab1864e7a8a124163184d92812767569057622c7cb1bf9ff5",
+    "47-holo-protection.png": "06ffdc93bec1aac8dc07bbb951b505e4c7736fd38aab0250d18018ca7aed46aa",
+    "47-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "6ded45d8a48adc29a4957c4fa01a46327b7fafd4d08861037fd7a0187cf571ff",
+  "mapDimensions": {
+    "47-holo-foil.png": [
+      367,
+      512
+    ],
+    "47-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "47-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Ancient Booster Energy Capsule",
+    "card_type": "TRAINER",
+    "subtype": "TOOL",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAR_EN",
+    "collector_number": {
+      "full": "159/182",
+      "numerator": "159",
+      "denominator": "182",
+      "numeric": 159
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "tags": [
+      "TOOL",
+      "ANCIENT"
+    ],
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "The Ancient Pok\u00e9mon this card is attached to gets +60 HP, recovers from all Special Conditions, and can't be affected by any Special Conditions."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may attach any number of Pok\u00e9mon Tools to your Pok\u00e9mon during your turn. You may attach only 1 Pok\u00e9mon Tool to each Pok\u00e9mon, and it stays attached."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_47",
+        "longFormID": "AncientBoosterEnergyCapsule_sv4_159_alt_Uncommon_Cosmos_Holo",
+        "archetypeID": "0x9aacf788",
+        "reldate": "2023-11-16 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_159_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_159_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_159_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_159_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv4_en_159_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "47.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

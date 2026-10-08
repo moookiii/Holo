@@ -1,0 +1,169 @@
+{
+  "cardId": "sv10.5w-013",
+  "variant": "holo",
+  "tcglCardId": "rsv10-5_13",
+  "tcglVariantId": "Emboar_rsv10-5_13_std_Rare_Tinsel_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_013_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_013_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5f8a6f19d75b1384aef12c364d6a9b97991a3609a286fb9e4055e1cd7a369882"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_013_std.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_013_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "85ba3b86b64b41490146a5a8d5342b3cf97177d69b1fef21521ed74f5f2e80f7"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "5f8a6f19d75b1384aef12c364d6a9b97991a3609a286fb9e4055e1cd7a369882"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "013-holo-foil.png": "39959142bb33c4592a67d7adb6cb6c90916ad104f19e2c9c8a8b620f7b792578",
+    "013-holo-protection.png": "ab4b74c1092c94c27d871d9ecc3388ca6eeacb6cc6c47bf96896a6d777949e98"
+  },
+  "holoFrontSha256": "5f8a6f19d75b1384aef12c364d6a9b97991a3609a286fb9e4055e1cd7a369882",
+  "mapDimensions": {
+    "013-holo-foil.png": [
+      367,
+      512
+    ],
+    "013-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Emboar",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "TINSEL",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Teeziro",
+      "list": [
+        "Teeziro"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "013/086",
+      "numerator": "013",
+      "denominator": "086",
+      "numeric": 13
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Pignite",
+    "hp": 180,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 4,
+    "flavor_text": "It can throw a fire punch by setting its fists on fire with its fiery chin. It cares deeply about its friends.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Inferno Fandango",
+        "text": "As often as you like during your turn, you may attach a Basic {R} Energy card from your hand to 1 of your Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Heat Crash",
+        "cost": [
+          "FIRE",
+          "FIRE",
+          "FIRE",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 120
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_13",
+        "longFormID": "Emboar_rsv10-5_13_std_Rare_Tinsel_Holo",
+        "archetypeID": "0xca195aaa",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_013_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_013_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_013_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_013_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_013_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "013.png",
+  "reusedProfile": "pokemon-tinsel",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

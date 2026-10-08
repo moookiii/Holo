@@ -1,0 +1,144 @@
+{
+  "cardId": "sv04.5-086",
+  "variant": "reverse",
+  "tcglCardId": "sv4-5_86_ph",
+  "tcglVariantId": "PaldeanStudent_sv4-5_86_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_086_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_086_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0dab002e3edb3720db149feca1a1f50e4ad581a4c8e331d90726a69574438dd1"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_086_ph.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_086_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "9bdcb290935c31fcb85e46104be7ebce927ac5f79d845207207ec6eacf796b13"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "0dab002e3edb3720db149feca1a1f50e4ad581a4c8e331d90726a69574438dd1"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "086-reverse-foil.png": "a2def61c3573c1f33600fbc3cb7d3709d1d3056ff7af69e6f1a4beb034c13ee2",
+    "086-reverse-protection.png": "38339cf31403412d8f2541bf586d51106ba5861be3465120a3f9de7b568aa7f5"
+  },
+  "holoFrontSha256": "0dab002e3edb3720db149feca1a1f50e4ad581a4c8e331d90726a69574438dd1",
+  "mapDimensions": {
+    "086-reverse-foil.png": [
+      367,
+      512
+    ],
+    "086-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Paldean Student",
+    "card_type": "TRAINER",
+    "subtype": "SUPPORTER",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Naoki Saito",
+      "list": [
+        "Naoki Saito"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "086/091",
+      "numerator": "086",
+      "denominator": "091",
+      "numeric": 86
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "Search your deck for a Pok\u00e9mon that doesn't have a Rule Box, reveal it, and put it into your hand. For each Paldean Student card (not including this card) in your discard pile, you may search for an additional Pok\u00e9mon in this way. Then, shuffle your deck. (Pok\u00e9mon ex, Pok\u00e9mon V, etc. have Rule Boxes.)"
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play only 1 Supporter card during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_86_ph",
+        "longFormID": "PaldeanStudent_sv4-5_86_ph_Common_FlatSilver_Reverse",
+        "archetypeID": "0x1c4f19f0",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_086_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_086_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_086_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_086_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_086_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "086-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

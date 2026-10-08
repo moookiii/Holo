@@ -1,0 +1,172 @@
+{
+  "cardId": "svp-90",
+  "variant": "holo",
+  "tcglCardId": "svbsp_90",
+  "tcglVariantId": "Metang_svbsp_90_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_090_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_090_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6d4b8b9162834cde65c096a156f573125752db314a5f1888964806ab567d5336"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_090_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_090_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a0d596dfaecfb2b25cc8037b63c07d0e5f5352648f209852cebccd80f3f09033"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "6d4b8b9162834cde65c096a156f573125752db314a5f1888964806ab567d5336"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "90-holo-foil.png": "9217d600b119758339d5d4b2e7d84d994d8a6720475acd0cf8a7fe9fc896f75f",
+    "90-holo-protection.png": "7527e7f1c29164bc497497b8735cafa96913a7923c336884a0af2f1bd123823c"
+  },
+  "holoFrontSha256": "6d4b8b9162834cde65c096a156f573125752db314a5f1888964806ab567d5336",
+  "mapDimensions": {
+    "90-holo-foil.png": [
+      367,
+      512
+    ],
+    "90-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Metang",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Uta",
+      "list": [
+        "Uta"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "090",
+      "numerator": "090",
+      "numeric": 90
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Beldum",
+    "hp": 100,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Two Beldum have become stuck together via their own magnetic forces. With two brains, the resulting Metang has doubled psychic powers.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Metal Maker",
+        "text": "Once during your turn, you may look at the top 4 cards of your deck and attach any number of Basic {M} Energy cards you find there to your Pok\u00e9mon in any way you like. Shuffle the other cards and put them on the bottom of your deck."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Beam",
+        "cost": [
+          "METAL",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 60
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_90",
+        "longFormID": "Metang_svbsp_90_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0x4653f20d",
+        "reldate": "2024-03-21 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_090_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_090_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_090_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_090_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_090_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "90.png",
+  "reusedProfile": "sv_tcgl_regular_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,204 @@
+{
+  "cardId": "sv04.5-181",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_181",
+  "tcglVariantId": "Murkrow_sv4-5_181_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_181_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_181_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9c5db39f8e323390842b02524eb0ddb7812e9665662e3d52aafcb1ca6eb51b63"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_181_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_181_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "001f225262e898256a92b5347ce84266927d966afd6544079187a98b5dfae944"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_181_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_181_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c0e8f765165645437e48b0bc04a81f758f701a186b1078613f02d5329814fbca"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "9c5db39f8e323390842b02524eb0ddb7812e9665662e3d52aafcb1ca6eb51b63"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "181-holo-foil.png": "8b0233aa41fdf2f60d3c6ea73e0cde315c89881133abe0f34ddffc04a80595cd",
+    "181-holo-protection.png": "1648b3a7e1a7a7d3a51baf134e91aadda47e51de7fb5a098434149b0f247b9a4",
+    "181-holo-normal.png": "bd82a09300a929820e76c189582c20fd42d91760cde3aac30cd660ffd602479f",
+    "181-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "9c5db39f8e323390842b02524eb0ddb7812e9665662e3d52aafcb1ca6eb51b63",
+  "mapDimensions": {
+    "181-holo-foil.png": [
+      367,
+      512
+    ],
+    "181-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "181-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "181-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Murkrow",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Hitoshi Ariga",
+      "list": [
+        "Hitoshi Ariga"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "181/091",
+      "numerator": "181",
+      "denominator": "091",
+      "numeric": 181
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "DARKNESS"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Feared and loathed by many, it is believed to bring misfortune to all those who see it at night.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Spin Turn",
+        "text": "Switch this Pok\u00e9mon with 1 of your Benched Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "United Wings",
+        "text": "This attack does 20 damage for each Pok\u00e9mon in your discard pile that has the United Wings attack.",
+        "cost": [
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 20,
+          "suffix": "\u00d7"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_181",
+        "longFormID": "Murkrow_sv4-5_181_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0xfd7c1a96",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_181_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_181_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_181_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_181_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_181_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_181_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_181_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "181.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

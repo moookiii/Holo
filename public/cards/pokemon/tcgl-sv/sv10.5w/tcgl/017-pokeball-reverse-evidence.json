@@ -1,0 +1,163 @@
+{
+  "cardId": "sv10.5w-017",
+  "variant": "pokeball-reverse",
+  "tcglCardId": "rsv10-5_17_sph",
+  "tcglVariantId": "Lampent_rsv10-5_17_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_017_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_017_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9c4f1ca8044c32738ba98f0d36ce719e74aefb26e365c58ff3ca40c7081c808f"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_017_sph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_017_sph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "bfcc5c0041eccce96d73802bac000b16e49e33a5e066f5072e5ac5b409679f43"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "9c4f1ca8044c32738ba98f0d36ce719e74aefb26e365c58ff3ca40c7081c808f"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "017-pokeball-reverse-foil.png": "313bf0980ff9c6844a7e209d0848d3212363e17f52bf357d7ed092352ea9ee0b",
+    "017-pokeball-reverse-protection.png": "3091278a38e0850da4847a111926217dca7ee198a6aeff867d69e53c56cb9e14"
+  },
+  "holoFrontSha256": "9c4f1ca8044c32738ba98f0d36ce719e74aefb26e365c58ff3ca40c7081c808f",
+  "mapDimensions": {
+    "017-pokeball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "017-pokeball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Lampent",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. satoma",
+      "list": [
+        "satoma"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "017/086",
+      "numerator": "017",
+      "denominator": "086",
+      "numeric": 17
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Litwick",
+    "hp": 80,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "This ominous Pok\u00e9mon is feared. Through cities it wanders, searching for the spirits of the fallen.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Fire Blast",
+        "text": "Discard an Energy from this Pok\u00e9mon.",
+        "cost": [
+          "FIRE"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_17_sph",
+        "longFormID": "Lampent_rsv10-5_17_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall",
+        "archetypeID": "0x603a7851",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_017_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_017_sph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_017_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_017_sph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_017_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "017-pokeball-reverse.png",
+  "reusedProfile": "prismatic_pokeball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

@@ -1,0 +1,239 @@
+{
+  "cardId": "svp-53",
+  "variant": "holo",
+  "tcglCardId": "svbsp_53",
+  "tcglVariantId": "Mewex_svbsp_53_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_053_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_053_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "eebb9f6d54a808d7b5119277f4a219df9cdad94c6c2a5e68ef5079ccad3481e3"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_053_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_053_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "2822a35989db54f0eb1aff2e594c30d3c0b5822f97aad0b227d64e9a2efea824"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_053_std.etch.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_053_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "225c33e679371b02b4ae1a7415c1bdeb62db976e2d254c3510077bc8bf06b2fd"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "eebb9f6d54a808d7b5119277f4a219df9cdad94c6c2a5e68ef5079ccad3481e3"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 208,
+      "texturedInteriorFraction": 0.4305555555555556
+    },
+    {
+      "areaAtFoilResolution": 630,
+      "texturedInteriorFraction": 0.5202492211838006
+    },
+    {
+      "areaAtFoilResolution": 447,
+      "texturedInteriorFraction": 0.4411764705882353
+    },
+    {
+      "areaAtFoilResolution": 2712,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 266,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 165,
+      "texturedInteriorFraction": 0.47368421052631576
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.4927536231884058
+    },
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 0.6166666666666667
+    },
+    {
+      "areaAtFoilResolution": 195,
+      "texturedInteriorFraction": 0.6666666666666666
+    },
+    {
+      "areaAtFoilResolution": 370,
+      "texturedInteriorFraction": 0.40707964601769914
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "53-holo-foil.png": "3b1fcbe1fc70026bc9d2cbc23fc1e7b2d2b0599683cc1a52662c6ff9adad13dd",
+    "53-holo-protection.png": "de593d30e1f724118bfdfed162543055050c8222c6a525e981747d36cfd20342",
+    "53-holo-normal.png": "b602981eca057f216b48f409d34910c4d3d64bc3056871dd45b97891fd39a225",
+    "53-holo-roughness.png": "0c98f8fedf190690861c7b363d1955f85d0ce855a150164121b0ba69ec32540f"
+  },
+  "holoFrontSha256": "eebb9f6d54a808d7b5119277f4a219df9cdad94c6c2a5e68ef5079ccad3481e3",
+  "mapDimensions": {
+    "53-holo-foil.png": [
+      367,
+      512
+    ],
+    "53-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "53-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "53-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Mew ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Natsumi Yoshida",
+      "list": [
+        "Natsumi Yoshida"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "053",
+      "numerator": "053",
+      "numeric": 53
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 180,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 0,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Restart",
+        "text": "Once during your turn, you may draw cards until you have 3 cards in your hand."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Genome Hacking",
+        "text": "Choose 1 of your opponent's Active Pok\u00e9mon's attacks and use it as this attack.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_53",
+        "longFormID": "Mewex_svbsp_53_std_SpecialIllustrationRare_SvUltra_Etched",
+        "archetypeID": "0xd9ed98d7",
+        "reldate": "2023-10-05 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_053_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_053_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_053_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_053_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_053_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_053_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_053_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "53.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

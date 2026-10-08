@@ -1,0 +1,186 @@
+{
+  "cardId": "svalt-192",
+  "variant": "holo",
+  "tcglCardId": "svalt_192",
+  "tcglVariantId": "Articuno_sv9_32_alt_Uncommon_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_032_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv9_en_032_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "554019f10ccb29150257bec36cce887c057fc77ff36a43def359ac99ea8caf09"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_032_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv9_en_032_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "217016888efa122e4056f44ec91ff818beda9b44e964781f5ee34bfc79975c1b"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "554019f10ccb29150257bec36cce887c057fc77ff36a43def359ac99ea8caf09"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "192-holo-foil.png": "c7ea4e8588a97deda03438d27604b90fa12f7847c74ca261d127b461d3d592bc",
+    "192-holo-protection.png": "06e2c1a155e58b419810f82e610939e8f63ecdc1b4a2339cab2f3ac2c8c2e248",
+    "192-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "554019f10ccb29150257bec36cce887c057fc77ff36a43def359ac99ea8caf09",
+  "mapDimensions": {
+    "192-holo-foil.png": [
+      367,
+      512
+    ],
+    "192-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "192-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Articuno",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Takumi Wada",
+      "list": [
+        "Takumi Wada"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "JTG_EN",
+    "collector_number": {
+      "full": "032/159",
+      "numerator": "032",
+      "denominator": "159",
+      "numeric": 32
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 110,
+    "types": [
+      "WATER"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "This Pok\u00e9mon can control ice at will. Articuno is said to live in snowy mountains riddled with permafrost.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Frigid Fluttering",
+        "text": "Search your deck for up to 2 Basic {W} Energy cards and attach them to this Pok\u00e9mon. Then, shuffle your deck.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Ice Blast",
+        "cost": [
+          "WATER",
+          "WATER",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 110
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_192",
+        "longFormID": "Articuno_sv9_32_alt_Uncommon_Cosmos_Holo",
+        "archetypeID": "0x1f94a792",
+        "reldate": "2025-08-21 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv9_en_032_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv9_en_032_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_032_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_032_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv9_en_032_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "192.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

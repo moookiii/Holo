@@ -1,0 +1,183 @@
+{
+  "cardId": "svalt-62",
+  "variant": "holo",
+  "tcglCardId": "svalt_62",
+  "tcglVariantId": "Darkrai_sv3_136_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_136_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv3_en_136_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6b833b2faff907cd25d5e1a063e28e7134eb83da08fdbf69fc2cdbf9ce3e0c54"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_136_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv3_en_136_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "ae7c6de1c5b14b05b6fa8985dd26e60a29f1c5982352400a5a037f2457ca482a"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "6b833b2faff907cd25d5e1a063e28e7134eb83da08fdbf69fc2cdbf9ce3e0c54"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "62-holo-foil.png": "3373ecda648a56a35b060f306fe208b01d1d16782b35e7efa6f79154dde2945d",
+    "62-holo-protection.png": "107a79958a6a851d198b20ad4a10d020ded0be969dfddf0903888f5bcd727218",
+    "62-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "6b833b2faff907cd25d5e1a063e28e7134eb83da08fdbf69fc2cdbf9ce3e0c54",
+  "mapDimensions": {
+    "62-holo-foil.png": [
+      367,
+      512
+    ],
+    "62-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "62-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Darkrai",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Bun Toujo",
+      "list": [
+        "Bun Toujo"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "OBF_EN",
+    "collector_number": {
+      "full": "136/197",
+      "numerator": "136",
+      "denominator": "197",
+      "numeric": 136
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "It can lull people to sleep and make them dream. It is active during nights of the new moon.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Dark Slumber",
+        "text": "Your opponent's Active Pok\u00e9mon is now Asleep.",
+        "cost": [
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 20
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Night Cyclone",
+        "text": "Move all Energy from this Pok\u00e9mon to your Benched Pok\u00e9mon in any way you like.",
+        "cost": [
+          "DARKNESS",
+          "DARKNESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 120
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_62",
+        "longFormID": "Darkrai_sv3_136_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0xa693ecfd",
+        "reldate": "2024-03-21 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv3_en_136_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv3_en_136_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_136_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3_en_136_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv3_en_136_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "62.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

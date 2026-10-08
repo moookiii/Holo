@@ -1,0 +1,245 @@
+{
+  "cardId": "svalt-159",
+  "variant": "holo",
+  "tcglCardId": "svalt_159",
+  "tcglVariantId": "Glaceonex_sv8-5_26_alt_DoubleRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_026_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_026_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bd1d7761d9cd8926f6712e2d0dbcb3500cc95b954fb0181fa1d9e110bafe6700"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_026_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_026_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "151d324dc724948cd0928b40298976255ef1750cfc25ce4e962474e6b3c6e207"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_026_alt.etch.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_026_alt.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "94da71f4cce936d6c1ef681b7000d7141784db2d75025fcfe85208636be160c8"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "bd1d7761d9cd8926f6712e2d0dbcb3500cc95b954fb0181fa1d9e110bafe6700"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 209,
+      "texturedInteriorFraction": 0.4148936170212766
+    },
+    {
+      "areaAtFoilResolution": 513,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 237,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 247,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 4148,
+      "texturedInteriorFraction": 0.4841075794621027
+    },
+    {
+      "areaAtFoilResolution": 353,
+      "texturedInteriorFraction": 0.4681647940074906
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "159-holo-foil.png": "03164032ad880b7639af8aa752cf5306a1c632fe3ba2d36dca630a8f898271b3",
+    "159-holo-protection.png": "5df57438846683beef2ae32a78f4a1c80fc6dada73b54b271cbe107034d44a0b",
+    "159-holo-normal.png": "f6168b10fe8ef0d8c99df13c9220c3077e036eec44b8a996a84a584e7b5980d9",
+    "159-holo-roughness.png": "156f8d80c5e8762bd13d75e52a421c09da07e4cd0b219a0bcbbb11c224b712ba"
+  },
+  "holoFrontSha256": "bd1d7761d9cd8926f6712e2d0dbcb3500cc95b954fb0181fa1d9e110bafe6700",
+  "mapDimensions": {
+    "159-holo-foil.png": [
+      367,
+      512
+    ],
+    "159-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "159-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "159-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Glaceon ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. aky CG Works",
+      "list": [
+        "aky CG Works"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "PRE_EN",
+    "collector_number": {
+      "full": "026/131",
+      "numerator": "026",
+      "denominator": "131",
+      "numeric": 26
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER",
+      "TERA"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Eevee",
+    "hp": 270,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "EFFECT",
+        "name": "Tera",
+        "text": "As long as this Pok\u00e9mon is on your Bench, prevent all damage done to this Pok\u00e9mon by attacks (both yours and your opponent\u2019s)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Frost Bullet",
+        "text": "This attack also does 30 damage to 1 of your opponent's Benched Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "WATER",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 110
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Euclase",
+        "text": "Knock Out 1 of your opponent's Pok\u00e9mon that has exactly 6 damage counters on it.",
+        "cost": [
+          "GRASS",
+          "WATER",
+          "DARKNESS"
+        ]
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_159",
+        "longFormID": "Glaceonex_sv8-5_26_alt_DoubleRareC_SvUltra_Etched",
+        "archetypeID": "0x347190f0",
+        "reldate": "2025-02-06 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_026_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_026_alt.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_026_alt.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_026_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_026_alt.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_026_alt.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv8-5_en_026_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "159.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

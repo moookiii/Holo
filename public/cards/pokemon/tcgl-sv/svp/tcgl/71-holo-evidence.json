@@ -1,0 +1,184 @@
+{
+  "cardId": "svp-71",
+  "variant": "holo",
+  "tcglCardId": "svbsp_71",
+  "tcglVariantId": "Maschiff_svbsp_71_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_071_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_071_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e96733c4687854df62ab790451d0f0fb72c7545a8b16fba5385046f910a5c94e"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_071_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_071_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "278db313c551d914d7e343b8309c4ad9c3ea0268546d00fad9c5136f5c1ba2a1"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_071_std.etch.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_071_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f5a67a811d83089f60ddc232c3e8de1c8448eb1b61b4a882a9d4f2339a745ba9"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "e96733c4687854df62ab790451d0f0fb72c7545a8b16fba5385046f910a5c94e"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "71-holo-foil.png": "a3cd60df6dde610bdf34263ea4be5006fa697f38cd05cbd43a457af4bbd0433a",
+    "71-holo-protection.png": "877aa50b388f4b275298bd59206fc11702d1f7c1ebb9728bc992c49d5109a695",
+    "71-holo-normal.png": "21d49883253f51712ef887e9845ae355da351df440138f47f9786cca04d96ebd",
+    "71-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "e96733c4687854df62ab790451d0f0fb72c7545a8b16fba5385046f910a5c94e",
+  "mapDimensions": {
+    "71-holo-foil.png": [
+      367,
+      512
+    ],
+    "71-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "71-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "71-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Maschiff",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Kagemaru Himeno",
+      "list": [
+        "Kagemaru Himeno"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "071",
+      "numerator": "071",
+      "numeric": 71
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It always scowls in an attempt to make opponents take it seriously, but even crying children will burst into laughter when they see Maschiff\u2019s face.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Ambush",
+        "text": "Flip a coin. If heads, this attack does 20 more damage.",
+        "cost": [
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 10,
+          "suffix": "+"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_71",
+        "longFormID": "Maschiff_svbsp_71_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0xd37764fb",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_071_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_071_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_071_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_071_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_071_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_071_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_071_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "71.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

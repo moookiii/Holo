@@ -1,0 +1,185 @@
+{
+  "cardId": "svalt-150",
+  "variant": "holo",
+  "tcglCardId": "svalt_150",
+  "tcglVariantId": "Archaludon_sv7_107_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_107_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_107_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f76799e696c9ec7686469aa481ec17eff4d473dc441dfebf0cbdf1f475cc5a3f"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_107_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_107_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "89fbc1ab6482c987f688dcf552ffbaf3a3759766e141fe8a7712d988070d20c0"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "f76799e696c9ec7686469aa481ec17eff4d473dc441dfebf0cbdf1f475cc5a3f"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "150-holo-foil.png": "70afcd876bf68bd6505413fa78c4e08b10ab1fcdf83a08523ca95efd357801a0",
+    "150-holo-protection.png": "c5f3e62c7386ff0d7cf48416bf2e4e229e6d54ca57a843fc8ccc687707358fef",
+    "150-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "f76799e696c9ec7686469aa481ec17eff4d473dc441dfebf0cbdf1f475cc5a3f",
+  "mapDimensions": {
+    "150-holo-foil.png": [
+      367,
+      512
+    ],
+    "150-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "150-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Archaludon",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Oswaldo KATO",
+      "list": [
+        "Oswaldo KATO"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "107/142",
+      "numerator": "107",
+      "denominator": "142",
+      "numeric": 107
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Duraludon",
+    "hp": 180,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "It digs holes on mountains, searching for food. It\u2019s so durable that being caught in a cave-in won\u2019t faze it.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Metal Bridge",
+        "text": "All of your Pok\u00e9mon that have {M} Energy attached have no Retreat Cost."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Iron Blaster",
+        "text": "During your next turn, this Pok\u00e9mon can't attack.",
+        "cost": [
+          "METAL",
+          "METAL",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 160
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_150",
+        "longFormID": "Archaludon_sv7_107_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x04c6ec69",
+        "reldate": "2025-01-02 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_107_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_107_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_107_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_107_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_107_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "150.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

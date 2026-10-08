@@ -1,0 +1,179 @@
+{
+  "cardId": "svalt-181",
+  "variant": "holo",
+  "tcglCardId": "svalt_181",
+  "tcglVariantId": "TeamRocketsTyranitar_sv10_96_alt_RareHolo_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv10_en_096_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv10_en_096_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d8745d4a135173613eeef805b207d7efe18b30676c47d8426ea7c48bb1769660"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv10_en_096_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv10_en_096_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "19b20724ba5b618d438e27590cef4399bd729405b160e8184ef4ed50d1b14ed7"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "d8745d4a135173613eeef805b207d7efe18b30676c47d8426ea7c48bb1769660"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "181-holo-foil.png": "ee146e3b9b70da4295b2686b02c636ca11b1e71537fbacdc818c9e440b8c5634",
+    "181-holo-protection.png": "c61823a5809a0e1b155869904f01a1b8f9cfd71c9fcd0ab09bd5a07d56d81cc0",
+    "181-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "d8745d4a135173613eeef805b207d7efe18b30676c47d8426ea7c48bb1769660",
+  "mapDimensions": {
+    "181-holo-foil.png": [
+      367,
+      512
+    ],
+    "181-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "181-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Team Rocket's Tyranitar",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Ryuta Fuse",
+      "list": [
+        "Ryuta Fuse"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "DRI_EN",
+    "collector_number": {
+      "full": "096/182",
+      "numerator": "096",
+      "denominator": "182",
+      "numeric": 96
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Team Rocket's Pupitar",
+    "hp": 180,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "Extremely strong, it can change the landscape. It is so insolent that it doesn\u2019t care about others.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Sand Stream",
+        "text": "During Pok\u00e9mon Checkup, if this Pok\u00e9mon is in the Active Spot, put 2 damage counters on each of your opponent's Basic Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Demolition Tackle",
+        "text": "Discard an Energy from your opponent's Active Pok\u00e9mon.",
+        "cost": [
+          "FIGHTING",
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 180
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_181",
+        "longFormID": "TeamRocketsTyranitar_sv10_96_alt_RareHolo_Cosmos_Holo",
+        "archetypeID": "0x9bbe2be8",
+        "reldate": "2025-05-29 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv10_en_096_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv10_en_096_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv10_en_096_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv10_en_096_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv10_en_096_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "181.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

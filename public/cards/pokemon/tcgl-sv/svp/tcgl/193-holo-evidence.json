@@ -1,0 +1,187 @@
+{
+  "cardId": "svp-193",
+  "variant": "holo",
+  "tcglCardId": "svbsp_193",
+  "tcglVariantId": "HopsZacianex_svbsp_193_std_DoubleRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_193_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_193_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5fef2ad113beef6728f2163dd49a8b8f46f9c8475a296c2eb72966a697f71096"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_193_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_193_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "cd0baa4800b06733e91ec15734825af861a40db1d9faf0c7bb562043a5c0b3dc"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "5fef2ad113beef6728f2163dd49a8b8f46f9c8475a296c2eb72966a697f71096"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "193-holo-foil.png": "8d1dbd8f0e79e695b7505c6bd34a8732f9743d4643fe7718b8f4a8b1f6a4f86b",
+    "193-holo-protection.png": "6ece060f0f40aa4407469184c4279a6cb51190ae2dc92f450faff73b82deb619"
+  },
+  "holoFrontSha256": "5fef2ad113beef6728f2163dd49a8b8f46f9c8475a296c2eb72966a697f71096",
+  "mapDimensions": {
+    "193-holo-foil.png": [
+      367,
+      512
+    ],
+    "193-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Hop's Zacian ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Mochizuki",
+      "list": [
+        "PLANETA Mochizuki"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "193",
+      "numerator": "193",
+      "numeric": 193
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER",
+      "TRAINERS_POKEMON"
+    ],
+    "stage": "BASIC",
+    "hp": 230,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Insta-Strike",
+        "text": "This attack also does 30 damage to 1 of your opponent's Benched Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Brave Slash",
+        "text": "During your next turn, this Pok\u00e9mon can't use Brave Slash.",
+        "cost": [
+          "METAL",
+          "METAL",
+          "METAL",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 240
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_193",
+        "longFormID": "HopsZacianex_svbsp_193_std_DoubleRare_SunPillar_Holo",
+        "archetypeID": "0xe35d1298",
+        "reldate": "2025-03-27 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_193_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_193_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_193_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_193_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_193_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "193.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

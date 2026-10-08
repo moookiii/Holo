@@ -1,0 +1,178 @@
+{
+  "cardId": "sv04.5-194",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_194",
+  "tcglVariantId": "Noibat_sv4-5_194_std_Shiny_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_194_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_194_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d3af4cd4e376babe3a2a1d49dfe38fa71763a4e0357a2ae2ec6f1864de6a1656"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_194_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_194_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "eb88d5de27b2877121c894ff4ef2df08c46efe35397cee882313ffc52cd95e9c"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_194_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_194_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "19feed4ed6b50310b5f39735ccf3a0f45b5f0c49a682c1e70b7470d75b3e4600"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "d3af4cd4e376babe3a2a1d49dfe38fa71763a4e0357a2ae2ec6f1864de6a1656"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "194-holo-foil.png": "84307db5db68a44a1fa777e07309f6432a7fa20b1625915d083a1a1627bdb740",
+    "194-holo-protection.png": "445e9a536d0625fe9ec54a9d9290edf8678378e34c4dc9959d5b414b7a2e166b",
+    "194-holo-normal.png": "b29f7cf1c3f0254b205d54ae50c100d8c9e190654143f60db4f5faec61233bd2",
+    "194-holo-roughness.png": "79ce1b9584131537154cd19d64205e5e354df2bcaa75089f7bd3c85cf4841d1c"
+  },
+  "holoFrontSha256": "d3af4cd4e376babe3a2a1d49dfe38fa71763a4e0357a2ae2ec6f1864de6a1656",
+  "mapDimensions": {
+    "194-holo-foil.png": [
+      367,
+      512
+    ],
+    "194-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "194-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "194-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Noibat",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Nelnal",
+      "list": [
+        "Nelnal"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "194/091",
+      "numerator": "194",
+      "denominator": "091",
+      "numeric": 194
+    },
+    "rarity": {
+      "designation": "SHINY_RARE",
+      "icon": "SHINY_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "DRAGON"
+    ],
+    "retreat": 1,
+    "flavor_text": "This Pok\u00e9mon emits ultrasonic waves from its large ears to search for fruit to eat. It mistakes Applin for its food.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Gust",
+        "cost": [
+          "PSYCHIC",
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 40
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_194",
+        "longFormID": "Noibat_sv4-5_194_std_Shiny_SunPillar_Etched",
+        "archetypeID": "0x350d6cc9",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_194_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_194_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_194_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_194_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_194_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_194_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_194_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "194.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,175 @@
+{
+  "cardId": "sv10.5b-007",
+  "variant": "masterball-reverse",
+  "tcglCardId": "zsv10-5_7_mph",
+  "tcglVariantId": "Lilligant_zsv10-5_7_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_007_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_007_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4e70fb61e96f281026d4157bc5de4a9d94af7eb846b439e8458fe5d62b654b8e"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_007_mph.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_007_mph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a5210a4d3f1c7bc25677e24f7686b3f78aba1bbc0b063e2c12849f90c4d4eb1a"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "4e70fb61e96f281026d4157bc5de4a9d94af7eb846b439e8458fe5d62b654b8e"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "007-masterball-reverse-foil.png": "6d0152126a7d64e86dcbda56bf05265bc667dad9ddbfaaa7bc8aaaef7ea55453",
+    "007-masterball-reverse-protection.png": "3d8546a069f579b9aeb06a359a98a8a948e705b145ea860005d2f7dabc6728e0"
+  },
+  "holoFrontSha256": "4e70fb61e96f281026d4157bc5de4a9d94af7eb846b439e8458fe5d62b654b8e",
+  "mapDimensions": {
+    "007-masterball-reverse-foil.png": [
+      367,
+      512
+    ],
+    "007-masterball-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Lilligant",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. mele",
+      "list": [
+        "mele"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "007/086",
+      "numerator": "007",
+      "denominator": "086",
+      "numeric": 7
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Petilil",
+    "hp": 100,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Even veteran Trainers face a challenge in getting its beautiful flower to bloom. This Pok\u00e9mon is popular with celebrities.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Bemusing Aroma",
+        "text": "Flip a coin. If heads, your opponent's Active Pok\u00e9mon is now Paralyzed and Poisoned. If tails, your opponent's Active Pok\u00e9mon is now Confused.",
+        "cost": [
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Cut",
+        "cost": [
+          "GRASS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 70
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_7_mph",
+        "longFormID": "Lilligant_zsv10-5_7_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall",
+        "archetypeID": "0x3e52520a",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_007_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_007_mph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_007_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_007_mph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_007_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "007-masterball-reverse.png",
+  "reusedProfile": "prismatic_masterball_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "finishReview": "Exact TCGL coverage preserved. Cast-and-cure Pok\u00e9 Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized."
+}

@@ -1,0 +1,148 @@
+{
+  "cardId": "sv10.5b-079",
+  "variant": "reverse",
+  "tcglCardId": "zsv10-5_79_ph",
+  "tcglVariantId": "AirBalloon_zsv10-5_79_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_079_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_079_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2117577e62e5351d61e6456aedd1740cd78b3287ba855c84e6fded2fdd0997bd"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_079_ph.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_079_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "15ca61e7e533c466cb8394b58b405cb3aa9d690973b5c297826b3586d0bf1de8"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "2117577e62e5351d61e6456aedd1740cd78b3287ba855c84e6fded2fdd0997bd"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "079-reverse-foil.png": "9e158178b1fcee3bb5da54bde8336b8696a63910e12332d2b8d4fb8a5d92f881",
+    "079-reverse-protection.png": "57e59cf1294481790c75b34dd0a7cdea3c87d262ff029a62f889d35125019110"
+  },
+  "holoFrontSha256": "2117577e62e5351d61e6456aedd1740cd78b3287ba855c84e6fded2fdd0997bd",
+  "mapDimensions": {
+    "079-reverse-foil.png": [
+      367,
+      512
+    ],
+    "079-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Air Balloon",
+    "card_type": "TRAINER",
+    "subtype": "TOOL",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Studio Bora Inc.",
+      "list": [
+        "Studio Bora Inc."
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "079/086",
+      "numerator": "079",
+      "denominator": "086",
+      "numeric": 79
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "TOOL"
+    ],
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "The Retreat Cost of the Pok\u00e9mon this card is attached to is {C}{C} less."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may attach any number of Pok\u00e9mon Tools to your Pok\u00e9mon during your turn. You may attach only 1 Pok\u00e9mon Tool to each Pok\u00e9mon, and it stays attached."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_79_ph",
+        "longFormID": "AirBalloon_zsv10-5_79_ph_Uncommon_FlatSilver_Reverse",
+        "archetypeID": "0x22713441",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_079_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_079_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_079_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_079_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_079_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "079-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

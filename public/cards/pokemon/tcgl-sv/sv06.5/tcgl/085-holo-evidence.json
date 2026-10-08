@@ -1,0 +1,237 @@
+{
+  "cardId": "sv06.5-085",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_85",
+  "tcglVariantId": "Pecharuntex_sv6-5_85_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_085_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_085_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bf77c18b2186a5a534b95acfe3e8826ef46e57bf8fb148eed513945461a41531"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_085_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_085_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "0ae2cacbe37fd7bb578916a72a78dc170c48e4c912f25d9ff0de71366c388bf4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_085_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_085_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "eae79c79b1244da80f7111af1a0d915ca26c1a0309990b75409845b0ea7a0cb5"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "bf77c18b2186a5a534b95acfe3e8826ef46e57bf8fb148eed513945461a41531"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 0.5471698113207547
+    },
+    {
+      "areaAtFoilResolution": 402,
+      "texturedInteriorFraction": 0.4631578947368421
+    },
+    {
+      "areaAtFoilResolution": 202,
+      "texturedInteriorFraction": 0.4722222222222222
+    },
+    {
+      "areaAtFoilResolution": 186,
+      "texturedInteriorFraction": 0.46808510638297873
+    },
+    {
+      "areaAtFoilResolution": 287,
+      "texturedInteriorFraction": 0.4725274725274725
+    },
+    {
+      "areaAtFoilResolution": 246,
+      "texturedInteriorFraction": 0.5625
+    },
+    {
+      "areaAtFoilResolution": 201,
+      "texturedInteriorFraction": 0.4888888888888889
+    },
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.46875
+    },
+    {
+      "areaAtFoilResolution": 243,
+      "texturedInteriorFraction": 0.5697674418604651
+    },
+    {
+      "areaAtFoilResolution": 194,
+      "texturedInteriorFraction": 0.40816326530612246
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "085-holo-foil.png": "199150f6c92250f2562edc1a4941e7d7609daba871f20ebee182e1ae426b3402",
+    "085-holo-protection.png": "b9122348671b020ad32320e63b3bff97d3b2e39c692a6fccb9cee506a0675f5c",
+    "085-holo-normal.png": "b5e68353404436d7169965165db0acc5d34e0008add2582c5f66508997cc0541",
+    "085-holo-roughness.png": "b58852694d56876ffc3cb688d968684d5cb71d75e3921acfa8dfe61afcf2dd09"
+  },
+  "holoFrontSha256": "bf77c18b2186a5a534b95acfe3e8826ef46e57bf8fb148eed513945461a41531",
+  "mapDimensions": {
+    "085-holo-foil.png": [
+      367,
+      512
+    ],
+    "085-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "085-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "085-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Pecharunt ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. aky CG Works",
+      "list": [
+        "aky CG Works"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "085/064",
+      "numerator": "085",
+      "denominator": "064",
+      "numeric": 85
+    },
+    "rarity": {
+      "designation": "ULTRA_RARE",
+      "icon": "TWO_SILVER_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 190,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Subjugating Chains",
+        "text": "Once during your turn, you may switch 1 of your Benched {D} Pok\u00e9mon, except any Pecharunt ex, with your Active Pok\u00e9mon. If you do, the new Active Pok\u00e9mon is now Poisoned. You can't use more than 1 Subjugating Chains Ability each turn."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Irritated Outburst",
+        "text": "This attack does 60 damage for each Prize card your opponent has taken.",
+        "cost": [
+          "DARKNESS",
+          "DARKNESS"
+        ],
+        "damage": {
+          "amount": 60,
+          "suffix": "\u00d7"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_85",
+        "longFormID": "Pecharuntex_sv6-5_85_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0x42bcbe35",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_085_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_085_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_085_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_085_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_085_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_085_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_085_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "085.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,180 @@
+{
+  "cardId": "svalt-45",
+  "variant": "holo",
+  "tcglCardId": "svalt_45",
+  "tcglVariantId": "IronMoth_sv4_28_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_028_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_028_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "5e649a57d15911f5d94886bf2e8f7abd54fef49dde8cb19bbb3714c3875cab1f"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_028_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_028_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "39efd4f2464ff4ad636c30a88a5118bdfcf0aee5b739f91da95c3472ba8f47fc"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "5e649a57d15911f5d94886bf2e8f7abd54fef49dde8cb19bbb3714c3875cab1f"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "45-holo-foil.png": "13a7fff0fe018f853ddcbab4773decc9e78a83dee926f11e5d9f412f9b767546",
+    "45-holo-protection.png": "7815ff23f9dbc630528ef31862c4c359f382d5a48228bbf940d82a4c7c2a9675",
+    "45-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "5e649a57d15911f5d94886bf2e8f7abd54fef49dde8cb19bbb3714c3875cab1f",
+  "mapDimensions": {
+    "45-holo-foil.png": [
+      367,
+      512
+    ],
+    "45-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "45-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Iron Moth",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Kouki Saitou",
+      "list": [
+        "Kouki Saitou"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAR_EN",
+    "collector_number": {
+      "full": "028/182",
+      "numerator": "028",
+      "denominator": "182",
+      "numeric": 28
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "tags": [
+      "FUTURE"
+    ],
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "No records exist of this species being caught. Data is lacking, but the Pok\u00e9mon\u2019s traits match up with an object described in an old book.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Thermal Reactor",
+        "text": "Once during your turn, when this Pok\u00e9mon moves from your Bench to the Active Spot, you may move any amount of {R} Energy from your other Pok\u00e9mon to it."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Heat Ray",
+        "text": "During your next turn, this Pok\u00e9mon can't use Heat Ray.",
+        "cost": [
+          "FIRE",
+          "FIRE",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 120
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_45",
+        "longFormID": "IronMoth_sv4_28_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x6bbce0ef",
+        "reldate": "2023-11-16 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_028_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_028_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_028_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_028_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv4_en_028_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "45.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

@@ -1,0 +1,173 @@
+{
+  "cardId": "svalt-174",
+  "variant": "holo",
+  "tcglCardId": "svalt_174",
+  "tcglVariantId": "IonosTadbulb_sv9_52_alt_Common_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_052_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv9_en_052_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "872334f724a0594fe2a3da86b3f3fb6bf056476b57320fd45ef3a680a1dc9c2e"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_052_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv9_en_052_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "2ff4990400ef5a5911db2d1ad8e41a830d3f72b67f1d0df8337869c41eb3a745"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "872334f724a0594fe2a3da86b3f3fb6bf056476b57320fd45ef3a680a1dc9c2e"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "174-holo-foil.png": "0b96e008a7b7bd24fb53ea31f4aa0a68788ee406501b50aebd28ebb1d9d896f2",
+    "174-holo-protection.png": "85b6f4aee5fa97b2e3b041f8f3b6166d8c485aa2f6c62d7cdf4fd3930db0ba93",
+    "174-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "872334f724a0594fe2a3da86b3f3fb6bf056476b57320fd45ef3a680a1dc9c2e",
+  "mapDimensions": {
+    "174-holo-foil.png": [
+      367,
+      512
+    ],
+    "174-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "174-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Iono's Tadbulb",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. kurumitsu",
+      "list": [
+        "kurumitsu"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "JTG_EN",
+    "collector_number": {
+      "full": "052/159",
+      "numerator": "052",
+      "denominator": "159",
+      "numeric": 52
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "TRAINERS_POKEMON"
+    ],
+    "stage": "BASIC",
+    "hp": 60,
+    "types": [
+      "LIGHTNING"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Tadbulb shakes its tail to generate electricity. If it senses danger, it will make its head blink on and off to alert its allies.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Tiny Charge",
+        "cost": [
+          "LIGHTNING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_174",
+        "longFormID": "IonosTadbulb_sv9_52_alt_Common_Cosmos_Holo",
+        "archetypeID": "0xfe5af49d",
+        "reldate": "2025-04-10 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv9_en_052_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv9_en_052_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_052_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_052_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv9_en_052_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "174.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

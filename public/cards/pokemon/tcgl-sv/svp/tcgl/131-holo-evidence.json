@@ -1,0 +1,319 @@
+{
+  "cardId": "svp-131",
+  "variant": "holo",
+  "tcglCardId": "svbsp_131",
+  "tcglVariantId": "Kingdraex_svbsp_131_std_UltraRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_131_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_131_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "08dd457092906d05a6f5eec7d435d75c0993f75e3a8e7a93807dbcf2e6f63f07"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_131_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_131_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "57d3a841b84421f8211881013281b679011151ac43907c9a9f97c11bf5e59b85"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_131_std.etch.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_131_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "547fa5ea8ea0feddcc809ef79a91c4a9848adc0eb0d0d133169230f786acb974"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "08dd457092906d05a6f5eec7d435d75c0993f75e3a8e7a93807dbcf2e6f63f07"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 267,
+      "texturedInteriorFraction": 0.8244274809160306
+    },
+    {
+      "areaAtFoilResolution": 426,
+      "texturedInteriorFraction": 0.6740331491712708
+    },
+    {
+      "areaAtFoilResolution": 315,
+      "texturedInteriorFraction": 0.5747126436781609
+    },
+    {
+      "areaAtFoilResolution": 254,
+      "texturedInteriorFraction": 0.41304347826086957
+    },
+    {
+      "areaAtFoilResolution": 195,
+      "texturedInteriorFraction": 0.6829268292682927
+    },
+    {
+      "areaAtFoilResolution": 15591,
+      "texturedInteriorFraction": 0.996885637719997
+    },
+    {
+      "areaAtFoilResolution": 411,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 999,
+      "texturedInteriorFraction": 0.9490445859872612
+    },
+    {
+      "areaAtFoilResolution": 510,
+      "texturedInteriorFraction": 0.9789473684210527
+    },
+    {
+      "areaAtFoilResolution": 699,
+      "texturedInteriorFraction": 0.9246119733924612
+    },
+    {
+      "areaAtFoilResolution": 364,
+      "texturedInteriorFraction": 0.9230769230769231
+    },
+    {
+      "areaAtFoilResolution": 283,
+      "texturedInteriorFraction": 0.9416666666666667
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.9420289855072463
+    },
+    {
+      "areaAtFoilResolution": 328,
+      "texturedInteriorFraction": 0.9042553191489362
+    },
+    {
+      "areaAtFoilResolution": 155,
+      "texturedInteriorFraction": 0.967741935483871
+    },
+    {
+      "areaAtFoilResolution": 150,
+      "texturedInteriorFraction": 0.8695652173913043
+    },
+    {
+      "areaAtFoilResolution": 477,
+      "texturedInteriorFraction": 0.799163179916318
+    },
+    {
+      "areaAtFoilResolution": 453,
+      "texturedInteriorFraction": 0.6964980544747081
+    },
+    {
+      "areaAtFoilResolution": 269,
+      "texturedInteriorFraction": 0.7927927927927928
+    },
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 227,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 170,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 298,
+      "texturedInteriorFraction": 0.9927007299270073
+    },
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.9821428571428571
+    },
+    {
+      "areaAtFoilResolution": 267,
+      "texturedInteriorFraction": 0.8658536585365854
+    },
+    {
+      "areaAtFoilResolution": 176,
+      "texturedInteriorFraction": 0.9375
+    },
+    {
+      "areaAtFoilResolution": 317,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 329,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.631578947368421
+    },
+    {
+      "areaAtFoilResolution": 150,
+      "texturedInteriorFraction": 0.7209302325581395
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "131-holo-foil.png": "06ad8ab3702b866b5cdbd0cc1eb0809d7c7d05122a33710e4d2ccde7187bc3a1",
+    "131-holo-protection.png": "269197474c6b4b521a3524e15c2db48777e0076baba6293c3f5f265c61a63b1c",
+    "131-holo-normal.png": "80197ddce6a62853d48cb37677778884fa12e7905a616266bd01355e1aafc632",
+    "131-holo-roughness.png": "4a6b8ac2dfe99b2e231ec6fcbc77152698f4d9a2d875aab422bb78bf5acd853f"
+  },
+  "holoFrontSha256": "08dd457092906d05a6f5eec7d435d75c0993f75e3a8e7a93807dbcf2e6f63f07",
+  "mapDimensions": {
+    "131-holo-foil.png": [
+      367,
+      512
+    ],
+    "131-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "131-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "131-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Kingdra ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. akagi",
+      "list": [
+        "akagi"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "131",
+      "numerator": "131",
+      "numeric": 131
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Seadra",
+    "hp": 310,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "King's Order",
+        "text": "Put up to 3 {W} Pok\u00e9mon from your discard pile onto your Bench.",
+        "cost": [
+          "WATER"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Hydro Pump",
+        "text": "This attack does 50 more damage for each {W} Energy attached to this Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_131",
+        "longFormID": "Kingdraex_svbsp_131_std_UltraRare_SvUltra_Etched",
+        "archetypeID": "0x7df4d171",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_131_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_131_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_131_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_131_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_131_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_131_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_131_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "131.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

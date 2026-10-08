@@ -1,0 +1,223 @@
+{
+  "cardId": "sv06.5-086",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_86",
+  "tcglVariantId": "Cassiopeia_sv6-5_86_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_086_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_086_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b97abbb6d41ec313585aa3a1311340858a3a7d5fb5a1cfcd6a3bb3f892e4f968"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_086_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_086_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e67a8ae3ff094690ac94722ffaddcca5a64cb9a34240e531d1ea7ff33a2981ce"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_086_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_086_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3afa2dc41f2530c0180745596c155452ebe26b38b8e577d469632d2bb6c52bf1"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "b97abbb6d41ec313585aa3a1311340858a3a7d5fb5a1cfcd6a3bb3f892e4f968"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.1803921568627451,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 259,
+      "texturedInteriorFraction": 0.4782608695652174
+    },
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.46153846153846156
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.47191011235955055
+    },
+    {
+      "areaAtFoilResolution": 179,
+      "texturedInteriorFraction": 0.6190476190476191
+    },
+    {
+      "areaAtFoilResolution": 191,
+      "texturedInteriorFraction": 0.4675324675324675
+    },
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.58
+    },
+    {
+      "areaAtFoilResolution": 255,
+      "texturedInteriorFraction": 0.4375
+    },
+    {
+      "areaAtFoilResolution": 225,
+      "texturedInteriorFraction": 0.5086206896551724
+    },
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 0.5833333333333334
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.5686274509803921
+    },
+    {
+      "areaAtFoilResolution": 162,
+      "texturedInteriorFraction": 0.42592592592592593
+    },
+    {
+      "areaAtFoilResolution": 190,
+      "texturedInteriorFraction": 0.4794520547945205
+    },
+    {
+      "areaAtFoilResolution": 182,
+      "texturedInteriorFraction": 0.42857142857142855
+    },
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 0.44
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "086-holo-foil.png": "9d28e2fb39504cd9ca9b5d0904cc762aca63f79663354f4d2278649fd2cdbac6",
+    "086-holo-protection.png": "10927e08d7db0bdff922697e76c66ef01c1a25e105f005758392a7f953a39d36",
+    "086-holo-normal.png": "6686518f4638bb9450b75805b8e69b669a5b06c771e24457320f5f9434238d4c",
+    "086-holo-roughness.png": "63bf361287e52a7e13fbab9fb76f101cfeb1a593072ba2f816c608b782381620"
+  },
+  "holoFrontSha256": "b97abbb6d41ec313585aa3a1311340858a3a7d5fb5a1cfcd6a3bb3f892e4f968",
+  "mapDimensions": {
+    "086-holo-foil.png": [
+      367,
+      512
+    ],
+    "086-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "086-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "086-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Cassiopeia",
+    "card_type": "TRAINER",
+    "subtype": "SUPPORTER",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Atsushi Furusawa",
+      "list": [
+        "Atsushi Furusawa"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "086/064",
+      "numerator": "086",
+      "denominator": "064",
+      "numeric": 86
+    },
+    "rarity": {
+      "designation": "ULTRA_RARE",
+      "icon": "TWO_SILVER_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "You can use this card only when it is the last card in your hand.\n\nSearch your deck for up to 2 cards and put them into your hand. Then, shuffle your deck."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play only 1 Supporter card during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_86",
+        "longFormID": "Cassiopeia_sv6-5_86_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0x2aade163",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_086_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_086_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_086_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_086_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_086_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_086_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_086_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "086.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

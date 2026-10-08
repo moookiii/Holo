@@ -1,0 +1,229 @@
+{
+  "cardId": "sv06.5-090",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_90",
+  "tcglVariantId": "Okidogiex_sv6-5_90_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_090_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_090_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "46e7ab9ea0952ee2e323ecd937cb5cfe74934276a19ed5c959b73f219408ba2b"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_090_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_090_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d60f95a6b740961bae5a841bcafcd4d1c87fd13afdb447d695d273d5d9215e30"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_090_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_090_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2ad53a29ff57b2040dc8554c10b69f6bd85021b7eabb773b89604799f0e0045c"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "46e7ab9ea0952ee2e323ecd937cb5cfe74934276a19ed5c959b73f219408ba2b"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 5660,
+      "texturedInteriorFraction": 0.9416350189886068
+    },
+    {
+      "areaAtFoilResolution": 245,
+      "texturedInteriorFraction": 0.5327868852459017
+    },
+    {
+      "areaAtFoilResolution": 112404,
+      "texturedInteriorFraction": 0.9417459334721675
+    },
+    {
+      "areaAtFoilResolution": 156,
+      "texturedInteriorFraction": 0.52
+    },
+    {
+      "areaAtFoilResolution": 183,
+      "texturedInteriorFraction": 0.4098360655737705
+    },
+    {
+      "areaAtFoilResolution": 319,
+      "texturedInteriorFraction": 0.45614035087719296
+    },
+    {
+      "areaAtFoilResolution": 815,
+      "texturedInteriorFraction": 0.9817880794701986
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "090-holo-foil.png": "89f724e7157f40250389bafe86c5ecdc0c20888abddb2a963e3021c191d3d9e3",
+    "090-holo-protection.png": "f9744b26dddf3289a327d4fd3a140f978ecaded895b1e42f7b157df6af7944b7",
+    "090-holo-normal.png": "27344ee036cc17232ec2d27ade7387d1bc0e09500a4f3f2838c579b27a1dcf75",
+    "090-holo-roughness.png": "8e5ecff5e3116a9d0721473ac910e2be73ec44481fa76351812d2547efd3c027"
+  },
+  "holoFrontSha256": "46e7ab9ea0952ee2e323ecd937cb5cfe74934276a19ed5c959b73f219408ba2b",
+  "mapDimensions": {
+    "090-holo-foil.png": [
+      367,
+      512
+    ],
+    "090-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "090-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "090-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Okidogi ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. kantaro",
+      "list": [
+        "kantaro"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "090/064",
+      "numerator": "090",
+      "denominator": "064",
+      "numeric": 90
+    },
+    "rarity": {
+      "designation": "SPECIAL_ILLUSTRATION_RARE",
+      "icon": "TWO_GOLD_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 250,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Poisonous Musculature",
+        "text": "Search your deck for up to 2 Basic {D} Energy cards and attach them to this Pok\u00e9mon. Then, shuffle your deck. If you attached Energy to a Pok\u00e9mon in this way, this Pok\u00e9mon is now Poisoned.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Chain-Crazed",
+        "text": "If this Pok\u00e9mon is Poisoned, this attack does 130 more damage.",
+        "cost": [
+          "DARKNESS",
+          "DARKNESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 130,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_90",
+        "longFormID": "Okidogiex_sv6-5_90_std_SpecialIllustrationRare_SvUltra_Etched",
+        "archetypeID": "0x6bb863f0",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_090_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_090_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_090_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_090_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_090_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_090_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_090_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "090.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

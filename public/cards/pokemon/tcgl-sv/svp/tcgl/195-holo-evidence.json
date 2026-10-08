@@ -1,0 +1,216 @@
+{
+  "cardId": "svp-195",
+  "variant": "holo",
+  "tcglCardId": "svbsp_195",
+  "tcglVariantId": "LilliesClefairyex_svbsp_195_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_195_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_195_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c2e898703bc32158ac53cb50b203d311f163968995494de272f6f7e8a277f0c4"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_195_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_195_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "14b7c4242fb35435360e4cb3ab3cb8112343423bb52ead4e37b18d1f90c13fd4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_195_std.etch.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_195_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a8f71e9a59b9a81a6a6ae60a151c0b5ad1252b15948655f0ad9cfee4d59036f9"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "c2e898703bc32158ac53cb50b203d311f163968995494de272f6f7e8a277f0c4"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 232,
+      "texturedInteriorFraction": 0.40860215053763443
+    },
+    {
+      "areaAtFoilResolution": 172,
+      "texturedInteriorFraction": 0.4864864864864865
+    },
+    {
+      "areaAtFoilResolution": 196,
+      "texturedInteriorFraction": 0.45348837209302323
+    },
+    {
+      "areaAtFoilResolution": 369,
+      "texturedInteriorFraction": 0.44554455445544555
+    },
+    {
+      "areaAtFoilResolution": 222,
+      "texturedInteriorFraction": 0.42592592592592593
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "195-holo-foil.png": "d7c4b86e3da34c4b1414443e5fa2de25c67e7b0b88f976c1ce0f64fb2ca3f310",
+    "195-holo-protection.png": "3d028a88e9dbe9f6f71d8a69c952e9fbc079bf64f4d80fdf6a24cea34e133a88",
+    "195-holo-normal.png": "8b3451c3f2d5fd64bc442da0ecddae895aeec2f11a4a32b3dfce174fcb591c87",
+    "195-holo-roughness.png": "669ca1aaf0c9ac03e3f3a10f074e585387eb9eebcb67c4a38cc3b2fed8e24bbf"
+  },
+  "holoFrontSha256": "c2e898703bc32158ac53cb50b203d311f163968995494de272f6f7e8a277f0c4",
+  "mapDimensions": {
+    "195-holo-foil.png": [
+      367,
+      512
+    ],
+    "195-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "195-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "195-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Lillie's Clefairy ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Tsuji",
+      "list": [
+        "PLANETA Tsuji"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "195",
+      "numerator": "195",
+      "numeric": 195
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER",
+      "TRAINERS_POKEMON"
+    ],
+    "stage": "BASIC",
+    "hp": 190,
+    "types": [
+      "PSYCHIC"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Fairy Zone",
+        "text": "The Weakness of each of your opponent's {N} Pok\u00e9mon in play is now {P}. (Apply Weakness as \u00d72.)"
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Full Moon Rondo",
+        "text": "This attack does 20 more damage for each Benched Pok\u00e9mon (both yours and your opponent's).",
+        "cost": [
+          "PSYCHIC",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 20,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_195",
+        "longFormID": "LilliesClefairyex_svbsp_195_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0xc0ec112a",
+        "reldate": "2025-04-24 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_195_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_195_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_195_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_195_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_195_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_195_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_195_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "195.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

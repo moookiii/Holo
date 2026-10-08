@@ -1,0 +1,166 @@
+{
+  "cardId": "sv06.5-073",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_73",
+  "tcglVariantId": "Fezandipiti_sv6-5_73_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_073_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_073_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "875d74bb4196e6ab9c16903f84c1a89423e2e8bfebd06e76269e2eeb459a6788"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_073_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_073_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "48ba1bca7c3782d48354cd2780460c70640779e3fbf200e625bce76a52db1895"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "875d74bb4196e6ab9c16903f84c1a89423e2e8bfebd06e76269e2eeb459a6788"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "073-holo-foil.png": "cf2e5a630bcf854a10dbee16248d30540290f0e6715f3b82a20af7fe1a7ffe48",
+    "073-holo-protection.png": "f85e0248cb845d40abe4a6d5948e6d50c1c885d27d72de861371655e1e65e34f"
+  },
+  "holoFrontSha256": "875d74bb4196e6ab9c16903f84c1a89423e2e8bfebd06e76269e2eeb459a6788",
+  "mapDimensions": {
+    "073-holo-foil.png": [
+      367,
+      512
+    ],
+    "073-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Fezandipiti",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. KEIICHIRO ITO",
+      "list": [
+        "KEIICHIRO ITO"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "073/064",
+      "numerator": "073",
+      "denominator": "064",
+      "numeric": 73
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "BASIC",
+    "hp": 120,
+    "types": [
+      "PSYCHIC"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Fezandipiti beats its glossy wings to scatter pheromones that captivate people and Pok\u00e9mon.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Adrena-Pheromone",
+        "text": "If this Pok\u00e9mon has any {D} Energy attached and is damaged by an attack, flip a coin. If heads, prevent that damage."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Energy Feather",
+        "text": "This attack does 30 damage for each Energy attached to this Pok\u00e9mon.",
+        "cost": [
+          "PSYCHIC"
+        ],
+        "damage": {
+          "amount": 30,
+          "suffix": "\u00d7"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_73",
+        "longFormID": "Fezandipiti_sv6-5_73_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x4050ef9d",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_073_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_073_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_073_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_073_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_073_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "073.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,178 @@
+{
+  "cardId": "svalt-168",
+  "variant": "holo",
+  "tcglCardId": "svalt_168",
+  "tcglVariantId": "Rhyperior_sv7_76_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_076_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_076_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "66dddc37614b914d9e347616f091d3cd78a73db327d98676d273eb8ac70df9bb"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_076_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_076_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a8f0c984e0d853667939d507cf4a0b5d7e73ff628b171b524c5d4120c72fe1e9"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "66dddc37614b914d9e347616f091d3cd78a73db327d98676d273eb8ac70df9bb"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "168-holo-foil.png": "26d0fe861b75d9ba0d8dd42017fc9c5cfe522e586de9b4c95c603882116fdb54",
+    "168-holo-protection.png": "9f6d637a89309e4d5f5523cf717ec6fe1e90401ea48c9dfb6b617dde76b0b68e",
+    "168-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "66dddc37614b914d9e347616f091d3cd78a73db327d98676d273eb8ac70df9bb",
+  "mapDimensions": {
+    "168-holo-foil.png": [
+      367,
+      512
+    ],
+    "168-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "168-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Rhyperior",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Mitsuhiro Arita",
+      "list": [
+        "Mitsuhiro Arita"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "076/142",
+      "numerator": "076",
+      "denominator": "142",
+      "numeric": 76
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Rhydon",
+    "hp": 200,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 4,
+    "flavor_text": "A Rhyperior\u2019s brain is smaller than a Rhydon\u2019s, but the Rhyperior is stronger because it spends more energy on battling and less on brainpower.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Wide Wall",
+        "text": "As long as this Pok\u00e9mon is in the Active Spot, whenever your opponent plays a Supporter card from their hand, prevent all effects of that card done to all of your Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Drill Run",
+        "text": "Discard an Energy from your opponent's Active Pok\u00e9mon.",
+        "cost": [
+          "FIGHTING",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 180
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_168",
+        "longFormID": "Rhyperior_sv7_76_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x93bfd4be",
+        "reldate": "2025-03-27 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_076_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_076_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_076_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_076_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_076_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "168.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

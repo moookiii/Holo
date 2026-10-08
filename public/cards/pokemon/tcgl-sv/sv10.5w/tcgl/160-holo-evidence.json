@@ -1,0 +1,318 @@
+{
+  "cardId": "sv10.5w-160",
+  "variant": "holo",
+  "tcglCardId": "rsv10-5_160",
+  "tcglVariantId": "Jellicentex_rsv10-5_160_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_160_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_160_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "863deb38fd996325f65b762d5801496e91ef59a3d1cf27e7056e01a5f57f33b1"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_160_std.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_160_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "763007ad4d0fbea8689d3fbbd1feb335ac1195975ec82f268fca2d7247455229"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_160_std.etch.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_160_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9839bd151fd0d5215c6e3a498270daba8a643ecb99a8055f72642c469bd3c742"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "863deb38fd996325f65b762d5801496e91ef59a3d1cf27e7056e01a5f57f33b1"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12287581699346405,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 213,
+      "texturedInteriorFraction": 0.4270833333333333
+    },
+    {
+      "areaAtFoilResolution": 201,
+      "texturedInteriorFraction": 0.43373493975903615
+    },
+    {
+      "areaAtFoilResolution": 285,
+      "texturedInteriorFraction": 0.4857142857142857
+    },
+    {
+      "areaAtFoilResolution": 695,
+      "texturedInteriorFraction": 0.41687344913151364
+    },
+    {
+      "areaAtFoilResolution": 226,
+      "texturedInteriorFraction": 0.40384615384615385
+    },
+    {
+      "areaAtFoilResolution": 398,
+      "texturedInteriorFraction": 0.42857142857142855
+    },
+    {
+      "areaAtFoilResolution": 175,
+      "texturedInteriorFraction": 0.5454545454545454
+    },
+    {
+      "areaAtFoilResolution": 217,
+      "texturedInteriorFraction": 0.6190476190476191
+    },
+    {
+      "areaAtFoilResolution": 235,
+      "texturedInteriorFraction": 0.6274509803921569
+    },
+    {
+      "areaAtFoilResolution": 155,
+      "texturedInteriorFraction": 0.6326530612244898
+    },
+    {
+      "areaAtFoilResolution": 356,
+      "texturedInteriorFraction": 0.4676258992805755
+    },
+    {
+      "areaAtFoilResolution": 190,
+      "texturedInteriorFraction": 0.4857142857142857
+    },
+    {
+      "areaAtFoilResolution": 323,
+      "texturedInteriorFraction": 0.4247787610619469
+    },
+    {
+      "areaAtFoilResolution": 182,
+      "texturedInteriorFraction": 0.4153846153846154
+    },
+    {
+      "areaAtFoilResolution": 166,
+      "texturedInteriorFraction": 0.53125
+    },
+    {
+      "areaAtFoilResolution": 178,
+      "texturedInteriorFraction": 0.463768115942029
+    },
+    {
+      "areaAtFoilResolution": 292,
+      "texturedInteriorFraction": 0.4918032786885246
+    },
+    {
+      "areaAtFoilResolution": 313,
+      "texturedInteriorFraction": 0.45161290322580644
+    },
+    {
+      "areaAtFoilResolution": 434,
+      "texturedInteriorFraction": 0.5298013245033113
+    },
+    {
+      "areaAtFoilResolution": 314,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 172,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 287,
+      "texturedInteriorFraction": 0.6170212765957447
+    },
+    {
+      "areaAtFoilResolution": 193,
+      "texturedInteriorFraction": 0.5964912280701754
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.5737704918032787
+    },
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 0.524390243902439
+    },
+    {
+      "areaAtFoilResolution": 305,
+      "texturedInteriorFraction": 0.40186915887850466
+    },
+    {
+      "areaAtFoilResolution": 181,
+      "texturedInteriorFraction": 0.5106382978723404
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 0.6086956521739131
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "160-holo-foil.png": "42deb542f45a5408ac3a33ed5f58e2fdecfdd81ebf61cfb5f7bf27182f7c4d03",
+    "160-holo-protection.png": "9dd896f961eb7a7250ff5fdb7419097a955db7dec4c4ce1626c9045963f4cadd",
+    "160-holo-normal.png": "6bb25018e3fe456e58e849a6e7f9103de534c9b32ee7c2446dc004eb58baf25d",
+    "160-holo-roughness.png": "d4e38761084a720e677591c52b1d6d70a4d86869625b543f7513f2874733645b"
+  },
+  "holoFrontSha256": "863deb38fd996325f65b762d5801496e91ef59a3d1cf27e7056e01a5f57f33b1",
+  "mapDimensions": {
+    "160-holo-foil.png": [
+      367,
+      512
+    ],
+    "160-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "160-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "160-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Jellicent ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. N-DESIGN Inc.",
+      "list": [
+        "N-DESIGN Inc."
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "160/086",
+      "numerator": "160",
+      "denominator": "086",
+      "numeric": 160
+    },
+    "rarity": {
+      "designation": "ULTRA_RARE",
+      "icon": "TWO_SILVER_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Frillish",
+    "hp": 270,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Oceanic Curse",
+        "text": "As long as this Pok\u00e9mon is in the Active Spot, your opponent can't play any Item cards or Pok\u00e9mon Tool cards from their hand."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Power Press",
+        "text": "If this Pok\u00e9mon has at least 2 extra Energy attached (in addition to this attack's cost), this attack does 80 more damage.",
+        "cost": [
+          "PSYCHIC",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 80,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_160",
+        "longFormID": "Jellicentex_rsv10-5_160_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0xa14975d4",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_160_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_160_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_160_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_160_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_160_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_160_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_160_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "160.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

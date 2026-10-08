@@ -1,0 +1,177 @@
+{
+  "cardId": "svalt-198",
+  "variant": "holo",
+  "tcglCardId": "svalt_198",
+  "tcglVariantId": "Eevee_sv3-5_133_alt_Common_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3-5_en_133_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv3-5_en_133_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "789742ff5bdf6f6bbe9746d32a63c4bd2c07f9dc0dcc56e4f561a4b9b4684c65"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3-5_en_133_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv3-5_en_133_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "5db46bb86631cae83fc08fd663530ef0ceef03d5b0c70b2e91338853b0e20d86"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "789742ff5bdf6f6bbe9746d32a63c4bd2c07f9dc0dcc56e4f561a4b9b4684c65"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "198-holo-foil.png": "d69f3bcb283a6a75f5bb824c6da375280f4bb03f7d8c22c0e10d0dfd3db653dd",
+    "198-holo-protection.png": "0ab3f1c560d28a8f1827c70a63cc9319dcc7c07f62daf938c5db3b6f506284d6",
+    "198-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "789742ff5bdf6f6bbe9746d32a63c4bd2c07f9dc0dcc56e4f561a4b9b4684c65",
+  "mapDimensions": {
+    "198-holo-foil.png": [
+      367,
+      512
+    ],
+    "198-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "198-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Eevee",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Narumi Sato",
+      "list": [
+        "Narumi Sato"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "MEW_EN",
+    "collector_number": {
+      "full": "133/165",
+      "numerator": "133",
+      "denominator": "165",
+      "numeric": 133
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "COLORLESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Its ability to evolve into many forms allows it to adapt smoothly and perfectly to any environment.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Colorful Friends",
+        "text": "Search your deck for up to 3 Pok\u00e9mon of different types, reveal them, and put them into your hand. Then, shuffle your deck.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Skip",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_198",
+        "longFormID": "Eevee_sv3-5_133_alt_Common_Cosmos_Holo",
+        "archetypeID": "0x7e7c296a",
+        "reldate": "2025-08-21 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv3-5_en_133_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv3-5_en_133_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3-5_en_133_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv3-5_en_133_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv3-5_en_133_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "198.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

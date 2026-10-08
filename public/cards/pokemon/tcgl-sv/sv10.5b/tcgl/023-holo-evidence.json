@@ -1,0 +1,169 @@
+{
+  "cardId": "sv10.5b-023",
+  "variant": "holo",
+  "tcglCardId": "zsv10-5_23",
+  "tcglVariantId": "Carracosta_zsv10-5_23_std_Rare_Tinsel_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_023_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_023_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8056a231604e5aa9e515983fa0802a819c74b1d6fb7107466168070b3884b48b"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_023_std.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_023_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "6c7c638de0eacfc9bd4f5335b3a9c48de20aec1d60c79ac99dc6ff007c49679e"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "8056a231604e5aa9e515983fa0802a819c74b1d6fb7107466168070b3884b48b"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "023-holo-foil.png": "99d58016f4db61798650b35b6471f2ebd42e73e756120eb95ce1c83d5b944a80",
+    "023-holo-protection.png": "e6edc7e5e6537c5266bf64b166d5fc01554951421221ae9bb5c4d8a5f0f9349b"
+  },
+  "holoFrontSha256": "8056a231604e5aa9e515983fa0802a819c74b1d6fb7107466168070b3884b48b",
+  "mapDimensions": {
+    "023-holo-foil.png": [
+      367,
+      512
+    ],
+    "023-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Carracosta",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "TINSEL",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Gemi",
+      "list": [
+        "Gemi"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "023/086",
+      "numerator": "023",
+      "denominator": "086",
+      "numeric": 23
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Tirtouga",
+    "hp": 180,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "They can live both in the ocean and on land. A slap from one of them is enough to open a hole in the bottom of a tanker.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Mighty Shell",
+        "text": "Prevent all damage from and effects of attacks done to this Pok\u00e9mon by your opponent's Pok\u00e9mon that have any Special Energy attached."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Big Bite",
+        "text": "During your opponent's next turn, the Defending Pok\u00e9mon can't retreat.",
+        "cost": [
+          "WATER",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 150
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_23",
+        "longFormID": "Carracosta_zsv10-5_23_std_Rare_Tinsel_Holo",
+        "archetypeID": "0x7db8dcc0",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_023_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_023_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_023_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_023_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_023_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "023.png",
+  "reusedProfile": "pokemon-tinsel",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

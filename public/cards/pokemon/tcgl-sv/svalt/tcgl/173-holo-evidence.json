@@ -1,0 +1,180 @@
+{
+  "cardId": "svalt-173",
+  "variant": "holo",
+  "tcglCardId": "svalt_173",
+  "tcglVariantId": "HopsDubwool_sv9_136_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_136_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv9_en_136_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8ed3480526ab361ca768c74cd6ed7e0beee3f055a09c34b832ef285420b9580e"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_136_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv9_en_136_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d6e731b907825bf4afe7b44216a98800bb4e87498f9b7b228020e41e53bcf675"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "8ed3480526ab361ca768c74cd6ed7e0beee3f055a09c34b832ef285420b9580e"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "173-holo-foil.png": "2ff915e43b3e0e0031a7734ad45d29434b42aa8428a7621b6c3303780adf660a",
+    "173-holo-protection.png": "3a2382327a4e2a4c787b6a1b7f3bc0abe57510d2b1c7abc1d336f5c89cec89eb",
+    "173-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "8ed3480526ab361ca768c74cd6ed7e0beee3f055a09c34b832ef285420b9580e",
+  "mapDimensions": {
+    "173-holo-foil.png": [
+      367,
+      512
+    ],
+    "173-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "173-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Hop's Dubwool",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Ryota Murayama",
+      "list": [
+        "Ryota Murayama"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "JTG_EN",
+    "collector_number": {
+      "full": "136/159",
+      "numerator": "136",
+      "denominator": "159",
+      "numeric": 136
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "TRAINERS_POKEMON"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Hop's Wooloo",
+    "hp": 120,
+    "types": [
+      "COLORLESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Its majestic horns are meant only to impress the opposite gender. They never see use in battle.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Defiant Horn",
+        "text": "When you play this Pok\u00e9mon from your hand to evolve 1 of your Pok\u00e9mon during your turn, you may switch in 1 of your opponent's Benched Pok\u00e9mon to the Active Spot."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Headbutt",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 80
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_173",
+        "longFormID": "HopsDubwool_sv9_136_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0x5d20a44d",
+        "reldate": "2025-03-27 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv9_en_136_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv9_en_136_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_136_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv9_en_136_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv9_en_136_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "173.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

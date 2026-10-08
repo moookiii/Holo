@@ -1,0 +1,216 @@
+{
+  "cardId": "svp-125",
+  "variant": "holo",
+  "tcglCardId": "svbsp_125",
+  "tcglVariantId": "Armarougeex_svbsp_125_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_125_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_125_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "50b302e75d54b48853766645ee47a0c064fb09470db48e46bc1a8268a856abd9"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_125_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_125_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c8c25746ffcc1036dc5bd51ab19261febad6f6d4947e215015ceaeaf3ece56bd"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_125_std.etch.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_125_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f7bab1deb5a105fc9440e5d4f9b3574fa043b770c09ca1cf32cc2bd623c63468"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "50b302e75d54b48853766645ee47a0c064fb09470db48e46bc1a8268a856abd9"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 218,
+      "texturedInteriorFraction": 0.547945205479452
+    },
+    {
+      "areaAtFoilResolution": 181,
+      "texturedInteriorFraction": 0.4857142857142857
+    },
+    {
+      "areaAtFoilResolution": 250,
+      "texturedInteriorFraction": 0.5128205128205128
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.4878048780487805
+    },
+    {
+      "areaAtFoilResolution": 262,
+      "texturedInteriorFraction": 0.4666666666666667
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "125-holo-foil.png": "a0d48bea71cf71f16227a427052cf33f0ad25ac223774a0ecd4a5c4b15e5e7f1",
+    "125-holo-protection.png": "fda77633d867b90bba18276421ac04620e9383e89eaabca6e75f18ccca805770",
+    "125-holo-normal.png": "504fb8ad829ed96e84c7a3cb0ce3d76fb692b3ace95a04ab64a1330243937302",
+    "125-holo-roughness.png": "4871e2cbeb3f00e654ef6e896fcc1de2805142b7da9ae6d9c4e7e7e2158a5ed2"
+  },
+  "holoFrontSha256": "50b302e75d54b48853766645ee47a0c064fb09470db48e46bc1a8268a856abd9",
+  "mapDimensions": {
+    "125-holo-foil.png": [
+      367,
+      512
+    ],
+    "125-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "125-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "125-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Armarouge ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "125",
+      "numerator": "125",
+      "numeric": 125
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Charcadet",
+    "hp": 260,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Crimson Armor",
+        "text": "If this Pok\u00e9mon has full HP, it takes 80 less damage from attacks from your opponent's Pok\u00e9mon (after applying Weakness and Resistance)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Scorching Bazooka",
+        "text": "This attack does 40 more damage for each {R} Energy attached to this Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 40,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_125",
+        "longFormID": "Armarougeex_svbsp_125_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0x5dd79135",
+        "reldate": "2024-04-18 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_125_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_125_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_125_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_125_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_125_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_125_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_125_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "125.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

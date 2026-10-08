@@ -1,0 +1,181 @@
+{
+  "cardId": "svalt-122",
+  "variant": "holo",
+  "tcglCardId": "svalt_122",
+  "tcglVariantId": "Koraidon_sv5_119_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv5_en_119_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv5_en_119_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "03da4b343d2a127a151ac386fa4be704feaace794c5e2eb0d907053337d821fd"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv5_en_119_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv5_en_119_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "59cc6cbe8ac0532846ac91694ac26a962ea6c4b4e39fc207a59ead4ca82791bf"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "03da4b343d2a127a151ac386fa4be704feaace794c5e2eb0d907053337d821fd"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "122-holo-foil.png": "bd79076ae709c8297250e4ef6e46608915ea117e5d032df906d56c483182e7e0",
+    "122-holo-protection.png": "0537dc1844f04d7cda568ffb7428077b08adfe7b60196643cbccfb9e735b3177",
+    "122-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "03da4b343d2a127a151ac386fa4be704feaace794c5e2eb0d907053337d821fd",
+  "mapDimensions": {
+    "122-holo-foil.png": [
+      367,
+      512
+    ],
+    "122-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "122-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Koraidon",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Teeziro",
+      "list": [
+        "Teeziro"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "TEF_EN",
+    "collector_number": {
+      "full": "119/162",
+      "numerator": "119",
+      "denominator": "162",
+      "numeric": 119
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "ANCIENT"
+    ],
+    "stage": "BASIC",
+    "hp": 140,
+    "types": [
+      "DRAGON"
+    ],
+    "retreat": 2,
+    "flavor_text": "This seems to be the Winged King mentioned in an old expedition journal. It was said to have split the land with its bare fists.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Primordial Beatdown",
+        "text": "This attack does 30 damage for each of your Ancient Pok\u00e9mon in play.",
+        "cost": [
+          "FIGHTING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 30,
+          "suffix": "\u00d7"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Shred",
+        "text": "This attack's damage isn't affected by any effects on your opponent's Active Pok\u00e9mon.",
+        "cost": [
+          "FIRE",
+          "FIGHTING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 130
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_122",
+        "longFormID": "Koraidon_sv5_119_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0xb891c09b",
+        "reldate": "2024-09-12 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv5_en_119_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv5_en_119_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv5_en_119_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv5_en_119_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv5_en_119_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "122.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

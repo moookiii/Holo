@@ -1,0 +1,221 @@
+{
+  "cardId": "sv04.5-245",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_245",
+  "tcglVariantId": "Koraidonex_sv4-5_245_std_HyperRare_SvUltraScodix_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_245_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_245_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "88ec7176e4f5d91f00df4d86634a17b2409e2f1065a3f279885285f6f3f12969"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_245_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_245_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b400a4a51d77b882090fcce6019f997da3a83d7134eb6a4524441a5caa70f69d"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_245_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_245_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c91b7b98a1621f4cdbf768803e9b48eccddafd9c4b20124bced09aff86ec91b3"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "88ec7176e4f5d91f00df4d86634a17b2409e2f1065a3f279885285f6f3f12969"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 239,
+      "texturedInteriorFraction": 0.5480769230769231
+    },
+    {
+      "areaAtFoilResolution": 208,
+      "texturedInteriorFraction": 0.6086956521739131
+    },
+    {
+      "areaAtFoilResolution": 263,
+      "texturedInteriorFraction": 0.6233766233766234
+    },
+    {
+      "areaAtFoilResolution": 234,
+      "texturedInteriorFraction": 0.49056603773584906
+    },
+    {
+      "areaAtFoilResolution": 218,
+      "texturedInteriorFraction": 0.43548387096774194
+    },
+    {
+      "areaAtFoilResolution": 174,
+      "texturedInteriorFraction": 0.5178571428571429
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "245-holo-foil.png": "3f2fbfd8d7f1d66ccbc19fc5e3512f061227a4ffb8db02a54da82e2bc1b9fb20",
+    "245-holo-protection.png": "bf67fa90537285bb75813d009232024008a09872cf9f005af62cdca90e274138",
+    "245-holo-normal.png": "11e684d522deb1a9861716972ab12602f1901df10c6e761c3c7fa026850602de",
+    "245-holo-roughness.png": "d49bb318683b7195ee610354f968355a927a8ba227a2f5c9f768885cb571e269"
+  },
+  "holoFrontSha256": "88ec7176e4f5d91f00df4d86634a17b2409e2f1065a3f279885285f6f3f12969",
+  "mapDimensions": {
+    "245-holo-foil.png": [
+      367,
+      512
+    ],
+    "245-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "245-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "245-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Koraidon ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA_SCODIX",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. aky CG Works",
+      "list": [
+        "aky CG Works"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "245/091",
+      "numerator": "245",
+      "denominator": "091",
+      "numeric": 245
+    },
+    "rarity": {
+      "designation": "HYPER_RARE",
+      "icon": "THREE_GOLD_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 230,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "PSYCHIC"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Dino Cry",
+        "text": "Once during your turn, you may attach up to 2 Basic {F} Energy cards from your discard pile to your Basic {F} Pok\u00e9mon in any way you like. If you use this Ability, your turn ends."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Wild Impact",
+        "text": "During your next turn, this Pok\u00e9mon can't attack.",
+        "cost": [
+          "FIGHTING",
+          "FIGHTING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 220
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_245",
+        "longFormID": "Koraidonex_sv4-5_245_std_HyperRare_SvUltraScodix_Etched",
+        "archetypeID": "0x0d4cf713",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_245_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_245_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_245_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_245_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_245_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_245_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_245_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "245.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

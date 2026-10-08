@@ -1,0 +1,227 @@
+{
+  "cardId": "sv06.5-088",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_88",
+  "tcglVariantId": "JaninesSecretArt_sv6-5_88_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_088_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_088_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4bb9b53b68f388415b96590ab98ea53c0d2f408f8b22685c437a24dfab38a9f8"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_088_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_088_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a255e0eb8ac6ba715de6efb0071ca431744949513ad7ac10c01900e060508ca1"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_088_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_088_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3724c8f58f43187b965599575417f0a6978c8908a504938f192168b6e2ab4011"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "4bb9b53b68f388415b96590ab98ea53c0d2f408f8b22685c437a24dfab38a9f8"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 269,
+      "texturedInteriorFraction": 0.6987951807228916
+    },
+    {
+      "areaAtFoilResolution": 720,
+      "texturedInteriorFraction": 0.5691056910569106
+    },
+    {
+      "areaAtFoilResolution": 593,
+      "texturedInteriorFraction": 0.47384615384615386
+    },
+    {
+      "areaAtFoilResolution": 269,
+      "texturedInteriorFraction": 0.5365853658536586
+    },
+    {
+      "areaAtFoilResolution": 202,
+      "texturedInteriorFraction": 0.40789473684210525
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 0.4305555555555556
+    },
+    {
+      "areaAtFoilResolution": 150,
+      "texturedInteriorFraction": 0.4222222222222222
+    },
+    {
+      "areaAtFoilResolution": 229,
+      "texturedInteriorFraction": 0.4810126582278481
+    },
+    {
+      "areaAtFoilResolution": 182,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 0.40476190476190477
+    },
+    {
+      "areaAtFoilResolution": 298,
+      "texturedInteriorFraction": 0.4175824175824176
+    },
+    {
+      "areaAtFoilResolution": 250,
+      "texturedInteriorFraction": 0.5301204819277109
+    },
+    {
+      "areaAtFoilResolution": 215,
+      "texturedInteriorFraction": 0.4925373134328358
+    },
+    {
+      "areaAtFoilResolution": 319,
+      "texturedInteriorFraction": 0.42857142857142855
+    },
+    {
+      "areaAtFoilResolution": 346,
+      "texturedInteriorFraction": 0.44537815126050423
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "088-holo-foil.png": "4c7d352c07e762aa8d611226fb27e35ca1af578b7ae821ea95e3b95c233cc146",
+    "088-holo-protection.png": "fbdf53ce7e0bdeb38355b46c50781fff4ffe4c130f91728d29b556e1884c2fe2",
+    "088-holo-normal.png": "8d504081910de8cab983cbf9149363ae2ef24848a0a7a62aecf59b521987f6bf",
+    "088-holo-roughness.png": "8c60d7f4ea2d661e2ddfc833ef87472dd2601bbc8a08ad5564b242ae84eee47f"
+  },
+  "holoFrontSha256": "4bb9b53b68f388415b96590ab98ea53c0d2f408f8b22685c437a24dfab38a9f8",
+  "mapDimensions": {
+    "088-holo-foil.png": [
+      367,
+      512
+    ],
+    "088-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "088-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "088-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Janine's Secret Art",
+    "card_type": "TRAINER",
+    "subtype": "SUPPORTER",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Taira Akitsu",
+      "list": [
+        "Taira Akitsu"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "088/064",
+      "numerator": "088",
+      "denominator": "064",
+      "numeric": 88
+    },
+    "rarity": {
+      "designation": "ULTRA_RARE",
+      "icon": "TWO_SILVER_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "Choose up to 2 of your {D} Pok\u00e9mon. For each of those Pok\u00e9mon, search your deck for a Basic {D} Energy card and attach it to that Pok\u00e9mon. Then, shuffle your deck. If you attached Energy to your Active Pok\u00e9mon in this way, it is now Poisoned."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play only 1 Supporter card during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_88",
+        "longFormID": "JaninesSecretArt_sv6-5_88_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0xae34789f",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_088_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_088_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_088_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_088_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_088_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_088_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_088_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "088.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

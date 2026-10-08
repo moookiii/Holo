@@ -1,0 +1,176 @@
+{
+  "cardId": "svalt-102",
+  "variant": "holo",
+  "tcglCardId": "svalt_102",
+  "tcglVariantId": "Vanilluxe_sv4_45_alt_Uncommon_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_045_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_045_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "25b9c2e137f499568673387a05eeaf6bac0499ce6a8ff1c8b1dddab43e40b002"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_045_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv4_en_045_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c436867cd530738631b0481e5bd2ebf92b18af841bc0eaded6f9a9c77752e7b7"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "25b9c2e137f499568673387a05eeaf6bac0499ce6a8ff1c8b1dddab43e40b002"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "102-holo-foil.png": "d00c81df93493008c2263d3245b8af0e14c29c213a5701b44253364d9f3d75c2",
+    "102-holo-protection.png": "cd6ba5f8e77016d3693c4b33b4d1c128da3b1c43768c51111faaf1acdda0c87e",
+    "102-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "25b9c2e137f499568673387a05eeaf6bac0499ce6a8ff1c8b1dddab43e40b002",
+  "mapDimensions": {
+    "102-holo-foil.png": [
+      367,
+      512
+    ],
+    "102-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "102-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Vanilluxe",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Nelnal",
+      "list": [
+        "Nelnal"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAR_EN",
+    "collector_number": {
+      "full": "045/182",
+      "numerator": "045",
+      "denominator": "182",
+      "numeric": 45
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Vanillish",
+    "hp": 150,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "People believe this Pok\u00e9mon formed when two Vanillish stuck together. Its body temperature is roughly 21 degrees Fahrenheit.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Frigid Room",
+        "text": "Your opponent's Pok\u00e9mon that have 40 HP or less remaining can't attack."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Icicle Missile",
+        "cost": [
+          "WATER",
+          "WATER"
+        ],
+        "damage": {
+          "amount": 110
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_102",
+        "longFormID": "Vanilluxe_sv4_45_alt_Uncommon_Cosmos_Holo",
+        "archetypeID": "0xb452fa3c",
+        "reldate": "2024-08-22 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_045_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv4_en_045_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_045_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv4_en_045_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv4_en_045_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "102.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

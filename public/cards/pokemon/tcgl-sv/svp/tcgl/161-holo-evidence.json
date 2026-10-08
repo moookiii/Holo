@@ -1,0 +1,181 @@
+{
+  "cardId": "svp-161",
+  "variant": "holo",
+  "tcglCardId": "svbsp_161",
+  "tcglVariantId": "Charizardex_svbsp_161_std_DoubleRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_161_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_161_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "75851b3844d00206114e6a3ba0f11b1da4ec9331470b26ba6e5517a132397620"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_161_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_161_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "324ed58e6b7690f7a150aa3cb003c1934be5fa24d04b0cd6f59e80ccc62f0ee6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "75851b3844d00206114e6a3ba0f11b1da4ec9331470b26ba6e5517a132397620"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "161-holo-foil.png": "f1be3bd0122a6a31a0de256a45f40e867e8305233f9d3706abf80c439d2fe57b",
+    "161-holo-protection.png": "e8e9f2f854f7d2f6d5bbdd6f8648f9061c08457ba493820f9f6d46b282985d9c"
+  },
+  "holoFrontSha256": "75851b3844d00206114e6a3ba0f11b1da4ec9331470b26ba6e5517a132397620",
+  "mapDimensions": {
+    "161-holo-foil.png": [
+      367,
+      512
+    ],
+    "161-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Charizard ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Mochizuki",
+      "list": [
+        "PLANETA Mochizuki"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "161",
+      "numerator": "161",
+      "numeric": 161
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Charmeleon",
+    "hp": 330,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Brave Wing",
+        "text": "If this Pok\u00e9mon has any damage counters on it, this attack does 100 more damage.",
+        "cost": [
+          "FIRE"
+        ],
+        "damage": {
+          "amount": 60,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Explosive Vortex",
+        "text": "Discard 3 Energy from this Pok\u00e9mon.",
+        "cost": [
+          "FIRE",
+          "FIRE",
+          "FIRE",
+          "FIRE"
+        ],
+        "damage": {
+          "amount": 330
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_161",
+        "longFormID": "Charizardex_svbsp_161_std_DoubleRare_SunPillar_Holo",
+        "archetypeID": "0xfa801213",
+        "reldate": "2024-10-03 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_161_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_161_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_161_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_161_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_161_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "161.png",
+  "reusedProfile": "sv_tcgl_ex_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

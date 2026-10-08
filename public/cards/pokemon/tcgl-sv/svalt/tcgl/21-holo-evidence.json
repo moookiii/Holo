@@ -1,0 +1,185 @@
+{
+  "cardId": "svalt-21",
+  "variant": "holo",
+  "tcglCardId": "svalt_21",
+  "tcglVariantId": "Dondozo_sv1_61_alt2_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_061_alt2.png",
+      "file": "research/tcgl/svalt-set/raw/sv1_en_061_alt2.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7e74785ecd07870c9b9aa9bf1fe78abb2c5258b71f439c78ce85d455bebe90a1"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_061_alt2.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv1_en_061_alt2.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "73fae35591ac43e7ef96683c5937c7ef44fb94db34a07849888c23cd46d95eb2"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "7e74785ecd07870c9b9aa9bf1fe78abb2c5258b71f439c78ce85d455bebe90a1"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "21-holo-foil.png": "d62bdce81d69c62f5b4096891e631b30eec972fd9ea0c4ba164a979131bf30e4",
+    "21-holo-protection.png": "164a4b4e02fb7b74fa275007ba29bd0f99326811a23d6dd63e53ccf9f07a07c6",
+    "21-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "7e74785ecd07870c9b9aa9bf1fe78abb2c5258b71f439c78ce85d455bebe90a1",
+  "mapDimensions": {
+    "21-holo-foil.png": [
+      367,
+      512
+    ],
+    "21-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "21-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Dondozo",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Souichirou Gunjima",
+      "list": [
+        "Souichirou Gunjima"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVI_EN",
+    "collector_number": {
+      "full": "061/198",
+      "numerator": "061",
+      "denominator": "198",
+      "numeric": 61
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92023 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2023
+    },
+    "stage": "BASIC",
+    "hp": 160,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 4,
+    "flavor_text": "This Pok\u00e9mon is a glutton, but it\u2019s bad at getting food. It teams up with a Tatsugiri to catch prey.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Release Rage",
+        "text": "This attack does 50 damage for each Tatsugiri in your discard pile.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50,
+          "suffix": "\u00d7"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Heavy Splash",
+        "cost": [
+          "WATER",
+          "WATER",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 120
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_21",
+        "longFormID": "Dondozo_sv1_61_alt2_Rare_Cosmos_Holo",
+        "archetypeID": "0xe26e3be0",
+        "reldate": "2023-06-08 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv1_en_061_alt2.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv1_en_061_alt2.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_061_alt2.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv1_en_061_alt2.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv1_en_061_alt2.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "21.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

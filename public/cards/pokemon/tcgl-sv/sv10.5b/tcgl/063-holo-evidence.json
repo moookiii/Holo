@@ -1,0 +1,175 @@
+{
+  "cardId": "sv10.5b-063",
+  "variant": "holo",
+  "tcglCardId": "zsv10-5_63",
+  "tcglVariantId": "Klinklang_zsv10-5_63_std_Rare_Tinsel_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_063_std.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_063_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6d97e804880bb9e0e80ffe5b5d550bbe5b01ef8dde3a733997074ae652d0d2fa"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_063_std.foil.png",
+      "file": "research/tcgl/sv10.5b-set/raw/zsv10-5_en_063_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c2497d744a8575cceb2c08d314dec3726b5e47c204fca7fad5aa6d04242b44c6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5b/page-05.jpg"
+    ],
+    "holoFrontSha256": "6d97e804880bb9e0e80ffe5b5d550bbe5b01ef8dde3a733997074ae652d0d2fa"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "063-holo-foil.png": "e0a4a914477ac0afd46ab0844139bd2bf1e2da2a95cd8fbff9720abf3a18eaf8",
+    "063-holo-protection.png": "2947dbdd7a9a3143ba7cc5ccae53cd7f714ef63e672888f6112826844570b9db"
+  },
+  "holoFrontSha256": "6d97e804880bb9e0e80ffe5b5d550bbe5b01ef8dde3a733997074ae652d0d2fa",
+  "mapDimensions": {
+    "063-holo-foil.png": [
+      367,
+      512
+    ],
+    "063-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Klinklang",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "TINSEL",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Amelicart",
+      "list": [
+        "Amelicart"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "BLK_EN",
+    "collector_number": {
+      "full": "063/086",
+      "numerator": "063",
+      "denominator": "086",
+      "numeric": 63
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Klang",
+    "hp": 150,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "Its red core functions as an energy tank. It fires the charged energy through its spikes into an area.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Gear Coating",
+        "text": "All of your Pok\u00e9mon that have any {M} Energy attached take 20 less damage from attacks from your opponent's Pok\u00e9mon (after applying Weakness and Resistance)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Hammer In",
+        "cost": [
+          "METAL",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 120
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "zsv10-5_63",
+        "longFormID": "Klinklang_zsv10-5_63_std_Rare_Tinsel_Holo",
+        "archetypeID": "0xaa4cc0dc",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "zsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_063_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/zsv10-5/zsv10-5_en_063_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_063_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/zsv10-5/zsv10-5_en_063_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/zsv10-5/zsv10-5_en_063_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "063.png",
+  "reusedProfile": "pokemon-tinsel",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

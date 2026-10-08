@@ -1,0 +1,156 @@
+{
+  "cardId": "sv10.5w-079",
+  "variant": "reverse",
+  "tcglCardId": "rsv10-5_79_ph",
+  "tcglVariantId": "AntiquePlumeFossil_rsv10-5_79_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_079_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_079_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "aa70ba3acc75a89d741a16eae91032658b1a4660d126b170e2aca9a7bcdf3257"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_079_ph.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_079_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "be7b441a07c4712f7b708e9bad5679c35ef9e9682045e7cf84868e742ae735dd"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "aa70ba3acc75a89d741a16eae91032658b1a4660d126b170e2aca9a7bcdf3257"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "079-reverse-foil.png": "90c153d9bd84a77cf6fcc251be8dd6efdd042be7a4dbf365dc293bac9a201cdc",
+    "079-reverse-protection.png": "e73ab3dcf35d455fa89bb0ef76ee4fac4d83e0552f8c6fb372616ab92ed6ead9"
+  },
+  "holoFrontSha256": "aa70ba3acc75a89d741a16eae91032658b1a4660d126b170e2aca9a7bcdf3257",
+  "mapDimensions": {
+    "079-reverse-foil.png": [
+      367,
+      512
+    ],
+    "079-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Antique Plume Fossil",
+    "card_type": "TRAINER",
+    "subtype": "ITEM",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. AYUMI ODASHIMA",
+      "list": [
+        "AYUMI ODASHIMA"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "079/086",
+      "numerator": "079",
+      "denominator": "086",
+      "numeric": 79
+    },
+    "rarity": {
+      "designation": "COMMON",
+      "icon": "SOLID_CIRCLE"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "ITEM",
+      "PLAYABLE_TRAINER"
+    ],
+    "hp": 60,
+    "stage_text": "Evolves into Archen",
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "Play this card as if it were a 60-HP Basic {C} Pok\u00e9mon. This card can't be affected by any Special Conditions and can't retreat.\n\nAt any time during your turn, you may discard this card from play."
+      },
+      {
+        "kind": "ABILITY",
+        "name": "Plume Protection",
+        "text": "As long as this Pok\u00e9mon is on your Bench, prevent all damage done to this Pok\u00e9mon by attacks from your opponent's Pok\u00e9mon."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play any number of Item cards during your turn."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_79_ph",
+        "longFormID": "AntiquePlumeFossil_rsv10-5_79_ph_Common_FlatSilver_Reverse",
+        "archetypeID": "0x2ab2e4a1",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_079_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_079_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_079_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_079_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_079_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "079-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

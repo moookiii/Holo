@@ -1,0 +1,261 @@
+{
+  "cardId": "svalt-161",
+  "variant": "holo",
+  "tcglCardId": "svalt_161",
+  "tcglVariantId": "Espeonex_sv8-5_34_alt_DoubleRareC_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_034_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_034_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "09d6bad5a9505cab8cd4b8b90ee904047c64b26e758fb40b0f8ddb8de74fa335"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_034_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_034_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "cab2a5282222810c1169c2ffbb77c0a881c2c9495a917c876d41fbf2a534a758"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_034_alt.etch.png",
+      "file": "research/tcgl/svalt-set/raw/sv8-5_en_034_alt.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "38197bb0a2e66dc63862ddd88cffd8fff37c2455172f305fd8f0e7a64124dceb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "09d6bad5a9505cab8cd4b8b90ee904047c64b26e758fb40b0f8ddb8de74fa335"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 209,
+      "texturedInteriorFraction": 0.4574468085106383
+    },
+    {
+      "areaAtFoilResolution": 513,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 240,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 242,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 560,
+      "texturedInteriorFraction": 0.6109324758842444
+    },
+    {
+      "areaAtFoilResolution": 246,
+      "texturedInteriorFraction": 0.48672566371681414
+    },
+    {
+      "areaAtFoilResolution": 357,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "161-holo-foil.png": "9d1c6f89cfa6e95d79e2a4be702dd66f738c72f0e6fe982e9f4875801c71279e",
+    "161-holo-protection.png": "55ac1b5cb1c9441913d4dddf51f3c1004e9c15b0fbf3fb2b2c5bd45ff892fee2",
+    "161-holo-normal.png": "68adb748652d2ed3be551253c6e08539ba48d6a24d3b656f7bdce76173a56a71",
+    "161-holo-roughness.png": "0ba872f418fa3b6500ff2a379e96615638042c13c989426ac0099747b4c174a0"
+  },
+  "holoFrontSha256": "09d6bad5a9505cab8cd4b8b90ee904047c64b26e758fb40b0f8ddb8de74fa335",
+  "mapDimensions": {
+    "161-holo-foil.png": [
+      367,
+      512
+    ],
+    "161-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "161-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "161-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Espeon ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "PRE_EN",
+    "collector_number": {
+      "full": "034/131",
+      "numerator": "034",
+      "denominator": "131",
+      "numeric": 34
+    },
+    "rarity": {
+      "designation": "DOUBLE_RARE",
+      "icon": "TWO_BLACK_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER",
+      "TERA"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Eevee",
+    "hp": 270,
+    "types": [
+      "PSYCHIC"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "DARKNESS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "EFFECT",
+        "name": "Tera",
+        "text": "As long as this Pok\u00e9mon is on your Bench, prevent all damage done to this Pok\u00e9mon by attacks (both yours and your opponent\u2019s)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Psych Out",
+        "text": "Discard a random card from your opponent's hand.",
+        "cost": [
+          "PSYCHIC",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 160
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Amazez",
+        "text": "Devolve each of your opponent's evolved Pok\u00e9mon by shuffling the highest Stage Evolution card on it into your opponent's deck.",
+        "cost": [
+          "GRASS",
+          "PSYCHIC",
+          "DARKNESS"
+        ]
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_161",
+        "longFormID": "Espeonex_sv8-5_34_alt_DoubleRareC_SvUltra_Etched",
+        "archetypeID": "0x1378476f",
+        "reldate": "2025-02-06 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_034_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_034_alt.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv8-5_en_034_alt.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_034_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_034_alt.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv8-5_en_034_alt.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv8-5_en_034_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "161.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

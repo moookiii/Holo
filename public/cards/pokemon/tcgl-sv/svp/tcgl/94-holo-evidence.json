@@ -1,0 +1,179 @@
+{
+  "cardId": "svp-94",
+  "variant": "holo",
+  "tcglCardId": "svbsp_94",
+  "tcglVariantId": "Bellibolt_svbsp_94_std_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_094_std.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_094_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e79dc495d5f8084c02e77df25be78baaf38c5a7c027217d5940555b6165fa4cb"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_094_std.foil.png",
+      "file": "research/tcgl/svp-set/raw/svbsp_en_094_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c02c89a46766d5462e81c9c1754aad5d4f7701a3d292da6816fa0377fb8aa3a6"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svp/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svp/page-03.jpg"
+    ],
+    "holoFrontSha256": "e79dc495d5f8084c02e77df25be78baaf38c5a7c027217d5940555b6165fa4cb"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "94-holo-foil.png": "2917921b5613c79fa6f4da862a3e385123dbd8d1e7486224385ab06ca6dcc8b1",
+    "94-holo-protection.png": "57d44e111fb87020edc824509bfbaf372b89b94f9da3c7746693ec2dd0c8e86b",
+    "94-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "e79dc495d5f8084c02e77df25be78baaf38c5a7c027217d5940555b6165fa4cb",
+  "mapDimensions": {
+    "94-holo-foil.png": [
+      367,
+      512
+    ],
+    "94-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "94-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+  "exportEntry": {
+    "name": "Bellibolt",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Mizue",
+      "list": [
+        "Mizue"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "SVP_EN",
+    "collector_number": {
+      "full": "094",
+      "numerator": "094",
+      "numeric": 94
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Tadbulb",
+    "hp": 130,
+    "types": [
+      "LIGHTNING"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "When this Pok\u00e9mon expands and contracts its wobbly body, the belly-button dynamo in its stomach produces a huge amount of electricity.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Thunder Wave",
+        "text": "Flip a coin. If heads, your opponent's Active Pok\u00e9mon is now Paralyzed.",
+        "cost": [
+          "LIGHTNING"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Two-Bump Bolt",
+        "text": "You may discard up to 2 {L} Energy from this Pok\u00e9mon. This attack does 80 more damage for each card you discarded in this way.",
+        "cost": [
+          "LIGHTNING",
+          "LIGHTNING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 10,
+          "suffix": "+"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svbsp_94",
+        "longFormID": "Bellibolt_svbsp_94_std_Rare_Cosmos_Holo",
+        "archetypeID": "0x930520d8",
+        "reldate": "2024-03-21 17:00:00+00:00",
+        "key": "svbsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_094_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svbsp/svbsp_en_094_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_094_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svbsp/svbsp_en_094_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svbsp/svbsp_en_094_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "94.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

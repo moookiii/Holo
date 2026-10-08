@@ -1,0 +1,3171 @@
+{
+  "status": "passed",
+  "sets": [
+    {
+      "id": "sv04.5",
+      "name": "Paldean Fates",
+      "releaseDate": "2024-01-26",
+      "cards": 245,
+      "printings": 326,
+      "foilPrintings": 261,
+      "etchedPrintings": 154,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+          "sha256": "b238adea392c3bf1cb0307b4dd3c9be9061eebc862fed9f5a09ca9dbcd000aee"
+        }
+      ]
+    },
+    {
+      "id": "sv06.5",
+      "name": "Shrouded Fable",
+      "releaseDate": "2024-08-02",
+      "cards": 99,
+      "printings": 154,
+      "foilPrintings": 106,
+      "etchedPrintings": 24,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+          "sha256": "97d64309b1e7450a4f003df2f33d895be7c0b0c14240b9abca96467e240337d6"
+        }
+      ]
+    },
+    {
+      "id": "sv10.5w",
+      "name": "White Flare",
+      "releaseDate": "2025-07-18",
+      "cards": 173,
+      "printings": 405,
+      "foilPrintings": 335,
+      "etchedPrintings": 17,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+          "sha256": "115423f4872e4cff07f52a639202b8aed5986fd3a5d593c9ab4daa9098ae659e"
+        }
+      ]
+    },
+    {
+      "id": "sv10.5b",
+      "name": "Black Bolt",
+      "releaseDate": "2025-07-18",
+      "cards": 172,
+      "printings": 403,
+      "foilPrintings": 333,
+      "etchedPrintings": 17,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/zsv10-5.en-US.json",
+          "sha256": "6f3617f8a2efeeb2e091d4a3c57e3dc8b066bcf851ad00da3096e9401004060a"
+        }
+      ]
+    },
+    {
+      "id": "svp",
+      "name": "SVP Black Star Promos",
+      "releaseDate": "2023-01-06",
+      "cards": 216,
+      "printings": 216,
+      "foilPrintings": 201,
+      "etchedPrintings": 32,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svbsp.en-US.json",
+          "sha256": "8bbe5ff859cdab389abe09a7118ef431dc8d360d1d4b623330ef44d435294e9b"
+        }
+      ]
+    },
+    {
+      "id": "svalt",
+      "name": "Scarlet & Violet Alternate Printings",
+      "releaseDate": "2023-01-06",
+      "cards": 237,
+      "printings": 237,
+      "foilPrintings": 222,
+      "etchedPrintings": 13,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+          "sha256": "7896fd344eb1de9cfe1287b321c6eb9f93effb2f8c613c3d87b4ad5535ccf3fa"
+        }
+      ]
+    },
+    {
+      "id": "sve",
+      "name": "Scarlet & Violet Energy",
+      "releaseDate": "2023-03-31",
+      "cards": 48,
+      "printings": 48,
+      "foilPrintings": 24,
+      "etchedPrintings": 0,
+      "exports": [
+        {
+          "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sve.en-US.json",
+          "sha256": "d8a5fac1f9ce5c09ba9b9a0c918c6ce6c41f10655db83a147be810201c5c2cb0"
+        }
+      ]
+    }
+  ],
+  "cards": 1190,
+  "printings": 1789,
+  "foilPrintings": 1482,
+  "etchedPrintings": 257,
+  "sourceDimensions": {
+    "front": {
+      "733x1024": 1789
+    },
+    "foil": {
+      "367x512": 1481,
+      "733x1024": 1
+    },
+    "etch": {
+      "733x1024": 257
+    }
+  },
+  "normalDimensions": [
+    1800,
+    2475
+  ],
+  "normalConversion": {
+    "polarity": "1 - mean RGB",
+    "resize": "full-domain bilinear",
+    "crop": null,
+    "flip": false,
+    "offset": [
+      0,
+      0
+    ],
+    "derivative": "OpenCV Scharr CV_32F scale 1/32 before protection",
+    "slopeGain": 1.03,
+    "encoding": "opaque RGB OpenGL +Y",
+    "activeHeightEmboss": false
+  },
+  "integrity": "All source/front/output SHA-256 hashes and PNG dimensions passed. All fully protected normal pixels are (128,128,255). Cosmos motifs are empty PNGs.",
+  "newShadersAdded": 0,
+  "missingShaderFamilies": 2,
+  "missingFinishCounts": {
+    "cast-and-cure-pokeball": 160,
+    "cast-and-cure-masterball": 144,
+    "black-white-rare": 4,
+    "cosmos-placement": 193
+  },
+  "pending": {
+    "cast-and-cure-pokeball": [
+      {
+        "cardId": "sv10.5w-001",
+        "name": "Sewaddle",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Sewaddle_rsv10-5_1_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-002",
+        "name": "Swadloon",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Swadloon_rsv10-5_2_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-003",
+        "name": "Leavanny",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Leavanny_rsv10-5_3_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-004",
+        "name": "Cottonee",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cottonee_rsv10-5_4_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-006",
+        "name": "Deerling",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Deerling_rsv10-5_6_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-007",
+        "name": "Sawsbuck",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Sawsbuck_rsv10-5_7_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-008",
+        "name": "Shelmet",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Shelmet_rsv10-5_8_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-009",
+        "name": "Accelgor",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Accelgor_rsv10-5_9_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-010",
+        "name": "Virizion",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Virizion_rsv10-5_10_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-011",
+        "name": "Tepig",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Tepig_rsv10-5_11_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-012",
+        "name": "Pignite",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Pignite_rsv10-5_12_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-013",
+        "name": "Emboar",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Emboar_rsv10-5_13_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-014",
+        "name": "Pansear",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Pansear_rsv10-5_14_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-015",
+        "name": "Simisear",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Simisear_rsv10-5_15_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-016",
+        "name": "Litwick",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Litwick_rsv10-5_16_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-017",
+        "name": "Lampent",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Lampent_rsv10-5_17_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-018",
+        "name": "Chandelure",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Chandelure_rsv10-5_18_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-019",
+        "name": "Heatmor",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Heatmor_rsv10-5_19_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-021",
+        "name": "Oshawott",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Oshawott_rsv10-5_21_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-022",
+        "name": "Dewott",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Dewott_rsv10-5_22_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-023",
+        "name": "Samurott",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Samurott_rsv10-5_23_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-024",
+        "name": "Basculin",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Basculin_rsv10-5_24_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-025",
+        "name": "Ducklett",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Ducklett_rsv10-5_25_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-026",
+        "name": "Swanna",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Swanna_rsv10-5_26_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-027",
+        "name": "Vanillite",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Vanillite_rsv10-5_27_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-028",
+        "name": "Vanillish",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Vanillish_rsv10-5_28_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-029",
+        "name": "Vanilluxe",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Vanilluxe_rsv10-5_29_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-031",
+        "name": "Blitzle",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Blitzle_rsv10-5_31_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-032",
+        "name": "Zebstrika",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Zebstrika_rsv10-5_32_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-033",
+        "name": "Joltik",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Joltik_rsv10-5_33_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-034",
+        "name": "Galvantula",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Galvantula_rsv10-5_34_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-035",
+        "name": "Stunfisk",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Stunfisk_rsv10-5_35_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-036",
+        "name": "Woobat",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Woobat_rsv10-5_36_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-037",
+        "name": "Swoobat",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Swoobat_rsv10-5_37_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-038",
+        "name": "Sigilyph",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Sigilyph_rsv10-5_38_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-039",
+        "name": "Yamask",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Yamask_rsv10-5_39_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-040",
+        "name": "Cofagrigus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cofagrigus_rsv10-5_40_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-041",
+        "name": "Gothita",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Gothita_rsv10-5_41_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-042",
+        "name": "Gothorita",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Gothorita_rsv10-5_42_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-043",
+        "name": "Gothitelle",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Gothitelle_rsv10-5_43_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-044",
+        "name": "Frillish",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Frillish_rsv10-5_44_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-046",
+        "name": "Roggenrola",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Roggenrola_rsv10-5_46_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-047",
+        "name": "Boldore",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Boldore_rsv10-5_47_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-048",
+        "name": "Gigalith",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Gigalith_rsv10-5_48_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-049",
+        "name": "Sawk",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Sawk_rsv10-5_49_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-050",
+        "name": "Archen",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Archen_rsv10-5_50_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-051",
+        "name": "Archeops",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Archeops_rsv10-5_51_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-052",
+        "name": "Mienfoo",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Mienfoo_rsv10-5_52_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-053",
+        "name": "Mienshao",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Mienshao_rsv10-5_53_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-054",
+        "name": "Terrakion",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Terrakion_rsv10-5_54_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-055",
+        "name": "Purrloin",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Purrloin_rsv10-5_55_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-056",
+        "name": "Liepard",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Liepard_rsv10-5_56_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-057",
+        "name": "Scraggy",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Scraggy_rsv10-5_57_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-058",
+        "name": "Scrafty",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Scrafty_rsv10-5_58_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-059",
+        "name": "Trubbish",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Trubbish_rsv10-5_59_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-060",
+        "name": "Garbodor",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Garbodor_rsv10-5_60_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-061",
+        "name": "Zorua",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Zorua_rsv10-5_61_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-062",
+        "name": "Zoroark",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Zoroark_rsv10-5_62_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-063",
+        "name": "Vullaby",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Vullaby_rsv10-5_63_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-064",
+        "name": "Mandibuzz",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Mandibuzz_rsv10-5_64_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-065",
+        "name": "Deino",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Deino_rsv10-5_65_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-066",
+        "name": "Zweilous",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Zweilous_rsv10-5_66_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-068",
+        "name": "Ferroseed",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Ferroseed_rsv10-5_68_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-069",
+        "name": "Ferrothorn",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Ferrothorn_rsv10-5_69_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-070",
+        "name": "Durant",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Durant_rsv10-5_70_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-071",
+        "name": "Druddigon",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Druddigon_rsv10-5_71_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-072",
+        "name": "Patrat",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Patrat_rsv10-5_72_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-073",
+        "name": "Watchog",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Watchog_rsv10-5_73_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-074",
+        "name": "Lillipup",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Lillipup_rsv10-5_74_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-075",
+        "name": "Herdier",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Herdier_rsv10-5_75_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-076",
+        "name": "Stoutland",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Stoutland_rsv10-5_76_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-078",
+        "name": "Tornadus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Tornadus_rsv10-5_78_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-079",
+        "name": "Antique Plume Fossil",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "AntiquePlumeFossil_rsv10-5_79_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-080",
+        "name": "Brave Bangle",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "BraveBangle_rsv10-5_80_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-081",
+        "name": "Cheren",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cheren_rsv10-5_81_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-082",
+        "name": "Energy Retrieval",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "EnergyRetrieval_rsv10-5_82_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-083",
+        "name": "Harlequin",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Harlequin_rsv10-5_83_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-084",
+        "name": "Hilda",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Hilda_rsv10-5_84_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-085",
+        "name": "Tool Scrapper",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "ToolScrapper_rsv10-5_85_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5w-086",
+        "name": "Ignition Energy",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "IgnitionEnergy_rsv10-5_86_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-001",
+        "name": "Snivy",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Snivy_zsv10-5_1_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-002",
+        "name": "Servine",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Servine_zsv10-5_2_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-004",
+        "name": "Pansage",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Pansage_zsv10-5_4_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-005",
+        "name": "Simisage",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Simisage_zsv10-5_5_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-006",
+        "name": "Petilil",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Petilil_zsv10-5_6_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-007",
+        "name": "Lilligant",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Lilligant_zsv10-5_7_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-008",
+        "name": "Maractus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Maractus_zsv10-5_8_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-009",
+        "name": "Karrablast",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Karrablast_zsv10-5_9_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-010",
+        "name": "Foongus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Foongus_zsv10-5_10_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-011",
+        "name": "Amoonguss",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Amoonguss_zsv10-5_11_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-013",
+        "name": "Darumaka",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Darumaka_zsv10-5_13_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-014",
+        "name": "Darmanitan",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Darmanitan_zsv10-5_14_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-015",
+        "name": "Larvesta",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Larvesta_zsv10-5_15_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-016",
+        "name": "Volcarona",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Volcarona_zsv10-5_16_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-017",
+        "name": "Panpour",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Panpour_zsv10-5_17_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-018",
+        "name": "Simipour",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Simipour_zsv10-5_18_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-019",
+        "name": "Tympole",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Tympole_zsv10-5_19_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-020",
+        "name": "Palpitoad",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Palpitoad_zsv10-5_20_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-021",
+        "name": "Seismitoad",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Seismitoad_zsv10-5_21_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-022",
+        "name": "Tirtouga",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Tirtouga_zsv10-5_22_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-023",
+        "name": "Carracosta",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Carracosta_zsv10-5_23_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-024",
+        "name": "Alomomola",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Alomomola_zsv10-5_24_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-025",
+        "name": "Cubchoo",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cubchoo_zsv10-5_25_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-026",
+        "name": "Beartic",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Beartic_zsv10-5_26_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-027",
+        "name": "Cryogonal",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cryogonal_zsv10-5_27_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-029",
+        "name": "Emolga",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Emolga_zsv10-5_29_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-030",
+        "name": "Tynamo",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Tynamo_zsv10-5_30_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-031",
+        "name": "Eelektrik",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Eelektrik_zsv10-5_31_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-032",
+        "name": "Eelektross",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Eelektross_zsv10-5_32_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-033",
+        "name": "Thundurus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Thundurus_zsv10-5_33_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-035",
+        "name": "Munna",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Munna_zsv10-5_35_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-036",
+        "name": "Musharna",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Musharna_zsv10-5_36_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-037",
+        "name": "Solosis",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Solosis_zsv10-5_37_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-038",
+        "name": "Duosion",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Duosion_zsv10-5_38_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-039",
+        "name": "Reuniclus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Reuniclus_zsv10-5_39_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-040",
+        "name": "Elgyem",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Elgyem_zsv10-5_40_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-041",
+        "name": "Beheeyem",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Beheeyem_zsv10-5_41_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-042",
+        "name": "Golett",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Golett_zsv10-5_42_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-043",
+        "name": "Golurk",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Golurk_zsv10-5_43_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-045",
+        "name": "Drilbur",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Drilbur_zsv10-5_45_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-047",
+        "name": "Timburr",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Timburr_zsv10-5_47_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-048",
+        "name": "Gurdurr",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Gurdurr_zsv10-5_48_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-049",
+        "name": "Conkeldurr",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Conkeldurr_zsv10-5_49_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-050",
+        "name": "Throh",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Throh_zsv10-5_50_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-051",
+        "name": "Dwebble",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Dwebble_zsv10-5_51_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-052",
+        "name": "Crustle",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Crustle_zsv10-5_52_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-053",
+        "name": "Landorus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Landorus_zsv10-5_53_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-054",
+        "name": "Venipede",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Venipede_zsv10-5_54_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-055",
+        "name": "Whirlipede",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Whirlipede_zsv10-5_55_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-056",
+        "name": "Scolipede",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Scolipede_zsv10-5_56_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-057",
+        "name": "Sandile",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Sandile_zsv10-5_57_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-058",
+        "name": "Krokorok",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Krokorok_zsv10-5_58_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-059",
+        "name": "Krookodile",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Krookodile_zsv10-5_59_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-060",
+        "name": "Escavalier",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Escavalier_zsv10-5_60_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-061",
+        "name": "Klink",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Klink_zsv10-5_61_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-062",
+        "name": "Klang",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Klang_zsv10-5_62_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-063",
+        "name": "Klinklang",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Klinklang_zsv10-5_63_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-064",
+        "name": "Pawniard",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Pawniard_zsv10-5_64_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-065",
+        "name": "Bisharp",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Bisharp_zsv10-5_65_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-066",
+        "name": "Cobalion",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cobalion_zsv10-5_66_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-068",
+        "name": "Axew",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Axew_zsv10-5_68_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-069",
+        "name": "Fraxure",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Fraxure_zsv10-5_69_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-070",
+        "name": "Haxorus",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Haxorus_zsv10-5_70_sph_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-071",
+        "name": "Pidove",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Pidove_zsv10-5_71_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-072",
+        "name": "Tranquill",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Tranquill_zsv10-5_72_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-073",
+        "name": "Unfezant",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Unfezant_zsv10-5_73_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-074",
+        "name": "Audino",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Audino_zsv10-5_74_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-075",
+        "name": "Minccino",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Minccino_zsv10-5_75_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-076",
+        "name": "Cinccino",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Cinccino_zsv10-5_76_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-077",
+        "name": "Rufflet",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Rufflet_zsv10-5_77_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-078",
+        "name": "Braviary",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Braviary_zsv10-5_78_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-079",
+        "name": "Air Balloon",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "AirBalloon_zsv10-5_79_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-080",
+        "name": "Antique Cover Fossil",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "AntiqueCoverFossil_zsv10-5_80_sph_PokeBallCommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-081",
+        "name": "Energy Coin",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "EnergyCoin_zsv10-5_81_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-082",
+        "name": "Fennel",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Fennel_zsv10-5_82_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-083",
+        "name": "N's Plan",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "NsPlan_zsv10-5_83_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-084",
+        "name": "Pok\u00e9gear 3.0",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "Pokegear30_zsv10-5_84_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-085",
+        "name": "Professor's Research",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "ProfessorsResearch_zsv10-5_85_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "sv10.5b-086",
+        "name": "Prism Energy",
+        "variant": "pokeball-reverse",
+        "tcglVariantId": "PrismEnergy_zsv10-5_86_sph_PokeBallUncommon_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      },
+      {
+        "cardId": "svalt-203",
+        "name": "Victini",
+        "variant": "holo",
+        "tcglVariantId": "Victini_zsv10-5_12_alt_PokeBallRare_FlatSilver_Reverse_CastAndCure_SVPokeBall"
+      }
+    ],
+    "cast-and-cure-masterball": [
+      {
+        "cardId": "sv10.5w-001",
+        "name": "Sewaddle",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Sewaddle_rsv10-5_1_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-002",
+        "name": "Swadloon",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Swadloon_rsv10-5_2_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-003",
+        "name": "Leavanny",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Leavanny_rsv10-5_3_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-004",
+        "name": "Cottonee",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Cottonee_rsv10-5_4_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-006",
+        "name": "Deerling",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Deerling_rsv10-5_6_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-007",
+        "name": "Sawsbuck",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Sawsbuck_rsv10-5_7_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-008",
+        "name": "Shelmet",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Shelmet_rsv10-5_8_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-009",
+        "name": "Accelgor",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Accelgor_rsv10-5_9_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-010",
+        "name": "Virizion",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Virizion_rsv10-5_10_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-011",
+        "name": "Tepig",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Tepig_rsv10-5_11_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-012",
+        "name": "Pignite",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Pignite_rsv10-5_12_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-013",
+        "name": "Emboar",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Emboar_rsv10-5_13_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-014",
+        "name": "Pansear",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Pansear_rsv10-5_14_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-015",
+        "name": "Simisear",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Simisear_rsv10-5_15_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-016",
+        "name": "Litwick",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Litwick_rsv10-5_16_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-017",
+        "name": "Lampent",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Lampent_rsv10-5_17_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-018",
+        "name": "Chandelure",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Chandelure_rsv10-5_18_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-019",
+        "name": "Heatmor",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Heatmor_rsv10-5_19_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-021",
+        "name": "Oshawott",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Oshawott_rsv10-5_21_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-022",
+        "name": "Dewott",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Dewott_rsv10-5_22_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-023",
+        "name": "Samurott",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Samurott_rsv10-5_23_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-024",
+        "name": "Basculin",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Basculin_rsv10-5_24_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-025",
+        "name": "Ducklett",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Ducklett_rsv10-5_25_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-026",
+        "name": "Swanna",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Swanna_rsv10-5_26_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-027",
+        "name": "Vanillite",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Vanillite_rsv10-5_27_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-028",
+        "name": "Vanillish",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Vanillish_rsv10-5_28_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-029",
+        "name": "Vanilluxe",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Vanilluxe_rsv10-5_29_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-031",
+        "name": "Blitzle",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Blitzle_rsv10-5_31_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-032",
+        "name": "Zebstrika",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Zebstrika_rsv10-5_32_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-033",
+        "name": "Joltik",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Joltik_rsv10-5_33_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-034",
+        "name": "Galvantula",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Galvantula_rsv10-5_34_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-035",
+        "name": "Stunfisk",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Stunfisk_rsv10-5_35_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-036",
+        "name": "Woobat",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Woobat_rsv10-5_36_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-037",
+        "name": "Swoobat",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Swoobat_rsv10-5_37_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-038",
+        "name": "Sigilyph",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Sigilyph_rsv10-5_38_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-039",
+        "name": "Yamask",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Yamask_rsv10-5_39_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-040",
+        "name": "Cofagrigus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Cofagrigus_rsv10-5_40_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-041",
+        "name": "Gothita",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Gothita_rsv10-5_41_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-042",
+        "name": "Gothorita",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Gothorita_rsv10-5_42_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-043",
+        "name": "Gothitelle",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Gothitelle_rsv10-5_43_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-044",
+        "name": "Frillish",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Frillish_rsv10-5_44_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-046",
+        "name": "Roggenrola",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Roggenrola_rsv10-5_46_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-047",
+        "name": "Boldore",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Boldore_rsv10-5_47_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-048",
+        "name": "Gigalith",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Gigalith_rsv10-5_48_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-049",
+        "name": "Sawk",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Sawk_rsv10-5_49_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-050",
+        "name": "Archen",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Archen_rsv10-5_50_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-051",
+        "name": "Archeops",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Archeops_rsv10-5_51_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-052",
+        "name": "Mienfoo",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Mienfoo_rsv10-5_52_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-053",
+        "name": "Mienshao",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Mienshao_rsv10-5_53_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-054",
+        "name": "Terrakion",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Terrakion_rsv10-5_54_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-055",
+        "name": "Purrloin",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Purrloin_rsv10-5_55_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-056",
+        "name": "Liepard",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Liepard_rsv10-5_56_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-057",
+        "name": "Scraggy",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Scraggy_rsv10-5_57_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-058",
+        "name": "Scrafty",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Scrafty_rsv10-5_58_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-059",
+        "name": "Trubbish",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Trubbish_rsv10-5_59_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-060",
+        "name": "Garbodor",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Garbodor_rsv10-5_60_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-061",
+        "name": "Zorua",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Zorua_rsv10-5_61_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-062",
+        "name": "Zoroark",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Zoroark_rsv10-5_62_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-063",
+        "name": "Vullaby",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Vullaby_rsv10-5_63_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-064",
+        "name": "Mandibuzz",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Mandibuzz_rsv10-5_64_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-065",
+        "name": "Deino",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Deino_rsv10-5_65_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-066",
+        "name": "Zweilous",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Zweilous_rsv10-5_66_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-068",
+        "name": "Ferroseed",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Ferroseed_rsv10-5_68_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-069",
+        "name": "Ferrothorn",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Ferrothorn_rsv10-5_69_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-070",
+        "name": "Durant",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Durant_rsv10-5_70_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-071",
+        "name": "Druddigon",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Druddigon_rsv10-5_71_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-072",
+        "name": "Patrat",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Patrat_rsv10-5_72_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-073",
+        "name": "Watchog",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Watchog_rsv10-5_73_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-074",
+        "name": "Lillipup",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Lillipup_rsv10-5_74_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-075",
+        "name": "Herdier",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Herdier_rsv10-5_75_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-076",
+        "name": "Stoutland",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Stoutland_rsv10-5_76_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5w-078",
+        "name": "Tornadus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Tornadus_rsv10-5_78_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-001",
+        "name": "Snivy",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Snivy_zsv10-5_1_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-002",
+        "name": "Servine",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Servine_zsv10-5_2_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-004",
+        "name": "Pansage",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Pansage_zsv10-5_4_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-005",
+        "name": "Simisage",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Simisage_zsv10-5_5_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-006",
+        "name": "Petilil",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Petilil_zsv10-5_6_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-007",
+        "name": "Lilligant",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Lilligant_zsv10-5_7_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-008",
+        "name": "Maractus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Maractus_zsv10-5_8_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-009",
+        "name": "Karrablast",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Karrablast_zsv10-5_9_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-010",
+        "name": "Foongus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Foongus_zsv10-5_10_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-011",
+        "name": "Amoonguss",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Amoonguss_zsv10-5_11_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-012",
+        "name": "Victini",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Victini_zsv10-5_12_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-013",
+        "name": "Darumaka",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Darumaka_zsv10-5_13_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-014",
+        "name": "Darmanitan",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Darmanitan_zsv10-5_14_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-015",
+        "name": "Larvesta",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Larvesta_zsv10-5_15_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-016",
+        "name": "Volcarona",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Volcarona_zsv10-5_16_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-017",
+        "name": "Panpour",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Panpour_zsv10-5_17_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-018",
+        "name": "Simipour",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Simipour_zsv10-5_18_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-019",
+        "name": "Tympole",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Tympole_zsv10-5_19_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-020",
+        "name": "Palpitoad",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Palpitoad_zsv10-5_20_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-021",
+        "name": "Seismitoad",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Seismitoad_zsv10-5_21_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-022",
+        "name": "Tirtouga",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Tirtouga_zsv10-5_22_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-023",
+        "name": "Carracosta",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Carracosta_zsv10-5_23_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-024",
+        "name": "Alomomola",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Alomomola_zsv10-5_24_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-025",
+        "name": "Cubchoo",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Cubchoo_zsv10-5_25_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-026",
+        "name": "Beartic",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Beartic_zsv10-5_26_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-027",
+        "name": "Cryogonal",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Cryogonal_zsv10-5_27_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-029",
+        "name": "Emolga",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Emolga_zsv10-5_29_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-030",
+        "name": "Tynamo",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Tynamo_zsv10-5_30_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-031",
+        "name": "Eelektrik",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Eelektrik_zsv10-5_31_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-032",
+        "name": "Eelektross",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Eelektross_zsv10-5_32_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-033",
+        "name": "Thundurus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Thundurus_zsv10-5_33_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-035",
+        "name": "Munna",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Munna_zsv10-5_35_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-036",
+        "name": "Musharna",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Musharna_zsv10-5_36_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-037",
+        "name": "Solosis",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Solosis_zsv10-5_37_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-038",
+        "name": "Duosion",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Duosion_zsv10-5_38_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-039",
+        "name": "Reuniclus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Reuniclus_zsv10-5_39_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-040",
+        "name": "Elgyem",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Elgyem_zsv10-5_40_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-041",
+        "name": "Beheeyem",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Beheeyem_zsv10-5_41_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-042",
+        "name": "Golett",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Golett_zsv10-5_42_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-043",
+        "name": "Golurk",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Golurk_zsv10-5_43_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-045",
+        "name": "Drilbur",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Drilbur_zsv10-5_45_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-047",
+        "name": "Timburr",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Timburr_zsv10-5_47_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-048",
+        "name": "Gurdurr",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Gurdurr_zsv10-5_48_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-049",
+        "name": "Conkeldurr",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Conkeldurr_zsv10-5_49_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-050",
+        "name": "Throh",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Throh_zsv10-5_50_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-051",
+        "name": "Dwebble",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Dwebble_zsv10-5_51_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-052",
+        "name": "Crustle",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Crustle_zsv10-5_52_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-053",
+        "name": "Landorus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Landorus_zsv10-5_53_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-054",
+        "name": "Venipede",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Venipede_zsv10-5_54_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-055",
+        "name": "Whirlipede",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Whirlipede_zsv10-5_55_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-056",
+        "name": "Scolipede",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Scolipede_zsv10-5_56_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-057",
+        "name": "Sandile",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Sandile_zsv10-5_57_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-058",
+        "name": "Krokorok",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Krokorok_zsv10-5_58_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-059",
+        "name": "Krookodile",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Krookodile_zsv10-5_59_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-060",
+        "name": "Escavalier",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Escavalier_zsv10-5_60_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-061",
+        "name": "Klink",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Klink_zsv10-5_61_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-062",
+        "name": "Klang",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Klang_zsv10-5_62_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-063",
+        "name": "Klinklang",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Klinklang_zsv10-5_63_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-064",
+        "name": "Pawniard",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Pawniard_zsv10-5_64_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-065",
+        "name": "Bisharp",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Bisharp_zsv10-5_65_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-066",
+        "name": "Cobalion",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Cobalion_zsv10-5_66_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-068",
+        "name": "Axew",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Axew_zsv10-5_68_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-069",
+        "name": "Fraxure",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Fraxure_zsv10-5_69_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-070",
+        "name": "Haxorus",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Haxorus_zsv10-5_70_mph_MasterBallRare_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-071",
+        "name": "Pidove",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Pidove_zsv10-5_71_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-072",
+        "name": "Tranquill",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Tranquill_zsv10-5_72_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-073",
+        "name": "Unfezant",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Unfezant_zsv10-5_73_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-074",
+        "name": "Audino",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Audino_zsv10-5_74_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-075",
+        "name": "Minccino",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Minccino_zsv10-5_75_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-076",
+        "name": "Cinccino",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Cinccino_zsv10-5_76_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-077",
+        "name": "Rufflet",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Rufflet_zsv10-5_77_mph_MasterBallCommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      },
+      {
+        "cardId": "sv10.5b-078",
+        "name": "Braviary",
+        "variant": "masterball-reverse",
+        "tcglVariantId": "Braviary_zsv10-5_78_mph_MasterBallUncommon_FlatSilver_Reverse_CastAndCure_SVMasterBall"
+      }
+    ],
+    "black-white-rare": [
+      {
+        "cardId": "sv10.5w-172",
+        "name": "Victini",
+        "variant": "holo",
+        "tcglVariantId": "Victini_rsv10-5_172_std_BlackWhiteRare_Rainbow_Etched"
+      },
+      {
+        "cardId": "sv10.5w-173",
+        "name": "Reshiram ex",
+        "variant": "holo",
+        "tcglVariantId": "Reshiramex_rsv10-5_173_std_BlackWhiteRare_Rainbow_Etched"
+      },
+      {
+        "cardId": "sv10.5b-171",
+        "name": "Victini",
+        "variant": "holo",
+        "tcglVariantId": "Victini_zsv10-5_171_std_BlackWhiteRare_Rainbow_Etched"
+      },
+      {
+        "cardId": "sv10.5b-172",
+        "name": "Zekrom ex",
+        "variant": "holo",
+        "tcglVariantId": "Zekromex_zsv10-5_172_std_BlackWhiteRare_Rainbow_Etched"
+      }
+    ],
+    "cosmos-placement": [
+      {
+        "cardId": "svp-9",
+        "name": "Spidops",
+        "variant": "holo",
+        "tcglVariantId": "Spidops_svbsp_9_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-10",
+        "name": "Espathra",
+        "variant": "holo",
+        "tcglVariantId": "Espathra_svbsp_10_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-11",
+        "name": "Arcanine",
+        "variant": "holo",
+        "tcglVariantId": "Arcanine_svbsp_11_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-12",
+        "name": "Dondozo",
+        "variant": "holo",
+        "tcglVariantId": "Dondozo_svbsp_12_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-23",
+        "name": "Smoliv",
+        "variant": "holo",
+        "tcglVariantId": "Smoliv_svbsp_23_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-24",
+        "name": "Growlithe",
+        "variant": "holo",
+        "tcglVariantId": "Growlithe_svbsp_24_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-25",
+        "name": "Tinkatink",
+        "variant": "holo",
+        "tcglVariantId": "Tinkatink_svbsp_25_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-26",
+        "name": "Varoom",
+        "variant": "holo",
+        "tcglVariantId": "Varoom_svbsp_26_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-40",
+        "name": "Pawmi",
+        "variant": "holo",
+        "tcglVariantId": "Pawmi_svbsp_40_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-41",
+        "name": "Paldean Wooper",
+        "variant": "holo",
+        "tcglVariantId": "PaldaenWooper_svbsp_41_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-42",
+        "name": "Houndstone",
+        "variant": "holo",
+        "tcglVariantId": "Houndstone_svbsp_42_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-43",
+        "name": "Eevee",
+        "variant": "holo",
+        "tcglVariantId": "Eevee_svbsp_43_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-46",
+        "name": "Bulbasaur",
+        "variant": "holo",
+        "tcglVariantId": "Bulbasaur_svbsp_46_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-47",
+        "name": "Charmander",
+        "variant": "holo",
+        "tcglVariantId": "Charmander_svbsp_47_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-48",
+        "name": "Squirtle",
+        "variant": "holo",
+        "tcglVariantId": "Squirtle_svbsp_48_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-61",
+        "name": "Pineco",
+        "variant": "holo",
+        "tcglVariantId": "Pineco_svbsp_61_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-62",
+        "name": "Sinistea",
+        "variant": "holo",
+        "tcglVariantId": "Sinistea_svbsp_62_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-63",
+        "name": "Cetitan",
+        "variant": "holo",
+        "tcglVariantId": "Cetitan_svbsp_63_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-64",
+        "name": "Arctibax",
+        "variant": "holo",
+        "tcglVariantId": "Arctibax_svbsp_64_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-93",
+        "name": "Carvanha",
+        "variant": "holo",
+        "tcglVariantId": "Carvanha_svbsp_93_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-94",
+        "name": "Bellibolt",
+        "variant": "holo",
+        "tcglVariantId": "Bellibolt_svbsp_94_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-95",
+        "name": "Cleffa",
+        "variant": "holo",
+        "tcglVariantId": "Cleffa_svbsp_95_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-96",
+        "name": "Cyclizar",
+        "variant": "holo",
+        "tcglVariantId": "Cyclizar_svbsp_96_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-99",
+        "name": "Shroodle",
+        "variant": "holo",
+        "tcglVariantId": "Shroodle_svbsp_99_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-119",
+        "name": "Toxel",
+        "variant": "holo",
+        "tcglVariantId": "Toxel_svbsp_119_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-120",
+        "name": "Pupitar",
+        "variant": "holo",
+        "tcglVariantId": "Pupitar_svbsp_120_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-121",
+        "name": "Revavroom",
+        "variant": "holo",
+        "tcglVariantId": "Revavroom_svbsp_121_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-122",
+        "name": "Snorlax",
+        "variant": "holo",
+        "tcglVariantId": "Snorlax_svbsp_122_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-137",
+        "name": "Horsea",
+        "variant": "holo",
+        "tcglVariantId": "Horsea_svbsp_137_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-138",
+        "name": "Porygon2",
+        "variant": "holo",
+        "tcglVariantId": "Porygon2_svbsp_138_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-139",
+        "name": "Latias",
+        "variant": "holo",
+        "tcglVariantId": "Latias_svbsp_139_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-140",
+        "name": "Tinkaton",
+        "variant": "holo",
+        "tcglVariantId": "Tinkaton_svbsp_140_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-149",
+        "name": "Pecharunt",
+        "variant": "holo",
+        "tcglVariantId": "Pecharunt_svbsp_149_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-155",
+        "name": "Wooper",
+        "variant": "holo",
+        "tcglVariantId": "Wooper_svbsp_155_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-156",
+        "name": "Quagsire",
+        "variant": "holo",
+        "tcglVariantId": "Quagsire_svbsp_156_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-157",
+        "name": "Zapdos",
+        "variant": "holo",
+        "tcglVariantId": "Zapdos_svbsp_157_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-158",
+        "name": "Pachirisu",
+        "variant": "holo",
+        "tcglVariantId": "Pachirisu_svbsp_158_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-167",
+        "name": "Flareon",
+        "variant": "holo",
+        "tcglVariantId": "Flareon_svbsp_167_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-168",
+        "name": "Vaporeon",
+        "variant": "holo",
+        "tcglVariantId": "Vaporeon_svbsp_168_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-169",
+        "name": "Jolteon",
+        "variant": "holo",
+        "tcglVariantId": "Jolteon_svbsp_169_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-170",
+        "name": "Leafeon",
+        "variant": "holo",
+        "tcglVariantId": "Leafeon_svbsp_170_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-171",
+        "name": "Glaceon",
+        "variant": "holo",
+        "tcglVariantId": "Glaceon_svbsp_171_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-172",
+        "name": "Sylveon",
+        "variant": "holo",
+        "tcglVariantId": "Sylveon_svbsp_172_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-185",
+        "name": "Yanma",
+        "variant": "holo",
+        "tcglVariantId": "Yanma_svbsp_185_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-186",
+        "name": "Scraggy",
+        "variant": "holo",
+        "tcglVariantId": "Scraggy_svbsp_186_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-187",
+        "name": "Yanmega",
+        "variant": "holo",
+        "tcglVariantId": "Yanmega_svbsp_187_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-188",
+        "name": "Scrafty",
+        "variant": "holo",
+        "tcglVariantId": "Scrafty_svbsp_188_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-199",
+        "name": "Zarude",
+        "variant": "holo",
+        "tcglVariantId": "Zarude_svbsp_199_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-200",
+        "name": "Eevee",
+        "variant": "holo",
+        "tcglVariantId": "Eevee_svbsp_200_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-201",
+        "name": "Zebstrika",
+        "variant": "holo",
+        "tcglVariantId": "Zebstrika_svbsp_201_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svp-202",
+        "name": "Kangaskhan",
+        "variant": "holo",
+        "tcglVariantId": "Kangaskhan_svbsp_202_std_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-17",
+        "name": "Rotom",
+        "variant": "holo",
+        "tcglVariantId": "Rotom_sv1_70_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-19",
+        "name": "Armarouge",
+        "variant": "holo",
+        "tcglVariantId": "Armarouge_sv1_41_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-20",
+        "name": "Arboliva",
+        "variant": "holo",
+        "tcglVariantId": "Arboliva_sv1_23_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-21",
+        "name": "Dondozo",
+        "variant": "holo",
+        "tcglVariantId": "Dondozo_sv1_61_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-22",
+        "name": "Pawmot",
+        "variant": "holo",
+        "tcglVariantId": "Pawmot_sv1_76_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-27",
+        "name": "Mankey",
+        "variant": "holo",
+        "tcglVariantId": "Mankey_sv2_106_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-28",
+        "name": "Primeape",
+        "variant": "holo",
+        "tcglVariantId": "Primeape_sv2_107_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-33",
+        "name": "Lechonk",
+        "variant": "holo",
+        "tcglVariantId": "Lechonk_sv1_154_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-37",
+        "name": "Electabuzz",
+        "variant": "holo",
+        "tcglVariantId": "Electabuzz_sv3-5_125_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-38",
+        "name": "Abra",
+        "variant": "holo",
+        "tcglVariantId": "Abra_sv3-5_63_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-39",
+        "name": "Kadabra",
+        "variant": "holo",
+        "tcglVariantId": "Kadabra_sv3-5_64_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-42",
+        "name": "Meowscarada",
+        "variant": "holo",
+        "tcglVariantId": "Meowscarada_sv1_15_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-43",
+        "name": "Skeledirge",
+        "variant": "holo",
+        "tcglVariantId": "Skeledirge_sv1_38_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-44",
+        "name": "Quaquaval",
+        "variant": "holo",
+        "tcglVariantId": "Quaquaval_sv1_54_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-45",
+        "name": "Iron Moth",
+        "variant": "holo",
+        "tcglVariantId": "IronMoth_sv4_28_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-46",
+        "name": "Brute Bonnet",
+        "variant": "holo",
+        "tcglVariantId": "BruteBonnet_sv4_123_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-47",
+        "name": "Ancient Booster Energy Capsule",
+        "variant": "holo",
+        "tcglVariantId": "AncientBoosterEnergyCapsule_sv4_159_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-48",
+        "name": "Future Booster Energy Capsule",
+        "variant": "holo",
+        "tcglVariantId": "FutureBoosterEnergyCapsule_sv4_164_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-49",
+        "name": "Iron Jugulis",
+        "variant": "holo",
+        "tcglVariantId": "IronJugulis_sv4_158_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-50",
+        "name": "Tinkaton",
+        "variant": "holo",
+        "tcglVariantId": "Tinkaton_sv2_105_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-51",
+        "name": "Glimmora",
+        "variant": "holo",
+        "tcglVariantId": "Glimmora_sv2_126_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-52",
+        "name": "Ceruledge",
+        "variant": "holo",
+        "tcglVariantId": "Ceruledge_sv2_98_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-53",
+        "name": "Hydreigon",
+        "variant": "holo",
+        "tcglVariantId": "Hydreigon_sv2_140_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-55",
+        "name": "Maschiff",
+        "variant": "holo",
+        "tcglVariantId": "Maschiff_sv2_142_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-56",
+        "name": "Pawmo",
+        "variant": "holo",
+        "tcglVariantId": "Pawmo_sv2_75_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-57",
+        "name": "Pawmi",
+        "variant": "holo",
+        "tcglVariantId": "Pawmi_sv2_74_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-58",
+        "name": "Tandemaus",
+        "variant": "holo",
+        "tcglVariantId": "Tandemaus_sv2_167_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-59",
+        "name": "Tyranitar",
+        "variant": "holo",
+        "tcglVariantId": "Tyranitar_sv2_135_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-60",
+        "name": "Pupitar",
+        "variant": "holo",
+        "tcglVariantId": "Pupitar_sv2_111_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-61",
+        "name": "Larvitar",
+        "variant": "holo",
+        "tcglVariantId": "Larvitar_sv2_110_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-62",
+        "name": "Darkrai",
+        "variant": "holo",
+        "tcglVariantId": "Darkrai_sv3_136_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-63",
+        "name": "Spiritomb",
+        "variant": "holo",
+        "tcglVariantId": "Spiritomb_sv1_129_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-64",
+        "name": "Sableye",
+        "variant": "holo",
+        "tcglVariantId": "Sableye_sv2_136_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-65",
+        "name": "Slaking",
+        "variant": "holo",
+        "tcglVariantId": "Slaking_sv2_162_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-66",
+        "name": "Vigoroth",
+        "variant": "holo",
+        "tcglVariantId": "Vigoroth_sv2_161_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-67",
+        "name": "Slakoth",
+        "variant": "holo",
+        "tcglVariantId": "Slakoth_sv2_160_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-68",
+        "name": "Scovillain",
+        "variant": "holo",
+        "tcglVariantId": "Scovillain_sv3_25_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-69",
+        "name": "Palafin",
+        "variant": "holo",
+        "tcglVariantId": "Palafin_sv3_62_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-70",
+        "name": "Togekiss",
+        "variant": "holo",
+        "tcglVariantId": "Togekiss_sv3_85_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-71",
+        "name": "Baxcalibur",
+        "variant": "holo",
+        "tcglVariantId": "Baxcalibur_sv2_60_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-74",
+        "name": "Garganacl",
+        "variant": "holo",
+        "tcglVariantId": "Garganacl_sv2_123_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-75",
+        "name": "Iono",
+        "variant": "holo",
+        "tcglVariantId": "Iono_sv2_185_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-76",
+        "name": "Charcadet",
+        "variant": "holo",
+        "tcglVariantId": "Charcadet_sv4_26_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-77",
+        "name": "Chien-Pao",
+        "variant": "holo",
+        "tcglVariantId": "ChienPao_sv4_57_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-78",
+        "name": "Scream Tail",
+        "variant": "holo",
+        "tcglVariantId": "ScreamTail_sv5_77_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-79",
+        "name": "Iron Valiant",
+        "variant": "holo",
+        "tcglVariantId": "IronValiant_sv5_79_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-80",
+        "name": "Finizen",
+        "variant": "holo",
+        "tcglVariantId": "Finizen_sv6_59_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-81",
+        "name": "Palafin",
+        "variant": "holo",
+        "tcglVariantId": "Palafin_sv6_60_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-82",
+        "name": "Steelix",
+        "variant": "holo",
+        "tcglVariantId": "Steelix_sv4_125_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-83",
+        "name": "Lokix",
+        "variant": "holo",
+        "tcglVariantId": "Lokix_sv4_122_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-84",
+        "name": "Porygon-Z",
+        "variant": "holo",
+        "tcglVariantId": "PorygonZ_sv4_144_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-86",
+        "name": "Kingdra",
+        "variant": "holo",
+        "tcglVariantId": "Kingdra_sv4_32_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-87",
+        "name": "Bounsweet",
+        "variant": "holo",
+        "tcglVariantId": "Bounsweet_sv3_16_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-88",
+        "name": "Steenee",
+        "variant": "holo",
+        "tcglVariantId": "Steenee_sv3_17_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-89",
+        "name": "Larvitar",
+        "variant": "holo",
+        "tcglVariantId": "Larvitar_sv3_105_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-90",
+        "name": "Pupitar",
+        "variant": "holo",
+        "tcglVariantId": "Pupitar_sv3_106_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-91",
+        "name": "Honedge",
+        "variant": "holo",
+        "tcglVariantId": "Honedge_sv4_131_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-92",
+        "name": "Doublade",
+        "variant": "holo",
+        "tcglVariantId": "Doublade_sv4_132_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-93",
+        "name": "Rowlet",
+        "variant": "holo",
+        "tcglVariantId": "Rowlet_sv3_13_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-94",
+        "name": "Dartrix",
+        "variant": "holo",
+        "tcglVariantId": "Dartrix_sv3_14_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-95",
+        "name": "Rockruff",
+        "variant": "holo",
+        "tcglVariantId": "Rockruff_sv2_116_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-99",
+        "name": "Iron Bundle",
+        "variant": "holo",
+        "tcglVariantId": "IronBundle_sv6_62_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-100",
+        "name": "Cetoddle",
+        "variant": "holo",
+        "tcglVariantId": "Cetoddle_sv2_53_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-101",
+        "name": "Frigibax",
+        "variant": "holo",
+        "tcglVariantId": "Frigibax_sv2_58_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-102",
+        "name": "Vanilluxe",
+        "variant": "holo",
+        "tcglVariantId": "Vanilluxe_sv4_45_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-103",
+        "name": "Snorunt",
+        "variant": "holo",
+        "tcglVariantId": "Snorunt_sv4_37_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-104",
+        "name": "Espathra",
+        "variant": "holo",
+        "tcglVariantId": "Espathra_sv4_81_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-105",
+        "name": "Pawniard",
+        "variant": "holo",
+        "tcglVariantId": "Pawniard_sv3_148_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-106",
+        "name": "Bisharp",
+        "variant": "holo",
+        "tcglVariantId": "Bisharp_sv3_149_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-107",
+        "name": "Horsea",
+        "variant": "holo",
+        "tcglVariantId": "Horsea_sv6-5_10_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-108",
+        "name": "Seadra",
+        "variant": "holo",
+        "tcglVariantId": "Seadra_sv6-5_11_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-109",
+        "name": "Froakie",
+        "variant": "holo",
+        "tcglVariantId": "Froakie_sv3_56_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-110",
+        "name": "Frogadier",
+        "variant": "holo",
+        "tcglVariantId": "Frogadier_sv3_57_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-120",
+        "name": "Iron Thorns",
+        "variant": "holo",
+        "tcglVariantId": "IronThorns_sv5_62_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-121",
+        "name": "Roaring Moon",
+        "variant": "holo",
+        "tcglVariantId": "RoaringMoon_sv5_109_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-122",
+        "name": "Koraidon",
+        "variant": "holo",
+        "tcglVariantId": "Koraidon_sv5_119_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-123",
+        "name": "Miraidon",
+        "variant": "holo",
+        "tcglVariantId": "Miraidon_sv5_121_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-124",
+        "name": "Charmander",
+        "variant": "holo",
+        "tcglVariantId": "Charmander_sv3-5_4_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-125",
+        "name": "Charmeleon",
+        "variant": "holo",
+        "tcglVariantId": "Charmeleon_sv3-5_5_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-127",
+        "name": "Latios",
+        "variant": "holo",
+        "tcglVariantId": "Latios_sv4_73_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-128",
+        "name": "Zekrom",
+        "variant": "holo",
+        "tcglVariantId": "Zekrom_sv4_66_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-129",
+        "name": "Palkia",
+        "variant": "holo",
+        "tcglVariantId": "Palkia_sv4_40_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-130",
+        "name": "Greavard",
+        "variant": "holo",
+        "tcglVariantId": "Greavard_sv3_100_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-140",
+        "name": "Sinistcha",
+        "variant": "holo",
+        "tcglVariantId": "Sinistcha_sv6_22_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-141",
+        "name": "Hisuian Arcanine",
+        "variant": "holo",
+        "tcglVariantId": "HisuianArcanine_sv6_100_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-142",
+        "name": "Chandelure",
+        "variant": "holo",
+        "tcglVariantId": "Chandelure_sv6_38_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-143",
+        "name": "Alakazam",
+        "variant": "holo",
+        "tcglVariantId": "Alakazam_sv6_82_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-144",
+        "name": "Dipplin",
+        "variant": "holo",
+        "tcglVariantId": "Dipplin_sv6_18_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-145",
+        "name": "Teal Mask Ogerpon",
+        "variant": "holo",
+        "tcglVariantId": "TealMaskOgerpon_sv6_24_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-146",
+        "name": "Pikachu",
+        "variant": "holo",
+        "tcglVariantId": "Pikachu_sv5_51_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-147",
+        "name": "Ogre's Mask",
+        "variant": "holo",
+        "tcglVariantId": "OgresMask_sv6_159_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-148",
+        "name": "Noctowl",
+        "variant": "holo",
+        "tcglVariantId": "Noctowl_sv5_127_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-149",
+        "name": "Hoothoot",
+        "variant": "holo",
+        "tcglVariantId": "Hoothoot_sv5_126_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-150",
+        "name": "Archaludon",
+        "variant": "holo",
+        "tcglVariantId": "Archaludon_sv7_107_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-152",
+        "name": "Eevee",
+        "variant": "holo",
+        "tcglVariantId": "Eevee_sv8-5_74_alt_Common_Cosmos_Reverse"
+      },
+      {
+        "cardId": "svalt-153",
+        "name": "Okidogi",
+        "variant": "holo",
+        "tcglVariantId": "Okidogi_sv6_111_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-154",
+        "name": "Fezandipiti",
+        "variant": "holo",
+        "tcglVariantId": "Fezandipiti_sv6_96_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-155",
+        "name": "Munkidori",
+        "variant": "holo",
+        "tcglVariantId": "Munkidori_sv6_95_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-167",
+        "name": "Melmetal",
+        "variant": "holo",
+        "tcglVariantId": "Melmetal_sv7_104_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-168",
+        "name": "Rhyperior",
+        "variant": "holo",
+        "tcglVariantId": "Rhyperior_sv7_76_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-169",
+        "name": "Klinklang",
+        "variant": "holo",
+        "tcglVariantId": "Klinklang_sv7_101_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-170",
+        "name": "Charmander",
+        "variant": "holo",
+        "tcglVariantId": "Charmander_sv4-5_7_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-171",
+        "name": "Charmeleon",
+        "variant": "holo",
+        "tcglVariantId": "Charmeleon_sv4-5_8_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-172",
+        "name": "Hop's Wooloo",
+        "variant": "holo",
+        "tcglVariantId": "HopsWooloo_sv9_135_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-173",
+        "name": "Hop's Dubwool",
+        "variant": "holo",
+        "tcglVariantId": "HopsDubwool_sv9_136_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-174",
+        "name": "Iono's Tadbulb",
+        "variant": "holo",
+        "tcglVariantId": "IonosTadbulb_sv9_52_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-175",
+        "name": "Lillie's Pearl",
+        "variant": "holo",
+        "tcglVariantId": "LilliesPearl_sv9_151_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-176",
+        "name": "Cynthia's Gible",
+        "variant": "holo",
+        "tcglVariantId": "CynthiasGible_sv10_102_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-177",
+        "name": "Cynthia's Gabite",
+        "variant": "holo",
+        "tcglVariantId": "CynthiasGabite_sv10_103_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-178",
+        "name": "Ethan's Typhlosion",
+        "variant": "holo",
+        "tcglVariantId": "EthansTyphlosion_sv10_34_alt_RareHolo_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-179",
+        "name": "Misty's Gyarados",
+        "variant": "holo",
+        "tcglVariantId": "MistysGyarados_sv10_49_alt_RareHolo_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-180",
+        "name": "Team Rocket's Mimikyu",
+        "variant": "holo",
+        "tcglVariantId": "TeamRocketsMimikyu_sv10_87_alt_RareHolo_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-181",
+        "name": "Team Rocket's Tyranitar",
+        "variant": "holo",
+        "tcglVariantId": "TeamRocketsTyranitar_sv10_96_alt_RareHolo_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-183",
+        "name": "Team Rocket's Meowth",
+        "variant": "holo",
+        "tcglVariantId": "TeamRocketsMeowth_sv10_149_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-184",
+        "name": "Team Rocket's Giovanni",
+        "variant": "holo",
+        "tcglVariantId": "TeamRocketsGiovanni_sv10_174_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-185",
+        "name": "Gastrodon",
+        "variant": "holo",
+        "tcglVariantId": "Gastrodon_sv8_107_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-186",
+        "name": "Rabsca",
+        "variant": "holo",
+        "tcglVariantId": "Rabsca_sv8_14_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-187",
+        "name": "Skeledirge",
+        "variant": "holo",
+        "tcglVariantId": "Skeledirge_sv8_31_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-188",
+        "name": "Togekiss",
+        "variant": "holo",
+        "tcglVariantId": "Togekiss_sv8_72_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-191",
+        "name": "Tapu Lele",
+        "variant": "holo",
+        "tcglVariantId": "TapuLele_sv8_92_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-192",
+        "name": "Articuno",
+        "variant": "holo",
+        "tcglVariantId": "Articuno_sv9_32_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-194",
+        "name": "Cryogonal",
+        "variant": "holo",
+        "tcglVariantId": "Cryogonal_sv8_47_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-197",
+        "name": "Pikachu",
+        "variant": "holo",
+        "tcglVariantId": "Pikachu_sv3-5_25_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-198",
+        "name": "Eevee",
+        "variant": "holo",
+        "tcglVariantId": "Eevee_sv3-5_133_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-199",
+        "name": "Delibird",
+        "variant": "holo",
+        "tcglVariantId": "Delibird_sv2_46_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-210",
+        "name": "Tyranitar",
+        "variant": "holo",
+        "tcglVariantId": "Tyranitar_sv2_135_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-211",
+        "name": "Lucario",
+        "variant": "holo",
+        "tcglVariantId": "Lucario_sv1_114_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-212",
+        "name": "Meltan",
+        "variant": "holo",
+        "tcglVariantId": "Meltan_sv7_102_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-215",
+        "name": "Zekrom",
+        "variant": "holo",
+        "tcglVariantId": "Zekrom_sv4_66_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-216",
+        "name": "Duraludon",
+        "variant": "holo",
+        "tcglVariantId": "Duraludon_sv8_129_alt_Common_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-219",
+        "name": "Reshiram",
+        "variant": "holo",
+        "tcglVariantId": "Reshiram_sv7_22_alt_Uncommon_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-229",
+        "name": "Hawlucha",
+        "variant": "holo",
+        "tcglVariantId": "Hawlucha_svbsp_7_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-235",
+        "name": "Victini",
+        "variant": "holo",
+        "tcglVariantId": "Victini_zsv10-5_12_alt2_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "svalt-236",
+        "name": "Zoroark",
+        "variant": "holo",
+        "tcglVariantId": "Zoroark_rsv10-5_62_alt_Rare_Cosmos_Holo"
+      },
+      {
+        "cardId": "sve-1-ph",
+        "name": "Basic {G} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicGEnergy_sve_1_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-2-ph",
+        "name": "Basic {R} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicREnergy_sve_2_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-3-ph",
+        "name": "Basic {W} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicWEnergy_sve_3_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-4-ph",
+        "name": "Basic {L} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicLEnergy_sve_4_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-5-ph",
+        "name": "Basic {P} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicPEnergy_sve_5_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-6-ph",
+        "name": "Basic {F} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicFEnergy_sve_6_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-7-ph",
+        "name": "Basic {D} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicDEnergy_sve_7_ph_CommonBasicEnergy_Cosmos_Reverse"
+      },
+      {
+        "cardId": "sve-8-ph",
+        "name": "Basic {M} Energy",
+        "variant": "reverse",
+        "tcglVariantId": "BasicMEnergy_sve_8_ph_CommonBasicEnergy_Cosmos_Reverse"
+      }
+    ]
+  },
+  "visualReview": "Source-family sheets inspected. Sampled live render review is separate; individual high-zoom/angled-photo validation remains pending for unsampled cards.",
+  "packOpening": "Catalog/gallery additions only. No invented pack odds or non-TCGL wrapper art; these added products remain browse-only."
+}

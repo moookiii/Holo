@@ -1,0 +1,184 @@
+{
+  "cardId": "svalt-169",
+  "variant": "holo",
+  "tcglCardId": "svalt_169",
+  "tcglVariantId": "Klinklang_sv7_101_alt_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_101_alt.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_101_alt.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d27932bcbbcfc48259bbab4f8ea159908113f4ee0abeaf4ad1b2de117ac5d647"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_101_alt.foil.png",
+      "file": "research/tcgl/svalt-set/raw/sv7_en_101_alt.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "5465013eafec1f0a94fe5ba4158a6f6685affce104ee38a4ebfae33d7d7bd4df"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/svalt/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/svalt/page-05.jpg"
+    ],
+    "holoFrontSha256": "d27932bcbbcfc48259bbab4f8ea159908113f4ee0abeaf4ad1b2de117ac5d647"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "169-holo-foil.png": "fb56a7998f99ee4628b8592d3ad3604f9ae3509e26df88eb8a7007c8e53a9924",
+    "169-holo-protection.png": "db31df716849f2b9123f2ab558daa370cba177a8ee511be13dabb968e0c6d606",
+    "169-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "d27932bcbbcfc48259bbab4f8ea159908113f4ee0abeaf4ad1b2de117ac5d647",
+  "mapDimensions": {
+    "169-holo-foil.png": [
+      367,
+      512
+    ],
+    "169-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "169-holo-motif.png": [
+      1200,
+      1650
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/svalt.en-US.json",
+  "exportEntry": {
+    "name": "Klinklang",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Tonji Matsuno",
+      "list": [
+        "Tonji Matsuno"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SCR_EN",
+    "collector_number": {
+      "full": "101/142",
+      "numerator": "101",
+      "denominator": "142",
+      "numeric": 101
+    },
+    "rarity": {
+      "designation": "RARE",
+      "icon": "SOLID_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Klang",
+    "hp": 140,
+    "types": [
+      "METAL"
+    ],
+    "resistance": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "From its spikes, it launches powerful blasts of electricity. Its red core contains an enormous amount of energy.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Emergency Rotation",
+        "text": "Once during your turn, if this Pok\u00e9mon is in your hand and your opponent has any Stage 2 Pok\u00e9mon in play, you may put this Pok\u00e9mon onto your Bench."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Hyper Ray",
+        "text": "Discard all Energy from this Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 130
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "svalt_169",
+        "longFormID": "Klinklang_sv7_101_alt_Rare_Cosmos_Holo",
+        "archetypeID": "0xd480e9a0",
+        "reldate": "2025-03-27 17:00:00+00:00",
+        "key": "svalt"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_101_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/svalt/sv7_en_101_alt.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_101_alt.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/svalt/sv7_en_101_alt.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/svalt/sv7_en_101_alt.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "169.png",
+  "reusedProfile": "pokemon-base-set-2-cosmos",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth",
+  "cosmosPlacement": {
+    "status": "pending",
+    "reason": "TCGL foil asset supplies coverage, not reviewed physical-copy dot placement. Empty registered motif; no random dots."
+  }
+}

@@ -1,0 +1,231 @@
+{
+  "cardId": "sv04.5-223",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_223",
+  "tcglVariantId": "Squawkabillyex_sv4-5_223_std_ShinyUltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_223_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_223_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a952c4943fb5ba64bafde2c341f368ad7b211c7b515f4cfbb2cec8cbbe09f1b5"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_223_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_223_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c1e5e45b3f211f45266af26fe4041ffcf2afdde562e99e06c5525fa3f79bdf80"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_223_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_223_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2ce765a932c223d307925a9c0bff328bbd4511e0f4b803bfddaa7b0bde46c540"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "a952c4943fb5ba64bafde2c341f368ad7b211c7b515f4cfbb2cec8cbbe09f1b5"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 213,
+      "texturedInteriorFraction": 0.48717948717948717
+    },
+    {
+      "areaAtFoilResolution": 363,
+      "texturedInteriorFraction": 0.4931506849315068
+    },
+    {
+      "areaAtFoilResolution": 184,
+      "texturedInteriorFraction": 0.5172413793103449
+    },
+    {
+      "areaAtFoilResolution": 171,
+      "texturedInteriorFraction": 0.46153846153846156
+    },
+    {
+      "areaAtFoilResolution": 158,
+      "texturedInteriorFraction": 0.5531914893617021
+    },
+    {
+      "areaAtFoilResolution": 168,
+      "texturedInteriorFraction": 0.6808510638297872
+    },
+    {
+      "areaAtFoilResolution": 210,
+      "texturedInteriorFraction": 0.4745762711864407
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "223-holo-foil.png": "9de6670df1801b530ced6bd13c59eb9962290191783840c765ff2b96cfb3eb58",
+    "223-holo-protection.png": "d6e8216f783969de301a67eea194aa3a280a54247c29084da52d2e863c9211c9",
+    "223-holo-normal.png": "6e97d3b7c5cf75ad4586429c047613ecbfcd60b6e33e73d7d16f6b86fc8541b3",
+    "223-holo-roughness.png": "ade2a55db23038b1155879b96af7ea54f16e931f11a31a087bb432f2048181a5"
+  },
+  "holoFrontSha256": "a952c4943fb5ba64bafde2c341f368ad7b211c7b515f4cfbb2cec8cbbe09f1b5",
+  "mapDimensions": {
+    "223-holo-foil.png": [
+      367,
+      512
+    ],
+    "223-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "223-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "223-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Squawkabilly ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Mochizuki",
+      "list": [
+        "PLANETA Mochizuki"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "223/091",
+      "numerator": "223",
+      "denominator": "091",
+      "numeric": 223
+    },
+    "rarity": {
+      "designation": "SHINY_ULTRA_RARE",
+      "icon": "TWO_SHINY_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER",
+      "SHINY"
+    ],
+    "stage": "BASIC",
+    "hp": 160,
+    "types": [
+      "COLORLESS"
+    ],
+    "resistance": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "-",
+      "amount": 30
+    },
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Squawk and Seize",
+        "text": "Once during your first turn, you may discard your hand and draw 6 cards. You can't use more than 1 Squawk and Seize Ability during your turn."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Motivate",
+        "text": "Attach up to 2 Basic Energy cards from your discard pile to 1 of your Benched Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 20
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_223",
+        "longFormID": "Squawkabillyex_sv4-5_223_std_ShinyUltraRare_SunPillar_Etched",
+        "archetypeID": "0x0c940ecb",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_223_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_223_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_223_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_223_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_223_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_223_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_223_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "223.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

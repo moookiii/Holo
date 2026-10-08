@@ -1,0 +1,159 @@
+{
+  "cardId": "sv06.5-047",
+  "variant": "reverse",
+  "tcglCardId": "sv6-5_47_ph",
+  "tcglVariantId": "Kyurem_sv6-5_47_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_047_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_047_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d4b2141e6c5103c16acc3c23aaa384a5043beb8acda9dda7423b1f416c538aa0"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_047_ph.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_047_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "ada3b62630149d0cc362f960d84ff9428b485c0d8595a21305071c06420b535a"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "d4b2141e6c5103c16acc3c23aaa384a5043beb8acda9dda7423b1f416c538aa0"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "047-reverse-foil.png": "f8f5a1fa503edf478e4345b7a93348d16186ab5c84846fe5d5deed3052cc35ee",
+    "047-reverse-protection.png": "f7f17a04489137c92a4fd55352b6de10204cce28f46b24df02da7e8457acf9e1"
+  },
+  "holoFrontSha256": "d4b2141e6c5103c16acc3c23aaa384a5043beb8acda9dda7423b1f416c538aa0",
+  "mapDimensions": {
+    "047-reverse-foil.png": [
+      367,
+      512
+    ],
+    "047-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Kyurem",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "FLAT_SILVER",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Shiburingaru",
+      "list": [
+        "Shiburingaru"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "047/064",
+      "numerator": "047",
+      "denominator": "064",
+      "numeric": 47
+    },
+    "rarity": {
+      "designation": "UNCOMMON",
+      "icon": "SOLID_DIAMOND"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "DRAGON"
+    ],
+    "retreat": 2,
+    "flavor_text": "Dwelling within it is a power even greater than that of Reshiram or Zekrom, but the extreme cold keeps that power bound.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Plasma Bane",
+        "text": "If your opponent has any cards in their discard pile that have \"Colress\" in the name, this Pok\u00e9mon can use the Trifrost attack for {C}."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Trifrost",
+        "text": "Discard all Energy from this Pok\u00e9mon. This attack does 110 damage to 3 of your opponent's Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "WATER",
+          "WATER",
+          "METAL",
+          "METAL",
+          "COLORLESS"
+        ]
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_47_ph",
+        "longFormID": "Kyurem_sv6-5_47_ph_Uncommon_FlatSilver_Reverse",
+        "archetypeID": "0xc0c42f33",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_047_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_047_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_047_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_047_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_047_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "047-reverse.png",
+  "reusedProfile": "sv_tcgl_standard_reverse",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

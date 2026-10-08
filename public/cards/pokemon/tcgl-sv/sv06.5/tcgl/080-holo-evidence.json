@@ -1,0 +1,257 @@
+{
+  "cardId": "sv06.5-080",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_80",
+  "tcglVariantId": "Kingdraex_sv6-5_80_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_080_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_080_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9387e0a3cfbef1ef4767b6ebe0fb95028373fdc34a3e9f4011758e5648be8fdd"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_080_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_080_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "6e1bc6dd32c21b152b8ca48fa532df9fb40ef69b62a065f7f676c5f4ee60ebfb"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_080_std.etch.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_080_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b8cb89400efdcc713c5cd33f571eed8e8c83ebd87e35bd85ee6e28a30729cf5e"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "9387e0a3cfbef1ef4767b6ebe0fb95028373fdc34a3e9f4011758e5648be8fdd"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08888888888888889,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 268,
+      "texturedInteriorFraction": 0.4015151515151515
+    },
+    {
+      "areaAtFoilResolution": 316,
+      "texturedInteriorFraction": 0.4418604651162791
+    },
+    {
+      "areaAtFoilResolution": 253,
+      "texturedInteriorFraction": 0.5620437956204379
+    },
+    {
+      "areaAtFoilResolution": 170,
+      "texturedInteriorFraction": 0.5428571428571428
+    },
+    {
+      "areaAtFoilResolution": 334,
+      "texturedInteriorFraction": 0.46296296296296297
+    },
+    {
+      "areaAtFoilResolution": 163,
+      "texturedInteriorFraction": 0.45652173913043476
+    },
+    {
+      "areaAtFoilResolution": 170,
+      "texturedInteriorFraction": 0.625
+    },
+    {
+      "areaAtFoilResolution": 274,
+      "texturedInteriorFraction": 0.6754385964912281
+    },
+    {
+      "areaAtFoilResolution": 174,
+      "texturedInteriorFraction": 0.5211267605633803
+    },
+    {
+      "areaAtFoilResolution": 281,
+      "texturedInteriorFraction": 0.5092592592592593
+    },
+    {
+      "areaAtFoilResolution": 169,
+      "texturedInteriorFraction": 0.5416666666666666
+    },
+    {
+      "areaAtFoilResolution": 314,
+      "texturedInteriorFraction": 0.415929203539823
+    },
+    {
+      "areaAtFoilResolution": 331,
+      "texturedInteriorFraction": 0.42452830188679247
+    },
+    {
+      "areaAtFoilResolution": 159,
+      "texturedInteriorFraction": 0.7083333333333334
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "080-holo-foil.png": "8ff078c9e8a5a870463e2ae9f1f567374c86a38c6e752bdce90b96d6e462f8b6",
+    "080-holo-protection.png": "e9392a266633daa0a175930eff4379925cd8ca1550babf953655f29f59366a00",
+    "080-holo-normal.png": "0cd18dae3f2fb61ce1b0310dae8d4cb4251c2e143d15cffda58136f0c89eedcb",
+    "080-holo-roughness.png": "411eeecd3f60edcc08ce12c01265b29c921c281ee519f0fa8ffc2bda181a80f6"
+  },
+  "holoFrontSha256": "9387e0a3cfbef1ef4767b6ebe0fb95028373fdc34a3e9f4011758e5648be8fdd",
+  "mapDimensions": {
+    "080-holo-foil.png": [
+      367,
+      512
+    ],
+    "080-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "080-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "080-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Kingdra ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Igarashi",
+      "list": [
+        "PLANETA Igarashi"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "080/064",
+      "numerator": "080",
+      "denominator": "064",
+      "numeric": 80
+    },
+    "rarity": {
+      "designation": "ULTRA_RARE",
+      "icon": "TWO_SILVER_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Seadra",
+    "hp": 310,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "King's Order",
+        "text": "Put up to 3 {W} Pok\u00e9mon from your discard pile onto your Bench.",
+        "cost": [
+          "WATER"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Hydro Pump",
+        "text": "This attack does 50 more damage for each {W} Energy attached to this Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_80",
+        "longFormID": "Kingdraex_sv6-5_80_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0x7df4d171",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_080_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_080_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_080_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_080_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_080_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_080_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_080_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "080.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

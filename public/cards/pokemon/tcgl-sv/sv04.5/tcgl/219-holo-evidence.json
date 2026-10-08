@@ -1,0 +1,215 @@
+{
+  "cardId": "sv04.5-219",
+  "variant": "holo",
+  "tcglCardId": "sv4-5_219",
+  "tcglVariantId": "PaldeanClodsireex_sv4-5_219_std_ShinyUltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_219_std.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_219_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "81ae5a18d3d08768c7a76d51b8fb875e35c9fb87e53e717b5882c3b5b26e22a2"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_219_std.foil.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_219_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d1f39e8ca17ba47e0c6e6be49254718cefaf6df95dd11c69b21bc00d2a7ac24f"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_219_std.etch.png",
+      "file": "research/tcgl/sv04.5-set/raw/sv4-5_en_219_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "97749337ec6351bcac31d392ed137da020e0ea25b3a74ce7d18c845ee44f8ad4"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv04.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv04.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "81ae5a18d3d08768c7a76d51b8fb875e35c9fb87e53e717b5882c3b5b26e22a2"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 503,
+      "texturedInteriorFraction": 0.4883720930232558
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.43333333333333335
+    },
+    {
+      "areaAtFoilResolution": 271,
+      "texturedInteriorFraction": 0.6382978723404256
+    },
+    {
+      "areaAtFoilResolution": 200,
+      "texturedInteriorFraction": 0.53125
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "219-holo-foil.png": "a0570484c8d66daeb9cb1e3b30b66927e3340aed09efa34dd6f9d29b4addd5a6",
+    "219-holo-protection.png": "4d3b5cb3c7d433b1b85f8ac55f00949a0824030988109c9dd16e1dc4d1b0b60c",
+    "219-holo-normal.png": "59afe6640817b5101f3ae433d28826b86c2117d17e1220fb3e4f577ef36aacb2",
+    "219-holo-roughness.png": "4395e2f302d1ae5276bb44e385ee13f694a104d0b85d2ef1db0f49c4cb55616f"
+  },
+  "holoFrontSha256": "81ae5a18d3d08768c7a76d51b8fb875e35c9fb87e53e717b5882c3b5b26e22a2",
+  "mapDimensions": {
+    "219-holo-foil.png": [
+      367,
+      512
+    ],
+    "219-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "219-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "219-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv4-5.en-US.json",
+  "exportEntry": {
+    "name": "Paldean Clodsire ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. PLANETA Mochizuki",
+      "list": [
+        "PLANETA Mochizuki"
+      ]
+    },
+    "regulation_mark": "G",
+    "set_icon": "PAF_EN",
+    "collector_number": {
+      "full": "219/091",
+      "numerator": "219",
+      "denominator": "091",
+      "numeric": 219
+    },
+    "rarity": {
+      "designation": "SHINY_ULTRA_RARE",
+      "icon": "TWO_SHINY_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "tags": [
+      "EX_LOWER",
+      "SHINY"
+    ],
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Paldean Wooper",
+    "hp": 280,
+    "types": [
+      "DARKNESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Toxic Wetland",
+        "text": "Once during your turn, if a Stadium is in play, you may make your opponent's Active Pok\u00e9mon Poisoned."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Needle Bone",
+        "text": "Flip a coin. If tails, during your next turn, this Pok\u00e9mon can't attack.",
+        "cost": [
+          "DARKNESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 200
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv4-5_219",
+        "longFormID": "PaldeanClodsireex_sv4-5_219_std_ShinyUltraRare_SunPillar_Etched",
+        "archetypeID": "0x40ed7284",
+        "reldate": "2024-01-25 17:00:00+00:00",
+        "key": "sv4-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_219_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_219_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv4-5/sv4-5_en_219_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_219_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_219_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv4-5/sv4-5_en_219_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv4-5/sv4-5_en_219_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "219.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

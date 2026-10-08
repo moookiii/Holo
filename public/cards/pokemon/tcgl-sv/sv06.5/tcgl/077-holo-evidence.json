@@ -1,0 +1,160 @@
+{
+  "cardId": "sv06.5-077",
+  "variant": "holo",
+  "tcglCardId": "sv6-5_77",
+  "tcglVariantId": "Fraxure_sv6-5_77_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_077_std.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_077_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "dd8e2cfbfa046ed45d74caa4b98ff6fdac91c433daa891b7e2b61c2a65eab126"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_077_std.foil.png",
+      "file": "research/tcgl/sv06.5-set/raw/sv6-5_en_077_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "2d1b5c7df796999cb4ecb6be4155d02b321a50ac940609276698c9e8bee2c39f"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv06.5/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv06.5/page-04.jpg"
+    ],
+    "holoFrontSha256": "dd8e2cfbfa046ed45d74caa4b98ff6fdac91c433daa891b7e2b61c2a65eab126"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "077-holo-foil.png": "7cfffca87b217de19314da934c0bc54830ec3ade3cc8bf0e891de32fab00a5ea",
+    "077-holo-protection.png": "978ad720d9a44aeee21b4b952f64dcf0cf2d5a81155ffd2c3dc610d5435aaa36"
+  },
+  "holoFrontSha256": "dd8e2cfbfa046ed45d74caa4b98ff6fdac91c433daa891b7e2b61c2a65eab126",
+  "mapDimensions": {
+    "077-holo-foil.png": [
+      367,
+      512
+    ],
+    "077-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sv6-5.en-US.json",
+  "exportEntry": {
+    "name": "Fraxure",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. MINAMINAMI Take",
+      "list": [
+        "MINAMINAMI Take"
+      ]
+    },
+    "regulation_mark": "H",
+    "set_icon": "SFA_EN",
+    "collector_number": {
+      "full": "077/064",
+      "numerator": "077",
+      "denominator": "064",
+      "numeric": 77
+    },
+    "rarity": {
+      "designation": "ILLUSTRATION_RARE",
+      "icon": "GOLD_STAR"
+    },
+    "copyright": {
+      "text": "\u00a92024 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2024
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Axew",
+    "hp": 100,
+    "types": [
+      "DRAGON"
+    ],
+    "retreat": 2,
+    "flavor_text": "Fraxure uses its thick tusks to neatly cut prey into two portions\u2014one to eat now and one to save for later.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Unnerve",
+        "text": "Whenever your opponent plays an Item or Supporter card from their hand, prevent all effects of that card done to this Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Dragon Pulse",
+        "text": "Discard the top card of your deck.",
+        "cost": [
+          "FIGHTING",
+          "METAL"
+        ],
+        "damage": {
+          "amount": 80
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sv6-5_77",
+        "longFormID": "Fraxure_sv6-5_77_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0xc5fe20db",
+        "reldate": "2024-08-01 17:00:00+00:00",
+        "key": "sv6-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_077_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sv6-5/sv6-5_en_077_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_077_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sv6-5/sv6-5_en_077_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sv6-5/sv6-5_en_077_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "077.png",
+  "reusedProfile": "sv_tcgl_illustration_holo",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

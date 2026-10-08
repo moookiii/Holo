@@ -1,0 +1,118 @@
+{
+  "cardId": "sve-20-ph",
+  "variant": "reverse",
+  "tcglCardId": "sve_20_ph",
+  "tcglVariantId": "BasicLEnergy_sve_20_ph_CommonBasicEnergy_Tinsel_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_020_std.png",
+      "file": "research/tcgl/sve-set/raw/sve_en_020_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2467d87d818733391cf4b341c885112734cba3fe00ff4aab1a1816eb11634281"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_020_ph.foil.png",
+      "file": "research/tcgl/sve-set/raw/sve_en_020_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "497c6c31b9dff9e2781322fba89343a57f5823d5517c6307e995cb5802b6e18b"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "No etch source.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sve/page-01.jpg"
+    ],
+    "holoFrontSha256": "2467d87d818733391cf4b341c885112734cba3fe00ff4aab1a1816eb11634281"
+  },
+  "textured": false,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "20-ph-reverse-foil.png": "f016b4c45ad88669f7f5ae4dd3e980fa59585b6e6fff9b441d77bdcfe0f83879",
+    "20-ph-reverse-protection.png": "9d7c5577a27c5c0250409ee570963244fdf67753725dc306716d85a0cd465ed6"
+  },
+  "holoFrontSha256": "2467d87d818733391cf4b341c885112734cba3fe00ff4aab1a1816eb11634281",
+  "mapDimensions": {
+    "20-ph-reverse-foil.png": [
+      367,
+      512
+    ],
+    "20-ph-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/sve.en-US.json",
+  "exportEntry": {
+    "name": "Basic {L} Energy",
+    "card_type": "ENERGY",
+    "subtype": "BASIC",
+    "lang": "en-US",
+    "foil": {
+      "type": "TINSEL",
+      "mask": "REVERSE"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "set_icon": "SVE_EN",
+    "collector_number": {
+      "full": "020",
+      "numerator": "020",
+      "numeric": 20
+    },
+    "types": [
+      "LIGHTNING"
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "sve_20_ph",
+        "longFormID": "BasicLEnergy_sve_20_ph_CommonBasicEnergy_Tinsel_Reverse",
+        "archetypeID": "0xf78ead40",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "sve"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sve/sve_en_020_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/sve/sve_en_020_ph.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_020_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/sve/sve_en_020_ph.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/sve/sve_en_020_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "20-ph.png",
+  "reusedProfile": "pokemon-tinsel",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}

@@ -1,0 +1,259 @@
+{
+  "cardId": "sv10.5w-162",
+  "variant": "holo",
+  "tcglCardId": "rsv10-5_162",
+  "tcglVariantId": "Bouffalantex_rsv10-5_162_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_162_std.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_162_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "089914dd676c1ede9f7bd9cb35d95dbe6163c246a24c2fdafcc59d4abadf62a2"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_162_std.foil.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_162_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "5f6437d5dc3c22b03dbaae9c92c52da384d85e0cb12a80cd4c9aad4fca2c6136"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_162_std.etch.png",
+      "file": "research/tcgl/sv10.5w-set/raw/rsv10-5_en_162_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9b96ddba7c6a78cf756134f2cac96a87697aadca1d044b38415ff42716391dd1"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Paired full-domain TCGL source-family review. Individual high-zoom/physical-photo validation remains pending outside the sampled cards.",
+    "capture": [
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-01.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-02.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-03.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-04.jpg",
+      "artifacts/sv-tcgl/source-review/sv10.5w/page-05.jpg"
+    ],
+    "holoFrontSha256": "089914dd676c1ede9f7bd9cb35d95dbe6163c246a24c2fdafcc59d4abadf62a2"
+  },
+  "textured": true,
+  "rendererReady": true,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12287581699346405,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 0.5555555555555556
+    },
+    {
+      "areaAtFoilResolution": 1200,
+      "texturedInteriorFraction": 0.44404973357015987
+    },
+    {
+      "areaAtFoilResolution": 167,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 0.4888888888888889
+    },
+    {
+      "areaAtFoilResolution": 331,
+      "texturedInteriorFraction": 0.4563106796116505
+    },
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 0.45714285714285713
+    },
+    {
+      "areaAtFoilResolution": 267,
+      "texturedInteriorFraction": 0.5185185185185185
+    },
+    {
+      "areaAtFoilResolution": 178,
+      "texturedInteriorFraction": 0.42857142857142855
+    },
+    {
+      "areaAtFoilResolution": 293,
+      "texturedInteriorFraction": 0.688
+    },
+    {
+      "areaAtFoilResolution": 400,
+      "texturedInteriorFraction": 0.40458015267175573
+    },
+    {
+      "areaAtFoilResolution": 232,
+      "texturedInteriorFraction": 0.65
+    },
+    {
+      "areaAtFoilResolution": 222,
+      "texturedInteriorFraction": 0.4805194805194805
+    },
+    {
+      "areaAtFoilResolution": 161,
+      "texturedInteriorFraction": 0.43902439024390244
+    },
+    {
+      "areaAtFoilResolution": 158,
+      "texturedInteriorFraction": 0.6140350877192983
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 0.6222222222222222
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "162-holo-foil.png": "462b7964c3b24d71ba3dc05249258b878dbe57bc41fac3fbfd2c844bec219df6",
+    "162-holo-protection.png": "28927d1db21262a910831bd09b80c850eff1ad934875d491e355687a7bdd9a22",
+    "162-holo-normal.png": "100b35911956336934e39374f88e245769d534fd219f6aa47c21d76678109d02",
+    "162-holo-roughness.png": "3dc390ff45f1147993e1e630cd8097aa812a3b2f3979e1e907e0f8fe46457f92"
+  },
+  "holoFrontSha256": "089914dd676c1ede9f7bd9cb35d95dbe6163c246a24c2fdafcc59d4abadf62a2",
+  "mapDimensions": {
+    "162-holo-foil.png": [
+      367,
+      512
+    ],
+    "162-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "162-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "162-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportUrl": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/rsv10-5.en-US.json",
+  "exportEntry": {
+    "name": "Bouffalant ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. N-DESIGN Inc.",
+      "list": [
+        "N-DESIGN Inc."
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "WHT_EN",
+    "collector_number": {
+      "full": "162/086",
+      "numerator": "162",
+      "denominator": "086",
+      "numeric": 162
+    },
+    "rarity": {
+      "designation": "ULTRA_RARE",
+      "icon": "TWO_SILVER_STARS"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 220,
+    "types": [
+      "COLORLESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Bouffer",
+        "text": "This Pok\u00e9mon takes 30 less damage from attacks (after applying Weakness and Resistance)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Gold Breaker",
+        "text": "If your opponent's Active Pok\u00e9mon is a Pok\u00e9mon ex, this attack does 100 more damage.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 100,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "rsv10-5_162",
+        "longFormID": "Bouffalantex_rsv10-5_162_std_UltraRare_SunPillar_Etched",
+        "archetypeID": "0x32df090c",
+        "reldate": "2025-07-17 17:00:00+00:00",
+        "key": "rsv10-5"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_162_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_162_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/rsv10-5/rsv10-5_en_162_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_162_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_162_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/rsv10-5/rsv10-5_en_162_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/rsv10-5/rsv10-5_en_162_std.jpg"
+        }
+      }
+    }
+  },
+  "frontFile": "162.png",
+  "reusedProfile": "prismatic_sir_texture",
+  "individualVisualReview": "pending except source-family samples",
+  "physicalPhotoReview": "pending; TCGL geometry does not measure depth"
+}
