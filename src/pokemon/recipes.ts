@@ -1,6 +1,7 @@
 import { wotcRecipes } from './WotcProducts.ts';
 import type { PokemonCard, PrintVariant, PrintEdition } from './types.ts';
 import { prismaticRecipe } from './PrismaticRecipe.ts';
+import { svSpecialRecipes, svPackEnergy } from './SvSpecialRecipes.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
 export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; pool?: 'set' | 'energy' | 'set-and-energy'; }
@@ -27,7 +28,8 @@ const outcome = (weight: number, rarities: readonly string[], variant: PrintVari
  */
 function scarletViolet(setId: string, rates: [number, number, number, number, number], source: string, aceSpec = 0, extraNote = '', foilEnergy = 0): PokemonRecipe {
   const [double, ultra, illustration, special, hyper] = rates;
-  return { id: `${setId}-english-retail`, version: '1', setId, era: 'sv', sources: [source,
+  return { id: `${setId}-english-retail`, version: '2', setId, era: 'sv',
+    ...(setId === 'sv03.5' ? {} : { energyCards: svPackEnergy(['sv07','sv08','sv09','sv10'].includes(setId) ? 9 : 1) }), sources: [source,
     'https://support.pokemon.com/hc/en-us/articles/360000981613-What-can-I-expect-in-a-Pok%C3%A9mon-Trading-Card-Game-booster-pack'],
     note: '10 expansion cards + 1 Basic Energy · observed pull-rate estimates · code insert excluded. Uniform within pools; independent replacement slots.' + extraNote,
     slots: [
@@ -45,6 +47,7 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
   prismaticRecipe,
+  ...svSpecialRecipes,
   ...wotcRecipes,
   scarletViolet('sv01', [.1376, .0657, .0767, .0315, .0185], 'https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Scarlet-Violet-Pull-Rates/a7702fce-dd64-4a58-beb1-0f871c853215/'),
   scarletViolet('sv02', [.1372, .0664, .0770, .0317, .0176], 'https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Paldea-Evolved-Pull-Rates/1b7d3e70-9542-4a50-8692-1661e2316521/'),

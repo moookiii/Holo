@@ -6,13 +6,17 @@ const designs: Record<string, readonly string[]> = {
   sv02: ['chien-pao', 'meowscarada', 'quaquaval', 'skeledirge', 'ting-lu'],
   sv03: ['charizard', 'dragonite', 'revavroom', 'tyranitar'],
   sv04: ['armarouge', 'garchomp', 'iron-valiant', 'roaring-moon'],
+  'sv04.5': ['pikachu', 'ceruledge', 'tinkaton', 'dondozo'],
   sv05: ['iron-crown', 'iron-leaves', 'raging-bolt', 'walking-wake'],
   sv06: ['dragapult', 'ogerpon', 'sinistcha', 'ursaluna'],
+  'sv06.5': ['okidogi', 'munkidori', 'fezandipiti', 'pecharunt'],
   sv07: ['cinderace', 'galvantula', 'lapras', 'terapagos'],
   sv08: ['alolan-exeggutor', 'archaludon', 'latias', 'pikachu'],
   'sv08.5': ['eevee-sylveon', 'espeon-umbreon', 'leafeon-glaceon', 'vaporeon-jolteon-flareon'],
   sv09: ['hop-zacian', 'iono-bellibolt', 'lillie-clefairy', 'n-zoroark'],
   sv10: ['cynthia-garchomp', 'ethan-ho-oh', 'giovanni-mewtwo', 'team-rocket'],
+  'sv10.5b': ['zekrom'],
+  'sv10.5w': ['reshiram'],
 };
 
 /** TCGdex currently omits English booster metadata for these products. */

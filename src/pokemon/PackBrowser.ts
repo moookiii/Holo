@@ -7,6 +7,8 @@ import type { PreparedPack } from '../pack/PreparedPack';
 import { pokemonCatalog } from './TcgdexAdapter';
 import { collatePokemon } from './collator';
 import { recipeFor } from './recipes';
+import type { PokemonRecipe } from './recipes';
+import { replaysForSet } from './SvPackReplays';
 import { packAvailability } from './availability';
 import { boundedMap, SelectionTask } from './requests';
 import type { CatalogEntry, PokemonBooster, PokemonCard, PokemonSet } from './types';
@@ -250,7 +252,7 @@ export class PackBrowser {
     void this.run('Loading sets…', async request => {
       const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
-      sets.sort((a, b) => series.id === 'neo' || series.id === 'ecard' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
+      sets.sort((a, b) => series.id === 'neo' || series.id === 'ecard' || series.id === 'sv' ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
         packAvailability(set.id).label));
     }, () => this.sets());
   }
@@ -339,8 +341,12 @@ export class PackBrowser {
       button.classList.add('pokemon-booster'); button.disabled = !availability.ready;
       button.setAttribute('aria-pressed', String(this.selection.booster?.id === booster.id));
     });
+    for (const replay of replaysForSet(set.id)) {
+      this.button('Verified God pack replay', () => this.choose(set.boosters[0], undefined, replay),
+        set.boosters[0]?.front, replay.note);
+    }
   }
-  private choose(booster: PokemonBooster, retainedSeed?: number) {
+  private choose(booster: PokemonBooster, retainedSeed?: number, replay?: PokemonRecipe) {
     const set = this.selection.set!; this.selection.booster = booster; this.prepared = undefined; this.showBoosters();
     if (!packAvailability(set.id).ready) return;
     const seed = retainedSeed ?? crypto.getRandomValues(new Uint32Array(1))[0];
@@ -349,7 +355,7 @@ export class PackBrowser {
         if (this.task.current(request)) this.status.textContent = `Loading card metadata · ${done} / ${total}`;
       });
       if (!this.task.current(request)) return; this.metadata = metadata;
-      const resolved = collatePokemon(set.id, booster.id, seed, metadata);
+      const resolved = collatePokemon(set.id, booster.id, seed, metadata, replay ?? recipeFor(set.id));
       this.status.textContent = 'Preparing booster artwork…';
       const wrapper = await prepareWrapper(set, booster, request.signal);
       if (!this.task.current(request)) return;
@@ -359,7 +365,7 @@ export class PackBrowser {
         if (definition.front.startsWith('https://assets.tcgdex.net/')) definition.front = await usableCardFront(definition.front, request.signal, definition.pokemon?.thumbnail);
       });
       if (!this.task.current(request)) return;
-      const pack: PackDefinition = { id: `pokemon:${set.id}:${booster.id}`, name: `${set.name} · ${booster.name}`, category: 'Pokémon',
+      const pack: PackDefinition = { id: `pokemon:${set.id}:${booster.id}${replay ? ':'+replay.id : ''}`, name: `${set.name} · ${replay ? 'Verified God pack replay' : booster.name}`, category: 'Pokémon',
         seed, cardCount: resolved.pulls.length, order: 'fixed', wrapper, pokemon: resolved,
         contents: resolved.pulls.map((p, i) => ({ cardId: definitions[i].id, rarity: p.variant === 'normal' ? 'standard' : 'foil' })) };
       Object.freeze(pack.contents); Object.freeze(pack.wrapper); Object.freeze(pack);
@@ -367,7 +373,7 @@ export class PackBrowser {
         if (this.task.current(request)) this.status.textContent = `Preparing exact cards · ${done} / ${total}`;
       });
       if (this.task.current(request)) this.ready(prepared);
-    }, () => this.choose(booster, seed));
+    }, () => this.choose(booster, seed, replay));
   }
   private ready(prepared: PreparedPack) {
     this.prepared = prepared;
