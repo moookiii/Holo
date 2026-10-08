@@ -22,7 +22,7 @@ def profile(p):
     if foil=='STAMPED': return 'pokemon-first-movie-gold'
     if foil=='FLAT_SILVER': return 'sv_tcgl_standard_reverse'
     if foil=='SV_HOLO': return 'sv_tcgl_regular_holo'
-    if foil=='SUN_PILLAR': return 'sv_tcgl_illustration_holo' if rarity=='Illustration Rare' else 'sv_tcgl_ex_holo'
+    if foil=='SUN_PILLAR': return 'sv_tcgl_illustration_holo' if rarity=='Illustration Rare' or p['cardId'].startswith('svp-') and '_IllustrationRare_' in p['tcglVariantId'] else 'sv_tcgl_ex_holo'
     if foil=='SV_ULTRA': return 'prismatic_ex_holo'
     raise ValueError('Unclassified TCGL finish '+foil)
 

@@ -29,7 +29,7 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
       maps: surface.maps,
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
       ...(surface.textured && profile !== 'pokemon-ace-spec' ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
-      ...(!surface.textured && surface.foilType === 'SUN_PILLAR' && (card.rarity === 'Double Rare' || card.setId === 'svp' && card.suffix === 'ex' || card.setId === 'svalt' && card.suffix === 'ex')
+      ...(!surface.textured && surface.foilType === 'SUN_PILLAR' && profile !== 'sv_tcgl_illustration_holo' && (card.rarity === 'Double Rare' || card.setId === 'svp' && card.suffix === 'ex' || card.setId === 'svalt' && card.suffix === 'ex')
         ? { profileOverrides: doubleRareProfile } : {}),
     } : {}),
     source: { image: front, metadata: surface?.evidence ?? `/cards/pokemon/tcgl-sv/${card.setId}/catalog.json`,

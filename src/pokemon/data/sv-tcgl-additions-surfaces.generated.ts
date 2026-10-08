@@ -16724,7 +16724,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-13",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/13-holo-foil.png",
@@ -16736,7 +16736,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-14",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/14-holo-foil.png",
@@ -16884,7 +16884,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-27",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/27-holo-foil.png",
@@ -16896,7 +16896,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-28",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/28-holo-foil.png",
@@ -16908,7 +16908,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-29",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/29-holo-foil.png",
@@ -17092,7 +17092,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-44",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/44-holo-foil.png",
@@ -17167,7 +17167,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-51",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/51-holo-foil.png",
@@ -17179,7 +17179,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-52",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/52-holo-foil.png",
@@ -17343,7 +17343,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-65",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/65-holo-foil.png",
@@ -17355,7 +17355,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-66",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/66-holo-foil.png",
@@ -17475,7 +17475,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-75",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/75-holo-foil.png",
@@ -17637,7 +17637,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-88",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/88-holo-foil.png",
@@ -17749,7 +17749,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-97",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/97-holo-foil.png",
@@ -17761,7 +17761,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-98",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/98-holo-foil.png",
@@ -17958,7 +17958,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-123",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/123-holo-foil.png",
@@ -18034,7 +18034,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-129",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/129-holo-foil.png",
@@ -18046,7 +18046,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-130",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/130-holo-foil.png",
@@ -18186,7 +18186,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-141",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/141-holo-foil.png",
@@ -18383,7 +18383,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-159",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/159-holo-foil.png",
@@ -18565,7 +18565,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-173",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/173-holo-foil.png",
@@ -18767,7 +18767,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-189",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/189-holo-foil.png",
@@ -18909,7 +18909,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-203",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/203-holo-foil.png",
@@ -18947,7 +18947,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-206",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/206-holo-foil.png",
@@ -18959,7 +18959,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-207",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/207-holo-foil.png",
@@ -18971,7 +18971,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-208",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/208-holo-foil.png",
@@ -18983,7 +18983,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-209",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/209-holo-foil.png",
@@ -18995,7 +18995,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-210",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/210-holo-foil.png",
@@ -19007,7 +19007,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-211",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/211-holo-foil.png",
@@ -19019,7 +19019,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "svp-212",
     "variant": "holo",
-    "profile": "sv_tcgl_ex_holo",
+    "profile": "sv_tcgl_illustration_holo",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/svp/tcgl/212-holo-foil.png",

@@ -72,3 +72,22 @@ test('BW ball variants keep supplied basic/evolved patterns separate from their 
     }
   }
 });
+
+test('SV Black Star illustration promos retain their exact TCGL treatment instead of ex defaults', () => {
+  const promos = tcglSvSurfaces.filter(s => s.cardId.startsWith('svp-') && s.foilType === 'SUN_PILLAR' && !s.textured);
+  let illustrationCount = 0;
+  for (const s of promos) {
+    const evidence = JSON.parse(readFileSync(publicFile(s.evidence), 'utf8'));
+    const definition = svTcglDefinition(s.cardId, s.variant);
+    if (evidence.tcglVariantId.includes('_IllustrationRare_')) {
+      illustrationCount++;
+      assert.equal(definition.profile, 'sv_tcgl_illustration_holo', s.cardId);
+      assert.equal(definition.profileOverrides?.opticalModel, undefined, s.cardId);
+      assert.equal(definition.maps, s.maps);
+    } else {
+      assert.match(evidence.tcglVariantId, /_DoubleRare_/);
+      assert.equal(definition.profileOverrides?.opticalModel, 'sv-double-rare', s.cardId);
+    }
+  }
+  assert.equal(illustrationCount, 29);
+});
