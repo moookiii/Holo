@@ -25,9 +25,9 @@ def profile(p):
     raise ValueError('Unclassified TCGL finish '+foil)
 
 def main():
-    parser=argparse.ArgumentParser();parser.add_argument('--sets',nargs='+',default=list(PRODUCTS));args=parser.parse_args()
+    parser=argparse.ArgumentParser();parser.add_argument('--sets',nargs='+',default=list(PRODUCTS));parser.add_argument('--register-only',action='store_true');args=parser.parse_args()
     cv2.setNumThreads(1);converter.FOIL_NATIVE=True;converter.OMIT_HEIGHT=True
-    for set_id in args.sets:
+    for set_id in ([] if args.register_only else args.sets):
         converter.ASSETS=ROOT/f'public/cards/pokemon/tcgl-sv/{set_id}'
         converter.OUT=converter.ASSETS/'tcgl';converter.OUT.mkdir(exist_ok=True)
         converter.PUBLIC_BASE=f'/cards/pokemon/tcgl-sv/{set_id}';converter.PROFILE_PREFIX=''
@@ -63,7 +63,7 @@ def main():
                 evidence['finishReview']='Existing etched reference reused; dedicated Black/White Rare ink/foil angular response remains unimplemented.'
             if p['foil']['type']=='STAMPED':
                 evidence['finishReview']='Exact TCGL foil coverage with existing smooth silver response; stamped promo angular response remains unimplemented.'
-            if '_CastAndCure_' in p['tcglVariantId']:
+            if p['variant'] in ('pokeball-reverse','masterball-reverse') and '_CastAndCure_' in p['tcglVariantId']:
                 evidence['finishReview']='Exact TCGL coverage preserved. Cast-and-cure Poké Ball/Master Ball optical symbol texture is absent from the exported card PNGs; effect pending. No symbols synthesized.'
             evidence['rendererReady']=True
             path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
@@ -73,11 +73,15 @@ def main():
         (converter.OUT/'manifest.json').write_text(json.dumps(records,indent=2)+'\n',encoding='utf-8')
         source_path.write_text(json.dumps(source,indent=2)+'\n',encoding='utf-8')
         print(f'{set_id}: converted {len(records)} exact foil printings',flush=True)
-    records=[]
+    records=[]; additions=[]
     for manifest in sorted((ROOT/'public/cards/pokemon/tcgl-sv').glob('*/tcgl/manifest.json')):
-        records.extend(json.loads(manifest.read_text(encoding='utf-8')))
+        (additions if manifest.parent.parent.name in PRODUCTS else records).extend(json.loads(manifest.read_text(encoding='utf-8')))
     target=ROOT/'src/pokemon/data/sv-tcgl-surfaces.generated.ts'
-    header=target.read_text(encoding='utf-8').split('= ',1)[0]
-    target.write_text(header+'= '+json.dumps(records,indent=2)+';\n',encoding='utf-8')
+    header=target.read_text(encoding='utf-8').split('export const tcglSvSurfaces:',1)[0]
+    header='\n'.join(line for line in header.splitlines() if 'import { tcglSvAdditionalSurfaces }' not in line)+'\n'
+    # Keep separately typed chunks below TypeScript's object-literal union limit.
+    target.with_name('sv-tcgl-additions-surfaces.generated.ts').write_text(
+        '// Exact added TCGL printings; generated offline.\nimport type { TcglSvSurface } from "./sv-tcgl-surfaces.generated.ts";\nexport const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = '+json.dumps(additions,indent=2)+';\n',encoding='utf-8')
+    target.write_text(header+'import { tcglSvAdditionalSurfaces } from "./sv-tcgl-additions-surfaces.generated.ts";\nexport const tcglSvSurfaces: readonly TcglSvSurface[] = '+json.dumps(records,indent=2)[:-2]+',\n  ...tcglSvAdditionalSurfaces\n];\n',encoding='utf-8')
 
 if __name__=='__main__': main()
