@@ -361,7 +361,8 @@ export class PackBrowser {
     const set = this.selection.set!; this.body.replaceChildren();
     const recipe = recipeFor(set.id);
     const availability = packAvailability(set.id);
-    this.status.textContent = availability.ready && recipe ? `Choose a booster. ${recipe.note} ${availability.detail}`.trim() : availability.detail;
+    const hideDescription = ['me01', 'me02', 'me02.5', 'me03', 'me04', 'me05'].includes(set.id);
+    this.status.textContent = hideDescription ? '' : availability.ready && recipe ? `Choose a booster. ${recipe.note} ${availability.detail}`.trim() : availability.detail;
     set.boosters.forEach(booster => {
       const button = this.button(booster.name, () => this.choose(booster), booster.front ?? fallbackWrapper(set), booster.front ? undefined : 'Set artwork fallback');
       if (booster.frontBounds) {
