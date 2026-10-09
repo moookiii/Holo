@@ -20,10 +20,15 @@ clean exact-print fronts and subject/print protections are available. All curren
 definitions use print-only, and holo definitions carry `treatmentStatus: deferred`.
 The English TCGL index has no McDonald's export; no etch or relief is fabricated.
 
-The original photographed Pikachu/Dragonite booster is preserved alongside the
-sources. A manually traced, antialiased PNG silhouette removes the surrounding
-carton, poster, stickers and background, with a tight bounding crop. Artwork and
-both seals retain their source proportions; pack-source.json records the trace.
+The Pikachu/Dragonite booster uses an unobstructed English wrapper image from
+Cardtreasure, preserved alongside the original sources. The former PokeBeach
+photograph had a sticker covering part of the left edge. Four registered corners
+align the wrapper upright into a tight 514x956 RGB PNG, removing the white source
+background and tapered side gaps. Output proportions come from the mean measured
+wrapper edge lengths. The printed artwork, text, top crimp and bottom silver seal
+are retained; no missing artwork is synthesized. `pack-source.json` records the
+source hash, corners, perspective transform and output hash. Regenerate only this
+asset with `python scripts/prepare-dragon-discovery.py --pack-only`.
 
 Opening uses four cards, one holo plus three non-holos. Uniform selection within
 each pool and non-holo uniqueness are estimates, not measured factory collation.
@@ -44,3 +49,4 @@ Sources:
 - [McDonald's official U.S. launch](https://corporate.mcdonalds.com/corpmcd/our-stories/article/pokemon-themed-happy-meal.html)
 - [Checklist, confetti description and pack photograph](https://www.pokebeach.com/2025/01/mcdonalds-dragon-discovery-now-available-in-the-u-s-full-set-list-earn-pocket-rewards)
 - [TCGdex metadata](https://api.tcgdex.net/v2/en/sets/2024sv)
+- [Unobstructed English wrapper source](https://cardtreasure.ch/products/mcdonalds-dragon-discovery-booster-pokemon)
