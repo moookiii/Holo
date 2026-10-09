@@ -74,6 +74,7 @@ def main():
         for name,values in [('protection',protected),('body',body),('secondary',secondary)]:
             path=OUT/'maps'/f'{stem}-{name}.png';png(path,np.rint(np.clip(values,0,1)*255).astype(np.uint8));hashes[path.name]=digest(path)
         maps['protection']=f'/cards/pokemon/30th-celebration/maps/{stem}-protection.png'
+        maps['secondaryFoil']=f'/cards/pokemon/30th-celebration/maps/{stem}-secondary.png'
         roughness=(.30+.105*body)*(1-secondary)+.27*secondary
         rough_path=OUT/'maps'/f'{stem}-roughness.png';png(rough_path,np.rint(roughness*255).astype(np.uint8));hashes[rough_path.name]=digest(rough_path)
         maps['roughness']=f'/cards/pokemon/30th-celebration/maps/{stem}-roughness.png'

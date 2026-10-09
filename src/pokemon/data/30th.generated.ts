@@ -5582,7 +5582,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-1-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-1-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-1-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-1-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-1-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-1-evidence.json"
   },
@@ -5593,7 +5594,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-2-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-2-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-2-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-2-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-2-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-2-evidence.json"
   },
@@ -5604,7 +5606,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-3-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-3-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-3-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-3-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-3-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-3-evidence.json"
   },
@@ -5615,7 +5618,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-4-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-4-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-4-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-4-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-4-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-4-evidence.json"
   },
@@ -5626,7 +5630,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-5-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-5-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-5-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-5-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-5-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-5-evidence.json"
   },
@@ -5637,7 +5642,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-6-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-6-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-6-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-6-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-6-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-6-evidence.json"
   },
@@ -5648,7 +5654,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-7-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-7-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-7-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-7-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-7-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-7-evidence.json"
   },
@@ -5659,7 +5666,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-8-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-8-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-8-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-8-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-8-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-8-evidence.json"
   },
@@ -5670,7 +5678,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-9-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-9-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-9-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-9-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-9-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-9-evidence.json"
   },
@@ -5681,7 +5690,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-10-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-10-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-10-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-10-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-10-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-10-evidence.json"
   },
@@ -5692,7 +5702,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-11-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-11-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-11-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-11-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-11-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-11-evidence.json"
   },
@@ -5703,7 +5714,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-12-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-12-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-12-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-12-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-12-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-12-evidence.json"
   },
@@ -5714,7 +5726,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-13-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-13-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-13-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-13-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-13-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-13-evidence.json"
   },
@@ -5725,7 +5738,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-14-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-14-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-14-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-14-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-14-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-14-evidence.json"
   },
@@ -5736,7 +5750,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-15-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-15-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-15-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-15-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-15-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-15-evidence.json"
   },
@@ -5747,7 +5762,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-16-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-16-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-16-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-16-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-16-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-16-evidence.json"
   },
@@ -5758,7 +5774,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-17-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-17-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-17-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-17-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-17-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-17-evidence.json"
   },
@@ -5769,7 +5786,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-18-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-18-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-18-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-18-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-18-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-18-evidence.json"
   },
@@ -5780,7 +5798,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-19-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-19-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-19-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-19-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-19-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-19-evidence.json"
   },
@@ -5791,7 +5810,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-20-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-20-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-20-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-20-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-20-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-20-evidence.json"
   },
@@ -5802,7 +5822,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-21-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-21-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-21-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-21-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-21-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-21-evidence.json"
   },
@@ -5813,7 +5834,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-22-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-22-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-22-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-22-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-22-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-22-evidence.json"
   },
@@ -5824,7 +5846,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-23-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-23-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-23-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-23-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-23-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-23-evidence.json"
   },
@@ -5835,7 +5858,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-24-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-24-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-24-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-24-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-24-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-24-evidence.json"
   },
@@ -5846,7 +5870,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-25-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-25-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-25-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-25-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-25-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-25-evidence.json"
   },
@@ -5857,7 +5882,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-26-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-26-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-26-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-26-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-26-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-26-evidence.json"
   },
@@ -5868,7 +5894,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-27-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-27-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-27-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-27-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-27-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-27-evidence.json"
   },
@@ -5879,7 +5906,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-28-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-28-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-28-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-28-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-28-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-28-evidence.json"
   },
@@ -5890,7 +5918,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-29-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-29-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-29-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-29-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-29-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-29-evidence.json"
   },
@@ -5901,7 +5930,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-30-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-30-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-30-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-30-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-30-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-30-evidence.json"
   },
@@ -5912,7 +5942,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-31-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-31-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-31-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-31-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-31-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-31-evidence.json"
   },
@@ -5923,7 +5954,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-32-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-32-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-32-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-32-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-32-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-32-evidence.json"
   },
@@ -5934,7 +5966,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-33-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-33-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-33-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-33-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-33-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-33-evidence.json"
   },
@@ -5945,7 +5978,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-34-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-34-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-34-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-34-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-34-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-34-evidence.json"
   },
@@ -5956,7 +5990,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-35-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-35-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-35-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-35-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-35-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-35-evidence.json"
   },
@@ -5967,7 +6002,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-36-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-36-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-36-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-36-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-36-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-36-evidence.json"
   },
@@ -5978,7 +6014,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-37-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-37-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-37-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-37-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-37-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-37-evidence.json"
   },
@@ -5989,7 +6026,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-38-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-38-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-38-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-38-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-38-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-38-evidence.json"
   },
@@ -6000,7 +6038,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-39-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-39-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-39-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-39-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-39-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-39-evidence.json"
   },
@@ -6011,7 +6050,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-40-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-40-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-40-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-40-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-40-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-40-evidence.json"
   },
@@ -6022,7 +6062,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-41-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-41-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-41-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-41-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-41-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-41-evidence.json"
   },
@@ -6033,7 +6074,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-42-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-42-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-42-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-42-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-42-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-42-evidence.json"
   },
@@ -6044,7 +6086,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-43-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-43-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-43-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-43-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-43-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-43-evidence.json"
   },
@@ -6055,7 +6098,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-44-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-44-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-44-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-44-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-44-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-44-evidence.json"
   },
@@ -6066,7 +6110,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-45-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-45-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-45-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-45-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-45-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-45-evidence.json"
   },
@@ -6077,7 +6122,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-46-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-46-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-46-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-46-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-46-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-46-evidence.json"
   },
@@ -6088,7 +6134,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-47-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-47-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-47-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-47-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-47-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-47-evidence.json"
   },
@@ -6099,7 +6146,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-48-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-48-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-48-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-48-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-48-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-48-evidence.json"
   },
@@ -6110,7 +6158,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-49-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-49-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-49-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-49-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-49-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-49-evidence.json"
   },
@@ -6121,7 +6170,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-50-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-50-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-50-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-50-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-50-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-50-evidence.json"
   },
@@ -6132,7 +6182,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-51-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-51-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-51-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-51-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-51-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-51-evidence.json"
   },
@@ -6143,7 +6194,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-52-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-52-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-52-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-52-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-52-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-52-evidence.json"
   },
@@ -6154,7 +6206,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-53-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-53-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-53-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-53-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-53-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-53-evidence.json"
   },
@@ -6165,7 +6218,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-54-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-54-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-54-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-54-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-54-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-54-evidence.json"
   },
@@ -6176,7 +6230,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-55-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-55-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-55-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-55-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-55-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-55-evidence.json"
   },
@@ -6187,7 +6242,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-56-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-56-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-56-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-56-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-56-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-56-evidence.json"
   },
@@ -6198,7 +6254,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-57-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-57-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-57-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-57-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-57-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-57-evidence.json"
   },
@@ -6209,7 +6266,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-58-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-58-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-58-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-58-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-58-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-58-evidence.json"
   },
@@ -6220,7 +6278,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-59-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-59-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-59-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-59-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-59-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-59-evidence.json"
   },
@@ -6231,7 +6290,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-60-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-60-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-60-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-60-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-60-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-60-evidence.json"
   },
@@ -6242,7 +6302,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-61-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-61-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-61-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-61-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-61-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-61-evidence.json"
   },
@@ -6253,7 +6314,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-62-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-62-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-62-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-62-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-62-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-62-evidence.json"
   },
@@ -6264,7 +6326,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-63-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-63-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-63-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-63-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-63-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-63-evidence.json"
   },
@@ -6275,7 +6338,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-64-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-64-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-64-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-64-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-64-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-64-evidence.json"
   },
@@ -6286,7 +6350,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-65-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-65-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-65-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-65-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-65-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-65-evidence.json"
   },
@@ -6297,7 +6362,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-66-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-66-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-66-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-66-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-66-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-66-evidence.json"
   },
@@ -6308,7 +6374,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-67-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-67-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-67-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-67-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-67-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-67-evidence.json"
   },
@@ -6319,7 +6386,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-68-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-68-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-68-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-68-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-68-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-68-evidence.json"
   },
@@ -6330,7 +6398,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-69-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-69-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-69-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-69-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-69-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-69-evidence.json"
   },
@@ -6341,7 +6410,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-70-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-70-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-70-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-70-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-70-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-70-evidence.json"
   },
@@ -6352,7 +6422,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-71-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-71-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-71-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-71-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-71-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-71-evidence.json"
   },
@@ -6363,7 +6434,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-72-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-72-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-72-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-72-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-72-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-72-evidence.json"
   },
@@ -6374,7 +6446,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-73-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-73-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-73-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-73-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-73-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-73-evidence.json"
   },
@@ -6385,7 +6458,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-74-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-74-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-74-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-74-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-74-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-74-evidence.json"
   },
@@ -6396,7 +6470,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-75-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-75-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-75-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-75-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-75-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-75-evidence.json"
   },
@@ -6407,7 +6482,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-76-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-76-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-76-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-76-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-76-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-76-evidence.json"
   },
@@ -6418,7 +6494,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-77-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-77-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-77-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-77-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-77-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-77-evidence.json"
   },
@@ -6429,7 +6506,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-78-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-78-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-78-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-78-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-78-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-78-evidence.json"
   },
@@ -6440,7 +6518,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-79-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-79-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-79-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-79-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-79-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-79-evidence.json"
   },
@@ -6451,7 +6530,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-80-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-80-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-80-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-80-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-80-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-80-evidence.json"
   },
@@ -6462,7 +6542,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-81-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-81-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-81-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-81-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-81-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-81-evidence.json"
   },
@@ -6473,7 +6554,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-82-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-82-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-82-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-82-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-82-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-82-evidence.json"
   },
@@ -6484,7 +6566,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-83-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-83-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-83-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-83-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-83-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-83-evidence.json"
   },
@@ -6495,7 +6578,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-84-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-84-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-84-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-84-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-84-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-84-evidence.json"
   },
@@ -6506,7 +6590,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-85-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-85-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-85-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-85-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-85-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-85-evidence.json"
   },
@@ -6517,7 +6602,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-86-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-86-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-86-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-86-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-86-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-86-evidence.json"
   },
@@ -6528,7 +6614,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-87-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-87-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-87-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-87-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-87-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-87-evidence.json"
   },
@@ -6539,7 +6626,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-88-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-88-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-88-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-88-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-88-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-88-evidence.json"
   },
@@ -6550,7 +6638,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-89-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-89-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-89-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-89-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-89-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-89-evidence.json"
   },
@@ -6561,7 +6650,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-90-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-90-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-90-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-90-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-90-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-90-evidence.json"
   },
@@ -6572,7 +6662,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-91-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-91-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-91-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-91-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-91-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-91-evidence.json"
   },
@@ -6583,7 +6674,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-92-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-92-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-92-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-92-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-92-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-92-evidence.json"
   },
@@ -6594,7 +6686,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-93-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-93-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-93-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-93-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-93-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-93-evidence.json"
   },
@@ -6605,7 +6698,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-94-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-94-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-94-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-94-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-94-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-94-evidence.json"
   },
@@ -6616,7 +6710,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-95-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-95-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-95-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-95-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-95-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-95-evidence.json"
   },
@@ -6627,7 +6722,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-96-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-96-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-96-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-96-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-96-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-96-evidence.json"
   },
@@ -6638,7 +6734,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-97-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-97-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-97-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-97-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-97-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-97-evidence.json"
   },
@@ -6649,7 +6746,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-98-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-98-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-98-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-98-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-98-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-98-evidence.json"
   },
@@ -6660,7 +6758,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-99-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-99-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-99-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-99-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-99-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-99-evidence.json"
   },
@@ -6671,7 +6770,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-100-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-100-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-100-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-100-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-100-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-100-evidence.json"
   },
@@ -6682,7 +6782,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-101-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-101-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-101-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-101-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-101-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-101-evidence.json"
   },
@@ -6693,7 +6794,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-102-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-102-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-102-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-102-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-102-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-102-evidence.json"
   },
@@ -6704,7 +6806,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-103-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-103-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-103-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-103-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-103-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-103-evidence.json"
   },
@@ -6715,7 +6818,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-104-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-104-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-104-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-104-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-104-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-104-evidence.json"
   },
@@ -6726,7 +6830,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-105-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-105-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-105-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-105-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-105-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-105-evidence.json"
   },
@@ -6737,7 +6842,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-106-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-106-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-106-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-106-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-106-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-106-evidence.json"
   },
@@ -6748,7 +6854,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-107-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-107-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-107-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-107-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-107-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-107-evidence.json"
   },
@@ -6759,7 +6866,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-108-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-108-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-108-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-108-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-108-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-108-evidence.json"
   },
@@ -6770,7 +6878,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-109-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-109-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-109-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-109-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-109-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-109-evidence.json"
   },
@@ -6781,7 +6890,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-110-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-110-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-110-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-110-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-110-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-110-evidence.json"
   },
@@ -6792,7 +6902,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-111-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-111-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-111-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-111-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-111-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-111-evidence.json"
   },
@@ -6803,7 +6914,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-112-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-112-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-112-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-112-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-112-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-112-evidence.json"
   },
@@ -6814,7 +6926,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-113-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-113-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-113-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-113-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-113-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-113-evidence.json"
   },
@@ -6825,7 +6938,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-114-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-114-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-114-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-114-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-114-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-114-evidence.json"
   },
@@ -6836,7 +6950,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-115-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-115-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-115-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-115-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-115-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-115-evidence.json"
   },
@@ -6847,7 +6962,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-116-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-116-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-116-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-116-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-116-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-116-evidence.json"
   },
@@ -6858,7 +6974,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-117-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-117-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-117-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-117-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-117-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-117-evidence.json"
   },
@@ -6869,7 +6986,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-118-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-118-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-118-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-118-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-118-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-118-evidence.json"
   },
@@ -6880,7 +6998,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-119-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-119-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-119-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-119-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-119-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-119-evidence.json"
   },
@@ -6891,7 +7010,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-120-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-120-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-120-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-120-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-120-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-120-evidence.json"
   },
@@ -6902,7 +7022,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-121-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-121-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-121-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-121-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-121-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-121-evidence.json"
   },
@@ -6913,7 +7034,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-122-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-122-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-122-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-122-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-122-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-122-evidence.json"
   },
@@ -6924,7 +7046,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-123-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-123-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-123-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-123-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-123-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-123-evidence.json"
   },
@@ -6935,7 +7058,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-124-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-124-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-124-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-124-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-124-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-124-evidence.json"
   },
@@ -6946,7 +7070,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-125-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-125-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-125-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-125-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-125-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-125-evidence.json"
   },
@@ -6957,7 +7082,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-126-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-126-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-126-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-126-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-126-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-126-evidence.json"
   },
@@ -6968,7 +7094,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-127-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-127-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-127-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-127-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-127-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-127-evidence.json"
   },
@@ -6979,7 +7106,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-128-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-128-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-128-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-128-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-128-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-128-evidence.json"
   },
@@ -6990,7 +7118,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-129-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-129-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-129-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-129-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-129-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-129-evidence.json"
   },
@@ -7001,7 +7130,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-130-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-130-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-130-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-130-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-130-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-130-evidence.json"
   },
@@ -7012,7 +7142,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-131-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-131-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-131-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-131-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-131-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-131-evidence.json"
   },
@@ -7023,7 +7154,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-132-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-132-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-132-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-132-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-132-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-132-evidence.json"
   },
@@ -7034,7 +7166,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-133-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-133-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-133-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-133-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-133-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-133-evidence.json"
   },
@@ -7045,7 +7178,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-134-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-134-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-134-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-134-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-134-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-134-evidence.json"
   },
@@ -7056,7 +7190,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-135-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-135-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-135-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-135-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-135-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-135-evidence.json"
   },
@@ -7067,7 +7202,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-136-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-136-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-136-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-136-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-136-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-136-evidence.json"
   },
@@ -7078,7 +7214,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-137-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-137-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-137-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-137-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-137-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-137-evidence.json"
   },
@@ -7089,7 +7226,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-138-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-138-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-138-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-138-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-138-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-138-evidence.json"
   },
@@ -7100,7 +7238,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-139-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-139-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-139-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-139-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-139-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-139-evidence.json"
   },
@@ -7111,7 +7250,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-140-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-140-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-140-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-140-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-140-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-140-evidence.json"
   },
@@ -7122,7 +7262,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-141-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-141-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-141-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-141-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-141-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-141-evidence.json"
   },
@@ -7133,7 +7274,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-142-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-142-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-142-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-142-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-142-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-142-evidence.json"
   },
@@ -7144,7 +7286,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-143-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-143-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-143-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-143-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-143-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-143-evidence.json"
   },
@@ -7155,7 +7298,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-144-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-144-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-144-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-144-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-144-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-144-evidence.json"
   },
@@ -7166,7 +7310,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-145-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-145-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-145-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-145-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-145-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-145-evidence.json"
   },
@@ -7177,7 +7322,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/me5-5-146-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-146-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-146-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-146-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-146-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-146-evidence.json"
   },
@@ -7189,7 +7335,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-147-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-147-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-147-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-147-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-147-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-147-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-147-evidence.json"
   },
@@ -7201,7 +7348,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-148-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-148-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-148-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-148-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-148-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-148-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-148-evidence.json"
   },
@@ -7213,7 +7361,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-149-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-149-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-149-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-149-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-149-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-149-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-149-evidence.json"
   },
@@ -7225,7 +7374,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-150-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-150-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-150-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-150-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-150-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-150-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-150-evidence.json"
   },
@@ -7237,7 +7387,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-151-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-151-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-151-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-151-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-151-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-151-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-151-evidence.json"
   },
@@ -7249,7 +7400,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-152-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-152-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-152-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-152-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-152-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-152-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-152-evidence.json"
   },
@@ -7261,7 +7413,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-153-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-153-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-153-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-153-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-153-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-153-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-153-evidence.json"
   },
@@ -7273,7 +7426,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-154-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-154-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-154-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-154-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-154-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-154-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-154-evidence.json"
   },
@@ -7285,7 +7439,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-155-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-155-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-155-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-155-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-155-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-155-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-155-evidence.json"
   },
@@ -7297,7 +7452,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-156-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-156-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-156-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-156-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-156-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-156-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-156-evidence.json"
   },
@@ -7309,7 +7465,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-157-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-157-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-157-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-157-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-157-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-157-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-157-evidence.json"
   },
@@ -7321,7 +7478,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5-158-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5-158-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5-158-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-158-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5-158-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5-158-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5-158-evidence.json"
   },
@@ -7333,7 +7491,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-1-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-1-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-1-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-1-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-1-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-1-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-1-evidence.json"
   },
@@ -7345,7 +7504,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-2-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-2-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-2-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-2-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-2-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-2-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-2-evidence.json"
   },
@@ -7357,7 +7517,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-3-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-3-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-3-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-3-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-3-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-3-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-3-evidence.json"
   },
@@ -7369,7 +7530,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-4-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-4-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-4-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-4-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-4-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-4-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-4-evidence.json"
   },
@@ -7381,7 +7543,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-5-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-5-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-5-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-5-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-5-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-5-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-5-evidence.json"
   },
@@ -7393,7 +7556,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-6-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-6-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-6-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-6-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-6-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-6-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-6-evidence.json"
   },
@@ -7405,7 +7569,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-7-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-7-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-7-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-7-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-7-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-7-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-7-evidence.json"
   },
@@ -7417,7 +7582,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-8-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-8-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-8-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-8-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-8-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-8-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-8-evidence.json"
   },
@@ -7429,7 +7595,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-9-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-9-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-9-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-9-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-9-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-9-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-9-evidence.json"
   },
@@ -7441,7 +7608,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-10-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-10-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-10-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-10-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-10-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-10-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-10-evidence.json"
   },
@@ -7453,7 +7621,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-11-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-11-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-11-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-11-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-11-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-11-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-11-evidence.json"
   },
@@ -7465,7 +7634,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-12-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-12-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-12-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-12-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-12-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-12-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-12-evidence.json"
   },
@@ -7477,7 +7647,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-13-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-13-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-13-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-13-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-13-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-13-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-13-evidence.json"
   },
@@ -7489,7 +7660,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-14-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-14-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-14-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-14-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-14-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-14-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-14-evidence.json"
   },
@@ -7501,7 +7673,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-15-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-15-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-15-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-15-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-15-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-15-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-15-evidence.json"
   },
@@ -7513,7 +7686,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-16-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-16-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-16-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-16-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-16-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-16-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-16-evidence.json"
   },
@@ -7525,7 +7699,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-17-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-17-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-17-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-17-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-17-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-17-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-17-evidence.json"
   },
@@ -7537,7 +7712,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-18-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-18-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-18-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-18-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-18-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-18-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-18-evidence.json"
   },
@@ -7549,7 +7725,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-19-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-19-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-19-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-19-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-19-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-19-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-19-evidence.json"
   },
@@ -7561,7 +7738,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-20-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-20-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-20-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-20-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-20-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-20-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-20-evidence.json"
   },
@@ -7573,7 +7751,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-21-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-21-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-21-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-21-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-21-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-21-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-21-evidence.json"
   },
@@ -7585,7 +7764,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-22-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-22-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-22-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-22-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-22-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-22-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-22-evidence.json"
   },
@@ -7597,7 +7777,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-23-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-23-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-23-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-23-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-23-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-23-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-23-evidence.json"
   },
@@ -7609,7 +7790,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-24-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-24-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-24-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-24-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-24-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-24-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-24-evidence.json"
   },
@@ -7621,7 +7803,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-25-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-25-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-25-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-25-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-25-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-25-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-25-evidence.json"
   },
@@ -7633,7 +7816,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-26-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-26-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-26-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-26-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-26-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-26-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-26-evidence.json"
   },
@@ -7645,7 +7829,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-27-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-27-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-27-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-27-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-27-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-27-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-27-evidence.json"
   },
@@ -7657,7 +7842,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-28-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-28-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-28-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-28-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-28-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-28-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-28-evidence.json"
   },
@@ -7669,7 +7855,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-29-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-29-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-29-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-29-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-29-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-29-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-29-evidence.json"
   },
@@ -7681,7 +7868,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5c-30-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5c-30-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5c-30-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-30-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5c-30-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5c-30-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5c-30-evidence.json"
   },
@@ -7693,7 +7881,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5m-1-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5m-1-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5m-1-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5m-1-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5m-1-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5m-1-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5m-1-evidence.json"
   },
@@ -7705,7 +7894,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5m-2-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5m-2-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5m-2-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5m-2-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5m-2-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5m-2-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5m-2-evidence.json"
   },
@@ -7717,7 +7907,8 @@ export const celebrationSurfaces = [
       "foil": "/cards/pokemon/30th-celebration/me5-5m-3-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/me5-5m-3-protection.png",
       "roughness": "/cards/pokemon/30th-celebration/maps/me5-5m-3-roughness.png",
-      "normal": "/cards/pokemon/30th-celebration/maps/me5-5m-3-normal.png"
+      "normal": "/cards/pokemon/30th-celebration/maps/me5-5m-3-normal.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/me5-5m-3-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/me5-5m-3-evidence.json"
   },
@@ -7728,7 +7919,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-9-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-9-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-9-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-9-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-9-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-9-evidence.json"
   },
@@ -7739,7 +7931,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-10-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-10-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-10-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-10-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-10-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-10-evidence.json"
   },
@@ -7750,7 +7943,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-11-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-11-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-11-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-11-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-11-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-11-evidence.json"
   },
@@ -7761,7 +7955,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-12-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-12-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-12-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-12-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-12-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-12-evidence.json"
   },
@@ -7772,7 +7967,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-13-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-13-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-13-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-13-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-13-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-13-evidence.json"
   },
@@ -7783,7 +7979,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-14-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-14-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-14-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-14-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-14-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-14-evidence.json"
   },
@@ -7794,7 +7991,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-15-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-15-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-15-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-15-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-15-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-15-evidence.json"
   },
@@ -7805,7 +8003,8 @@ export const celebrationSurfaces = [
     "maps": {
       "foil": "/cards/pokemon/30th-celebration/mee-16-foil.png",
       "protection": "/cards/pokemon/30th-celebration/maps/mee-16-protection.png",
-      "roughness": "/cards/pokemon/30th-celebration/maps/mee-16-roughness.png"
+      "roughness": "/cards/pokemon/30th-celebration/maps/mee-16-roughness.png",
+      "secondaryFoil": "/cards/pokemon/30th-celebration/maps/mee-16-secondary.png"
     },
     "evidence": "/cards/pokemon/30th-celebration/maps/mee-16-evidence.json"
   }

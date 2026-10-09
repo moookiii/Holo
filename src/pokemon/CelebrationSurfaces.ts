@@ -21,7 +21,12 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
     galleryVisible: true, pokemon: { ...card, variant: 'holo', materialProfile: profile, treatmentStatus: 'deferred' },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] }, maps: surface.maps,
     mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
-    ...(surface.textured ? { profileOverrides: tcglEtchedFinish } : {}),
+    profileOverrides: surface.textured ? tcglEtchedFinish : {
+      // Uniform temporary response only. Do not synthesize a replacement TCGL
+      // motif through an older profile's procedural field or sparkle.
+      structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
+      glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+    },
     source: { image: card.front!, metadata: surface.evidence,
       notes: 'Original exact TCGL front and RGBA foil map. Offline reference etch normal where supplied. Temporary existing material; physical optics and precise region review pending Astra High.' },
   };
