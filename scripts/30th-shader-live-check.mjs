@@ -34,6 +34,13 @@ try {
   }
   results[id]=await page.evaluate(()=>({stats:window.__holo.stats(),sunPillar:window.__holo.material().optics.sunPillar,foilControls:!!window.__holo.material().foilControlsTextureNode.value}));
  }
+ await page.evaluate(()=>window.__holo.gallery.open());
+ await page.getByRole('combobox',{name:'Set',exact:true}).selectOption({label:'30th Celebration'});
+ await page.waitForFunction(()=>window.__holo.gallery.stats()?.visible>0,null,{timeout:90000});
+ await page.screenshot({path:out+'/gallery.png'});
+ results.gallery=await page.evaluate(()=>window.__holo.gallery.stats());
+ assert.equal(results['pokemon:30th-053:holo'].sunPillar,true);
+ assert.equal(results['pokemon:30th-129:holo'].sunPillar,false);
  assert.deepEqual(errors,[]);
 } catch(e) { results.failure=String(e);process.exitCode=1; }
 finally { await writeFile(out+'/report.json',JSON.stringify({results,errors},null,2));await browser.close(); }

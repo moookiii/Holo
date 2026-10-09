@@ -1,5 +1,35 @@
 # 30th shader implementation audit — 2026-10-08
 
+## Implementation progress
+
+- Double Rares now route through `sv-sun-pillar` in viewer and instanced gallery.
+  It shares the existing SUN_PILLAR evaluator and omits the legacy star die.
+  IRs retain `sv151-illustration`; the 45 etched registrations retain the exact
+  mandated finish. No normal or region PNG was regenerated in this pass.
+- RGB source RGBA is now loaded as `maps.foilControls`, in NoColorSpace at its
+  original resolution, separately from scalar coverage. The material exposes
+  and rebinds that texture. The optical evaluator does **not yet consume it**:
+  assigning tint or region meanings without a source specification would guess.
+- Viewer WebGPU checks exercised Double Rare 053, IR 129 and RGB R/RGB at front
+  and grazing poses without errors. Captures and report are in
+  `artifacts/30th-celebration/shader-routing/`. The RGB capture confirms the
+  temporary rendering is still unacceptable; loading raw controls alone is not
+  a finished RGB treatment.
+
+Pikachu fireworks, Classic reflective motifs and final RGB optics remain
+unfinished. No authentic specialty stock map or RGB channel specification was
+found in the source export or further searches. Malie's
+[source-format specification](https://malie.io/static/draft/html/pkproto_sv.html)
+documents foil type/mask distinctions but not the anniversary RGB channels or
+specialty stock geometry. The [MyCurio mod author's description](https://www.nexusmods.com/tcgcardshopsimulator/mods/1735)
+identifies its anniversary maps as its own authored replacements; they are not
+the exact TCGL assets needed here. They were not imported.
+
+This work is partial implementation, not completion of the request for all
+remaining shaders. The missing specialty inputs must be recovered before their
+authentic finish can be completed. Existing secondary masks are still pending;
+no additional Classic regions were invented.
+
 Develop three anniversary specialty treatments: Pikachu fireworks, Classic foil,
 and RGB Mew. Wire the other groups to distinct profiles using existing smooth
 foil, SUN_PILLAR and authored-etch mechanisms. This is the implementation plan;
