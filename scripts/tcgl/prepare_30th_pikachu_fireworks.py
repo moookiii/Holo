@@ -56,7 +56,11 @@ def main():
         across = np.abs(polar-ray-.5+(variation-.5)*.25)*2*np.pi*np.maximum(r,.008)/count
         along = np.abs(r-rr-(variation-.5)*.003)
         half_length = (.0018+.004*np.minimum(rr/radius,1))*(.75+variation*.5)
-        half_width = .00052+.00032*np.minimum(rr/radius,1)
+        # Broad rectangular foil tiles rather than hairline strokes. Keep
+        # angular gaps open, including the crowded center of each rosette.
+        half_width = np.minimum(
+            (.00135+.00085*np.minimum(rr/radius,1))*(.88+variation*.24),
+            2*np.pi*np.maximum(rr,.008)/count*.32)
         aa = .65/h
         cut = (1-smooth(half_length-aa,half_length+aa,along))*(1-smooth(half_width-aa,half_width+aa,across))
         envelope = (1-smooth(radius-.014,radius,r))*smooth(.001,.008,r)
@@ -75,7 +79,7 @@ def main():
         evidence['fields'].update(outputs)
         evidence['bursts'] = BURSTS
         evidence['fireworksReference'] = 'codex-clipboard-4326db1f-966f-40c7-93ca-0816cb00f7ed.png'
-        evidence['fireworksMethod'] = 'Concentric staggered rings of short radial reflective dashes; no continuous spokes'
+        evidence['fireworksMethod'] = 'Concentric staggered rings of broad rectangular reflective tiles; angular gaps remain open'
         evidence_path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
         print('Updated shared fireworks optical PNG; card coverage and speckles preserved')
         return
