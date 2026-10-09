@@ -163,7 +163,7 @@ def emit():
     for sid,key,name,date in SETS:
         archive=ROOT/f'research/tcgl/mega-series/{key}'
         if not (archive/'sources.json').exists():continue
-        source=json.loads((archive/'sources.json').read_text()); entries=json.loads((archive/'export.json').read_text()); by_variant={e['ext']['tcgl']['longFormID']:e for e in entries}
+        source=json.loads((archive/'sources.json').read_bytes()); entries=json.loads((archive/'export.json').read_bytes()); by_variant={e['ext']['tcgl']['longFormID']:e for e in entries}
         cards={}
         for p in source['printings']:
             e=by_variant[p['tcglVariantId']];card=cards.setdefault(p['cardId'],{'id':p['cardId'],'localId':p['number'],'name':p['name'],'rarity':p['rarity'],'category':e['card_type'].title(),
