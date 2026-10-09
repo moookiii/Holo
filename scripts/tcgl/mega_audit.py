@@ -11,11 +11,13 @@ def main():
     for sid,key,_,_ in SETS:
         if sid not in args.sets:continue
         archive=ROOT/f'research/tcgl/mega-series/{key}'
+        export_source=json.loads((archive/'export-source.json').read_text())
         source=json.loads((archive/'sources.json').read_text());printings=source['printings']
         manifest=json.loads((ROOT/f'public/cards/pokemon/tcgl-me/{sid}/tcgl/manifest.json').read_text())
         surfaces={(s['cardId'],s['variant']):s for s in manifest}
         originals={};cards={};duplicates=[]
         for p in printings:
+            if p['exportSource']['url']!=export_source['url'] or p['exportSource']['sha256']!=export_source['sha256']:raise ValueError('Wrong export provenance')
             cards.setdefault(p['cardId'],[]).append(p)
             for s in p['sources'].values():
                 if s['file'] in originals:continue

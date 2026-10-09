@@ -29,6 +29,7 @@ test('all six complete TCGL checklists retain every exact printing and its local
       assert.equal(evidence.tcglCardId,`${keys[id]}_${Number(card.localId)}${suffix}`);
       assert.ok(evidence.tcglVariantId.includes(`_${evidence.tcglCardId}_`));
       assert.ok(evidence.exportSource.sha256);assert.equal(evidence.alignmentReview.verticalFlip,false);assert.equal(evidence.alignmentReview.cropOrOffset,false);
+      assert.ok(evidence.exportSource.url.endsWith(`/${keys[id]}.en-US.json`));
       for(const url of Object.values(surface.maps))assert.ok(url.endsWith('.png')&&existsSync(file(url)));
       assert.equal(definition.mapSettings?.embossStrength,0);assert.equal(surface.maps.height,undefined);
       if(surface.textured){etched++;assert.equal(definition.profile,'prismatic_sir_texture');assert.equal(definition.mapSettings?.normalScale,1);

@@ -61,14 +61,14 @@ def acquire(sid, key, numbers=None):
     archive.mkdir(parents=True,exist_ok=True)
     index_path=ROOT/'research/tcgl/mega-series/export-index.json'
     if not index_path.exists(): index_path.write_bytes(fetch(BASE+'index.json'))
-    index=json.loads(index_path.read_bytes())['en-US']; url=BASE+index[key]['path']
+    index=json.loads(index_path.read_bytes())['en-US']; export_url=BASE+index[key]['path']
     export=archive/'export.json'
-    if not export.exists(): export.write_bytes(fetch(url))
+    if not export.exists(): export.write_bytes(fetch(export_url))
     entries=json.loads(export.read_bytes())
     expected={'me01':188,'me02':130,'me02.5':295,'me03':124,'me04':122,'me05':120}
     if sid in expected and {e['collector_number']['numeric'] for e in entries} != set(range(1,expected[sid]+1)):
         raise ValueError('Incomplete published checklist: '+sid)
-    write(archive/'export-source.json', {'url':url,'sha256':converter.digest(export),'entryCount':len(entries)})
+    write(archive/'export-source.json', {'url':export_url,'sha256':converter.digest(export),'entryCount':len(entries)})
     selected=[e for e in entries if numbers is None or e['collector_number']['numeric'] in numbers]
     printings=[identity(e,sid) for e in selected]
     if len({(p['cardId'],p['variant']) for p in printings})!=len(printings): raise ValueError('Duplicate exact printing')
@@ -86,7 +86,7 @@ def acquire(sid, key, numbers=None):
     assets=ROOT/f'public/cards/pokemon/tcgl-me/{sid}'; assets.mkdir(parents=True,exist_ok=True)
     for p in printings:
         p['sources']={kind:saved[u] for kind,u in p['images'].items()}
-        p['exportSource']={'url':url,'sha256':converter.digest(export),'file':export.relative_to(ROOT).as_posix()}
+        p['exportSource']={'url':export_url,'sha256':converter.digest(export),'file':export.relative_to(ROOT).as_posix()}
         p['frontFile']=p['number']+'.png'
         dest=assets/p['frontFile']; raw=ROOT/p['sources']['front']['file']
         if dest.exists() and converter.digest(dest)!=p['sources']['front']['sha256']: raise ValueError('Front conflict')
