@@ -1,7 +1,7 @@
 import { chromium } from 'playwright';
 import assert from 'node:assert/strict';
 import { existsSync } from 'node:fs';
-import { mkdir,readdir,writeFile } from 'node:fs/promises';
+import { mkdir,readdir,writeFile,readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 let executablePath=chromium.executablePath();
 if(!existsSync(executablePath)) for(const version of (await readdir(join(process.env.LOCALAPPDATA,'ms-playwright'))).filter(n=>/^chromium-\d+$/.test(n)).sort().reverse()) {
@@ -12,6 +12,8 @@ const out=`artifacts/mega-series/${full?'integration':'vertical-slice'}`;await m
 const browser=await chromium.launch({executablePath,headless:true,args:['--enable-unsafe-webgpu','--ignore-gpu-blocklist']});
 const page=await browser.newPage({viewport:{width:1440,height:1100}});
 const errors=[],requests=[],results={viewers:[],packs:[]};
+const packOnly=process.argv.includes('--pack-only');
+if(packOnly&&!full){const previous=JSON.parse(await readFile(out+'/report.json','utf8'));assert.equal(previous.viewers.length,10);assert.deepEqual(previous.errors,[]);results.viewers=previous.viewers;}
 page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
 page.on('response',r=>{if(r.status()>=400&&r.url().includes('127.0.0.1')) errors.push(`${r.status()} ${r.url()}`);});
 await page.route('https://api.tcgdex.net/v2/en/series',r=>r.fulfill({json:[{id:'me',name:'Mega Evolution'}]}));
@@ -21,7 +23,7 @@ try {
   await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:120000});
   const ids=full?['pokemon:me02-125:holo','pokemon:me02.5-022:holo','pokemon:me03-001:reverse','pokemon:me04-001:normal','pokemon:me05-001:normal']:
     ['pokemon:me01-010:holo','pokemon:me01-001:reverse','pokemon:me02.5-001:special-reverse','pokemon:me01-003:holo','pokemon:me01-133:holo','pokemon:me01-155:holo','pokemon:me01-177:holo','pokemon:me01-187:holo','pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo'];
-  for(const id of ids){
+  for(const id of packOnly?[]:ids){
     await page.evaluate(id=>window.__holo.gallery.close(id),id);
     await page.waitForFunction(id=>window.__holo.stats().card===id,id,{timeout:90000}).catch(async()=>{
       assert.equal(await page.evaluate(()=>window.__holo.stats().card),id);
@@ -32,10 +34,12 @@ try {
     }
     results.viewers.push(await page.evaluate(()=>window.__holo.stats()));
   }
+  if(!packOnly){
   await page.evaluate(()=>window.__holo.gallery.open());
   await page.getByRole('combobox',{name:'Set',exact:true}).selectOption({label:'Mega Evolution'});
   await page.waitForFunction(()=>window.__holo.gallery.stats()?.visible>0,null,{timeout:120000});
   await page.screenshot({path:out+'/gallery.png'});
+  }
   await page.evaluate(()=>window.__holo.gallery.close('pokemon:me01-010:holo'));
   for(const name of full?['Mega Evolution','Phantasmal Flames','Ascended Heroes','Perfect Order','Chaos Rising','Pitch Black']:['Mega Evolution']){
     await page.evaluate(()=>window.__holo.pack.browse());

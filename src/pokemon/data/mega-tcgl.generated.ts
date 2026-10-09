@@ -252,6 +252,30 @@ export const tcglMegaSets: readonly (TcglSvSetRecord & { seriesId: string; serie
         "stage": "Stage2"
       },
       {
+        "id": "me01-012",
+        "localId": "012",
+        "name": "Celebi",
+        "rarity": "Uncommon",
+        "category": "Pokemon",
+        "front": "012.png",
+        "types": [
+          "Grass"
+        ],
+        "collectorNumber": "012/132",
+        "variants": [
+          "normal",
+          "reverse"
+        ],
+        "foil": {
+          "reverse": "FLAT_SILVER"
+        },
+        "variantFronts": {
+          "normal": "012.png",
+          "reverse": "012.png"
+        },
+        "stage": "Basic"
+      },
+      {
         "id": "me01-133",
         "localId": "133",
         "name": "Bulbasaur",
@@ -731,6 +755,19 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     "evidence": "/cards/pokemon/tcgl-me/me01/tcgl/010-reverse-evidence.json",
     "foilType": "FLAT_SILVER",
     "tcglVariantId": "Meganium_me1_10_ph_Rare_FlatSilver_Reverse"
+  },
+  {
+    "cardId": "me01-012",
+    "variant": "reverse",
+    "profile": "sv_tcgl_standard_reverse",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me01/tcgl/012-reverse-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me01/tcgl/012-reverse-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me01/tcgl/012-reverse-evidence.json",
+    "foilType": "FLAT_SILVER",
+    "tcglVariantId": "Celebi_me1_12_ph_Uncommon_FlatSilver_Reverse"
   },
   {
     "cardId": "me01-133",

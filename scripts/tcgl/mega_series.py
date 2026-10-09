@@ -25,7 +25,7 @@ SETS = [
     ('me05', 'me5', 'Pitch Black', '2026-07-17'),
     ('mee', 'mee', 'Mega Evolution Energy', '2025-09-26'),
 ]
-SLICE = {'me01': {1,2,3,4,5,6,7,8,9,10,133,155,177,187}, 'me02.5': {1}, 'mee': set(range(1,9))}
+SLICE = {'me01': {1,2,3,4,5,6,7,8,9,10,12,133,155,177,187}, 'me02.5': {1}, 'mee': set(range(1,9))}
 REVIEW = ROOT / 'research/tcgl/mega-series/source-review.json'
 
 def write(path, value):
