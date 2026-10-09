@@ -25,8 +25,8 @@ test('all six complete TCGL checklists retain every exact printing and its local
       const surface=surfaces.find(s=>s.cardId===card.id&&s.variant===variant)!;assert.ok(surface);
       const evidence=JSON.parse(readFileSync(file(surface.evidence),'utf8'));
       assert.equal(evidence.tcglVariantId,surface.tcglVariantId);
-      const suffix=variant==='reverse'?'ph':variant==='special-reverse'?'ph2':'std';
-      assert.equal(evidence.tcglCardId,`${keys[id]}_${Number(card.localId)}_${suffix}`);
+      const suffix=variant==='reverse'?'_ph':variant==='special-reverse'?'_ph2':'';
+      assert.equal(evidence.tcglCardId,`${keys[id]}_${Number(card.localId)}${suffix}`);
       assert.ok(evidence.tcglVariantId.includes(`_${evidence.tcglCardId}_`));
       assert.ok(evidence.exportSource.sha256);assert.equal(evidence.alignmentReview.verticalFlip,false);assert.equal(evidence.alignmentReview.cropOrOffset,false);
       for(const url of Object.values(surface.maps))assert.ok(url.endsWith('.png')&&existsSync(file(url)));

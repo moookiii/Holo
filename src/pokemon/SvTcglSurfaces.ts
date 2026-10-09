@@ -34,7 +34,9 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
     } : {}),
     source: { image: front, metadata: fallbackSource ?? surface?.evidence ?? `${front.slice(0,front.lastIndexOf('/'))}/catalog.json`,
       notes: fallbackSource ? `English nonfoil printing. Image provider: ${svNonfoilImageProvider(id)}; metadata: TCGdex. Source and original image hash recorded; print-only material.` :
-        ('treatmentStatus' in (surface ?? {}) ? 'Exact TCGL assets; temporary reference finish. Mega Attack Rare / Mega Hyper Rare physical optical development reserved for Astra High.' : 'Exact English TCGL retail printing. Foil coverage and optional offline etch normal use this printing’s own sources.') },
+        ('treatmentStatus' in (surface ?? {}) ? 'Exact TCGL assets; temporary reference finish. Mega Attack Rare / Mega Hyper Rare physical optical development reserved for Astra High.' :
+          card.setId === 'me02.5' && variant === 'special-reverse' ? 'Exact TCGL ph2 printing retained. Published ph2 foil PNG duplicates its ordinary ph map; assigned special motif geometry is unavailable in this export. Source discrepancy recorded in research/tcgl/mega-series/me2-5/batch-validation.json.' :
+          'Exact English TCGL retail printing. Foil coverage and optional offline etch normal use this printing’s own sources.') },
   };
 }
 export const svTcglPickerCards = () => svTcglCards.flatMap(card => card.variants
