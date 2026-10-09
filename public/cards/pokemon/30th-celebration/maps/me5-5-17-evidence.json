@@ -1,0 +1,58 @@
+{
+  "cardId": "30th-017",
+  "tcglCardId": "me5-5_17",
+  "tcglVariantId": "Lapras_me5-5_17_std_Common_Rainbow_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5/me5-5_en_017_std.png",
+      "file": "research/tcgl/me5-5-17/me5-5_en_017_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "01960133c06a75675fa0030d9d4212bd95f03f5d43e7009f89c63a76a7680b59",
+      "status": "preserved-original"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5/me5-5_en_017_std.foil.png",
+      "file": "research/tcgl/me5-5-17/me5-5_en_017_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "a5a5b798b13099032223023799dc4c2be0412c7cdf4944ca56d1dce64821152f",
+      "status": "preserved-original"
+    }
+  },
+  "dimensions": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "me5-5-17-protection.png": "1657d17ed82d4dfaa88b365c0d4010e0d805cffe989bb3f9cbe9636d5683d6ee",
+    "me5-5-17-body.png": "3fd5c8ed5cacd6534e2c7b364b8c8bc73e9bcff00c399d5d10fbebcbb75566df",
+    "me5-5-17-secondary.png": "3fd5c8ed5cacd6534e2c7b364b8c8bc73e9bcff00c399d5d10fbebcbb75566df",
+    "me5-5-17-roughness.png": "9b568dd128eefeed11a09fca176da6f5f5534de07deef6c8eabf7aac3293a346"
+  },
+  "foilMap": "byte-identical RGBA TCGL PNG; no intensity remap",
+  "foilDeclaration": {
+    "type": "RAINBOW",
+    "mask": "HOLO"
+  },
+  "profile": "sv_tcgl_regular_holo",
+  "temporaryMaterial": true,
+  "physicalFinishReview": "pending Astra High",
+  "registrationReview": "pending per-card source inspection",
+  "protectionReview": "pending high-resolution boundary/glyph authoring",
+  "bodyMethod": "Existing TCGL foil/etch connected-component source_regions estimates; no front brightness",
+  "bodyCandidates": [],
+  "secondaryMethod": "Empty pending exact-print microdiamond evidence; no substitute motifs",
+  "normalConversion": null,
+  "limitations": [
+    "TCGL geometry is not measured physical groove depth.",
+    "Source-derived region estimates need contour review.",
+    "Temporary profiles do not reproduce Pikachu, Classic, RGB or Futuristic optical finishes."
+  ]
+}

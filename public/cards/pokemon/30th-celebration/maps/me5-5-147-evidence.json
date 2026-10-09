@@ -1,0 +1,121 @@
+{
+  "cardId": "30th-147",
+  "tcglCardId": "me5-5_147",
+  "tcglVariantId": "Fuecocoex_me5-5_147_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5/me5-5_en_147_std.png",
+      "file": "research/tcgl/me5-5-147/me5-5_en_147_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "28b7468f3ffcdeb37547970172aad638f1e14fa3f3b444df1d3c7a6e8626608a",
+      "status": "preserved-original"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5/me5-5_en_147_std.foil.png",
+      "file": "research/tcgl/me5-5-147/me5-5_en_147_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "2bf5e7cbf314b2bd6ec1c1c870e693c4c4ca0feea1ed01434a290b3912c13108",
+      "status": "preserved-original"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5/me5-5_en_147_std.etch.png",
+      "file": "research/tcgl/me5-5-147/me5-5_en_147_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ba33cf09bb7c26eaf5d42cfda00824f45d00a6245b8e75a0b710c81cd2426be9",
+      "status": "preserved-original"
+    }
+  },
+  "dimensions": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "me5-5-147-protection.png": "5a686f6529ec3c96c53c8bd05510180da422bd8e3c4d60f4857a348e672fe802",
+    "me5-5-147-body.png": "14e2e00807db38b3493eb6bfde9686a1936c5f9fba035eedb1ba2b10da41f20f",
+    "me5-5-147-secondary.png": "3fd5c8ed5cacd6534e2c7b364b8c8bc73e9bcff00c399d5d10fbebcbb75566df",
+    "me5-5-147-roughness.png": "e9a8c2b305cca7cb700e08dd785a2419c2761e31630b9b100857ab81742eb559",
+    "me5-5-147-normal.png": "d3057b6bf38e4e5640be06c9de922c66ef3d92a81f3ecbdc2ee3ec27558e4658"
+  },
+  "foilMap": "byte-identical RGBA TCGL PNG; no intensity remap",
+  "foilDeclaration": {
+    "type": "SV_ULTRA",
+    "mask": "ETCHED"
+  },
+  "profile": "prismatic_sir_texture",
+  "temporaryMaterial": true,
+  "physicalFinishReview": "pending Astra High",
+  "registrationReview": "pending per-card source inspection",
+  "protectionReview": "pending high-resolution boundary/glyph authoring",
+  "bodyMethod": "Existing TCGL foil/etch connected-component source_regions estimates; no front brightness",
+  "bodyCandidates": [
+    {
+      "areaAtFoilResolution": 235,
+      "texturedInteriorFraction": 0.6039603960396039
+    },
+    {
+      "areaAtFoilResolution": 753,
+      "texturedInteriorFraction": 0.41914191419141916
+    },
+    {
+      "areaAtFoilResolution": 226,
+      "texturedInteriorFraction": 0.5
+    },
+    {
+      "areaAtFoilResolution": 251,
+      "texturedInteriorFraction": 0.45985401459854014
+    },
+    {
+      "areaAtFoilResolution": 20948,
+      "texturedInteriorFraction": 0.8694844403158384
+    },
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.45652173913043476
+    },
+    {
+      "areaAtFoilResolution": 258,
+      "texturedInteriorFraction": 0.5247524752475248
+    },
+    {
+      "areaAtFoilResolution": 235,
+      "texturedInteriorFraction": 0.4142857142857143
+    },
+    {
+      "areaAtFoilResolution": 176,
+      "texturedInteriorFraction": 0.6511627906976745
+    }
+  ],
+  "secondaryMethod": "Empty pending exact-print microdiamond evidence; no substitute motifs",
+  "normalConversion": {
+    "polarity": "inverted mean RGB (reference convention; per-card review pending)",
+    "verticalFlip": false,
+    "crop": null,
+    "offset": [
+      0,
+      0
+    ],
+    "resize": "full-domain bilinear",
+    "derivative": "Scharr CV_32F scale 1/32 before protection",
+    "gain": 1.03,
+    "convention": "OpenGL +Y",
+    "opaqueRgb": true,
+    "embossStrength": 0
+  },
+  "limitations": [
+    "TCGL geometry is not measured physical groove depth.",
+    "Source-derived region estimates need contour review.",
+    "Temporary profiles do not reproduce Pikachu, Classic, RGB or Futuristic optical finishes."
+  ]
+}

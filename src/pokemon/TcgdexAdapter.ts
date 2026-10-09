@@ -22,6 +22,7 @@ import { WIZARDS_PROMO_ID, wizardsPromoCard, wizardsPromoSet } from './WizardsPr
 import { POKEMON_151_ID, pokemon151Card, pokemon151Set } from './Pokemon151Catalog.ts';
 import { isSvTcglSet, svTcglCard, svTcglSet, svTcglSets } from './SvTcglCatalog.ts';
 import { myFirstBattleCard, myFirstBattleSet } from './MyFirstBattleCatalog.ts';
+import { celebrationCard, celebrationProduct, celebrationSet, celebrationUpcSet, isCelebrationSet } from './CelebrationCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
 // invokes the transport synchronously, before its first await. Capture the signal
@@ -81,6 +82,16 @@ export class TcgdexAdapter {
       const sets = serie.sets
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
+      if (seriesId === 'me') {
+        // The virtual anniversary catalog includes Classic/RGB/Energy printings.
+        const index = sets.findIndex(set => set.id === celebrationSet.id);
+        if (index >= 0) sets.splice(index, 1);
+        const classic = sets.findIndex(set => set.id === '30th-c');
+        if (classic >= 0) sets.splice(classic, 1);
+        sets.push({ id: celebrationSet.id, name: celebrationSet.name, logo: undefined }, { id: celebrationUpcSet.id, name: celebrationUpcSet.name, logo: undefined });
+        const order = ['me01', 'me02', 'me02.5', 'me03', 'me04', 'me05', '30th', '30th-classic-upc'];
+        sets.sort((a,b) => (order.indexOf(a.id) < 0 ? 99 : order.indexOf(a.id)) - (order.indexOf(b.id) < 0 ? 99 : order.indexOf(b.id)));
+      }
       if (seriesId === 'ecard') {
         const aquapolis = sets.findIndex(set => set.id === AQUAPOLIS_ID);
         if (aquapolis >= 0) sets.splice(aquapolis, 1);
@@ -138,6 +149,7 @@ export class TcgdexAdapter {
   }
   set(id: string, signal: AbortSignal): Promise<PokemonSet> {
     return this.read(`set:${id}`, signal, async () => {
+      if (isCelebrationSet(id)) return celebrationProduct(id);
       if (id === EXPEDITION_ID) return { ...expeditionSet, series: { ...expeditionSet.series }, cardIds: [...expeditionSet.cardIds], boosters: expeditionSet.boosters.map(b => ({ ...b })) };
       if (id === AQUAPOLIS_ID) return { ...aquapolisSet, series: { ...aquapolisSet.series }, cardIds: [...aquapolisSet.cardIds], boosters: aquapolisSet.boosters.map(b => ({ ...b })) };
       if (id === SAMPLE_SET_ID) return { ...sampleSet, series: { ...sampleSet.series }, cardIds: [...sampleSet.cardIds], boosters: [] };
@@ -172,6 +184,10 @@ export class TcgdexAdapter {
   }
   card(id: string, set: PokemonSet, signal: AbortSignal): Promise<PokemonCard> {
     return this.read(`card:${set.id}:${id}`, signal, async () => {
+      if (isCelebrationSet(set.id)) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return celebrationCard(id);
+      }
       if (set.id === 'mfb') return myFirstBattleCard(id);
       if (set.id === EXPEDITION_ID) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);

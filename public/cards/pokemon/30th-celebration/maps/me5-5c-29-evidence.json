@@ -1,0 +1,121 @@
+{
+  "cardId": "30th-classic-029",
+  "tcglCardId": "me5-5c_29",
+  "tcglVariantId": "ArceusVSTAR_me5-5c_29_std_ClassicCollection_ClassicFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5c/me5-5c_en_029_std.png",
+      "file": "research/tcgl/me5-5c-29/me5-5c_en_029_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "079d93cb466f5656221beef8fdc029ee137ac6228c38cf90081d06be08ea1ef7",
+      "status": "preserved-original"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5c/me5-5c_en_029_std.foil.png",
+      "file": "research/tcgl/me5-5c-29/me5-5c_en_029_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "657828c2fa2bee42a737a8689bc613f8d7c2a020cecd439b5080b2a0e3fbceec",
+      "status": "preserved-original"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5c/me5-5c_en_029_std.etch.png",
+      "file": "research/tcgl/me5-5c-29/me5-5c_en_029_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "06a3d9a2b5b8a061e4adf6706a8c2555ce92dcf8ee94ea8eba89999a83abcdd0",
+      "status": "preserved-original"
+    }
+  },
+  "dimensions": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "me5-5c-29-protection.png": "41b75ae4b366c23b57317d71505ff1839eb9780f0f3d36190595432fa669eb13",
+    "me5-5c-29-body.png": "7f76112ee7b115997c1504914c1169dd7afb3767a5cea08c476f3e363a6a61a6",
+    "me5-5c-29-secondary.png": "3fd5c8ed5cacd6534e2c7b364b8c8bc73e9bcff00c399d5d10fbebcbb75566df",
+    "me5-5c-29-roughness.png": "259d76e79d1f6a0edb9358438c9961f293da30fb43b397d5702aec44e90d73ec",
+    "me5-5c-29-normal.png": "0f669386c5966105d40993f9f83b4411cb7b351f56f7b3ebf6fd847abe75c632"
+  },
+  "foilMap": "byte-identical RGBA TCGL PNG; no intensity remap",
+  "foilDeclaration": {
+    "type": "CLASSIC_FOIL",
+    "mask": "ETCHED"
+  },
+  "profile": "prismatic_sir_texture",
+  "temporaryMaterial": true,
+  "physicalFinishReview": "pending Astra High",
+  "registrationReview": "pending per-card source inspection",
+  "protectionReview": "pending high-resolution boundary/glyph authoring",
+  "bodyMethod": "Existing TCGL foil/etch connected-component source_regions estimates; no front brightness",
+  "bodyCandidates": [
+    {
+      "areaAtFoilResolution": 5139,
+      "texturedInteriorFraction": 0.40966576332429994
+    },
+    {
+      "areaAtFoilResolution": 53981,
+      "texturedInteriorFraction": 0.9319910235631468
+    },
+    {
+      "areaAtFoilResolution": 687,
+      "texturedInteriorFraction": 0.5305466237942122
+    },
+    {
+      "areaAtFoilResolution": 1554,
+      "texturedInteriorFraction": 0.695364238410596
+    },
+    {
+      "areaAtFoilResolution": 438,
+      "texturedInteriorFraction": 0.4304635761589404
+    },
+    {
+      "areaAtFoilResolution": 182,
+      "texturedInteriorFraction": 0.40298507462686567
+    },
+    {
+      "areaAtFoilResolution": 176,
+      "texturedInteriorFraction": 0.6037735849056604
+    },
+    {
+      "areaAtFoilResolution": 229,
+      "texturedInteriorFraction": 0.4367816091954023
+    },
+    {
+      "areaAtFoilResolution": 162,
+      "texturedInteriorFraction": 0.4696969696969697
+    }
+  ],
+  "secondaryMethod": "Empty pending exact-print microdiamond evidence; no substitute motifs",
+  "normalConversion": {
+    "polarity": "inverted mean RGB (reference convention; per-card review pending)",
+    "verticalFlip": false,
+    "crop": null,
+    "offset": [
+      0,
+      0
+    ],
+    "resize": "full-domain bilinear",
+    "derivative": "Scharr CV_32F scale 1/32 before protection",
+    "gain": 1.03,
+    "convention": "OpenGL +Y",
+    "opaqueRgb": true,
+    "embossStrength": 0
+  },
+  "limitations": [
+    "TCGL geometry is not measured physical groove depth.",
+    "Source-derived region estimates need contour review.",
+    "Temporary profiles do not reproduce Pikachu, Classic, RGB or Futuristic optical finishes."
+  ]
+}

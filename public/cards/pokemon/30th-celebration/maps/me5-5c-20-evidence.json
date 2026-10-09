@@ -1,0 +1,97 @@
+{
+  "cardId": "30th-classic-020",
+  "tcglCardId": "me5-5c_20",
+  "tcglVariantId": "GenesectEX_me5-5c_20_std_ClassicCollection_ClassicFoil_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5c/me5-5c_en_020_std.png",
+      "file": "research/tcgl/me5-5c-20/me5-5c_en_020_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "924a87998b09fed9ea484c05848b59781d473a209d6eebc1935fdf609040eec6",
+      "status": "preserved-original"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5c/me5-5c_en_020_std.foil.png",
+      "file": "research/tcgl/me5-5c-20/me5-5c_en_020_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "125bba581832eebab0b3ce299ab6f238d5bd0bdfc6e10917443a807b59400e93",
+      "status": "preserved-original"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5-5c/me5-5c_en_020_std.etch.png",
+      "file": "research/tcgl/me5-5c-20/me5-5c_en_020_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "7c8ba42131e670f51004db9cd3972d535f3305dcd9a2b2ec4d02238809c005c4",
+      "status": "preserved-original"
+    }
+  },
+  "dimensions": [
+    1800,
+    2475
+  ],
+  "maps": {
+    "me5-5c-20-protection.png": "dbae610536c147260c2a2ba394d74ce2ece3c36993f0fbaa9e6ab58337fafdde",
+    "me5-5c-20-body.png": "23cbbc704e77bfecb4a900649a5958ccd20b1ce51ed0346c81eba4c0274b2956",
+    "me5-5c-20-secondary.png": "3fd5c8ed5cacd6534e2c7b364b8c8bc73e9bcff00c399d5d10fbebcbb75566df",
+    "me5-5c-20-roughness.png": "de0c38b5d9e77ceb66c2a09977d9ce160b0813d2f3dae68b8de2058ea6843b57",
+    "me5-5c-20-normal.png": "61428106b0205889e39c966c79dc56705b7a34b5f090881ca194611179a946d6"
+  },
+  "foilMap": "byte-identical RGBA TCGL PNG; no intensity remap",
+  "foilDeclaration": {
+    "type": "CLASSIC_FOIL",
+    "mask": "ETCHED"
+  },
+  "profile": "prismatic_sir_texture",
+  "temporaryMaterial": true,
+  "physicalFinishReview": "pending Astra High",
+  "registrationReview": "pending per-card source inspection",
+  "protectionReview": "pending high-resolution boundary/glyph authoring",
+  "bodyMethod": "Existing TCGL foil/etch connected-component source_regions estimates; no front brightness",
+  "bodyCandidates": [
+    {
+      "areaAtFoilResolution": 1692,
+      "texturedInteriorFraction": 0.706605222734255
+    },
+    {
+      "areaAtFoilResolution": 3103,
+      "texturedInteriorFraction": 0.5355618776671408
+    },
+    {
+      "areaAtFoilResolution": 12710,
+      "texturedInteriorFraction": 0.9982949701619779
+    }
+  ],
+  "secondaryMethod": "Empty pending exact-print microdiamond evidence; no substitute motifs",
+  "normalConversion": {
+    "polarity": "inverted mean RGB (reference convention; per-card review pending)",
+    "verticalFlip": false,
+    "crop": null,
+    "offset": [
+      0,
+      0
+    ],
+    "resize": "full-domain bilinear",
+    "derivative": "Scharr CV_32F scale 1/32 before protection",
+    "gain": 1.03,
+    "convention": "OpenGL +Y",
+    "opaqueRgb": true,
+    "embossStrength": 0
+  },
+  "limitations": [
+    "TCGL geometry is not measured physical groove depth.",
+    "Source-derived region estimates need contour review.",
+    "Temporary profiles do not reproduce Pikachu, Classic, RGB or Futuristic optical finishes."
+  ]
+}

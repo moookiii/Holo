@@ -22,6 +22,8 @@ const designs: Record<string, readonly string[]> = {
 /** TCGdex currently omits English booster metadata for these products. */
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
+  if (setId === '30th') return [{ id: 'english', name: 'English six-card booster', front: `${base}30th-front.png` }];
+  if (setId === '30th-classic-upc') return [{ id: 'upc-classic', name: 'UPC three-card Classic Collection booster', front: `${base}30th-classic-front.png` }];
   const product = wotcWrappers[setId];
   if (product) return product.designs.map(design => ({ id: design.id,
     name: `${design.name ?? design.id[0].toUpperCase()+design.id.slice(1)} booster${design.edition ? ' · '+editionLabel(design.edition) : ''}${design.front ? '' : ' · artwork pending'}`,
