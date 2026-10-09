@@ -100,7 +100,13 @@ export class PackBrowser {
     const button = document.createElement('button'); button.className = 'pokemon-pack-tile';
     if (artwork) {
       const img = document.createElement('img'); img.alt = ''; img.loading = 'lazy'; img.src = artwork;
-      img.onerror = () => { img.onerror = null; img.src = fallbackWrapper({ name: label }); };
+      if (artwork.endsWith('/packs/pokemon/30th-logo.png')) {
+        img.style.maskImage = `url('${import.meta.env.BASE_URL}packs/pokemon/30th-logo-mask.png')`;
+        img.style.maskSize = 'contain';
+        img.style.maskPosition = 'center';
+        img.style.maskRepeat = 'no-repeat';
+      }
+      img.onerror = () => { img.onerror = null; img.style.maskImage = ''; img.src = fallbackWrapper({ name: label }); };
       button.append(img);
     }
     const text = document.createElement('strong'); text.textContent = label; button.append(text);

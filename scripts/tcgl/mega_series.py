@@ -175,7 +175,7 @@ def emit():
             if e['name'].endswith(' ex'):card['suffix']='ex'
             for token,label in ENERGIES.items():card['name']=card['name'].replace('{'+token+'}',label)
         ordered=sorted(cards.values(),key=lambda c:int(c['localId']))
-        sets.append({'id':sid,'name':name,'releaseDate':date,'logo':None,'seriesId':'me','seriesName':'Mega Evolution','assets':f'/cards/pokemon/tcgl-me/{sid}','cards':ordered})
+        sets.append({'id':sid,'name':name,'releaseDate':date,'logo':f'https://assets.tcgdex.net/en/me/{sid}/logo.webp' if sid != 'mee' else None,'seriesId':'me','seriesName':'Mega Evolution','assets':f'/cards/pokemon/tcgl-me/{sid}','cards':ordered})
         write(ROOT/f'public/cards/pokemon/tcgl-me/{sid}/catalog.json',{'setId':sid,'cards':ordered})
         manifest=ROOT/f'public/cards/pokemon/tcgl-me/{sid}/tcgl/manifest.json'
         if manifest.exists():surfaces.extend(json.loads(manifest.read_text()))
