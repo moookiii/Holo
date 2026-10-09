@@ -36,7 +36,8 @@ try{
       await page.getByRole('combobox',{name:'Set',exact:true}).selectOption({label:set});
       const raritySelect=page.getByRole('combobox',{name:'Rarity',exact:true});
       await raritySelect.selectOption({label:rarity});
-      await page.waitForTimeout(3500);
+      await page.waitForFunction(()=>{const s=window.__holo.gallery.stats();return s.visibleExpected>0&&s.visible===s.visibleExpected&&s.pending===0&&s.queued===0;},null,{timeout:120000});
+      await page.waitForTimeout(500);
       results[rarity]=await page.evaluate(()=>window.__holo.gallery.stats());
       assert.ok(results[rarity].visible>0);
       await page.screenshot({path:`${out}/gallery-${rarity.replaceAll(' ','-')}.png`});

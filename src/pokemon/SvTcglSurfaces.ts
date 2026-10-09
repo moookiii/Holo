@@ -2,6 +2,7 @@ import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
 import { canonicalProfileId } from '../materials/profiles/ProfileAliases.ts';
+import { megaRarityProfile } from '../materials/profiles/megaRarity';
 import { tcglSvSurfaces } from './data/sv-tcgl-surfaces.generated.ts';
 import { tcglMegaSurfaces } from './data/mega-tcgl.generated.ts';
 import { svTcglCard, svTcglCards, svTcglCollectorNumber, svTcglFront, svTcgdexNonfoilSource, svNonfoilImageProvider } from './SvTcglCatalog.ts';
@@ -14,27 +15,28 @@ export function svTcglProfile(id: string, variant: PrintVariant): string {
   if (variant === 'normal') return 'print-only';
   const surface = surfaces.get(`${id}:${variant}`);
   if (!surface) throw new Error(`Missing exact TCGL surface: ${id}:${variant}`);
-  return canonicalProfileId(surface.profile);
+  return ['me02.5-269', 'me01-188'].includes(id) ? megaRarityProfile(card.rarity) ?? canonicalProfileId(surface.profile) : canonicalProfileId(surface.profile);
 }
 export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = svTcglCard(id), profile = svTcglProfile(id, variant), surface = surfaces.get(`${id}:${variant}`);
   const front = svTcglFront(id, variant);
   const fallbackSource = svTcgdexNonfoilSource(id);
+  const megaFinish = profile === 'mega-attack-rare' || profile === 'mega-hyper-rare';
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}`,
     dimensions: DIMENSIONS.standard, front, back: '/cards/pokemon/back.jpg', profile, seed: 2023000,
     pickerHidden: !surface && !fallbackSource, galleryVisible: variant === 'normal', pokemon: { ...card, front, thumbnail: front, variant, materialProfile: profile,
-      ...('treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
+      ...(!megaFinish && 'treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
-      maps: surface.maps,
+      maps: { ...surface.maps, ...(megaFinish ? { secondaryFoil: `/cards/pokemon/mega-optics/${id}-secondary.png` } : {}) },
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
-      ...(surface.textured && profile !== 'pokemon-ace-spec' ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
+      ...(surface.textured && profile !== 'pokemon-ace-spec' && !megaFinish ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
     } : {}),
     source: { image: front, metadata: fallbackSource ?? surface?.evidence ?? `${front.slice(0,front.lastIndexOf('/'))}/catalog.json`,
       notes: fallbackSource ? `English nonfoil printing. Image provider: ${svNonfoilImageProvider(id)}; metadata: TCGdex. Source and original image hash recorded; print-only material.` :
-        ('treatmentStatus' in (surface ?? {}) ? 'Exact TCGL assets; temporary reference finish. Mega Attack Rare / Mega Hyper Rare physical optical development reserved for Astra High.' :
+        (megaFinish ? 'Exact TCGL geometry and coverage with a dedicated photo-reviewed Mega rarity finish. Optical evidence and limitations: docs/mega-optics.md.' : 'treatmentStatus' in (surface ?? {}) ? 'Exact TCGL assets; temporary reference finish. Mega Attack Rare / Mega Hyper Rare physical optical development reserved for Astra High.' :
           card.setId === 'me02.5' && variant === 'special-reverse' ? 'Exact TCGL ph2 printing retained. Published ph2 foil PNG duplicates its ordinary ph map; assigned special motif geometry is unavailable in this export. Source discrepancy recorded in research/tcgl/mega-series/me2-5/batch-validation.json.' :
           'Exact English TCGL retail printing. Foil coverage and optional offline etch normal use this printing’s own sources.') },
   };
