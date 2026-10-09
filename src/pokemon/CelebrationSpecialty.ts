@@ -2,7 +2,7 @@ import type { CardDefinition } from '../card/CardDefinition';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 
 export interface CelebrationStock {
-  /** PNG registered to this card's full UV domain. RG axis, B period, A motif. */
+  /** PNG in full-card UVs. Classic: RG double axis/B period; Pikachu: RG axis/B inclination. A motif. */
   direction: string;
   /** Exact source/evidence record; synthetic calibration fields are not stock. */
   evidence: string;

@@ -5,8 +5,26 @@ import { withCelebrationSpecialty } from '../src/pokemon/CelebrationSpecialty.ts
 import { celebrationSpecialtyProfiles } from '../src/materials/profiles/celebration.ts';
 import { galleryBatchKey, galleryOpticalLayers } from '../src/gallery/GalleryBatch.ts';
 import { tcglEtchedFinish } from '../src/materials/profiles/tcglEtchedFinish.ts';
+import { celebrationCards } from '../src/pokemon/CelebrationCatalog.ts';
+import { existsSync } from 'node:fs';
 
 const stock = { direction: '/test-only/optical-stock.png', evidence: '/test-only/evidence.json' };
+test('all 30 Pikachu printings activate separate fireworks and speckle PNGs', () => {
+  const cards = celebrationCards.filter(card => card.rarity === 'Pikachu Rare');
+  assert.equal(cards.length, 30);
+  for (const source of cards) {
+    const card = celebrationDefinition(source.id);
+    assert.equal(card.profile, 'celebration-pikachu-fireworks');
+    assert.equal(card.profileOverrides, undefined);
+    assert.equal(card.front, source.front);
+    assert.equal(card.maps?.normal, undefined);
+    assert.notEqual(card.maps?.foil, card.maps?.secondaryFoil);
+    for (const key of ['foil', 'secondaryFoil', 'direction', 'secondaryDirection', 'roughness', 'protection'] as const)
+      assert.ok(existsSync('public' + card.maps![key]), `${source.id}: ${key}`);
+  }
+  const profile = celebrationSpecialtyProfiles.find(p => p.id === 'celebration-pikachu-fireworks')!;
+  assert.equal(profile.secondary?.opticalModel, 'celebration-pikachu');
+});
 test('specialty authoring requires source data and cannot change unrelated printings', () => {
   assert.throws(() => withCelebrationSpecialty(celebrationDefinition('30th-023'), { ...stock, evidence: '' }));
   assert.throws(() => withCelebrationSpecialty(celebrationDefinition('30th-001'), stock));

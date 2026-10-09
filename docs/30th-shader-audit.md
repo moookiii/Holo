@@ -2,6 +2,19 @@
 
 ## Implementation progress
 
+- **Pikachu is now active on all 30 printings.** The user's supplied physical-card
+  example establishes rainbow speckles in the anniversary Pikachu silhouette and
+  fine radial fireworks around it. Two separate PNG optical fields and per-card
+  coverage maps now drive these regions in viewer and gallery. The old protection
+  map had excluded the entire yellow reverse; new coverage keeps individual text
+  shapes clear while enabling that reverse. Fronts and etched cards are unchanged.
+  This is an authored reconstruction from the example, not an extracted TCGL
+  stock texture or a measured match of physical angular behavior. Generation and
+  evidence: `scripts/tcgl/prepare_30th_pikachu_fireworks.py` and
+  `public/cards/pokemon/30th-celebration/pikachu/evidence.json`. Live captures of
+  023 and 036 at front, tilt and grazing poses, plus gallery, are in
+  `artifacts/30th-celebration/pikachu-fireworks/`. This supersedes the earlier
+  Pikachu pending-stock status below. Classic and RGB completion remain separate.
 - Pikachu and Classic now have dedicated texture-driven optical evaluators,
   shared by viewer and gallery. Registered RGBA PNG fields supply grating axes,
   period and motif coverage. Missing fields produce no specialty reflection;

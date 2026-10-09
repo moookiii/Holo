@@ -10,19 +10,27 @@ export function celebrationProfile(id: string, variant: PrintVariant): string {
   if (variant !== 'holo') throw new Error(`Anniversary printing has no ${variant} variant: ${id}`);
   const surface = surfaces.get(id);
   if (!surface) throw new Error(`Missing exact anniversary surface: ${id}`);
+  if (records.get(id)?.rarity === 'Pikachu Rare') return 'celebration-pikachu-fireworks';
   return surface.profile;
 }
 export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'): CardDefinition {
   const card = celebrationCard(id), profile = celebrationProfile(id, variant), surface = surfaces.get(id)!, record = records.get(id)!;
+  const pikachu = card.rarity === 'Pikachu Rare';
+  const stock = '/cards/pokemon/30th-celebration/pikachu';
+  const stem = record.tcglCardId.replace('_', '-');
   return {
     id: `pokemon:${id}:holo`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${record.collectorNumber} · ${card.rarity}`, dimensions: DIMENSIONS.standard,
     front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 202630,
-    galleryVisible: true, pokemon: { ...card, variant: 'holo', materialProfile: profile, treatmentStatus: 'deferred' },
+    galleryVisible: true, pokemon: { ...card, variant: 'holo', materialProfile: profile, treatmentStatus: pikachu ? undefined : 'deferred' },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
-    maps: card.setId === '30th-rgb' ? { ...surface.maps, foilControls: surface.maps.foil } : surface.maps,
+    maps: pikachu ? { ...surface.maps, foil: `${stock}/${stem}-fireworks.png`,
+      secondaryFoil: `${stock}/${stem}-speckles.png`, protection: `${stock}/${stem}-protection.png`,
+      roughness: `${stock}/${stem}-roughness.png`, direction: `${stock}/fireworks-field.png`,
+      secondaryDirection: `${stock}/speckles-field.png` }
+      : card.setId === '30th-rgb' ? { ...surface.maps, foilControls: surface.maps.foil } : surface.maps,
     mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
-    profileOverrides: surface.textured ? tcglEtchedFinish : {
+    profileOverrides: pikachu ? undefined : surface.textured ? tcglEtchedFinish : {
       maps: { direction: undefined },
       opticalModel: card.rarity === 'Double Rare' ? 'sv-sun-pillar' : 'sv151-illustration',
       // Uniform temporary response only. Do not synthesize a replacement TCGL
@@ -31,7 +39,8 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
       glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
     },
     source: { image: card.front!, metadata: surface.evidence,
-      notes: 'Original exact TCGL front and RGBA foil map. Offline reference etch normal where supplied. Temporary existing material; physical optics and precise region review pending Astra High.' },
+      notes: pikachu ? 'Original exact TCGL front. Separate reverse fireworks and rainbow-speckled Pikachu foil reconstructed from the supplied physical-card example. Optical evidence: /cards/pokemon/30th-celebration/pikachu/evidence.json. No etched relief.'
+        : 'Original exact TCGL front and RGBA foil map. Offline reference etch normal where supplied. Temporary existing material; physical optics and precise region review pending Astra High.' },
   };
 }
 export const celebrationGalleryCards = () => celebrationCardsForGallery();

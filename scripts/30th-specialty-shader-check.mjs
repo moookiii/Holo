@@ -42,7 +42,7 @@ try {
    const field=new T.DataTexture(data,64,64,T.RGBAFormat);field.needsUpdate=true;
    const material=window.__holo.material();
    const originalMaps=material.cardMaps;
-   const stock=profiles[classic?1:0];
+   const stock=profiles.find(p=>p.id===(classic?'celebration-classic-stock':'celebration-pikachu-fireworks'));
    const profile=classic?{...getProfile('prismatic_sir_texture'),...finish,secondary:stock}:stock;
    const coverage=tex(classic?[128,200,0,255]:[255,0,0,255]);
    material.setMaps({...originalMaps,coverage,...(classic?{secondaryDirection:field}:{direction:field})});
