@@ -2,9 +2,10 @@ import { wotcRecipes } from './WotcProducts.ts';
 import type { PokemonCard, PrintVariant, PrintEdition } from './types.ts';
 import { prismaticRecipe } from './PrismaticRecipe.ts';
 import { svSpecialRecipes, svPackEnergy } from './SvSpecialRecipes.ts';
+import { celebrationRecipe, celebrationUpcRecipe } from './CelebrationRecipe.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
-export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; pool?: 'set' | 'energy' | 'set-and-energy'; }
+export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; uniqueGroup?: string; pool?: 'set' | 'energy' | 'set-and-energy'; }
 export interface PokemonRecipe {
   id: string; version: string; setId: string; era: string; slots: readonly PackSlot[];
   boosterIds?: readonly string[]; sources: readonly string[]; note: string;
@@ -14,6 +15,8 @@ export interface PokemonRecipe {
   requiredCardIds?: readonly string[];
   /** Product-specific Energy finishes; never added to another set's energy pool. */
   energyCards?: readonly PokemonCard[];
+  /** Explicit virtual products retain each supplemental card's canonical set. */
+  poolSetIds?: readonly string[];
 }
 const ordinary = ['Common', 'Uncommon', 'Rare'];
 const outcome = (weight: number, rarities: readonly string[], variant: PrintVariant): SlotOutcome => ({ weight, rarities, variant });
@@ -46,6 +49,7 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
     ] };
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
+  celebrationRecipe, celebrationUpcRecipe,
   prismaticRecipe,
   ...svSpecialRecipes,
   ...wotcRecipes,

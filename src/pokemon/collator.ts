@@ -10,7 +10,8 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
   const edition = recipe.boosterEditions?.[boosterId];
   if (recipe.boosterEditions && !edition) throw new Error('Missing booster edition.');
   if (!Number.isInteger(seed) || seed < 0 || seed > 0xffffffff) throw new Error('Invalid pack seed');
-  const pool = cards.filter(c => c.setId === setId && c.era === recipe.era && (!c.boosterIds || c.boosterIds.includes(boosterId))).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  const sourceSets = recipe.poolSetIds ?? [setId];
+  const pool = cards.filter(c => sourceSets.includes(c.setId) && c.era === recipe.era && (!c.boosterIds || c.boosterIds.includes(boosterId))).sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   if (new Set(pool.map(c => c.id)).size !== pool.length) throw new Error('Duplicate card metadata');
   if (recipe.requiredCardIds && (pool.length !== recipe.requiredCardIds.length || recipe.requiredCardIds.some(id => !pool.some(card => card.id === id)))) {
     throw new Error(`Incomplete ${setId} checklist. Retry metadata before opening.`);
@@ -21,16 +22,19 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
   const eligibilityKey = [...pool, ...(recipe.slots.some(slot => slot.pool === 'energy' || slot.pool === 'set-and-energy') ? energyCards : [])].map(c => `${c.id}:${[...c.variants].sort().join(',')}:${c.rarity}:${c.category ?? ''}:${c.energyType ?? ''}`).join('|');
   const random = randomSequence(hash(`${seed}:${setId}:${recipe.id}:${recipe.version}:${eligibilityKey}`));
   const pulls: PokemonPull[] = [];
+  const uniqueGroups = new Map<string, Set<string>>();
   for (const slot of recipe.slots) {
     if (!Number.isInteger(slot.count) || slot.count < 1 || !slot.outcomes.length || slot.outcomes.some(o => !Number.isFinite(o.weight) || o.weight <= 0) || Math.abs(slot.outcomes.reduce((n, o) => n + o.weight, 0) - 1) > 1e-8) throw new Error(`Invalid recipe slot ${slot.id}`);
     const slotPool = slot.pool === 'energy' ? energyCards : slot.pool === 'set-and-energy' ? [...pool, ...energyCards] : pool;
     const outcomes = slot.outcomes.map(o => ({ ...o, pool: slotPool.filter(c => o.rarities.includes(c.rarity) && c.variants.includes(o.variant) && (!o.cardIds || o.cardIds.includes(c.id)) && (!o.excludedCardIds || !o.excludedCardIds.includes(c.id)) && (!o.categories || (c.category !== undefined && o.categories.includes(c.category))) && (!o.energyTypes || (c.energyType !== undefined && o.energyTypes.includes(c.energyType)))) }));
     // Never redistribute a missing rarity's odds or quietly bias an incomplete pool.
     for (const o of outcomes) if (o.pool.length < (slot.unique ? slot.count : 1)) throw new Error(`Incomplete ${slot.id} pool (${o.rarities.join('/')}). Retry metadata or choose another booster.`);
-    const used = new Set<string>();
+    const used = slot.uniqueGroup ? uniqueGroups.get(slot.uniqueGroup) ?? new Set<string>() : new Set<string>();
+    if (slot.uniqueGroup) uniqueGroups.set(slot.uniqueGroup, used);
     for (let i = 0; i < slot.count; i++) {
       let roll = random(); const selected = outcomes.find(o => (roll -= o.weight) < 0) ?? outcomes.at(-1)!;
       const available = selected.pool.filter(c => !slot.unique || !used.has(c.id));
+      if (!available.length) throw new Error(`Exhausted ${slot.id} unique pool`);
       const card = available[Math.floor(random() * available.length)]; used.add(card.id);
       const snapshot = Object.freeze({ ...card, ...(edition ? { edition, front: card.editionFronts![edition], thumbnail: card.editionFronts![edition] } : {}), variants: Object.freeze([...card.variants]) as unknown as PokemonCard['variants'], boosterIds: card.boosterIds ? Object.freeze([...card.boosterIds]) as unknown as string[] : undefined, foil: Object.freeze({ ...card.foil }), ...(card.editionFronts ? { editionFronts: Object.freeze({ ...card.editionFronts }) } : {}) });
       pulls.push(Object.freeze({ card: snapshot, variant: selected.variant, slot: `${slot.id}:${i + 1}` }));

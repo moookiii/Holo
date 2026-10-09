@@ -22,6 +22,10 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (nonBoosters[setId]) return { ready: false, ...nonBoosters[setId] };
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
+  if (setId === '30th') return { ready: true, label: 'Opening available · estimated collation',
+    detail: '199 exact TCGL printings · six foil cards · one Pikachu and anniversary Energy. Common slot subpools and RGB odds need further evidence. Physical finishes pending Astra High.' };
+  if (setId === '30th-classic-upc') return { ready: true, label: 'UPC Classic product · estimated collation',
+    detail: 'Three exact Classic Collection printings. November 6, 2026 product; uniform within-pool collation estimated. Physical finish pending Astra High.' };
   if (setId === 'ecard1') return { ready: true, label: 'Opening available · regular foil pending',
     detail: '165 numbered cards · 159 reverse holos · 32 regular holo prints with prepared SAM protections. Four original booster designs.' };
   if (setId === 'ecard2') return { ready: true, label: 'Opening available',
