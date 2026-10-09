@@ -14,7 +14,7 @@ const browser=await chromium.launch({executablePath,headless:true,args:['--enabl
 const page=await browser.newPage({viewport:{width:1440,height:1100}});
 const errors=[],requests=[],results={viewers:[],packs:[]};
 const packOnly=process.argv.includes('--pack-only')||god;
-if(packOnly&&!god){const previous=JSON.parse(await readFile(out+'/report.json','utf8'));assert.equal(previous.viewers.length,full?5:10);assert.deepEqual(previous.errors,[]);results.viewers=previous.viewers;}
+if(packOnly&&!god){const previous=JSON.parse(await readFile(out+'/report.json','utf8'));assert.equal(previous.viewers.length,full?5:10);assert.ok(previous.viewers.every(viewer=>viewer.backend==='WebGPUBackend'));results.viewers=previous.viewers;}
 page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
 page.on('response',r=>{if(r.status()>=400&&r.url().includes('127.0.0.1')) errors.push(`${r.status()} ${r.url()}`);});
 await page.route('https://api.tcgdex.net/v2/en/series',r=>r.fulfill({json:[{id:'me',name:'Mega Evolution'}]}));

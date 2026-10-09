@@ -1,4 +1,5 @@
 import './browser.css';
+import { resolveCardAsset } from '../assets/CachedCardAssets';
 import { collectionProductFor, resolvePokemonCollection, type PokemonCollectionProduct } from './CollectionProducts';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { PackDefinition } from '../pack/PackDefinition';
@@ -99,7 +100,7 @@ export class PackBrowser {
   private button(label: string, action: () => void, artwork?: string, description?: string) {
     const button = document.createElement('button'); button.className = 'pokemon-pack-tile';
     if (artwork) {
-      const img = document.createElement('img'); img.alt = ''; img.loading = 'lazy'; img.src = artwork;
+      const img = document.createElement('img'); img.alt = ''; img.loading = 'lazy'; img.src = resolveCardAsset(artwork);
       if (artwork.endsWith('/packs/pokemon/30th-logo.png')) {
         img.style.maskImage = `url('${import.meta.env.BASE_URL}packs/pokemon/30th-logo-mask.png')`;
         img.style.maskSize = 'contain';
