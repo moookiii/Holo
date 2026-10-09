@@ -50,7 +50,9 @@ def classic_entries(index):
         if row['cardID'] != f'me5-5c_{number}':
             raise ValueError('Classic ID/number mismatch')
         stem = BASE + f'cards/png/en/me5-5c/me5-5c_en_{number:03d}_std'
-        entries.append({'name': row['EN Card Name'], 'collector_number': {'numeric': number, 'full': f'{number:03d}'},
+        entries.append({'name': row['EN Card Name'], 'source_card_number': number,
+            'printed_collector_number': {'numerator': row['CompSea Card Number'], 'denominator': None,
+                'full': None, 'review': 'pending: raw database lacks the printed denominator'},
             'rarity': {'designation': 'CLASSIC_COLLECTION'}, 'foil': {'type': 'CLASSIC_FOIL', 'mask': 'ETCHED'},
             'ext': {'tcgl': {'cardID': row['cardID'], 'longFormID': row['longFormID']}},
             'images': {'tcgl': {'png': {'front': stem + '.png', 'foil': stem + '.foil.png', 'etch': stem + '.etch.png'}}},
@@ -97,10 +99,11 @@ def main():
             raise ValueError(f'Incomplete source group {key}: {len(entries)} != {expected}')
         for entry in entries:
             tcgl = entry['ext']['tcgl']
-            number = entry['collector_number']['numeric']
+            number = entry['source_card_number'] if 'source_card_number' in entry else entry['collector_number']['numeric']
             if tcgl['longFormID'].split('_')[3] != 'std' or not entry.get('foil'):
                 raise ValueError('Unexpected nonfoil or alternate printing: ' + tcgl['longFormID'])
-            printing = {'sourceSet': key, 'name': entry['name'], 'collectorNumber': entry['collector_number'],
+            printing = {'sourceSet': key, 'name': entry['name'],
+                'collectorNumber': entry.get('collector_number', entry.get('printed_collector_number')),
                 'rarity': entry.get('rarity', {}).get('designation', tcgl['longFormID'].split('_')[4]), 'tcglCardId': tcgl['cardID'],
                 'tcglVariantId': tcgl['longFormID'], 'foil': entry['foil'], 'exportEntry': entry,
                 'registrationReview': 'pending', 'physicalFinishReview': 'pending', 'activeInHolo': False}
@@ -113,6 +116,7 @@ def main():
                 printing['canonicalCandidateId'] = f'mee-{number:03d}'
                 printing['tcgdexStatus'] = 'not-present-in-current-mee-catalog'
             elif key == 'me5-5c':
+                printing['tcglDatabaseNumber'] = number
                 # Name-only links are research candidates; never auto-register.
                 normalize = lambda name: name.replace('-', ' ').casefold()
                 printing['tcgdexCandidates'] = [c['id'] for c in classic_dex['cards'] if normalize(c['name']) == normalize(entry['name'])]
