@@ -29,7 +29,8 @@ const designs: Record<string, readonly string[]> = {
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return designs[setId].map((design,index) => ({ id: design,
-    name: `English booster · ${design.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')}`, front: `${base}${setId}-pack-${index}.png` }));
+    name: `English booster · ${design.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')}`, front: `${base}${setId}-pack-${index}.png`,
+    ...(setId === 'me01' ? { back: `${base}me01-back.webp` } : {}) }));
   if (setId === '30th') return [{ id: 'english', name: 'English six-card booster', front: `${base}30th-front.png` }];
   if (setId === '30th-classic-upc') return [{ id: 'upc-classic', name: 'UPC three-card Classic Collection booster', front: `${base}30th-classic-front.png` }];
   const product = wotcWrappers[setId];
