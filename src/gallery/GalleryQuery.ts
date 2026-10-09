@@ -45,6 +45,10 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ['Paldea Evolved', '2023-06-09'],
   ['151', '2023-09-22'],
   ['Prismatic Evolutions', '2025-01-17'],
+  ['30th Celebration', '2026-09-16'],
+  ['30th Celebration · Classic Collection', '2026-09-16'],
+  ['30th Celebration · RGB Mew', '2026-09-16'],
+  ['Anniversary Basic Energy', '2026-09-16'],
   ...tcglSvSets.map(set => [set.name, set.releaseDate] as [string, string]),
 ]);
 
