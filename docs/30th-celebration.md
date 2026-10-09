@@ -144,6 +144,15 @@ reference. No probability has been invented or made active.
 - No source geometry, existing card registration, existing optics or wrapper
   asset was changed. Pre-existing e-card pack artwork changes were left alone.
 - Numerical tests establish converter behavior, not physical depth or appearance.
+- Production build passes (`tsc --noEmit` and Vite). Vite reports its existing
+  large-chunk warning; this work adds no application imports or bundle modules.
+- Full application suite: **309 passed, 26 failed, 335 total** on both runs.
+  Failures concern existing gallery resolution, Pikachu VMAX dimensions,
+  Aquapolis/Neo Destiny asset hashes, adapter rejection messages, Prismatic
+  registrations/checklists, Umbreon GX and First Movie stamp coverage. No
+  application source or test fixture was modified by this work. The full suite
+  is not green, and no claim of regression-free integration is made.
+  Captured second-run output: `artifacts/30th-tcgl-validation/application-tests.log`.
 
 Run the converter checks with:
 
