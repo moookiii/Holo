@@ -1,0 +1,136 @@
+{
+  "cardId": "me05-104",
+  "variant": "holo",
+  "tcglCardId": "me5_104",
+  "tcglVariantId": "BraveBangle_me5_104_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_104_std.png",
+      "file": "research/tcgl/me05-104/me5_en_104_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "308a51b487a5d15eaf093e3743dd8c3888abb612a1a8112917eb3862b3305404"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_104_std.foil.png",
+      "file": "research/tcgl/me05-104/me5_en_104_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "9f9db5be333e0ea64226e8669ace8c4c9dc0a101628587b6e1dfcc156a136db0"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_104_std.etch.png",
+      "file": "research/tcgl/me05-104/me5_en_104_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f0f7b355e93a332c0960c414e8cf5b7ad988ae81f87fc0f3a630bf8e867a22bb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "308a51b487a5d15eaf093e3743dd8c3888abb612a1a8112917eb3862b3305404"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 151,
+      "texturedInteriorFraction": 0.5952380952380952
+    },
+    {
+      "areaAtFoilResolution": 300,
+      "texturedInteriorFraction": 0.40425531914893614
+    },
+    {
+      "areaAtFoilResolution": 419,
+      "texturedInteriorFraction": 0.6402116402116402
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "104-holo-foil.png": "4622e85ab6c8d701b928643a565c04addf0ebedfcf1eb7fcfa9d7b7001b4c21e",
+    "104-holo-protection.png": "2a6d30926a62c714f654fa7c3baaec084aa796e1849c4c1996ae4162c9c51e09",
+    "104-holo-normal.png": "ec333ef3b07bc257c1a9e4f9da44860892e29e132df75c31b2b9f65fcdda2981",
+    "104-holo-roughness.png": "522e6d0e7cde83368678c4b30e6234baedf3a25f355678798d1a08ae53a35378"
+  },
+  "holoFrontSha256": "308a51b487a5d15eaf093e3743dd8c3888abb612a1a8112917eb3862b3305404",
+  "mapDimensions": {
+    "104-holo-foil.png": [
+      367,
+      512
+    ],
+    "104-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "104-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "104-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me05/tcgl/104-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "ec2bb9deb7831845a364b3f90922fd5491725f7b0ab939bb3951021a78131f9f"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me5.en-US.json",
+    "sha256": "9f26fc5d0697ae9b2b52f4c3d9b51a12aa0a5a9982323ad3ba137c85f5ad108e",
+    "file": "research/tcgl/mega-series/me5/export.json"
+  },
+  "collectorNumber": "104/084",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "d7f5e127c1f5c4bfd8987cc8e01c085d73d2b4e6496358793722950667a4b000",
+  "surfaceRecord": {
+    "cardId": "me05-104",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me05/tcgl/104-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me05/tcgl/104-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me05/tcgl/104-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me05/tcgl/104-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me05/tcgl/104-holo-evidence.json",
+    "foilType": "SUN_PILLAR",
+    "tcglVariantId": "BraveBangle_me5_104_std_UltraRare_SunPillar_Etched"
+  }
+}

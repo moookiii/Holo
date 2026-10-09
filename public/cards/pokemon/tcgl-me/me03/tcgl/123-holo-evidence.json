@@ -1,0 +1,136 @@
+{
+  "cardId": "me03-123",
+  "variant": "holo",
+  "tcglCardId": "me3_123",
+  "tcglVariantId": "RosasEncouragement_me3_123_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_123_std.png",
+      "file": "research/tcgl/me03-123/me3_en_123_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3f0739296a092d0e0eb8c92664c2e8756e2e44a7ff6ebc8cc6cabca07ffa4441"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_123_std.foil.png",
+      "file": "research/tcgl/me03-123/me3_en_123_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "55c5ed96d05c7a2b92be5fde577d6863db1d04e7f70a5776454245e4c2a27d79"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_123_std.etch.png",
+      "file": "research/tcgl/me03-123/me3_en_123_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f996b8ad98320ce52dae05a02d3ac64e7f238de2b1401bc37deb6a90fbba373e"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "3f0739296a092d0e0eb8c92664c2e8756e2e44a7ff6ebc8cc6cabca07ffa4441"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 89422,
+      "texturedInteriorFraction": 0.810837484726008
+    },
+    {
+      "areaAtFoilResolution": 181,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 2554,
+      "texturedInteriorFraction": 0.8321238509917755
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "123-holo-foil.png": "7c4bc783a89d9c0211b72f870b4f032b69ca80eb7e37f9a487bcd95c0e2c6427",
+    "123-holo-protection.png": "57190878609ba85de0ab11f3b56f3d841ba6ea717daa56e855122fa35df85572",
+    "123-holo-normal.png": "a9a69ff75c732c4bc63db7d2e9679b01ef3f5599bc3014d73dc885748d39a041",
+    "123-holo-roughness.png": "219e00e30096c754113267fdc40a170a2da62c3d99294cae90dd9390f506bb19"
+  },
+  "holoFrontSha256": "3f0739296a092d0e0eb8c92664c2e8756e2e44a7ff6ebc8cc6cabca07ffa4441",
+  "mapDimensions": {
+    "123-holo-foil.png": [
+      367,
+      512
+    ],
+    "123-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "123-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "123-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me03/tcgl/123-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "2cd15f340a97a45c64e6e92ffd36503aec242b1e6057bb3ae63329d9eb476061"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me3.en-US.json",
+    "sha256": "5baf82c983111ee3d8f0da1920096b6d1e1e1fd5f93485b9c7bfc76cc9959f54",
+    "file": "research/tcgl/mega-series/me3/export.json"
+  },
+  "collectorNumber": "123/088",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "2a2df942e34000f42e245b2f0f5cac49777c70e52f21575af44bb9af62c3e2fc",
+  "surfaceRecord": {
+    "cardId": "me03-123",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me03/tcgl/123-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me03/tcgl/123-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me03/tcgl/123-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me03/tcgl/123-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me03/tcgl/123-holo-evidence.json",
+    "foilType": "SV_ULTRA",
+    "tcglVariantId": "RosasEncouragement_me3_123_std_SpecialIllustrationRare_SvUltra_Etched"
+  }
+}

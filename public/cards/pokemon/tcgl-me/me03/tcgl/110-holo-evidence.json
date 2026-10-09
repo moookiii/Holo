@@ -1,0 +1,140 @@
+{
+  "cardId": "me03-110",
+  "variant": "holo",
+  "tcglCardId": "me3_110",
+  "tcglVariantId": "Jacinthe_me3_110_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_110_std.png",
+      "file": "research/tcgl/me03-110/me3_en_110_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b2f6fbfcd8efb84657d7ab2712d039bcdbcdff4601a2c15f16a007448141ad18"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_110_std.foil.png",
+      "file": "research/tcgl/me03-110/me3_en_110_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "56b58642a91f84483f6563af213139401576eb2d9fe4b5097c1d3bb116d07ea4"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_110_std.etch.png",
+      "file": "research/tcgl/me03-110/me3_en_110_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "332a917312e061a2e8fe128554e7c30351b4dcef17193680b3673477b4f7031b"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "b2f6fbfcd8efb84657d7ab2712d039bcdbcdff4601a2c15f16a007448141ad18"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 181,
+      "texturedInteriorFraction": 0.41975308641975306
+    },
+    {
+      "areaAtFoilResolution": 174,
+      "texturedInteriorFraction": 0.43137254901960786
+    },
+    {
+      "areaAtFoilResolution": 337,
+      "texturedInteriorFraction": 0.41904761904761906
+    },
+    {
+      "areaAtFoilResolution": 158,
+      "texturedInteriorFraction": 0.5294117647058824
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "110-holo-foil.png": "620441b5792ae4dc5bc7913d71251a37d25464689ab21ff5cb522cfb97c923b6",
+    "110-holo-protection.png": "d8169c95d18ccf06cd006dcfd737554fc71c65f796f6a9b23b114526f163a593",
+    "110-holo-normal.png": "28da83185b29c2e7341b868350ae754ea19a2dfaa40caf27b0c3d115535c347f",
+    "110-holo-roughness.png": "fedd340d52558d3c90ef8116712191547d233f8f9f04dae57cea0a05b036b414"
+  },
+  "holoFrontSha256": "b2f6fbfcd8efb84657d7ab2712d039bcdbcdff4601a2c15f16a007448141ad18",
+  "mapDimensions": {
+    "110-holo-foil.png": [
+      367,
+      512
+    ],
+    "110-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "110-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "110-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me03/tcgl/110-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "993d6da52359b7470cc2030af9121148fc08799523d95ae674b41928d1253e23"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me3.en-US.json",
+    "sha256": "5baf82c983111ee3d8f0da1920096b6d1e1e1fd5f93485b9c7bfc76cc9959f54",
+    "file": "research/tcgl/mega-series/me3/export.json"
+  },
+  "collectorNumber": "110/088",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "ec239a26d86b70e4f8c011cee04563a83f6a6113565a795d852f92ba725c1ace",
+  "surfaceRecord": {
+    "cardId": "me03-110",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me03/tcgl/110-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me03/tcgl/110-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me03/tcgl/110-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me03/tcgl/110-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me03/tcgl/110-holo-evidence.json",
+    "foilType": "SUN_PILLAR",
+    "tcglVariantId": "Jacinthe_me3_110_std_UltraRare_SunPillar_Etched"
+  }
+}

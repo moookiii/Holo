@@ -1,0 +1,93 @@
+{
+  "cardId": "me02.5-204",
+  "variant": "reverse",
+  "tcglCardId": "me2-5_204_ph",
+  "tcglVariantId": "TeamRocketsGiovanni_me2-5_204_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_204_std.png",
+      "file": "research/tcgl/me02.5-204/me2-5_en_204_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b2f05623979e290dc83e99f92de9ab0dcdc1446c9d40e0dca2b6280ae25dec52"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_204_ph.foil.png",
+      "file": "research/tcgl/me02.5-204/me2-5_en_204_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4c197cd8966eb6ab8a6ad9494de34db2578060d4e6cacfec1625c19f0a2a5980"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "b2f05623979e290dc83e99f92de9ab0dcdc1446c9d40e0dca2b6280ae25dec52"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "204-reverse-foil.png": "d13376c4e326b811246ac1c49200a297c4dd4e6cb5845be612242a3a8cab5d44",
+    "204-reverse-protection.png": "c5dcd70af8ee0a2f54a4f27e01c90730579747a1747d907f30404d572a2f6a48"
+  },
+  "holoFrontSha256": "b2f05623979e290dc83e99f92de9ab0dcdc1446c9d40e0dca2b6280ae25dec52",
+  "mapDimensions": {
+    "204-reverse-foil.png": [
+      367,
+      512
+    ],
+    "204-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2-5.en-US.json",
+    "sha256": "18770a79fe182ac7c1bac1ea472e53ce72c8d7f7aed0660a68e17edd691cc9a9",
+    "file": "research/tcgl/mega-series/me2-5/export.json"
+  },
+  "collectorNumber": "204/217",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "ae98f1508aaf1b9edc793aabd1b1dd045f6f23f27d9eaee4f879e6d7181c0bc2",
+  "surfaceRecord": {
+    "cardId": "me02.5-204",
+    "variant": "reverse",
+    "profile": "sv_tcgl_standard_reverse",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/204-reverse-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02.5/tcgl/204-reverse-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/204-reverse-evidence.json",
+    "foilType": "FLAT_SILVER",
+    "tcglVariantId": "TeamRocketsGiovanni_me2-5_204_ph_Uncommon_FlatSilver_Reverse"
+  }
+}

@@ -1,0 +1,93 @@
+{
+  "cardId": "me02.5-079",
+  "variant": "holo",
+  "tcglCardId": "me2-5_79",
+  "tcglVariantId": "TeamRocketsMewtwoex_me2-5_79_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_079_std.png",
+      "file": "research/tcgl/me02.5-079/me2-5_en_079_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d7a430b5a671eab4b3f892569c28d60921d334acbdc4fa63db376675fc108014"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_079_std.foil.png",
+      "file": "research/tcgl/me02.5-079/me2-5_en_079_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "7f9f507867f2f53f78ab2b3cf7686275eabe2e68f746a4f70618ca0387348e66"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "d7a430b5a671eab4b3f892569c28d60921d334acbdc4fa63db376675fc108014"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "079-holo-foil.png": "0acc5f0fe136d931d13c6d3d2efd7a89695b92503de4f785a3ca2aa1863f7805",
+    "079-holo-protection.png": "3e09738bef24b86883d4dd65ae1779bcf418912660c1f4e81a30aee6ffd1520a"
+  },
+  "holoFrontSha256": "d7a430b5a671eab4b3f892569c28d60921d334acbdc4fa63db376675fc108014",
+  "mapDimensions": {
+    "079-holo-foil.png": [
+      367,
+      512
+    ],
+    "079-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2-5.en-US.json",
+    "sha256": "18770a79fe182ac7c1bac1ea472e53ce72c8d7f7aed0660a68e17edd691cc9a9",
+    "file": "research/tcgl/mega-series/me2-5/export.json"
+  },
+  "collectorNumber": "079/217",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "9c64da936d9c587b331046591085e64397d8c4b0a597dd6ba4c6d47f7b2ee4ad",
+  "surfaceRecord": {
+    "cardId": "me02.5-079",
+    "variant": "holo",
+    "profile": "pokemon151_ex_holo",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/079-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02.5/tcgl/079-holo-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/079-holo-evidence.json",
+    "foilType": "SUN_PILLAR",
+    "tcglVariantId": "TeamRocketsMewtwoex_me2-5_79_std_DoubleRare_SunPillar_Holo_CastAndCure_SouthernCross"
+  }
+}

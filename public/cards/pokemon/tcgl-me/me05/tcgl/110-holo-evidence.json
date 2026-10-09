@@ -1,0 +1,140 @@
+{
+  "cardId": "me05-110",
+  "variant": "holo",
+  "tcglCardId": "me5_110",
+  "tcglVariantId": "IronDefender_me5_110_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_110_std.png",
+      "file": "research/tcgl/me05-110/me5_en_110_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "306c3298ebfd67217702a8da1aef876dced97f7d72d0eb349c2a251dbdd4c6a3"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_110_std.foil.png",
+      "file": "research/tcgl/me05-110/me5_en_110_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "51528a66d69784bd0d79e193b6273b13c58151e65af7f13e93e0ec083e8e8379"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_110_std.etch.png",
+      "file": "research/tcgl/me05-110/me5_en_110_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "572ee3ced523ad257772dedfd01ba6f0ad629caea4affc51538cfc3b0c99c2fb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "306c3298ebfd67217702a8da1aef876dced97f7d72d0eb349c2a251dbdd4c6a3"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.5121951219512195
+    },
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 0.4875
+    },
+    {
+      "areaAtFoilResolution": 153,
+      "texturedInteriorFraction": 0.48484848484848486
+    },
+    {
+      "areaAtFoilResolution": 345,
+      "texturedInteriorFraction": 0.44
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "110-holo-foil.png": "299d5c782793a2025110f7ca6a4e258216dbd4a9fad674e2df151a0b0a12cbd4",
+    "110-holo-protection.png": "089b80ba23e3216b8af200a30690f456250098b44f3b024417cf202c704d41e0",
+    "110-holo-normal.png": "1454dca90cb27c62e67ed2836dbd9b7eb35039471cddbad5a2398c838198c8bd",
+    "110-holo-roughness.png": "408b7c72b515bea442377a7eff052594ecad62c9cd3d7221a0284fe73d12d50d"
+  },
+  "holoFrontSha256": "306c3298ebfd67217702a8da1aef876dced97f7d72d0eb349c2a251dbdd4c6a3",
+  "mapDimensions": {
+    "110-holo-foil.png": [
+      367,
+      512
+    ],
+    "110-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "110-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "110-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me05/tcgl/110-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "458133e572271ae79f04b9b4eb521eabe765c54b25ead877540d6e4627705366"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me5.en-US.json",
+    "sha256": "9f26fc5d0697ae9b2b52f4c3d9b51a12aa0a5a9982323ad3ba137c85f5ad108e",
+    "file": "research/tcgl/mega-series/me5/export.json"
+  },
+  "collectorNumber": "110/084",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "066ec27e41435c39eabccb96c4a1c61a9732210e83416fd947c2f09dda4011d8",
+  "surfaceRecord": {
+    "cardId": "me05-110",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me05/tcgl/110-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me05/tcgl/110-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me05/tcgl/110-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me05/tcgl/110-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me05/tcgl/110-holo-evidence.json",
+    "foilType": "SUN_PILLAR",
+    "tcglVariantId": "IronDefender_me5_110_std_UltraRare_SunPillar_Etched"
+  }
+}

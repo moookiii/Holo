@@ -1,0 +1,93 @@
+{
+  "cardId": "me02-048",
+  "variant": "reverse",
+  "tcglCardId": "me2_48_ph",
+  "tcglVariantId": "PaldeanTauros_me2_48_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_048_std.png",
+      "file": "research/tcgl/me02-048/me2_en_048_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8e055e74752d6f7cab873f52f37297a7188144b9f7698f0e750b93eb0a254111"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_048_ph.foil.png",
+      "file": "research/tcgl/me02-048/me2_en_048_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "abce3c4f3527356c9fc193380abb695cb8992a1ae80de73b63f08c3dcefe017a"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "8e055e74752d6f7cab873f52f37297a7188144b9f7698f0e750b93eb0a254111"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "048-reverse-foil.png": "c1f795fd5b836bf932ad05dbb4606657a26a4044f3e750c27fca158fb1480176",
+    "048-reverse-protection.png": "83ff9a6d96ee3d9462b24ffe230163dbaf56cc85e2da74077a21a761c4a6c94a"
+  },
+  "holoFrontSha256": "8e055e74752d6f7cab873f52f37297a7188144b9f7698f0e750b93eb0a254111",
+  "mapDimensions": {
+    "048-reverse-foil.png": [
+      367,
+      512
+    ],
+    "048-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2.en-US.json",
+    "sha256": "eefadb3075128a6e9a625c73146e87485cc35e5d9b5cc10b5d28847232738f80",
+    "file": "research/tcgl/mega-series/me2/export.json"
+  },
+  "collectorNumber": "048/094",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "f20553e1f8099993dfd930af2aa4da54d7961bbae9fc25ca0744328393c3910f",
+  "surfaceRecord": {
+    "cardId": "me02-048",
+    "variant": "reverse",
+    "profile": "sv_tcgl_standard_reverse",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02/tcgl/048-reverse-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02/tcgl/048-reverse-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02/tcgl/048-reverse-evidence.json",
+    "foilType": "FLAT_SILVER",
+    "tcglVariantId": "PaldeanTauros_me2_48_ph_Uncommon_FlatSilver_Reverse"
+  }
+}

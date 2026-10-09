@@ -1,0 +1,93 @@
+{
+  "cardId": "me05-020",
+  "variant": "holo",
+  "tcglCardId": "me5_20",
+  "tcglVariantId": "Primarina_me5_20_std_Rare_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_020_std.png",
+      "file": "research/tcgl/me05-020/me5_en_020_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c8ed8c6fa98be7d461f70e05ad51c9f81be49e9ad1c75db2a1c0cf405180a9a6"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_020_std.foil.png",
+      "file": "research/tcgl/me05-020/me5_en_020_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "99035afc31230eed2396bd062844fd0fba3fed36fca2967b210c75b713acd7a1"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "c8ed8c6fa98be7d461f70e05ad51c9f81be49e9ad1c75db2a1c0cf405180a9a6"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "020-holo-foil.png": "68a9bdca6f9a0d990c7afa55eb54d3960f24dcf79536ea3c95ada1efbc4487f6",
+    "020-holo-protection.png": "88f9bee86c650d1a06521baf7c0944370a91ea36d37be32b2f7aed3c65dd6273"
+  },
+  "holoFrontSha256": "c8ed8c6fa98be7d461f70e05ad51c9f81be49e9ad1c75db2a1c0cf405180a9a6",
+  "mapDimensions": {
+    "020-holo-foil.png": [
+      367,
+      512
+    ],
+    "020-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me5.en-US.json",
+    "sha256": "9f26fc5d0697ae9b2b52f4c3d9b51a12aa0a5a9982323ad3ba137c85f5ad108e",
+    "file": "research/tcgl/mega-series/me5/export.json"
+  },
+  "collectorNumber": "020/084",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "f7fede37f61182da67c949cdeb4f71f60854f10112d5ac21301a0cc9236f4fa4",
+  "surfaceRecord": {
+    "cardId": "me05-020",
+    "variant": "holo",
+    "profile": "sv_tcgl_regular_holo",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me05/tcgl/020-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me05/tcgl/020-holo-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me05/tcgl/020-holo-evidence.json",
+    "foilType": "SV_HOLO",
+    "tcglVariantId": "Primarina_me5_20_std_Rare_SvHolo_Holo"
+  }
+}

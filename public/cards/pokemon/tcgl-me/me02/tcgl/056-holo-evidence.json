@@ -1,0 +1,160 @@
+{
+  "cardId": "me02-056",
+  "variant": "holo",
+  "tcglCardId": "me2_56",
+  "tcglVariantId": "MegaGengarex_me2_56_std_DoubleRareM_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_056_std.png",
+      "file": "research/tcgl/me02-056/me2_en_056_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0fa3120fcdff8c3c3d536021ed5697f338533c972e6a64fe39b7bb5a47145301"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_056_std.foil.png",
+      "file": "research/tcgl/me02-056/me2_en_056_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "24929c5279aaccc9a8fc88ea55826134e1a921928153b9cbd5fa424e395e106c"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_056_std.etch.png",
+      "file": "research/tcgl/me02-056/me2_en_056_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6a7311013384c52a03449ed66c919564b40b4627a3622d80b6ebeab7d19622bb"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "0fa3120fcdff8c3c3d536021ed5697f338533c972e6a64fe39b7bb5a47145301"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 501,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 24097,
+      "texturedInteriorFraction": 0.9414623172103487
+    },
+    {
+      "areaAtFoilResolution": 157,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 3194,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 6788,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 183,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 289,
+      "texturedInteriorFraction": 0.49640287769784175
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "056-holo-foil.png": "1a21c9a5ffaf6ba3a5d22ee8aec852c9e21961b2247fb90b511cda75479af11a",
+    "056-holo-protection.png": "9281172f9dde1ee233ef2c86907126cb904514eb1148051ad365eec9674d71e9",
+    "056-holo-normal.png": "95e54f364f7aa12fed2cbc3de0855e7650f47470281f6c2454ab3a5e404fca2a",
+    "056-holo-roughness.png": "f0e0e559f98257e3c6dbbe1338197fffc5dd4ac7eb1ef9e2dec38cab63cdea82"
+  },
+  "holoFrontSha256": "0fa3120fcdff8c3c3d536021ed5697f338533c972e6a64fe39b7bb5a47145301",
+  "mapDimensions": {
+    "056-holo-foil.png": [
+      367,
+      512
+    ],
+    "056-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "056-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "056-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me02/tcgl/056-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "e4615b33a7247adfbee92d9721a2bb6c854f4e08a59184006741e8e108dbf2bf"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2.en-US.json",
+    "sha256": "eefadb3075128a6e9a625c73146e87485cc35e5d9b5cc10b5d28847232738f80",
+    "file": "research/tcgl/mega-series/me2/export.json"
+  },
+  "collectorNumber": "056/094",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "d8c9aac22bf074fb8e414bc89bbf06670394616727bb4fc5402c64b838f6f399",
+  "surfaceRecord": {
+    "cardId": "me02-056",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02/tcgl/056-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02/tcgl/056-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me02/tcgl/056-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me02/tcgl/056-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02/tcgl/056-holo-evidence.json",
+    "foilType": "SV_ULTRA",
+    "tcglVariantId": "MegaGengarex_me2_56_std_DoubleRareM_SvUltra_Etched"
+  }
+}

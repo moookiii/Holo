@@ -1,0 +1,93 @@
+{
+  "cardId": "me02-052",
+  "variant": "reverse",
+  "tcglCardId": "me2_52_ph",
+  "tcglVariantId": "Vibrava_me2_52_ph_Common_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_052_std.png",
+      "file": "research/tcgl/me02-052/me2_en_052_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d0b5d9e8d8e1ac2c4fd540f04f417fdf3ddfb636443e675ee6b9d9a1306707b5"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_052_ph.foil.png",
+      "file": "research/tcgl/me02-052/me2_en_052_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d7e6b5a810811bfff16c6c8947c047d61d2ea1372d805c64a583058e2150c821"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "d0b5d9e8d8e1ac2c4fd540f04f417fdf3ddfb636443e675ee6b9d9a1306707b5"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "052-reverse-foil.png": "fc30155260578959827cf3f617cde06027ab12aac7ba3f1db5d9059bce3bd049",
+    "052-reverse-protection.png": "7aa924a8ade1fea3a78c9abd4f1eff026f2dceb960cff190a143c7f1eaf212ec"
+  },
+  "holoFrontSha256": "d0b5d9e8d8e1ac2c4fd540f04f417fdf3ddfb636443e675ee6b9d9a1306707b5",
+  "mapDimensions": {
+    "052-reverse-foil.png": [
+      367,
+      512
+    ],
+    "052-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2.en-US.json",
+    "sha256": "eefadb3075128a6e9a625c73146e87485cc35e5d9b5cc10b5d28847232738f80",
+    "file": "research/tcgl/mega-series/me2/export.json"
+  },
+  "collectorNumber": "052/094",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "3b5ce7255dd417f8fbc9598a9a6a80998a4be4449f33fc1439b2e4d2a98f9674",
+  "surfaceRecord": {
+    "cardId": "me02-052",
+    "variant": "reverse",
+    "profile": "sv_tcgl_standard_reverse",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02/tcgl/052-reverse-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02/tcgl/052-reverse-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02/tcgl/052-reverse-evidence.json",
+    "foilType": "FLAT_SILVER",
+    "tcglVariantId": "Vibrava_me2_52_ph_Common_FlatSilver_Reverse"
+  }
+}

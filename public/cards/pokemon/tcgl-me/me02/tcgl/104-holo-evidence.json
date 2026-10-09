@@ -1,0 +1,93 @@
+{
+  "cardId": "me02-104",
+  "variant": "holo",
+  "tcglCardId": "me2_104",
+  "tcglVariantId": "Togedemaru_me2_104_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_104_std.png",
+      "file": "research/tcgl/me02-104/me2_en_104_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "237cbba20df1b49d0234ebe8eb77921b08a14d4d6eb26be3cc374437337d2652"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2/me2_en_104_std.foil.png",
+      "file": "research/tcgl/me02-104/me2_en_104_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "6fbddd043e7e7f064a26ef7ec4b62f8b2b9e228f13a3dc19956adacd826afdb2"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "237cbba20df1b49d0234ebe8eb77921b08a14d4d6eb26be3cc374437337d2652"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "104-holo-foil.png": "acf56004c80128f7aef9001ca4fa835c280644235e5939e3643c9abf59826d71",
+    "104-holo-protection.png": "7b78c1631325b8c6ded4874267fa4235e0e948fd752b46768737c2ac5d55a4d8"
+  },
+  "holoFrontSha256": "237cbba20df1b49d0234ebe8eb77921b08a14d4d6eb26be3cc374437337d2652",
+  "mapDimensions": {
+    "104-holo-foil.png": [
+      367,
+      512
+    ],
+    "104-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2.en-US.json",
+    "sha256": "eefadb3075128a6e9a625c73146e87485cc35e5d9b5cc10b5d28847232738f80",
+    "file": "research/tcgl/mega-series/me2/export.json"
+  },
+  "collectorNumber": "104/094",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "b3c9476e7196091ee6d260932abc6a4aba3ee01fb459006d7a3f5a98932f27ef",
+  "surfaceRecord": {
+    "cardId": "me02-104",
+    "variant": "holo",
+    "profile": "sv_tcgl_illustration_holo",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02/tcgl/104-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02/tcgl/104-holo-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02/tcgl/104-holo-evidence.json",
+    "foilType": "SUN_PILLAR",
+    "tcglVariantId": "Togedemaru_me2_104_std_IllustrationRare_SunPillar_Holo"
+  }
+}

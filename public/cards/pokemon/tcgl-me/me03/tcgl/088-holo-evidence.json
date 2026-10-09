@@ -1,0 +1,93 @@
+{
+  "cardId": "me03-088",
+  "variant": "holo",
+  "tcglCardId": "me3_88",
+  "tcglVariantId": "TelepathicPEnergy_me3_88_std_Rare_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_088_std.png",
+      "file": "research/tcgl/me03-088/me3_en_088_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "04c2ef28a41d11e0002ad27fffb0670b8329109bc194d16fe0fce0f4eb7fe2f0"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_088_std.foil.png",
+      "file": "research/tcgl/me03-088/me3_en_088_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "d0c123828fa48cd135ba7fc4245aa46d6177eac47499ba12bdc3ca7eea301fc2"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "04c2ef28a41d11e0002ad27fffb0670b8329109bc194d16fe0fce0f4eb7fe2f0"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "088-holo-foil.png": "df4b15482c2427b59d1e83c0258090b6d9b1e0e1343655f8dd23cfd1c26ba407",
+    "088-holo-protection.png": "554d4e9852e8760f0622d6bb185ddb474f9995a3976a9d14798d08ad2c95fea8"
+  },
+  "holoFrontSha256": "04c2ef28a41d11e0002ad27fffb0670b8329109bc194d16fe0fce0f4eb7fe2f0",
+  "mapDimensions": {
+    "088-holo-foil.png": [
+      367,
+      512
+    ],
+    "088-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me3.en-US.json",
+    "sha256": "5baf82c983111ee3d8f0da1920096b6d1e1e1fd5f93485b9c7bfc76cc9959f54",
+    "file": "research/tcgl/mega-series/me3/export.json"
+  },
+  "collectorNumber": "088/088",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "3453ea5728046c948401171dd177021d4fda2c9ad66e5d1b3e4cc364aa43ea9c",
+  "surfaceRecord": {
+    "cardId": "me03-088",
+    "variant": "holo",
+    "profile": "sv_tcgl_regular_holo",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me03/tcgl/088-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me03/tcgl/088-holo-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me03/tcgl/088-holo-evidence.json",
+    "foilType": "SV_HOLO",
+    "tcglVariantId": "TelepathicPEnergy_me3_88_std_Rare_SvHolo_Holo"
+  }
+}

@@ -130,11 +130,35 @@
       2475
     ]
   },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me01/tcgl/177-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "850f82933f17abcc24c6ea21cdb003f4a64f9fe8e4503b9f33efb8150d9c4e94"
+  },
   "exportSource": {
     "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me1.en-US.json",
     "sha256": "6c071091363323471dc9fbb01497341943799bf0acfe72e1d08dc9d2000bc212",
     "file": "research/tcgl/mega-series/me1/export.json"
   },
   "collectorNumber": "177/132",
-  "opticalStatus": "existing-rarity-finish; source-family-reviewed"
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "b30bd6915e572be56168f0cc6c6089d18a5e8964fe56c78d2eae38ff05b7d0c8",
+  "surfaceRecord": {
+    "cardId": "me01-177",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me01/tcgl/177-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me01/tcgl/177-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me01/tcgl/177-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me01/tcgl/177-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me01/tcgl/177-holo-evidence.json",
+    "foilType": "SV_ULTRA",
+    "tcglVariantId": "MegaVenusaurex_me1_177_std_SpecialIllustrationRare_SvUltra_Etched"
+  }
 }

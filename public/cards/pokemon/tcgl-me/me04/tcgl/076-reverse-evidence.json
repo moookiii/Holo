@@ -1,0 +1,93 @@
+{
+  "cardId": "me04-076",
+  "variant": "reverse",
+  "tcglCardId": "me4_76_ph",
+  "tcglVariantId": "AZsTranquility_me4_76_ph_Uncommon_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me4/me4_en_076_std.png",
+      "file": "research/tcgl/me04-076/me4_en_076_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "eefee6bc35a4de149cae181c6b75e5525c3fcaed08446c38d664228dcf63f74a"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me4/me4_en_076_ph.foil.png",
+      "file": "research/tcgl/me04-076/me4_en_076_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "53468a78ca416d833111c21918327e675dc0b9a7c22e51146f179d1cb3d9ac4b"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "eefee6bc35a4de149cae181c6b75e5525c3fcaed08446c38d664228dcf63f74a"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "076-reverse-foil.png": "2fdb1a5c00f7cd94bdac4e9f1f6a4d3ae7c9e2391b0103c33b003a5d123c33bb",
+    "076-reverse-protection.png": "86c763fb34c4cde02c3e0417829a87efa3d7ea6554e6bb791130732981c931b4"
+  },
+  "holoFrontSha256": "eefee6bc35a4de149cae181c6b75e5525c3fcaed08446c38d664228dcf63f74a",
+  "mapDimensions": {
+    "076-reverse-foil.png": [
+      367,
+      512
+    ],
+    "076-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me4.en-US.json",
+    "sha256": "cccc8b11f8c310ca7a2d7c22c657d02e7930b21e4ee4bf1e5174c9a167ac4c9a",
+    "file": "research/tcgl/mega-series/me4/export.json"
+  },
+  "collectorNumber": "076/086",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "171770c94bb96ca9b37387ba730116ab18464774224eddec85ccfe02e7eee104",
+  "surfaceRecord": {
+    "cardId": "me04-076",
+    "variant": "reverse",
+    "profile": "sv_tcgl_standard_reverse",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me04/tcgl/076-reverse-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me04/tcgl/076-reverse-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me04/tcgl/076-reverse-evidence.json",
+    "foilType": "FLAT_SILVER",
+    "tcglVariantId": "AZsTranquility_me4_76_ph_Uncommon_FlatSilver_Reverse"
+  }
+}

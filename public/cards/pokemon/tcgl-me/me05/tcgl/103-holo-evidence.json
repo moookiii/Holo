@@ -1,0 +1,184 @@
+{
+  "cardId": "me05-103",
+  "variant": "holo",
+  "tcglCardId": "me5_103",
+  "tcglVariantId": "MegaExcadrillex_me5_103_std_UltraRareM_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_103_std.png",
+      "file": "research/tcgl/me05-103/me5_en_103_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "45a59764852816d873b90b0ef95499579583d4a0a98bd00846fb2e0b4c44f9b3"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_103_std.foil.png",
+      "file": "research/tcgl/me05-103/me5_en_103_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "c140712656992284c3b2e09108478d7da55e6ec72b1489ac55ace593378fb103"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me5/me5_en_103_std.etch.png",
+      "file": "research/tcgl/me05-103/me5_en_103_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d0d3437bc437de1fb06436298050a5ef47d64c07ccb2dc9944eb631782e7d5b5"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "45a59764852816d873b90b0ef95499579583d4a0a98bd00846fb2e0b4c44f9b3"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12810457516339868,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 209,
+      "texturedInteriorFraction": 0.40217391304347827
+    },
+    {
+      "areaAtFoilResolution": 346,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 212,
+      "texturedInteriorFraction": 0.6103896103896104
+    },
+    {
+      "areaAtFoilResolution": 427,
+      "texturedInteriorFraction": 0.7195121951219512
+    },
+    {
+      "areaAtFoilResolution": 245,
+      "texturedInteriorFraction": 0.6212121212121212
+    },
+    {
+      "areaAtFoilResolution": 164,
+      "texturedInteriorFraction": 0.4074074074074074
+    },
+    {
+      "areaAtFoilResolution": 360,
+      "texturedInteriorFraction": 0.5845070422535211
+    },
+    {
+      "areaAtFoilResolution": 431,
+      "texturedInteriorFraction": 0.5806451612903226
+    },
+    {
+      "areaAtFoilResolution": 248,
+      "texturedInteriorFraction": 0.4578313253012048
+    },
+    {
+      "areaAtFoilResolution": 300,
+      "texturedInteriorFraction": 0.40384615384615385
+    },
+    {
+      "areaAtFoilResolution": 177,
+      "texturedInteriorFraction": 0.66
+    },
+    {
+      "areaAtFoilResolution": 166,
+      "texturedInteriorFraction": 0.4791666666666667
+    },
+    {
+      "areaAtFoilResolution": 206,
+      "texturedInteriorFraction": 0.47058823529411764
+    },
+    {
+      "areaAtFoilResolution": 152,
+      "texturedInteriorFraction": 0.5428571428571428
+    },
+    {
+      "areaAtFoilResolution": 393,
+      "texturedInteriorFraction": 0.40522875816993464
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "103-holo-foil.png": "da2ac802c3b526deff45e05e64268f9279e45e0d73da04d1a1614d1f62fd92fd",
+    "103-holo-protection.png": "facbb0f7231d36a2683b32e539ad43e6b7ce409bcd46be237621e8a25934251d",
+    "103-holo-normal.png": "4af24fdb393c5f4a267bb1843ec25a9ccf6b753cee4769c530703fd15d184ab8",
+    "103-holo-roughness.png": "8becf59dc49a7d977ab9200f64e710e09a23df2d6f46f0a69611099707d70c0e"
+  },
+  "holoFrontSha256": "45a59764852816d873b90b0ef95499579583d4a0a98bd00846fb2e0b4c44f9b3",
+  "mapDimensions": {
+    "103-holo-foil.png": [
+      367,
+      512
+    ],
+    "103-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "103-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "103-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me05/tcgl/103-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "b3cf3d7376acbbe5a30d965f962c1cbf995e027002baeb05830ee9851ac627e8"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me5.en-US.json",
+    "sha256": "9f26fc5d0697ae9b2b52f4c3d9b51a12aa0a5a9982323ad3ba137c85f5ad108e",
+    "file": "research/tcgl/mega-series/me5/export.json"
+  },
+  "collectorNumber": "103/084",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "09f4d1c3c80a6fffde75128bf67b89af3c1a0fd7bf843416cdcb0e08f0b187cb",
+  "surfaceRecord": {
+    "cardId": "me05-103",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me05/tcgl/103-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me05/tcgl/103-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me05/tcgl/103-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me05/tcgl/103-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me05/tcgl/103-holo-evidence.json",
+    "foilType": "SV_ULTRA",
+    "tcglVariantId": "MegaExcadrillex_me5_103_std_UltraRareM_SvUltra_Etched"
+  }
+}

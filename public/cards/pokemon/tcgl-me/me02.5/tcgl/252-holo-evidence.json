@@ -1,0 +1,152 @@
+{
+  "cardId": "me02.5-252",
+  "variant": "holo",
+  "tcglCardId": "me2-5_252",
+  "tcglVariantId": "Stunfiskex_me2-5_252_std_UltraRare_SunPillar_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_252_std.png",
+      "file": "research/tcgl/me02.5-252/me2-5_en_252_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "26d32510f1dd5e5c69af0fba91bafef772496a187d7de29a178f1d5a5d0335e4"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_252_std.foil.png",
+      "file": "research/tcgl/me02.5-252/me2-5_en_252_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "fe02f4a5995283b6075937ebaece6e0643a24bc8295e9c20e3c361a6ff262cb7"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me2-5/me2-5_en_252_std.etch.png",
+      "file": "research/tcgl/me02.5-252/me2-5_en_252_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ea44dd1d2655628651101ae17a4483def3811b97f719f85b9cf56e21c0985d87"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "26d32510f1dd5e5c69af0fba91bafef772496a187d7de29a178f1d5a5d0335e4"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 0.5849056603773585
+    },
+    {
+      "areaAtFoilResolution": 211,
+      "texturedInteriorFraction": 0.4230769230769231
+    },
+    {
+      "areaAtFoilResolution": 235,
+      "texturedInteriorFraction": 0.4424778761061947
+    },
+    {
+      "areaAtFoilResolution": 176,
+      "texturedInteriorFraction": 0.4507042253521127
+    },
+    {
+      "areaAtFoilResolution": 187,
+      "texturedInteriorFraction": 0.4339622641509434
+    },
+    {
+      "areaAtFoilResolution": 271,
+      "texturedInteriorFraction": 0.43548387096774194
+    },
+    {
+      "areaAtFoilResolution": 215,
+      "texturedInteriorFraction": 0.5901639344262295
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "252-holo-foil.png": "7ab8e8acdd207473ece48ab16f4031fad9dfb02e719edf54f558b5ba1fe017b2",
+    "252-holo-protection.png": "99dfe14ee0a2a14e1a7f09c3a175e01c891992c5d7ceac2d32eead5ba5b9c9ee",
+    "252-holo-normal.png": "e5917fc2f8fbe1f8fdfac6bf9276dc99d9ff580f5de6a2647dfd96e3d49aca38",
+    "252-holo-roughness.png": "990ccdacf7d78c1ed1f27617af3f437c37934368c09ff52f774a6d3e1fae537e"
+  },
+  "holoFrontSha256": "26d32510f1dd5e5c69af0fba91bafef772496a187d7de29a178f1d5a5d0335e4",
+  "mapDimensions": {
+    "252-holo-foil.png": [
+      367,
+      512
+    ],
+    "252-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "252-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "252-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/me02.5/tcgl/252-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "31bfff3f8474470fbd0716de78af1938d4ae3aeba898aa5035d6f498f04df2f3"
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me2-5.en-US.json",
+    "sha256": "18770a79fe182ac7c1bac1ea472e53ce72c8d7f7aed0660a68e17edd691cc9a9",
+    "file": "research/tcgl/mega-series/me2-5/export.json"
+  },
+  "collectorNumber": "252/217",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "8a7afcb619862092bec129bf8128eb49288b0b93e046702e8e61ce855d4688c8",
+  "surfaceRecord": {
+    "cardId": "me02.5-252",
+    "variant": "holo",
+    "profile": "prismatic_sir_texture",
+    "textured": true,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/252-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me02.5/tcgl/252-holo-protection.png",
+      "normal": "/cards/pokemon/tcgl-me/me02.5/tcgl/252-holo-normal.png",
+      "roughness": "/cards/pokemon/tcgl-me/me02.5/tcgl/252-holo-roughness.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/252-holo-evidence.json",
+    "foilType": "SUN_PILLAR",
+    "tcglVariantId": "Stunfiskex_me2-5_252_std_UltraRare_SunPillar_Etched"
+  }
+}

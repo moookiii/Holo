@@ -1,0 +1,93 @@
+{
+  "cardId": "me03-045",
+  "variant": "holo",
+  "tcglCardId": "me3_45",
+  "tcglVariantId": "Tyrantrum_me3_45_std_Rare_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_045_std.png",
+      "file": "research/tcgl/me03-045/me3_en_045_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "d4335c6b8d0eb7f1d5bfc335c3bb94d8e2cc852bf40ac6c8aee62857556e84c3"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me3/me3_en_045_std.foil.png",
+      "file": "research/tcgl/me03-045/me3_en_045_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "9894c67eba072b01da69d903adf272463e72191ea7deca3838681ba7187e4319"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "d4335c6b8d0eb7f1d5bfc335c3bb94d8e2cc852bf40ac6c8aee62857556e84c3"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "045-holo-foil.png": "74085b1b76d3f167f46703b7fea3497c9d9c5d3d42b91f4d1942b56d700a4a7a",
+    "045-holo-protection.png": "24c121c9cb70b43a85b82e6429af23dd537cf2a9ac0188cfe8f9acca85596654"
+  },
+  "holoFrontSha256": "d4335c6b8d0eb7f1d5bfc335c3bb94d8e2cc852bf40ac6c8aee62857556e84c3",
+  "mapDimensions": {
+    "045-holo-foil.png": [
+      367,
+      512
+    ],
+    "045-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me3.en-US.json",
+    "sha256": "5baf82c983111ee3d8f0da1920096b6d1e1e1fd5f93485b9c7bfc76cc9959f54",
+    "file": "research/tcgl/mega-series/me3/export.json"
+  },
+  "collectorNumber": "045/088",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed",
+  "inputSignature": "48fb7cb5e3b1c08833df4156f1c706f10262b5db4ed372879f042cf27ef8eba0",
+  "surfaceRecord": {
+    "cardId": "me03-045",
+    "variant": "holo",
+    "profile": "sv_tcgl_regular_holo",
+    "textured": false,
+    "maps": {
+      "foil": "/cards/pokemon/tcgl-me/me03/tcgl/045-holo-foil.png",
+      "protection": "/cards/pokemon/tcgl-me/me03/tcgl/045-holo-protection.png"
+    },
+    "evidence": "/cards/pokemon/tcgl-me/me03/tcgl/045-holo-evidence.json",
+    "foilType": "SV_HOLO",
+    "tcglVariantId": "Tyrantrum_me3_45_std_Rare_SvHolo_Holo"
+  }
+}
