@@ -39,7 +39,10 @@ def main():
     yy, xx = np.mgrid[0:h, 0:w].astype('float32')
     x, y = (xx+.5)/w, (yy+.5)/h
     angle = np.zeros_like(x); tilt = np.zeros_like(x); strength = np.zeros_like(x)
-    for cx, cy, radius, rays in BURSTS:
+    # Adjoining circular domains fill the sheet without overlapping tile noise.
+    owner = np.argmin(np.stack([((x-cx)*w/h)**2+(cy-y)**2
+                                for cx,cy,_,_ in BURSTS]),axis=0)
+    for index, (cx, cy, radius, rays) in enumerate(BURSTS):
         dx, dy = (x-cx)*w/h, cy-y
         r = np.hypot(dx, dy); theta = np.arctan2(dy, dx)
         # Stitched rings: short radial cuts separated BOTH along and across
@@ -63,14 +66,17 @@ def main():
             2*np.pi*np.maximum(rr,.008)/count*.32)
         aa = .65/h
         cut = (1-smooth(half_length-aa,half_length+aa,along))*(1-smooth(half_width-aa,half_width+aa,across))
-        envelope = (1-smooth(radius-.014,radius,r))*smooth(.001,.008,r)
+        # Continue the stitched rings beyond their bright rim so neighboring
+        # circles interlock across the sheet instead of ending in empty wedges.
+        reach = radius*2.4
+        envelope = (1-smooth(reach-.018,reach,r))*smooth(.001,.008,r)
         # Strong outer stitched rim and dense inner rosette, with quieter
         # intermediate rings. Optical inclinations vary between adjacent cuts.
-        ring_weight = .22+.78*np.exp(-((rr-radius*.84)/.019)**2)+.52*np.exp(-(rr/.036)**2)
-        coverage = cut*envelope*np.minimum(ring_weight,1)*(.65+variation*.35)
+        ring_weight = .40+.60*np.exp(-((rr-radius*.84)/.019)**2)+.45*np.exp(-(rr/.036)**2)
+        coverage = cut*envelope*np.minimum(ring_weight,1)*(.65+variation*.35)*(owner==index)
         wins = coverage > strength
         angle[wins] = (theta+.065*np.sin(ray*1.7+ring))[wins]
-        tilt[wins] = (.04+.25*rr[wins]/radius+(variation[wins]-.5)*.22)
+        tilt[wins] = (.04+.25*np.minimum(rr[wins]/radius,1)+(variation[wins]-.5)*.22)
         strength = np.maximum(strength, coverage)
     outputs = {'fireworks-field': save('fireworks-field', field(angle, tilt, strength))}
     if '--fireworks-only' in sys.argv:
@@ -79,7 +85,7 @@ def main():
         evidence['fields'].update(outputs)
         evidence['bursts'] = BURSTS
         evidence['fireworksReference'] = 'codex-clipboard-4326db1f-966f-40c7-93ca-0816cb00f7ed.png'
-        evidence['fireworksMethod'] = 'Concentric staggered rings of broad rectangular reflective tiles; angular gaps remain open'
+        evidence['fireworksMethod'] = 'Overlapping extended concentric rings of broad reflective tiles; no empty wedges between circles; individual tile gaps retained'
         evidence_path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
         print('Updated shared fireworks optical PNG; card coverage and speckles preserved')
         return
