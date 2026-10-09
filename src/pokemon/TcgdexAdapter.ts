@@ -83,6 +83,11 @@ export class TcgdexAdapter {
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
       if (seriesId === 'me') {
+        for (const local of svTcglSets.filter(set => set.series.id === 'me' && set.id !== 'mee')) {
+          const old = sets.findIndex(set => set.id === local.id);
+          if (old >= 0) sets.splice(old, 1);
+          sets.push({ id: local.id, name: local.name, logo: local.logo });
+        }
         // The virtual anniversary catalog includes Classic/RGB/Energy printings.
         const index = sets.findIndex(set => set.id === celebrationSet.id);
         if (index >= 0) sets.splice(index, 1);
@@ -109,7 +114,7 @@ export class TcgdexAdapter {
       }
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'sv') {
-        const local = [...svTcglSets, pokemon151Set, prismaticSet];
+        const local = [...svTcglSets.filter(set => set.series.id === 'sv'), pokemon151Set, prismaticSet];
         for (const set of local) if (!sets.some(s => s.id === set.id)) sets.push({ id: set.id, name: set.name, logo: set.logo });
         const dates = new Map(local.map(set => [set.id, set.releaseDate]));
         // Official product launch: two fixed mini decks, September 29, 2023.

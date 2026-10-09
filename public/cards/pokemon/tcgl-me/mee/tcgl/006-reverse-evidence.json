@@ -1,0 +1,79 @@
+{
+  "cardId": "mee-006",
+  "variant": "reverse",
+  "tcglCardId": "mee_6_ph",
+  "tcglVariantId": "BasicFEnergy_mee_6_ph_CommonBasicEnergy_FlatSilver_Reverse",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mee/mee_en_006_std.png",
+      "file": "research/tcgl/mee-006/mee_en_006_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2567a0d689859f328940e34c709470ad89299254be7c62440355ebf2422339e2"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mee/mee_en_006_ph.foil.png",
+      "file": "research/tcgl/mee-006/mee_en_006_ph.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "1be3312e5078c5a3c29dd28486a6d608f033915d2438c2a133cae849e77f60e3"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Smooth; no etch source.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "2567a0d689859f328940e34c709470ad89299254be7c62440355ebf2422339e2"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "006-reverse-foil.png": "1f6c9a747db6be9b39bae224bfaaa80d86d6d5ab5b010dcc0cad5a3d0442885a",
+    "006-reverse-protection.png": "54c6c40d242a545795a1425cfeca663e24bf3dd7581bc64b8438ca0241a84ea7"
+  },
+  "holoFrontSha256": "2567a0d689859f328940e34c709470ad89299254be7c62440355ebf2422339e2",
+  "mapDimensions": {
+    "006-reverse-foil.png": [
+      367,
+      512
+    ],
+    "006-reverse-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mee.en-US.json",
+    "sha256": "c0c364d257d12a915cb8ab7d8f0cab623b577da7e32793d002869889eec89c34",
+    "file": "research/tcgl/mega-series/mee/export.json"
+  },
+  "collectorNumber": "006",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed"
+}

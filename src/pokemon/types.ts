@@ -1,10 +1,11 @@
 /** Plain application data. SDK models never cross this boundary. */
-export type PrintVariant = 'normal' | 'reverse' | 'holo' | 'pokeball-reverse' | 'masterball-reverse';
+export type PrintVariant = 'normal' | 'reverse' | 'holo' | 'pokeball-reverse' | 'masterball-reverse' | 'special-reverse';
 export type PrintEdition = 'unlimited' | 'first-edition';
 export const editionLabel = (edition: PrintEdition) => edition === 'first-edition' ? '1st Edition' : 'Unlimited';
 export const printVariantLabel = (variant: PrintVariant): string => ({
   normal: 'Non-holo', reverse: 'Standard reverse holo', holo: 'Holo',
   'pokeball-reverse': 'Poké Ball reverse holo', 'masterball-reverse': 'Master Ball reverse holo',
+  'special-reverse': 'Special reverse holo · TCGL ph2',
 })[variant];
 export interface CatalogEntry { id: string; name: string; logo?: string; }
 export interface PokemonBooster extends CatalogEntry {

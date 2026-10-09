@@ -1,0 +1,108 @@
+{
+  "cardId": "me01-187",
+  "variant": "holo",
+  "tcglCardId": "me1_187",
+  "tcglVariantId": "MegaGardevoirex_me1_187_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me1/me1_en_187_std.png",
+      "file": "research/tcgl/me01-187/me1_en_187_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "8aa22831906fa37711050c7cc6847d780cc492dd63ed956279ef0e8b70e5b56a"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me1/me1_en_187_std.foil.png",
+      "file": "research/tcgl/me01-187/me1_en_187_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4ea3595eab49b35216f35eeb12eb65dc08d7367ddc698f64904672073c9bf781"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me1/me1_en_187_std.etch.png",
+      "file": "research/tcgl/me01-187/me1_en_187_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "14b7fce3de4870e47091b567bfd599c2a6022d8c7375bbff62206b546c57f15d"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "8aa22831906fa37711050c7cc6847d780cc492dd63ed956279ef0e8b70e5b56a"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.06797385620915032,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 168,
+      "texturedInteriorFraction": 0.5964912280701754
+    },
+    {
+      "areaAtFoilResolution": 255,
+      "texturedInteriorFraction": 0.5
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "187-holo-foil.png": "c7e2a604f290092725550dbd044955e8ff856a4aa8687a6eedc3e098ae32a2c8",
+    "187-holo-protection.png": "1c63b6d565baa59fb72d8a0fed379fc8e84768cea11f59bbe7aff776914cd26c",
+    "187-holo-normal.png": "33c23882a2aeeaf91f8cdabc394ab13e36c611395ea41841500ae54fb04d2d16",
+    "187-holo-roughness.png": "860c69b516171a6ddf8a85b5bd180c0f0ec97b862b669204f6940a4ef4a1665a"
+  },
+  "holoFrontSha256": "8aa22831906fa37711050c7cc6847d780cc492dd63ed956279ef0e8b70e5b56a",
+  "mapDimensions": {
+    "187-holo-foil.png": [
+      367,
+      512
+    ],
+    "187-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "187-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "187-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me1.en-US.json",
+    "sha256": "6c071091363323471dc9fbb01497341943799bf0acfe72e1d08dc9d2000bc212",
+    "file": "research/tcgl/mega-series/me1/export.json"
+  },
+  "collectorNumber": "187/132",
+  "opticalStatus": "deferred-astra-high"
+}

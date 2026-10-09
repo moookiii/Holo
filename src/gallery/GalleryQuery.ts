@@ -205,7 +205,7 @@ function matchesFacet(card: CardDefinition, facet: typeof facets[number], select
   const value = facet.value(card);
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'regular-holo') return value === 'holo';
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'holo')
-    return value === 'holo' || value === 'reverse' || value === 'pokeball-reverse' || value === 'masterball-reverse';
+    return value === 'holo' || value === 'reverse' || value === 'pokeball-reverse' || value === 'masterball-reverse' || value === 'special-reverse';
   return value === selected;
 }
 

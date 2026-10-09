@@ -60,6 +60,7 @@ export function prismaticPrinting(id: string, variant: PrintVariant): PrismaticP
     case 'reverse': treatment = 'standard-reverse'; break;
     case 'pokeball-reverse': treatment = 'pokeball-reverse'; break;
     case 'masterball-reverse': treatment = 'masterball-reverse'; break;
+    default: throw new Error(`Unaudited Prismatic variant: ${variant}`);
     case 'holo': {
       const family: Record<string, PrismaticTreatment> = { Rare: 'regular-holo', 'Double Rare': 'ex-holo',
         'ACE SPEC Rare': 'ace-spec', 'Ultra Rare': 'fullart-texture', 'Special Illustration Rare': 'sir-texture', 'Hyper Rare': 'gold' };

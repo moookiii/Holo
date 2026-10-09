@@ -134,7 +134,7 @@ def convert(printing,record_review):
         for name in ('normal','roughness') if OMIT_HEIGHT else ('normal','height','roughness'):maps[name]=PUBLIC_BASE+'/tcgl/'+prefix+name+'.png'
         if not np.all(encoded[protection==1]==[128,128,255]):raise ValueError('Protected normal is not flat')
     treatment={'illustration rare':'illustration_holo','rare':'regular_holo','double rare':'ex_holo','ace spec rare':'ace_spec','ultra rare':'fullart_texture','special illustration rare':'sir_texture','hyper rare':'gold'}.get(printing['rarity'].lower())
-    if variant!='holo':treatment={'reverse':'standard_reverse','pokeball-reverse':'pokeball_reverse','masterball-reverse':'masterball_reverse'}[variant]
+    if variant!='holo':treatment={'reverse':'standard_reverse','pokeball-reverse':'pokeball_reverse','masterball-reverse':'masterball_reverse','special-reverse':'standard_reverse'}[variant]
     treatment=printing.get('treatment',treatment)
     if not treatment:raise ValueError('Unknown rarity: '+printing['rarity'])
     evidence={'cardId':printing['cardId'],'variant':variant,'tcglCardId':printing['tcglCardId'],'tcglVariantId':printing['tcglVariantId'],

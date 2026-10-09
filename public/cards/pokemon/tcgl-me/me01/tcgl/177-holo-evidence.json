@@ -1,0 +1,140 @@
+{
+  "cardId": "me01-177",
+  "variant": "holo",
+  "tcglCardId": "me1_177",
+  "tcglVariantId": "MegaVenusaurex_me1_177_std_SpecialIllustrationRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me1/me1_en_177_std.png",
+      "file": "research/tcgl/me01-177/me1_en_177_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bfe72732af244103d9562810f93ffd8e80ef00c01f302121d62e7ddee4e4c5cf"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me1/me1_en_177_std.foil.png",
+      "file": "research/tcgl/me01-177/me1_en_177_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "ce811a0177e5e1375ffec46e8c01c37a1e4a2a52dcaa45a4d52a572bc4abd7a7"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/me1/me1_en_177_std.etch.png",
+      "file": "research/tcgl/me01-177/me1_en_177_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "86da4a79eaaf245078ebd8d9c888bb3c086cb6e244e8b56d6c67ec48d0ea3fe3"
+    }
+  },
+  "alignmentReview": {
+    "status": "source-family-reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "etchPolarity": "Inverted mean RGB; white grooves recessed.",
+    "method": "Representative source-family inspection before scaling: raw foil and etch paired with unchanged full-card TCGL fronts and colored coverage overlays. Center, rounded corners, name/HP, evolution portrait, attack glyphs and lower rules align with no crop, flip or offset. White groove strokes use the reference recessed polarity. Remaining cards undergo deterministic pairing/dimension/hash validation, not individual physical calibration.",
+    "capture": [
+      "artifacts/mega-series/source-review/me01-1.jpg",
+      "artifacts/mega-series/source-review/me01-2.jpg",
+      "artifacts/mega-series/source-review/me01-3.jpg",
+      "artifacts/mega-series/source-review/me02.5-1.jpg",
+      "artifacts/mega-series/source-review/etch-detail.png"
+    ],
+    "holoFrontSha256": "bfe72732af244103d9562810f93ffd8e80ef00c01f302121d62e7ddee4e4c5cf"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 692,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 82211,
+      "texturedInteriorFraction": 0.9499193996288319
+    },
+    {
+      "areaAtFoilResolution": 299,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 174,
+      "texturedInteriorFraction": 0.6923076923076923
+    },
+    {
+      "areaAtFoilResolution": 501,
+      "texturedInteriorFraction": 0.6892430278884463
+    },
+    {
+      "areaAtFoilResolution": 353,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 433,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 624,
+      "texturedInteriorFraction": 0.9473684210526315
+    },
+    {
+      "areaAtFoilResolution": 396,
+      "texturedInteriorFraction": 0.9317073170731708
+    },
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "177-holo-foil.png": "7f0cbbab492f914466a89858b5ec528da76b90c10d501d0a3eff15f20bad699b",
+    "177-holo-protection.png": "55b2392327ca8dddecd71d73d2d0260376e5d50b5d0b3e2b651e2809cbfd9fe5",
+    "177-holo-normal.png": "4860aa9033a09e17ef85b59fdb2fe00b9401147d452c687942a0c01ca22a7f8f",
+    "177-holo-roughness.png": "a2db05f394a4d1a0aa6cd3c7a3192618808f3998cfe621b5a63674be2dd52a6c"
+  },
+  "holoFrontSha256": "bfe72732af244103d9562810f93ffd8e80ef00c01f302121d62e7ddee4e4c5cf",
+  "mapDimensions": {
+    "177-holo-foil.png": [
+      367,
+      512
+    ],
+    "177-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "177-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "177-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/me1.en-US.json",
+    "sha256": "6c071091363323471dc9fbb01497341943799bf0acfe72e1d08dc9d2000bc212",
+    "file": "research/tcgl/mega-series/me1/export.json"
+  },
+  "collectorNumber": "177/132",
+  "opticalStatus": "existing-rarity-finish; source-family-reviewed"
+}

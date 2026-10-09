@@ -17,6 +17,7 @@ export function packAvailability(setId: string): { ready: boolean; label: string
     svp: { label: 'Promo cards · distributed outside boosters', detail: 'Choose a promo printing to view. There is no randomized SVP booster pack.' },
     svalt: { label: 'Alternate printings · card catalog', detail: 'These printings come from separate products, not a standalone alternate-printings booster.' },
     sve: { label: 'Energy cards · used in expansion packs', detail: 'Basic Energy is included by each expansion recipe; this catalog has no standalone booster.' },
+    mee: { label: 'Energy cards · used in Mega expansion packs', detail: 'Exact TCGL Basic Energy printings; no standalone booster.' },
     mfb: { label: 'Fixed mini decks · no booster packs', detail: 'My First Battle products contain two fixed 17-card mini decks. Random booster opening does not apply.' },
   };
   if (nonBoosters[setId]) return { ready: false, ...nonBoosters[setId] };
