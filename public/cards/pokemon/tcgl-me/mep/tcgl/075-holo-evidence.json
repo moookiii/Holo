@@ -1,0 +1,164 @@
+{
+  "cardId": "mep-075",
+  "variant": "holo",
+  "tcglCardId": "mebsp_75",
+  "tcglVariantId": "Ampharos_mebsp_75_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_075_std.png",
+      "file": "research/tcgl/mep-075/mebsp_en_075_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "3e6572791d009fac5e79739d41b9976745cce422402aeb6331ae750af0f86577"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_075_std.foil.png",
+      "file": "research/tcgl/mep-075/mebsp_en_075_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "9c247eb72ea6c4b9c7ac726e146758fbddf182588b9fb1d4b89034b7aaf61502"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/075.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "3e6572791d009fac5e79739d41b9976745cce422402aeb6331ae750af0f86577"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "075-holo-foil.png": "688846a88c70059fc845446e397fc50a3bcebdf129db0d15dd95f6ac56d421ca",
+    "075-holo-protection.png": "18d32b3e23b2f91ae9f63c4fd83ed0337b9803c637c9bd8e1e0a80a0d78a8cc3"
+  },
+  "holoFrontSha256": "3e6572791d009fac5e79739d41b9976745cce422402aeb6331ae750af0f86577",
+  "mapDimensions": {
+    "075-holo-foil.png": [
+      367,
+      512
+    ],
+    "075-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Ampharos",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Taiga Kasai",
+      "list": [
+        "Taiga Kasai"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "075",
+      "numerator": "075",
+      "numeric": 75
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Flaaffy",
+    "hp": 160,
+    "types": [
+      "LIGHTNING"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "The tail\u2019s tip shines brightly and can be seen from far away. It acts as a beacon for lost people.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Synchro Pulse",
+        "text": "If you have the same number of cards in your hand as your opponent, attacks used by this Pok\u00e9mon do 80 more damage to your opponent's Active Pok\u00e9mon (before applying Weakness and Resistance)."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Flashing Bolt",
+        "text": "During your next turn, this Pok\u00e9mon can't use Flashing Bolt.",
+        "cost": [
+          "LIGHTNING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 140
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_75",
+        "longFormID": "Ampharos_mebsp_75_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0x0b3e0f77",
+        "reldate": "2026-05-21 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_075_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_075_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_075_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_075_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_075_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

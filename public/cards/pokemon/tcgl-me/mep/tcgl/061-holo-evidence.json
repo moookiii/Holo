@@ -1,0 +1,147 @@
+{
+  "cardId": "mep-061",
+  "variant": "holo",
+  "tcglCardId": "mebsp_61",
+  "tcglVariantId": "Sprigatito_mebsp_61_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_061_std.png",
+      "file": "research/tcgl/mep-061/mebsp_en_061_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "31c95853d32ad996395aafbf817360af73ff928b4ec8c89464d1e60888a585d6"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_061_std.foil.png",
+      "file": "research/tcgl/mep-061/mebsp_en_061_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "1b1b392525c12980919e5a56a5f8940526483bbfd524ce22aa6e584018e9650d"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/061.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "31c95853d32ad996395aafbf817360af73ff928b4ec8c89464d1e60888a585d6"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "061-holo-foil.png": "327e9eb36cc452e13b29938b4401add7b43959f6bbeed88ef2ee0d18141f143a",
+    "061-holo-protection.png": "7a8759a8e409f1b9bd9b9050e8cb10a940a0aa12dee3cab83257b63285a111b9"
+  },
+  "holoFrontSha256": "31c95853d32ad996395aafbf817360af73ff928b4ec8c89464d1e60888a585d6",
+  "mapDimensions": {
+    "061-holo-foil.png": [
+      367,
+      512
+    ],
+    "061-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Sprigatito",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "061",
+      "numerator": "061",
+      "numeric": 61
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Leafage",
+        "cost": [
+          "GRASS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 40
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_61",
+        "longFormID": "Sprigatito_mebsp_61_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x240f118e",
+        "reldate": "2026-08-06 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_061_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_061_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_061_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_061_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_061_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

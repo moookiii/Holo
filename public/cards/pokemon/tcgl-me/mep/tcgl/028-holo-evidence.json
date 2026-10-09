@@ -1,0 +1,142 @@
+{
+  "cardId": "mep-028",
+  "variant": "holo",
+  "tcglCardId": "mebsp_28",
+  "tcglVariantId": "CelebratoryFanfare_mebsp_28_std_Rare_Stamped_Stamped",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_028_std.png",
+      "file": "research/tcgl/mep-028/mebsp_en_028_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "4fdecb771096b1188a48fa90fce47d2730eb910c2940036db477f35acfaf46ef"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_028_std.foil.png",
+      "file": "research/tcgl/mep-028/mebsp_en_028_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "P",
+      "sha256": "74dff89b9d61d479f8c8f1d60247caf49d5af48d362f8b3c16705d61cb32cdc2"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/028.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "4fdecb771096b1188a48fa90fce47d2730eb910c2940036db477f35acfaf46ef"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.0,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "028-holo-foil.png": "bab93a51d2ca63777609201c9b5713a50c7a113ad92d4ae252c92f122e8bd427",
+    "028-holo-protection.png": "0377e9d37382cdafc95fe83c386c6121c1b97d8ccc9e9d635e6acd8c2e781ce9"
+  },
+  "holoFrontSha256": "4fdecb771096b1188a48fa90fce47d2730eb910c2940036db477f35acfaf46ef",
+  "mapDimensions": {
+    "028-holo-foil.png": [
+      367,
+      512
+    ],
+    "028-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Celebratory Fanfare",
+    "card_type": "TRAINER",
+    "subtype": "STADIUM",
+    "lang": "en-US",
+    "foil": {
+      "type": "STAMPED",
+      "mask": "STAMPED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Yuu Nishida",
+      "list": [
+        "Yuu Nishida"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "028",
+      "numerator": "028",
+      "numeric": 28
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "text": [
+      {
+        "kind": "TEXT_BOX",
+        "text": "Once during each player's turn, that player may heal 10 damage from each of their Pok\u00e9mon. If a player healed any damage in this way, their turn ends."
+      },
+      {
+        "kind": "REMINDER",
+        "text": "You may play only 1 Stadium card during your turn. Put it next to the Active Spot, and discard it if another Stadium comes into play. A Stadium with the same name can\u2019t be played."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_28",
+        "longFormID": "CelebratoryFanfare_mebsp_28_std_Rare_Stamped_Stamped",
+        "archetypeID": "0x31fbace4",
+        "reldate": "2025-11-13 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_028_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_028_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_028_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_028_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_028_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.",
+  "finishStatus": "Original front only; Cosmos placements or stamped optics pending exact-print evidence."
+}

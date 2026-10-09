@@ -1,0 +1,165 @@
+{
+  "cardId": "mep-074",
+  "variant": "holo",
+  "tcglCardId": "mebsp_74",
+  "tcglVariantId": "Delphox_mebsp_74_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_074_std.png",
+      "file": "research/tcgl/mep-074/mebsp_en_074_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "c313fcf533bd392a8688e6834f5581eb81181213a45a1e95771244b672062a0d"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_074_std.foil.png",
+      "file": "research/tcgl/mep-074/mebsp_en_074_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b2b9fcd5c8039059851b1e122f4f47ebde1c270f81069cace7e4cb30640ce573"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/074.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "c313fcf533bd392a8688e6834f5581eb81181213a45a1e95771244b672062a0d"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "074-holo-foil.png": "e80025bae0eb0859f32fd53797a8adfa4078ce2763f813bfed7d2c4cea0868e1",
+    "074-holo-protection.png": "65a1b9a7f886211ed0ea578c672bf4dc28baee60b013f5947f8b34a52db32012"
+  },
+  "holoFrontSha256": "c313fcf533bd392a8688e6834f5581eb81181213a45a1e95771244b672062a0d",
+  "mapDimensions": {
+    "074-holo-foil.png": [
+      367,
+      512
+    ],
+    "074-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Delphox",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Souichirou Gunjima",
+      "list": [
+        "Souichirou Gunjima"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "074",
+      "numerator": "074",
+      "numeric": 74
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Braixen",
+    "hp": 160,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Using psychic power, it generates a fiery vortex of 5,400 degrees Fahrenheit, incinerating foes swept into this whirl of flame.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Flaring Magic",
+        "text": "Once during your turn, you may discard a Basic {R} Energy card from your hand in order to use this Ability. Draw cards until you have 7 cards in your hand."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Energized Storm",
+        "text": "This attack does 30 damage for each Energy attached to all Pok\u00e9mon.",
+        "cost": [
+          "FIRE",
+          "FIRE"
+        ],
+        "damage": {
+          "amount": 30,
+          "suffix": "\u00d7"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_74",
+        "longFormID": "Delphox_mebsp_74_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0x1658c0c0",
+        "reldate": "2026-05-21 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_074_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_074_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_074_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_074_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_074_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

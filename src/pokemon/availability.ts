@@ -14,6 +14,7 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (setId === WIZARDS_PROMO_ID) return { ready: false, label: `Browse ${wizardsPromoCards.length} promos`,
     detail: 'Choose an individual promo card. These cards were distributed outside booster packs.' };
   const nonBoosters: Record<string, { label: string; detail: string }> = {
+    mep: { label: 'Promo cards · distributed outside boosters', detail: 'Choose an MEP promo printing to view. There is no randomized MEP booster pack.' },
     svp: { label: 'Promo cards · distributed outside boosters', detail: 'Choose a promo printing to view. There is no randomized SVP booster pack.' },
     svalt: { label: 'Alternate printings · card catalog', detail: 'These printings come from separate products, not a standalone alternate-printings booster.' },
     sve: { label: 'Energy cards · used in expansion packs', detail: 'Basic Energy is included by each expansion recipe; this catalog has no standalone booster.' },

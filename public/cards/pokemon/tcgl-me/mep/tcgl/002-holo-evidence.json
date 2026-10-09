@@ -1,0 +1,166 @@
+{
+  "cardId": "mep-002",
+  "variant": "holo",
+  "tcglCardId": "mebsp_2",
+  "tcglVariantId": "Inteleon_mebsp_2_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_002_std.png",
+      "file": "research/tcgl/mep-002/mebsp_en_002_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "579ab827e5f6e2b1456a5ff6da45d13115827100b71d5296dbfe4354873e48ba"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_002_std.foil.png",
+      "file": "research/tcgl/mep-002/mebsp_en_002_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "f8ed689212ceb62b345b732d47452ce563089e702951a2021c3202956532640f"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/002.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "579ab827e5f6e2b1456a5ff6da45d13115827100b71d5296dbfe4354873e48ba"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "002-holo-foil.png": "1080d54db77448816609190baa19851ccc7d8afe06ab5c2a4cc61b93f82333c9",
+    "002-holo-protection.png": "9de8393343b82bfb5c134d3d6773fa0c82d2764e62f16849755e5e594b80701b"
+  },
+  "holoFrontSha256": "579ab827e5f6e2b1456a5ff6da45d13115827100b71d5296dbfe4354873e48ba",
+  "mapDimensions": {
+    "002-holo-foil.png": [
+      367,
+      512
+    ],
+    "002-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Inteleon",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Kazumasa Yasukuni",
+      "list": [
+        "Kazumasa Yasukuni"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "002",
+      "numerator": "002",
+      "numeric": 2
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Drizzile",
+    "hp": 150,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It uses special lenses in its eyes to sense things about its opponents\u2014like their body heat\u2014then attacks once it identifies a weak spot.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Bring Down",
+        "text": "Choose a Pok\u00e9mon in play (yours or your opponent's) that has the least HP remaining, except for this Pok\u00e9mon, and it is Knocked Out.",
+        "cost": [
+          "WATER"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Water Shot",
+        "text": "Discard an Energy from this Pok\u00e9mon.",
+        "cost": [
+          "WATER"
+        ],
+        "damage": {
+          "amount": 110
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_2",
+        "longFormID": "Inteleon_mebsp_2_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0x0eaa1f61",
+        "reldate": "2025-09-25 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_002_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_002_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_002_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_002_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_002_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

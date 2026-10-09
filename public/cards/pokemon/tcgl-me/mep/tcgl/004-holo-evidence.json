@@ -1,0 +1,162 @@
+{
+  "cardId": "mep-004",
+  "variant": "holo",
+  "tcglCardId": "mebsp_4",
+  "tcglVariantId": "Lunatone_mebsp_4_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_004_std.png",
+      "file": "research/tcgl/mep-004/mebsp_en_004_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "9be855b856212a17c17da4e1e24035dda573b2f2de5ed9ebfb8baf084759f0f7"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_004_std.foil.png",
+      "file": "research/tcgl/mep-004/mebsp_en_004_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "63cde10c63826b76678b3ad1d1998c43ff029adff638f10e43afff06558864a9"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/004.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "9be855b856212a17c17da4e1e24035dda573b2f2de5ed9ebfb8baf084759f0f7"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "004-holo-foil.png": "9510a4a472c5a8e27b6680277daa3cb1c1f6149eddea51c09028fa56f22ce2cd",
+    "004-holo-protection.png": "420f57105c3496cd2a8df177bd80e2ebf1102f4a23f6fc37147d5e7adde23ebd"
+  },
+  "holoFrontSha256": "9be855b856212a17c17da4e1e24035dda573b2f2de5ed9ebfb8baf084759f0f7",
+  "mapDimensions": {
+    "004-holo-foil.png": [
+      367,
+      512
+    ],
+    "004-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Lunatone",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Ounishi",
+      "list": [
+        "Ounishi"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "004",
+      "numerator": "004",
+      "numeric": 4
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "BASIC",
+    "hp": 110,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It was discovered at the site of a meteor strike 40 years ago. Its stare can lull its foes to sleep.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Lunar Cycle",
+        "text": "Once during your turn, if you have Solrock in play, you may discard a Basic {F} Energy card from your hand in order to use this Ability. Draw 3 cards. You can't use more than 1 Lunar Cycle Ability each turn."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Power Gem",
+        "cost": [
+          "FIGHTING",
+          "FIGHTING"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_4",
+        "longFormID": "Lunatone_mebsp_4_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0xaab34b68",
+        "reldate": "2025-09-25 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_004_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_004_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_004_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_004_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_004_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

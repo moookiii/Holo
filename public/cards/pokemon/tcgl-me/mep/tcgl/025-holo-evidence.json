@@ -1,0 +1,246 @@
+{
+  "cardId": "mep-025",
+  "variant": "holo",
+  "tcglCardId": "mebsp_25",
+  "tcglVariantId": "MegaKangaskhanex_mebsp_25_std_DoubleRareM_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_025_std.png",
+      "file": "research/tcgl/mep-025/mebsp_en_025_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "88846abf97438a511f6750646c33b68b6783a14fcf1bf16dc1b764a6cb844751"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_025_std.foil.png",
+      "file": "research/tcgl/mep-025/mebsp_en_025_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "f0967de9b765a462901cc61b9353768329c3802a19ac383496e21038130424d5"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_025_std.etch.png",
+      "file": "research/tcgl/mep-025/mebsp_en_025_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "afb188ecab0a543ca1ba862d2a5eb30fdb1b71c36b659ad1eef08c354cd469ce"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Individual paired front, raw etch, registration overlay and foil reviewed before conversion.",
+    "capture": "artifacts/mep/source-review/025.png",
+    "etchPolarity": "Inverted mean RGB; white stroke relief follows reference recessed convention; source provides geometry, not physical depth.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "88846abf97438a511f6750646c33b68b6783a14fcf1bf16dc1b764a6cb844751"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 246,
+      "texturedInteriorFraction": 0.5175438596491229
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 43264,
+      "texturedInteriorFraction": 0.9615479479084451
+    },
+    {
+      "areaAtFoilResolution": 248,
+      "texturedInteriorFraction": 0.5288461538461539
+    },
+    {
+      "areaAtFoilResolution": 252,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 251,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 256,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 1275,
+      "texturedInteriorFraction": 0.529467680608365
+    },
+    {
+      "areaAtFoilResolution": 2917,
+      "texturedInteriorFraction": 0.6011014948859166
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "025-holo-foil.png": "52ae820599fbaa464892b3224c6903d1d6b3185489cd24bb3f832c0cab6ab09b",
+    "025-holo-protection.png": "2d8112976c38995fd8d9f7ec3f873743f119a568efb3ae2402103b5a52953c7a",
+    "025-holo-normal.png": "a20ed810a877242830553d4e6fd2e319968014a14964bdcd26ec41e5050f3ca4",
+    "025-holo-roughness.png": "800470cb65fbafc4ecf03eca64890492ceb420ccec194e3516042aa0e7d6bf72"
+  },
+  "holoFrontSha256": "88846abf97438a511f6750646c33b68b6783a14fcf1bf16dc1b764a6cb844751",
+  "mapDimensions": {
+    "025-holo-foil.png": [
+      367,
+      512
+    ],
+    "025-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "025-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "025-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/mep/tcgl/025-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "707c387f20078d644dc6d715310a058540df37a49d411b1e7b96e1272400805b"
+  },
+  "exportEntry": {
+    "name": "Mega Kangaskhan ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. 5ban Graphics",
+      "list": [
+        "5ban Graphics"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "025",
+      "numerator": "025",
+      "numeric": 25
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER",
+      "MEGA_EVOLUTION",
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 300,
+    "types": [
+      "COLORLESS"
+    ],
+    "weakness": {
+      "types": [
+        "FIGHTING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Run Errand",
+        "text": "Once during your turn, if this Pok\u00e9mon is in the Active Spot, you may use this Ability. Draw 2 cards. You can't use more than 1 Run Errand Ability each turn."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Rapid-Fire Combo",
+        "text": "Flip a coin until you get tails. This attack does 50 more damage for each heads.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 200,
+          "suffix": "+"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Mega Evolution ex Rule",
+        "text": "When your Mega Evolution Pok\u00e9mon ex is Knocked Out, your opponent takes 3 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_25",
+        "longFormID": "MegaKangaskhanex_mebsp_25_std_DoubleRareM_SvUltra_Etched",
+        "archetypeID": "0x29b8f04b",
+        "reldate": "2025-11-13 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_025_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_025_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_025_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_025_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_025_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_025_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_025_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

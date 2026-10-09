@@ -1,0 +1,168 @@
+{
+  "cardId": "mep-087",
+  "variant": "holo",
+  "tcglCardId": "mebsp_87",
+  "tcglVariantId": "Binacle_mebsp_87_std_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_087_std.png",
+      "file": "research/tcgl/mep-087/mebsp_en_087_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "ddc6b8d4843d5827ba27d1e295aab091d831905062742f501d26685fae568ae8"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_087_std.foil.png",
+      "file": "research/tcgl/mep-087/mebsp_en_087_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4d3545a34218932e8700b5ecd23537c4b72e25738a4bd8c71d6ee20373081918"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/087.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "ddc6b8d4843d5827ba27d1e295aab091d831905062742f501d26685fae568ae8"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "087-holo-foil.png": "d77c94f5ffc540b33a0087baa7089a5f42312613700d89e7e89bf57a368a2d05",
+    "087-holo-protection.png": "7f448939d3c772eb8c67e3a678824ccb322b1c3938b0d86c6c27e17439616cac",
+    "087-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "ddc6b8d4843d5827ba27d1e295aab091d831905062742f501d26685fae568ae8",
+  "mapDimensions": {
+    "087-holo-foil.png": [
+      367,
+      512
+    ],
+    "087-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Binacle",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Shimaris Yukichi",
+      "list": [
+        "Shimaris Yukichi"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "087",
+      "numerator": "087",
+      "numeric": 87
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "BASIC",
+    "hp": 80,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Two Binacle live together on one rock. When they fight, one of them will move to a different rock.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Double Draw",
+        "text": "Draw 2 cards.",
+        "cost": [
+          "FIGHTING"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Scratch",
+        "cost": [
+          "FIGHTING",
+          "FIGHTING"
+        ],
+        "damage": {
+          "amount": 30
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_87",
+        "longFormID": "Binacle_mebsp_87_std_Rare_Cosmos_Holo",
+        "archetypeID": "0xc8251817",
+        "reldate": "2026-07-16 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_087_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_087_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_087_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_087_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_087_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.",
+  "finishStatus": "Original front only; Cosmos placements or stamped optics pending exact-print evidence.",
+  "motifPlacement": "pending; empty motif PNG, no generated dots"
+}

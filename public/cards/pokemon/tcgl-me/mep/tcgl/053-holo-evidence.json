@@ -1,0 +1,159 @@
+{
+  "cardId": "mep-053",
+  "variant": "holo",
+  "tcglCardId": "mebsp_53",
+  "tcglVariantId": "Scorbunny_mebsp_53_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_053_std.png",
+      "file": "research/tcgl/mep-053/mebsp_en_053_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "bb934b6e89d644556373851cf706febd2e0dfb55920cbd03ef08c713047024ef"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_053_std.foil.png",
+      "file": "research/tcgl/mep-053/mebsp_en_053_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "e9052697c0ecac0556b2e8694755b257c492898cf225271a5028483cb5ed6b6c"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/053.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "bb934b6e89d644556373851cf706febd2e0dfb55920cbd03ef08c713047024ef"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "053-holo-foil.png": "7cff3cb0601c28a366fd42417dfd6684b3aef64354d2d2b59eb81c7032ee57e1",
+    "053-holo-protection.png": "07492252ff13fc6ec7ed50a2d79a4aa2a050399d2380a37ab7d78c57655fb627"
+  },
+  "holoFrontSha256": "bb934b6e89d644556373851cf706febd2e0dfb55920cbd03ef08c713047024ef",
+  "mapDimensions": {
+    "053-holo-foil.png": [
+      367,
+      512
+    ],
+    "053-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Scorbunny",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Saboteri",
+      "list": [
+        "Saboteri"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "053",
+      "numerator": "053",
+      "numeric": 53
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "A warm-up of running around gets fire energy coursing through this Pok\u00e9mon\u2019s body. Once that happens, it\u2019s ready to fight at full power.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Double Kick",
+        "text": "Flip 2 coins. This attack does 20 damage for each heads.",
+        "cost": [
+          "FIRE",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 20,
+          "suffix": "\u00d7"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_53",
+        "longFormID": "Scorbunny_mebsp_53_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0xf01cb007",
+        "reldate": "2026-06-18 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_053_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_053_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_053_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_053_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_053_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

@@ -1,0 +1,173 @@
+{
+  "cardId": "mep-064",
+  "variant": "holo",
+  "tcglCardId": "mebsp_64",
+  "tcglVariantId": "Serperior_mebsp_64_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_064_std.png",
+      "file": "research/tcgl/mep-064/mebsp_en_064_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "46a86a9438d9c0d66ef530862168c5c37c83c705b590f695b1787b976af374a8"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_064_std.foil.png",
+      "file": "research/tcgl/mep-064/mebsp_en_064_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "4c2f06db2015830a20783ae8d31ff970d1d4d5cbfa5f099e23848b1eaf7df48e"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/064.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "46a86a9438d9c0d66ef530862168c5c37c83c705b590f695b1787b976af374a8"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "064-holo-foil.png": "e739066f047236f322382866e4033a35d72f2a587ab74ad6b00457cc15ec1003",
+    "064-holo-protection.png": "62c57ed67e3358697c40b950c216dedfc97ff2a5eb9b6478361f36bc087a32b3"
+  },
+  "holoFrontSha256": "46a86a9438d9c0d66ef530862168c5c37c83c705b590f695b1787b976af374a8",
+  "mapDimensions": {
+    "064-holo-foil.png": [
+      367,
+      512
+    ],
+    "064-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Serperior",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. LINNE",
+      "list": [
+        "LINNE"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "064",
+      "numerator": "064",
+      "numeric": 64
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Servine",
+    "hp": 160,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "An intimidating gaze and majestic appearance have caused this Pok\u00e9mon to be known as the Lord of the Forest.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Regal Command",
+        "text": "This attack does 20 damage for each of your Pok\u00e9mon in play.",
+        "cost": [
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 20,
+          "suffix": "\u00d7"
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Solar Coiling",
+        "text": "If Rosa's Encouragement is in your discard pile, this attack does 150 more damage.",
+        "cost": [
+          "GRASS",
+          "GRASS",
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 100,
+          "suffix": "+"
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_64",
+        "longFormID": "Serperior_mebsp_64_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0x1cf37f2d",
+        "reldate": "2026-03-26 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_064_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_064_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_064_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_064_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_064_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

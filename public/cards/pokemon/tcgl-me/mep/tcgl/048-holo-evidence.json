@@ -1,0 +1,158 @@
+{
+  "cardId": "mep-048",
+  "variant": "holo",
+  "tcglCardId": "mebsp_48",
+  "tcglVariantId": "Totodile_mebsp_48_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_048_std.png",
+      "file": "research/tcgl/mep-048/mebsp_en_048_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e0a2b0d1c451213a1fa15532f44d0c0b7a350aead5d228b68b645c5804210165"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_048_std.foil.png",
+      "file": "research/tcgl/mep-048/mebsp_en_048_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "36c352deee3280a77be60408832a1b77e1f8867b65ac0ec49db24abfb56f9cf3"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/048.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "e0a2b0d1c451213a1fa15532f44d0c0b7a350aead5d228b68b645c5804210165"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "048-holo-foil.png": "10119fde9b21cb4a6b2974d29c9cfa83a1bbc7d21e636e4a2074beae4c3a29d3",
+    "048-holo-protection.png": "dbdcfdcccd4c94aad878d0b7fa49c5e4ea9648a75dc5ceddd61ba3b3a88c8a1e"
+  },
+  "holoFrontSha256": "e0a2b0d1c451213a1fa15532f44d0c0b7a350aead5d228b68b645c5804210165",
+  "mapDimensions": {
+    "048-holo-foil.png": [
+      367,
+      512
+    ],
+    "048-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Totodile",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Saboteri",
+      "list": [
+        "Saboteri"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "048",
+      "numerator": "048",
+      "numeric": 48
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "BASIC",
+    "hp": 80,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "LIGHTNING"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "flavor_text": "Its powerful, well-developed jaws are capable of crushing anything. Even its Trainer must be careful.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Bite",
+        "cost": [
+          "WATER",
+          "WATER",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_48",
+        "longFormID": "Totodile_mebsp_48_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x0cf6ed12",
+        "reldate": "2026-06-18 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_048_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_048_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_048_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_048_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_048_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

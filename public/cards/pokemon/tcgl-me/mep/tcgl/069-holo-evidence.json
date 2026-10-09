@@ -1,0 +1,159 @@
+{
+  "cardId": "mep-069",
+  "variant": "holo",
+  "tcglCardId": "mebsp_69",
+  "tcglVariantId": "Chikorita_mebsp_69_std_Rare_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_069_std.png",
+      "file": "research/tcgl/mep-069/mebsp_en_069_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "e42ea256342af16787fec284e40da0edbf44313d670bb615aa10bf3fc5af2544"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_069_std.foil.png",
+      "file": "research/tcgl/mep-069/mebsp_en_069_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b159ebfd85d4fda1ad24fb5391c300e4625fef9fe05060ac0e8da306b86cb5e8"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/069.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "e42ea256342af16787fec284e40da0edbf44313d670bb615aa10bf3fc5af2544"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "069-holo-foil.png": "df036669da9c3021beb0b7098b1ba38e6cbfb752957b890974b6147f19fd7ae6",
+    "069-holo-protection.png": "cb370a2d1764a151eccaf1ff73bcbc18eb04728e98986ff060e3429bfc7513d6",
+    "069-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "e42ea256342af16787fec284e40da0edbf44313d670bb615aa10bf3fc5af2544",
+  "mapDimensions": {
+    "069-holo-foil.png": [
+      367,
+      512
+    ],
+    "069-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Chikorita",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Makura Tami",
+      "list": [
+        "Makura Tami"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "069",
+      "numerator": "069",
+      "numeric": 69
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "BASIC",
+    "hp": 70,
+    "types": [
+      "GRASS"
+    ],
+    "weakness": {
+      "types": [
+        "FIRE"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "It loves to bask in the sunlight. It uses the leaf on its head to seek out warm places.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Razor Leaf",
+        "cost": [
+          "GRASS"
+        ],
+        "damage": {
+          "amount": 20
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_69",
+        "longFormID": "Chikorita_mebsp_69_std_Rare_Cosmos_Holo",
+        "archetypeID": "0x6c00b59e",
+        "reldate": "2026-03-26 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_069_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_069_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_069_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_069_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_069_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.",
+  "finishStatus": "Original front only; Cosmos placements or stamped optics pending exact-print evidence.",
+  "motifPlacement": "pending; empty motif PNG, no generated dots"
+}

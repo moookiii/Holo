@@ -95,7 +95,7 @@ export class TcgdexAdapter {
         const classic = sets.findIndex(set => set.id === '30th-c');
         if (classic >= 0) sets.splice(classic, 1);
         sets.push({ id: celebrationSet.id, name: celebrationSet.name, logo: celebrationSet.logo }, { id: celebrationUpcSet.id, name: celebrationUpcSet.name, logo: celebrationUpcSet.logo });
-        const order = ['me01', 'me02', 'me02.5', 'me03', 'me04', 'me05', '30th', '30th-classic-upc'];
+        const order = ['mep', 'me01', 'me02', 'me02.5', 'me03', 'me04', 'me05', '30th', '30th-classic-upc'];
         sets.sort((a,b) => (order.indexOf(a.id) < 0 ? 99 : order.indexOf(a.id)) - (order.indexOf(b.id) < 0 ? 99 : order.indexOf(b.id)));
       }
       if (seriesId === 'ecard') {

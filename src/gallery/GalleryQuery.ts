@@ -1,6 +1,7 @@
 import type { CardDefinition } from '../card/CardDefinition';
 import { tcglSvSets } from '../pokemon/data/sv-tcgl.generated.ts';
 import { tcglMegaSets } from '../pokemon/data/mega-tcgl.generated.ts';
+import { tcglMepSets } from '../pokemon/data/mep-tcgl.generated.ts';
 import { dragonDiscoverySet } from '../pokemon/DragonDiscoveryCatalog.ts';
 
 const pokemonSetAliases: Readonly<Record<string, string>> = {
@@ -54,6 +55,7 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ['Anniversary Basic Energy', '2026-09-16'],
   ...tcglSvSets.map(set => [set.name, set.releaseDate] as [string, string]),
   ...tcglMegaSets.map(set => [set.name, set.releaseDate] as [string, string]),
+  ...tcglMepSets.map(set => [set.name, set.releaseDate] as [string, string]),
 ]);
 
 /** TCG release dates for the Yu-Gi-Oh! prints in this collection. */

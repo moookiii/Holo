@@ -1,0 +1,280 @@
+{
+  "cardId": "mep-071",
+  "variant": "holo",
+  "tcglCardId": "mebsp_71",
+  "tcglVariantId": "MegaZygardeex_mebsp_71_std_DoubleRareM_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_071_std.png",
+      "file": "research/tcgl/mep-071/mebsp_en_071_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "98cefbf38e22947cbb6143a50b6b4e407d7eb3c55fe59c4c8003fb11572f29e6"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_071_std.foil.png",
+      "file": "research/tcgl/mep-071/mebsp_en_071_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "b6d16a51874d02fb2aa5935d9bd109ed9aaba59cbc8329d0ad3cb94ef13c9304"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_071_std.etch.png",
+      "file": "research/tcgl/mep-071/mebsp_en_071_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0d2e661a893da354631f1ad25b8c900963b6242b884fbcf632c48fd8c3a1badb"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Individual paired front, raw etch, registration overlay and foil reviewed before conversion.",
+    "capture": "artifacts/mep/source-review/071.png",
+    "etchPolarity": "Inverted mean RGB; white stroke relief follows reference recessed convention; source provides geometry, not physical depth.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "98cefbf38e22947cbb6143a50b6b4e407d7eb3c55fe59c4c8003fb11572f29e6"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 246,
+      "texturedInteriorFraction": 0.5350877192982456
+    },
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 40593,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 476,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 154,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 233,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 244,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 234,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 240,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 235,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 243,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 241,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 868,
+      "texturedInteriorFraction": 0.5279642058165548
+    },
+    {
+      "areaAtFoilResolution": 218,
+      "texturedInteriorFraction": 0.9166666666666666
+    },
+    {
+      "areaAtFoilResolution": 170,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "071-holo-foil.png": "9cd72b5eb5da1ce60bf8b218c18baf5036d60497e20c59b435f2d426445e8c6f",
+    "071-holo-protection.png": "2ea73e385700b97b2f81282ddf1c732566d661d30524cd5644d35862813ebb57",
+    "071-holo-normal.png": "704f9268cf3551b78f56024067a3debf1c4d1da96afcb9b2b25efeadedf1c9e1",
+    "071-holo-roughness.png": "8007ef5fd4ccfa048321a5adaee8c39155d394c90b2edf0fe4091a12ed2a0854"
+  },
+  "holoFrontSha256": "98cefbf38e22947cbb6143a50b6b4e407d7eb3c55fe59c4c8003fb11572f29e6",
+  "mapDimensions": {
+    "071-holo-foil.png": [
+      367,
+      512
+    ],
+    "071-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "071-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "071-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/mep/tcgl/071-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "bc5464f7f76061d9e8aa91ece49003828acbb1c567097522ec2f7ed94682c350"
+  },
+  "exportEntry": {
+    "name": "Mega Zygarde ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. takuyoa",
+      "list": [
+        "takuyoa"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "071",
+      "numerator": "071",
+      "numeric": 71
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "tags": [
+      "EX_LOWER",
+      "MEGA_EVOLUTION",
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 310,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Gaia Wave",
+        "text": "During your opponent's next turn, this Pok\u00e9mon takes 30 less damage from attacks (after applying Weakness and Resistance).",
+        "cost": [
+          "FIGHTING",
+          "FIGHTING",
+          "FIGHTING"
+        ],
+        "damage": {
+          "amount": 200
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Nullifying Zero",
+        "text": "For each of your opponent's Pok\u00e9mon, flip a coin. If heads, this attack does 150 damage to that Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "FIGHTING",
+          "FIGHTING",
+          "FIGHTING",
+          "FIGHTING",
+          "FIGHTING"
+        ]
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Mega Evolution ex Rule",
+        "text": "When your Mega Evolution Pok\u00e9mon ex is Knocked Out, your opponent takes 3 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_71",
+        "longFormID": "MegaZygardeex_mebsp_71_std_DoubleRareM_SvUltra_Etched",
+        "archetypeID": "0x80f5addd",
+        "reldate": "2026-04-30 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_071_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_071_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_071_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_071_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_071_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_071_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_071_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

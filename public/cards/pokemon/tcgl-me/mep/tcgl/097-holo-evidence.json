@@ -1,0 +1,153 @@
+{
+  "cardId": "mep-097",
+  "variant": "holo",
+  "tcglCardId": "mebsp_97",
+  "tcglVariantId": "Articuno_mebsp_97_std_RareHolo_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_097_std.png",
+      "file": "research/tcgl/mep-097/mebsp_en_097_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "b932c419b10dda358672280732df8c3ebd074d4fc28ce641500cd2f76348793e"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_097_std.foil.png",
+      "file": "research/tcgl/mep-097/mebsp_en_097_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "df98cdb82579ed8135e1202516b8b6f28a4bbc399c7396c76f00f92bebbeef5d"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/097.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "b932c419b10dda358672280732df8c3ebd074d4fc28ce641500cd2f76348793e"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "097-holo-foil.png": "eaa6ee97c05655e55f873298cbc4a2c7553310ddd15dfbf0b0b853e54ba2b1fe",
+    "097-holo-protection.png": "a560a2bf42e3ae372844501bb48bb8c614860d635c9cbcbd9dee517fbc15031b",
+    "097-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "b932c419b10dda358672280732df8c3ebd074d4fc28ce641500cd2f76348793e",
+  "mapDimensions": {
+    "097-holo-foil.png": [
+      367,
+      512
+    ],
+    "097-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Articuno",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "097",
+      "numerator": "097",
+      "numeric": 97
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "stage": "BASIC",
+    "hp": 120,
+    "types": [
+      "WATER"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Frosty Flapping",
+        "text": "Once during your turn, if you have Moltres and Zapdos in play, you may use this Ability. Attach a Basic {W} Energy card from your hand to this Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Hail",
+        "text": "This attack does 30 damage to each of your opponent's Pok\u00e9mon. (Don't apply Weakness and Resistance for Benched Pok\u00e9mon.)",
+        "cost": [
+          "WATER",
+          "WATER",
+          "COLORLESS"
+        ]
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_97",
+        "longFormID": "Articuno_mebsp_97_std_RareHolo_Cosmos_Holo",
+        "archetypeID": "0xc10793dc",
+        "reldate": "2026-09-15 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_097_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_097_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_097_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_097_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_097_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.",
+  "finishStatus": "Original front only; Cosmos placements or stamped optics pending exact-print evidence.",
+  "motifPlacement": "pending; empty motif PNG, no generated dots"
+}

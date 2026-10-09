@@ -1,0 +1,241 @@
+{
+  "cardId": "mep-029",
+  "variant": "holo",
+  "tcglCardId": "mebsp_29",
+  "tcglVariantId": "MegaCharizardXex_mebsp_29_std_DoubleRareM_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_029_std.png",
+      "file": "research/tcgl/mep-029/mebsp_en_029_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "924b9de1b3f540b8c9a3212a69ab68610310f15bdf16a6fb8b7d120741f5fb18"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_029_std.foil.png",
+      "file": "research/tcgl/mep-029/mebsp_en_029_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "10d152355808b31311992c99e1fa13f2a770cbe2033242c9b07469da243a70ea"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_029_std.etch.png",
+      "file": "research/tcgl/mep-029/mebsp_en_029_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "95c1dcfe69ccbd2044d45768e42787692c8387d9376291f918396d7e39213e52"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Individual paired front, raw etch, registration overlay and foil reviewed before conversion.",
+    "capture": "artifacts/mep/source-review/029.png",
+    "etchPolarity": "Inverted mean RGB; white stroke relief follows reference recessed convention; source provides geometry, not physical depth.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "924b9de1b3f540b8c9a3212a69ab68610310f15bdf16a6fb8b7d120741f5fb18"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 516,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 26332,
+      "texturedInteriorFraction": 0.9468472523425672
+    },
+    {
+      "areaAtFoilResolution": 11993,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 454,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 232,
+      "texturedInteriorFraction": 0.4722222222222222
+    },
+    {
+      "areaAtFoilResolution": 240,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 247,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 484,
+      "texturedInteriorFraction": 0.5875370919881305
+    },
+    {
+      "areaAtFoilResolution": 207,
+      "texturedInteriorFraction": 1.0
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "029-holo-foil.png": "08704e394727c1d718fb0a94ed5cf0275681320e17cf7abd7b43cbb60b1842e3",
+    "029-holo-protection.png": "e321236ecf74a0bfd8aa9389d53b883f3873714d1e04df2c00bb413538e860af",
+    "029-holo-normal.png": "4999cd51c77fae06b21398f4ea7ff50e59eeed928433add73a065df0404ceae1",
+    "029-holo-roughness.png": "3e5de021356c1c8208daad09c4ed8c4211ebc7660ca7c6656001aabc292981fc"
+  },
+  "holoFrontSha256": "924b9de1b3f540b8c9a3212a69ab68610310f15bdf16a6fb8b7d120741f5fb18",
+  "mapDimensions": {
+    "029-holo-foil.png": [
+      367,
+      512
+    ],
+    "029-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "029-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "029-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/mep/tcgl/029-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "15588fc9f3f48afc82903f63769b780552a75aa5683764e61d5c7f53abbcc088"
+  },
+  "exportEntry": {
+    "name": "Mega Charizard X ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. takuyoa",
+      "list": [
+        "takuyoa"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "029",
+      "numerator": "029",
+      "numeric": 29
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "tags": [
+      "EX_LOWER",
+      "MEGA_EVOLUTION",
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Charmeleon",
+    "hp": 360,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Inferno X",
+        "text": "Discard any amount of {R} Energy from among your Pok\u00e9mon, and this attack does 90 damage for each card you discarded in this way.",
+        "cost": [
+          "FIRE",
+          "FIRE"
+        ],
+        "damage": {
+          "amount": 90,
+          "suffix": "\u00d7"
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Mega Evolution ex Rule",
+        "text": "When your Mega Evolution Pok\u00e9mon ex is Knocked Out, your opponent takes 3 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_29",
+        "longFormID": "MegaCharizardXex_mebsp_29_std_DoubleRareM_SvUltra_Etched",
+        "archetypeID": "0xe64106d6",
+        "reldate": "2026-02-19 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_029_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_029_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_029_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_029_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_029_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_029_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_029_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

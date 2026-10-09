@@ -1,0 +1,164 @@
+{
+  "cardId": "mep-066",
+  "variant": "holo",
+  "tcglCardId": "mebsp_66",
+  "tcglVariantId": "Tyrantrum_mebsp_66_std_RareHolo_SvHolo_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_066_std.png",
+      "file": "research/tcgl/mep-066/mebsp_en_066_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "2d97ead0e0bdb0f353e7c522e4c17b8aca0b48aedee3bd2c525b2d04b7e31820"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_066_std.foil.png",
+      "file": "research/tcgl/mep-066/mebsp_en_066_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "354c51ff26b93936ada5d62b11ec85d40712bb6280302bdb7cedd878ed7409f5"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/066.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "2d97ead0e0bdb0f353e7c522e4c17b8aca0b48aedee3bd2c525b2d04b7e31820"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "066-holo-foil.png": "5ad59c9ce96216c5db0a137bb5e5796b645d1477197b2f6196cbe9113aa84870",
+    "066-holo-protection.png": "0b4a19b988f49e383de1d393f7efa6d48112870b244cab37495f4d89c18ac175"
+  },
+  "holoFrontSha256": "2d97ead0e0bdb0f353e7c522e4c17b8aca0b48aedee3bd2c525b2d04b7e31820",
+  "mapDimensions": {
+    "066-holo-foil.png": [
+      367,
+      512
+    ],
+    "066-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Tyrantrum",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_HOLO",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Nisota Niso",
+      "list": [
+        "Nisota Niso"
+      ]
+    },
+    "regulation_mark": "J",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "066",
+      "numerator": "066",
+      "numeric": 66
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Tyrunt",
+    "hp": 180,
+    "types": [
+      "FIGHTING"
+    ],
+    "weakness": {
+      "types": [
+        "GRASS"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 3,
+    "flavor_text": "This Pok\u00e9mon behaved like a king 100 million years ago. Nothing could stop it.",
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Tyrannically Gutsy",
+        "text": "If this Pok\u00e9mon has any Special Energy attached, it gets +150 HP."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Wreak Havoc",
+        "text": "Flip a coin until you get tails. For each heads, discard the top card of your opponent's deck.",
+        "cost": [
+          "FIGHTING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 160
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_66",
+        "longFormID": "Tyrantrum_mebsp_66_std_RareHolo_SvHolo_Holo",
+        "archetypeID": "0xf4f0b7f3",
+        "reldate": "2026-03-26 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_066_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_066_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_066_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_066_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_066_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

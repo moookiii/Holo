@@ -1,0 +1,169 @@
+{
+  "cardId": "mep-019",
+  "variant": "holo",
+  "tcglCardId": "mebsp_19",
+  "tcglVariantId": "Whimsicott_mebsp_19_std_RareHolo_Cosmos_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_019_std.png",
+      "file": "research/tcgl/mep-019/mebsp_en_019_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "10114edc90bdcef1d781a353c980ccc032dedf363d721797b895dc42e81abebf"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_019_std.foil.png",
+      "file": "research/tcgl/mep-019/mebsp_en_019_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "61f5d264d09f429a2bf6b5e268b9bf2d9a28f2d506861f0d13000b6cb09604b3"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/019.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "10114edc90bdcef1d781a353c980ccc032dedf363d721797b895dc42e81abebf"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.12941176470588237,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "019-holo-foil.png": "5ba8d5f0612cce51b71527d004ced0f71cf36fb5077e82c4fb1393587601b278",
+    "019-holo-protection.png": "3a6f7f6d4f642fd3ca361f5a8674f48559728d270ba30ceb8f08e7d3e9e1ac46",
+    "019-holo-motif.png": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+  },
+  "holoFrontSha256": "10114edc90bdcef1d781a353c980ccc032dedf363d721797b895dc42e81abebf",
+  "mapDimensions": {
+    "019-holo-foil.png": [
+      367,
+      512
+    ],
+    "019-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "Whimsicott",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "COSMOS",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Yuka Tanaka",
+      "list": [
+        "Yuka Tanaka"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "019",
+      "numerator": "019",
+      "numeric": 19
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "stage": "STAGE1",
+    "stage_text": "Evolves from Cottonee",
+    "hp": 90,
+    "types": [
+      "PSYCHIC"
+    ],
+    "weakness": {
+      "types": [
+        "METAL"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "flavor_text": "Like the wind, it can slip through any gap, no matter how small. It leaves balls of white fluff behind.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Healing Fluff",
+        "text": "Heal all damage from 1 of your Benched Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS"
+        ]
+      },
+      {
+        "kind": "ATTACK",
+        "name": "U-turn",
+        "text": "Switch this Pok\u00e9mon with 1 of your Benched Pok\u00e9mon.",
+        "cost": [
+          "PSYCHIC"
+        ],
+        "damage": {
+          "amount": 50
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_19",
+        "longFormID": "Whimsicott_mebsp_19_std_RareHolo_Cosmos_Holo",
+        "archetypeID": "0xec3bf948",
+        "reldate": "2025-11-13 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_019_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_019_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_019_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_019_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_019_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.",
+  "finishStatus": "Original front only; Cosmos placements or stamped optics pending exact-print evidence.",
+  "motifPlacement": "pending; empty motif PNG, no generated dots"
+}

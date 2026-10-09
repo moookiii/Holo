@@ -1,0 +1,169 @@
+{
+  "cardId": "mep-031",
+  "variant": "holo",
+  "tcglCardId": "mebsp_31",
+  "tcglVariantId": "NsZekrom_mebsp_31_std_IllustrationRare_SunPillar_Holo",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_031_std.png",
+      "file": "research/tcgl/mep-031/mebsp_en_031_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "f6d5a3e0690ce46be9b8a865890fc8c873901a6de6c050c4c5cad354bef9e7c7"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_031_std.foil.png",
+      "file": "research/tcgl/mep-031/mebsp_en_031_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "6d3686a3c1a9c02b4f328a76e1d80b0f0ad5528339258739adb037e0ed9344ad"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Nonetched source-family sheets inspected; detailed contour and physical finish review pending.",
+    "capture": "artifacts/mep/source-review/031.png",
+    "etchPolarity": "No etch; no relief.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "f6d5a3e0690ce46be9b8a865890fc8c873901a6de6c050c4c5cad354bef9e7c7"
+  },
+  "textured": false,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [],
+  "retainedRegions": [],
+  "normalScale": 0,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "031-holo-foil.png": "1fc4a4507a70ca23ec4b6311acfbba355777b558aa54433949663ee5973faf92",
+    "031-holo-protection.png": "d4c0c02506badd532df6e302ea77cea16e7949e5fb12c41708d149306c6c0f99"
+  },
+  "holoFrontSha256": "f6d5a3e0690ce46be9b8a865890fc8c873901a6de6c050c4c5cad354bef9e7c7",
+  "mapDimensions": {
+    "031-holo-foil.png": [
+      367,
+      512
+    ],
+    "031-holo-protection.png": [
+      1800,
+      2475
+    ]
+  },
+  "exportEntry": {
+    "name": "N's Zekrom",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SUN_PILLAR",
+      "mask": "HOLO"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Bun Toujo",
+      "list": [
+        "Bun Toujo"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "031",
+      "numerator": "031",
+      "numeric": 31
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92026 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2026
+    },
+    "tags": [
+      "TRAINERS_POKEMON"
+    ],
+    "stage": "BASIC",
+    "hp": 130,
+    "types": [
+      "DRAGON"
+    ],
+    "retreat": 2,
+    "flavor_text": "When the interior part of its tail spins like a motor, Zekrom can generate many bolts of lightning to blast its surroundings.",
+    "text": [
+      {
+        "kind": "ATTACK",
+        "name": "Shred",
+        "text": "This attack's damage isn't affected by any effects on your opponent's Active Pok\u00e9mon.",
+        "cost": [
+          "COLORLESS",
+          "COLORLESS",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 70
+        }
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Rampaging Thunder",
+        "text": "During your next turn, this Pok\u00e9mon can't use attacks.",
+        "cost": [
+          "FIRE",
+          "LIGHTNING",
+          "LIGHTNING",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 250
+        }
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_31",
+        "longFormID": "NsZekrom_mebsp_31_std_IllustrationRare_SunPillar_Holo",
+        "archetypeID": "0x647e9dad",
+        "reldate": "2026-02-19 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_031_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_031_std.foil.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_031_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_031_std.foil.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_031_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

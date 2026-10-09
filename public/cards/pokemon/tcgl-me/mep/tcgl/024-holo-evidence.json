@@ -1,0 +1,249 @@
+{
+  "cardId": "mep-024",
+  "variant": "holo",
+  "tcglCardId": "mebsp_24",
+  "tcglVariantId": "Oricorioex_mebsp_24_std_UltraRare_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_024_std.png",
+      "file": "research/tcgl/mep-024/mebsp_en_024_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "0928e4c21202e5c1ece7518e536975a29437e4f37b1741229afcd498d3739db3"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_024_std.foil.png",
+      "file": "research/tcgl/mep-024/mebsp_en_024_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "75b6b69afd321d5c2e166037097aed35338e414e4ce51cc4035467925e3f2e19"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_024_std.etch.png",
+      "file": "research/tcgl/mep-024/mebsp_en_024_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "a07b93b22e41d2019ad3e3982fe8b469928a4c04fd370e0e735f6d27c7abdf15"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Individual paired front, raw etch, registration overlay and foil reviewed before conversion.",
+    "capture": "artifacts/mep/source-review/024.png",
+    "etchPolarity": "Inverted mean RGB; white stroke relief follows reference recessed convention; source provides geometry, not physical depth.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "0928e4c21202e5c1ece7518e536975a29437e4f37b1741229afcd498d3739db3"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 245,
+      "texturedInteriorFraction": 0.5245901639344263
+    },
+    {
+      "areaAtFoilResolution": 218,
+      "texturedInteriorFraction": 0.43636363636363634
+    },
+    {
+      "areaAtFoilResolution": 351,
+      "texturedInteriorFraction": 0.5474452554744526
+    },
+    {
+      "areaAtFoilResolution": 267,
+      "texturedInteriorFraction": 0.5689655172413793
+    },
+    {
+      "areaAtFoilResolution": 180,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 15472,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 567,
+      "texturedInteriorFraction": 0.4150197628458498
+    },
+    {
+      "areaAtFoilResolution": 412,
+      "texturedInteriorFraction": 0.42105263157894735
+    },
+    {
+      "areaAtFoilResolution": 345,
+      "texturedInteriorFraction": 0.48623853211009177
+    },
+    {
+      "areaAtFoilResolution": 267,
+      "texturedInteriorFraction": 0.43617021276595747
+    },
+    {
+      "areaAtFoilResolution": 174,
+      "texturedInteriorFraction": 0.6379310344827587
+    },
+    {
+      "areaAtFoilResolution": 332,
+      "texturedInteriorFraction": 0.4631578947368421
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "024-holo-foil.png": "21c6a7d5fe8cad42727e43379d158b80ab84b9de227d895c284bd4187315459b",
+    "024-holo-protection.png": "bc5805338214205e1c87c35f7eeb8539f6fe254b0ec9258d1a2670a5e8a623e6",
+    "024-holo-normal.png": "d714eb96a74f718e6d54d922b9b544b345b2b79818a968fe1e9e87bb3e0a8da5",
+    "024-holo-roughness.png": "d9ccc7c9e47c7a1e6d1cafad475b35f1374660a53b64a7f8ce126d92409c5ba4"
+  },
+  "holoFrontSha256": "0928e4c21202e5c1ece7518e536975a29437e4f37b1741229afcd498d3739db3",
+  "mapDimensions": {
+    "024-holo-foil.png": [
+      367,
+      512
+    ],
+    "024-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "024-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "024-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/mep/tcgl/024-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "e7ffb6582e76558eea72f951f209c13a4d910b4fac0b861c787226e7c30e9df0"
+  },
+  "exportEntry": {
+    "name": "Oricorio ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "artists": {
+      "text": "Illus. Shinji Kanda",
+      "list": [
+        "Shinji Kanda"
+      ]
+    },
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "024",
+      "numerator": "024",
+      "numeric": 24
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "copyright": {
+      "text": "\u00a92025 Pok\u00e9mon / Nintendo / Creatures / GAME FREAK",
+      "year": 2025
+    },
+    "tags": [
+      "EX_LOWER"
+    ],
+    "stage": "BASIC",
+    "hp": 190,
+    "types": [
+      "FIRE"
+    ],
+    "weakness": {
+      "types": [
+        "WATER"
+      ],
+      "operator": "\u00d7",
+      "amount": 2
+    },
+    "retreat": 1,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Excited Turbo",
+        "text": "As often as you like during your turn, if you have any {R} Mega Evolution Pok\u00e9mon ex in play, you may use this Ability. Attach a Basic {R} Energy card from your hand to 1 of your Benched {R} Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Fire Wing",
+        "cost": [
+          "FIRE",
+          "FIRE",
+          "COLORLESS"
+        ],
+        "damage": {
+          "amount": 110
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_24",
+        "longFormID": "Oricorioex_mebsp_24_std_UltraRare_SvUltra_Etched",
+        "archetypeID": "0xc2f4f167",
+        "reldate": "2025-11-13 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_024_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_024_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_024_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_024_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_024_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_024_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_024_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}

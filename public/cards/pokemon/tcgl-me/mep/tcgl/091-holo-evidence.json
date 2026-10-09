@@ -1,0 +1,225 @@
+{
+  "cardId": "mep-091",
+  "variant": "holo",
+  "tcglCardId": "mebsp_91",
+  "tcglVariantId": "MegaDragoniteex_mebsp_91_std_DoubleRareM_SvUltra_Etched",
+  "sources": {
+    "front": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_091_std.png",
+      "file": "research/tcgl/mep-091/mebsp_en_091_std.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "6b50ba86c11880deee3489411e32d69757deca58ff96d68e32b836602a582961"
+    },
+    "foil": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_091_std.foil.png",
+      "file": "research/tcgl/mep-091/mebsp_en_091_std.foil.png",
+      "dimensions": [
+        367,
+        512
+      ],
+      "mode": "RGBA",
+      "sha256": "2f1c5dd2fff97f79addc7fae09c8555808d8e551c4f40c33a6ca5dc34124034d"
+    },
+    "etch": {
+      "url": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_091_std.etch.png",
+      "file": "research/tcgl/mep-091/mebsp_en_091_std.etch.png",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA",
+      "sha256": "53ebd9be02d16e12424f6e27a0540f7abed98d55cbda45b086539a10433f2f2c"
+    }
+  },
+  "alignmentReview": {
+    "inspected": true,
+    "method": "Individual paired front, raw etch, registration overlay and foil reviewed before conversion.",
+    "capture": "artifacts/mep/source-review/091.png",
+    "etchPolarity": "Inverted mean RGB; white stroke relief follows reference recessed convention; source provides geometry, not physical depth.",
+    "boundaryReview": "Source-derived coating/body estimates; manual high-resolution contour refinements pending.",
+    "status": "reviewed",
+    "verticalFlip": false,
+    "cropOrOffset": false,
+    "holoFrontSha256": "6b50ba86c11880deee3489411e32d69757deca58ff96d68e32b836602a582961"
+  },
+  "textured": true,
+  "rendererReady": false,
+  "mapSize": [
+    1800,
+    2475
+  ],
+  "normalMethod": "Inverted mean TCGL etch RGB; full-domain bilinear resize; unblurred Scharr scale 1/32; gain 1.03; protection on slopes after derivative; normalize; source alpha flatten; opaque RGB OpenGL +Y (-dx,+drow,+Z).",
+  "foilMethod": "Mean source RGB with decoded black floor removed, alpha multiplied; native source dimensions, GPU linear UV sampling. No crop, flip or offset. Continuous grayscale coverage retained.",
+  "foilBlackFloor": 0.08627450980392157,
+  "protectedBodyRegions": [
+    {
+      "areaAtFoilResolution": 518,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 46862,
+      "texturedInteriorFraction": 0.9996357759111293
+    },
+    {
+      "areaAtFoilResolution": 295,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 506,
+      "texturedInteriorFraction": 0.46218487394957986
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 238,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 236,
+      "texturedInteriorFraction": 1.0
+    },
+    {
+      "areaAtFoilResolution": 539,
+      "texturedInteriorFraction": 0.5267379679144385
+    }
+  ],
+  "retainedRegions": [],
+  "normalScale": 1,
+  "embossStrength": 0,
+  "limitations": "TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.",
+  "maps": {
+    "091-holo-foil.png": "b49a16b9cec75bad2c06bf4a295f533f3fa5528b3f31b5311c629e4b5a50ce89",
+    "091-holo-protection.png": "ae501a55ffc6b09b5359d55c20e13b23a11b448fe96c97a55c5cf197b79f8f7c",
+    "091-holo-normal.png": "777f72d8425d1e2c90510790fff076344daceb71efd947a6a6723f2f3bc60781",
+    "091-holo-roughness.png": "ae9b17bbdb6187bbb64e3a0dae8172ff0a5c99566cbe6f76488cf1959c9aa346"
+  },
+  "holoFrontSha256": "6b50ba86c11880deee3489411e32d69757deca58ff96d68e32b836602a582961",
+  "mapDimensions": {
+    "091-holo-foil.png": [
+      367,
+      512
+    ],
+    "091-holo-protection.png": [
+      1800,
+      2475
+    ],
+    "091-holo-normal.png": [
+      1800,
+      2475
+    ],
+    "091-holo-roughness.png": [
+      1800,
+      2475
+    ]
+  },
+  "bodyMask": {
+    "file": "public/cards/pokemon/tcgl-me/mep/tcgl/091-holo-body.png",
+    "dimensions": [
+      1800,
+      2475
+    ],
+    "sha256": "6c8d557b3d18a6581c147f40f6a2a2460f474abd213d26896fbe705e37c16d52"
+  },
+  "exportEntry": {
+    "name": "Mega Dragonite ex",
+    "card_type": "POKEMON",
+    "lang": "en-US",
+    "foil": {
+      "type": "SV_ULTRA",
+      "mask": "ETCHED"
+    },
+    "size": "STANDARD",
+    "back": "POKEMON_1999",
+    "regulation_mark": "I",
+    "set_icon": "MEP_EN",
+    "collector_number": {
+      "full": "091",
+      "numerator": "091",
+      "numeric": 91
+    },
+    "rarity": {
+      "designation": "PROMO",
+      "icon": "BLACK_STAR_PROMO"
+    },
+    "tags": [
+      "EX_LOWER",
+      "MEGA_EVOLUTION",
+      "EX_LOWER"
+    ],
+    "stage": "STAGE2",
+    "stage_text": "Evolves from Dragonair",
+    "hp": 370,
+    "types": [
+      "DRAGON"
+    ],
+    "retreat": 2,
+    "text": [
+      {
+        "kind": "ABILITY",
+        "name": "Sky Transport",
+        "text": "Once during your turn, you may use this Ability. Switch your Active Pok\u00e9mon with 1 of your Benched Pok\u00e9mon."
+      },
+      {
+        "kind": "ATTACK",
+        "name": "Ryuno Glide",
+        "text": "Discard 2 Energy from this Pok\u00e9mon.",
+        "cost": [
+          "WATER",
+          "LIGHTNING",
+          "LIGHTNING"
+        ],
+        "damage": {
+          "amount": 330
+        }
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Pok\u00e9mon ex rule",
+        "text": "When your Pok\u00e9mon ex is Knocked Out, your opponent takes 2 Prize cards."
+      },
+      {
+        "kind": "RULE_BOX",
+        "name": "Mega Evolution ex Rule",
+        "text": "When your Mega Evolution Pok\u00e9mon ex is Knocked Out, your opponent takes 3 Prize cards."
+      }
+    ],
+    "ext": {
+      "tcgl": {
+        "cardID": "mebsp_91",
+        "longFormID": "MegaDragoniteex_mebsp_91_std_DoubleRareM_SvUltra_Etched",
+        "archetypeID": "0xe53d4670",
+        "reldate": "2026-08-27 17:00:00+00:00",
+        "key": "mebsp"
+      }
+    },
+    "images": {
+      "tcgl": {
+        "tex": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_091_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_091_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/tex/en/mebsp/mebsp_en_091_std.etch.png"
+        },
+        "png": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_091_std.png",
+          "foil": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_091_std.foil.png",
+          "etch": "https://cdn.malie.io/file/malie-io/tcgl/cards/png/en/mebsp/mebsp_en_091_std.etch.png"
+        },
+        "jpg": {
+          "front": "https://cdn.malie.io/file/malie-io/tcgl/cards/jpg/en/mebsp/mebsp_en_091_std.jpg"
+        }
+      }
+    }
+  },
+  "exportSource": {
+    "url": "https://cdn.malie.io/file/malie-io/tcgl/export/v0.1.9.13/mebsp.en-US.json",
+    "sha256": "77ea5abac59e3f8f01d8808f4d85c7bf138b95d0145635c15cfc38698b25ccfb",
+    "file": "research/tcgl/mep-set/export.json"
+  },
+  "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth."
+}
