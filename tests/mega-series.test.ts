@@ -10,6 +10,7 @@ import { filterCards,compareGallerySetNames } from '../src/gallery/GalleryQuery.
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
 
 const counts: Record<string,[number,number]>={me01:[188,310],me02:[130,214],'me02.5':[295,613],me03:[124,203],me04:[122,198],me05:[120,194]};
+const keys: Record<string,string>={me01:'me1',me02:'me2','me02.5':'me2-5',me03:'me3',me04:'me4',me05:'me5'};
 const file=(url:string)=>new URL('../public'+url,import.meta.url);
 test('all six complete TCGL checklists retain every exact printing and its local assets',()=>{
   let printings=0,etched=0,reserved=0;
@@ -24,7 +25,8 @@ test('all six complete TCGL checklists retain every exact printing and its local
       const surface=surfaces.find(s=>s.cardId===card.id&&s.variant===variant)!;assert.ok(surface);
       const evidence=JSON.parse(readFileSync(file(surface.evidence),'utf8'));
       assert.equal(evidence.tcglVariantId,surface.tcglVariantId);
-      assert.equal(evidence.tcglCardId,evidence.exportSource?evidence.sources.front.file.split('/').at(-2)?.replace(id+'-',id+'-')&&evidence.tcglCardId:undefined);
+      assert.equal(evidence.tcglCardId,`${keys[id]}_${Number(card.localId)}`);
+      assert.ok(evidence.tcglVariantId.includes(`_${evidence.tcglCardId}_`));
       assert.ok(evidence.exportSource.sha256);assert.equal(evidence.alignmentReview.verticalFlip,false);assert.equal(evidence.alignmentReview.cropOrOffset,false);
       for(const url of Object.values(surface.maps))assert.ok(url.endsWith('.png')&&existsSync(file(url)));
       assert.equal(definition.mapSettings?.embossStrength,0);assert.equal(surface.maps.height,undefined);
@@ -38,7 +40,7 @@ test('all six complete TCGL checklists retain every exact printing and its local
       if(card.rarity==='Mega Attack Rare'||card.rarity==='Mega Hyper Rare'){reserved++;assert.equal(definition.pokemon?.treatmentStatus,'deferred');assert.match(definition.source!.notes!,/Astra High/);}
     }
   }
-  assert.equal(printings,1732);assert.equal(etched,221);assert.equal(reserved,15);
+  assert.equal(printings,1732);assert.equal(etched,227);assert.equal(reserved,15);
 });
 
 test('every wrapper collates only exact eligible printings with Mega Energy and stable cosmetic-art pulls',()=>{
