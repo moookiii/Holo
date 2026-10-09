@@ -39,6 +39,9 @@ export interface CardMapPaths {
   surface?: string;
   /** Individual grayscale maps override the corresponding packed channel. */
   foil?: string;
+  /** Original RGBA optical controls, preserved separately from scalar coverage.
+   * NoColorSpace; channel meaning is defined by the printing's optical model. */
+  foilControls?: string;
   /** Authored body/border coverage for a reverse printing; never inferred from artwork. */
   reverseFoil?: string;
   /** Grayscale CPU motif: repeated for symbol foil, full-front registered stars for Base Set. Adds no GPU sampler. */

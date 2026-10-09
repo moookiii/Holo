@@ -10,6 +10,7 @@ export interface CardMaterialMaps {
   coverage: Texture; surface: Texture; pattern: Texture; normal: Texture;
   direction?: Texture; secondaryDirection?: Texture; stampDirection?: Texture;
   hologram?: Texture;
+  foilControls?: Texture;
   layout?: CardLayout;
   hasNormal: boolean; hasStamp: boolean; hasExtendedFoil: boolean;
   roughnessMode: 'profile' | 'absolute' | 'offset';
@@ -54,10 +55,11 @@ export class CardMapLoader {
       && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
     // Authored paths are required when present: an invalid mask must not silently change a printing.
     const load = async (path: string | undefined, fallback?: Texture) => path ? this.assets.load(path, false) : fallback;
-    const [coverage, surface, normal, direction, secondaryDirection, stampDirection, anniversary] = await Promise.all([
+    const [coverage, surface, normal, direction, secondaryDirection, stampDirection, anniversary, foilControls] = await Promise.all([
       load(paths.coverage, wholeFront ? this.assets.fullFoil : this.assets.black), load(paths.surface, this.assets.neutralSurface), load(paths.normal, this.assets.flatNormal),
       load(paths.direction), load(paths.secondaryDirection), load(paths.stampDirection),
       needsAnniversary ? this.assets.load('/materials/ygo-25th.webp', false) : Promise.resolve(undefined),
+      load(paths.foilControls),
     ]);
     let result: Pick<CardMaterialMaps, 'coverage' | 'surface' | 'pattern' | 'hologram'> = { coverage: coverage!, surface: surface!, pattern: this.assets.white };
     const packedInputs = PACKED_MAP_KEYS.some(name => !!paths[name]);
@@ -97,7 +99,7 @@ export class CardMapLoader {
       } catch (error) { Object.values(images).forEach(image => image.close()); anniversaryImage?.close(); throw error; }
     }
     if (this.released.has(card.id)) throw new Error('The imported card was removed.');
-    return { ...result, proceduralFoil: card.proceduralFoil, layout: card.layout, normal: normal!, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
+    return { ...result, foilControls, proceduralFoil: card.proceduralFoil, layout: card.layout, normal: normal!, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
       roughnessMode: card.mapSettings?.roughnessMode ?? (paths.roughness ? 'absolute' : 'profile'),
       embossStrength: card.construction ? (paths.normal ? 0 : card.construction.frontReliefCm / .008)
         : card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };

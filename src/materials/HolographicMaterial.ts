@@ -290,6 +290,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   readonly patternTextureNode;
   readonly normalTextureNode;
   readonly hologramTextureNode;
+  readonly foilControlsTextureNode;
   readonly surfaceControls = {
     hasExtendedFoil: uniform(0), extendedCoverage: uniform(0),
     hasStamp: uniform(0), hasNormal: uniform(0), normalScale: uniform(1),
@@ -326,6 +327,9 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.neutralField.needsUpdate = true; this.neutralRelief.needsUpdate = true; this.neutralWhite.needsUpdate = true;
     this.neutralHologram.needsUpdate = true;
     this.hologramTextureNode = texture(cardMaps?.hologram ?? this.neutralHologram);
+    // Preserve raw optical controls independently of packed scalar coverage.
+    // A model must explicitly consume them; their source colors are not ink tint.
+    this.foilControlsTextureNode = texture(cardMaps?.foilControls ?? this.neutralWhite);
     this.fieldTextureNode = texture(this.neutralField); this.reliefTextureNode = texture(this.neutralRelief);
     this.secondaryFieldTextureNode = texture(this.neutralField); this.secondaryReliefTextureNode = texture(this.neutralRelief);
     this.stampFieldTextureNode = texture(this.neutralField); this.stampReliefTextureNode = texture(this.neutralRelief);
@@ -587,6 +591,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.coverageTextureNode.value = maps.coverage; this.surfaceTextureNode.value = maps.surface;
     this.patternTextureNode.value = maps.pattern; this.normalTextureNode.value = maps.normal;
     this.hologramTextureNode.value = maps.hologram ?? this.neutralHologram;
+    this.foilControlsTextureNode.value = maps.foilControls ?? this.neutralWhite;
     this.surfaceControls.hasNormal.value = maps.hasNormal ? 1 : 0;
     this.surfaceControls.hasStamp.value = maps.hasStamp ? 1 : 0;
     this.surfaceControls.hasExtendedFoil.value = maps.hasExtendedFoil ? 1 : 0;

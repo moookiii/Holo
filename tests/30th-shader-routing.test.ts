@@ -35,3 +35,11 @@ test('star-free SUN_PILLAR gallery batches cannot inherit legacy star shaders', 
   values[34 * 4 + 3] = 2;
   assert.notEqual(galleryBatchKey(sun), galleryBatchKey(galleryOpticalLayers(values)));
 });
+
+test('RGB source controls remain available independently of scalar foil coverage', () => {
+  for (const card of celebrationCards) {
+    const maps = celebrationDefinition(card.id).maps!;
+    if (card.setId === '30th-rgb') assert.equal(maps.foilControls, maps.foil);
+    else assert.equal(maps.foilControls, undefined);
+  }
+});

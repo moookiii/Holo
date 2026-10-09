@@ -19,7 +19,8 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
     number: `${record.collectorNumber} · ${card.rarity}`, dimensions: DIMENSIONS.standard,
     front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 202630,
     galleryVisible: true, pokemon: { ...card, variant: 'holo', materialProfile: profile, treatmentStatus: 'deferred' },
-    layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] }, maps: surface.maps,
+    layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
+    maps: card.setId === '30th-rgb' ? { ...surface.maps, foilControls: surface.maps.foil } : surface.maps,
     mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
     profileOverrides: surface.textured ? tcglEtchedFinish : {
       maps: { direction: undefined },
