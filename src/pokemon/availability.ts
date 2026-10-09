@@ -24,7 +24,7 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return {ready:true,label:'Opening available · measured pull rates',
-    detail:'Exact TCGL printings. Mega Attack Rare and Mega Hyper Rare optics pending Astra High.' + (setId==='me02.5' ? ' TCGL special-reverse motif sources duplicate ordinary reverses; corrected motifs unavailable.' : '')};
+    detail:'Exact TCGL printings with dedicated Mega Attack Rare and Mega Hyper Rare finishes.' + (setId==='me02.5' ? ' TCGL special-reverse motif sources duplicate ordinary reverses; corrected motifs unavailable.' : '')};
   if (setId === '30th') return { ready: true, label: 'Opening available · estimated collation',
     detail: '' };
   if (setId === '30th-classic-upc') return { ready: true, label: 'UPC Classic product · estimated collation',

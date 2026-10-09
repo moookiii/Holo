@@ -8,6 +8,7 @@ import { collatePokemon } from '../src/pokemon/collator.ts';
 import { megaRecipes,megaGodConfigurations } from '../src/pokemon/MegaRecipes.ts';
 import { filterCards,compareGallerySetNames } from '../src/gallery/GalleryQuery.ts';
 import { pokemonDefinition } from '../src/pokemon/materials.ts';
+import { resolveCardProfile } from '../src/materials/profiles/resolveCardProfile.ts';
 
 const counts: Record<string,[number,number]>={me01:[188,310],me02:[130,214],'me02.5':[295,613],me03:[124,203],me04:[122,198],me05:[120,194]};
 const keys: Record<string,string>={me01:'me1',me02:'me2','me02.5':'me2-5',me03:'me3',me04:'me4',me05:'me5'};
@@ -32,14 +33,15 @@ test('all six complete TCGL checklists retain every exact printing and its local
       assert.ok(evidence.exportSource.url.endsWith(`/${keys[id]}.en-US.json`));
       for(const url of Object.values(surface.maps))assert.ok(url.endsWith('.png')&&existsSync(file(url)));
       assert.equal(definition.mapSettings?.embossStrength,0);assert.equal(surface.maps.height,undefined);
-      if(surface.textured){etched++;assert.equal(definition.profile,'prismatic_sir_texture');assert.equal(definition.mapSettings?.normalScale,1);
-        assert.equal(definition.mapSettings?.roughnessMode,'absolute');assert.equal(definition.profileOverrides?.diffraction?.followsAuthoredNormals,true);
-        assert.equal(definition.profileOverrides?.mapSettings?.embossMaskFromNormalAlpha,false);
-        assert.equal(definition.profileOverrides?.structure?.normalVariance,0);assert.equal(definition.profileOverrides?.glints?.strength,0);
+      if(surface.textured){etched++;const profile=resolveCardProfile(definition);
+        assert.equal(definition.profile,card.rarity==='Mega Attack Rare'?'mega-attack-rare':card.rarity==='Mega Hyper Rare'?'mega-hyper-rare':'prismatic_sir_texture');assert.equal(definition.mapSettings?.normalScale,1);
+        assert.equal(definition.mapSettings?.roughnessMode,'absolute');assert.equal(profile.diffraction.followsAuthoredNormals,true);
+        assert.equal(profile.mapSettings?.embossMaskFromNormalAlpha,false);
+        assert.equal(profile.structure.normalVariance,0);if(card.rarity!=='Mega Hyper Rare')assert.equal(profile.glints.strength,0);
         assert.ok(evidence.bodyMask.sha256);assert.match(evidence.normalMethod,/Scharr scale 1\/32; gain 1.03/);
         assert.deepEqual(evidence.mapDimensions[surface.maps.normal!.split('/').at(-1)!],[1800,2475]);
       }
-      if(card.rarity==='Mega Attack Rare'||card.rarity==='Mega Hyper Rare'){reserved++;assert.equal(definition.pokemon?.treatmentStatus,'deferred');assert.match(definition.source!.notes!,/Astra High/);}
+      if(card.rarity==='Mega Attack Rare'||card.rarity==='Mega Hyper Rare'){reserved++;assert.equal(definition.pokemon?.treatmentStatus,undefined);assert.match(definition.source!.notes!,/dedicated photo-reviewed/);}
     }
   }
   assert.equal(printings,1732);assert.equal(etched,227);assert.equal(reserved,15);

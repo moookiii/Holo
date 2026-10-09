@@ -26006,7 +26006,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me01-187",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me01/tcgl/187-holo-foil.png",
@@ -26016,13 +26016,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me01/tcgl/187-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaGardevoirex_me1_187_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
     "cardId": "me01-188",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me01/tcgl/188-holo-foil.png",
@@ -26032,7 +26031,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me01/tcgl/188-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaLucarioex_me1_188_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
@@ -27901,7 +27899,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me02-130",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02/tcgl/130-holo-foil.png",
@@ -27911,7 +27909,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02/tcgl/130-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaCharizardXex_me2_130_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
@@ -33560,7 +33557,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me02.5-265",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/265-holo-foil.png",
@@ -33570,13 +33567,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/265-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaFroslassex_me2-5_265_std_MegaAttackRare_SvUltra_Etched"
   },
   {
     "cardId": "me02.5-266",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/266-holo-foil.png",
@@ -33586,13 +33582,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/266-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaEelektrossex_me2-5_266_std_MegaAttackRare_SvUltra_Etched"
   },
   {
     "cardId": "me02.5-267",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/267-holo-foil.png",
@@ -33602,13 +33597,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/267-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaDiancieex_me2-5_267_std_MegaAttackRare_SvUltra_Etched"
   },
   {
     "cardId": "me02.5-268",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/268-holo-foil.png",
@@ -33618,13 +33612,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/268-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaHawluchaex_me2-5_268_std_MegaAttackRare_SvUltra_Etched"
   },
   {
     "cardId": "me02.5-269",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/269-holo-foil.png",
@@ -33634,13 +33627,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/269-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaGengarex_me2-5_269_std_MegaAttackRare_SvUltra_Etched"
   },
   {
     "cardId": "me02.5-270",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/270-holo-foil.png",
@@ -33650,13 +33642,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/270-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaScraftyex_me2-5_270_std_MegaAttackRare_SvUltra_Etched"
   },
   {
     "cardId": "me02.5-271",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-attack-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/271-holo-foil.png",
@@ -33666,7 +33657,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/271-holo-evidence.json",
     "foilType": "SV_ULTRA",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaDragoniteex_me2-5_271_std_MegaAttackRare_SvUltra_Etched"
   },
   {
@@ -34002,7 +33992,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me02.5-294",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/294-holo-foil.png",
@@ -34012,13 +34002,12 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/294-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaCharizardYex_me2-5_294_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
     "cardId": "me02.5-295",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me02.5/tcgl/295-holo-foil.png",
@@ -34028,7 +34017,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me02.5/tcgl/295-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaDragoniteex_me2-5_295_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
@@ -35832,7 +35820,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me03-124",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me03/tcgl/124-holo-foil.png",
@@ -35842,7 +35830,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me03/tcgl/124-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaZygardeex_me3_124_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
@@ -37635,7 +37622,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me04-122",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me04/tcgl/122-holo-foil.png",
@@ -37645,7 +37632,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me04/tcgl/122-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaGreninjaex_me4_122_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {
@@ -39401,7 +39387,7 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
   {
     "cardId": "me05-120",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "mega-hyper-rare",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/me05/tcgl/120-holo-foil.png",
@@ -39411,7 +39397,6 @@ export const tcglMegaSurfaces: readonly (TcglSvSurface & { treatmentStatus?: "de
     },
     "evidence": "/cards/pokemon/tcgl-me/me05/tcgl/120-holo-evidence.json",
     "foilType": "ULTRA_GOLD_RAINBOW",
-    "treatmentStatus": "deferred",
     "tcglVariantId": "MegaDarkraiex_me5_120_std_MegaHyperRare_SvUltraGoldRainbow_ColdFoilEtched"
   },
   {

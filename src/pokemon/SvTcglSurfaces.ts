@@ -15,7 +15,7 @@ export function svTcglProfile(id: string, variant: PrintVariant): string {
   if (variant === 'normal') return 'print-only';
   const surface = surfaces.get(`${id}:${variant}`);
   if (!surface) throw new Error(`Missing exact TCGL surface: ${id}:${variant}`);
-  return ['me02.5-269', 'me01-188'].includes(id) ? megaRarityProfile(card.rarity) ?? canonicalProfileId(surface.profile) : canonicalProfileId(surface.profile);
+  return megaRarityProfile(card.rarity) ?? canonicalProfileId(surface.profile);
 }
 export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = svTcglCard(id), profile = svTcglProfile(id, variant), surface = surfaces.get(`${id}:${variant}`);

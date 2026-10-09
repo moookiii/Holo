@@ -137,15 +137,19 @@ def convert(sid, printings):
         if evidence.exists():
             old=json.loads(evidence.read_text())
             if old.get('inputSignature')==signature and all((converter.OUT/name).exists() and converter.digest(converter.OUT/name)==sha for name,sha in old['maps'].items()):
-                return old['surfaceRecord']
+                result=dict(old['surfaceRecord'])
+                if reserved:
+                    result['profile']='mega-attack-rare' if p['rarity']=='Mega Attack Rare' else 'mega-hyper-rare'
+                    result.pop('treatmentStatus',None)
+                return result
         result=converter.convert(p,False)
         if result:
             if result['textured']:result['profile']='prismatic_sir_texture'
             elif p['rarity']=='Double Rare':result['profile']='pokemon151_ex_holo'
-            if reserved:result['treatmentStatus']='deferred'
+            if reserved:result['profile']='mega-attack-rare' if p['rarity']=='Mega Attack Rare' else 'mega-hyper-rare'
             result['tcglVariantId']=p['tcglVariantId']
             data=json.loads(evidence.read_text());data['exportSource']=p['exportSource'];data['collectorNumber']=p['collectorNumber']
-            data['opticalStatus']='deferred-astra-high' if reserved else 'existing-rarity-finish; source-family-reviewed'
+            data['opticalStatus']='dedicated-mega-rarity; photo-reviewed; docs/mega-optics.md' if reserved else 'existing-rarity-finish; source-family-reviewed'
             data['inputSignature']=signature;data['surfaceRecord']=result
             write(evidence,data)
             for name,u in result['maps'].items():
