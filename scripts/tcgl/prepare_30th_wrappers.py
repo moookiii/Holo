@@ -17,6 +17,14 @@ def main():
         image.crop(entry['crop']).save(ROOT / entry['output'], optimize=True)
         output = ROOT / entry['output']
         assert hashlib.sha256(output.read_bytes()).hexdigest() == entry['sha256']
+        # Extend only these product keys; preserve unrelated authored thumbnails.
+        thumb=image.crop(entry['crop']); thumb.thumbnail((240,360),Image.Resampling.LANCZOS)
+        key='/'+entry['output'].removeprefix('public/')+'|'
+        filename=hashlib.sha256(key.encode()).hexdigest()[:16]+'.webp'
+        thumb.save(ROOT/'public/packs/thumbnails'/filename,'WEBP',quality=83,method=6)
+        index_path=ROOT/'src/vending/thumbnails.json'
+        index=json.loads(index_path.read_text()); index[key]='packs/thumbnails/'+filename
+        index_path.write_text(json.dumps(index,indent=2)+'\n')
         print(entry['output'])
 
 if __name__ == '__main__': main()

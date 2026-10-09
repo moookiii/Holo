@@ -6,6 +6,7 @@ import { spawnSync } from 'node:child_process';
 import { localBoosterArt } from '../src/pokemon/boosterArt.ts';
 import { wotcWrappers } from '../src/pokemon/WotcProducts.ts';
 const ids = new Set([...Object.keys(wotcWrappers), ...readdirSync('public/packs/pokemon').map(f => f.match(/^(sv[\d.]+)(?:-|\.)/)?.[1]).filter(Boolean)]);
+ids.add('30th'); ids.add('30th-classic-upc');
 const art = [...ids].flatMap(id => localBoosterArt(id) ?? []).filter(a => a.front);
 art.push({ front: '/packs/yugioh/lob-first-edition/front.png' }, { front: '/packs/magic/alpha/thumbnail.png' });
 const index = {}, jobs = [];
