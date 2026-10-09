@@ -7,7 +7,6 @@ import { celebrationDefinition } from '../src/pokemon/CelebrationSurfaces.ts';
 import { celebrationRateEstimates } from '../src/pokemon/CelebrationRecipe.ts';
 import { collatePokemon } from '../src/pokemon/collator.ts';
 import { TcgdexAdapter } from '../src/pokemon/TcgdexAdapter.ts';
-import { resolveCardProfile } from '../src/materials/profiles/resolveCardProfile.ts';
 
 test('199 canonical TCGL printings retain exact original front/foil/etch bytes and explicit review status', () => {
   const manifest = JSON.parse(readFileSync('docs/30th-asset-preparation.json', 'utf8'));
@@ -29,11 +28,12 @@ test('199 canonical TCGL printings retain exact original front/foil/etch bytes a
     assert.equal(definition.proceduralFoil, undefined);
     assert.equal(definition.maps?.height, undefined);
     assert.equal(definition.mapSettings?.embossStrength, 0);
-    const profile = resolveCardProfile(definition);
+    const profile = definition.profileOverrides!;
+    if (!definition.maps?.normal) assert.ok(Object.hasOwn(profile.maps!, 'direction'), 'Explicitly disable inherited optical texture');
     assert.equal(profile.maps?.direction, undefined, 'No borrowed optical texture');
-    assert.equal(profile.structure.field, 'plain');
-    assert.equal(profile.structure.engraving, 0); assert.equal(profile.structure.relief, 0);
-    assert.equal(profile.glints.strength, 0);
+    assert.equal(profile.structure?.field, 'plain');
+    assert.equal(profile.structure?.engraving, 0); assert.equal(profile.structure?.relief, 0);
+    assert.equal(profile.glints?.strength, 0);
     for (const path of Object.values(definition.maps!)) assert.ok(existsSync(`public${path}`), String(path));
     if (definition.maps?.normal) normals++;
     assert.throws(() => celebrationDefinition(card.id, 'reverse'), /no reverse variant/);
