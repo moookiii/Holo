@@ -18,6 +18,8 @@ export interface PokemonRecipe {
   energyCards?: readonly PokemonCard[];
   /** Explicit virtual products retain each supplemental card's canonical set. */
   poolSetIds?: readonly string[];
+  /** An observed special configuration selectable without inventing its odds. */
+  configurationLabel?: string;
 }
 const ordinary = ['Common', 'Uncommon', 'Rare'];
 const outcome = (weight: number, rarities: readonly string[], variant: PrintVariant): SlotOutcome => ({ weight, rarities, variant });

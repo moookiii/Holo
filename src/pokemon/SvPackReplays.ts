@@ -1,5 +1,6 @@
 import type { PokemonRecipe } from './recipes.ts';
 import { svTcglCard } from './SvTcglCatalog.ts';
+import { megaGodConfigurations } from './MegaRecipes.ts';
 
 /** Full physical opening at 12:56–15:10, not a guessed God-pack frequency.
  * The opener moves the final Energy to the front; restore sealed-pack order.
@@ -17,4 +18,4 @@ const whiteFlareGod: PokemonRecipe = {
     outcomes: [{ weight: 1, rarities: ['Energy'], variant: 'reverse', cardIds: ['sve-24-ph'] }] }],
 };
 export const svPackReplays: readonly PokemonRecipe[] = [whiteFlareGod];
-export const replaysForSet = (setId: string) => svPackReplays.filter(recipe=>recipe.setId===setId);
+export const replaysForSet = (setId: string) => [...svPackReplays,...megaGodConfigurations].filter(recipe=>recipe.setId===setId);

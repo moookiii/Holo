@@ -371,7 +371,7 @@ export class PackBrowser {
       button.setAttribute('aria-pressed', String(this.selection.booster?.id === booster.id));
     });
     for (const replay of replaysForSet(set.id)) {
-      this.button('Verified God pack replay', () => this.choose(set.boosters[0], undefined, replay),
+      this.button(replay.configurationLabel ?? 'Verified God pack replay', () => this.choose(set.boosters[0], undefined, replay),
         set.boosters[0]?.front, replay.note);
     }
   }
@@ -394,7 +394,7 @@ export class PackBrowser {
         if (definition.front.startsWith('https://assets.tcgdex.net/')) definition.front = await usableCardFront(definition.front, request.signal, definition.pokemon?.thumbnail);
       });
       if (!this.task.current(request)) return;
-      const pack: PackDefinition = { id: `pokemon:${set.id}:${booster.id}${replay ? ':'+replay.id : ''}`, name: `${set.name} · ${replay ? 'Verified God pack replay' : booster.name}`, category: 'Pokémon',
+      const pack: PackDefinition = { id: `pokemon:${set.id}:${booster.id}${replay ? ':'+replay.id : ''}`, name: `${set.name} · ${replay ? replay.configurationLabel ?? 'Verified God pack replay' : booster.name}`, category: 'Pokémon',
         seed, cardCount: resolved.pulls.length, order: 'fixed', wrapper, pokemon: resolved,
         contents: resolved.pulls.map((p, i) => ({ cardId: definitions[i].id, rarity: p.variant === 'normal' ? 'standard' : 'foil' })) };
       Object.freeze(pack.contents); Object.freeze(pack.wrapper); Object.freeze(pack);

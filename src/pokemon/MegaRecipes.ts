@@ -50,3 +50,16 @@ export const megaRecipes: readonly PokemonRecipe[] = Object.entries(rates)
       {id:'energy',count:1,pool:'energy',outcomes:[hit(1,['Energy'],'normal')]},
     ],
   }));
+
+/** The published configuration is known; its occurrence rate and factory
+ * card correlations are not. Keep it an explicit opening, never a random roll. */
+export const megaGodConfigurations: readonly PokemonRecipe[] = [{
+  id:'me02.5-english-god-configuration',version:'1',setId:'me02.5',era:'me',
+  configurationLabel:'God pack · verified configuration',
+  sources:[sources['me02.5'],'https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more'],
+  note:'Confirmed configuration: 3 Mega Attack Rares + 7 Special Illustration Rares, plus Basic Energy. Occurrence frequency unknown; excluded from random pack odds. Cards sampled uniformly within each rarity; factory combinations unknown.',
+  requiredCardIds:svTcglCards.filter(card=>card.setId==='me02.5').map(card=>card.id),energyCards:megaPackEnergy,
+  slots:[{id:'mega-attack',count:3,unique:true,outcomes:[hit(1,['Mega Attack Rare'],'holo')]},
+    {id:'special-illustration',count:7,unique:true,outcomes:[hit(1,['Special Illustration Rare'],'holo')]},
+    {id:'energy',count:1,pool:'energy',outcomes:[hit(1,['Energy'],'normal')]}],
+}];

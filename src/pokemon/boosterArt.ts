@@ -2,6 +2,12 @@ import { editionLabel, type PokemonBooster } from './types.ts';
 import { wotcWrappers } from './WotcProducts.ts';
 
 const designs: Record<string, readonly string[]> = {
+  me01: ['mega-gardevoir','mega-kangaskhan','mega-lucario','mega-venusaur'],
+  me02: ['mega-charizard-x','mega-gengar','mega-sharpedo','mega-lopunny'],
+  'me02.5': ['mega-dragonite'],
+  me03: ['mega-clefable','mega-starmie','mega-zygarde','meowth'],
+  me04: ['mega-dragalge','mega-floette','mega-greninja','mega-pyroar'],
+  me05: ['mega-chandelure','mega-darkrai','mega-excadrill','mega-zeraora'],
   sv01: ['gyarados', 'koraidon', 'miraidon', 'partners'],
   sv02: ['chien-pao', 'meowscarada', 'quaquaval', 'skeledirge', 'ting-lu'],
   sv03: ['charizard', 'dragonite', 'revavroom', 'tyranitar'],
@@ -22,7 +28,8 @@ const designs: Record<string, readonly string[]> = {
 /** TCGdex currently omits English booster metadata for these products. */
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
-  if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return [{ id: 'standard', name: 'English booster', front: `${base}${setId}-front.png` }];
+  if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return designs[setId].map((design,index) => ({ id: design,
+    name: `English booster · ${design.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')}`, front: `${base}${setId}-pack-${index}.png` }));
   if (setId === '30th') return [{ id: 'english', name: 'English six-card booster', front: `${base}30th-front.png` }];
   if (setId === '30th-classic-upc') return [{ id: 'upc-classic', name: 'UPC three-card Classic Collection booster', front: `${base}30th-classic-front.png` }];
   const product = wotcWrappers[setId];
