@@ -65,6 +65,9 @@ def acquire(sid, key, numbers=None):
     export=archive/'export.json'
     if not export.exists(): export.write_bytes(fetch(url))
     entries=json.loads(export.read_bytes())
+    expected={'me01':188,'me02':130,'me02.5':295,'me03':124,'me04':122,'me05':120}
+    if sid in expected and {e['collector_number']['numeric'] for e in entries} != set(range(1,expected[sid]+1)):
+        raise ValueError('Incomplete published checklist: '+sid)
     write(archive/'export-source.json', {'url':url,'sha256':converter.digest(export),'entryCount':len(entries)})
     selected=[e for e in entries if numbers is None or e['collector_number']['numeric'] in numbers]
     printings=[identity(e,sid) for e in selected]
@@ -76,7 +79,10 @@ def acquire(sid, key, numbers=None):
             jobs[u]=path
         if ('ETCHED' in (p.get('foil') or {}).get('mask','')) != ('etch' in p['images']): raise ValueError('Etch pairing mismatch: '+p['tcglVariantId'])
     with ThreadPoolExecutor(max_workers=16) as pool:
-        saved=dict(zip(jobs, pool.map(lambda u: preserve(u,jobs[u]), jobs)))
+        saved={}
+        for i,(url,result) in enumerate(zip(jobs,pool.map(lambda u: preserve(u,jobs[u]), jobs)),1):
+            saved[url]=result
+            if i%100==0:print(f'{sid}: decoded {i}/{len(jobs)} source assets',flush=True)
     assets=ROOT/f'public/cards/pokemon/tcgl-me/{sid}'; assets.mkdir(parents=True,exist_ok=True)
     for p in printings:
         p['sources']={kind:saved[u] for kind,u in p['images'].items()}
@@ -117,6 +123,7 @@ def convert(sid, printings):
     converter.ASSETS=ROOT/f'public/cards/pokemon/tcgl-me/{sid}';converter.OUT=converter.ASSETS/'tcgl';converter.OUT.mkdir(exist_ok=True)
     converter.PUBLIC_BASE=f'/cards/pokemon/tcgl-me/{sid}';converter.PROFILE_PREFIX='sv_tcgl_'
     converter.FOIL_NATIVE=True;converter.OMIT_HEIGHT=True
+    converter.BODY_EVIDENCE=True
     def build(p):
         p['alignmentReview']={'status':'source-family-reviewed','verticalFlip':False,'cropOrOffset':False,
             'etchPolarity':'Inverted mean RGB; white grooves recessed.' if 'etch' in p['sources'] else 'Smooth; no etch source.',
@@ -125,15 +132,21 @@ def convert(sid, printings):
         if p['variant']=='special-reverse':p['treatment']='standard_reverse'
         reserved=p['rarity'] in ('Mega Attack Rare','Mega Hyper Rare')
         if reserved:p['treatment']='sir_texture'
+        evidence=converter.OUT/f"{p['number']}-{p['variant']}-evidence.json"
+        signature=hashlib.sha256(json.dumps([p['sources'],converter.digest(Path(converter.__file__)),converter.digest(REVIEW),1],sort_keys=True).encode()).hexdigest()
+        if evidence.exists():
+            old=json.loads(evidence.read_text())
+            if old.get('inputSignature')==signature and all((converter.OUT/name).exists() and converter.digest(converter.OUT/name)==sha for name,sha in old['maps'].items()):
+                return old['surfaceRecord']
         result=converter.convert(p,False)
         if result:
             if result['textured']:result['profile']='prismatic_sir_texture'
             elif p['rarity']=='Double Rare':result['profile']='pokemon151_ex_holo'
             if reserved:result['treatmentStatus']='deferred'
             result['tcglVariantId']=p['tcglVariantId']
-            evidence=converter.OUT/f"{p['number']}-{p['variant']}-evidence.json"
             data=json.loads(evidence.read_text());data['exportSource']=p['exportSource'];data['collectorNumber']=p['collectorNumber']
             data['opticalStatus']='deferred-astra-high' if reserved else 'existing-rarity-finish; source-family-reviewed'
+            data['inputSignature']=signature;data['surfaceRecord']=result
             write(evidence,data)
             for name,u in result['maps'].items():
                 with Image.open(ROOT/'public'/u.lstrip('/')) as im:
@@ -179,7 +192,7 @@ def main():
         if args.slice and sid not in SLICE:continue
         if args.batch and sid not in args.batch:continue
         if args.slice or args.batch:
-            _,printings=acquire(sid,key,SLICE[sid] if args.slice else None)
+            _,printings=acquire(sid,key,SLICE[sid] if args.slice else set(range(1,9)) if sid=='mee' else None)
         else:
             path=ROOT/f'research/tcgl/mega-series/{key}/sources.json'
             if not path.exists():continue

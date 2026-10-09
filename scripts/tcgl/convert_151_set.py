@@ -20,6 +20,7 @@ PUBLIC_BASE = '/cards/pokemon/151'
 PROFILE_PREFIX = 'pokemon151_'
 FOIL_NATIVE = False
 OMIT_HEIGHT = True
+BODY_EVIDENCE = False
 
 
 def digest(path):
@@ -119,6 +120,7 @@ def convert(printing,record_review):
     if secondary.any():
         png(OUT/(prefix+'secondary-foil.png'),np.rint(secondary*255).astype(np.uint8));maps['secondaryFoil']=PUBLIC_BASE+'/tcgl/'+prefix+'secondary-foil.png'
     if raw_etch is not None:
+        if BODY_EVIDENCE:png(OUT/(prefix+'body.png'),np.rint(body*255).astype(np.uint8))
         height=cv2.resize(1-raw_etch[...,:3].mean(2),SIZE,interpolation=cv2.INTER_LINEAR)
         alpha=cv2.resize(raw_etch[...,3],SIZE,interpolation=cv2.INTER_LINEAR)
         dx=cv2.Scharr(height,cv2.CV_32F,1,0,scale=1/32);dy=cv2.Scharr(height,cv2.CV_32F,0,1,scale=1/32)
@@ -145,6 +147,8 @@ def convert(printing,record_review):
       'limitations':'TCGL supplies exact coverage and line geometry, not calibrated physical depth. New coating/body protection classifications are estimates from TCGL opaque regions and their etch continuity. Existing reviewed SIR region PNGs are retained when applicable. No front brightness becomes height or normal.',
       'maps':{Path(path).name:digest(ROOT/'public'/path.lstrip('/')) for path in maps.values()},'holoFrontSha256':digest(front)}
     evidence['mapDimensions']={Path(path).name:list(Image.open(ROOT/'public'/path.lstrip('/')).size) for path in maps.values()}
+    if raw_etch is not None and BODY_EVIDENCE:
+        evidence['bodyMask']={'file':(OUT/(prefix+'body.png')).relative_to(ROOT).as_posix(),'dimensions':list(SIZE),'sha256':digest(OUT/(prefix+'body.png'))}
     ep=OUT/(prefix+'evidence.json');ep.write_text(json.dumps(evidence,indent=2)+'\n')
     profile=PROFILE_PREFIX+treatment
     if PROFILE_PREFIX=='sv_tcgl_' and treatment=='ex_holo':
