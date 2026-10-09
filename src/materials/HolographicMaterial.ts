@@ -110,11 +110,11 @@ class HolographicLightingModel extends PhysicalLightingModel {
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), region.coverage, data.lightColor as Node<'vec3'>));
         return;
       }
-      if (u.illustrationRare || u.doubleRare) {
+      if (u.illustrationRare || u.doubleRare || u.sunPillar) {
         const n = normalViewGeometry as unknown as Node<'vec3'>;
         const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
-        const reflected = u.doubleRare
-          ? doubleRareReflection(light, positionViewDirection, tangentView, b, n, u, region.field, footprint)
+        const reflected = u.doubleRare || u.sunPillar
+          ? doubleRareReflection(light, positionViewDirection, tangentView, b, n, u, u.doubleRare ? region.field : undefined, footprint)
           : illustrationRareReflection(light, positionViewDirection, tangentView, b, n, u, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern,
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), u.spectralGain, region.coverage, data.lightColor as Node<'vec3'>));
@@ -611,7 +611,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
           u.etchedInkSheen.value !== 0, u.normalFiltering.value > 0, u.inkSpecular.value > 0].map(Number).join('')).join('/')

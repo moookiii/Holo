@@ -23,7 +23,7 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
     mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
     profileOverrides: surface.textured ? tcglEtchedFinish : {
       maps: { direction: undefined },
-      opticalModel: 'sv151-illustration',
+      opticalModel: card.rarity === 'Double Rare' ? 'sv-sun-pillar' : 'sv151-illustration',
       // Uniform temporary response only. Do not synthesize a replacement TCGL
       // motif through an older profile's procedural field or sparkle.
       structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },

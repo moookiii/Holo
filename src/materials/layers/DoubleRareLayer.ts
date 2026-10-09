@@ -9,7 +9,7 @@ import type { IllustrationRareOptics } from './IllustrationRareLayer';
  */
 export function doubleRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   tangent: Node<'vec3'>, bitangent: Node<'vec3'>, normal: Node<'vec3'>,
-  u: IllustrationRareOptics, stars: Node<'vec4'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
+  u: IllustrationRareOptics, stars: Node<'vec4'> | undefined, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
   const p = uv().sub(.5).mul(vec2(u.aspect, 1));
   const axis = vec2(cos(u.angle), sin(u.angle));
   const across = p.dot(axis), along = p.dot(vec2(axis.y.negate(), axis.x));
@@ -29,6 +29,8 @@ export function doubleRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const aperture = exp(momentum.dot(groove).div(width).pow2().mul(-.5)).mul(u.crossWidth.div(width));
   const spectral = spectrum(momentum.dot(grating).abs().mul(u.period), u.bandwidth, u.secondary,
     variance(grating).mul(u.period.pow2())).mul(aperture, u.strength);
+  // SUN_PILLAR stock can be selected without borrowing another print's star die.
+  if (!stars) return spectral.mul(normal.dot(light).max(0), normal.dot(view).max(0));
   // Cast-and-cure stars are a distinct reflective die in the video, not the
   // tiny bright details embedded in TCGL coverage. RG supplies fixed optical
   // inclinations; B holds the reconstructed four/eight-ray motif. No coverage
