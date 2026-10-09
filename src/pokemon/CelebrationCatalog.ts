@@ -12,6 +12,7 @@ export const isCelebrationCard = (id: string) => byId.has(id);
 export const celebrationClassicIds = celebrationCards.filter(card => card.setId === '30th-classic').map(card => card.id);
 export const celebrationSet: PokemonSet = {
   id: CELEBRATION_ID, name: '30th Celebration', series: { id: 'me', name: 'Mega Evolution' },
+  logo: '/packs/pokemon/30th-logo.png',
   era: 'me', releaseDate: '2026-09-16', cardIds: celebrationCards.map(card => card.id),
   boosters: localBoosterArt(CELEBRATION_ID)!,
 };
