@@ -7,6 +7,7 @@ import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
 import { pixelVariance, normalPixelVariance } from '../materials/layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
+import { celebrationFoilReflection } from '../materials/layers/CelebrationFoilLayer';
 import { doubleRareReflection } from '../materials/layers/DoubleRareLayer';
 import { blackWhiteRareReflection } from '../materials/layers/BlackWhiteRareLayer';
 import { ballReverseReflection } from '../materials/layers/BallReverseLayer';
@@ -100,6 +101,14 @@ class GalleryLightingModel extends PhysicalLightingModel {
           density: r.glint.x, glintScale: r.glint.y, sharpness: r.glint.z, glintStrength: r.glint.w, spread: r.glintSurface.x,
         }, r.field, r.glintSurface.z, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a,
+          mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
+        continue;
+      }
+      if (layer.celebrationPikachu || layer.celebrationClassic) {
+        const reflected = celebrationFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView,
+          { aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
+            secondary: diffraction.w, angle: axis.x, crossWidth: axis.y }, r.field, !!layer.celebrationClassic, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask,
           mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
         continue;
       }

@@ -6,6 +6,8 @@ export class OpticalUniforms {
   illustrationRare = false;
   doubleRare = false;
   sunPillar = false;
+  celebrationPikachu = false;
+  celebrationClassic = false;
   ballReverse = false;
   blackWhiteRare = false;
   ultraRare = false;
@@ -51,6 +53,8 @@ export class OpticalUniforms {
     this.illustrationRare = p.opticalModel === 'sv151-illustration';
     this.doubleRare = p.opticalModel === 'sv-double-rare';
     this.sunPillar = p.opticalModel === 'sv-sun-pillar';
+    this.celebrationPikachu = p.opticalModel === 'celebration-pikachu';
+    this.celebrationClassic = p.opticalModel === 'celebration-classic';
     this.blackWhiteRare = p.opticalModel === 'sv-black-white-rare';
     this.ballReverse = p.opticalModel === 'sv-ball-reverse';
     this.ultraRare = p.opticalModel === 'sv151-ultra';

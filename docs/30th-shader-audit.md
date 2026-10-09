@@ -2,6 +2,21 @@
 
 ## Implementation progress
 
+- Pikachu and Classic now have dedicated texture-driven optical evaluators,
+  shared by viewer and gallery. Registered RGBA PNG fields supply grating axes,
+  period and motif coverage. Missing fields produce no specialty reflection;
+  neither shader generates random motif positions or relief. The two profiles
+  remain reference-pending and are not activated in the production catalog.
+- `withCelebrationSpecialty` binds sourced stock to a printing. Classic keeps
+  the complete required primary etched finish and exact normal; activation
+  requires separate secondary coverage and matching authored roughness.
+- Nine routing/authoring tests pass. Both specialty branches compiled and ran
+  in WebGPU without console errors using explicitly synthetic two-domain test
+  fields. Moving light and zero-alpha captures visibly change their response.
+  Captures: `artifacts/30th-celebration/specialty-calibration/` (six images named
+  `pikachu-*` and `classic-*`, plus `report.json`). These validate shader execution,
+  not authentic motif placement or physical appearance. Gallery batching is unit
+  tested; specialty gallery GPU appearance has not been visually reviewed.
 - Double Rares now route through `sv-sun-pillar` in viewer and instanced gallery.
   It shares the existing SUN_PILLAR evaluator and omits the legacy star die.
   IRs retain `sv151-illustration`; the 45 etched registrations retain the exact

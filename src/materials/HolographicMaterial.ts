@@ -10,6 +10,7 @@ import { secretRareReflection } from './layers/SecretRareLayer';
 import { spectrum } from './layers/DiffractionLayer';
 import { pixelVariance, normalPixelVariance } from './layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from './layers/IllustrationRareLayer';
+import { celebrationFoilReflection } from './layers/CelebrationFoilLayer';
 import { doubleRareReflection } from './layers/DoubleRareLayer';
 import { blackWhiteRareReflection } from './layers/BlackWhiteRareLayer';
 import { ballReverseReflection } from './layers/BallReverseLayer';
@@ -106,6 +107,15 @@ class HolographicLightingModel extends PhysicalLightingModel {
         const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
         const reflected = ballReverseReflection(light, positionViewDirection, tangentView, b, n,
           { ...u, strength: u.strength.mul(u.spectralGain), glintStrength: u.glintStrength.mul(u.sparkleGain) }, region.field, region.seed, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern,
+          mix(vec3(1), region.inkTransmission!, u.inkTransmission), region.coverage, data.lightColor as Node<'vec3'>));
+        return;
+      }
+      if (u.celebrationPikachu || u.celebrationClassic) {
+        const n = normalView as unknown as Node<'vec3'>;
+        const b = (normalViewGeometry as unknown as Node<'vec3'>).cross(tangentView).mul(tangentGeometry.w).normalize();
+        const reflected = celebrationFoilReflection(light, positionViewDirection, tangentView, b, n,
+          u, region.field, u.celebrationClassic, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern,
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), region.coverage, data.lightColor as Node<'vec3'>));
         return;
@@ -547,9 +557,10 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     }
     this.surfaceControls.extendedCoverage.value = profile.extendedCoverage ? 1 : 0;
     this.surfaceControls.anniversary.value = profile.watermark === 'quarter-century' ? 1 : 0;
-    this.fieldTextureNode.value = this.cardMaps?.direction ?? maps.primary?.direction ?? this.neutralField;
+    const specialty = (model: HolographicProfile['opticalModel']) => model === 'celebration-pikachu' || model === 'celebration-classic';
+    this.fieldTextureNode.value = this.cardMaps?.direction ?? (specialty(profile.opticalModel) ? this.neutralHologram : maps.primary?.direction ?? this.neutralField);
     this.reliefTextureNode.value = maps.primary?.relief ?? this.neutralRelief;
-    this.secondaryFieldTextureNode.value = this.cardMaps?.secondaryDirection ?? maps.secondary?.direction ?? this.neutralField;
+    this.secondaryFieldTextureNode.value = this.cardMaps?.secondaryDirection ?? (specialty(profile.secondary?.opticalModel) ? this.neutralHologram : maps.secondary?.direction ?? this.neutralField);
     this.secondaryReliefTextureNode.value = maps.secondary?.relief ?? this.neutralRelief;
     this.stampFieldTextureNode.value = this.cardMaps?.stampDirection ?? maps.stamp?.direction ?? this.neutralField;
     this.stampReliefTextureNode.value = maps.stamp?.relief ?? this.neutralRelief;
@@ -616,7 +627,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
           u.etchedInkSheen.value !== 0, u.normalFiltering.value > 0, u.inkSpecular.value > 0].map(Number).join('')).join('/')

@@ -117,6 +117,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const directionPath = [paths.direction, paths.secondaryDirection, paths.stampDirection][index];
     const motifPath = [paths.motif, paths.secondaryMotif, paths.stampMotif][index];
     const authored = directionPath ? await read(directionPath, fw, fh) : undefined;
+    const specialty = layer?.opticalModel === 'celebration-pikachu' || layer?.opticalModel === 'celebration-classic';
     let generated: FieldData | undefined;
     if (layer && layer.enabled !== false && profile.id !== 'print-only' && !['plain', 'radial', 'secret'].includes(layer.structure.field)) {
       let motif: MotifImage | undefined;
@@ -134,7 +135,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
       const i = (y * fw + x) * 4;
       const source = generated ? (Math.min(generated.height - 1, Math.floor((fh - 1 - y) / fh * generated.height)) * generated.width + Math.min(generated.width - 1, Math.floor(x / fw * generated.width))) * 4 : 0;
       for (let c = 0; c < 4; c++) {
-        field[i + c] = authored?.[i + c] ?? generated?.direction[source + c] ?? [255, 128, 85, 255][c];
+        field[i + c] = authored?.[i + c] ?? generated?.direction[source + c] ?? [255, 128, 85, specialty ? 0 : 255][c];
         detail[i + c] = generated?.relief[source + c] ?? 128;
       }
       const maskIndex = (Math.floor(y / fh * height) * width + Math.floor(x / fw * width)) * 4;

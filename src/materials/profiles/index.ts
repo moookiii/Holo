@@ -7,6 +7,7 @@ import { neoDestinyShining } from './neoDestiny';
 import { prismaticProfiles } from './prismatic';
 import { pokemon151Profiles } from './pokemon151';
 import { svTcglProfiles } from './svTcgl';
+import { celebrationSpecialtyProfiles } from './celebration';
 import { blackWhiteRareProfiles } from './blackWhiteRare';
 import { bwBallReverseProfiles } from './bwBallReverse';
 import { svpCosmos } from './svpCosmos';
@@ -22,6 +23,7 @@ export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, phantomC
 profiles.push(goldEtched);
 profiles.push(...bwBallReverseProfiles, ...blackWhiteRareProfiles);
 profiles.push(svpCosmos);
+profiles.push(...celebrationSpecialtyProfiles);
 export function getProfile(id: string) {
   const profile = profiles.find(p => p.id === canonicalProfileId(id));
   if (!profile) throw new Error(`Unknown foil profile: ${id}`);
