@@ -7,15 +7,16 @@ stock or an assertion that every physical copy has identical foil positions.
 from pathlib import Path
 import hashlib
 import json
+import sys
 import numpy as np
 from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'public/cards/pokemon/30th-celebration/pikachu'
 SIZE = (1200, 1650)
-BURSTS = [(0.817, .728, .192, 144), (-.045, .705, .225, 160),
-          (.18, .015, .205, 136), (.79, -.035, .22, 152),
-          (.34, 1.08, .255, 168)]
+BURSTS = [(.305, .493, .174, 84), (.775, .498, .174, 88),
+          (.300, .820, .146, 80), (.790, .825, .153, 84),
+          (.540, .040, .170, 88), (-.095, .660, .165, 84)]
 
 def smooth(a, b, x):
     t = np.clip((x-a)/(b-a), 0, 1)
@@ -41,14 +42,43 @@ def main():
     for cx, cy, radius, rays in BURSTS:
         dx, dy = (x-cx)*w/h, cy-y
         r = np.hypot(dx, dy); theta = np.arctan2(dy, dx)
-        spoke = (.5 + .5*np.cos(theta*rays + r*22))**4
-        envelope = smooth(.011, .029, r)*(1-smooth(radius*.70, radius, r))
-        coverage = (.16 + .84*spoke)*envelope
+        # Stitched rings: short radial cuts separated BOTH along and across
+        # the radius. No continuous spokes or filled radial gradient.
+        pitch = .016
+        ring = np.floor(r/pitch)
+        rr = (ring+.5)*pitch
+        phase = ring*.037 + .011*np.sin(ring*2.3)
+        count = np.maximum(18, np.floor(rays*np.minimum(rr/radius,1)))
+        polar = (theta/(2*np.pi)+phase)*count
+        ray = np.floor(polar)
+        variation = np.sin(ray*12.9898+ring*78.233)*43758.5453
+        variation = variation-np.floor(variation)
+        across = np.abs(polar-ray-.5+(variation-.5)*.25)*2*np.pi*np.maximum(r,.008)/count
+        along = np.abs(r-rr-(variation-.5)*.003)
+        half_length = (.0018+.004*np.minimum(rr/radius,1))*(.75+variation*.5)
+        half_width = .00052+.00032*np.minimum(rr/radius,1)
+        aa = .65/h
+        cut = (1-smooth(half_length-aa,half_length+aa,along))*(1-smooth(half_width-aa,half_width+aa,across))
+        envelope = (1-smooth(radius-.014,radius,r))*smooth(.001,.008,r)
+        # Strong outer stitched rim and dense inner rosette, with quieter
+        # intermediate rings. Optical inclinations vary between adjacent cuts.
+        ring_weight = .22+.78*np.exp(-((rr-radius*.84)/.019)**2)+.52*np.exp(-(rr/.036)**2)
+        coverage = cut*envelope*np.minimum(ring_weight,1)*(.65+variation*.35)
         wins = coverage > strength
-        angle[wins] = theta[wins]
-        tilt[wins] = (.07 + .30*r[wins]/radius + .025*np.sin(theta[wins]*rays))
+        angle[wins] = (theta+.065*np.sin(ray*1.7+ring))[wins]
+        tilt[wins] = (.04+.25*rr[wins]/radius+(variation[wins]-.5)*.22)
         strength = np.maximum(strength, coverage)
     outputs = {'fireworks-field': save('fireworks-field', field(angle, tilt, strength))}
+    if '--fireworks-only' in sys.argv:
+        evidence_path = OUT/'evidence.json'
+        evidence = json.loads(evidence_path.read_text(encoding='utf-8'))
+        evidence['fields'].update(outputs)
+        evidence['bursts'] = BURSTS
+        evidence['fireworksReference'] = 'codex-clipboard-4326db1f-966f-40c7-93ca-0816cb00f7ed.png'
+        evidence['fireworksMethod'] = 'Concentric staggered rings of short radial reflective dashes; no continuous spokes'
+        evidence_path.write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
+        print('Updated shared fireworks optical PNG; card coverage and speckles preserved')
+        return
     # Fixed irregular flakes, approximately 1–3 reference-image pixels. Their
     # positions never animate; only light and view select the reflected color.
     rng = np.random.default_rng(301430)

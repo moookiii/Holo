@@ -5,15 +5,15 @@ import type { HolographicProfile } from '../HolographicProfile';
 const stock: HolographicProfile = {
   id: 'celebration-pikachu-fireworks', name: '30th · Pikachu fireworks',
   family: 'Pokémon', status: 'reference-pending', labOnly: true,
-  description: 'Fine radial fireworks on the reverse, with separate rainbow-speckled Pikachu silhouette and border.',
+  description: 'Concentric rings of short reflective foil cuts on the reverse, with separate rainbow-speckled Pikachu silhouette and border.',
   opticalModel: 'celebration-pikachu',
-  diffraction: { period: 1.16, bandwidth: .048, strength: .38, secondaryOrder: .065,
+  diffraction: { period: 1.16, bandwidth: .048, strength: .65, secondaryOrder: .065,
     direction: 0, crossWidth: .42, facetCoupling: 0 },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0,
     facetTilt: 0, normalVariance: 0, reflectionCoupling: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
   surface: { metalness: .65, roughness: .3, laminate: .08, laminateRoughness: .27,
-    foilReflectance: .04, inkTransmission: .88 },
+    foilReflectance: .04, inkTransmission: .32 },
   mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'absolute' },
 };
 const speckles: HolographicProfile = {

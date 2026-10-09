@@ -40,10 +40,10 @@ export function celebrationFoilReflection(light: Node<'vec3'>, view: Node<'vec3'
   // Neutral cut reflection complements the spectrum. Optical direction changes
   // the selected lobe without modifying the authored geometric normal.
   const across = momentum.dot(grating), along = momentum.dot(groove);
-  const sigma = classic ? .09 : .13;
-  const vx = variance(grating).add(sigma * sigma), vy = variance(groove).add(.0256);
+  const sigma = classic ? float(.09) : u.strength.lessThan(1).select(.22, .13);
+  const vx = variance(grating).add(sigma.pow2()), vy = variance(groove).add(.0256);
   const neutral = exp(across.pow2().div(vx).add(along.pow2().div(vy)).mul(-.5))
-    .mul(float(sigma * .16).div(vx.mul(vy).sqrt()), classic ? .9 : 2.2);
+    .mul(sigma.mul(.16).div(vx.mul(vy).sqrt()), classic ? float(.9) : u.strength.lessThan(1).select(6, 2.2));
   return spectral.add(vec3(1).mul(neutral)).mul(field.a, length.smoothstep(.05, .2),
     normal.dot(light).max(0), normal.dot(view).max(0).sqrt());
 }

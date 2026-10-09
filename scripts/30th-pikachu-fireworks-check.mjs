@@ -25,7 +25,7 @@ await page.route('https://api.tcgdex.net/v2/en/series/me',r=>r.fulfill({json:{id
 try {
  await page.goto('http://127.0.0.1:5173/',{waitUntil:'networkidle'});
  await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:90000});
- for (const id of ['pokemon:30th-023:holo','pokemon:30th-036:holo']) {
+ for (const id of ['pokemon:30th-023:holo','pokemon:30th-036:holo','pokemon:30th-040:holo']) {
   await page.evaluate(id=>window.__holo.gallery.close(id),id);
   await page.waitForTimeout(800);
   for(const [name,y,p] of [['front',0,0],['tilt',-20,12],['grazing',45,-15]]) {

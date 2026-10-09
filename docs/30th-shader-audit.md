@@ -2,6 +2,13 @@
 
 ## Implementation progress
 
+- Pikachu fireworks revised against the supplied 040 reference: continuous
+  spokes replaced with staggered short radial cuts in concentric rings, stronger
+  outer rims, dense inner rosettes and quieter intermediate rings. Reflections
+  are less yellow-tinted and cuts have individual optical inclinations. Coverage,
+  fronts and separate speckle geometry are preserved. Captures include 040 now.
+  This remains a reconstruction; the single reference does not establish the
+  physical angular response at every pose.
 - **Pikachu is now active on all 30 printings.** The user's supplied physical-card
   example establishes rainbow speckles in the anniversary Pikachu silhouette and
   fine radial fireworks around it. Two separate PNG optical fields and per-card
