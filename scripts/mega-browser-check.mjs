@@ -22,6 +22,9 @@ await page.route('https://api.tcgdex.net/v2/en/series/me',r=>r.fulfill({json:{id
 try {
   await page.goto(process.env.HOLO_URL??'http://127.0.0.1:5174/',{waitUntil:'domcontentloaded',timeout:120000});
   await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:120000});
+  // The initial gallery starts after debug publication; wait for that handoff
+  // before a focused pack run so startup cannot reopen it over the pack.
+  await page.waitForFunction(()=>window.__holo.startupTiming.galleryUIAvailable!==undefined,null,{timeout:120000});
   const ids=finish?['pokemon:me01-177:holo','pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo']:full?['pokemon:me02-125:holo','pokemon:me02.5-022:holo','pokemon:me03-001:reverse','pokemon:me04-001:normal','pokemon:me05-001:normal']:
     ['pokemon:me01-010:holo','pokemon:me01-001:reverse','pokemon:me02.5-001:special-reverse','pokemon:me01-003:holo','pokemon:me01-133:holo','pokemon:me01-155:holo','pokemon:me01-177:holo','pokemon:me01-187:holo','pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo'];
   for(const id of packOnly?[]:ids){
