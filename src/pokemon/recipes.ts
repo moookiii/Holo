@@ -4,6 +4,7 @@ import { prismaticRecipe } from './PrismaticRecipe.ts';
 import { svSpecialRecipes, svPackEnergy } from './SvSpecialRecipes.ts';
 import { celebrationRecipe, celebrationUpcRecipe } from './CelebrationRecipe.ts';
 import { megaRecipes } from './MegaRecipes.ts';
+import { dragonDiscoveryRecipe } from './DragonDiscoveryRecipe.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; fallbackVariant?: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
 export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; uniqueGroup?: string; pool?: 'set' | 'energy' | 'set-and-energy'; }
@@ -55,6 +56,7 @@ export const pokemonRecipes: readonly PokemonRecipe[] = [
   ...megaRecipes,
   celebrationRecipe, celebrationUpcRecipe,
   prismaticRecipe,
+  dragonDiscoveryRecipe,
   ...svSpecialRecipes,
   ...wotcRecipes,
   scarletViolet('sv01', [.1376, .0657, .0767, .0315, .0185], 'https://www.tcgplayer.com/content/article/Pok%C3%A9mon-TCG-Scarlet-Violet-Pull-Rates/a7702fce-dd64-4a58-beb1-0f871c853215/'),

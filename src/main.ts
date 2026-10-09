@@ -25,6 +25,7 @@ import type { PackBrowser } from './pokemon/PackBrowser';
 import { prismaticGalleryCards, prismaticPickerCards } from './pokemon/PrismaticSurfaces';
 import { pokemon151GalleryCards, pokemon151PickerCards } from './pokemon/Pokemon151Surfaces';
 import { svTcglDefinition, svTcglGalleryCards, svTcglPickerCards } from './pokemon/SvTcglSurfaces';
+import { dragonDiscoveryDefinitions } from './pokemon/DragonDiscoveryCatalog';
 import { celebrationGalleryCards } from './pokemon/CelebrationSurfaces';
 import type { Gallery } from './gallery/Gallery';
 import { lobCards } from './yugioh/sets/LegendOfBlueEyesCatalog';
@@ -57,7 +58,7 @@ async function start() {
   const { assets, maps: mapLoader } = factory;
   const cards = [...builtInCards.map(card => card.id === 'tyranitar-paldea-evolved'
     ? { ...svTcglDefinition('sv02-135', 'holo'), id: card.id } : card),
-    ...svTcglPickerCards(), ...svTcglGalleryCards(), ...pokemon151PickerCards(), ...pokemon151GalleryCards(),
+    ...dragonDiscoveryDefinitions, ...svTcglPickerCards(), ...svTcglGalleryCards(), ...pokemon151PickerCards(), ...pokemon151GalleryCards(),
     ...prismaticPickerCards(), ...prismaticGalleryCards(), ...celebrationGalleryCards(), ...lobCards.map(yugiohDefinition), ...alphaCards.map(magicDefinition)];
   const initialCard = cards.find(card => card.id === FIRST_PICKER_CARD_ID) ?? cards[0];
   const lighting = new StudioLighting(scene);

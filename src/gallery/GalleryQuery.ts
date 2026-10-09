@@ -1,6 +1,7 @@
 import type { CardDefinition } from '../card/CardDefinition';
 import { tcglSvSets } from '../pokemon/data/sv-tcgl.generated.ts';
 import { tcglMegaSets } from '../pokemon/data/mega-tcgl.generated.ts';
+import { dragonDiscoverySet } from '../pokemon/DragonDiscoveryCatalog.ts';
 
 const pokemonSetAliases: Readonly<Record<string, string>> = {
   'Base Set · First Edition': 'Base Set',
@@ -46,6 +47,7 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ['Paldea Evolved', '2023-06-09'],
   ['151', '2023-09-22'],
   ['Prismatic Evolutions', '2025-01-17'],
+  [dragonDiscoverySet.name, dragonDiscoverySet.releaseDate],
   ['30th Celebration', '2026-09-16'],
   ['30th Celebration · Classic Collection', '2026-09-16'],
   ['30th Celebration · RGB Mew', '2026-09-16'],

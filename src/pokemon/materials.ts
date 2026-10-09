@@ -11,6 +11,7 @@ import { pokemon151Definition, pokemon151Profile } from './Pokemon151Surfaces.ts
 import { isSvTcglCard } from './SvTcglCatalog.ts';
 import { svTcglDefinition, svTcglProfile } from './SvTcglSurfaces.ts';
 import { myFirstBattleDefinition } from './MyFirstBattleCatalog.ts';
+import { DRAGON_DISCOVERY_ID, dragonDiscoveryDefinition } from './DragonDiscoveryCatalog.ts';
 import { isCelebrationCard } from './CelebrationCatalog.ts';
 import { celebrationDefinition, celebrationProfile } from './CelebrationSurfaces.ts';
 
@@ -24,6 +25,7 @@ const authored: Record<string, Partial<Record<PrintVariant, string>>> = {
   'ex6-83': { reverse: 'squirtle-frlg-reverse' },
 };
 export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string {
+  if (card.setId === DRAGON_DISCOVERY_ID) return dragonDiscoveryDefinition(card.id, variant).profile;
   if (isCelebrationCard(card.id)) return celebrationProfile(card.id, variant);
   if (card.setId === 'ecard1' && variant === 'holo') return 'print-only';
   if (isSvTcglCard(card.id)) return svTcglProfile(card.id, variant);
@@ -48,6 +50,7 @@ export function pokemonProfile(card: PokemonCard, variant: PrintVariant): string
   return 'pokemon-sheen';
 }
 export function pokemonDefinition(card: PokemonCard, variant: PrintVariant, existing: readonly CardDefinition[], packSetId?: string): CardDefinition {
+  if (card.setId === DRAGON_DISCOVERY_ID) return dragonDiscoveryDefinition(card.id, variant);
   if (isCelebrationCard(card.id)) return celebrationDefinition(card.id, variant);
   if (card.setId === 'mfb') {
     if (variant !== 'normal') throw new Error('My First Battle has no foil printing.');

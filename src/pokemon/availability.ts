@@ -23,6 +23,8 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (nonBoosters[setId]) return { ready: false, ...nonBoosters[setId] };
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
+  if (setId === '2024sv') return { ready: true, label: 'Opening available · confetti finish pending',
+    detail: '15 exact English M24EN prints. Seven holo fronts retain photographed confetti; animated foil treatment is pending.' };
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return {ready:true,label:'Opening available · measured pull rates',
     detail:'Exact TCGL printings with dedicated Mega Attack Rare and Mega Hyper Rare finishes.' + (setId==='me02.5' ? ' TCGL special-reverse motif sources duplicate ordinary reverses; corrected motifs unavailable.' : '')};
   if (setId === '30th') return { ready: true, label: 'Opening available · estimated collation',

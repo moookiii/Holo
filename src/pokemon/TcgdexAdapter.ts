@@ -22,6 +22,7 @@ import { WIZARDS_PROMO_ID, wizardsPromoCard, wizardsPromoSet } from './WizardsPr
 import { POKEMON_151_ID, pokemon151Card, pokemon151Set } from './Pokemon151Catalog.ts';
 import { isSvTcglSet, svTcglCard, svTcglSet, svTcglSets } from './SvTcglCatalog.ts';
 import { myFirstBattleCard, myFirstBattleSet } from './MyFirstBattleCatalog.ts';
+import { DRAGON_DISCOVERY_ID, dragonDiscoveryCard, dragonDiscoverySet } from './DragonDiscoveryCatalog.ts';
 import { celebrationCard, celebrationProduct, celebrationSet, celebrationUpcSet, isCelebrationSet } from './CelebrationCatalog.ts';
 
 // SDK 2.9 exposes transport injection but no per-call AbortSignal. Endpoint.get
@@ -114,7 +115,7 @@ export class TcgdexAdapter {
       }
       if (seriesId === 'sv' && !sets.some(set => set.id === PRISMATIC_SET_ID)) sets.push({ id: PRISMATIC_SET_ID, name: prismaticSet.name, logo: prismaticSet.logo });
       if (seriesId === 'sv') {
-        const local = [...svTcglSets.filter(set => set.series.id === 'sv'), pokemon151Set, prismaticSet];
+        const local = [...svTcglSets.filter(set => set.series.id === 'sv'), pokemon151Set, prismaticSet, dragonDiscoverySet];
         for (const set of local) if (!sets.some(s => s.id === set.id)) sets.push({ id: set.id, name: set.name, logo: set.logo });
         const dates = new Map(local.map(set => [set.id, set.releaseDate]));
         // Official product launch: two fixed mini decks, September 29, 2023.
@@ -160,6 +161,7 @@ export class TcgdexAdapter {
       if (id === SAMPLE_SET_ID) return { ...sampleSet, series: { ...sampleSet.series }, cardIds: [...sampleSet.cardIds], boosters: [] };
       if (isSvTcglSet(id)) return svTcglSet(id);
       if (id === 'mfb') return { ...myFirstBattleSet, cardIds: [...myFirstBattleSet.cardIds] };
+      if (id === DRAGON_DISCOVERY_ID) return { ...dragonDiscoverySet, series: { ...dragonDiscoverySet.series }, cardIds: [...dragonDiscoverySet.cardIds], boosters: dragonDiscoverySet.boosters.map(booster => ({ ...booster })) };
       if (id === POKEMON_151_ID) return { ...pokemon151Set, series: { ...pokemon151Set.series }, cardIds: [...pokemon151Set.cardIds], boosters: pokemon151Set.boosters.map(b => ({ ...b })) };
       if (id === SOUTHERN_ISLANDS_ID) return { ...southernIslandsSet, series: { ...southernIslandsSet.series }, cardIds: [...southernIslandsSet.cardIds], boosters: [] };
       if (id === NEO_DESTINY_ID) return { ...neoDestinySet, series: { ...neoDestinySet.series }, cardIds: [...neoDestinySet.cardIds], boosters: neoDestinySet.boosters.map(b => ({ ...b })) };
@@ -194,6 +196,11 @@ export class TcgdexAdapter {
         return celebrationCard(id);
       }
       if (set.id === 'mfb') return myFirstBattleCard(id);
+      if (set.id === DRAGON_DISCOVERY_ID) {
+        if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
+        return dragonDiscoveryCard(id);
+      }
+      if (id.startsWith(DRAGON_DISCOVERY_ID + '-')) throw new Error(`Card ${id} does not belong to ${set.id}`);
       if (set.id === EXPEDITION_ID) {
         if (!set.cardIds.includes(id)) throw new Error(`Card ${id} does not belong to ${set.id}`);
         return expeditionCard(id);
