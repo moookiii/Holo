@@ -14,13 +14,13 @@ const browser=await chromium.launch({executablePath,headless:true,args:['--enabl
 const page=await browser.newPage({viewport:{width:1440,height:1100}});
 const errors=[],requests=[],results={viewers:[],packs:[]};
 const packOnly=process.argv.includes('--pack-only')||god;
-if(packOnly&&!full&&!god){const previous=JSON.parse(await readFile(out+'/report.json','utf8'));assert.equal(previous.viewers.length,10);assert.deepEqual(previous.errors,[]);results.viewers=previous.viewers;}
+if(packOnly&&!god){const previous=JSON.parse(await readFile(out+'/report.json','utf8'));assert.equal(previous.viewers.length,full?5:10);assert.deepEqual(previous.errors,[]);results.viewers=previous.viewers;}
 page.on('pageerror',e=>errors.push(e.message));page.on('request',r=>requests.push(r.url()));
 page.on('response',r=>{if(r.status()>=400&&r.url().includes('127.0.0.1')) errors.push(`${r.status()} ${r.url()}`);});
 await page.route('https://api.tcgdex.net/v2/en/series',r=>r.fulfill({json:[{id:'me',name:'Mega Evolution'}]}));
 await page.route('https://api.tcgdex.net/v2/en/series/me',r=>r.fulfill({json:{id:'me',name:'Mega Evolution',sets:[]}}));
 try {
-  await page.goto(process.env.HOLO_URL??'http://127.0.0.1:5174/',{waitUntil:'networkidle'});
+  await page.goto(process.env.HOLO_URL??'http://127.0.0.1:5174/',{waitUntil:'domcontentloaded',timeout:120000});
   await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:120000});
   const ids=finish?['pokemon:me01-177:holo','pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo']:full?['pokemon:me02-125:holo','pokemon:me02.5-022:holo','pokemon:me03-001:reverse','pokemon:me04-001:normal','pokemon:me05-001:normal']:
     ['pokemon:me01-010:holo','pokemon:me01-001:reverse','pokemon:me02.5-001:special-reverse','pokemon:me01-003:holo','pokemon:me01-133:holo','pokemon:me01-155:holo','pokemon:me01-177:holo','pokemon:me01-187:holo','pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo'];
@@ -52,6 +52,7 @@ try {
     await page.getByRole('button',{name:/^Pokémon/}).click();
     await page.getByRole('button',{name:/^Mega Evolution/}).click();
     await page.locator('button').filter({has:page.getByText(name,{exact:true})}).click();
+    await page.locator('.pokemon-booster img').evaluateAll(images=>Promise.all(images.map(image=>image.decode())));
     await page.screenshot({path:`${out}/${name.replaceAll(' ','-')}-picker.png`});
     await page.getByRole('button',{name:god?/^God pack/:/^English booster/}).first().click();
     await page.waitForFunction(()=>window.__holo.pack.stats().state==='PackReady',null,{timeout:120000});

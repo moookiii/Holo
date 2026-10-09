@@ -18,10 +18,11 @@ def main():
             url='https://pokesymbols.com'+path;raw=root/Path(path).name
             if not raw.exists():raw.write_bytes(fetch(url))
             im=Image.open(raw).convert('RGBA');bounds=im.getchannel('A').getbbox()
-            # Supplied pack images have a one-pixel source border, outside the
-            # wrapper. Tight bounds preserve both printed crimped seals.
+            # Native-resolution review found a dark source cap above/below
+            # the printed crimps and four-pixel tapered side gutters. Crop to
+            # the straight printed body while retaining both complete crimps.
             left,top,right,bottom=bounds
-            bounds=(left+2,top+1,right-2,bottom-1)
+            bounds=(left+6,top+10,right-6,bottom-11)
             cropped=im.crop(bounds)
             dest=ROOT/f'public/packs/pokemon/{sid}-pack-{number}.png';cropped.save(dest)
             records.append({'setId':sid,'design':str(number),'url':url,'raw':raw.relative_to(ROOT).as_posix(),
@@ -32,6 +33,12 @@ def main():
     sheet=Image.new('RGB',(7*200,3*395),'#222222')
     for i,tile in enumerate(tiles):sheet.paste(tile,((i%7)*200,(i//7)*395))
     out=ROOT/'artifacts/mega-series/wrappers';out.mkdir(parents=True,exist_ok=True);sheet.save(out/'crops.jpg',quality=95)
+    for start in range(0,len(records),7):
+        native=Image.new('RGB',(4*398,2*734),'#222222');draw=ImageDraw.Draw(native)
+        for i,record in enumerate(records[start:start+7]):
+            im=Image.open(ROOT/record['output']).convert('RGBA');x=(i%4)*398;y=(i//4)*734
+            draw.text((x+5,y+2),Path(record['output']).name,fill='white');native.paste(im,(x+5,y+20),im)
+        native.save(out/f'full-resolution-{start//7+1}.png')
     write(root/'sources.json',records)
     print(f'{len(records)} wrapper fronts acquired and cropped')
 
