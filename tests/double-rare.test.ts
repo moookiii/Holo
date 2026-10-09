@@ -5,6 +5,25 @@ import { createHash } from 'node:crypto';
 import { doubleRareProfile } from '../src/materials/profiles/doubleRare.ts';
 import { galleryOpticalLayers, galleryBatchKey } from '../src/gallery/GalleryBatch.ts';
 import { tcgl151Surfaces } from '../src/pokemon/data/151-surfaces.generated.ts';
+import { celebrationRecords, celebrationSurfaces } from '../src/pokemon/data/30th.generated.ts';
+import { celebrationDefinition } from '../src/pokemon/CelebrationSurfaces.ts';
+
+test('all 30th Celebration Double Rares retain star optics inside their own TCGL masks', () => {
+  const entries = celebrationRecords.filter(card => card.rarity === 'Double Rare');
+  assert.equal(entries.length, 12);
+  for (const entry of entries) {
+    const card = celebrationDefinition(entry.id);
+    const source = celebrationSurfaces.find(surface => surface.cardId === entry.id)!;
+    assert.equal(card.profile, 'pokemon151_ex_holo', entry.id);
+    assert.equal(card.profileOverrides, undefined, 'Do not disable inherited star optics');
+    assert.deepEqual(card.maps, source.maps, 'Star optics must preserve exact per-card masks');
+    assert.equal(card.maps?.normal, undefined);
+    assert.equal(card.maps?.height, undefined);
+    assert.equal(card.mapSettings?.embossStrength, 0);
+  }
+  assert.equal(celebrationDefinition('30th-129').profileOverrides?.opticalModel, 'sv151-illustration');
+  assert.equal(celebrationDefinition('30th-023').profile, 'celebration-pikachu-fireworks');
+});
 
 test('every 151 Double Rare retains the exact source-derived foil and authoritative protection bytes', () => {
   const entries = tcgl151Surfaces.filter(s => s.profile === 'pokemon151_ex_holo');

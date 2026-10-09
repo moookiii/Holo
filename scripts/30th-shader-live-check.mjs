@@ -13,7 +13,7 @@ if (!existsSync(executablePath)) {
 }
 const browser=await chromium.launch({executablePath,headless:true,args:['--enable-unsafe-webgpu','--ignore-gpu-blocklist']});
 const page=await browser.newPage({viewport:{width:1440,height:1100}});
-const out='artifacts/30th-celebration/shader-routing'; await mkdir(out,{recursive:true});
+const out='artifacts/30th-celebration/star-routing'; await mkdir(out,{recursive:true});
 const errors=[],requests=[],results={};
 page.on('pageerror',e=>errors.push(e.message));
 page.on('request',r=>requests.push(r.url()));
@@ -25,21 +25,25 @@ await page.route('https://api.tcgdex.net/v2/en/series/me',r=>r.fulfill({json:{id
 try {
  await page.goto('http://127.0.0.1:5173/',{waitUntil:'networkidle'});
  await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:90000});
- for (const id of ['pokemon:30th-053:holo','pokemon:30th-129:holo','pokemon:30th-rgb-r:holo']) {
+ for (const id of ['pokemon:30th-053:holo','pokemon:30th-054:holo','pokemon:30th-129:holo','pokemon:30th-rgb-r:holo']) {
   await page.evaluate(id=>window.__holo.gallery.close(id),id);
   await page.waitForTimeout(800);
-  for(const [name,y,p] of [['front',0,0],['grazing',55,-15]]) {
+  for(const [name,y,p] of [['front',0,0],['grazing',55,-15],['specular',-15,-15],['tilt',-28,24]]) {
    await page.evaluate(([y,p])=>window.__holo.pose(y,p,0),[y,p]);await page.waitForTimeout(350);
    await page.screenshot({path:out+'/'+id.replaceAll(':','-')+'-'+name+'.png'});
   }
-  results[id]=await page.evaluate(()=>({stats:window.__holo.stats(),sunPillar:window.__holo.material().optics.sunPillar,foilControls:!!window.__holo.material().foilControlsTextureNode.value}));
+  results[id]=await page.evaluate(()=>({stats:window.__holo.stats(),doubleRare:window.__holo.material().optics.doubleRare,sunPillar:window.__holo.material().optics.sunPillar,foilControls:!!window.__holo.material().foilControlsTextureNode.value}));
  }
  await page.evaluate(()=>window.__holo.gallery.open());
  await page.getByRole('combobox',{name:'Set',exact:true}).selectOption({label:'30th Celebration'});
  await page.waitForFunction(()=>window.__holo.gallery.stats()?.visible>0,null,{timeout:90000});
  await page.screenshot({path:out+'/gallery.png'});
  results.gallery=await page.evaluate(()=>window.__holo.gallery.stats());
- assert.equal(results['pokemon:30th-053:holo'].sunPillar,true);
+ for (const id of ['pokemon:30th-053:holo','pokemon:30th-054:holo']) {
+  assert.equal(results[id].doubleRare,true);
+  assert.equal(results[id].sunPillar,false);
+ }
+ assert.ok(requests.some(url=>url.includes('/materials/sv-double-rare-stars.png')));
  assert.equal(results['pokemon:30th-129:holo'].sunPillar,false);
  assert.deepEqual(errors,[]);
 } catch(e) { results.failure=String(e);process.exitCode=1; }
