@@ -9,6 +9,7 @@ const mapLabels: Record<keyof CardMapPaths, string> = {
   coverage: 'Packed coverage · RGBA', surface: 'Packed surface · RGB', secondaryDirection: 'Secondary direction', stampDirection: 'Stamp direction',
   secondaryPattern: 'Secondary pattern', stampPattern: 'Stamp pattern', extendedFoil: 'Extended foil coverage',
   hologram: 'Image hologram · depth / window / angle',
+  foilControls: 'Foil optical controls · RGBA',
   motif: 'Primary symbol shape', secondaryMotif: 'Secondary symbol shape', stampMotif: 'Stamp symbol shape',
 };
 const imageTypes = '.png,.jpg,.jpeg,.webp,.svg,.avif';
