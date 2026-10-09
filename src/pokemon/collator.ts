@@ -26,7 +26,7 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
   for (const slot of recipe.slots) {
     if (!Number.isInteger(slot.count) || slot.count < 1 || !slot.outcomes.length || slot.outcomes.some(o => !Number.isFinite(o.weight) || o.weight <= 0) || Math.abs(slot.outcomes.reduce((n, o) => n + o.weight, 0) - 1) > 1e-8) throw new Error(`Invalid recipe slot ${slot.id}`);
     const slotPool = slot.pool === 'energy' ? energyCards : slot.pool === 'set-and-energy' ? [...pool, ...energyCards] : pool;
-    const outcomes = slot.outcomes.map(o => ({ ...o, pool: slotPool.filter(c => o.rarities.includes(c.rarity) && c.variants.includes(o.variant) && (!o.cardIds || o.cardIds.includes(c.id)) && (!o.excludedCardIds || !o.excludedCardIds.includes(c.id)) && (!o.categories || (c.category !== undefined && o.categories.includes(c.category))) && (!o.energyTypes || (c.energyType !== undefined && o.energyTypes.includes(c.energyType)))) }));
+    const outcomes = slot.outcomes.map(o => ({ ...o, pool: slotPool.filter(c => o.rarities.includes(c.rarity) && (c.variants.includes(o.variant) || (o.fallbackVariant !== undefined && c.variants.includes(o.fallbackVariant))) && (!o.cardIds || o.cardIds.includes(c.id)) && (!o.excludedCardIds || !o.excludedCardIds.includes(c.id)) && (!o.categories || (c.category !== undefined && o.categories.includes(c.category))) && (!o.energyTypes || (c.energyType !== undefined && o.energyTypes.includes(c.energyType)))) }));
     // Never redistribute a missing rarity's odds or quietly bias an incomplete pool.
     for (const o of outcomes) if (o.pool.length < (slot.unique ? slot.count : 1)) throw new Error(`Incomplete ${slot.id} pool (${o.rarities.join('/')}). Retry metadata or choose another booster.`);
     const used = slot.uniqueGroup ? uniqueGroups.get(slot.uniqueGroup) ?? new Set<string>() : new Set<string>();
@@ -37,7 +37,7 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
       if (!available.length) throw new Error(`Exhausted ${slot.id} unique pool`);
       const card = available[Math.floor(random() * available.length)]; used.add(card.id);
       const snapshot = Object.freeze({ ...card, ...(edition ? { edition, front: card.editionFronts![edition], thumbnail: card.editionFronts![edition] } : {}), variants: Object.freeze([...card.variants]) as unknown as PokemonCard['variants'], boosterIds: card.boosterIds ? Object.freeze([...card.boosterIds]) as unknown as string[] : undefined, foil: Object.freeze({ ...card.foil }), ...(card.editionFronts ? { editionFronts: Object.freeze({ ...card.editionFronts }) } : {}) });
-      pulls.push(Object.freeze({ card: snapshot, variant: selected.variant, slot: `${slot.id}:${i + 1}` }));
+      pulls.push(Object.freeze({ card: snapshot, variant: card.variants.includes(selected.variant) ? selected.variant : selected.fallbackVariant!, slot: `${slot.id}:${i + 1}` }));
     }
   }
   if (pulls.length < 1 || pulls.length > 12) throw new Error('Unsupported physical pack size');
