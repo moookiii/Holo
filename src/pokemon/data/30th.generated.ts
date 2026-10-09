@@ -4423,7 +4423,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-001",
-    "localId": "001",
+    "localId": "58/102",
     "name": "Pikachu",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4442,7 +4442,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-1-front.png",
     "tcglCardId": "me5-5c_1",
     "tcglVariantId": "Pikachu_me5-5c_1_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "58",
+    "collectorNumber": "58/102",
     "sourceSet": "me5-5c",
     "types": [
       "Lightning"
@@ -4451,7 +4451,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-002",
-    "localId": "002",
+    "localId": "4/102",
     "name": "Charizard",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4470,7 +4470,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-2-front.png",
     "tcglCardId": "me5-5c_2",
     "tcglVariantId": "Charizard_me5-5c_2_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "4",
+    "collectorNumber": "4/102",
     "sourceSet": "me5-5c",
     "types": [
       "Fire"
@@ -4479,7 +4479,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-003",
-    "localId": "003",
+    "localId": "18/132",
     "name": "Misty",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4498,14 +4498,14 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-3-front.png",
     "tcglCardId": "me5-5c_3",
     "tcglVariantId": "Misty_me5-5c_3_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "18",
+    "collectorNumber": "18/132",
     "sourceSet": "me5-5c",
     "types": [],
     "sourceEvidence": "/cards/pokemon/30th-celebration/maps/me5-5c-3-evidence.json"
   },
   {
     "id": "30th-classic-004",
-    "localId": "004",
+    "localId": "69/132",
     "name": "Erika's Jigglypuff",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4524,7 +4524,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-4-front.png",
     "tcglCardId": "me5-5c_4",
     "tcglVariantId": "ErikasJigglypuff_me5-5c_4_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "69",
+    "collectorNumber": "69/132",
     "sourceSet": "me5-5c",
     "types": [
       "Colorless"
@@ -4533,7 +4533,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-005",
-    "localId": "005",
+    "localId": "25/111",
     "name": "Sneasel",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4552,7 +4552,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-5-front.png",
     "tcglCardId": "me5-5c_5",
     "tcglVariantId": "Sneasel_me5-5c_5_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "25",
+    "collectorNumber": "25/111",
     "sourceSet": "me5-5c",
     "types": [
       "Darkness"
@@ -4561,7 +4561,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-006",
-    "localId": "006",
+    "localId": "106/105",
     "name": "Shining Celebi",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4580,7 +4580,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-6-front.png",
     "tcglCardId": "me5-5c_6",
     "tcglVariantId": "ShiningCelebi_me5-5c_6_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "106",
+    "collectorNumber": "106/105",
     "sourceSet": "me5-5c",
     "types": [
       "Grass"
@@ -4589,7 +4589,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-007",
-    "localId": "007",
+    "localId": "149/147",
     "name": "Lugia",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4608,7 +4608,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-7-front.png",
     "tcglCardId": "me5-5c_7",
     "tcglVariantId": "Lugia_me5-5c_7_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "149",
+    "collectorNumber": "149/147",
     "sourceSet": "me5-5c",
     "types": [
       "Colorless"
@@ -4617,7 +4617,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-008",
-    "localId": "008",
+    "localId": "5/109",
     "name": "Delcatty",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4636,7 +4636,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-8-front.png",
     "tcglCardId": "me5-5c_8",
     "tcglVariantId": "Delcatty_me5-5c_8_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "5",
+    "collectorNumber": "5/109",
     "sourceSet": "me5-5c",
     "types": [
       "Colorless"
@@ -4645,7 +4645,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-009",
-    "localId": "009",
+    "localId": "19/109",
     "name": "Dark Tyranitar",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4664,7 +4664,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-9-front.png",
     "tcglCardId": "me5-5c_9",
     "tcglVariantId": "DarkTyranitar_me5-5c_9_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "19",
+    "collectorNumber": "19/109",
     "sourceSet": "me5-5c",
     "types": [
       "Darkness"
@@ -4673,7 +4673,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-010",
-    "localId": "010",
+    "localId": "108/115",
     "name": "Scizor ex",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4692,7 +4692,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-10-front.png",
     "tcglCardId": "me5-5c_10",
     "tcglVariantId": "Scizorex_me5-5c_10_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "108",
+    "collectorNumber": "108/115",
     "sourceSet": "me5-5c",
     "types": [
       "Metal"
@@ -4701,7 +4701,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-011",
-    "localId": "011",
+    "localId": "11/113",
     "name": "Metagross",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4720,7 +4720,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-11-front.png",
     "tcglCardId": "me5-5c_11",
     "tcglVariantId": "Metagross_me5-5c_11_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "11",
+    "collectorNumber": "11/113",
     "sourceSet": "me5-5c",
     "types": [
       "LM"
@@ -4729,7 +4729,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-012",
-    "localId": "012",
+    "localId": "106/106",
     "name": "Palkia",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4748,7 +4748,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-12-front.png",
     "tcglCardId": "me5-5c_12",
     "tcglVariantId": "Palkia_me5-5c_12_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "106",
+    "collectorNumber": "106/106",
     "sourceSet": "me5-5c",
     "types": [
       "Water"
@@ -4757,7 +4757,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-013",
-    "localId": "013",
+    "localId": "43/146",
     "name": "Uxie",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4776,7 +4776,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-13-front.png",
     "tcglCardId": "me5-5c_13",
     "tcglVariantId": "Uxie_me5-5c_13_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "43",
+    "collectorNumber": "43/146",
     "sourceSet": "me5-5c",
     "types": [
       "Psychic"
@@ -4785,7 +4785,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-014",
-    "localId": "014",
+    "localId": "47/127",
     "name": "Crobat G",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4804,7 +4804,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-14-front.png",
     "tcglCardId": "me5-5c_14",
     "tcglVariantId": "CrobatG_me5-5c_14_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "47",
+    "collectorNumber": "47/127",
     "sourceSet": "me5-5c",
     "types": [
       "Psychic"
@@ -4813,7 +4813,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-015",
-    "localId": "015",
+    "localId": "94/102",
     "name": "Gengar",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4832,7 +4832,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-15-front.png",
     "tcglCardId": "me5-5c_15",
     "tcglVariantId": "Gengar_me5-5c_15_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "94",
+    "collectorNumber": "94/102",
     "sourceSet": "me5-5c",
     "types": [
       "Psychic"
@@ -4841,7 +4841,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-016",
-    "localId": "016",
+    "localId": "99/102",
     "name": "Darkrai & Cresselia LEGEND",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4860,7 +4860,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-16-front.png",
     "tcglCardId": "me5-5c_16",
     "tcglVariantId": "DarkraiCresseliaLEGEND_me5-5c_16_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "99",
+    "collectorNumber": "99/102",
     "sourceSet": "me5-5c",
     "types": [
       "PD"
@@ -4869,7 +4869,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-017",
-    "localId": "017",
+    "localId": "100/102",
     "name": "Darkrai & Cresselia LEGEND",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4888,7 +4888,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-17-front.png",
     "tcglCardId": "me5-5c_17",
     "tcglVariantId": "DarkraiCresseliaLEGEND_me5-5c_17_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "100",
+    "collectorNumber": "100/102",
     "sourceSet": "me5-5c",
     "types": [
       "PD"
@@ -4897,7 +4897,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-018",
-    "localId": "018",
+    "localId": "101/101",
     "name": "N",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4916,14 +4916,14 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-18-front.png",
     "tcglCardId": "me5-5c_18",
     "tcglVariantId": "N_me5-5c_18_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "101",
+    "collectorNumber": "101/101",
     "sourceSet": "me5-5c",
     "types": [],
     "sourceEvidence": "/cards/pokemon/30th-celebration/maps/me5-5c-18-evidence.json"
   },
   {
     "id": "30th-classic-019",
-    "localId": "019",
+    "localId": "85/124",
     "name": "Rayquaza-EX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4942,7 +4942,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-19-front.png",
     "tcglCardId": "me5-5c_19",
     "tcglVariantId": "RayquazaEX_me5-5c_19_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "85",
+    "collectorNumber": "85/124",
     "sourceSet": "me5-5c",
     "types": [
       "Dragon"
@@ -4951,7 +4951,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-020",
-    "localId": "020",
+    "localId": "11/101",
     "name": "Genesect-EX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4970,7 +4970,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-20-front.png",
     "tcglCardId": "me5-5c_20",
     "tcglVariantId": "GenesectEX_me5-5c_20_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "11",
+    "collectorNumber": "11/101",
     "sourceSet": "me5-5c",
     "types": [
       "Grass"
@@ -4979,7 +4979,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-021",
-    "localId": "021",
+    "localId": "106/160",
     "name": "M Gardevoir-EX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -4998,7 +4998,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-21-front.png",
     "tcglCardId": "me5-5c_21",
     "tcglVariantId": "MGardevoirEX_me5-5c_21_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "106",
+    "collectorNumber": "106/160",
     "sourceSet": "me5-5c",
     "types": [
       "Y"
@@ -5007,7 +5007,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-022",
-    "localId": "022",
+    "localId": "41/122",
     "name": "Greninja BREAK",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5026,7 +5026,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-22-front.png",
     "tcglCardId": "me5-5c_22",
     "tcglVariantId": "GreninjaBREAK_me5-5c_22_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "41",
+    "collectorNumber": "41/122",
     "sourceSet": "me5-5c",
     "types": [
       "Water"
@@ -5035,7 +5035,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-023",
-    "localId": "023",
+    "localId": "89/149",
     "name": "Solgaleo-GX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5054,7 +5054,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-23-front.png",
     "tcglCardId": "me5-5c_23",
     "tcglVariantId": "SolgaleoGX_me5-5c_23_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "89",
+    "collectorNumber": "89/149",
     "sourceSet": "me5-5c",
     "types": [
       "Metal"
@@ -5063,7 +5063,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-024",
-    "localId": "024",
+    "localId": "57/111",
     "name": "Buzzwole-GX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5082,7 +5082,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-24-front.png",
     "tcglCardId": "me5-5c_24",
     "tcglVariantId": "BuzzwoleGX_me5-5c_24_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "57",
+    "collectorNumber": "57/111",
     "sourceSet": "me5-5c",
     "types": [
       "Fighting"
@@ -5091,7 +5091,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-025",
-    "localId": "025",
+    "localId": "33/181",
     "name": "Pikachu & Zekrom-GX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5110,7 +5110,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-25-front.png",
     "tcglCardId": "me5-5c_25",
     "tcglVariantId": "PikachuZekromGX_me5-5c_25_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "33",
+    "collectorNumber": "33/181",
     "sourceSet": "me5-5c",
     "types": [
       "Lightning"
@@ -5119,7 +5119,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-026",
-    "localId": "026",
+    "localId": "138/202",
     "name": "Zacian V",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5138,7 +5138,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-26-front.png",
     "tcglCardId": "me5-5c_26",
     "tcglVariantId": "ZacianV_me5-5c_26_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "138",
+    "collectorNumber": "138/202",
     "sourceSet": "me5-5c",
     "types": [
       "Metal"
@@ -5147,7 +5147,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-027",
-    "localId": "027",
+    "localId": "050/185",
     "name": "Raikou",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5166,7 +5166,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-27-front.png",
     "tcglCardId": "me5-5c_27",
     "tcglVariantId": "Raikou_me5-5c_27_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "50",
+    "collectorNumber": "050/185",
     "sourceSet": "me5-5c",
     "types": [
       "Lightning"
@@ -5175,7 +5175,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-028",
-    "localId": "028",
+    "localId": "114/264",
     "name": "Mew VMAX",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5194,7 +5194,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-28-front.png",
     "tcglCardId": "me5-5c_28",
     "tcglVariantId": "MewVMAX_me5-5c_28_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "114",
+    "collectorNumber": "114/264",
     "sourceSet": "me5-5c",
     "types": [
       "Psychic"
@@ -5203,7 +5203,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-029",
-    "localId": "029",
+    "localId": "123/172",
     "name": "Arceus VSTAR",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5222,7 +5222,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-29-front.png",
     "tcglCardId": "me5-5c_29",
     "tcglVariantId": "ArceusVSTAR_me5-5c_29_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "123",
+    "collectorNumber": "123/172",
     "sourceSet": "me5-5c",
     "types": [
       "Colorless"
@@ -5231,7 +5231,7 @@ export const celebrationRecords = [
   },
   {
     "id": "30th-classic-030",
-    "localId": "030",
+    "localId": "203/193",
     "name": "Magikarp",
     "setId": "30th-classic",
     "setName": "30th Celebration · Classic Collection",
@@ -5250,7 +5250,7 @@ export const celebrationRecords = [
     "thumbnail": "/cards/pokemon/30th-celebration/me5-5c-30-front.png",
     "tcglCardId": "me5-5c_30",
     "tcglVariantId": "Magikarp_me5-5c_30_std_ClassicCollection_ClassicFoil_Etched",
-    "collectorNumber": "203",
+    "collectorNumber": "203/193",
     "sourceSet": "me5-5c",
     "types": [
       "Water"

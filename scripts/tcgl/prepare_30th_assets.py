@@ -22,6 +22,8 @@ def png(path, values): Image.fromarray(values).save(path,optimize=True)
 
 def main():
     source=json.loads((ROOT/'docs/30th-tcgl-sources.json').read_text(encoding='utf-8'))
+    classic_review_path=ROOT/'docs/30th-classic-identity-review.json'
+    classic_review={r['tcglCardId']:r for r in json.loads(classic_review_path.read_text())['printings']} if classic_review_path.exists() else {}
     (OUT/'maps').mkdir(parents=True,exist_ok=True);REVIEW.mkdir(parents=True,exist_ok=True)
     records=[];surfaces=[];evidence=[]
     for p in source['printings']:
@@ -48,6 +50,10 @@ def main():
             'collectorNumber':local if key=='me5-5m' else p['collectorNumber'].get('full') or p['collectorNumber'].get('numerator'),
             'sourceSet':key,'types':[t.title() for t in entry.get('types',[])],
             'sourceEvidence':f'/cards/pokemon/30th-celebration/maps/{stem}-evidence.json'}
+        if p['tcglCardId'] in classic_review:
+            review=classic_review[p['tcglCardId']]
+            if review['frontSha256']!=sources['front']['sha256']:raise ValueError('Classic identity review source changed')
+            record['collectorNumber']=record['localId']=review['printedCollectorNumber']
         if entry.get('subtype'):record['energyType' if key=='mee' else 'trainerType']=entry['subtype'].title()
         if raw_row.get('EN Type'):record['types']=[{'G':'Grass','R':'Fire','W':'Water','L':'Lightning','P':'Psychic','F':'Fighting','D':'Darkness','M':'Metal','C':'Colorless','N':'Dragon'}.get(raw_row['EN Type'],raw_row['EN Type'])]
         records.append(record)
