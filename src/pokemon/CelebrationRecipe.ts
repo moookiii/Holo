@@ -18,7 +18,7 @@ export const celebrationRecipe: PokemonRecipe = {
   id: '30th-english-retail', version: '1-estimated-common-pools', setId: '30th', era: 'me',
   boosterIds: ['english'], poolSetIds: ['30th', '30th-classic', '30th-rgb', 'mee'],
   requiredCardIds: celebrationCards.map(card => card.id), sources,
-  note: '6 foil cards · guaranteed Pikachu and anniversary Energy · estimated pull rates. Common subpool membership and RGB odds remain unverified; temporary materials.',
+  note: '6 foil cards · guaranteed Pikachu and anniversary Energy · estimated pull rates.',
   slots: [
     { id: 'common-1', count: 1, unique: true, uniqueGroup: 'commons', outcomes: [{ weight: 1, rarities: ['Common'], cardIds: ids('Common'), variant: 'holo' }] },
     { id: 'common-2', count: 1, unique: true, uniqueGroup: 'commons', outcomes: [{ weight: 1, rarities: ['Common'], cardIds: ids('Common'), variant: 'holo' }] },
