@@ -8,6 +8,7 @@ export const swshProofCases = [
   ['shiny', 'swsh4-5_95', 'Suicune', 'SV022/SV122', 'swsh-shiny-silver', true],
   ['v', 'swsh10_161', 'Beedrill V', '161/189', 'swsh-textured', true],
   ['vmax', 'swsh4_44', 'Pikachu VMAX', '044/185', 'swsh-textured', true],
+  ['vstar', 'swsh9_123', 'Arceus VSTAR', '123/172', 'swsh-textured', true],
 ] as const;
 
 export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id, title, number, profile, etched]) => {

@@ -82,3 +82,9 @@ Inspected [Pokemon Holo](https://www.youtube.com/watch?v=TaEwujwyLNg) and [tande
 Pikachu VMAX 044/185 (`swsh-proof:vmax`) reuses `swsh-textured` with its own curved body/background etch. Eight light states and 13 motion frames passed with no runtime errors; body rings, top clouds and printed rules remain registered. No new shader is warranted from current evidence.
 
 References inspected: [Pokemon Holo](https://www.youtube.com/watch?v=aMD7TXd3CTM) shows diagonal spectral bands but does not resolve texture; [Poke Scope seller review](https://www.youtube.com/watch?v=EZ-mWAQkSBY) shows angular blue/gold flashes in a close-up, but focus is weak. Do not treat the first clip's smooth appearance as proof that etching should be removed. Exact line contrast and grating direction remain reference-pending; the live asset proof is implemented, not a claim of final physical fidelity.
+
+## Textured VSTAR
+
+Arceus VSTAR 123/172 (`swsh-proof:vstar`) uses the same `swsh-textured` response with its own etch and opaque exclusions. [MonstersUpClose](https://www.youtube.com/shorts/uIBv-j0UhOc) shows rotating spectral flashes; [SmokeysPokemonCards](https://www.youtube.com/shorts/8HcYsoozo5c) resolves a quieter body and reflective etched background. Sleeves/display lighting limit quantitative comparison.
+
+Live eight-state/13-frame proof passed without runtime errors. Reviewed background arcs, quiet subject, name plate and VSTAR Power rules. The exact assets supply the visibly different VSTAR treatment without another redundant shader. Angular intensity remains provisional; normal conversion and the mandated finish response are unchanged.
