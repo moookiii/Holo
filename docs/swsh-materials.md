@@ -7,6 +7,7 @@ variant IDs, dimensions and SHA-256 evidence also shipped beside each proof.
 | Finish | Profile | Extracted proof | State |
 | --- | --- | --- | --- |
 | Standard reverse | `swsh-reverse-energy` | Grookey 010/202, `swsh1_10_ph` | Implemented; live reviewed; physical calibration provisional |
+| Amazing Rare | `swsh-amazing` | Raikou 050/185, `swsh4_50` | Implemented; live reviewed; provisional micrograin calibration |
 
 ## Reverse
 
@@ -45,3 +46,11 @@ each proof is activated; prepared files alone are not completed materials.
 
 Run a proof: `REVIEW_FINISHES=reverse node scripts/swsh-material-review.mjs`
 (set the environment variable using the syntax of your shell).
+
+## Amazing Rare
+
+Physical moving-card references inspected: [Card Spinner Raikou](https://www.youtube.com/shorts/278RVuesjwQ) and [Single Pack Hunter close-up](https://www.youtube.com/shorts/QvnLRaHzbw8). The close-up resolves dense silver grain inside the rainbow splash and energy icons, with a quieter printed subject. These are distinct physical samples; capture files are under `research/swsh-materials/physical/raikou-*`.
+
+Uses the exact Raikou front, foil plate and etch. Reuses authored-normal diffraction and the existing filtered metallic-grain response, with grain confined to the exact foil plate. No painted spectral overlay, new splash geometry or procedural relief. The normal conversion/gain remains the required reference method. The micrograin is a statistical optical approximation, not an extracted layout of individual physical grains.
+
+Proof `swsh-proof:amazing`: the same eight light/pose states and 13-frame motion sweep, with no runtime errors. Reviewed the splash extension below the art window, subject silhouette, energy icons and text. Physical videos show a more granular finish than the TCGL die alone; the separate restrained grain response addresses this. Exact grain intensity and groove depth remain provisional.

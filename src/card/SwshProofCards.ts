@@ -3,6 +3,7 @@ import type { CardDefinition } from './CardDefinition';
 /** Small, explicit material workbench. No set catalog or pack integration. */
 export const swshProofCases = [
   ['reverse', 'swsh1_10_ph', 'Grookey', '010/202', 'swsh-reverse-energy', false],
+  ['amazing', 'swsh4_50', 'Raikou', '050/185', 'swsh-amazing', true],
 ] as const;
 
 export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id, title, number, profile, etched]) => {
