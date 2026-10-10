@@ -20,7 +20,7 @@ const pokemon: VendingGame = {
   async products(era, signal) {
     const eras = era ? [{ id: era, name: era }] : await this.eras(signal);
     const groups = await boundedMap(eras, 3, signal, async entry =>
-      (await pokemonCatalog.sets(entry.id, signal)).map(set => ({ id: set.id, name: set.name, era: entry.id,
+      (await pokemonCatalog.sets(entry.id, signal)).filter(set => set.id !== 'swsh7-5r').map(set => ({ id: set.id, name: set.name, era: entry.id,
         available: pokemonAvailable(set.id), artwork: localBoosterArt(set.id) ?? [] })));
     return [...new Map(groups.flat().map(p => [p.id, p])).values()];
   },

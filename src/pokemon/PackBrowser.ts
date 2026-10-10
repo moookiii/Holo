@@ -259,7 +259,7 @@ export class PackBrowser {
     this.step = 'sets'; this.selection.set = undefined; this.selection.booster = undefined; this.metadata = undefined;
     this.screen(series.name);
     void this.run('Loading sets…', async request => {
-      const sets = await pokemonCatalog.sets(series.id, request.signal); if (!this.task.current(request)) return;
+      const sets = (await pokemonCatalog.sets(series.id, request.signal)).filter(set => set.id !== 'swsh7-5r'); if (!this.task.current(request)) return;
       this.status.textContent = 'Choose a set.';
       sets.sort((a, b) => ['neo', 'ecard', 'sv', 'me'].includes(series.id) ? 0 : Number(packAvailability(b.id).ready) - Number(packAvailability(a.id).ready)).forEach(set => this.button(set.name, () => collectionProductFor(set.id) ? this.collectionDetail(collectionProductFor(set.id)!) : set.id === WIZARDS_PROMO_ID ? this.promoCards() : ['mep', 'svp', 'svalt', 'sve', 'mfb'].includes(set.id) ? this.catalogCards(set) : this.boosters(set.id), set.id === 'lc' ? `${set.logo}?v=high-res` : set.logo,
         packAvailability(set.id).label));
