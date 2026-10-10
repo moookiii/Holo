@@ -59,7 +59,12 @@ swshProfiles.push({
   description: 'Exact rainbow splash plate, protected subject and energy icons with the printing’s own etched grain. Printed rainbow stays in the front; tilt reveals the registered silver and spectral response without repainting the splash.',
   // Dense silver scintillation seen in the physical close-up. Optical grain
   // only: it neither changes the TCGL line geometry nor creates height.
-  glints: { density: .88, scale: 1050, sharpness: 160, strength: 2.1, spread: .42, metallicGrain: true },
+  // The physical Amazing finish is grain-led: the shared textured-family
+  // specular budget made every die line a bright continuous ribbon.
+  diffraction: { ...swshEtched.diffraction, strength: .18, secondaryOrder: .035 },
+  surface: { ...swshEtched.surface, substrateReflection: .16, etchedInkSheen: .10,
+    foilReflectance: .015, inkTransmission: .96, laminate: .025 },
+  glints: { density: .98, scale: 800, sharpness: 80, strength: 4.5, spread: .48, metallicGrain: true },
 });
 
 swshProfiles.push({
