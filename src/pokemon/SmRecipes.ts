@@ -30,7 +30,7 @@ function recipe(setId: keyof typeof smRates): PokemonRecipe {
     sources: [study, 'https://www.pokemon.com/us/pokemon-tcg/product-gallery/detective-pikachu-tin'],
     note: '4 holo cards: 3 commons then 1 rare/premium card; no Basic Energy or reverse slot. Premium frequency uses a small 240-pack English sample; cards uniform within each pool.',
     slots: [{ id: 'common', count: 3, unique: true, outcomes: [branch(1, own.filter(c => c.rarity === 'Common'), 'holo')] },
-      { id: 'rare', count: 1, outcomes: [branch(1 - r.detectivePremium, own.filter(c => c.rarity === 'Rare'), 'holo'), branch(r.detectivePremium, own.filter(c => c.rarity === 'Ultra Rare'), 'holo')] }] };
+      { id: 'rare', count: 1, outcomes: [branch(1 - r.detectivePremium, own.filter(c => c.rarity === 'Rare'), 'holo'), branch(r.detectivePremium, own.filter(c => c.rarity === 'Holo Rare'), 'holo')] }] };
   const main = own.filter(c => !c.localId.startsWith('SV'));
   const vault = own.filter(c => c.localId.startsWith('SV'));
   const rare: SlotOutcome[] = [], replacements: SlotOutcome[] = [];

@@ -143,7 +143,8 @@ def main():
         name = m['name']
         if is_energy or rarity == 'RareSecretBasicEnergy':
             name = TYPES[row['EN Type']] + ' Energy'
-        card = {'id': appid, 'localId': number, 'name': name, 'rarity': RARITIES.get(rarity, rarity),
+        physical_rarity = 'Holo Rare' if sid == 'gum' and rarity == 'RareUltra' else RARITIES.get(rarity, rarity)
+        card = {'id': appid, 'localId': number, 'name': name, 'rarity': physical_rarity,
             'collectorNumber': number + ('/' + denominator if denominator else ''),
             'category': {1: 'Pokemon', 2: 'Trainer', 3: 'Energy'}[row['category']],
             'front': front.relative_to(OUT).as_posix(), 'variants': [variant],
