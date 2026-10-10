@@ -23,6 +23,10 @@ test('pack catalogs survive full browser storage and Sword & Shield uses only lo
   const catalog = new TcgdexAdapter(), signal = new AbortController().signal;
   const sets = await catalog.sets('swsh', signal);
   assert.ok(sets.some(set => set.id === 'swsh1'));
+  assert.ok(sets.every(set => set.logo?.startsWith('https://assets.tcgdex.net/en/swsh/')));
+  assert.equal(sets.find(set => set.id === 'swsh3-5')?.logo, 'https://assets.tcgdex.net/en/swsh/swsh3.5/logo.png');
+  assert.equal(sets.find(set => set.id === 'swsh7-5')?.logo, 'https://assets.tcgdex.net/en/swsh/cel25/logo.png');
+  assert.equal(sets.find(set => set.id === 'swsh12-5a')?.logo, 'https://assets.tcgdex.net/en/swsh/swsh12.5/logo.png');
   const expected = svTcglSets.filter(set => set.series.id === 'swsh')
     .sort((a, b) => a.releaseDate!.localeCompare(b.releaseDate!) || a.id.localeCompare(b.id));
   assert.deepEqual(sets.map(set => set.id), expected.map(set => set.id));
