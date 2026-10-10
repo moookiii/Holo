@@ -141,8 +141,6 @@ select option, select optgroup { background: #101010; color: #d0d0d0; }
 .pack-status { margin: 0 0 10px; font-size: 9px; font-weight: 400; letter-spacing: .20em; text-transform: uppercase; color: #827968; }
 .pack-action { pointer-events: auto; padding: 8px 16px; min-height: 36px; font-size: 12px; letter-spacing: .03em; color: #c8b48b; border-bottom: 1px solid #393125; transition: color 180ms; }
 .pack-action:disabled { cursor: default; border-color: transparent; color: #81775f; }
-.pack-load-cancel { margin-top: 12px; font-size: 12px; color: #a99a7e; padding: 12px; }
-.pack-load-cancel[hidden] { display: none; }
 @media (max-width: 600px) { .top-actions { top: max(15px, env(safe-area-inset-top)); right: max(16px, env(safe-area-inset-right)); gap: 5px; } .top-actions > * { padding-inline: 9px; font-size: 10px; } .pack-entry { gap: 6px; } .pack-header { padding: max(15px, env(safe-area-inset-top)) 20px 0; } .pack-footer { bottom: max(22px, env(safe-area-inset-bottom)); } }
 @media (prefers-reduced-motion: reduce) { #ui, .pack-entry, .pack-action { transition: none; } }
 

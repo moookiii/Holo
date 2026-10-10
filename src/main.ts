@@ -196,8 +196,6 @@ async function start() {
     };
     if (typeof window.requestIdleCallback === 'function') warmupIdleHandle = window.requestIdleCallback(start, { timeout: 1800 }); else warmupIdleHandle = window.setTimeout(start, 900);
   };
-  const cancelPackLoad = document.createElement('button');
-  cancelPackLoad.className = 'pack-load-cancel'; cancelPackLoad.textContent = 'Back to viewer'; cancelPackLoad.hidden = true; loading.append(cancelPackLoad);
   const closePack = () => {
     const hadPack = !!pack || !!packRequest;
     cancelWarmup();
@@ -206,12 +204,11 @@ async function start() {
     factory.setBackgroundPaused(false);
     if (card) card.visible = true;
     pointer.setEnabled(!!card); viewerUI.inert = false;
-    document.body.classList.remove('pack-mode'); cancelPackLoad.hidden = true; setLoading(false);
+    document.body.classList.remove('pack-mode'); setLoading(false);
     if (hadPack) packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
     if (card) scheduleWarmup(); else void openGallery().catch(showError);
     document.querySelector<HTMLButtonElement>('#pack-open')?.focus({ preventScroll: true });
   };
-  cancelPackLoad.onclick = closePack;
   const inspectPackCard = (instance: CardInstance) => {
     pack?.dispose(instance); pack = undefined; packRequest = undefined;
     factory.setBackgroundPaused(false);
@@ -238,7 +235,7 @@ async function start() {
     const request = new AbortController(); packRequest = request;
     factory.setBackgroundPaused(true);
     ++loadGeneration; ++profileGeneration; ui?.close(); pointer.setEnabled(false); viewerUI.inert = true;
-    document.body.classList.add('pack-mode'); cancelPackLoad.hidden = false; setLoading(true, 'Preparing pack…');
+    document.body.classList.add('pack-mode'); setLoading(true, 'Preparing pack…');
     try {
       const { PackOpeningController } = await import('./pack/PackOpeningController');
       packMetrics.moduleLoadMs = performance.now() - clickStarted;
@@ -257,7 +254,7 @@ async function start() {
         ui?.refreshCards();
       }
       packMetrics.loadCompleteMs = performance.now() - clickStarted;
-      pack = candidate; if (card) card.visible = false; cancelPackLoad.hidden = true; setLoading(false);
+      pack = candidate; if (card) card.visible = false; setLoading(false);
     } catch (error) {
       if (request.signal.aborted) return;
       closePack(); throw error;
@@ -631,7 +628,7 @@ async function start() {
   if (import.meta.hot) import.meta.hot.dispose(() => {
     disposed = true;
     clearTimeout(hoverTimer); gallery?.dispose(); viewerResources.dispose();
-    packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose(); cancelPackLoad.remove();
+    packBrowser?.dispose(); cancelWarmup(); packRequest?.abort(); pack?.dispose();
     ++loadGeneration; ++profileGeneration;
     spotlightPointer.dispose();
     renderer.setAnimationLoop(null); pointer.dispose(); observer.disconnect(); document.removeEventListener('keydown', galleryEscape, { capture: true }); lab?.dispose();
