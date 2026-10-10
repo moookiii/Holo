@@ -7,4 +7,12 @@ export const packBacks: Readonly<Record<string, string>> = {
   me03: 'me03-back.png',
   me04: 'me04-back.png',
   'sv03.5': 'sv03.5-back.png',
+  'sv03': 'sv03-back.png',
+  'sv04': 'sv04-back.png',
+  'sv06': 'sv06-back.png',
+  'sv06.5': 'sv06.5-back.png',
+  'sv08': 'sv08-back.png',
+  'sv09': 'sv09-back.png',
+  'sv10': 'sv10-back.png',
+  '30th-classic-upc': '30th-classic-upc-back.png',
 };

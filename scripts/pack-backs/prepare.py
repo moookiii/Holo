@@ -24,12 +24,16 @@ def main():
             original.write_bytes(response.content)
         im = Image.open(original).convert('RGB')
         result = im.crop(source['crop'])
+        rotation = source.get('rotation', 0)
+        if rotation:
+            result = result.transpose({90: Image.Transpose.ROTATE_90,
+                180: Image.Transpose.ROTATE_180, 270: Image.Transpose.ROTATE_270}[rotation])
         out = ROOT / f'public/packs/pokemon/{sid}-back.png'
         result.save(out, optimize=True)
         evidence.append({**source, 'source': original.relative_to(ROOT).as_posix(),
             'sourceDimensions': list(im.size), 'sourceSha256': sha(original),
             'output': out.relative_to(ROOT).as_posix(), 'dimensions': list(result.size),
-            'sha256': sha(out), 'rotation': 0, 'resampled': False})
+            'sha256': sha(out), 'rotation': rotation, 'resampled': False})
     (ROOT / 'public/packs/pokemon/back-sources.json').write_text(json.dumps(evidence, indent=2) + '\n')
     print(f'{len(evidence)} set-specific pack backs prepared')
 
