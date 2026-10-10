@@ -15,6 +15,9 @@ SEALED_WRAPPER_SETS = {
     'swsh1', 'swsh2', 'swsh3', 'swsh4', 'swsh4-5', 'swsh5', 'swsh6',
     'swsh7', 'swsh7-5', 'swsh8', 'swsh12-5',
 }
+# Later silver-seal fronts also need their pale crimp margins removed. Their
+# tapered white side gutters extend farther inward than the older black caps.
+SILVER_SEAL_WRAPPER_SETS = {'swsh9', 'swsh10', 'swsh11', 'swsh12'}
 # Photographed Champion's Path wrappers have independent, uneven margins.
 DESIGN_TRIMS = {
     ('swsh3-5', 0): (4, 25, 4, 33),
@@ -27,7 +30,10 @@ DESIGN_TRIMS = {
 def reviewed_bounds(sid, design, bounds):
     trim = DESIGN_TRIMS.get((sid, design))
     if trim is None:
-        trim = (6, 22, 6, 22) if sid in SEALED_WRAPPER_SETS else (0, 0, 0, 0)
+        if sid in SILVER_SEAL_WRAPPER_SETS:
+            trim = (9, 22, 9, 22)
+        else:
+            trim = (6, 22, 6, 22) if sid in SEALED_WRAPPER_SETS else (0, 0, 0, 0)
     left, top, right, bottom = bounds
     return (left + trim[0], top + trim[1], right - trim[2], bottom - trim[3])
 
