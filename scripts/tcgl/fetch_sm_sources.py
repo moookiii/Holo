@@ -231,6 +231,8 @@ def audit_source_inventory(workers=8):
             temporary.replace(path)
         decoded = pipeline.extract_bundle(path)
         assets = []
+        evidence_directory = ROOT / 'supplementary' / name
+        evidence_directory.mkdir(parents=True, exist_ok=True)
         for material in decoded['manifests']:
             for kind, field in zip(KINDS, ['_c', '_w', '_e', '_cf', '_cc']):
                 ref = material['tree'].get(field, '')
@@ -247,6 +249,13 @@ def audit_source_inventory(workers=8):
                     if sha(ROOT / t['png']) != t['png_sha256']:
                         raise ValueError('Supplementary PNG hash mismatch: ' + name)
                     asset['texture'] = t
+                    target = evidence_directory / (kind + '.png')
+                    if not target.exists():
+                        os.link(ROOT / t['png'], target)
+                    asset['file'] = target.relative_to(ROOT).as_posix()
+                    asset['dimensions'] = [t['width'], t['height']]
+                    asset['sha256'] = t['png_sha256']
+                    asset['url'] = source['url']
                 assets.append(asset)
         results.append({'bundleName': name, 'source': source, 'sha256': sha(path),
                         'rawBundle': decoded['raw_bundle'], 'assets': assets,
@@ -254,6 +263,7 @@ def audit_source_inventory(workers=8):
                         'tcglVariantId': None,
                         'identityStatus': 'unresolved: no entry in installed or archived English TCGL card tables',
                         'reason': 'Official bundle exists but exact printing identifier is absent; no variant identity fabricated.'})
+        write(evidence_directory / 'source.json', results[-1])
     write(ROOT / 'supplementary/orphan-bundles.json', results)
     print('Archived inventory audit:', len(tables), 'tables;', len(missing),
           'additional table entries;', len(results), 'orphan official bundles preserved.', flush=True)
@@ -290,7 +300,7 @@ def validate(pilot=False):
         if record['source'] != plan['bundles'].get(name):
             errors.append({'bundle': name, 'reason': 'Download source differs from exact official plan'})
     report, printings = {}, []
-    for row in manifest:
+    for printing_index, row in enumerate(manifest, 1):
         original = expected_ids[row['card_id']]
         for field in ['long_form_id', 'set_id', 'bundle_name', 'variant', 'variant_suffix']:
             if row[field] != original[field]:
@@ -383,6 +393,8 @@ def validate(pilot=False):
         directory.mkdir(parents=True, exist_ok=True)
         write(directory / 'source.json', printing)
         printings.append(printing)
+        if printing_index % 100 == 0:
+            print('Fully validated', printing_index, '/', len(manifest), 'exact printings', flush=True)
     totals = {kind: {field: sum(s['assets'][kind][field] for s in report.values())
                      for field in ['expected', 'validated', 'notApplicable', 'unresolved']} for kind in KINDS}
     result = {'status': 'validated' if not errors and not missing else 'incomplete',
@@ -394,6 +406,25 @@ def validate(pilot=False):
     if not pilot:
         orphan_path = ROOT / 'supplementary/orphan-bundles.json'
         orphans = json.loads(orphan_path.read_bytes()) if orphan_path.exists() else []
+        for orphan in orphans:
+            raw_bundle = ROOT / orphan['rawBundle']
+            if sha(raw_bundle) != orphan['sha256']:
+                raise ValueError('Orphan raw bundle checksum mismatch: ' + orphan['bundleName'])
+            for asset in orphan['assets']:
+                if asset['status'] == 'not_applicable':
+                    continue
+                if asset['status'] != 'extracted':
+                    raise ValueError('Unresolved orphan texture reference: ' + orphan['bundleName'])
+                texture = asset['texture']
+                path = ROOT / texture['png']
+                with Image.open(path) as image:
+                    image.load()
+                    if image.format != 'PNG' or image.size != (texture['width'], texture['height']) or image.mode != texture['mode']:
+                        raise ValueError('Orphan dimensions/channels mismatch')
+                    if hashlib.sha256(image.tobytes()).hexdigest() != texture['decoded_pixel_sha256']:
+                        raise ValueError('Orphan decoded pixels mismatch')
+                if sha(path) != texture['png_sha256'] or sha(ROOT / texture['serialized']) != texture['serialized_sha256']:
+                    raise ValueError('Orphan texture integrity mismatch')
         audit_path = ROOT / 'evidence/archived-inventory-audit.json'
         result['archivedInventoryAudit'] = json.loads(audit_path.read_bytes()) if audit_path.exists() else None
         result['unresolvedVariantIdentities'] = [
@@ -427,6 +458,7 @@ def validate(pilot=False):
             cells = [f"{s['assets'][k]['validated']}/{s['assets'][k]['expected']}" for k in ['front', 'foil', 'etch']]
             lines.append(f"| {s['name']} (`{sid}`) | {s['printings']} | " + ' | '.join(cells) + ' |')
         lines += ['', f"Validation: **{result['status']}**. {len(missing)} unresolved asset associations; {len(errors)} mapping/integrity errors.", '',
+                  'Eight additional official source bundles are preserved separately in `supplementary/orphan-bundles.json`: `sm4_en_125` and `smbsp_en_108` through `smbsp_en_114`. Their native assets decode and validate, but neither the installed nor any of the 39 archived English TCGL tables supplies an exact long-form printing ID. This source identity limitation is explicit; no identifier or substitute asset was fabricated.', '',
                   'Counts are exact printing associations, not distinct PNG files. Shared textures remain associated through exact TCGL material references; finishes are never collapsed.', '',
                   'Run `python scripts/tcgl/fetch_sm_sources.py` to resume acquisition and validation; use `--validate-only` for an independent full audit. The first run discovers the entire inventory, acquires and validates Sun & Moon as its pilot, then processes the full series with the same pipeline.', '',
                   'The source collection is `research/tcgl/sun-moon-series/sources.json`; per-set manifests are in `dataset/cards/<set>/sources.json`. Exact card evidence is `research/tcgl/<TCGL-cardID>/source.json`. Paths in Holo source manifests are workspace relative. The original extractor manifest at `dataset/manifest.json` retains its extraction-root-relative format, directly accepted by existing Holo preparation tools.', '',
@@ -435,7 +467,7 @@ def validate(pilot=False):
                   'Hidden Fates preserves all SV1–SV94 entries with their original TCGL numeric identities. Black Star Promos and alternate/special printings are separate from expansions. Coverage is relative to the installed English TCGL snapshot; source inventory omissions are recorded rather than replaced with external images.', '',
                   'No rescaling, cropping, recoloring, normal generation, derived masks, shaders, materials, UI, pack mechanics or viewer registrations are included. Individual alignment, polarity and physical finish review belong to the later integration pass. Existing implemented sets and working assets were not modified.']
         (HOLO / 'docs/sm-tcgl-sources.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
-    print(json.dumps({k: v for k, v in result.items() if k not in ['sets', 'missingAssets', 'mappingErrors']}, indent=2), flush=True)
+    print(json.dumps({k: v for k, v in result.items() if k not in ['sets', 'missingAssets', 'mappingErrors', 'archivedInventoryAudit', 'unresolvedVariantIdentities']}, indent=2), flush=True)
     if errors or missing or result['missingBundles']:
         raise RuntimeError('Incomplete acquisition: exact failures recorded in validation manifest')
     return result
