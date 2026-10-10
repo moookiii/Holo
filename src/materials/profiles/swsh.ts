@@ -34,3 +34,14 @@ swshProfiles.push({
   // only: it neither changes the TCGL line geometry nor creates height.
   glints: { density: .88, scale: 1050, sharpness: 160, strength: 2.1, spread: .42, metallicGrain: true },
 });
+
+swshProfiles.push({
+  ...swshEtched, id: 'swsh-radiant', name: 'Sword & Shield · Radiant Rare', status: 'development',
+  description: 'Exact etched character with independent crossed silver stock across the lower card. The stock is an authentic TCGL optical texture; it adds no relief to the text area.',
+  secondary: {
+    opticalModel: 'swsh-radiant',
+    diffraction: { ...swshEtched.diffraction, strength: .18, direction: Math.PI / 4, followsAuthoredNormals: false },
+    structure: swshEtched.structure, glints: swshEtched.glints,
+    surface: { metalness: .65, roughness: .27, laminate: .06, laminateRoughness: .3, foilReflectance: .02, inkTransmission: .94 },
+  },
+});

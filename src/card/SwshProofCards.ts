@@ -4,6 +4,7 @@ import type { CardDefinition } from './CardDefinition';
 export const swshProofCases = [
   ['reverse', 'swsh1_10_ph', 'Grookey', '010/202', 'swsh-reverse-energy', false],
   ['amazing', 'swsh4_50', 'Raikou', '050/185', 'swsh-amazing', true],
+  ['radiant', 'swsh10_46', 'Radiant Greninja', '046/189', 'swsh-radiant', true],
 ] as const;
 
 export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id, title, number, profile, etched]) => {
@@ -15,7 +16,8 @@ export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id,
     front: `${base}/front.png`, back: '/cards/pokemon/back.jpg',
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     maps: { foil: `${base}/foil.png`, foilControls: `${base}/foil-source.png`,
-      roughness: `${base}/roughness.png`, ...(etched ? { normal: `${base}/normal.png` } : {}) },
+      roughness: `${base}/roughness.png`, ...(etched ? { normal: `${base}/normal.png` } : {}),
+      ...(finish === 'radiant' ? { secondaryFoil: `${base}/secondary.png`, secondaryDirection: '/cards/pokemon/swsh-proofs/stock/radiant-field.png' } : {}) },
     mapSettings: { normalScale: etched ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
     source: { image: `${base}/front.png`, metadata: `${base}/evidence.json`,
       notes: 'Exact extracted TCGL printing. Registered full-card crop; authentic foil and offline Scharr normal where present. Physical calibration status: docs/swsh-materials.md.' },

@@ -117,7 +117,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     const directionPath = [paths.direction, paths.secondaryDirection, paths.stampDirection][index];
     const motifPath = [paths.motif, paths.secondaryMotif, paths.stampMotif][index];
     const authored = directionPath ? await read(directionPath, fw, fh) : undefined;
-    const specialty = layer?.opticalModel === 'celebration-pikachu' || layer?.opticalModel === 'celebration-classic';
+    const specialty = layer?.opticalModel === 'swsh-radiant' || layer?.opticalModel === 'celebration-pikachu' || layer?.opticalModel === 'celebration-classic';
     let generated: FieldData | undefined;
     if (layer && layer.enabled !== false && profile.id !== 'print-only' && !['plain', 'radial', 'secret'].includes(layer.structure.field)) {
       let motif: MotifImage | undefined;

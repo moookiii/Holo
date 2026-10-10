@@ -8,6 +8,7 @@ import { spectrum } from '../materials/layers/DiffractionLayer';
 import { pixelVariance, normalPixelVariance } from '../materials/layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { celebrationFoilReflection } from '../materials/layers/CelebrationFoilLayer';
+import { radiantFoilReflection } from '../materials/layers/RadiantFoilLayer';
 import { doubleRareReflection } from '../materials/layers/DoubleRareLayer';
 import { blackWhiteRareReflection } from '../materials/layers/BlackWhiteRareLayer';
 import { ballReverseReflection } from '../materials/layers/BallReverseLayer';
@@ -104,10 +105,12 @@ class GalleryLightingModel extends PhysicalLightingModel {
           mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
         continue;
       }
-      if (layer.celebrationPikachu || layer.celebrationClassic) {
-        const reflected = celebrationFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView,
-          { aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
-            secondary: diffraction.w, angle: axis.x, crossWidth: axis.y }, r.field, !!layer.celebrationClassic, footprint);
+      if (layer.radiant || layer.celebrationPikachu || layer.celebrationClassic) {
+        const optics = { aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
+          secondary: diffraction.w, angle: axis.x, crossWidth: axis.y };
+        const reflected = layer.radiant
+          ? radiantFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView, optics, r.field, footprint)
+          : celebrationFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView, optics, r.field, !!layer.celebrationClassic, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask,
           mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
         continue;

@@ -11,6 +11,7 @@ import { spectrum } from './layers/DiffractionLayer';
 import { pixelVariance, normalPixelVariance } from './layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from './layers/IllustrationRareLayer';
 import { celebrationFoilReflection } from './layers/CelebrationFoilLayer';
+import { radiantFoilReflection } from './layers/RadiantFoilLayer';
 import { doubleRareReflection } from './layers/DoubleRareLayer';
 import { blackWhiteRareReflection } from './layers/BlackWhiteRareLayer';
 import { ballReverseReflection } from './layers/BallReverseLayer';
@@ -111,11 +112,12 @@ class HolographicLightingModel extends PhysicalLightingModel {
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), region.coverage, data.lightColor as Node<'vec3'>));
         return;
       }
-      if (u.celebrationPikachu || u.celebrationClassic) {
+      if (u.radiant || u.celebrationPikachu || u.celebrationClassic) {
         const n = normalView as unknown as Node<'vec3'>;
         const b = (normalViewGeometry as unknown as Node<'vec3'>).cross(tangentView).mul(tangentGeometry.w).normalize();
-        const reflected = celebrationFoilReflection(light, positionViewDirection, tangentView, b, n,
-          u, region.field, u.celebrationClassic, footprint);
+        const reflected = u.radiant
+          ? radiantFoilReflection(light, positionViewDirection, tangentView, b, n, u, region.field, footprint)
+          : celebrationFoilReflection(light, positionViewDirection, tangentView, b, n, u, region.field, u.celebrationClassic, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern,
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), region.coverage, data.lightColor as Node<'vec3'>));
         return;
@@ -557,7 +559,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     }
     this.surfaceControls.extendedCoverage.value = profile.extendedCoverage ? 1 : 0;
     this.surfaceControls.anniversary.value = profile.watermark === 'quarter-century' ? 1 : 0;
-    const specialty = (model: HolographicProfile['opticalModel']) => model === 'celebration-pikachu' || model === 'celebration-classic';
+    const specialty = (model: HolographicProfile['opticalModel']) => model === 'swsh-radiant' || model === 'celebration-pikachu' || model === 'celebration-classic';
     this.fieldTextureNode.value = this.cardMaps?.direction ?? (specialty(profile.opticalModel) ? this.neutralHologram : maps.primary?.direction ?? this.neutralField);
     this.reliefTextureNode.value = maps.primary?.relief ?? this.neutralRelief;
     this.secondaryFieldTextureNode.value = this.cardMaps?.secondaryDirection ?? (specialty(profile.secondary?.opticalModel) ? this.neutralHologram : maps.secondary?.direction ?? this.neutralField);
@@ -627,7 +629,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
           u.etchedInkSheen.value !== 0, u.normalFiltering.value > 0, u.inkSpecular.value > 0].map(Number).join('')).join('/')

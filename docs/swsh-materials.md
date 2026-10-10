@@ -7,6 +7,7 @@ variant IDs, dimensions and SHA-256 evidence also shipped beside each proof.
 | Finish | Profile | Extracted proof | State |
 | --- | --- | --- | --- |
 | Standard reverse | `swsh-reverse-energy` | Grookey 010/202, `swsh1_10_ph` | Implemented; live reviewed; physical calibration provisional |
+| Radiant Rare | `swsh-radiant` | Radiant Greninja 046/189, `swsh10_46` | Implemented; live reviewed; provisional angular calibration |
 | Amazing Rare | `swsh-amazing` | Raikou 050/185, `swsh4_50` | Implemented; live reviewed; provisional micrograin calibration |
 
 ## Reverse
@@ -54,3 +55,11 @@ Physical moving-card references inspected: [Card Spinner Raikou](https://www.you
 Uses the exact Raikou front, foil plate and etch. Reuses authored-normal diffraction and the existing filtered metallic-grain response, with grain confined to the exact foil plate. No painted spectral overlay, new splash geometry or procedural relief. The normal conversion/gain remains the required reference method. The micrograin is a statistical optical approximation, not an extracted layout of individual physical grains.
 
 Proof `swsh-proof:amazing`: the same eight light/pose states and 13-frame motion sweep, with no runtime errors. Reviewed the splash extension below the art window, subject silhouette, energy icons and text. Physical videos show a more granular finish than the TCGL die alone; the separate restrained grain response addresses this. Exact grain intensity and groove depth remain provisional.
+
+## Radiant Rare
+
+Physical footage inspected: [TrainerDesignFly](https://www.youtube.com/shorts/1oKZNXT2X1A), [InfernosGames miscut sample](https://www.youtube.com/shorts/-vYSKhDbFG8), and [PokeMart92](https://www.youtube.com/shorts/SE8p0HA1e9M). The first clearly shows a broad silver/blue diamond response across the lower card changing under tilt; the miscut sample is useful for character texture but not alignment. The subject flashes independently of the printed scene.
+
+New work: `RadiantFoilLayer.ts`, a filtered two-axis neutral/spectral response driven by original TCGL `_CrossTexture` RG stock. The offline optical-stock rotation follows the visible diagonal pattern; it does not rotate or change the etched character. Viewer and gallery share this kernel. The exact TCGL plate separates lower foil from the character at the unfoiled rule strip; energy symbols stay excluded. Existing offline normal converter and etched material response are reused for the character.
+
+Proof `swsh-proof:radiant` reviewed in all eight states and the motion sweep. No runtime errors. Initial square-aligned highlights were rejected in favor of diagonal stock registration. The coarse reference video cannot establish the exact inclination distribution or grating period: the observed crossed behavior is reproduced, while quantitative angular calibration remains provisional. No relief is generated from the crossed stock.
