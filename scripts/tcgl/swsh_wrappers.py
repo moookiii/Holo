@@ -7,6 +7,30 @@ ROOT=Path(__file__).resolve().parents[2]
 SLUGS=dict(zip(['swsh1','swsh2','swsh3','swsh3-5','swsh4','swsh4-5','swsh5','swsh6','swsh7','swsh7-5','swsh8','swsh9','swsh10','swsh10-5','swsh11','swsh12','swsh12-5'],['sword-and-shield','rebel-clash','darkness-ablaze','champions-path','vivid-voltage','shining-fates','battle-styles','chilling-reign','evolving-skies','celebrations','fusion-strike','brilliant-stars','astral-radiance','pokemon-go','lost-origin','silver-tempest','crown-zenith']))
 WRAPPER_NAMES = {'swsh1': ['Gigantamax Snorlax', 'Gigantamax Lapras', 'Zamazenta', 'Zacian'], 'swsh2': ['Gigantamax Toxtricity (Amped Form)', 'Inteleon', 'Cinderace', 'Rillaboom'], 'swsh3': ['Eternatus', 'Grimmsnarl', 'Gigantamax Centiskorch', 'Gigantamax Charizard'], 'swsh3-5': ['Drednaw', 'Gardevoir', 'Obstagoon', 'Alcremie'], 'swsh4': ['Zarude', 'Gigantamax Orbeetle', 'Celebi', 'Gigantamax Pikachu'], 'swsh4-5': ['Shiny Dragapult', 'Shiny Toxtricity', 'Shiny Corviknight', 'Shiny Gigantamax Charizard'], 'swsh5': ['Gigantamax Single Strike Urshifu', 'Tyranitar', 'Empoleon', 'Gigantamax Rapid Strike Urshifu'], 'swsh6': ['Galarian Moltres', 'Galarian Zapdos', 'Shadow Rider Calyrex', 'Galarian Articuno', 'Ice Rider Calyrex'], 'swsh7': ['Duraludon', 'Sylveon', 'Rayquaza', 'Umbreon'], 'swsh7-5': ['Pikachu anniversary'], 'swsh8': ['Boltund', 'Genesect', 'Mew', 'Gigantamax Gengar'], 'swsh9': ['Whimsicott', 'Shaymin', 'Charizard', 'Arceus'], 'swsh10': ['Hisuian Typhlosion', 'Hisuian Decidueye', 'Origin Forme Dialga', 'Hisuian Samurott', 'Origin Forme Palkia'], 'swsh10-5': ['Mewtwo, Pikachu & Blissey'], 'swsh11': ['Hisuian Zoroark', 'Origin Forme Giratina', 'Gardevoir', 'Enamorus'], 'swsh12': ['Regidrago', 'Regieleki', 'Lugia', 'Alolan Vulpix'], 'swsh12-5': ['Zacian & Zamazenta']}
 
+# Insets from the source's connected bounding crop, in left/top/right/bottom
+# order. Reviewed at native resolution: remove dark presentation caps and side
+# gutters while retaining the colored crimps, artwork and all printed text.
+# Base Sword & Shield and Rebel Clash already use the approved tight treatment.
+SEALED_WRAPPER_SETS = {
+    'swsh1', 'swsh2', 'swsh3', 'swsh4', 'swsh4-5', 'swsh5', 'swsh6',
+    'swsh7', 'swsh7-5', 'swsh8', 'swsh12-5',
+}
+# Photographed Champion's Path wrappers have independent, uneven margins.
+DESIGN_TRIMS = {
+    ('swsh3-5', 0): (4, 25, 4, 33),
+    ('swsh3-5', 1): (8, 20, 6, 3),
+    ('swsh3-5', 2): (6, 18, 5, 14),
+    ('swsh3-5', 3): (4, 8, 4, 7),
+    ('swsh10-5', 0): (9, 4, 9, 4),
+}
+
+def reviewed_bounds(sid, design, bounds):
+    trim = DESIGN_TRIMS.get((sid, design))
+    if trim is None:
+        trim = (6, 22, 6, 22) if sid in SEALED_WRAPPER_SETS else (0, 0, 0, 0)
+    left, top, right, bottom = bounds
+    return (left + trim[0], top + trim[1], right - trim[2], bottom - trim[3])
+
 def main():
     raw=ROOT/'research/tcgl/swsh-wrappers';raw.mkdir(exist_ok=True)
     html=(ROOT/'research/tcgl/swsh-wrapper-index.html').read_text(encoding='utf-8')
@@ -27,13 +51,10 @@ def main():
         pix=np.asarray(im);foreground=(pix[...,:3].min(2)<240)&(pix[...,3]>0)
         n,labels,stats,_=cv2.connectedComponentsWithStats(foreground.astype('uint8'),8)
         x,y,w,h,_=max(stats[1:],key=lambda s:s[4]);bounds=(int(x),int(y),int(x+w),int(y+h))
-        if sid in ('swsh1','swsh2'):
-            # Native review: uniform black presentation caps outside the
-            # colored crimps and narrow tapered side gutters.
-            left,top,right,bottom=bounds;bounds=(left+6,top+22,right-6,bottom-22)
+        bounds=reviewed_bounds(sid,i,bounds)
         crop=im.crop(bounds)
         target=ROOT/f'public/packs/pokemon/{sid}-pack-{i}.png';crop.save(target)
-        return {'setId':sid,'design':str(i),'url':url,'source':source.relative_to(ROOT).as_posix(),'sourceDimensions':list(im.size),'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'crop':bounds,'rotation':0,'output':target.relative_to(ROOT).as_posix(),'dimensions':list(crop.size),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'cropStatus':'bounding crop; full-resolution review required'}
+        return {'setId':sid,'design':str(i),'url':url,'source':source.relative_to(ROOT).as_posix(),'sourceDimensions':list(im.size),'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'crop':bounds,'rotation':0,'output':target.relative_to(ROOT).as_posix(),'dimensions':list(crop.size),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'cropStatus':'native-resolution crop reviewed; artwork, text and colored seals preserved'}
     records=list(ThreadPoolExecutor(6).map(fetch,tasks))
     out=ROOT/'public/packs/pokemon/swsh-wrapper-sources.json';out.write_text(json.dumps(records,indent=2)+'\n')
     registry={sid:[{'id':'art-'+r['design'],'name':WRAPPER_NAMES[sid][int(r['design'])]+' booster','front':'/packs/pokemon/'+Path(r['output']).name} for r in records if r['setId']==sid] for sid in SLUGS}
