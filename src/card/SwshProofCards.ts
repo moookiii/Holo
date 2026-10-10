@@ -33,7 +33,7 @@ export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id,
   const base = `/cards/pokemon/swsh-proofs/${id}`;
   return {
     id: `swsh-proof:${finish}`, title, number: `${number} · ${finish}`,
-    franchise: 'Pokémon', set: proofSets[finish], profile, seed: 202001, galleryVisible: true,
+    franchise: 'Pokémon', set: proofSets[finish], profile, seed: 202001, galleryVisible: false, pickerHidden: true,
     pokemon: {
       id, localId: number.split('/')[0], name: title, setId: id.split('_')[0],
       setName: proofSets[finish], seriesId: 'swsh', seriesName: 'Sword & Shield', era: 'Sword & Shield',

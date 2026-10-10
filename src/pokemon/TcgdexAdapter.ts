@@ -83,6 +83,13 @@ export class TcgdexAdapter {
       const sets = serie.sets
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
+      if (seriesId === 'swsh') {
+        const local = svTcglSets.filter(set => set.series.id === 'swsh');
+        // Replace remote aliases with the exact extracted tables, including subsets.
+        sets.splice(0, sets.length, ...local.map(set => ({ id: set.id, name: set.name, logo: set.logo })));
+        const dates = new Map(local.map(set => [set.id, set.releaseDate]));
+        sets.sort((a,b) => dates.get(a.id)!.localeCompare(dates.get(b.id)!) || a.id.localeCompare(b.id));
+      }
       if (seriesId === 'me') {
         for (const local of svTcglSets.filter(set => set.series.id === 'me' && set.id !== 'mee')) {
           const old = sets.findIndex(set => set.id === local.id);

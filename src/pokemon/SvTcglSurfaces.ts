@@ -6,10 +6,12 @@ import { megaRarityProfile } from '../materials/profiles/megaRarity';
 import { tcglSvSurfaces } from './data/sv-tcgl-surfaces.generated.ts';
 import { tcglMegaSurfaces } from './data/mega-tcgl.generated.ts';
 import { tcglMepSurfaces } from './data/mep-tcgl.generated.ts';
+import { tcglSwshSurfaces } from './data/swsh-tcgl.generated.ts';
 import { svTcglCard, svTcglCards, svTcglCollectorNumber, svTcglFront, svTcgdexNonfoilSource, svNonfoilImageProvider } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
 
-const surfaces = new Map([...tcglSvSurfaces, ...tcglMegaSurfaces, ...tcglMepSurfaces].map(surface => [`${surface.cardId}:${surface.variant}`, surface]));
+const surfaces = new Map([...tcglSvSurfaces, ...tcglMegaSurfaces, ...tcglMepSurfaces, ...tcglSwshSurfaces].map(surface => [`${surface.cardId}:${surface.variant}`, surface]));
+const swshLimitations = new Map(tcglSwshSurfaces.map(s => [`${s.cardId}:${s.variant}`, s.limitations]));
 export function svTcglProfile(id: string, variant: PrintVariant): string {
   const card = svTcglCard(id);
   if (!card.variants.includes(variant)) throw new Error(`Invalid TCGL printing: ${id}:${variant}`);
@@ -23,17 +25,19 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
   const front = svTcglFront(id, variant);
   const fallbackSource = svTcgdexNonfoilSource(id);
   const megaFinish = profile === 'mega-attack-rare' || profile === 'mega-hyper-rare';
+  const swsh = card.seriesId === 'swsh';
+  const deferred = swsh && swshLimitations.get(`${id}:${variant}`)?.length;
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}`,
     dimensions: DIMENSIONS.standard, front, back: '/cards/pokemon/back.jpg', profile, seed: 2023000,
     pickerHidden: !surface && !fallbackSource, galleryVisible: variant === 'normal', pokemon: { ...card, front, thumbnail: front, variant, materialProfile: profile,
-      ...(!megaFinish && 'treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
+      ...(deferred || !megaFinish && 'treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
       maps: { ...surface.maps, ...(megaFinish ? { secondaryFoil: `/cards/pokemon/mega-optics/${id}-secondary.png` } : {}) },
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: surface.textured && profile !== 'pokemon-ace-spec' ? 'absolute' : 'profile' },
-      ...(surface.textured && profile !== 'pokemon-ace-spec' && !megaFinish ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
+      ...(surface.textured && profile !== 'pokemon-ace-spec' && !megaFinish && !swsh ? { profileOverrides: profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
     } : {}),
     source: { image: front, metadata: fallbackSource ?? surface?.evidence ?? `${front.slice(0,front.lastIndexOf('/'))}/catalog.json`,
       notes: fallbackSource ? `English nonfoil printing. Image provider: ${svNonfoilImageProvider(id)}; metadata: TCGdex. Source and original image hash recorded; print-only material.` :
