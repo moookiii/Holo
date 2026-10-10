@@ -466,7 +466,9 @@ def validate(pilot=False):
                   'Etch/foil absence is established only by an empty exact material-manifest reference. Failures remain explicit in validation and source manifests. Duplicate byte/pixel associations and compendium differences are recorded in `dataset/duplicate-assets.json` and `dataset/completeness-audit.json`.', '',
                   'Hidden Fates preserves all SV1–SV94 entries with their original TCGL numeric identities. Black Star Promos and alternate/special printings are separate from expansions. Coverage is relative to the installed English TCGL snapshot; source inventory omissions are recorded rather than replaced with external images.', '',
                   'No rescaling, cropping, recoloring, normal generation, derived masks, shaders, materials, UI, pack mechanics or viewer registrations are included. Individual alignment, polarity and physical finish review belong to the later integration pass. Existing implemented sets and working assets were not modified.']
-        (HOLO / 'docs/sm-tcgl-sources.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+        text = '\n'.join(lines) + '\n'
+        (HOLO / 'docs/sm-tcgl-sources.md').write_text(text, encoding='utf-8')
+        (ROOT / 'dataset/COVERAGE.md').write_text(text, encoding='utf-8')
     print(json.dumps({k: v for k, v in result.items() if k not in ['sets', 'missingAssets', 'mappingErrors', 'archivedInventoryAudit', 'unresolvedVariantIdentities']}, indent=2), flush=True)
     if errors or missing or result['missingBundles']:
         raise RuntimeError('Incomplete acquisition: exact failures recorded in validation manifest')
