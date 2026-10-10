@@ -144,7 +144,15 @@ def bootstrap():
 
 def acquire(records, workers):
     enumerate_selected(records)
-    download.main(workers)
+    for attempt in range(3):
+        download.main(workers)
+        results = json.loads((ROOT / 'dataset/download-results.json').read_bytes())
+        failures = {name: result for name, result in results.items() if result['status'] != 'downloaded'}
+        write(ROOT / 'evidence' / f'download-attempt-{len(records)}-{attempt + 1}.json', failures)
+        if not failures:
+            break
+        if attempt < 2:
+            print('Retrying', len(failures), 'failed original endpoints; validated bundles are skipped.', flush=True)
     pipeline.run(min(workers, 2))
     finalize.main()
 
