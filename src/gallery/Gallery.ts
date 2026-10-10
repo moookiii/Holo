@@ -11,7 +11,7 @@ import { GalleryPerformance } from './GalleryPerformance';
 import { GalleryScrollPreparation } from './GalleryScrollPreparation';
 import { galleryPreparationIndices } from './GalleryPreparationRange';
 import { galleryCardSize, galleryLayout } from './GalleryLayout';
-import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, type GalleryQuery } from './GalleryQuery';
+import { compareGallerySetNames, facets, GalleryQueryIndex, gallerySetName, matchesFacet, type GalleryQuery } from './GalleryQuery';
 import { damp, defaultTilt, influence } from './GalleryMotion';
 import { galleryLightingControls } from './GalleryLighting';
 import { gallerySkimLightY } from './GallerySkim';
@@ -184,7 +184,8 @@ export class Gallery {
     let cards: readonly CardDefinition[] = this.catalog.cards();
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
-      const values = [...new Set(cards.map(facet.value).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
+      const values = [...new Set(cards.flatMap(card => facet.key === 'finish'
+        ? [facet.value(card), card.profile] : [facet.value(card)]).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
         ? compareGallerySetNames(a, b) : a.localeCompare(b));
       const selected = this.query[facet.key] ?? '';
       if (facet.key === 'finish' && values.includes('holo')) values.push('regular-holo');
@@ -194,7 +195,7 @@ export class Gallery {
           : profiles.find(p => p.id === value)?.name ?? printVariantLabel(value as PrintVariant) ?? value : value, value)));
       select.value = this.query[facet.key] ?? '';
       const active = this.query[facet.key];
-      if (active) cards = cards.filter(card => facet.value(card) === (active === 'regular-holo' ? 'holo' : active));
+      if (active) cards = cards.filter(card => matchesFacet(card, facet, active));
     }
   }
   hide() {

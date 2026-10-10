@@ -215,8 +215,9 @@ export const facets = [
 ] as const;
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
 
-function matchesFacet(card: CardDefinition, facet: typeof facets[number], selected: string) {
+export function matchesFacet(card: CardDefinition, facet: typeof facets[number], selected: string) {
   const value = facet.value(card);
+  if (facet.key === 'finish' && card.profile === selected) return true;
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'regular-holo') return value === 'holo';
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'holo')
     return value === 'holo' || value === 'reverse' || value === 'pokeball-reverse' || value === 'masterball-reverse' || value === 'special-reverse';

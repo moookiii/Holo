@@ -12,6 +12,17 @@ const fixtures = () => [
   { id: 'hidden', title: 'Hidden', set: 'Other', number: '1', franchise: 'Original', pickerHidden: true },
 ] as CardDefinition[];
 
+test('finish filters expose authored Pokémon materials alongside print variants', () => {
+  const cards = [
+    { id: 'cosmos', title: 'Cosmos', set: 'Base Set 2', number: '1', franchise: 'Pokémon', profile: 'pokemon-base-set-2-cosmos', pokemon: { variant: 'holo' } },
+    { id: 'other', title: 'Other', set: 'Base Set', number: '2', franchise: 'Pokémon', profile: 'pokemon-base-set', pokemon: { variant: 'holo' } },
+  ] as CardDefinition[];
+  const index = new GalleryQueryIndex(cards);
+  assert.deepEqual(index.filter({ search: '', finish: 'pokemon-base-set-2-cosmos' }).map(card => card.id), ['cosmos']);
+  assert.equal(index.filter({ search: '', finish: 'holo' }).length, 2);
+  assert.equal(index.filter({ search: '', finish: 'regular-holo' }).length, 2);
+});
+
 test('indexed queries retain duplicate masters, ordering, aliases and finish matching', () => {
   const cards = fixtures(), index = new GalleryQueryIndex(cards);
   for (const query of [{ search: '' }, { search: '  LUGIA  neo ' }, { search: '', game: 'Pokémon', finish: 'holo' },
