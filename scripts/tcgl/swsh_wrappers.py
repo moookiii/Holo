@@ -5,6 +5,8 @@ import re,json,hashlib,requests
 from PIL import Image,ImageDraw
 ROOT=Path(__file__).resolve().parents[2]
 SLUGS=dict(zip(['swsh1','swsh2','swsh3','swsh3-5','swsh4','swsh4-5','swsh5','swsh6','swsh7','swsh7-5','swsh8','swsh9','swsh10','swsh10-5','swsh11','swsh12','swsh12-5'],['sword-and-shield','rebel-clash','darkness-ablaze','champions-path','vivid-voltage','shining-fates','battle-styles','chilling-reign','evolving-skies','celebrations','fusion-strike','brilliant-stars','astral-radiance','pokemon-go','lost-origin','silver-tempest','crown-zenith']))
+WRAPPER_NAMES = {'swsh1': ['Gigantamax Snorlax', 'Gigantamax Lapras', 'Zamazenta', 'Zacian'], 'swsh2': ['Gigantamax Toxtricity (Amped Form)', 'Inteleon', 'Cinderace', 'Rillaboom'], 'swsh3': ['Eternatus', 'Grimmsnarl', 'Gigantamax Centiskorch', 'Gigantamax Charizard'], 'swsh3-5': ['Drednaw', 'Gardevoir', 'Obstagoon', 'Alcremie'], 'swsh4': ['Zarude', 'Gigantamax Orbeetle', 'Celebi', 'Gigantamax Pikachu'], 'swsh4-5': ['Shiny Dragapult', 'Shiny Toxtricity', 'Shiny Corviknight', 'Shiny Gigantamax Charizard'], 'swsh5': ['Gigantamax Single Strike Urshifu', 'Tyranitar', 'Empoleon', 'Gigantamax Rapid Strike Urshifu'], 'swsh6': ['Galarian Moltres', 'Galarian Zapdos', 'Shadow Rider Calyrex', 'Galarian Articuno', 'Ice Rider Calyrex'], 'swsh7': ['Duraludon', 'Sylveon', 'Rayquaza', 'Umbreon'], 'swsh7-5': ['Pikachu anniversary'], 'swsh8': ['Boltund', 'Genesect', 'Mew', 'Gigantamax Gengar'], 'swsh9': ['Whimsicott', 'Shaymin', 'Charizard', 'Arceus'], 'swsh10': ['Hisuian Typhlosion', 'Hisuian Decidueye', 'Origin Forme Dialga', 'Hisuian Samurott', 'Origin Forme Palkia'], 'swsh10-5': ['Mewtwo, Pikachu & Blissey'], 'swsh11': ['Hisuian Zoroark', 'Origin Forme Giratina', 'Gardevoir', 'Enamorus'], 'swsh12': ['Regidrago', 'Regieleki', 'Lugia', 'Alolan Vulpix'], 'swsh12-5': ['Zacian & Zamazenta']}
+
 def main():
     raw=ROOT/'research/tcgl/swsh-wrappers';raw.mkdir(exist_ok=True)
     html=(ROOT/'research/tcgl/swsh-wrapper-index.html').read_text(encoding='utf-8')
@@ -34,7 +36,7 @@ def main():
         return {'setId':sid,'design':str(i),'url':url,'source':source.relative_to(ROOT).as_posix(),'sourceDimensions':list(im.size),'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'crop':bounds,'rotation':0,'output':target.relative_to(ROOT).as_posix(),'dimensions':list(crop.size),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'cropStatus':'bounding crop; full-resolution review required'}
     records=list(ThreadPoolExecutor(6).map(fetch,tasks))
     out=ROOT/'public/packs/pokemon/swsh-wrapper-sources.json';out.write_text(json.dumps(records,indent=2)+'\n')
-    registry={sid:[{'id':'art-'+r['design'],'name':'English booster · artwork '+str(int(r['design'])+1),'front':'/packs/pokemon/'+Path(r['output']).name} for r in records if r['setId']==sid] for sid in SLUGS}
+    registry={sid:[{'id':'art-'+r['design'],'name':WRAPPER_NAMES[sid][int(r['design'])]+' booster','front':'/packs/pokemon/'+Path(r['output']).name} for r in records if r['setId']==sid] for sid in SLUGS}
     (ROOT/'src/pokemon/data/swsh-wrappers.generated.ts').write_text('// Sourced English retail wrappers; generated offline.\nimport type { PokemonBooster } from "../types.ts";\nexport const swshWrappers: Record<string, PokemonBooster[]> = '+json.dumps(registry)+';\n')
     sheet=Image.new('RGB',(8*190,((len(records)+7)//8)*300),'#222222');d=ImageDraw.Draw(sheet)
     for i,r in enumerate(records):
