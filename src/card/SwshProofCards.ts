@@ -1,5 +1,12 @@
 import type { CardDefinition } from './CardDefinition';
 
+const proofSets: Record<string, string> = {
+  reverse: 'Sword & Shield', amazing: 'Vivid Voltage', radiant: 'Astral Radiance',
+  shiny: 'Shining Fates', v: 'Astral Radiance', vmax: 'Vivid Voltage',
+  vstar: 'Brilliant Stars', celebrations: 'Celebrations', classic: 'Celebrations',
+  'black-gold': 'Lost Origin',
+};
+
 /** Small, explicit material workbench. No set catalog or pack integration. */
 export const swshProofCases = [
   ['reverse', 'swsh1_10_ph', 'Grookey', '010/202', 'swsh-reverse-energy', false],
@@ -17,7 +24,7 @@ export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id,
   const base = `/cards/pokemon/swsh-proofs/${id}`;
   return {
     id: `swsh-proof:${finish}`, title, number: `${number} · ${finish}`,
-    franchise: 'Pokémon', set: 'Sword & Shield · Material proofs', profile, seed: 202001,
+    franchise: 'Pokémon', set: proofSets[finish], profile, seed: 202001, galleryVisible: true,
     dimensions: { width: 6.3, height: 8.8, thickness: .032, cornerRadius: .3, bevel: .007 },
     front: `${base}/front.png`, back: '/cards/pokemon/back.jpg',
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
