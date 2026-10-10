@@ -342,6 +342,13 @@ def validate(pilot=False):
                 missing.append({'tcglCardId': row['card_id'], 'tcglVariantId': row['long_form_id'], 'kind': kind, **asset})
             if status == 'extracted':
                 texture = asset['texture']
+                if bundle_checkpoint:
+                    exact_textures = [t for t in bundle_checkpoint['textures']
+                                      if t['name'].lower() in [asset['reference'].lower(), Path(asset['reference']).stem.lower()]]
+                    if len(exact_textures) != 1 or any(texture[f] != exact_textures[0][f]
+                                                      for f in ['path_id', 'png', 'png_sha256', 'width', 'height', 'serialized_sha256']):
+                        errors.append({'card_id': row['card_id'], 'kind': kind,
+                                       'reason': 'Texture differs from exact original bundle reference'})
                 key = texture['png']
                 if key not in checked:
                     path = ROOT / key
