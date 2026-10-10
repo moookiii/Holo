@@ -267,6 +267,12 @@ def validate(pilot=False):
         if records != inventory:
             raise ValueError('Full-series inventory differs from extraction input')
     checked, errors, missing = {}, [], []
+    finishes = defaultdict(list)
+    for record in records:
+        identity = (record['printed_set_code'], record['printed_collector_number'], record['name'])
+        finishes[identity].append({'tcglCardId': record['card_id'], 'tcglVariantId': record['long_form_id'],
+                                   'foilEffect': record['foil_effect'], 'foilMask': record['foil_mask'],
+                                   'variant': record['variant'], 'variantSuffix': record['variant_suffix']})
     for name, record in downloads.items():
         if record['status'] != 'downloaded':
             continue
@@ -286,11 +292,27 @@ def validate(pilot=False):
             'name': NAMES.get(row['set_id'], row['set_id']), 'collection': group,
             'printings': 0, 'assets': {k: {'expected': 0, 'validated': 0, 'notApplicable': 0, 'unresolved': 0} for k in KINDS}})
         counts['printings'] += 1
+        bundle_checkpoint = None
+        bundle_download = downloads.get(row['bundle_name'], {})
+        if bundle_download.get('status') == 'downloaded':
+            bundle_checkpoint = json.loads((ROOT / 'dataset/checkpoints' /
+                                            (bundle_download['sha256'] + '.json')).read_bytes())
+            candidates = [m for m in bundle_checkpoint['manifests'] if m['name'] == row['material_manifest']]
+            if len(candidates) != 1:
+                errors.append({'card_id': row['card_id'], 'reason': 'Exact material manifest missing in original bundle'})
+            if row['material_manifest_selection'] == 'client_single_manifest_fallback' and len(bundle_checkpoint['manifests']) != 1:
+                errors.append({'card_id': row['card_id'], 'reason': 'Ambiguous single manifest fallback'})
         sources = {}
         dims = {}
         for kind, asset in row['assets'].items():
             counter = counts['assets'][kind]
             status = asset['status']
+            if bundle_checkpoint and len(candidates) == 1:
+                reference = candidates[0]['tree'].get(dict(zip(KINDS, ['_c', '_w', '_e', '_cf', '_cc']))[kind], '')
+                if not reference and kind == 'front':
+                    reference = row['bundle_name']
+                if (status == 'not_applicable' and reference) or (status == 'extracted' and reference != asset['reference']):
+                    errors.append({'card_id': row['card_id'], 'kind': kind, 'reason': 'Reference differs from original material manifest'})
             if status == 'not_applicable':
                 counter['notApplicable'] += 1
                 if asset.get('reason') != 'Exact material manifest has empty texture reference':
@@ -327,7 +349,7 @@ def validate(pilot=False):
             sources[kind] = {
                 **asset,
                 'url': asset.get('bundle_source', {}).get('url'),
-                'file': (ROOT / asset['file']).relative_to(HLO_ROOT).as_posix() if asset.get('file') else None,
+                'file': (ROOT / asset['file']).relative_to(HOLO).as_posix() if asset.get('file') else None,
                 'dimensions': dims.get(kind),
                 'sha256': asset.get('texture', {}).get('png_sha256') if asset.get('texture') else None,
                 'validationStatus': 'validated' if status == 'extracted' else status,
@@ -341,6 +363,7 @@ def validate(pilot=False):
             'variant': row['variant'], 'variantSuffix': row['variant_suffix'],
             'rarity': row['long_form_id'].split('_')[-3],
             'foil': {'type': row['foil_effect'], 'mask': row['foil_mask']},
+            'availableFinishVariants': finishes[(row['printed_set_code'], row['printed_collector_number'], row['name'])],
             'materialManifest': row['material_manifest'],
             'materialManifestRequested': row['material_manifest_requested'],
             'materialManifestSelection': row['material_manifest_selection'],
@@ -360,6 +383,18 @@ def validate(pilot=False):
               'missingAssets': missing,
               'missingBundles': plan['missing_from_remote_manifests'],
               'scope': 'Installed English TCGL database snapshot and exact official bundle manifests; unavailable historical physical printings are not inferred.'}
+    if not pilot:
+        orphan_path = ROOT / 'supplementary/orphan-bundles.json'
+        orphans = json.loads(orphan_path.read_bytes()) if orphan_path.exists() else []
+        audit_path = ROOT / 'evidence/archived-inventory-audit.json'
+        result['archivedInventoryAudit'] = json.loads(audit_path.read_bytes()) if audit_path.exists() else None
+        result['unresolvedVariantIdentities'] = [
+            {'bundleName': o['bundleName'], 'url': o['source']['url'],
+             'tcglVariantId': None, 'reason': o['identityStatus']} for o in orphans]
+        result['uncataloguedSources'] = {
+            'bundleCount': len(orphans),
+            'assets': {k: {'expected': sum(a['status'] != 'not_applicable' for o in orphans for a in o['assets'] if a['kind'] == k),
+                           'validated': sum(a['status'] == 'extracted' for o in orphans for a in o['assets'] if a['kind'] == k)} for k in KINDS}}
     write(ROOT / 'dataset' / ('pilot-validation.json' if pilot else 'validation.json'), result)
     if not pilot:
         write(ROOT / 'sources.json', {'schema': 'holo-tcgl-original-sources-v1',
@@ -396,10 +431,6 @@ def validate(pilot=False):
     if errors or missing or result['missingBundles']:
         raise RuntimeError('Incomplete acquisition: exact failures recorded in validation manifest')
     return result
-
-
-# Workspace root alias used when serializing source paths.
-HLO_ROOT = HOLO
 
 
 def main():
