@@ -52,7 +52,7 @@ def main():
         '// Original English opening study; sample estimates, never official factory odds.\n'
         'export const smRates = ' + json.dumps(rates) + ' as const;\n', encoding='utf-8')
     def logo(sid):
-        dex = sid.replace('-', '') if sid != 'gum' else 'det1'
+        dex = sid.replace('-', '.') if sid != 'gum' else 'det1'
         path = RAW / (sid + '.json')
         if not path.exists(): path.write_bytes(fetch('https://api.tcgdex.net/v2/en/sets/' + dex))
         data = json.loads(path.read_bytes())
