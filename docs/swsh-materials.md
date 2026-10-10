@@ -10,6 +10,17 @@ variant IDs, dimensions and SHA-256 evidence also shipped beside each proof.
 | Radiant Rare | `swsh-radiant` | Radiant Greninja 046/189, `swsh10_46` | Implemented; live reviewed; provisional angular calibration |
 | Amazing Rare | `swsh-amazing` | Raikou 050/185, `swsh4_50` | Implemented; live reviewed; provisional micrograin calibration |
 | Shiny Vault | `swsh-shiny-silver` | Suicune SV022/SV122, `swsh4-5_95` | Implemented; live reviewed; provisional grain intensity |
+| Textured V | `swsh-textured` | Beedrill V 161/189, `swsh10_161` | Live proof; provisional line contrast |
+| Textured VMAX | `swsh-textured` | Pikachu VMAX 044/185, `swsh4_44` | Live proof; stronger references needed |
+| Textured VSTAR | `swsh-textured` | Arceus VSTAR 123/172, `swsh9_123` | Live proof; provisional intensity |
+| Celebrations regular | `swsh-celebrations-silver` | Mew 011/025, `swsh7-5_11` | Live proof; stronger moving-light reference needed |
+| Celebrations Classic | `swsh-celebrations-classic` | Charizard 4/102, `swsh7-5r_2` | Incomplete full-card protection and confetti balance |
+| Black-and-gold TG | Existing `gold-etched` | Mew VMAX TG30/TG30, `swsh11a_30` | Live proof; provisional grain/line balance |
+
+Find these cards in the gallery under their actual set names, sorted chronologically.
+Only these representative printings are included, not the full SWSH catalogs.
+All profiles remain development/provisional. Asset availability and a successful
+render do not establish final physical fidelity.
 
 ## Reverse
 
