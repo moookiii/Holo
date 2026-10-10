@@ -128,7 +128,7 @@ def main():
         if m['set_id'] in ('swshalt','swshbsp'): card['boosterIds']=[]
         surface={'cardId':appid,'variant':variant,'profile':chosen,'textured':textured,'maps':maps,'evidence':'/cards/pokemon/tcgl-swsh/'+cid+'/evidence.json','foilType':m['foil_effect'], 'limitations':limitations}
         return m['set_id'],card,surface,cid
-    sets={sid:{'id':sid,'name':meta['name'],'releaseDate':DATES[sid],'logo':None,'seriesId':'swsh','seriesName':'Sword & Shield','assets':'/cards/pokemon/tcgl-swsh','cards':{}} for sid,meta in coverage.items()}
+    sets={sid:{'id':sid,'name':('Champion\u2019s Path' if sid == 'swsh3-5' else meta['name']),'releaseDate':DATES[sid],'logo':None,'seriesId':'swsh','seriesName':'Sword & Shield','assets':'/cards/pokemon/tcgl-swsh','cards':{}} for sid,meta in coverage.items()}
     surfaces=[];identities=[]
     with ThreadPoolExecutor(max_workers=4) as executor:
         for i,(sid,card,surface,cid) in enumerate(executor.map(prepare,manifests)):
