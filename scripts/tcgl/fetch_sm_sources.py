@@ -14,6 +14,11 @@ import json
 import os
 import shutil
 import sys
+import re
+from concurrent.futures import ThreadPoolExecutor
+from urllib.parse import quote
+
+sys.dont_write_bytecode = True
 
 HOLO = Path(__file__).resolve().parents[2]
 ROOT = HOLO / 'research/tcgl/sun-moon-series'
@@ -144,6 +149,110 @@ def acquire(records, workers):
     finalize.main()
 
 
+def audit_source_inventory(workers=8):
+    """Cross-check every archived English TCGL table and official full-card bundle.
+
+    Orphan bundles have no known exact long-form ID. Preserve their actual
+    manifests and referenced textures separately rather than inventing printings.
+    """
+    from fetch_prismatic_set import fetch
+    records = json.loads((ROOT / 'dataset/inventory.json').read_text(encoding='utf-8'))
+    known = {r['card_id']: r for r in records}
+    base = 'https://cdn.malie.io/file/malie-io/tcgl/'
+    index_path = ROOT / 'evidence/database-index.json'
+    if not index_path.exists():
+        index_path.write_bytes(fetch(base + 'databases/index.json'))
+    index = json.loads(index_path.read_bytes())
+    keys = [k for k in index if re.fullmatch(r'card-database-(sm[a-z0-9-]*|gum)_\d+_en_0\.0', k)]
+    directory = ROOT / 'evidence/archived-databases'
+    directory.mkdir(exist_ok=True)
+
+    def preserve(key):
+        url = base + 'databases/' + quote(index[key]['data'])
+        path = directory / (key + '.json')
+        if not path.exists():
+            path.write_bytes(fetch(url))
+        data = json.loads(path.read_bytes())
+        return key, {'url': url, 'sha256': sha(path), 'file': path.relative_to(ROOT).as_posix(),
+                     'rows': data['rows'], 'name': data['name']}
+
+    tables = dict(ThreadPoolExecutor(max_workers=workers).map(preserve, keys))
+    missing, conflicts = [], []
+    for key, table in tables.items():
+        for row in table['rows']:
+            cid = row['cardID']
+            if cid not in known:
+                missing.append({'database': key, 'row': row})
+            elif row['longFormID'] != known[cid]['long_form_id']:
+                conflicts.append({'database': key, 'card_id': cid,
+                                 'archived_long_form_id': row['longFormID'],
+                                 'installed_long_form_id': known[cid]['long_form_id']})
+    audit = {'archivedEnglishTables': len(tables),
+             'sources': {k: {f: v for f, v in t.items() if f != 'rows'} for k, t in tables.items()},
+             'missingFromInstalledInventory': missing, 'historicalIdentityChanges': conflicts}
+    write(ROOT / 'evidence/archived-inventory-audit.json', audit)
+    # Rebuild the same ordered official manifest index as the existing downloader.
+    settings = json.loads((ROOT / 'evidence/game-settings.json').read_bytes())
+    official_base = settings['data']['windowsplayer_contentpath']
+    config = json.loads((ROOT / 'evidence/asset-bundle-manifest_0.0.json').read_bytes())
+    dates = json.loads(config['keys']['manifest']['contentString'])['directories']
+    official = {}
+    for date in dates:
+        path = ROOT / 'evidence/manifests' / ('manifest_en_' + date)
+        tree = json.loads(path.with_suffix('.json').read_bytes())
+        url = official_base + date + '/manifest_en_' + date
+        for asset in tree['assetList']:
+            folder = asset.get('s3Folder', '').replace('0.0/', '')
+            official[asset['assetName'].lower()] = {
+                'url': official_base + date + '/' + folder + asset['assetName'],
+                'manifest_url': url, 'manifest_sha256': sha(path), **asset}
+    required = {r['bundle_name'] for r in records}
+    extra = {n: a for n, a in official.items()
+             if re.fullmatch(r'(sm[a-z0-9-]*|gum)_en_\d+', n) and n not in required}
+    results = []
+    for name, source in extra.items():
+        path = ROOT / 'supplementary/incoming' / (name + '.bundle')
+        path.parent.mkdir(parents=True, exist_ok=True)
+        if not path.exists():
+            content = download.fetch(source['url'])
+            if not content.startswith(b'UnityFS\0'):
+                raise ValueError('Additional bundle signature mismatch: ' + name)
+            temporary = path.with_suffix('.download')
+            temporary.write_bytes(content)
+            temporary.replace(path)
+        decoded = pipeline.extract_bundle(path)
+        assets = []
+        for material in decoded['manifests']:
+            for kind, field in zip(KINDS, ['_c', '_w', '_e', '_cf', '_cc']):
+                ref = material['tree'].get(field, '')
+                matches = [t for t in decoded['textures']
+                           if t['name'].lower() in [ref.lower(), Path(ref).stem.lower()]] if ref else []
+                asset = {'kind': kind, 'field': field, 'manifest': material['name'], 'reference': ref,
+                         'status': 'not_applicable' if not ref else 'extracted' if len(matches) == 1 else 'unresolved'}
+                if len(matches) == 1:
+                    t = matches[0]
+                    with Image.open(ROOT / t['png']) as image:
+                        image.load()
+                        if image.format != 'PNG' or image.size != (t['width'], t['height']):
+                            raise ValueError('Supplementary PNG validation failed: ' + name)
+                    if sha(ROOT / t['png']) != t['png_sha256']:
+                        raise ValueError('Supplementary PNG hash mismatch: ' + name)
+                    asset['texture'] = t
+                assets.append(asset)
+        results.append({'bundleName': name, 'source': source, 'sha256': sha(path),
+                        'rawBundle': decoded['raw_bundle'], 'assets': assets,
+                        'textureDecodeStatus': decoded['status'],
+                        'tcglVariantId': None,
+                        'identityStatus': 'unresolved: no entry in installed or archived English TCGL card tables',
+                        'reason': 'Official bundle exists but exact printing identifier is absent; no variant identity fabricated.'})
+    write(ROOT / 'supplementary/orphan-bundles.json', results)
+    print('Archived inventory audit:', len(tables), 'tables;', len(missing),
+          'additional table entries;', len(results), 'orphan official bundles preserved.', flush=True)
+    if missing:
+        raise RuntimeError('Archived inventory includes additional printings; see exact rows in inventory audit')
+    return audit, results
+
+
 def validate(pilot=False):
     records = json.loads((ROOT / 'dataset/card-records.json').read_text(encoding='utf-8'))
     manifest = json.loads((ROOT / 'dataset/manifest.json').read_text(encoding='utf-8'))
@@ -253,7 +362,9 @@ def validate(pilot=False):
     write(ROOT / 'dataset' / ('pilot-validation.json' if pilot else 'validation.json'), result)
     if not pilot:
         write(ROOT / 'sources.json', {'schema': 'holo-tcgl-original-sources-v1',
-                                     'validation': result, 'printings': printings})
+                                     'validation': result, 'printings': printings,
+                                     'supplementaryOrphanBundles': 'supplementary/orphan-bundles.json',
+                                     'inventoryAudit': 'evidence/archived-inventory-audit.json'})
         for sid in report:
             write(ROOT / 'dataset/cards' / sid / 'sources.json', {
                 'setId': sid, 'name': report[sid]['name'], 'collection': report[sid]['collection'],
@@ -310,6 +421,7 @@ def main():
         validate(pilot=True)
         print('Sun & Moon pilot validated; proceeding with full discovered series.', flush=True)
     acquire(records, args.workers)
+    audit_source_inventory(args.workers)
     validate()
 
 
