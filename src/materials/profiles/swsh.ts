@@ -5,7 +5,7 @@ import { tcglEtchedFinish } from './tcglEtchedFinish';
 // foil coverage, silver regions and exact grooves belong to card assets.
 export const swshEtched: HolographicProfile = {
   id: 'swsh-textured', name: 'Sword & Shield · Textured V family', family: 'Pokémon',
-  status: 'reference-pending', labOnly: true,
+  status: 'development', labOnly: true,
   description: 'Exact Sword & Shield TCGL die, offline tangent normals and one restrained etched response. No Scarlet & Violet star field, procedural relief or added facets.',
   diffraction: { period: 1.16, bandwidth: .048, strength: .48, secondaryOrder: .065, direction: -.48, crossWidth: .42, facetCoupling: 0, followsAuthoredNormals: true, normalFiltering: 1 },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
@@ -26,6 +26,8 @@ export const swshProfiles: HolographicProfile[] = [{
   surface: { metalness: .78, roughness: .3, laminate: .08, laminateRoughness: .3, foilReflectance: .065, inkTransmission: .9, coverageRoughness: .18, sheen: 0 },
   mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'absolute', embossMaskFromNormalAlpha: false },
 }];
+
+swshProfiles.push(swshEtched);
 
 swshProfiles.push({
   ...swshEtched, id: 'swsh-shiny-silver', name: 'Shining Fates · Shiny silver', status: 'development',

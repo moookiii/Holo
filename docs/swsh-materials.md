@@ -70,3 +70,9 @@ Proof `swsh-proof:radiant` reviewed in all eight states and the motion sweep. No
 Inspected moving Suicune copies from [PhenomenalByChoice](https://www.youtube.com/shorts/3haH5nJoxic) and [warrior3456](https://www.youtube.com/shorts/XPMTFVvos3Y). Silver picture background changes from dark to bright under tilt; fine etched zigzags and restrained spectral flashes remain separate from the opaque blue rules area. The second unsleeved sample confirms that silver response is not sleeve glare.
 
 Reuses the exact authored-normal system with a silver-biased variant and filtered metallic grain. No new geometry generator. Proof `swsh-proof:shiny` uses Suicune's own front/foil/etch and passed eight light states plus 13 motion frames without runtime errors. Front and oblique renders preserve zigzag registration and the unfoiled lower area. Grain intensity and physical groove depth remain provisional. Captures: `artifacts/swsh-materials/live/shiny-*` and `research/swsh-materials/physical/suicune-*`.
+
+## Textured V
+
+`swsh-textured` is an explicit reusable SWSH authored-normal profile. Beedrill V 161/189 (`swsh-proof:v`) binds its exact TCGL front, whiteplate and converted etch. It uses the required Espeon/Sylveon response, without their geometry, secondary regions or modern star effects. No separate optical model was justified.
+
+Inspected [Pokemon Holo](https://www.youtube.com/watch?v=TaEwujwyLNg) and [tande_rips](https://www.youtube.com/shorts/l9cdkRhyKxQ) physical Beedrill footage. Silver border and restrained rainbow over the flowers support this family, but diffuse footage does not resolve groove depth. Live eight-state/13-frame review has no runtime errors; the exact sky, wing and flower etches align. Strip lighting shows stronger line contrast than the diffuse physical video. Keep calibration provisional rather than changing the mandated normal gain based on unmatched lighting.
