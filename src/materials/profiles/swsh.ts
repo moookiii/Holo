@@ -64,7 +64,7 @@ swshProfiles.push({
   diffraction: { ...swshEtched.diffraction, strength: .18, secondaryOrder: .035 },
   surface: { ...swshEtched.surface, substrateReflection: .16, etchedInkSheen: .10,
     foilReflectance: .015, inkTransmission: .96, laminate: .025 },
-  glints: { density: .98, scale: 800, sharpness: 80, strength: 4.5, spread: .48, metallicGrain: true },
+  glints: { density: .98, scale: 240, sharpness: 80, strength: 4.5, spread: .48, metallicGrain: true },
 });
 
 swshProfiles.push({
