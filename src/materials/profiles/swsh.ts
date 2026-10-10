@@ -30,6 +30,12 @@ export const swshProfiles: HolographicProfile[] = [{
 swshProfiles.push(swshEtched);
 
 swshProfiles.push({
+  ...swshProfiles[0], id: 'swsh-celebrations-silver', name: 'Celebrations · Regular silver holo',
+  description: 'Smooth picture-window silver with exact TCGL subject and anniversary-logo exclusions. Printed stars and colors stay in the front; no invented confetti or etched relief.',
+  surface: { metalness: .72, roughness: .3, laminate: .08, laminateRoughness: .3, foilReflectance: .055, inkTransmission: .9, coverageRoughness: .08, sheen: 0 },
+});
+
+swshProfiles.push({
   ...swshEtched, id: 'swsh-shiny-silver', name: 'Shining Fates · Shiny silver', status: 'development',
   description: 'Silver sparkling Shiny Vault picture foil with exact TCGL subject, star and etched boundaries. Fine filtered metallic grain catches the light; the printed rules area stays unfoiled.',
   diffraction: { ...swshEtched.diffraction, strength: .28, bandwidth: .04, secondaryOrder: .035 },

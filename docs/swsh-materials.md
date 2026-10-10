@@ -88,3 +88,9 @@ References inspected: [Pokemon Holo](https://www.youtube.com/watch?v=aMD7TXd3CTM
 Arceus VSTAR 123/172 (`swsh-proof:vstar`) uses the same `swsh-textured` response with its own etch and opaque exclusions. [MonstersUpClose](https://www.youtube.com/shorts/uIBv-j0UhOc) shows rotating spectral flashes; [SmokeysPokemonCards](https://www.youtube.com/shorts/8HcYsoozo5c) resolves a quieter body and reflective etched background. Sleeves/display lighting limit quantitative comparison.
 
 Live eight-state/13-frame proof passed without runtime errors. Reviewed background arcs, quiet subject, name plate and VSTAR Power rules. The exact assets supply the visibly different VSTAR treatment without another redundant shader. Angular intensity remains provisional; normal conversion and the mandated finish response are unchanged.
+
+## Celebrations regular
+
+Mew 011/025 (`swsh-proof:celebrations`) uses `swsh-celebrations-silver`, a restrained smooth-metal variant of the existing substrate. Its exact whiteplate protects Mew, rules and the anniversary logo; printed stars remain printed. No etch exists for this printing and none is synthesized.
+
+Inspected [bitofeverything-7039](https://www.youtube.com/shorts/v3R0Sk-ff10) and [PokemonBloopers](https://www.youtube.com/shorts/hutg6XvmXqY). Both show the picture-window treatment, but their limited light movement is insufficient for final angular calibration. Therefore this is a provisional silver profile, not a measured claim that spectral response is absent from all regular Celebrations cards. Eight live light states and 13 motion frames passed without errors; subject/tail gaps and logo boundaries were reviewed. A stronger moving-light reference is still needed before curated status.
