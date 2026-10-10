@@ -201,11 +201,12 @@ def audit_source_inventory(workers=8):
         path = ROOT / 'evidence/manifests' / ('manifest_en_' + date)
         tree = json.loads(path.with_suffix('.json').read_bytes())
         url = official_base + date + '/manifest_en_' + date
+        manifest_hash = sha(path)
         for asset in tree['assetList']:
             folder = asset.get('s3Folder', '').replace('0.0/', '')
             official[asset['assetName'].lower()] = {
                 'url': official_base + date + '/' + folder + asset['assetName'],
-                'manifest_url': url, 'manifest_sha256': sha(path), **asset}
+                'manifest_url': url, 'manifest_sha256': manifest_hash, **asset}
     required = {r['bundle_name'] for r in records}
     extra = {n: a for n, a in official.items()
              if re.fullmatch(r'(sm[a-z0-9-]*|gum)_en_\d+', n) and n not in required}
