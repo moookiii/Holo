@@ -7,6 +7,14 @@ const proofSets: Record<string, string> = {
   'black-gold': 'Lost Origin',
 };
 
+// Source rarity is independent of the material profile and print variant.
+const proofRarities: Record<string, string> = {
+  reverse: 'Common', amazing: 'Amazing Rare', radiant: 'Radiant Rare',
+  shiny: 'Shiny Rare', v: 'Ultra Rare', vmax: 'Holo Rare VMAX',
+  vstar: 'Holo Rare VSTAR', celebrations: 'Holo Rare', classic: 'Classic Collection',
+  'black-gold': 'Character Secret Rare',
+};
+
 /** Small, explicit material workbench. No set catalog or pack integration. */
 export const swshProofCases = [
   ['reverse', 'swsh1_10_ph', 'Grookey', '010/202', 'swsh-reverse-energy', false],
@@ -26,6 +34,14 @@ export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id,
   return {
     id: `swsh-proof:${finish}`, title, number: `${number} · ${finish}`,
     franchise: 'Pokémon', set: proofSets[finish], profile, seed: 202001, galleryVisible: true,
+    pokemon: {
+      id, localId: number.split('/')[0], name: title, setId: id.split('_')[0],
+      setName: proofSets[finish], seriesId: 'swsh', seriesName: 'Sword & Shield', era: 'Sword & Shield',
+      rarity: proofRarities[finish], category: 'Pokemon',
+      variants: [finish === 'reverse' ? 'reverse' : 'holo'],
+      variant: finish === 'reverse' ? 'reverse' : 'holo', materialProfile: profile,
+      front: `${base}/front.png`, thumbnail: `${base}/front.png`,
+    },
     dimensions: { width: 6.3, height: 8.8, thickness: .032, cornerRadius: .3, bevel: .007 },
     front: `${base}/front.png`, back: '/cards/pokemon/back.jpg',
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
