@@ -10,6 +10,7 @@ export const swshProofCases = [
   ['vmax', 'swsh4_44', 'Pikachu VMAX', '044/185', 'swsh-textured', true],
   ['vstar', 'swsh9_123', 'Arceus VSTAR', '123/172', 'swsh-textured', true],
   ['celebrations', 'swsh7-5_11', 'Mew', '011/025', 'swsh-celebrations-silver', false],
+  ['classic', 'swsh7-5r_2', 'Charizard', '4/102', 'swsh-celebrations-classic', true],
 ] as const;
 
 export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id, title, number, profile, etched]) => {
@@ -22,7 +23,8 @@ export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id,
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     maps: { foil: `${base}/foil.png`, foilControls: `${base}/foil-source.png`,
       roughness: `${base}/roughness.png`, ...(etched ? { normal: `${base}/normal.png` } : {}),
-      ...(finish === 'radiant' ? { secondaryFoil: `${base}/secondary.png`, secondaryDirection: '/cards/pokemon/swsh-proofs/stock/radiant-field.png' } : {}) },
+      ...(finish === 'radiant' ? { secondaryFoil: `${base}/secondary.png`, secondaryDirection: '/cards/pokemon/swsh-proofs/stock/radiant-field.png' } : {}),
+      ...(finish === 'classic' ? { secondaryFoil: `${base}/foil.png`, secondaryDirection: '/cards/pokemon/swsh-proofs/stock/classic-field.png' } : {}) },
     mapSettings: { normalScale: etched ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
     source: { image: `${base}/front.png`, metadata: `${base}/evidence.json`,
       notes: 'Exact extracted TCGL printing. Registered full-card crop; authentic foil and offline Scharr normal where present. Physical calibration status: docs/swsh-materials.md.' },

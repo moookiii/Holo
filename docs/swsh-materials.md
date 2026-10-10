@@ -94,3 +94,11 @@ Live eight-state/13-frame proof passed without runtime errors. Reviewed backgrou
 Mew 011/025 (`swsh-proof:celebrations`) uses `swsh-celebrations-silver`, a restrained smooth-metal variant of the existing substrate. Its exact whiteplate protects Mew, rules and the anniversary logo; printed stars remain printed. No etch exists for this printing and none is synthesized.
 
 Inspected [bitofeverything-7039](https://www.youtube.com/shorts/v3R0Sk-ff10) and [PokemonBloopers](https://www.youtube.com/shorts/hutg6XvmXqY). Both show the picture-window treatment, but their limited light movement is insufficient for final angular calibration. Therefore this is a provisional silver profile, not a measured claim that spectral response is absent from all regular Celebrations cards. Eight live light states and 13 motion frames passed without errors; subject/tail gaps and logo boundaries were reviewed. A stronger moving-light reference is still needed before curated status.
+
+## Celebrations Classic Collection
+
+Charizard 4/102 (`swsh-proof:classic`) now binds exact front/foil/etch plus the original TCGL `MAT_Cards3D_Celebrations._TexDots` stock (`FX_T_Celeb_Confetti`). The offline adapter retains motif shapes and maps color labels to optical axes for the existing `celebration-classic` kernel. No random dots, new optical kernel or synthetic relief. Stock evidence records source/bundle/output hashes and the aspect crop. The hue-to-axis interpretation and stock scale are provisional.
+
+Physical footage inspected: [craigioontheradio](https://www.youtube.com/shorts/1zm3cl8HIAo) and [trainerdesignfly](https://www.youtube.com/shorts/WuxlPW_rfg4) show strong granular/confetti reflection in the picture background and quieter print. Eight light states plus 13 motion frames now render without errors after fixing an omitted secondary laminate-roughness value.
+
+**Incomplete:** the current whiteplate-based normal protection removes authentic full-card etch outside the foil window. Exact etch contains those regions, but an independently reviewed print-protection PNG is still required to restore them safely. The current render also emphasizes background ridges more than the physical confetti. This is an operational exact-asset proof, not a finished Classic calibration. Do not promote it to curated or use it as proof of full-card frosting.

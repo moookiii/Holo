@@ -30,6 +30,17 @@ export const swshProfiles: HolographicProfile[] = [{
 swshProfiles.push(swshEtched);
 
 swshProfiles.push({
+  ...swshEtched, id: 'swsh-celebrations-classic', name: 'Celebrations · Classic Collection',
+  description: 'Exact card etch with separately masked TCGL confetti stock using the existing Classic optical kernel. Stock is optical direction only, never replacement relief.',
+  secondary: {
+    opticalModel: 'celebration-classic',
+    diffraction: { ...swshEtched.diffraction, strength: .48, crossWidth: .32, followsAuthoredNormals: false },
+    structure: swshEtched.structure, glints: swshEtched.glints,
+    surface: { metalness: .5, roughness: .27, laminate: .045, laminateRoughness: .27, foilReflectance: .025, inkTransmission: .72, sheen: 0 },
+  },
+});
+
+swshProfiles.push({
   ...swshProfiles[0], id: 'swsh-celebrations-silver', name: 'Celebrations · Regular silver holo',
   description: 'Smooth picture-window silver with exact TCGL subject and anniversary-logo exclusions. Printed stars and colors stay in the front; no invented confetti or etched relief.',
   surface: { metalness: .72, roughness: .3, laminate: .08, laminateRoughness: .3, foilReflectance: .055, inkTransmission: .9, coverageRoughness: .08, sheen: 0 },
