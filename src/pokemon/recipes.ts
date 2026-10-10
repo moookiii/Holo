@@ -6,6 +6,7 @@ import { celebrationRecipe, celebrationUpcRecipe } from './CelebrationRecipe.ts'
 import { megaRecipes } from './MegaRecipes.ts';
 import { dragonDiscoveryRecipe } from './DragonDiscoveryRecipe.ts';
 import { swshRecipes } from './SwshRecipes.ts';
+import { smRecipes } from './SmRecipes.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; fallbackVariant?: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
 export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; uniqueGroup?: string; pool?: 'set' | 'energy' | 'set-and-energy'; }
@@ -54,6 +55,7 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
     ] };
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
+  ...smRecipes,
   ...swshRecipes,
   ...megaRecipes,
   celebrationRecipe, celebrationUpcRecipe,

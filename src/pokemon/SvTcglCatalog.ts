@@ -7,6 +7,7 @@ import { svpTcgdexNonfoil } from './data/svp-tcgdex-nonfoil.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
 import { localBoosterArt } from './boosterArt.ts';
 import { swshSetLogo } from './SwshSetLogos.ts';
+import { smLogos } from './data/sm-logos.generated.ts';
 
 const catalogSets = [...tcglSvSets, ...tcglMegaSets, ...tcglMepSets, ...tcglSwshSets, ...tcglSmSets].map(set => set.id === 'svp'
   ? { ...set, cards: [...set.cards, ...svpTcgdexNonfoil].sort((a, b) => Number(a.localId) - Number(b.localId)) }
@@ -28,7 +29,7 @@ const byId = new Map(svTcglCards.map(card => [card.id, card]));
 /** Shared pack Energy IDs (sve-001) are distinct from TCGL print IDs (sve-1). */
 export const isSvTcglCard = (id: string): boolean => byId.has(id);
 export const svTcglSets: readonly PokemonSet[] = catalogSets.map(set => ({
-  id: set.id, name: set.name, logo: set.logo ?? ('seriesId' in set && set.seriesId === 'swsh' ? swshSetLogo(set.id) : undefined), releaseDate: set.releaseDate,
+  id: set.id, name: set.name, logo: set.logo ?? smLogos[set.id] ?? ('seriesId' in set && set.seriesId === 'swsh' ? swshSetLogo(set.id) : undefined), releaseDate: set.releaseDate,
   series: { id: 'seriesId' in set ? set.seriesId as string : 'sv', name: 'seriesName' in set ? set.seriesName as string : 'Scarlet & Violet' },
   era: 'seriesId' in set ? set.seriesId as string : 'sv',
   cardIds: set.cards.map(card => card.id), boosters: localBoosterArt(set.id) ?? [],
