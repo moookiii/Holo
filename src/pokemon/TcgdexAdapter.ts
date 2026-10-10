@@ -50,6 +50,17 @@ TCGdex.fetch = async (url, init) => {
 };
 class PermanentCatalogError extends Error {}
 const client = new TCGdex('en');
+// The SDK's browser cache throws on quota/denied storage, even after a
+// successful response. Persistence is optional; normalized data stays in memory.
+const sdkCache = client.getCache();
+const readSdkCache = sdkCache.get.bind(sdkCache);
+const writeSdkCache = sdkCache.set.bind(sdkCache);
+sdkCache.get = <T>(key: string, fallback?: T) => {
+  try { return readSdkCache<T>(key, fallback); } catch { return fallback; }
+};
+sdkCache.set = <T>(key: string, value: T, ttl?: number) => {
+  try { return writeSdkCache(key, value, ttl); } catch { return false; }
+};
 const image = (path?: string) => path ? /\.(png|webp|jpe?g)$/i.test(path) ? path : `${path}.webp` : undefined;
 const localSetLogo = (setId: string) => {
   const logo = setId === SOUTHERN_ISLANDS_ID ? 'si1-logo.png' : setId === 'neo4' ? 'neo4-logo.png' : setId === 'neo3' ? 'neo3-logo.png' : setId === 'neo2' ? 'neo2-logo.png' : setId === 'neo1' ? 'neo1-logo.png' : setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : setId === 'lc' ? 'lc-logo.png' : undefined;
@@ -78,18 +89,16 @@ export class TcgdexAdapter {
   sets(seriesId: string, signal: AbortSignal): Promise<CatalogEntry[]> {
     return this.read(`series:${seriesId}`, signal, async () => {
       if (seriesId === 'lc') return [{ id: LEGENDARY_COLLECTION_ID, name: legendaryCollectionSet.name, logo: legendaryCollectionSet.logo }];
+      if (seriesId === 'swsh') {
+        return svTcglSets.filter(set => set.series.id === 'swsh')
+          .sort((a, b) => a.releaseDate!.localeCompare(b.releaseDate!) || a.id.localeCompare(b.id))
+          .map(set => ({ id: set.id, name: set.name, logo: set.logo }));
+      }
       const serie = await client.serie.get(seriesId);
       if (!serie) throw new Error('This series is unavailable.');
       const sets = serie.sets
         .filter(s => seriesId !== 'base' || s.name !== 'W Promotional')
         .map(s => ({ id: s.id, name: s.name, logo: localSetLogo(s.id) ?? image(s.logo) }));
-      if (seriesId === 'swsh') {
-        const local = svTcglSets.filter(set => set.series.id === 'swsh');
-        // Replace remote aliases with the exact extracted tables, including subsets.
-        sets.splice(0, sets.length, ...local.map(set => ({ id: set.id, name: set.name, logo: set.logo })));
-        const dates = new Map(local.map(set => [set.id, set.releaseDate]));
-        sets.sort((a,b) => dates.get(a.id)!.localeCompare(dates.get(b.id)!) || a.id.localeCompare(b.id));
-      }
       if (seriesId === 'me') {
         for (const local of svTcglSets.filter(set => set.series.id === 'me' && set.id !== 'mee')) {
           const old = sets.findIndex(set => set.id === local.id);
