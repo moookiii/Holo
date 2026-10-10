@@ -102,3 +102,9 @@ Charizard 4/102 (`swsh-proof:classic`) now binds exact front/foil/etch plus the 
 Physical footage inspected: [craigioontheradio](https://www.youtube.com/shorts/1zm3cl8HIAo) and [trainerdesignfly](https://www.youtube.com/shorts/WuxlPW_rfg4) show strong granular/confetti reflection in the picture background and quieter print. Eight light states plus 13 motion frames now render without errors after fixing an omitted secondary laminate-roughness value.
 
 **Incomplete:** the current whiteplate-based normal protection removes authentic full-card etch outside the foil window. Exact etch contains those regions, but an independently reviewed print-protection PNG is still required to restore them safely. The current render also emphasizes background ridges more than the physical confetti. This is an operational exact-asset proof, not a finished Classic calibration. Do not promote it to curated or use it as proof of full-card frosting.
+
+## Black-and-gold Trainer Gallery
+
+Mew VMAX TG30/TG30 (`swsh-proof:black-gold`, Lost Origin) reuses `gold-etched`. [PokeTiny](https://www.youtube.com/shorts/l53KixZtP_M) and [kar_break1980](https://www.youtube.com/shorts/xXtlvVT37Hs) show dense gold scintillation with a quiet black field. This does not yet justify a separate optical model: the existing gold material already has authored-normal diffraction and filtered metal grain. The exact Mew masks and die provide its silhouette and line geometry.
+
+Eight light states and 13 motion frames passed without errors. The black field stays quiet; the gold character and border reflect. Existing grain appears weaker and etched lines stronger than the slabbed references, so grain/line balance remains provisional. No unrelated gold profiles were changed to compensate for uncertain slab lighting.
