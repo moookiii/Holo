@@ -230,7 +230,7 @@
       ]
     }
   },
-  "profile": "pokemon-base-set-2-cosmos",
+  "profile": "svp-cosmos",
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -256,15 +256,12 @@
     "embossStrength": 0,
     "runtimeGeneration": false
   },
-  "limitations": [
-    "Exact physical-copy Cosmos placement pending; empty motif map, no invented dots."
-  ],
+  "limitations": [],
   "maps": {
     "foilControls": "/cards/pokemon/tcgl-swsh/swshbsp_52/foil-controls.png",
     "foil": "/cards/pokemon/tcgl-swsh/swshbsp_52/foil.png",
     "protection": "/cards/pokemon/tcgl-swsh/swshbsp_52/protection.png",
-    "roughness": "/cards/pokemon/tcgl-swsh/swshbsp_52/roughness.png",
-    "motif": "/cards/pokemon/tcgl-swsh/swshalt_1/cosmos-placement-pending.png"
+    "roughness": "/cards/pokemon/tcgl-swsh/swshbsp_52/roughness.png"
   },
   "outputVerification": {
     "foilControls": {
@@ -298,14 +295,11 @@
         1024
       ],
       "mode": "L"
-    },
-    "motif": {
-      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-      "dimensions": [
-        1200,
-        1650
-      ],
-      "mode": "L"
     }
+  },
+  "cosmosPlacement": {
+    "status": "shared-sheet",
+    "profile": "svp-cosmos",
+    "reason": "User approved shared Cosmos treatment across the 148 Sword & Shield product/promo printings. Exact per-card foil/protection remains active; positions are not a physical-copy match."
   }
 }

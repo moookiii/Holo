@@ -1,13 +1,34 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { tcglSwshSets, tcglSwshSurfaces } from '../src/pokemon/data/swsh-tcgl.generated.ts';
 import { svTcglCards, svTcglSet } from '../src/pokemon/SvTcglCatalog.ts';
 import { swshRecipes } from '../src/pokemon/SwshRecipes.ts';
 import { collatePokemon } from '../src/pokemon/collator.ts';
+import { svTcglDefinition } from '../src/pokemon/SvTcglSurfaces.ts';
 const profileSources=readdirSync('src/materials/profiles').filter(n=>n.endsWith('.ts')).map(n=>readFileSync('src/materials/profiles/'+n,'utf8')).join('\n');
 
 const cards=svTcglCards.filter(c=>c.seriesId==='swsh');
+
+test('all 148 Cosmos printings have active shared optics and unchanged exact coverage',()=>{
+  const report=JSON.parse(readFileSync('public/cards/pokemon/tcgl-swsh/cosmos-completion.json','utf8'));
+  const cosmos=tcglSwshSurfaces.filter(s=>s.foilType==='Cosmos');
+  assert.equal(cosmos.length,148);assert.equal(report.printings.length,148);
+  for(const s of cosmos){
+    const def=svTcglDefinition(s.cardId,s.variant);
+    assert.equal(def.profile,'svp-cosmos');assert.equal(def.pokemon?.treatmentStatus,undefined);
+    assert.equal(def.mapSettings?.embossStrength,0);assert.ok(def.maps?.foil);assert.ok(def.maps?.protection);
+    const evidence=JSON.parse(readFileSync('public'+s.evidence,'utf8'));
+    assert.equal(evidence.cosmosPlacement.status,'shared-sheet');
+    const recorded=report.printings.find((p:{cardId:string;variant:string})=>p.cardId===s.cardId&&p.variant===s.variant);
+    assert.ok(recorded);assert.deepEqual(evidence.maps,s.maps);
+    for(const [channel,url] of Object.entries(s.maps)){
+      assert.equal(url,recorded.preservedMaps[channel].path);
+      assert.equal(createHash('sha256').update(readFileSync('public'+url)).digest('hex'),recorded.preservedMaps[channel].sha256);
+    }
+  }
+});
 test('all extracted printings have distinct identities, exact assets and existing profiles',()=>{
   const index=JSON.parse(readFileSync('public/cards/pokemon/tcgl-swsh/printing-index.json','utf8')) as {tcglCardId:string;cardId:string;variant:string}[];
   assert.equal(tcglSwshSets.length,25);assert.equal(cards.length,3820);assert.equal(index.length,5853);
@@ -19,7 +40,7 @@ test('all extracted printings have distinct identities, exact assets and existin
     assert.ok(existsSync('public'+c.front));
     for(const path of Object.values(s.maps))if(typeof path==='string')assert.ok(existsSync('public'+path),path);
     if(s.textured)assert.ok(s.maps.normal);
-    if(s.foilType==='Cosmos')assert.ok(s.maps.motif);
+    if(s.foilType==='Cosmos'){assert.equal(s.profile,'svp-cosmos');assert.equal(s.maps.motif,undefined);}
   }
 });
 test('every set exposes all imported cards and real booster products only',()=>{

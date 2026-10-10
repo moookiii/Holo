@@ -152,6 +152,11 @@
     "file": "research/tcgl/mep-set/export.json"
   },
   "physicalFinishReview": "Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.",
-  "finishStatus": "Original front only; Cosmos placements or stamped optics pending exact-print evidence.",
-  "motifPlacement": "pending; empty motif PNG, no generated dots"
+  "finishStatus": "Shared Cosmos treatment active; exact TCGL front and coverage preserved.",
+  "cosmosPlacement": {
+    "status": "shared-sheet",
+    "profile": "svp-cosmos",
+    "reason": "User approved the existing shared Cosmos treatment for unfinished promo printings. Exact per-card foil/protection remains active; positions are not a physical-copy match."
+  },
+  "profile": "svp-cosmos"
 }

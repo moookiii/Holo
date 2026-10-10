@@ -94,14 +94,15 @@ def convert():
         evidence_path=ROOT/'public'/result['evidence'].lstrip('/')
         evidence=json.loads(evidence_path.read_text());evidence['exportEntry']=p['exportEntry'];evidence['exportSource']=p['exportSource']
         evidence['physicalFinishReview']='Pending exact-print angled-photo calibration; TCGL geometry is not measured depth.'
-        if p['foil']['type'] in ('COSMOS','STAMPED'):
+        if p['foil']['type']=='COSMOS':
+            result['profile']='svp-cosmos'
+            evidence['profile']='svp-cosmos'
+            evidence['cosmosPlacement']={'status':'shared-sheet','profile':'svp-cosmos','reason':'User approved the existing shared Cosmos treatment for unfinished promo printings. Exact per-card foil/protection remains active; positions are not a physical-copy match.'}
+            evidence['finishStatus']='Shared Cosmos treatment active; exact TCGL front and coverage preserved.'
+        if p['foil']['type']=='STAMPED':
             result['treatmentStatus']='deferred'
             result['profile']='print-only'
             evidence['finishStatus']='Original front only; Cosmos placements or stamped optics pending exact-print evidence.'
-            if p['foil']['type']=='COSMOS':
-                motif=converter.OUT/(number+'-holo-motif.png');Image.new('L',(1200,1650),0).save(motif)
-                evidence['motifPlacement']='pending; empty motif PNG, no generated dots'
-                evidence['maps'][motif.name]=converter.digest(motif)
         write(evidence_path,evidence);surfaces.append(result)
         print('Converted '+number,flush=True)
     write(ASSETS/'tcgl/manifest.json',surfaces)

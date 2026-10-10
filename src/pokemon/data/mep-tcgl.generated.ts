@@ -2031,7 +2031,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
   {
     "cardId": "mep-005",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/005-holo-foil.png",
@@ -2039,13 +2039,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/005-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Drifloon_mebsp_5_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Drifloon_mebsp_5_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-006",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/006-holo-foil.png",
@@ -2053,13 +2052,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/006-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Drifblim_mebsp_6_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Drifblim_mebsp_6_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-007",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/007-holo-foil.png",
@@ -2067,13 +2065,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/007-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Psyduck_mebsp_7_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Psyduck_mebsp_7_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-008",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/008-holo-foil.png",
@@ -2081,8 +2078,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/008-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Golduck_mebsp_8_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Golduck_mebsp_8_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-009",
@@ -2210,7 +2206,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
   {
     "cardId": "mep-018",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/018-holo-foil.png",
@@ -2218,13 +2214,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/018-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Cottonee_mebsp_18_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Cottonee_mebsp_18_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-019",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/019-holo-foil.png",
@@ -2232,13 +2227,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/019-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Whimsicott_mebsp_19_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Whimsicott_mebsp_19_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-020",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/020-holo-foil.png",
@@ -2246,13 +2240,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/020-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Sneasel_mebsp_20_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Sneasel_mebsp_20_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-021",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/021-holo-foil.png",
@@ -2260,8 +2253,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/021-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Weavile_mebsp_21_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Weavile_mebsp_21_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-022",
@@ -2885,7 +2877,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
   {
     "cardId": "mep-068",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/068-holo-foil.png",
@@ -2893,13 +2885,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/068-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Makuhita_mebsp_68_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Makuhita_mebsp_68_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-069",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/069-holo-foil.png",
@@ -2907,8 +2898,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/069-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Chikorita_mebsp_69_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Chikorita_mebsp_69_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-070",
@@ -3023,7 +3013,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
   {
     "cardId": "mep-078",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/078-holo-foil.png",
@@ -3031,13 +3021,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/078-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Toxel_mebsp_78_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Toxel_mebsp_78_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-079",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/079-holo-foil.png",
@@ -3045,8 +3034,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/079-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Charmeleon_mebsp_79_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Charmeleon_mebsp_79_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-080",
@@ -3131,7 +3119,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
   {
     "cardId": "mep-086",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/086-holo-foil.png",
@@ -3139,13 +3127,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/086-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Slowpoke_mebsp_86_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Slowpoke_mebsp_86_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-087",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/087-holo-foil.png",
@@ -3153,8 +3140,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/087-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Binacle_mebsp_87_std_Rare_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Binacle_mebsp_87_std_Rare_Cosmos_Holo"
   },
   {
     "cardId": "mep-088",
@@ -3231,7 +3217,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
   {
     "cardId": "mep-094",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/094-holo-foil.png",
@@ -3239,13 +3225,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/094-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "AlolanExeggutor_mebsp_94_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "AlolanExeggutor_mebsp_94_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-095",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/095-holo-foil.png",
@@ -3253,13 +3238,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/095-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Lucario_mebsp_95_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Lucario_mebsp_95_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-096",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/096-holo-foil.png",
@@ -3267,13 +3251,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/096-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Moltres_mebsp_96_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Moltres_mebsp_96_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-097",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/097-holo-foil.png",
@@ -3281,13 +3264,12 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/097-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Articuno_mebsp_97_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Articuno_mebsp_97_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-098",
     "variant": "holo",
-    "profile": "print-only",
+    "profile": "svp-cosmos",
     "textured": false,
     "maps": {
       "foil": "/cards/pokemon/tcgl-me/mep/tcgl/098-holo-foil.png",
@@ -3295,8 +3277,7 @@ export const tcglMepSurfaces: readonly (TcglSvSurface & { tcglVariantId: string;
     },
     "evidence": "/cards/pokemon/tcgl-me/mep/tcgl/098-holo-evidence.json",
     "foilType": "COSMOS",
-    "tcglVariantId": "Zapdos_mebsp_98_std_RareHolo_Cosmos_Holo",
-    "treatmentStatus": "deferred"
+    "tcglVariantId": "Zapdos_mebsp_98_std_RareHolo_Cosmos_Holo"
   },
   {
     "cardId": "mep-099",

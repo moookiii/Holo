@@ -38,7 +38,7 @@ def profile(row, rarity, textured, variant):
     if effect=='SwSecret' and rarity in ('RareSecret','RareSecretBasicEnergy','CharacterRareSecret','GalarianGallerySecretRare'): return 'gold-etched'
     if textured: return 'swsh-textured'
     if effect=='SunPillar': return 'swsh-textured'
-    if effect=='Cosmos': return 'pokemon-base-set-2-cosmos'
+    if effect=='Cosmos': return 'svp-cosmos'
     if effect=='CrackedIce': return 'pokemon-cracked-ice'
     if effect=='SwHolo': return 'pokemon-vertical-line'
     if row['set_id']=='swsh7-5' and effect=='FlatSilver': return 'swsh-celebrations-silver'
@@ -102,9 +102,6 @@ def main():
             if chosen=='swsh-celebrations-classic':
                 maps.update(secondaryFoil=maps['foil'],secondaryDirection='/cards/pokemon/swsh-proofs/stock/classic-field.png')
                 limitations.append('Classic body frosting boundaries need individual review; conservative whiteplate protection retained.')
-            if m['foil_effect']=='Cosmos':
-                maps['motif']=save('cosmos-placement-pending',np.zeros((1650,1200),np.float32))
-                limitations.append('Exact physical-copy Cosmos placement pending; empty motif map, no invented dots.')
             if m['foil_effect']=='Stamped': limitations.append('Stamped optical finish unsupported; exact assets retained, optical treatment deferred.')
             # Keep the finished proof's own reviewed assets rather than rebuilding it.
             if cid in proofs:
@@ -117,6 +114,8 @@ def main():
           'registration':{'unityUvBox':[145/1024,0,878/1024,1],'dimensions':[733,1024],'verticalFlip':False,'polarity':'inverted mean RGB','status':'source-family registration; individual physical review pending'},
           'conversion':{'normalDimensions':[1800,2475],'slopeGain':1.03,'derivatives':'Scharr scale 1/32 before protection','embossStrength':0,'runtimeGeneration':False},
           'limitations':limitations,'maps':maps}
+        if m['foil_effect']=='Cosmos':
+            evidence['cosmosPlacement']={'status':'shared-sheet','profile':'svp-cosmos','reason':'User approved shared Cosmos treatment across the 148 Sword & Shield product/promo printings. Exact per-card foil/protection remains active; positions are not a physical-copy match.'}
         write(research/'integration-evidence.json',evidence);write(dest/'evidence.json',evidence)
         card={'id':appid,'localId':m['printed_collector_number'],'name':m['name'],'rarity':RARITIES.get(rarity,rarity),
               'category':{1:'Pokemon',2:'Trainer',3:'Energy'}.get(row.get('category'),'Pokemon'),

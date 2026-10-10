@@ -37,16 +37,23 @@ No runtime conversion or fabricated geometry is introduced.
 | Celebrations regular silver | `swsh-celebrations-silver` |
 | Classic Collection | `swsh-celebrations-classic` |
 | Smooth character gallery rainbow | `sv_tcgl_illustration_holo` |
-| Product Cosmos | `pokemon-base-set-2-cosmos`, empty placement pending |
+| Product Cosmos | `svp-cosmos`, user-approved shared promo sheet |
 | Product cracked ice | `pokemon-cracked-ice` |
 
 The ten material proof printings retain their previously reviewed map URLs and
 existing calibrated profiles. All other printings use their own source plates and
 etches. Source-family UV checks and automated file checks do not establish
 individual physical groove depth. Conservative whiteplate protection may omit
-Classic body frosting; those cards remain marked provisional. Cosmos motif
-positions require exact-copy evidence and remain explicitly deferred, with empty
-motif PNGs. SWSH296's stamped optics are unsupported and deferred. The existing
+Classic body frosting; those cards remain marked provisional. All 148 product
+Cosmos printings (84 Black Star Promos and 64 alternate printings) now use the
+existing shared `svp-cosmos` treatment, explicitly approved by the user. Each
+printing retains its exact TCGL front, foil coverage, protection and roughness;
+empty motif maps no longer suppress the sheet. Placement is shared, not an
+exact physical-copy match. Vintage registered Cosmos cards and existing SVP
+optics are unchanged. `cosmos-completion.json` records every printing and hashes
+of its preserved maps. `scripts/tcgl/complete_swsh_cosmos.py` reapplies this
+choice to the current catalog; the importer also preserves it on regeneration.
+SWSH296's stamped optics are unsupported and deferred. The existing
 cracked-ice profile remains reference-pending. None of these limitations is hidden
 by a new shader or random motif.
 

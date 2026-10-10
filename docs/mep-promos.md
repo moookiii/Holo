@@ -23,7 +23,7 @@ Protection uses each printing's own TCGL foil glyph/coverage boundaries. Body cl
 
 ## Other finishes and remaining limits
 
-20 SV_HOLO printings and 39 SUN_PILLAR printings use existing smooth source-masked finishes. 19 Cosmos printings and two stamped printings retain their original front with `treatmentStatus: deferred` and a print-only material. Cosmos motif PNGs are empty 1200×1650 grayscale files, explicitly pending placement. No random dots, reused placements, synthetic relief or replacement stamp optics are introduced.
+20 SV_HOLO printings and 39 SUN_PILLAR printings use existing smooth source-masked finishes. All 19 Cosmos printings now use the user-approved existing shared `svp-cosmos` treatment with each card's exact TCGL foil/protection maps. Placement is shared rather than a physical-copy match. The former empty motif PNGs are inactive. Two stamped printings retain their original front with `treatmentStatus: deferred` and a print-only material; no replacement stamp optics or synthetic relief is introduced.
 
 The SUN_PILLAR export declarations for 099 and 100 include CastAndCure/SouthernCross long-form tags; the existing smooth response does not reproduce that specialized optical pattern. Exact-print angled photographs and individual physical finish calibration remain pending for the set; render screenshots cannot establish depth. An exact 011 physical photo was located at [the seller listing](https://www.ebay.com/itm/205776109033), but this is not full-set angular calibration.
 

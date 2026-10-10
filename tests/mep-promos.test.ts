@@ -62,8 +62,16 @@ test('all 20 MEP etches resolve to the sole Sylveon/Espeon normal response', () 
   }
 });
 
-test('unreviewed Cosmos placements and stamps retain the exact front without replacement optics', () => {
-  const deferred=tcglMepSurfaces.filter(s=>s.treatmentStatus==='deferred');assert.equal(deferred.length,21);
+test('only unreviewed stamps remain deferred; all 19 Cosmos promos use the approved shared sheet', () => {
+  const cosmos=tcglMepSurfaces.filter(s=>s.foilType==='COSMOS');assert.equal(cosmos.length,19);
+  for (const surface of cosmos) {
+    const def=svTcglDefinition(surface.cardId,'holo');
+    assert.equal(def.profile,'svp-cosmos');assert.equal(def.pokemon?.treatmentStatus,undefined);
+    assert.ok(surface.maps.foil);assert.ok(surface.maps.protection);
+    const evidence=JSON.parse(readFileSync(file(surface.evidence),'utf8'));
+    assert.equal(evidence.cosmosPlacement.status,'shared-sheet');
+  }
+  const deferred=tcglMepSurfaces.filter(s=>s.treatmentStatus==='deferred');assert.equal(deferred.length,2);
   for (const surface of deferred) {
     const def=svTcglDefinition(surface.cardId,'holo');
     assert.equal(def.profile,'print-only');assert.equal(def.pokemon?.treatmentStatus,'deferred');
