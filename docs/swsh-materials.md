@@ -76,3 +76,9 @@ Reuses the exact authored-normal system with a silver-biased variant and filtere
 `swsh-textured` is an explicit reusable SWSH authored-normal profile. Beedrill V 161/189 (`swsh-proof:v`) binds its exact TCGL front, whiteplate and converted etch. It uses the required Espeon/Sylveon response, without their geometry, secondary regions or modern star effects. No separate optical model was justified.
 
 Inspected [Pokemon Holo](https://www.youtube.com/watch?v=TaEwujwyLNg) and [tande_rips](https://www.youtube.com/shorts/l9cdkRhyKxQ) physical Beedrill footage. Silver border and restrained rainbow over the flowers support this family, but diffuse footage does not resolve groove depth. Live eight-state/13-frame review has no runtime errors; the exact sky, wing and flower etches align. Strip lighting shows stronger line contrast than the diffuse physical video. Keep calibration provisional rather than changing the mandated normal gain based on unmatched lighting.
+
+## Textured VMAX
+
+Pikachu VMAX 044/185 (`swsh-proof:vmax`) reuses `swsh-textured` with its own curved body/background etch. Eight light states and 13 motion frames passed with no runtime errors; body rings, top clouds and printed rules remain registered. No new shader is warranted from current evidence.
+
+References inspected: [Pokemon Holo](https://www.youtube.com/watch?v=aMD7TXd3CTM) shows diagonal spectral bands but does not resolve texture; [Poke Scope seller review](https://www.youtube.com/watch?v=EZ-mWAQkSBY) shows angular blue/gold flashes in a close-up, but focus is weak. Do not treat the first clip's smooth appearance as proof that etching should be removed. Exact line contrast and grating direction remain reference-pending; the live asset proof is implemented, not a claim of final physical fidelity.
