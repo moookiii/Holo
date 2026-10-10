@@ -3,6 +3,7 @@ import { tcglSvSets } from '../pokemon/data/sv-tcgl.generated.ts';
 import { tcglMegaSets } from '../pokemon/data/mega-tcgl.generated.ts';
 import { tcglMepSets } from '../pokemon/data/mep-tcgl.generated.ts';
 import { tcglSwshSets } from '../pokemon/data/swsh-tcgl.generated.ts';
+import { tcglSmSets } from '../pokemon/data/sm-tcgl.generated.ts';
 import { dragonDiscoverySet } from '../pokemon/DragonDiscoveryCatalog.ts';
 
 const pokemonSetAliases: Readonly<Record<string, string>> = {
@@ -64,6 +65,7 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ...tcglMegaSets.map(set => [set.name, set.releaseDate] as [string, string]),
   ...tcglMepSets.map(set => [set.name, set.releaseDate] as [string, string]),
   ...tcglSwshSets.map(set => [set.name, set.releaseDate] as [string, string]),
+  ...tcglSmSets.map(set => [set.name, set.releaseDate] as [string, string]),
 ]);
 
 /** TCG release dates for the Yu-Gi-Oh! prints in this collection. */

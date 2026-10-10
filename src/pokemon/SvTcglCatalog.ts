@@ -2,12 +2,13 @@ import { tcglSvSets } from './data/sv-tcgl.generated.ts';
 import { tcglMegaSets } from './data/mega-tcgl.generated.ts';
 import { tcglMepSets } from './data/mep-tcgl.generated.ts';
 import { tcglSwshSets } from './data/swsh-tcgl.generated.ts';
+import { tcglSmSets } from './data/sm-tcgl.generated.ts';
 import { svpTcgdexNonfoil } from './data/svp-tcgdex-nonfoil.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
 import { localBoosterArt } from './boosterArt.ts';
 import { swshSetLogo } from './SwshSetLogos.ts';
 
-const catalogSets = [...tcglSvSets, ...tcglMegaSets, ...tcglMepSets, ...tcglSwshSets].map(set => set.id === 'svp'
+const catalogSets = [...tcglSvSets, ...tcglMegaSets, ...tcglMepSets, ...tcglSwshSets, ...tcglSmSets].map(set => set.id === 'svp'
   ? { ...set, cards: [...set.cards, ...svpTcgdexNonfoil].sort((a, b) => Number(a.localId) - Number(b.localId)) }
   : set);
 const records = new Map(catalogSets.map(set => [set.id, set]));
