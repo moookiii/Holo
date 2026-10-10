@@ -258,9 +258,43 @@
   },
   "limitations": [],
   "maps": {
-    "foilControls": "/cards/pokemon/tcgl-swsh/swsh1_17_ph/foil-controls.png",
+    "foilControls": "/cards/pokemon/swsh-proofs/swsh1_10_ph/foil-source.png",
     "foil": "/cards/pokemon/tcgl-swsh/swsh1_17_ph/foil.png",
     "protection": "/cards/pokemon/tcgl-swsh/swsh1_17_ph/protection.png",
     "roughness": "/cards/pokemon/tcgl-swsh/swsh1_17_ph/roughness.png"
+  },
+  "outputVerification": {
+    "foilControls": {
+      "sha256": "593567a04d0797e9ed15db180c09b22cdc3e0a5be9bf5ed86b56382058dc26f7",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    "foil": {
+      "sha256": "fb2d89b796b3cd89ef2945d8528dd2b94f5b43ca73c00df57d9d03b8f1ce9496",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "L"
+    },
+    "protection": {
+      "sha256": "2ef4bba0568c7af6096aec3ae951ac56843d4c7575af63344b36255ad0e20973",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "L"
+    },
+    "roughness": {
+      "sha256": "c8f4ea08f681d8367feacf6b49768510bba7bb10a18796bc55b12ab13ce1d15e",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "L"
+    }
   }
 }

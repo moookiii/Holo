@@ -1,0 +1,43 @@
+"""Acquire original English wrapper images and retain crop evidence."""
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
+import re,json,hashlib,requests
+from PIL import Image,ImageDraw
+ROOT=Path(__file__).resolve().parents[2]
+SLUGS=dict(zip(['swsh1','swsh2','swsh3','swsh3-5','swsh4','swsh4-5','swsh5','swsh6','swsh7','swsh7-5','swsh8','swsh9','swsh10','swsh10-5','swsh11','swsh12','swsh12-5'],['sword-and-shield','rebel-clash','darkness-ablaze','champions-path','vivid-voltage','shining-fates','battle-styles','chilling-reign','evolving-skies','celebrations','fusion-strike','brilliant-stars','astral-radiance','pokemon-go','lost-origin','silver-tempest','crown-zenith']))
+def main():
+    raw=ROOT/'research/tcgl/swsh-wrappers';raw.mkdir(exist_ok=True)
+    html=(ROOT/'research/tcgl/swsh-wrapper-index.html').read_text(encoding='utf-8')
+    paths=set(re.findall(r'/images/tcg/sets/booster-pack-art/[^"\s<>]+\.(?:png|jpg)',html))
+    tasks=[]
+    for sid,slug in SLUGS.items():
+        found=sorted(p for p in paths if re.search('/'+slug+r'-pack-\d+\.',p))
+        if not found:raise ValueError('Missing wrappers '+slug)
+        tasks.extend((sid,i,p) for i,p in enumerate(found))
+    def fetch(task):
+        sid,i,path=task;url='https://pokesymbols.com'+path;source=raw/Path(path).name
+        if not source.exists():
+            r=requests.get(url,timeout=45);r.raise_for_status();source.write_bytes(r.content)
+        im=Image.open(source).convert('RGBA')
+        # JPEG sources have white presentation padding; use the connected
+        # printed wrapper bounds rather than resizing the square source.
+        import numpy as np,cv2
+        pix=np.asarray(im);foreground=(pix[...,:3].min(2)<240)&(pix[...,3]>0)
+        n,labels,stats,_=cv2.connectedComponentsWithStats(foreground.astype('uint8'),8)
+        x,y,w,h,_=max(stats[1:],key=lambda s:s[4]);bounds=(int(x),int(y),int(x+w),int(y+h))
+        if sid in ('swsh1','swsh2'):
+            # Native review: uniform black presentation caps outside the
+            # colored crimps and narrow tapered side gutters.
+            left,top,right,bottom=bounds;bounds=(left+6,top+22,right-6,bottom-22)
+        crop=im.crop(bounds)
+        target=ROOT/f'public/packs/pokemon/{sid}-pack-{i}.png';crop.save(target)
+        return {'setId':sid,'design':str(i),'url':url,'source':source.relative_to(ROOT).as_posix(),'sourceDimensions':list(im.size),'sourceSha256':hashlib.sha256(source.read_bytes()).hexdigest(),'crop':bounds,'rotation':0,'output':target.relative_to(ROOT).as_posix(),'dimensions':list(crop.size),'sha256':hashlib.sha256(target.read_bytes()).hexdigest(),'cropStatus':'bounding crop; full-resolution review required'}
+    records=list(ThreadPoolExecutor(6).map(fetch,tasks))
+    out=ROOT/'public/packs/pokemon/swsh-wrapper-sources.json';out.write_text(json.dumps(records,indent=2)+'\n')
+    registry={sid:[{'id':'art-'+r['design'],'name':'English booster · artwork '+str(int(r['design'])+1),'front':'/packs/pokemon/'+Path(r['output']).name} for r in records if r['setId']==sid] for sid in SLUGS}
+    (ROOT/'src/pokemon/data/swsh-wrappers.generated.ts').write_text('// Sourced English retail wrappers; generated offline.\nimport type { PokemonBooster } from "../types.ts";\nexport const swshWrappers: Record<string, PokemonBooster[]> = '+json.dumps(registry)+';\n')
+    sheet=Image.new('RGB',(8*190,((len(records)+7)//8)*300),'#222222');d=ImageDraw.Draw(sheet)
+    for i,r in enumerate(records):
+        im=Image.open(ROOT/r['output']);im.thumbnail((180,275));x=i%8*190;y=i//8*300;sheet.paste(im,(x+(190-im.width)//2,y+20));d.text((x+4,y+2),r['setId']+' '+r['design'],fill='white')
+    sheet.save(ROOT/'artifacts/swsh-wrappers.png');print(len(records),'wrappers')
+if __name__=='__main__':main()

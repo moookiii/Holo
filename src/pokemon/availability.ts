@@ -14,6 +14,14 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (setId === WIZARDS_PROMO_ID) return { ready: false, label: `Browse ${wizardsPromoCards.length} promos`,
     detail: 'Choose an individual promo card. These cards were distributed outside booster packs.' };
   const nonBoosters: Record<string, { label: string; detail: string }> = {
+    swshbsp: { label: 'Browse promos', detail: 'Black Star promotional printings are distributed outside random boosters.' },
+    swshalt: { label: 'Browse alternate printings', detail: 'Alternate product printings have no standalone random booster.' },
+    'swsh7-5r': { label: 'Browse Classic Collection', detail: 'Classic Collection cards appear in Celebrations boosters; no separate English booster.' },
+    swsh9a: { label: 'Browse Trainer Gallery', detail: 'Included in Brilliant Stars boosters.' },
+    swsh10a: { label: 'Browse Trainer Gallery', detail: 'Included in Astral Radiance boosters.' },
+    swsh11a: { label: 'Browse Trainer Gallery', detail: 'Included in Lost Origin boosters.' },
+    swsh12a: { label: 'Browse Trainer Gallery', detail: 'Included in Silver Tempest boosters.' },
+    'swsh12-5a': { label: 'Browse Galarian Gallery', detail: 'Included in Crown Zenith boosters.' },
     mep: { label: 'Promo cards · distributed outside boosters', detail: 'Choose an MEP promo printing to view. There is no randomized MEP booster pack.' },
     svp: { label: 'Promo cards · distributed outside boosters', detail: 'Choose a promo printing to view. There is no randomized SVP booster pack.' },
     svalt: { label: 'Alternate printings · card catalog', detail: 'These printings come from separate products, not a standalone alternate-printings booster.' },

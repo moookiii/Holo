@@ -2,6 +2,7 @@ import { chromium } from 'playwright';
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';
+import { createHash } from 'node:crypto';
 
 const out = join(process.cwd(), 'artifacts/swsh-materials/live');
 await mkdir(out, { recursive: true });
@@ -49,8 +50,12 @@ try {
     report.push({ id, states: 8, motionFrames: 13, stats: await page.evaluate(() => window.__holo.stats()) });
     console.log('Reviewed', id);
   }
+} catch (error) {
+  errors.push(String(error)); throw error;
 } finally {
-  await writeFile(join(out, `report-${(process.env.REVIEW_FINISHES || 'reverse').replaceAll(':', '-').replaceAll(',', '-')}.json`), JSON.stringify({ report, errors }, null, 2));
+  const label=(process.env.REVIEW_FINISHES || 'reverse').replaceAll(':', '-').replaceAll(',', '-');
+  const name=label.length>150 ? `batch-${createHash('sha256').update(label).digest('hex').slice(0,16)}` : label;
+  await writeFile(join(out, `report-${name}.json`), JSON.stringify({ report, errors }, null, 2));
   await browser.close();
 }
 if (errors.length) throw new Error(errors.join('\n'));

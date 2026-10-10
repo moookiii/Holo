@@ -1,5 +1,6 @@
 import { editionLabel, type PokemonBooster } from './types.ts';
 import { wotcWrappers } from './WotcProducts.ts';
+import { swshWrappers } from './data/swsh-wrappers.generated.ts';
 
 const designs: Record<string, readonly string[]> = {
   me01: ['mega-gardevoir','mega-kangaskhan','mega-lucario','mega-venusaur'],
@@ -27,6 +28,7 @@ const designs: Record<string, readonly string[]> = {
 
 /** TCGdex currently omits English booster metadata for these products. */
 export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
+  if (swshWrappers[setId]) return swshWrappers[setId].map(art => ({ ...art }));
   const base = `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/`;
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return designs[setId].map((design,index) => ({ id: design,
     name: `English booster · ${design.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')}`, front: `${base}${setId}-pack-${index}.png`,

@@ -260,10 +260,52 @@
     "Exact physical-copy Cosmos placement pending; empty motif map, no invented dots."
   ],
   "maps": {
-    "foilControls": "/cards/pokemon/tcgl-swsh/swshalt_128/foil-controls.png",
-    "foil": "/cards/pokemon/tcgl-swsh/swshalt_128/foil.png",
-    "protection": "/cards/pokemon/tcgl-swsh/swshalt_128/protection.png",
-    "roughness": "/cards/pokemon/tcgl-swsh/swshalt_128/roughness.png",
-    "direction": "/cards/pokemon/tcgl-swsh/swshalt_128/cosmos-placement-pending.png"
+    "foilControls": "/cards/pokemon/tcgl-swsh/swsh10_45/foil-controls.png",
+    "foil": "/cards/pokemon/tcgl-swsh/swsh10_45/foil.png",
+    "protection": "/cards/pokemon/tcgl-swsh/swsh10_45/protection.png",
+    "roughness": "/cards/pokemon/tcgl-swsh/swsh10_45/roughness.png",
+    "motif": "/cards/pokemon/tcgl-swsh/swshalt_1/cosmos-placement-pending.png"
+  },
+  "outputVerification": {
+    "foilControls": {
+      "sha256": "b8cf9433763cfaa3959a068b75427dcb32e230ea3a3831f88fb2c25de5219b3b",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "RGBA"
+    },
+    "foil": {
+      "sha256": "2c82095c761fa6f04cb46ce7e7d15bf26f9a09a1a51f4f9bf7b5333f655a805c",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "L"
+    },
+    "protection": {
+      "sha256": "c972c2f600773b928d04fc16238d4f06925ad1a45d4957782f5d38096f3d95d1",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "L"
+    },
+    "roughness": {
+      "sha256": "5639ad3dafff147f90d8b0066c45e32a526418ef7d7dfb9d5810a4be7c7f930a",
+      "dimensions": [
+        733,
+        1024
+      ],
+      "mode": "L"
+    },
+    "motif": {
+      "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
+      "dimensions": [
+        1200,
+        1650
+      ],
+      "mode": "L"
+    }
   }
 }

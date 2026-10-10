@@ -41,6 +41,9 @@ def main():
             if sid=='swsh7-5r':c['localId']=CLASSIC[n-1].split('/')[0];c['collectorNumber']=CLASSIC[n-1];c['rarity']='Classic Collection'
         audit[sid]={'extractedCards':len(s['cards']),'checklistCards':len(cards),'matched':len(matched),'missingFromExtraction':[x for x in expected if x not in matched]}
     for surface in surfaces:
+        if surface['foilType']=='SunPillar' and surface['profile']=='swsh-celebrations-silver':surface['profile']='swsh-textured'
+        if surface['cardId']=='swsh3-5-79' or surface['cardId'] in ('swshbsp-97','swshbsp-99','swshbsp-180','swshbsp-182','swshbsp-184'):
+            surface['profile']='swsh-textured'
         if surface['foilType']=='Cosmos' and 'direction' in surface['maps']:surface['maps']['motif']=surface['maps'].pop('direction')
     lines[3]=lines[3].split(' = ',1)[0]+' = JSON.parse('+json.dumps(json.dumps(sets,ensure_ascii=False),ensure_ascii=False)+');'
     lines[4]=lines[4].split(' = ',1)[0]+' = JSON.parse('+json.dumps(json.dumps(surfaces,ensure_ascii=False),ensure_ascii=False)+');'
