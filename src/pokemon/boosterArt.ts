@@ -37,6 +37,7 @@ export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
     ...back }));
   if (setId === '30th') return [{ id: 'english', name: 'English six-card booster', front: `${base}30th-front.png`, ...back }];
   if (setId === '30th-classic-upc') return [{ id: 'upc-classic', name: 'UPC three-card Classic Collection booster', front: `${base}30th-classic-front.png`, ...back }];
+  if (setId === '2024sv') return [{ id: 'english', name: 'English four-card booster', front: `${base}2024sv-front.png`, ...back }];
   const product = wotcWrappers[setId];
   if (product) return product.designs.map(design => ({ id: design.id,
     name: `${design.name ?? design.id[0].toUpperCase()+design.id.slice(1)} booster${design.edition ? ' · '+editionLabel(design.edition) : ''}${design.front ? '' : ' · artwork pending'}`,

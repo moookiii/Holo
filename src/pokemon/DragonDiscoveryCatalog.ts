@@ -1,6 +1,7 @@
 import { dragonDiscoveryRecords } from './data/dragon-discovery.generated.ts';
 import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import type { PokemonCard, PokemonSet, PrintVariant } from './types.ts';
+import { localBoosterArt } from './boosterArt.ts';
 
 export const DRAGON_DISCOVERY_ID = '2024sv';
 export const dragonDiscoveryCards: readonly PokemonCard[] = dragonDiscoveryRecords.map(record => ({
@@ -11,7 +12,7 @@ export const dragonDiscoveryCards: readonly PokemonCard[] = dragonDiscoveryRecor
 export const dragonDiscoverySet: PokemonSet = {
   id: DRAGON_DISCOVERY_ID, name: "McDonald's Dragon Discovery", series: { id: 'sv', name: 'Scarlet & Violet' }, era: 'sv',
   releaseDate: '2025-01-21', cardIds: dragonDiscoveryCards.map(card => card.id),
-  boosters: [{ id: 'english', name: 'English four-card booster', front: '/packs/pokemon/2024sv-front.png' }],
+  boosters: localBoosterArt(DRAGON_DISCOVERY_ID)!,
 };
 export function dragonDiscoveryCard(id: string): PokemonCard {
   const card = dragonDiscoveryCards.find(card => card.id === id);
