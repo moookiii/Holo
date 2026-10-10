@@ -10,6 +10,8 @@ export function celebrationProfile(id: string, variant: PrintVariant): string {
   if (variant !== 'holo') throw new Error(`Anniversary printing has no ${variant} variant: ${id}`);
   const surface = surfaces.get(id);
   if (!surface) throw new Error(`Missing exact anniversary surface: ${id}`);
+  // User verified this anniversary printing retains the Amazing Rare finish.
+  if (id === '30th-classic-027') return 'swsh-amazing';
   if (records.get(id)?.rarity === 'Pikachu Rare') return 'celebration-pikachu-fireworks';
   return surface.profile;
 }
@@ -22,7 +24,7 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
     id: `pokemon:${id}:holo`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${record.collectorNumber} · ${card.rarity}`, dimensions: DIMENSIONS.standard,
     front: card.front!, back: '/cards/pokemon/back.jpg', profile, seed: 202630,
-    galleryVisible: true, pokemon: { ...card, variant: 'holo', materialProfile: profile, treatmentStatus: pikachu ? undefined : 'deferred' },
+    galleryVisible: true, pokemon: { ...card, variant: 'holo', materialProfile: profile, treatmentStatus: pikachu || profile === 'swsh-amazing' ? undefined : 'deferred' },
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     maps: pikachu ? { ...surface.maps, foil: `${stock}/${stem}-fireworks.png`,
       secondaryFoil: `${stock}/${stem}-speckles.png`, protection: `${stock}/${stem}-protection.png`,
@@ -32,7 +34,7 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
     mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0, roughnessMode: 'absolute' },
     // Double rares retain the shared cast-and-cure star optics; their own
     // TCGL coverage and protection still clip the complete response.
-    profileOverrides: pikachu || card.rarity === 'Double Rare' ? undefined : surface.textured ? tcglEtchedFinish : {
+    profileOverrides: pikachu || profile === 'swsh-amazing' || card.rarity === 'Double Rare' ? undefined : surface.textured ? tcglEtchedFinish : {
       maps: { direction: undefined },
       opticalModel: 'sv151-illustration',
       // Uniform temporary response only. Do not synthesize a replacement TCGL
@@ -42,6 +44,7 @@ export function celebrationDefinition(id: string, variant: PrintVariant = 'holo'
     },
     source: { image: card.front!, metadata: surface.evidence,
       notes: pikachu ? 'Original exact TCGL front. Separate reverse fireworks and rainbow-speckled Pikachu foil reconstructed from the supplied physical-card example. Optical evidence: /cards/pokemon/30th-celebration/pikachu/evidence.json. No etched relief.'
+        : profile === 'swsh-amazing' ? 'User-confirmed Amazing Rare finish. Shared tuned Amazing profile with this anniversary printing’s own TCGL front, foil, protection and offline etched normal.'
         : 'Original exact TCGL front and RGBA foil map. Offline reference etch normal where supplied. Temporary existing material; physical optics and precise region review pending Astra High.' },
   };
 }
