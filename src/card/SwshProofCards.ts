@@ -5,6 +5,7 @@ export const swshProofCases = [
   ['reverse', 'swsh1_10_ph', 'Grookey', '010/202', 'swsh-reverse-energy', false],
   ['amazing', 'swsh4_50', 'Raikou', '050/185', 'swsh-amazing', true],
   ['radiant', 'swsh10_46', 'Radiant Greninja', '046/189', 'swsh-radiant', true],
+  ['shiny', 'swsh4-5_95', 'Suicune', 'SV022/SV122', 'swsh-shiny-silver', true],
 ] as const;
 
 export const swshProofCards: CardDefinition[] = swshProofCases.map(([finish, id, title, number, profile, etched]) => {

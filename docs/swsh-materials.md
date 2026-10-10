@@ -9,6 +9,7 @@ variant IDs, dimensions and SHA-256 evidence also shipped beside each proof.
 | Standard reverse | `swsh-reverse-energy` | Grookey 010/202, `swsh1_10_ph` | Implemented; live reviewed; physical calibration provisional |
 | Radiant Rare | `swsh-radiant` | Radiant Greninja 046/189, `swsh10_46` | Implemented; live reviewed; provisional angular calibration |
 | Amazing Rare | `swsh-amazing` | Raikou 050/185, `swsh4_50` | Implemented; live reviewed; provisional micrograin calibration |
+| Shiny Vault | `swsh-shiny-silver` | Suicune SV022/SV122, `swsh4-5_95` | Implemented; live reviewed; provisional grain intensity |
 
 ## Reverse
 
@@ -63,3 +64,9 @@ Physical footage inspected: [TrainerDesignFly](https://www.youtube.com/shorts/1o
 New work: `RadiantFoilLayer.ts`, a filtered two-axis neutral/spectral response driven by original TCGL `_CrossTexture` RG stock. The offline optical-stock rotation follows the visible diagonal pattern; it does not rotate or change the etched character. Viewer and gallery share this kernel. The exact TCGL plate separates lower foil from the character at the unfoiled rule strip; energy symbols stay excluded. Existing offline normal converter and etched material response are reused for the character.
 
 Proof `swsh-proof:radiant` reviewed in all eight states and the motion sweep. No runtime errors. Initial square-aligned highlights were rejected in favor of diagonal stock registration. The coarse reference video cannot establish the exact inclination distribution or grating period: the observed crossed behavior is reproduced, while quantitative angular calibration remains provisional. No relief is generated from the crossed stock.
+
+## Shiny Vault
+
+Inspected moving Suicune copies from [PhenomenalByChoice](https://www.youtube.com/shorts/3haH5nJoxic) and [warrior3456](https://www.youtube.com/shorts/XPMTFVvos3Y). Silver picture background changes from dark to bright under tilt; fine etched zigzags and restrained spectral flashes remain separate from the opaque blue rules area. The second unsleeved sample confirms that silver response is not sleeve glare.
+
+Reuses the exact authored-normal system with a silver-biased variant and filtered metallic grain. No new geometry generator. Proof `swsh-proof:shiny` uses Suicune's own front/foil/etch and passed eight light states plus 13 motion frames without runtime errors. Front and oblique renders preserve zigzag registration and the unfoiled lower area. Grain intensity and physical groove depth remain provisional. Captures: `artifacts/swsh-materials/live/shiny-*` and `research/swsh-materials/physical/suicune-*`.

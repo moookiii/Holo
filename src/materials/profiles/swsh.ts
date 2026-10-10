@@ -28,6 +28,14 @@ export const swshProfiles: HolographicProfile[] = [{
 }];
 
 swshProfiles.push({
+  ...swshEtched, id: 'swsh-shiny-silver', name: 'Shining Fates · Shiny silver', status: 'development',
+  description: 'Silver sparkling Shiny Vault picture foil with exact TCGL subject, star and etched boundaries. Fine filtered metallic grain catches the light; the printed rules area stays unfoiled.',
+  diffraction: { ...swshEtched.diffraction, strength: .28, bandwidth: .04, secondaryOrder: .035 },
+  surface: { ...swshEtched.surface, metalness: .62, inkTransmission: .76, foilReflectance: .035 },
+  glints: { density: .95, scale: 1150, sharpness: 175, strength: 2.8, spread: .46, metallicGrain: true },
+});
+
+swshProfiles.push({
   ...swshEtched, id: 'swsh-amazing', name: 'Sword & Shield · Amazing Rare', status: 'development',
   description: 'Exact rainbow splash plate, protected subject and energy icons with the printing’s own etched grain. Printed rainbow stays in the front; tilt reveals the registered silver and spectral response without repainting the splash.',
   // Dense silver scintillation seen in the physical close-up. Optical grain
