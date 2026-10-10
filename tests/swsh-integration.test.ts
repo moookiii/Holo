@@ -30,9 +30,17 @@ test('each booster collates 500 seeds without missing pools or illegal printings
   for(const recipe of swshRecipes){
     for(let seed=0;seed<500;seed++){
       const pack=collatePokemon(recipe.setId,recipe.boosterIds![0],seed,cards,recipe);
-      assert.equal(pack.pulls.length,recipe.setId==='swsh7-5'?4:10);
-      for(const p of pack.pulls){assert.ok(recipe.poolSetIds!.includes(p.card.setId));assert.ok(p.card.variants.includes(p.variant));assert.notEqual(p.card.setId,'swshalt');assert.notEqual(p.card.setId,'swshbsp');}
-      if(recipe.setId==='swsh3-5'||recipe.setId==='swsh10-5')assert.equal(pack.pulls.at(-1)!.variant,'holo');
+      assert.equal(pack.pulls.length,recipe.setId==='swsh7-5'?4:11);
+      for(const p of pack.pulls){assert.ok(p.slot.startsWith('energy:') ? recipe.energyCards!.some(c=>c.id===p.card.id) : recipe.poolSetIds!.includes(p.card.setId));assert.ok(p.card.variants.includes(p.variant));assert.notEqual(p.card.setId,'swshalt');assert.notEqual(p.card.setId,'swshbsp');}
+      if(recipe.setId==='swsh3-5'||recipe.setId==='swsh10-5')assert.equal(pack.pulls.find(p=>p.slot==='rare:1')!.variant,'holo');
+      if(recipe.setId!=='swsh7-5') {
+        assert.equal(recipe.energyCards!.length,8);
+        const energy=pack.pulls.at(-1)!;
+        assert.equal(energy.slot,'energy:1');assert.equal(energy.variant,'normal');
+        assert.ok(existsSync('public'+energy.card.front));
+        const year=['swsh9','swsh10','swsh10-5','swsh11','swsh12','swsh12-5'].includes(recipe.setId)?2022:2020;
+        assert.ok(energy.card.id.startsWith(`swsh-energy-${year}-`));
+      }
       if(recipe.setId==='swsh7-5')assert.ok(pack.pulls.every(p=>p.variant==='holo'));
     }
     // Force every supported branch, including very rare gallery and gold cards.

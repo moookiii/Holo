@@ -67,10 +67,18 @@ Crown Zenith Radiants and numbered textured Energies use the rare position.
 Celebrations has four foils, no Energy, and Classic replaces the third position.
 Subsets and product promos have no fabricated standalone booster.
 
-**Source limitation:** ordinary pack Basic Energy fronts are absent from the
-extracted tables and shared texture index. Openings currently render the ten
-expansion cards, or four Celebrations cards, and explicitly disclose the omitted
-Energy insert. No later-era artwork or textured secret Energy is substituted.
+Ordinary pack Basic Energy fronts are absent from the extracted tables and from
+TCGdex's ordinary Energy catalog. The 16 matching unnumbered fronts are preserved
+from Bulbagarden Archives: `*EnergySwordShield.jpg` (2020) through Fusion Strike,
+and `*EnergyBrilliantStars.jpg` (2022) from Brilliant Stars through Crown Zenith.
+`scripts/tcgl/fetch_swsh_energy.py` preserves original JPEGs under
+`research/tcgl/swsh-pack-energy/` and decodes them to RGB PNG without cropping,
+resizing, flipping or offsets. `public/cards/pokemon/swsh-energy/sources.json`
+records source URLs, original dimensions and input/output SHA-256 hashes.
+All 16 fronts were visually reviewed in `research/tcgl/swsh-pack-energy/review.png`.
+Recipes version 2 render ten expansion cards plus one nonfoil basic Energy,
+uniformly selected from the eight types. Celebrations still renders four cards
+without Energy. Existing expansion card assets and materials are unchanged.
 Champion's Path reverse Energy, Crown Zenith unnumbered foil Energy and GO's
 peelable Ditto overlay variants are likewise not available as distinct extracted
 assets. They are not approximated. Physical code cards and VSTAR markers are not

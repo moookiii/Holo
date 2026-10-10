@@ -1,6 +1,7 @@
 import type { PokemonRecipe, SlotOutcome } from './recipes.ts';
 import { svTcglCards } from './SvTcglCatalog.ts';
 import { swshWrappers } from './data/swsh-wrappers.generated.ts';
+import { swshPackEnergy } from './SwshEnergy.ts';
 
 const cards = svTcglCards.filter(c => c.seriesId === 'swsh');
 const supplements: Record<string,string> = { swsh9:'swsh9a',swsh10:'swsh10a',swsh11:'swsh11a',swsh12:'swsh12a','swsh12-5':'swsh12-5a','swsh7-5':'swsh7-5r' };
@@ -32,9 +33,9 @@ function recipe(setId:string):PokemonRecipe {
   const pool=cards.filter(c=>poolSetIds.includes(c.setId));
   const own=pool.filter(c=>c.setId===setId);
   const ownIds=own.map(c=>c.id);
-  const base={id:`${setId}-english-retail`,version:'1',setId,era:'swsh',poolSetIds,requiredCardIds:pool.map(c=>c.id),boosterIds:swshWrappers[setId].map(b=>b.id),energyCards:[],
+  const base={id:`${setId}-english-retail`,version:'2',setId,era:'swsh',poolSetIds,requiredCardIds:pool.map(c=>c.id),boosterIds:swshWrappers[setId].map(b=>b.id),energyCards:swshPackEnergy(setId),
     sources:[`https://pokecompare.com/pull-rates/${slugs[setId] ?? 'shining-fates'}`,'https://bulbapedia.bulbagarden.net/wiki/Booster_pack_(TCG)'],
-    note:'10 expansion cards. Basic Energy insert is not rendered: its exact TCGL front is absent from this extraction. Sample-based estimates where available; uniform within pools, independent slots, factory collation unknown.'};
+    note:'10 expansion cards + 1 Basic Energy. Sample-based estimates where available; uniform within pools (including Energy types), independent slots, factory collation unknown.'};
   if(setId==='swsh7-5') {
     const regular=own.filter(c=>['Rare','Holo Rare'].includes(c.rarity)).map(c=>c.id);
     const special=own.filter(c=>!regular.includes(c.id)).map(c=>c.id);
@@ -102,7 +103,7 @@ function recipe(setId:string):PokemonRecipe {
     }
     reverse=[outcome(1-special.reduce((n,o)=>n+o.weight,0),ordinary,'reverse',ownIds),...special];
   }
-  return {...base,slots:[{id:'common',count:5,unique:true,outcomes:[outcome(1,['Common'],'normal',ownIds)]},{id:'uncommon',count:3,unique:true,outcomes:[outcome(1,['Uncommon'],'normal',ownIds)]},{id:'reverse-replacement',count:1,outcomes:reverse},{id:'rare',count:1,outcomes:rare}]};
+  return {...base,slots:[{id:'common',count:5,unique:true,outcomes:[outcome(1,['Common'],'normal',ownIds)]},{id:'uncommon',count:3,unique:true,outcomes:[outcome(1,['Uncommon'],'normal',ownIds)]},{id:'reverse-replacement',count:1,outcomes:reverse},{id:'rare',count:1,outcomes:rare},{id:'energy',count:1,pool:'energy',outcomes:[outcome(1,['Energy'],'normal')]}]};
 }
 export const swshRecipes: readonly PokemonRecipe[] = Object.keys(swshWrappers).map(recipe);
 export function swshSupplementCards(setId:string) { return cards.filter(c=>c.setId===supplements[setId]); }
