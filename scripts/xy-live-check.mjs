@@ -20,7 +20,7 @@ page.on('pageerror', e => errors.push(e.message));
 page.on('request', r => requests.push(r.url()));
 page.on('response', r => { if (r.status() >= 400 && r.url().includes('127.0.0.1')) errors.push(`${r.status()} ${r.url()}`); });
 await page.route('https://api.tcgdex.net/v2/en/series', r => r.fulfill({ json: [{ id: 'xy', name: 'XY' }] }));
-const products = [['xy1','XY'],['xy2','Flashfire'],['xy3','Furious Fists'],['xy4','Phantom Forces'],['xy5','Primal Clash'],['xy5-5','Double Crisis'],['xy6','Roaring Skies'],['xy7','Ancient Origins'],['xy8','BREAKthrough'],['xy9','BREAKpoint'],['xy9-5','Generations'],['xy10','Fates Collide'],['xy11','Steam Siege'],['xy12','Evolutions']];
+const products = [['xy1','XY Base Set'],['xy2','Flashfire'],['xy3','Furious Fists'],['xy4','Phantom Forces'],['xy5','Primal Clash'],['xy5-5','Double Crisis'],['xy6','Roaring Skies'],['xy7','Ancient Origins'],['xy8','BREAKthrough'],['xy9','BREAKpoint'],['xy9-5','Generations'],['xy10','Fates Collide'],['xy11','Steam Siege'],['xy12','Evolutions']];
 try {
   await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
