@@ -9,7 +9,12 @@ const requests = []; page.on('request', r => { if (r.url().includes('/sprites/an
 try {
   await page.goto(process.env.HOLO_URL ?? 'http://127.0.0.1:5173/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => window.__holo?.gallery.stats()?.active, null, { timeout: 120000 });
-  const toggle = page.getByRole('button', { name: '◉ Pokémon', exact: true });
+  const toggle = page.getByRole('button', { name: 'Choose Pokémon', exact: true });
+  await toggle.locator('img').evaluate(img => new Promise((resolve, reject) => {
+    if (img.complete && img.naturalWidth) return resolve();
+    img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', reject, { once: true });
+  }));
+  assert.equal(await toggle.textContent(), '');
   const panel = page.getByRole('dialog', { name: 'Choose a Pokémon' });
   const search = page.getByRole('searchbox', { name: 'Search gallery cards' });
   await search.fill('old query');

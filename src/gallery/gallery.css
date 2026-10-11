@@ -39,7 +39,9 @@ body.gallery-mode #ui { visibility: hidden; }
 @media(max-width: 600px) { .gallery-toolbar { padding: 8px 12px; } .gallery select { min-width: 80px; max-width: 140px; } .gallery input[type=search] { width: 100%; } }
 @media(pointer: coarse) { .gallery-toolbar button, .gallery select, .gallery input[type=search], .gallery-light input { min-height: 40px; } .gallery-filters > .gallery-favorites-filter { width: 40px; } }
 @media(prefers-reduced-motion: reduce) { .gallery { animation: none; } }
-.pokemon-selector-toggle { white-space: nowrap; transition: background 160ms, border-color 160ms; }
+.gallery-filters > .pokemon-selector-toggle { width: 36px; height: 32px; padding: 4px 6px; display: grid; place-items: center; transition: background 160ms, border-color 160ms; }
+.pokemon-selector-toggle img { display: block; width: 22px; height: 22px; object-fit: contain; }
+@media(pointer: coarse) { .gallery-filters > .pokemon-selector-toggle { width: 40px; height: 40px; } }
 .pokemon-selector-toggle:hover, .pokemon-selector-toggle[aria-expanded=true] { background: #211c13; border-color: #806b43; }
 .pokemon-selector { position: absolute; z-index: 10; left: 20px; top: 50px; width: min(340px, calc(100vw - 40px)); border: 1px solid #51442d; border-radius: 12px; background: #10100ff5; box-shadow: 0 18px 60px #000b, inset 0 1px 0 #e1c58a12; overflow: hidden; animation: pokemon-selector-enter 150ms ease-out; }
 .pokemon-selector[hidden] { display: none; }

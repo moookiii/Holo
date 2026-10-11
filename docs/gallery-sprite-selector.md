@@ -1,6 +1,6 @@
 # Gallery Pokémon sprite selector
 
-The upper-left Pokémon button opens a National Pokédex selector using Pokémon Showdown's animated battle GIFs. Selection replaces the Gallery search input and dispatches its existing input event, preserving all active facets. Outside pointer presses and Escape dismiss it; arrows, Home/End and Tab support keyboard navigation. Gallery hide/disposal also releases its DOM and listeners.
+The upper-left gold Poké Ball button opens a National Pokédex selector using Pokémon Showdown's animated battle GIFs. Its accessible name is “Choose Pokémon”. Selection replaces the Gallery search input and dispatches its existing input event, preserving all active facets. Outside pointer presses and Escape dismiss it; arrows, Home/End and Tab support keyboard navigation. Gallery hide/disposal also releases its DOM and listeners.
 
 The committed catalog is generated offline by `node scripts/generate-showdown-sprites.mjs` from:
 
@@ -14,3 +14,9 @@ Rows are 76px with a two-row overscan buffer. Only visible/nearby rows exist; na
 Validation: TypeScript, the production build and five focused catalog/search tests pass. `node scripts/gallery-sprite-selector-check.mjs` verifies live selection, preserved facets, special names/forms, absent GIFs, intrinsic image proportions, dismissal, keyboard scrolling, repeated full-range scrolling, mobile bounds and network failure. Initial measured opens took 86–291ms, with at most 12 mounted sprite rows and no page errors. Captures/report are saved to `artifacts/gallery-sprite-selector/`. The unrelated existing `gallery.test.ts` cannot run under the current Node test command because `megaRarity.ts` imports extensionless `profiles/prismatic`.
 
 Card assets, materials, the viewer and pack opener are unchanged by this feature.
+
+## Gold button asset
+
+`public/icons/pokeball-gold.png` was made with the built-in ImageGen tool from the user's attached Poké Ball reference. Final prompt:
+
+> Edit this exact Poké Ball icon into a gold copy for a small premium dark-UI button. Preserve its circular silhouette, horizontal band, centered circular button, exact proportions and simple crisp flat graphic style, with the existing restrained right-side shading. Recolor red top to warm muted gold #c8ad73; recolor white bottom and center to pale champagne gold #e9d7a7; darker right-side shapes to corresponding restrained darker gold tones. Keep the band and center ring near-black. Remove ONLY the outside black background to transparent alpha; keep the black internal band and ring. No text, no glow, no extra detail, no realistic metal texture. Tight square framing with a very small transparent margin. Deliver a transparent PNG icon.

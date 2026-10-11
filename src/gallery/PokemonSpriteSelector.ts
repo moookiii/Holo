@@ -19,7 +19,12 @@ export class PokemonSpriteSelector {
   private frame = 0;
   constructor(host: HTMLElement, select: (name: string) => void) {
     this.button.className = 'pokemon-selector-toggle';
-    this.button.textContent = '◉ Pokémon';
+    this.button.setAttribute('aria-label', 'Choose Pokémon');
+    this.button.title = 'Choose Pokémon';
+    const icon = document.createElement('img');
+    icon.src = `${import.meta.env.BASE_URL}icons/pokeball-gold.png`;
+    icon.alt = ''; icon.width = 22; icon.height = 22;
+    this.button.append(icon);
     this.button.setAttribute('aria-expanded', 'false');
     this.button.setAttribute('aria-haspopup', 'dialog');
     this.panel.className = 'pokemon-selector'; this.panel.hidden = true;
