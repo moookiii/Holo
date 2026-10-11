@@ -186,6 +186,9 @@ def main():
     write(OUT / 'import-audit.json', {'printings': len(identities), 'sets': {s['id']: len(s['cards']) for s in ordered},
         'shaderChanges': False, 'deferredEffects': ['Sun & Moon Reverse Holo', 'Prism Star']})
     print('Finished', len(identities), 'exact printings.', flush=True)
+    if not args.sets:
+        from register_sm_source_promos import main as register_source_promos
+        register_source_promos()
 
 
 if __name__ == '__main__': main()
