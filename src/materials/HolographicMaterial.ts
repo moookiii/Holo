@@ -8,7 +8,7 @@ import { masterPrism, type HolographicProfile } from './HolographicProfile';
 import { OpticalUniforms } from './OpticalUniforms';
 import { secretRareReflection } from './layers/SecretRareLayer';
 import { spectrum } from './layers/DiffractionLayer';
-import { pixelVariance, normalPixelVariance } from './layers/AuthoredNormalFiltering';
+import { pixelVariance, normalPixelVariance, normalMipVariance } from './layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from './layers/IllustrationRareLayer';
 import { celebrationFoilReflection } from './layers/CelebrationFoilLayer';
 import { radiantFoilReflection } from './layers/RadiantFoilLayer';
@@ -39,6 +39,7 @@ interface OpticalRegion {
   /** Artist-authored grating axes lie in the authored relief's tangent plane. */
   followsAuthoredSurface?: boolean;
   uniformAuthoredSurface?: boolean;
+  normalMipVariance?: Node<'float'>;
   inkTransmission?: Node<'vec3'>;
   inkReflection?: Node<'vec3'>;
   image?: Node<'vec3'>;
@@ -87,6 +88,10 @@ class HolographicLightingModel extends PhysicalLightingModel {
   private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
     for (const [regionIndex, region] of this.regions.entries()) If(region.optics.enabled.greaterThan(0), () => {
       const u = region.optics;
+      const filterAuthored = !!region.followsAuthoredSurface;
+      const filterNormal = filterAuthored || u.normalFiltering.value > 0;
+      const filterGain = filterAuthored ? u.normalFiltering.max(1) : u.normalFiltering;
+      const mipVariance = filterAuthored ? region.normalMipVariance! : float(0);
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       if (u.ultraRare || u.specialIllustration || u.blackWhiteRare) {
         const geometry = normalViewGeometry as unknown as Node<'vec3'>;
@@ -199,7 +204,10 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const path = momentum.dot(grating).abs().mul(u.period, spacing);
       const variance = (axis: Node<'vec3'>) => {
         const source = footprint ? footprint[0].dot(axis).pow2().add(footprint[1].dot(axis).pow2()).div(3) : float(0);
-        return u.normalFiltering.value > 0 ? source.add(pixelVariance(momentum.dot(axis)).mul(u.normalFiltering)) : source;
+        // Projection of unresolved tangent-normal spread onto grating momentum.
+        // Max avoids counting the same footprint twice at mip transitions.
+        const unresolved = mipVariance.mul(momentum.dot(foilNormal).pow2());
+        return filterNormal ? source.add(pixelVariance(momentum.dot(axis)).max(unresolved).mul(filterGain)) : source;
       };
       const gratingVariance = variance(grating), grooveVariance = variance(groove);
       const angularWidth = u.crossWidth.pow2().add(grooveVariance).sqrt();
@@ -246,7 +254,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       // authored normals select the ridges; no color/noise-derived relief or
       // ambient term is introduced. Integrate the source's angular footprint.
       const half = momentum.normalize();
-      const inkVariance = u.normalFiltering.value > 0 ? halfVariance.add(normalPixelVariance(foilNormal).mul(u.normalFiltering)) : halfVariance;
+      const inkVariance = filterNormal ? halfVariance.add(normalPixelVariance(foilNormal).max(mipVariance).mul(filterGain)) : halfVariance;
       const inkBroadening = inkVariance.mul(150).add(1);
       const inkLobe = foilNormal.dot(half).max(0).pow(float(150).div(inkBroadening)).div(inkBroadening);
       const directAlignment = geometryNormal.dot(half).smoothstep(.90, .98);
@@ -404,6 +412,8 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       const layer = [profile, profile.secondary, profile.stamp][i];
       region.uniformAuthoredSurface = !!layer?.diffraction.followsAuthoredNormals;
       region.followsAuthoredSurface ||= region.uniformAuthoredSurface && !!cardMaps?.hasNormal;
+      region.normalMipVariance = normalMipVariance(this.normalTextureNode.rgb)
+        .mul(controls.normalScale.pow2(), controls.hasNormal).toVar();
     });
     for (const region of this.regions) {
       // The parallel foil lies beneath colored ink. Its reflected light must
@@ -455,8 +465,11 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
         mix(unfilteredRoughness, unfilteredRoughness.pow2().add(metalNormalVariance).sqrt().clamp(.045, 1), this.inkNormalFiltering.sign()))).clamp(.045, 1);
       // Widen the BRDF only by the unresolved normal variation. Full-resolution
       // die walls and their tangent-normal amplitude remain untouched.
-      return this.optics.normalFiltering.value > 0
-        ? roughness.pow(4).add(normalPixelVariance(this.normalTextureNode.rgb.mul(2)).mul(this.optics.normalFiltering, controls.hasNormal, primary)).pow(.25).clamp(.045, 1)
+      const authored = this.regions[0].followsAuthoredSurface;
+      const variance = normalPixelVariance(this.normalTextureNode.rgb.mul(2)).mul(controls.normalScale.pow2());
+      return authored || this.optics.normalFiltering.value > 0
+        ? roughness.pow(4).add((authored ? variance.max(this.regions[0].normalMipVariance!) : variance)
+          .mul(authored ? this.optics.normalFiltering.max(1) : this.optics.normalFiltering, controls.hasNormal, primary)).pow(.25).clamp(.045, 1)
         : roughness;
     })();
     this.clearcoatNode = mix(mix(this.optics.laminate, this.secondaryOptics.laminate, secondary), this.stampOptics.laminate, stamp).mul(mask.a);
