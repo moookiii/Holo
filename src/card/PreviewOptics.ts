@@ -1,6 +1,6 @@
-import { resolvePhysicalCardProfile } from '../materials/PhysicalCardProfile';
+import { resolvePhysicalCardProfile } from '../materials/PhysicalCardProfile.ts';
 import type { CardDefinition } from './CardDefinition';
-import { DEFAULT_FOIL_LAYOUT } from './CardLayout';
+import { DEFAULT_FOIL_LAYOUT } from './CardLayout.ts';
 import type { HolographicProfile } from '../materials/HolographicProfile';
 
 export const PREVIEW_PARAMETER_COLUMNS = 44;
@@ -9,6 +9,7 @@ export const PREVIEW_PARAMETER_COLUMNS = 44;
 export function previewOptics(card: CardDefinition, profile: HolographicProfile) {
   const parameters = new Float32Array(PREVIEW_PARAMETER_COLUMNS * 4);
   const set = (column: number, values: number[]) => parameters.set(values, column * 4);
+  const paths = { ...card.maps, ...profile.maps };
   [profile, profile.secondary, profile.stamp].forEach((layer, index) => {
     set(index * 8, [1.25, .05, 0, 0]);
     set(index * 8 + 1, [0, .4, 0, 0]);
@@ -17,8 +18,12 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     set(index * 8 + 6, [0, 0, 0, 1.5]);
     if (!layer) return;
     const d = layer.diffraction, s = layer.structure, f = layer.surface;
-    // Generic authored-grating filtering uses the otherwise unused cut row.
-    if (d.normalFiltering) set(37 + index, [0, f.etchedInkSheen ?? 0, d.normalFiltering, f.inkSpecular ?? 0]);
+    // Match the viewer: authored die walls retain ink reflection and pixel
+    // integration even when the profile omits an explicit filtering setting.
+    const direction = [paths.direction, paths.secondaryDirection, paths.stampDirection][index];
+    const authored = !!paths.normal && !!(d.followsAuthoredNormals || direction);
+    if (authored || d.normalFiltering || f.etchedInkSheen)
+      set(37 + index, [0, f.etchedInkSheen ?? 0, authored ? Math.max(1, d.normalFiltering ?? 0) : d.normalFiltering ?? 0, f.inkSpecular ?? 0]);
     if (s.field === 'secret') set(37 + index, [s.scale, s.cutAngle ?? Math.PI / 4, s.cutWidth ?? .26, s.facetTilt ?? 0]);
     const disabled = new Set(layer.disabledMechanisms), enabled = layer.enabled !== false && profile.id !== 'print-only';
     const base = index * 8;

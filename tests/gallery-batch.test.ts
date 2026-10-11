@@ -25,3 +25,15 @@ test('nonfoil previews share the basic foil program without enabling their packe
   parameters[28 * 4 + 3] = 10;
   assert.notEqual(galleryBatchKey(galleryShaderLayers(nonfoil)), galleryBatchKey(galleryOpticalLayers(parameters)));
 });
+
+test('packed normals cannot share a shader with procedural detail in the same atlas slots', () => {
+  const parameters = new Float32Array(44 * 4);
+  parameters[31] = 1;
+  const plain = galleryOpticalLayers(parameters);
+  parameters[137] = -2;
+  const etched = galleryOpticalLayers(parameters);
+  assert.equal(etched[0].packedEtch, true);
+  assert.notEqual(galleryBatchKey(plain), galleryBatchKey(etched));
+  parameters[31] = 0;
+  assert.equal(galleryOpticalLayers(parameters)[0].packedEtch, undefined);
+});

@@ -2,10 +2,10 @@ import { StockSurfaceLayer } from '../materials/layers/StockSurfaceLayer';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, texture, textureLoad, uv, varying, vec2, vec3 } from 'three/tsl';
+import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, bitangentView, tangentView, texture, textureLoad, uv, varying, vec2, vec3, vec4 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
-import { pixelVariance, normalPixelVariance } from '../materials/layers/AuthoredNormalFiltering';
+import { pixelVariance, normalPixelVariance, normalMipVariance } from '../materials/layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { celebrationFoilReflection } from '../materials/layers/CelebrationFoilLayer';
 import { radiantFoilReflection } from '../materials/layers/RadiantFoilLayer';
@@ -18,6 +18,7 @@ import { glints, microdiamondGlints } from '../materials/layers/GlintLayer';
 import { gratingDirection, radialStructure } from '../materials/layers/PatternLayer';
 import { inspection } from '../lighting/inspection';
 import type { GalleryOpticalLayer } from './GalleryBatch';
+import { PREVIEW_ETCH_WIDTH, PREVIEW_ETCH_HEIGHT } from '../card/PreviewEtchPacking';
 
 // Same seven spectral bands and arithmetic, emitted once instead of inlining
 // their entire graph again for every light, axis and material region.
@@ -27,7 +28,7 @@ const gallerySpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'float'
     { name: 'secondary', type: 'float' }, { name: 'variance', type: 'float' },
   ] });
 
-interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; }
+interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; normalVariance: Node<'float'>; }
 export interface UltraRareTextures { front: Texture; normal: Texture; roughness: Texture; foil: Texture; protection: Texture; }
 
 /** Uses the viewer's wavelength response and grating momentum under actual
@@ -40,7 +41,19 @@ class GalleryLightingModel extends PhysicalLightingModel {
   private createFrame(r: Region) {
     const [, axis, structure, , , behavior] = r.parameters;
     const geometric = normalViewGeometry as unknown as Node<'vec3'>;
-    const bitangent = geometric.cross(tangentView).normalize();
+    const bitangent = this.layers[0].packedEtch ? bitangentView as unknown as Node<'vec3'> : geometric.cross(tangentView).normalize();
+    if (this.layers[0].packedEtch) {
+      // Eligibility guarantees plain layers and zero manufactured facets.
+      // Match the viewer endpoint without compiling unused radial/facet math.
+      const direction = gratingDirection(r.field.rg, axis.x).normalize();
+      const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
+      const n = normalView as unknown as Node<'vec3'>;
+      const projected = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();
+      const grating = mix(sheetAxis, projected, structure.w).normalize().toVar();
+      return { n, grating, groove: n.cross(grating).normalize().toVar(),
+        normalVariance: normalPixelVariance(n).max(r.normalVariance).toVar(),
+        spacing: r.field.b.mul(1.5).add(.5).toVar() };
+    }
     const radial = radialStructure(float(95), axis.x);
     const direction = mix(radial.direction, gratingDirection(r.field.rg, axis.x), behavior.w).normalize();
     const sheetAxis = tangentView.mul(direction.x).add(bitangent.mul(direction.y)).normalize().toVar();
@@ -51,6 +64,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
     const projected = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();
     const grating = mix(sheetAxis, projected, structure.w.max(axis.w)).normalize().toVar();
     return { n, grating, groove: n.cross(grating).normalize().toVar(),
+      normalVariance: normalPixelVariance(n).max(r.normalVariance).toVar(),
       spacing: mix(radial.phase.mul(.09).add(.96), r.field.b.mul(1.5).add(.5), behavior.w).toVar() };
   }
   private backing() {
@@ -136,13 +150,14 @@ class GalleryLightingModel extends PhysicalLightingModel {
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a, r.ink, data.lightColor as Node<'vec3'>));
       } else {
       if (!this.frames.has(r)) this.frames.set(r, this.createFrame(r));
-      const { n, grating, groove, spacing } = this.frames.get(r)!;
+      const { n, grating, groove, spacing, normalVariance } = this.frames.get(r)!;
       const momentum = light.add(positionViewDirection).toVar();
       const variance = (a: Node<'vec3'>) => {
         const source = footprint ? footprint[0].dot(a).pow2().add(footprint[1].dot(a).pow2()).div(3) : float(0);
-        return layer.normalFiltering ? source.add(pixelVariance(momentum.dot(a)).mul(r.secret.z)) : source;
+        const unresolved = r.normalVariance.mul(momentum.dot(n).pow2());
+        return layer.normalFiltering ? source.add(pixelVariance(momentum.dot(a)).max(unresolved).mul(r.secret.z)) : source;
       };
-      const energy = mix(float(1), r.detail.a.mul(.85).add(.18), structure.x).mul(r.field.a);
+      const energy = this.layers[0].packedEtch ? r.field.a : mix(float(1), r.detail.a.mul(.85).add(.18), structure.x).mul(r.field.a);
       const spectralLobe = (across: Node<'vec3'>, along: Node<'vec3'>) => {
         const width = axis.y.pow2().add(variance(along)).sqrt();
         const aperture = exp(momentum.dot(along).div(width).pow2().mul(-.5)).mul(axis.y.div(width));
@@ -151,7 +166,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       };
       const spectral = spectralLobe(grating, groove).mul(axis.z.oneMinus()).add(spectralLobe(groove, grating).mul(axis.z)).mul(diffraction.z, energy);
       const half = momentum.normalize();
-      const silver = n.dot(half).max(0).pow(85).mul(r.field.a, .25, behavior.w, behavior.z);
+      const silver = this.layers[0].packedEtch ? float(0) : n.dot(half).max(0).pow(85).mul(r.field.a, .25, behavior.w, behavior.z);
       const sheen = n.dot(half).max(0).pow(24).mul(surface.y, r.field.a);
       const incident = n.dot(light).max(0), visible = n.dot(positionViewDirection).max(0).sqrt();
       const ink = mix(vec3(1), r.ink, surface.z);
@@ -165,7 +180,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
       let contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
       if (layer.normalFiltering) {
         // Same authored ridge response and pixel integration as the viewer.
-        const ridgeWidth = halfVariance.add(normalPixelVariance(n).mul(r.secret.z)).mul(150).add(1);
+        const ridgeWidth = halfVariance.add(normalVariance.mul(r.secret.z)).mul(150).add(1);
         const ridgeLobe = n.dot(half).max(0).pow(float(150).div(ridgeWidth)).div(ridgeWidth);
         const ridge = n.sub(geometric).length().smoothstep(.008, .075);
         contribution = contribution.add(r.ink.sub(.06).div(.94).max(0).mul(ridgeLobe, ridge,
@@ -213,7 +228,22 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     };
     const artwork = image(0), print = ultraRare ? texture(ultraRare.front, uv()).rgb : artwork.rgb;
     const masks = image(1), normal = image(2), preview = param(34);
-    const authoredNormal = preview.y.lessThan(0).select(image(6).rgb, normal.rgb);
+    // Overlapping quadrants fit a complete 510x718 normal into the same two
+    // 256x360 slots. Two filtered reads, no branches or extra neighbor reads;
+    // shared edge texels keep interpolation continuous at both center seams.
+    const packedNormal = () => {
+      const size = vec2(PREVIEW_ETCH_WIDTH, PREVIEW_ETCH_HEIGHT), step = size.div(2);
+      const point = coord.mul(size).sub(.5).clamp(vec2(0), size.sub(1)).toVar();
+      const tile = point.div(step).floor().min(vec2(1)).toVar();
+      const channel = tile.x.add(tile.y.mul(2)).toInt();
+      const local = point.sub(tile.mul(step)).add(.5).div(step.add(1)).toVar();
+      const lane = vec4(channel.equal(0).select(1, 0), channel.equal(1).select(1, 0),
+        channel.equal(2).select(1, 0), channel.equal(3).select(1, 0));
+      const xy = vec2(texture(arrays[3], local).depth(layer).dot(lane),
+        texture(arrays[6], local).depth(layer).dot(lane)).mul(2).sub(1).toVar();
+      return vec3(xy, xy.dot(xy).oneMinus().max(0).sqrt()).mul(.5).add(.5).toVar();
+    };
+    const authoredNormal = layers[0].packedEtch ? packedNormal() : preview.y.lessThan(0).select(image(6).rgb, normal.rgb);
     const metal = ultraRare ? float(0) : artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
     // Same authoritative coverage; only sampling resolution differs from the
     // generic atlas. These source masks are never authored or modified here.
@@ -221,11 +251,14 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
       : mix(masks.r, artwork.a, preview.x);
     const weights = [primary, mix(masks.g, artwork.a, preview.z), masks.b].map((mask, index) =>
       layers[index].enabled ? mask.mul(param(index * 8 + 7).w) : float(0));
+    const authoredVariance = normalMipVariance(layers[0].packedEtch ? normal.rgb : authoredNormal).toVar();
     this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index),
-      field: layers[index].specialIllustration && sirMicrograin ? texture(sirMicrograin, uv())
+      field: index === 0 && layers[0].packedEtch ? vec4(1, 128 / 255, 85 / 255, 1)
+        : layers[index].specialIllustration && sirMicrograin ? texture(sirMicrograin, uv())
         : layers[index].doubleRare && doubleRareStars ? texture(doubleRareStars, uv()) : image(3 + index), detail: image(6 + index),
       glint: param(28 + index * 2), glintSurface: param(29 + index * 2), sparkle: masks.a,
-      parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06).toVar() }));
+      parameters: Array.from({ length: 8 }, (_, c) => param(index * 8 + c)), ink: print.max(0).pow(param(index * 8 + 4).w.mul(.5)).mul(.94).add(.06).toVar(),
+      normalVariance: authoredVariance }));
     const activeRegions = this.regions.filter((_, index) => layers[index].enabled);
     const blend = (initial: Node<'float'>, index: number, component: 'x' | 'y' | 'z' | 'w') => activeRegions.reduce<Node<'float'>>((value, r) => mix(value, r.parameters[index][component], r.mask), initial);
     const substrate = param(24), background = param(25), ink = param(26), card = param(27);
@@ -241,14 +274,14 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
     const cutSlope = image(6).rg.sub(.5).mul(param(2).y, param(2).z, primary, preview.y.max(0));
     this.normalNode = ultraRare ? normalMap(texture(ultraRare.normal, uv()).rgb)
-      : normalMap(vec3(authoredNormal.rg.add(cutSlope.mul(.5)), authoredNormal.b));
+      : layers[0].packedEtch ? normalMap(authoredNormal) : normalMap(vec3(authoredNormal.rg.add(cutSlope.mul(.5)), authoredNormal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
     if (layers[0].normalFiltering) this.specularColorNode = mix(vec3(1), basePrint, this.regions[0].secret.w);
-    const variance = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
+    const variance = layers[0].packedEtch ? float(0) : activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     const patternRoughness = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
     this.roughnessNode = (ultraRare ? texture(ultraRare.roughness, uv()).r : normal.a).add(variance).add(patternRoughness).clamp(.045, 1);
     if (layers[0].normalFiltering) this.roughnessNode = (this.roughnessNode as Node<'float'>).pow(4)
-      .add(normalPixelVariance(authoredNormal.mul(2)).mul(this.regions[0].secret.z, primary)).pow(.25).clamp(.045, 1);
+      .add(normalPixelVariance(authoredNormal.mul(2)).max(this.regions[0].normalVariance).mul(this.regions[0].secret.z, primary)).pow(.25).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
     const grain = param(40), finish = param(41), stockCard = param(42), registration = param(43);
