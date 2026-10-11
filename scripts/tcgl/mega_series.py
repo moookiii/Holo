@@ -117,7 +117,30 @@ def review_sheet(printings, stem):
         for i,row in enumerate(rows[start:start+6]):sheet.paste(row,(0,i*375))
         path=ROOT/f'artifacts/mega-series/source-review/{stem}-{start//6+1}.jpg';path.parent.mkdir(parents=True,exist_ok=True);sheet.save(path,quality=95)
 
+def validate_special_reverse_sources(printings):
+    """Reject known incorrect special motifs before ANY conversion writes.
+
+    A separate variant ID is not proof of distinct geometry. ASC's published
+    ph2 sources currently duplicate ph, including the packed TCGL textures.
+    Never turn those into an apparently completed special reverse again.
+    """
+    ordinary = {p['cardId']: p for p in printings if p['variant'] == 'reverse'}
+    duplicates = []
+    for p in printings:
+        if p['variant'] != 'special-reverse':
+            continue
+        paired = ordinary.get(p['cardId'])
+        if paired is None:
+            raise ValueError('Full ordinary/special source pairing required: ' + p['cardId'])
+        if p['sources']['foil']['sha256'] == paired['sources']['foil']['sha256']:
+            duplicates.append(p['tcglVariantId'])
+    if duplicates:
+        raise ValueError(f'{len(duplicates)} special reverse foil sources duplicate ordinary Energy motifs; '
+            'authentic special pattern sources are unavailable. No conversion performed. '
+            'See docs/ascended-reverse-audit.json. First affected printing: ' + duplicates[0])
+
 def convert(sid, printings):
+    validate_special_reverse_sources(printings)
     review=json.loads(REVIEW.read_text())
     if not review.get('inspected'):raise ValueError('Source review must be inspected before conversion')
     converter.ASSETS=ROOT/f'public/cards/pokemon/tcgl-me/{sid}';converter.OUT=converter.ASSETS/'tcgl';converter.OUT.mkdir(exist_ok=True)
@@ -129,7 +152,6 @@ def convert(sid, printings):
             'etchPolarity':'Inverted mean RGB; white grooves recessed.' if 'etch' in p['sources'] else 'Smooth; no etch source.',
             'method':review['method'],'capture':review['captures'],'holoFrontSha256':p['sources']['front']['sha256']}
         if 'foil' in p['sources']:p['foilBlackFloor'],p['foilBlackFloorRgb']=black_floor(p['sources']['foil'])
-        if p['variant']=='special-reverse':p['treatment']='standard_reverse'
         reserved=p['rarity'] in ('Mega Attack Rare','Mega Hyper Rare')
         if reserved:p['treatment']='sir_texture'
         evidence=converter.OUT/f"{p['number']}-{p['variant']}-evidence.json"
