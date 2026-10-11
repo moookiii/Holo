@@ -43,6 +43,23 @@ def prepare(row):
     outline = row.get('outline',row['quad'])
     ImageDraw.Draw(mask).polygon([(x*2,y*2) for x,y in outline],fill=255)
     mask = mask.resize(tuple(size),Image.Resampling.LANCZOS)
+    if row.get('refineOutline'):
+        # Classify only a narrow band around the measured wrapper boundary.
+        # The entire interior is definite foreground, including white print.
+        binary = (np.array(mask) > 127).astype(np.uint8)
+        kernel = np.ones((17, 17), np.uint8)
+        outer = cv2.dilate(binary, kernel)
+        inner = cv2.erode(binary, kernel)
+        labels = np.full(binary.shape, cv2.GC_BGD, np.uint8)
+        labels[outer > 0] = cv2.GC_PR_BGD
+        labels[binary > 0] = cv2.GC_PR_FGD
+        labels[inner > 0] = cv2.GC_FGD
+        cv2.grabCut(pixels, labels, None, np.zeros((1,65)), np.zeros((1,65)), 3, cv2.GC_INIT_WITH_MASK)
+        foreground = np.isin(labels, [cv2.GC_FGD, cv2.GC_PR_FGD]).astype(np.uint8)
+        contours, _ = cv2.findContours(foreground, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        filled = np.zeros(binary.shape, np.uint8)
+        cv2.drawContours(filled, [max(contours, key=cv2.contourArea)], -1, 255, cv2.FILLED)
+        mask = Image.fromarray(filled)
     alpha = cv2.warpPerspective(np.array(mask),transform,(width,height),flags=cv2.INTER_LINEAR)
     if row.get('removeEdgeBackground') == 'white':
         # Only remove white connected to the exterior of a stock product image.
