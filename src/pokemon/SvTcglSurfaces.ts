@@ -2,7 +2,7 @@ import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { goldEtchedFinish } from '../materials/profiles/goldEtchedFinish.ts';
 import { canonicalProfileId } from '../materials/profiles/ProfileAliases.ts';
-import { megaRarityProfile } from '../materials/profiles/megaRarity';
+import { megaRarityProfile } from '../materials/profiles/megaRarity.ts';
 import { tcglSvSurfaces } from './data/sv-tcgl-surfaces.generated.ts';
 import { tcglMegaSurfaces } from './data/mega-tcgl.generated.ts';
 import { tcglMepSurfaces } from './data/mep-tcgl.generated.ts';
