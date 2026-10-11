@@ -16,6 +16,8 @@
 .gallery-light input { width: 96px; max-width: 100%; height: 32px; margin: 0; accent-color: #b4a17b; }
 .gallery-viewport { flex: 1; min-height: 0; overflow: auto; overscroll-behavior: contain; scrollbar-color: #40392a #080808; touch-action: pan-y; outline-offset: -3px; }
 .gallery-content { position: relative; }
+.gallery-presentation { position: sticky; top: 0; height: 0; }
+.gallery-card-layer { position: absolute; top: 0; left: 0; width: 100%; overflow: hidden; }
 .gallery-card { position: absolute; padding: 0; text-align: left; border-radius: 6px; }
 .gallery-card-name { position: absolute; top: calc(var(--card-height) + 13px); left: 0; right: 0; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .gallery-card-detail { position: absolute; top: calc(var(--card-height) + 32px); left: 0; right: 0; font-size: 10px; color: #777; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

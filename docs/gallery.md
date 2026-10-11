@@ -28,6 +28,8 @@ Previews retain the source aspect ratio, authored coverage/protection, roughness
 
 ## Verification
 
+Run `node scripts/gallery-scroll-alignment-check.mjs` against the dev server to check HTML/canvas alignment in Chromium and Firefox. The harness pauses drawing while native wheel input advances the scroll offset and four preview requests remain pending. Placeholders and captions stay pinned to the last rendered frame, then advance with the next card frame. It also checks keyboard navigation and mobile resizing; captures are saved in `artifacts/gallery-scroll-alignment/`.
+
 Run `node scripts/gallery-loading-check.mjs` against the dev server (override `GALLERY_URL` if needed) for deterministic browser checks of visible-first scheduling, cache reuse under a saturated queue, overscan preemption and stale/hide cancellation. This uses controlled preparation delays; it does not measure rendering or end-to-end load time.
 
 Run `node scripts/gallery-tilt-check.mjs` for outer-column tilt and neutral-return checks on WebGL. Set `GALLERY_BROWSER=firefox` to exercise Firefox. This samples the lower printed area of every complete card at several pointer positions, catching black wedges from undefined shader math in absent foil layers.

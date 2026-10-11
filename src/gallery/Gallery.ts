@@ -28,6 +28,7 @@ export class Gallery {
   readonly root = document.createElement('section');
   readonly viewport = document.createElement('div');
   private content = document.createElement('div');
+  private cardLayer = document.createElement('div');
   private count = document.createElement('p');
   private status = document.createElement('p');
   private search = document.createElement('input');
@@ -133,7 +134,12 @@ export class Gallery {
     const tools = document.createElement('div'); tools.className = 'gallery-tools';
     tools.append(filters, light);
     this.viewport.className = 'gallery-viewport'; this.viewport.tabIndex = 0; this.viewport.setAttribute('aria-label', 'Scrollable card collection');
-    this.content.className = 'gallery-content'; this.viewport.append(this.content);
+    this.content.className = 'gallery-content';
+    // Native scrolling can advance on the compositor while canvas rendering
+    // stalls. Pin the HTML overlay and move it with the rendered card frame.
+    const presentation = document.createElement('div'); presentation.className = 'gallery-presentation';
+    this.cardLayer.className = 'gallery-card-layer'; presentation.append(this.cardLayer);
+    this.content.append(presentation); this.viewport.append(this.content);
     this.status.className = 'gallery-status'; this.status.setAttribute('role', 'status');
     this.favoriteAnnouncement.className = 'gallery-favorite-announcement';
     this.favoriteAnnouncement.setAttribute('role', 'status');
@@ -271,6 +277,7 @@ export class Gallery {
       this.scrollPreparation.scroll(scroll, performance.now());
     }
     this.lastScroll = scroll;
+    this.cardLayer.style.height = `${this.viewport.clientHeight}px`;
     const onScreen = visible.filter((card, offset) => {
       const top = this.layout.padding + Math.floor((this.layout.start + offset) / this.layout.columns) * this.layout.row - scroll;
       return top <= this.viewport.clientHeight && top + galleryCardSize(card.dimensions, this.layout.cell).cardHeight >= 0;
@@ -342,13 +349,22 @@ export class Gallery {
         };
         button.onpointerenter = () => this.options.hover?.(card.id);
         button.onpointerleave = () => this.options.hover?.();
-        button.onfocus = () => this.options.hover?.(card.id);
+        button.onfocus = () => {
+          // The pinned overlay cannot use native scroll-into-view for Tab focus.
+          const top = this.layout.padding + Math.floor(Number(button!.dataset.cardIndex) / this.layout.columns) * this.layout.row;
+          const bottom = top + galleryCardSize(card.dimensions, this.layout.cell).cardHeight + 54;
+          if (top < this.lastScroll || bottom > this.lastScroll + this.viewport.clientHeight) {
+            this.viewport.scrollTop = top < this.lastScroll ? Math.floor(top) : Math.ceil(bottom - this.viewport.clientHeight);
+            this.reconcile();
+          }
+          this.options.hover?.(card.id);
+        };
         button.onblur = () => this.options.hover?.();
-        this.buttons.set(card.id, button); this.content.append(button);
+        this.buttons.set(card.id, button); this.cardLayer.append(button);
       }
       button.dataset.cardIndex = String(index);
       const { cardWidth, cardHeight } = galleryCardSize(card.dimensions, this.layout.cell);
-      Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + (this.layout.cell - cardWidth) / 2}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row}px`, width: `${cardWidth}px`, height: `${cardHeight + 54}px` });
+      Object.assign(button.style, { left: `${this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + (this.layout.cell - cardWidth) / 2}px`, top: `${this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - scroll}px`, width: `${cardWidth}px`, height: `${cardHeight + 54}px` });
       button.style.setProperty('--card-height', `${cardHeight}px`);
     }
   }
@@ -360,7 +376,7 @@ export class Gallery {
   update(dt: number, width: number, height: number) {
     if (!this.active || this.disposed) return;
     if (this.binder?.active) { this.binder.update(dt, width, height); this.openingReady = this.binder.stats().visible >= this.binder.stats().visibleExpected; return; }
-    if (this.dirty) this.reconcile();
+    if (this.dirty || this.viewport.scrollTop !== this.lastScroll) this.reconcile();
     const prepareCold = this.scrollPreparation.ready(performance.now());
     const rect = this.viewport.getBoundingClientRect();
     const lighting = this.options.lighting;
@@ -375,7 +391,7 @@ export class Gallery {
       const index = Number(this.buttons.get(item.id)!.dataset.cardIndex), card = this.filtered[index];
       const { cardWidth, cardHeight } = galleryCardSize(card.dimensions, this.layout.cell);
       const x = rect.left + this.layout.left + index % this.layout.columns * (this.layout.cell + this.layout.gap) + this.layout.cell / 2;
-      const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.viewport.scrollTop + cardHeight / 2;
+      const y = rect.top + this.layout.padding + Math.floor(index / this.layout.columns) * this.layout.row - this.lastScroll + cardHeight / 2;
       return { ...item, card, cardWidth, cardHeight, x, y, visible: y + cardHeight / 2 >= rect.top && y - cardHeight / 2 <= rect.bottom };
     }).sort((a, b) => Number(b.visible) - Number(a.visible));
     this.firstVisibleCardId = prioritized.find(item => item.visible)?.id;
