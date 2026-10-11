@@ -84,6 +84,16 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const profile = resolveCardProfile(card), paths = { ...resolveCoverageMaps(card), ...profile.maps };
   const settings = { ...card.mapSettings, ...profile.mapSettings };
   const parameters = previewOptics(card, profile);
+  // Plain authored etching has no manufactured primary detail. Reuse its
+  // existing larger atlas slot; keep downloads, allocations and uploads fixed.
+  const sharpEtch = !!profile.diffraction.followsAuthoredNormals && !profile.opticalModel && !!paths.normal
+    && settings.normalScale === 1 && settings.embossStrength === 0
+    && !profile.disabledMechanisms?.includes('relief')
+    && [profile, profile.secondary, profile.stamp].every(layer => !layer || (
+      layer.structure.field === 'plain' && !layer.structure.engraving && !layer.structure.facetTilt
+      && !layer.structure.relief && !layer.structure.patternRelief
+      && !layer.structure.normalVariance && !layer.surface.iridescence));
+  if (sharpEtch) parameters[34 * 4 + 1] = -1;
   const sharpReverse = card.coverageMode === 'reverse' && !!paths.foil && !paths.metallic;
   // Keep individual metallic letter edges at artwork resolution; the small
   // optical maps otherwise blur gold into the surrounding title panel.
@@ -99,7 +109,7 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     sharpReverse ? read(paths.foil!, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined,
     sharpReverse && paths.protection ? read(paths.protection, PREVIEW_WIDTH, PREVIEW_HEIGHT) : undefined,
     Promise.all(keys.filter(key => paths[key]).map(async key => [key, await read(paths[key]!)] as const)),
-    paths.normal ? read(paths.normal) : undefined,
+    paths.normal ? read(paths.normal, sharpEtch ? PREVIEW_FIELD_WIDTH : width, sharpEtch ? PREVIEW_FIELD_HEIGHT : height) : undefined,
   ]);
   for (let i = 0; i < front.length; i += 4) front[i + 3] = titleMask ? Math.round(titleMask[i] * (1 - (titleProtection?.[i] ?? 0) / 255)) : 0;
   if (sharpReverse) {
@@ -171,9 +181,10 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
     }
     // Differentiation precedes clipping. Match the viewer's physical centimetres.
     const emboss = settings.embossStrength ?? .25, normalScale = profile.disabledMechanisms?.includes('relief') ? 0 : settings.normalScale ?? 1;
-    let nx = normalSource ? (normalSource[i] / 255 * 2 - 1) * normalScale : (at(x - 1, y) - at(x + 1, y)) * emboss * .008 * width / (2 * card.dimensions.width);
-    let ny = normalSource ? (normalSource[i + 1] / 255 * 2 - 1) * normalScale : (at(x, y + 1) - at(x, y - 1)) * emboss * .008 * height / (2 * card.dimensions.height);
-    const nz = normalSource ? normalSource[i + 2] / 255 * 2 - 1 : 1;
+    const ni = sharpEtch ? (Math.floor(y / height * PREVIEW_FIELD_HEIGHT) * PREVIEW_FIELD_WIDTH + Math.floor(x / width * PREVIEW_FIELD_WIDTH)) * 4 : i;
+    let nx = normalSource ? (normalSource[ni] / 255 * 2 - 1) * normalScale : (at(x - 1, y) - at(x + 1, y)) * emboss * .008 * width / (2 * card.dimensions.width);
+    let ny = normalSource ? (normalSource[ni + 1] / 255 * 2 - 1) * normalScale : (at(x, y + 1) - at(x, y - 1)) * emboss * .008 * height / (2 * card.dimensions.height);
+    const nz = normalSource ? normalSource[ni + 2] / 255 * 2 - 1 : 1;
     for (let layer = 0; layer < 3; layer++) {
       const offset = layer * 32;
       // Dense LC cuts use the sharper primary field in the fragment shader.
@@ -200,5 +211,6 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   }
   const ultraRareMaps = ULTRA_RARE_FULL_RES_GALLERY && profile.opticalModel === 'sv151-ultra' && paths.normal && paths.roughness && paths.foil && paths.protection
     ? { front: card.front, normal: paths.normal, roughness: paths.roughness, foil: paths.foil, protection: paths.protection } : undefined;
+  if (sharpEtch) details[0] = normalSource!;
   return { images: [front, coverage, normal, ...fields, ...details], parameters, dimensions: card.dimensions, ultraRareMaps };
 }

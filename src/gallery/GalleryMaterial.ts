@@ -213,6 +213,7 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     };
     const artwork = image(0), print = ultraRare ? texture(ultraRare.front, uv()).rgb : artwork.rgb;
     const masks = image(1), normal = image(2), preview = param(34);
+    const authoredNormal = preview.y.lessThan(0).select(image(6).rgb, normal.rgb);
     const metal = ultraRare ? float(0) : artwork.a.mul(preview.x.oneMinus(), preview.z.oneMinus());
     // Same authoritative coverage; only sampling resolution differs from the
     // generic atlas. These source masks are never authored or modified here.
@@ -238,16 +239,16 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const base = mix(mix(basePrint, substrate.rgb, primary.mul(substrate.a)), basePrint.add(substrate.rgb.sub(background.rgb).mul(primary, substrate.a)).max(0), background.a);
     const darkening = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.mask.mul(r.parameters[5].x)), float(0));
     this.colorNode = mix(base, ink.rgb, metal.mul(ink.a)).mul(darkening.mul(.94).oneMinus()).max(0).pow(blend(float(1), 4, 'w'));
-    const cutSlope = image(6).rg.sub(.5).mul(param(2).y, param(2).z, primary, preview.y);
+    const cutSlope = image(6).rg.sub(.5).mul(param(2).y, param(2).z, primary, preview.y.max(0));
     this.normalNode = ultraRare ? normalMap(texture(ultraRare.normal, uv()).rgb)
-      : normalMap(vec3(normal.rg.add(cutSlope.mul(.5)), normal.b));
+      : normalMap(vec3(authoredNormal.rg.add(cutSlope.mul(.5)), authoredNormal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
     if (layers[0].normalFiltering) this.specularColorNode = mix(vec3(1), basePrint, this.regions[0].secret.w);
     const variance = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     const patternRoughness = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
     this.roughnessNode = (ultraRare ? texture(ultraRare.roughness, uv()).r : normal.a).add(variance).add(patternRoughness).clamp(.045, 1);
     if (layers[0].normalFiltering) this.roughnessNode = (this.roughnessNode as Node<'float'>).pow(4)
-      .add(normalPixelVariance(normal.rgb.mul(2)).mul(this.regions[0].secret.z, primary)).pow(.25).clamp(.045, 1);
+      .add(normalPixelVariance(authoredNormal.mul(2)).mul(this.regions[0].secret.z, primary)).pow(.25).clamp(.045, 1);
     this.clearcoatNode = blend(this.regions[0].parameters[3].z, 3, 'z');
     this.clearcoatRoughnessNode = blend(this.regions[0].parameters[3].w, 3, 'w');
     const grain = param(40), finish = param(41), stockCard = param(42), registration = param(43);
