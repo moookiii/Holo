@@ -1,0 +1,85 @@
+{
+  "bundleName": "smbsp_en_109",
+  "source": {
+    "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/smbsp_en_109",
+    "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+    "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+    "s3Folder": "",
+    "assetName": "smbsp_en_109",
+    "crc": 1013346283,
+    "hash": "64bea18c5cfa187240debd311278cd30",
+    "dependencies": []
+  },
+  "sha256": "bef9a4c026482b77a568f636df69298cdf18c4697d40c1a4ee6b37fd9b8468f2",
+  "rawBundle": "dataset/raw-bundles/bef9a4c026482b77a568f636df69298cdf18c4697d40c1a4ee6b37fd9b8468f2",
+  "assets": [
+    {
+      "kind": "front",
+      "field": "_c",
+      "manifest": "MaterialManifest",
+      "reference": "smbsp_en_109",
+      "status": "extracted",
+      "texture": {
+        "name": "smbsp_en_109",
+        "path_id": -4336864812116664825,
+        "serialized_file": "CAB-ce579a050308d927c7e37604d8749e8a",
+        "width": 1024,
+        "height": 1024,
+        "format": 12,
+        "mode": "RGBA",
+        "png": "dataset/textures/bef9a4c026482b77a568f636df69298cdf18c4697d40c1a4ee6b37fd9b8468f2/smbsp_en_109_-4336864812116664825.png",
+        "png_sha256": "6b4e767f82423bf12df2fc4c373108985d2fbfc659c720056741f0fbfabeac1b",
+        "decoded_pixel_sha256": "1a00691cca637b7b5134e64c30d58a35b68c24c9c777638dc8039529e804c66b",
+        "serialized": "dataset/textures/bef9a4c026482b77a568f636df69298cdf18c4697d40c1a4ee6b37fd9b8468f2/smbsp_en_109_-4336864812116664825.serialized",
+        "serialized_sha256": "2e51596af12fd5226d782e61cba1ed0ed66175fe9a9e1467625505dfbd4952e0",
+        "orientation": "UnityPy default vertical conversion; no extra flip",
+        "conversion": "Lossless PNG of decoder output; compressed original retained in raw bundle"
+      },
+      "file": "supplementary/smbsp_en_109/front.png",
+      "dimensions": [
+        1024,
+        1024
+      ],
+      "sha256": "6b4e767f82423bf12df2fc4c373108985d2fbfc659c720056741f0fbfabeac1b",
+      "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/smbsp_en_109"
+    },
+    {
+      "kind": "foil",
+      "field": "_w",
+      "manifest": "MaterialManifest",
+      "reference": "",
+      "status": "not_applicable"
+    },
+    {
+      "kind": "etch",
+      "field": "_e",
+      "manifest": "MaterialManifest",
+      "reference": "",
+      "status": "not_applicable"
+    },
+    {
+      "kind": "cold_foil",
+      "field": "_cf",
+      "manifest": "MaterialManifest",
+      "reference": "",
+      "status": "not_applicable"
+    },
+    {
+      "kind": "cast_and_cure",
+      "field": "_cc",
+      "manifest": "MaterialManifest",
+      "reference": "",
+      "status": "not_applicable"
+    }
+  ],
+  "textureDecodeStatus": "ok",
+  "tcglVariantId": null,
+  "identityStatus": "unresolved: no entry in installed or archived English TCGL card tables",
+  "reason": "Official bundle exists but exact printing identifier is absent; no variant identity fabricated.",
+  "name": "Ash's Pikachu",
+  "printedCollectorNumber": "SM109",
+  "sourceIdentifier": "smbsp_en_109:MaterialManifest",
+  "tcglCardId": null,
+  "identityEvidence": "Printed original TCGL front and matching public SM108–SM114 checklist metadata; source bundle contains one exact MaterialManifest.",
+  "note": "Long-form ID absent from all 39 archived English TCGL tables. Original source identity retained explicitly; no long-form ID invented."
+}

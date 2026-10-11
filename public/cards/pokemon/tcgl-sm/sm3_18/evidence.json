@@ -1,0 +1,264 @@
+{
+  "tcglCardId": "sm3_18",
+  "tcglVariantId": "Charmander_sm3_18_std_Common_NonFoil_None",
+  "exportEntry": {
+    "card_id": "sm3_18",
+    "long_form_id": "Charmander_sm3_18_std_Common_NonFoil_None",
+    "set_id": "sm3",
+    "printed_set_code": "SM3",
+    "collector_number": "18",
+    "printed_collector_number": "18",
+    "name": "Charmander",
+    "variant": 0,
+    "variant_suffix": "",
+    "foil_effect": "NonFoil",
+    "foil_mask": "None",
+    "bundle_name": "sm3_en_018",
+    "material_manifest": "MaterialManifest",
+    "database": "dataset/databases/card-database-sm3_0_en_0.0.json",
+    "material_manifest_requested": "MaterialManifest",
+    "material_manifest_selection": "exact_name",
+    "assets": {
+      "front": {
+        "status": "extracted",
+        "reference": "sm3_en_018",
+        "field": "_c",
+        "manifest": "MaterialManifest",
+        "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+        "texture": {
+          "name": "sm3_en_018",
+          "path_id": 5128038558447901125,
+          "serialized_file": "CAB-dbe5d8bd2631fb2dcfd7eb4aebea1e36",
+          "width": 1024,
+          "height": 1024,
+          "format": 12,
+          "mode": "RGBA",
+          "png": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_en_018_5128038558447901125.png",
+          "png_sha256": "8ed749841e487b70355ba6b8cf1cc542c101227f217a414953d0e7b2d2e716d9",
+          "decoded_pixel_sha256": "58a8138537bdbfeede35b99f38703b6fcdde2fd4534f109cbe7b22c88bb6d5d1",
+          "serialized": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_en_018_5128038558447901125.serialized",
+          "serialized_sha256": "3f697c6294d93fa859b3066aa1873fe6f5cf01091a30918bdba34bc23d5bf1c2",
+          "orientation": "UnityPy default vertical conversion; no extra flip",
+          "conversion": "Lossless PNG of decoder output; compressed original retained in raw bundle",
+          "format_name": "DXT5"
+        },
+        "reason": null,
+        "bundle_source": {
+          "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+          "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+          "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+          "s3Folder": "",
+          "assetName": "sm3_en_018",
+          "crc": 4179396290,
+          "hash": "c2cc92dbad0474bc49919319626112e6",
+          "dependencies": []
+        },
+        "file": "dataset/cards/sm3/sm3_18/front.png"
+      },
+      "foil": {
+        "status": "extracted",
+        "reference": "sm3_wp_std_en_018",
+        "field": "_w",
+        "manifest": "MaterialManifest",
+        "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+        "texture": {
+          "name": "sm3_wp_std_en_018",
+          "path_id": 4683435604303741177,
+          "serialized_file": "CAB-dbe5d8bd2631fb2dcfd7eb4aebea1e36",
+          "width": 512,
+          "height": 512,
+          "format": 12,
+          "mode": "RGBA",
+          "png": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_wp_std_en_018_4683435604303741177.png",
+          "png_sha256": "d6d93b9045b4bc9c42f46238446f3bc73c91f5c023daf36344a16842f8198d2b",
+          "decoded_pixel_sha256": "15a0d2a10af8762cc5edec83058a714909ed057820eabb56b82735fb337c1c0b",
+          "serialized": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_wp_std_en_018_4683435604303741177.serialized",
+          "serialized_sha256": "62cb95352c7875345bba73ca12b70224d5b84c42a7f251081539c515320c7b2b",
+          "orientation": "UnityPy default vertical conversion; no extra flip",
+          "conversion": "Lossless PNG of decoder output; compressed original retained in raw bundle",
+          "format_name": "DXT5"
+        },
+        "reason": null,
+        "bundle_source": {
+          "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+          "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+          "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+          "s3Folder": "",
+          "assetName": "sm3_en_018",
+          "crc": 4179396290,
+          "hash": "c2cc92dbad0474bc49919319626112e6",
+          "dependencies": []
+        },
+        "file": "dataset/cards/sm3/sm3_18/foil.png"
+      },
+      "etch": {
+        "status": "not_applicable",
+        "reason": "Exact material manifest has empty texture reference",
+        "manifest": "MaterialManifest",
+        "field": "_e",
+        "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+        "bundle_source": {
+          "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+          "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+          "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+          "s3Folder": "",
+          "assetName": "sm3_en_018",
+          "crc": 4179396290,
+          "hash": "c2cc92dbad0474bc49919319626112e6",
+          "dependencies": []
+        }
+      },
+      "cold_foil": {
+        "status": "not_applicable",
+        "reason": "Exact material manifest has empty texture reference",
+        "manifest": "MaterialManifest",
+        "field": "_cf",
+        "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+        "bundle_source": {
+          "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+          "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+          "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+          "s3Folder": "",
+          "assetName": "sm3_en_018",
+          "crc": 4179396290,
+          "hash": "c2cc92dbad0474bc49919319626112e6",
+          "dependencies": []
+        }
+      },
+      "cast_and_cure": {
+        "status": "not_applicable",
+        "reason": "Exact material manifest has empty texture reference",
+        "manifest": "MaterialManifest",
+        "field": "_cc",
+        "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+        "bundle_source": {
+          "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+          "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+          "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+          "s3Folder": "",
+          "assetName": "sm3_en_018",
+          "crc": 4179396290,
+          "hash": "c2cc92dbad0474bc49919319626112e6",
+          "dependencies": []
+        }
+      }
+    }
+  },
+  "sources": {
+    "front": {
+      "status": "extracted",
+      "reference": "sm3_en_018",
+      "field": "_c",
+      "manifest": "MaterialManifest",
+      "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+      "texture": {
+        "name": "sm3_en_018",
+        "path_id": 5128038558447901125,
+        "serialized_file": "CAB-dbe5d8bd2631fb2dcfd7eb4aebea1e36",
+        "width": 1024,
+        "height": 1024,
+        "format": 12,
+        "mode": "RGBA",
+        "png": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_en_018_5128038558447901125.png",
+        "png_sha256": "8ed749841e487b70355ba6b8cf1cc542c101227f217a414953d0e7b2d2e716d9",
+        "decoded_pixel_sha256": "58a8138537bdbfeede35b99f38703b6fcdde2fd4534f109cbe7b22c88bb6d5d1",
+        "serialized": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_en_018_5128038558447901125.serialized",
+        "serialized_sha256": "3f697c6294d93fa859b3066aa1873fe6f5cf01091a30918bdba34bc23d5bf1c2",
+        "orientation": "UnityPy default vertical conversion; no extra flip",
+        "conversion": "Lossless PNG of decoder output; compressed original retained in raw bundle",
+        "format_name": "DXT5"
+      },
+      "reason": null,
+      "bundle_source": {
+        "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+        "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+        "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+        "s3Folder": "",
+        "assetName": "sm3_en_018",
+        "crc": 4179396290,
+        "hash": "c2cc92dbad0474bc49919319626112e6",
+        "dependencies": []
+      },
+      "file": "research/tcgl/sun-moon-series/dataset/cards/sm3/sm3_18/front.png",
+      "sha256": "8ed749841e487b70355ba6b8cf1cc542c101227f217a414953d0e7b2d2e716d9",
+      "dimensions": [
+        1024,
+        1024
+      ]
+    },
+    "foil": {
+      "status": "extracted",
+      "reference": "sm3_wp_std_en_018",
+      "field": "_w",
+      "manifest": "MaterialManifest",
+      "bundle_sha256": "37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593",
+      "texture": {
+        "name": "sm3_wp_std_en_018",
+        "path_id": 4683435604303741177,
+        "serialized_file": "CAB-dbe5d8bd2631fb2dcfd7eb4aebea1e36",
+        "width": 512,
+        "height": 512,
+        "format": 12,
+        "mode": "RGBA",
+        "png": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_wp_std_en_018_4683435604303741177.png",
+        "png_sha256": "d6d93b9045b4bc9c42f46238446f3bc73c91f5c023daf36344a16842f8198d2b",
+        "decoded_pixel_sha256": "15a0d2a10af8762cc5edec83058a714909ed057820eabb56b82735fb337c1c0b",
+        "serialized": "dataset/textures/37392fbba529d6c243f2ca845f6d32c3a3504ca8a746395cf44bc4c0652ea593/sm3_wp_std_en_018_4683435604303741177.serialized",
+        "serialized_sha256": "62cb95352c7875345bba73ca12b70224d5b84c42a7f251081539c515320c7b2b",
+        "orientation": "UnityPy default vertical conversion; no extra flip",
+        "conversion": "Lossless PNG of decoder output; compressed original retained in raw bundle",
+        "format_name": "DXT5"
+      },
+      "reason": null,
+      "bundle_source": {
+        "url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/sm3_en_018",
+        "manifest_url": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/manifest_en_10101_0000",
+        "manifest_sha256": "c6ae095016bd6602999f8602877473321c3babf6a4b2c5cdc82562ac474cf8fe",
+        "s3Folder": "",
+        "assetName": "sm3_en_018",
+        "crc": 4179396290,
+        "hash": "c2cc92dbad0474bc49919319626112e6",
+        "dependencies": []
+      },
+      "file": "research/tcgl/sun-moon-series/dataset/cards/sm3/sm3_18/foil.png",
+      "sha256": "d6d93b9045b4bc9c42f46238446f3bc73c91f5c023daf36344a16842f8198d2b",
+      "dimensions": [
+        512,
+        512
+      ]
+    }
+  },
+  "maps": {},
+  "bodyMask": null,
+  "profile": "print-only",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
+  "registration": {
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "dimensions": [
+      733,
+      1024
+    ],
+    "verticalFlip": false,
+    "polarity": "inverted mean RGB",
+    "fullCardUv": true,
+    "status": "Source-family registration; each asset binds its own front, foil and etch hashes."
+  },
+  "conversion": {
+    "normalDimensions": [
+      1800,
+      2475
+    ],
+    "slopeGain": 1.03,
+    "derivatives": "Scharr CV_32F scale 1/32 before protection; bilinear continuous height",
+    "embossStrength": 0,
+    "runtimeGeneration": false
+  },
+  "outputHashes": {},
+  "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented."
+}

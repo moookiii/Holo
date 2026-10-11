@@ -32,3 +32,25 @@ test('new pack backs have reproducible source evidence and native PNG detail', (
     assert.ok(source.review.length > 40);
   }
 });
+
+test('Sun and Moon has 62 verified asset records and 16 connected reverse assets', () => {
+  const fronts = JSON.parse(readFileSync('public/packs/pokemon/sm-wrapper-sources.json', 'utf8'));
+  const paired = JSON.parse(readFileSync('public/packs/pokemon/sm-paired-sources.json', 'utf8'));
+  assert.equal(fronts.length, 62);
+  assert.equal(new Set(fronts.map((s: { output: string }) => s.output)).size, 62);
+  const backs = paired.filter((s: { side: string }) => s.side === 'back');
+  assert.equal(backs.length, 16);
+  for (const source of [...fronts, ...backs]) {
+    const bytes = readFileSync(source.output);
+    assert.equal(bytes.subarray(0, 8).toString('hex'), '89504e470d0a1a0a');
+    assert.deepEqual([bytes.readUInt32BE(16), bytes.readUInt32BE(20)], source.dimensions);
+    assert.equal(createHash('sha256').update(bytes).digest('hex'), source.sha256);
+    assert.equal(createHash('sha256').update(readFileSync(source.source)).digest('hex'), source.sourceSha256);
+    assert.match(source.url, /^https:\/\//);
+  }
+  for (const back of backs) {
+    const boosters = localBoosterArt(back.setId);
+    assert.ok(boosters?.length);
+    assert.ok(boosters.every(booster => booster.back === `/packs/pokemon/${back.setId}-back.png`));
+  }
+});
