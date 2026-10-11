@@ -9,6 +9,7 @@ import hashlib
 import inspect
 import json
 import re
+from PIL import Image
 
 import fetch_xy_sources as acquisition
 
@@ -135,6 +136,43 @@ def audit():
         s['foilTypes'][row['foil_effect']] += 1
         s['materialShaders'][material['tree'].get('_s', '')] += 1
     assert not unbound_references, 'Additional texture-valued manifest fields need dedicated resolution'
+    # Check EVERY decoded file, including originals not referenced by any finish
+    # (the client bundles also contain small card-art sprites).
+    used_materials = {(a.get('bundle_sha256'), a.get('manifest')) for r in manifest
+                      for a in r['assets'].values() if a.get('bundle_sha256')}
+    used_textures = {a['texture']['png'] for r in manifest for a in r['assets'].values()
+                     if a['status'] == 'extracted'}
+    downloads = read(ROOT / 'dataset/download-results.json')
+    source_by_hash = {r['sha256']: r['source'] for r in downloads.values() if r['status'] == 'downloaded'}
+    unindexed_materials, supplementary, all_textures = [], [], []
+    for digest, bundle in checkpoints.items():
+        assert bundle['status'] == 'ok' and not bundle['errors']
+        for material in bundle['manifests']:
+            if (digest, material['name']) not in used_materials:
+                unindexed_materials.append({'bundleSha256': digest, 'manifest': material})
+        for texture in bundle['textures']:
+            all_textures.append(texture['png'])
+            if texture['png'] in used_textures:
+                continue  # Already fully decoded/pixel/file/serialized checked by acquisition.validate.
+            path = ROOT / texture['png']
+            with Image.open(path) as image:
+                image.load()
+                assert image.format == 'PNG'
+                assert image.size == (texture['width'], texture['height']) and image.mode == texture['mode']
+                assert hashlib.sha256(image.tobytes()).hexdigest() == texture['decoded_pixel_sha256']
+            assert sha(path) == texture['png_sha256']
+            assert sha(ROOT / texture['serialized']) == texture['serialized_sha256']
+            supplementary.append({'bundleNames': bundle['bundle_names'], 'bundleSha256': digest,
+                                  'source': source_by_hash[digest], 'texture': texture,
+                                  'printingIds': [r['card_id'] for r in manifest if
+                                                 r['assets']['front']['bundle_sha256'] == digest],
+                                  'role': 'original supplementary texture; no finish material reference',
+                                  'validationStatus': 'validated'})
+    assert not unindexed_materials, 'Bundle contains finish manifests absent from printing inventory'
+    write(ROOT / 'evidence/all-native-textures-audit.json', {
+        'decodedTextures': len(all_textures), 'printingReferencedTextures': len(used_textures),
+        'supplementaryTextures': supplementary, 'unindexedFinishManifests': unindexed_materials,
+        'status': 'validated'})
     archived = read(ROOT / 'evidence/archived-inventory-audit.json')
     assert not archived['missingFromInstalledInventory']
     write(ROOT / 'evidence/native-registration-audit.json', {
@@ -153,6 +191,13 @@ def audit():
     report['nativeRegistration'] = {'checkedAssociations': len(registration), 'decoder': decoder,
                                    'manifest': 'research/tcgl/xy-series/evidence/native-registration-audit.json'}
     report['additionalMaps'] = ['cold_foil', 'cast_and_cure']
+    report['allNativeTextures'] = {'validated': len(all_textures),
+                                  'printingReferenced': len(used_textures),
+                                  'supplementary': len(supplementary), 'unindexedFinishManifests': 0,
+                                  'manifest': 'research/tcgl/xy-series/evidence/all-native-textures-audit.json'}
+    for sid in report['sets']:
+        report['sets'][sid]['supplementaryOriginalTextures'] = sum(
+            any(n.startswith(sid + '_en_') for n in t['bundleNames']) for t in supplementary)
     report['materialWorkLater'] = {
         'foilTypes': dict(Counter(r['foil_effect'] for r in inventory)),
         'note': 'Retain TCGL shader IDs, masks and etches for EX/Mega EX, BREAK, Ancient Trait, '
@@ -181,6 +226,10 @@ def audit():
               f"Official bundles without a table identity: {len(report.get('unresolvedVariantIdentities', []))}. "
               'They remain separately preserved in `supplementary/orphan-bundles.json` with actual texture references '
               'and unresolved identities; they are not counted as identified finish variants.', '',
+              f"All {len(all_textures)} native decoded textures validated, including {len(supplementary)} "
+              'supplementary originals outside finish material references (including small card-art sprites). '
+              'They are retained with their original bundle identity; they are not misclassified as foil or etching. '
+              'No additional unindexed finish material manifests were found.', '',
               'The processed export has no XY inventory. Extraction instead uses raw TCGL binary card tables, '
               'archived decoded tables, official bundle manifests and exact per-variant MaterialManifest references.', '',
               'Resume: `python scripts/tcgl/fetch_xy_sources.py --workers 8`. Independent full checksum audit: '
