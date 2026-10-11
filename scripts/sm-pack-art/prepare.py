@@ -44,6 +44,20 @@ def prepare(row):
     ImageDraw.Draw(mask).polygon([(x*2,y*2) for x,y in outline],fill=255)
     mask = mask.resize(tuple(size),Image.Resampling.LANCZOS)
     alpha = cv2.warpPerspective(np.array(mask),transform,(width,height),flags=cv2.INTER_LINEAR)
+    if row.get('removeEdgeBackground') == 'white':
+        # Only remove white connected to the exterior of a stock product image.
+        # Enclosed white print stays intact.
+        white = (np.min(crop, axis=2) >= 248).astype(np.uint8)
+        count, labels = cv2.connectedComponents(white, connectivity=8)
+        exterior = np.unique(np.concatenate((labels[0], labels[-1], labels[:, 0], labels[:, -1])))
+        exterior = exterior[exterior != 0]
+        alpha[np.isin(labels, exterior)] = 0
+    bounds = Image.fromarray(alpha).getbbox()
+    if bounds is None:
+        raise ValueError(f"Empty wrapper: {row['output']}")
+    left, top, right, bottom = bounds
+    crop, alpha = crop[top:bottom, left:right], alpha[top:bottom, left:right]
+    height, width = alpha.shape
     output = ROOT / row['output']
     Image.fromarray(np.dstack([crop,alpha])).save(output)
     overlay = Image.fromarray(pixels)
@@ -63,6 +77,8 @@ def main():
     rows=json.loads(CONFIG.read_bytes())
     evidence_path=ROOT/'public/packs/pokemon/sm-paired-sources.json'
     evidence=json.loads(evidence_path.read_bytes()) if evidence_path.exists() else []
+    active_outputs = {row['output'] for row in rows}
+    evidence = [row for row in evidence if row['output'] in active_outputs]
     for row in rows:
         if args.set and row['setId'] != args.set: continue
         result=prepare(row)
