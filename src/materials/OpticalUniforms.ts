@@ -84,7 +84,7 @@ export class OpticalUniforms {
     this.patternRoughness.value = p.surface.patternRoughness ?? 0;
     this.laminate.value = p.surface.laminate; this.laminateRoughness.value = p.surface.laminateRoughness;
     this.fieldBlend.value = p.structure.field === 'radial' ? 0 : 1;
-    this.patternedSilver.value = ['plain', 'satin', 'e-reader', 'sheen', 'water-web', 'mirage'].includes(p.structure.field) ? 0 : 1;
+    this.patternedSilver.value = ['plain', 'satin', 'e-reader', 'sheen', 'water-web', 'sm-prism-star', 'mirage'].includes(p.structure.field) ? 0 : 1;
     this.facetTilt.value = p.structure.facetTilt ?? 0;
     this.reflectionCoupling.value = p.structure.reflectionCoupling ?? 1;
     this.anisotropy.value = p.surface.anisotropy ?? 0;
