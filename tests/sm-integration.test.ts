@@ -34,7 +34,14 @@ test('every exact source printing maps to one valid Holo printing without collap
       assert.deepEqual(def.profileOverrides, tcglEtchedFinish);
       assert.equal(def.maps?.height, undefined);
     }
-    if (surface.deferredEffect) {
+    if (surface.deferredEffect === 'Prism Star') {
+      assert.equal(def.profile, 'pokemon-sm-prism-star');
+      assert.equal(def.pokemon?.treatmentStatus, undefined);
+      assert.doesNotMatch(def.number, /finish pending/);
+      assert.equal(def.mapSettings?.roughnessMode, 'profile');
+      assert.equal(def.stockSurface?.strength, 0);
+      assert.ok(def.maps?.extendedFoil && existsSync('public' + def.maps.extendedFoil));
+    } else if (surface.deferredEffect) {
       assert.ok(['Sun & Moon Reverse Holo', 'Prism Star'].includes(surface.deferredEffect));
       assert.equal(def.pokemon?.treatmentStatus, 'deferred');
       assert.match(def.source!.notes!, /provisional/);

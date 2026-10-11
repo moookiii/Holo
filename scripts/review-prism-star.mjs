@@ -21,12 +21,14 @@ page.on('console', e => { if (e.type() === 'error') errors.push(e.text()); });
 try {
   await page.goto('http://127.0.0.1:5173/', { waitUntil: 'domcontentloaded' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
+  await page.waitForTimeout(2500);
   for (const id of ['sm5-58', 'sm5-120', 'sm5-136']) {
     await page.evaluate(async id => {
       await window.__holo.gallery.close(`pokemon:${id}:holo`);
       window.__holo.hideUI();
       window.__holo.lighting.playing = false;
     }, id);
+    await page.waitForFunction(id => window.__holo.stats().card === `pokemon:${id}:holo` && !window.__holo.gallery.stats()?.active, id);
     for (const [label, light, yaw, pitch] of [
       ['front', 'Studio', 0, 0], ['left', 'Studio', -18, 0], ['right', 'Studio', 18, 0],
       ['reflection', 'Strip', -15, -15], ['soft', 'Soft', 0, 12],

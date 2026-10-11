@@ -46,14 +46,14 @@ export function generatePokemonDirectionalField(kind: PokemonDirectionalKind, se
       grain = .50 + micro * .13;
     } else if (kind === 'sm-prism-star') {
       // The same contour-gradient construction as Water-Web, with restrained
-      // oblique bends. Seven broad inclination cycles per card height; neither
+      // oblique bends. 4.5 broad inclination cycles per card height; neither
       // this scale nor the shader's grating period is a measured factory pitch.
-      const u = (x + y) * Math.SQRT1_2, v = (y - x) * Math.SQRT1_2;
+      const u = (x - y) * Math.SQRT1_2, v = (y + x) * Math.SQRT1_2;
       const flow = u + .025 * Math.sin(v * 11 + sheetPhase);
       const bend = .275 * Math.cos(v * 11 + sheetPhase);
-      const dx = (1 - bend) * Math.SQRT1_2, dy = (1 + bend) * Math.SQRT1_2;
+      const dx = (1 + bend) * Math.SQRT1_2, dy = (-1 + bend) * Math.SQRT1_2;
       const length = Math.hypot(dx, dy);
-      const slope = .25 * Math.sin(flow * TAU * 7 + sheetPhase);
+      const slope = .20 * Math.sin(flow * TAU * 4.5 + sheetPhase);
       angle = Math.atan2(dy, dx);
       nx = dx / length * slope; ny = dy / length * slope;
       spacing = 1 + .025 * Math.sin(flow * 12);

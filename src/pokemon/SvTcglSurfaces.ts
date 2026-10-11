@@ -36,10 +36,11 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
   const deferred = !prism && (swsh && swshLimitations.get(`${id}:${variant}`)?.length || smSurface?.treatmentStatus === 'deferred');
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
-    number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}${smSurface?.deferredEffect ? ' · ' + smSurface.deferredEffect + ' finish pending' : ''}`,
+    number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}${!prism && smSurface?.deferredEffect ? ' · ' + smSurface.deferredEffect + ' finish pending' : ''}`,
     dimensions: DIMENSIONS.standard, front, back: '/cards/pokemon/back.jpg', profile, seed: 2023000,
     pickerHidden: !surface && !fallbackSource, galleryVisible: variant === 'normal', pokemon: { ...card, front, thumbnail: front, variant, materialProfile: profile,
       ...(deferred || !sm && !megaFinish && 'treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
+    ...(prism ? { stockSurface: { strength: 0, depth: 0 } } : {}),
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
       maps: { ...surface.maps, ...(prism ? prismStarMaps(id) : {}), ...(megaFinish ? { secondaryFoil: `/cards/pokemon/mega-optics/${id}-secondary.png` } : {}) },
