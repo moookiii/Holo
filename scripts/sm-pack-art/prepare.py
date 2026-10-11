@@ -27,6 +27,7 @@ def prepare(row):
     with Image.open(source) as image:
         image.load()
         pixels = np.array(image.convert('RGB'))
+        source_alpha = np.array(image.convert('RGBA'))[:, :, 3]
         size = list(image.size)
     points = np.array(row['quad'], dtype=np.float32)
     width = min(np.linalg.norm(points[1]-points[0]), np.linalg.norm(points[2]-points[3]))
@@ -61,6 +62,8 @@ def prepare(row):
         cv2.drawContours(filled, [max(contours, key=cv2.contourArea)], -1, 255, cv2.FILLED)
         mask = Image.fromarray(filled)
     alpha = cv2.warpPerspective(np.array(mask),transform,(width,height),flags=cv2.INTER_LINEAR)
+    original_alpha = cv2.warpPerspective(source_alpha, transform, (width,height), flags=cv2.INTER_LINEAR)
+    alpha = np.minimum(alpha, original_alpha)
     if row.get('removeEdgeBackground') == 'white':
         # Only remove white connected to the exterior of a stock product image.
         # Enclosed white print stays intact.
