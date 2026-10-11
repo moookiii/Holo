@@ -44,6 +44,7 @@ try {
     await page.getByRole('button', { name: /^Pokémon/ }).click();
     await page.getByRole('button', { name: /^XY/ }).click();
     await page.locator('button').filter({ has: page.getByText(name, { exact: true }) }).click();
+    await page.waitForFunction(() => [...document.querySelectorAll('.pokemon-booster img')].every(img => img.complete && img.naturalWidth > 0));
     await page.screenshot({ path: `${out}/${sid}-picker.png` });
     await page.locator('.pokemon-booster').first().click();
     await page.waitForFunction(() => window.__holo.pack.stats().state === 'PackReady', null, { timeout: 120000 });

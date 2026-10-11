@@ -32,21 +32,21 @@ function recipe(setId: keyof typeof xyRates): PokemonRecipe {
     boosterIds:xyWrappers[setId].map(b => b.id), poolSetIds:rc.length ? [setId,'xy9-5r'] : [setId],
     requiredCardIds:[...own,...rc].map(c => c.id), sources:[rates.source,
       'https://bulbapedia.bulbagarden.net/wiki/Booster_pack_(TCG)'],
-    note:'Original English slot structure; primary observer estimates, not official odds. Uniform within category pools; independent rare/reverse slots. No extra modern Basic Energy, code insert, box guarantee or god packs. Finish-pending cards remain eligible.' };
+    note:'Original English ten-card booster. Pull rates use published estimates; some special foil finishes are pending.' };
   const reverse: SlotOutcome[] = [branch(1-rates.break, own.filter(c => ordinary.includes(c.rarity) && c.variants.includes('reverse')), 'reverse')];
   if (rates.break) reverse.push(branch(rates.break,select(['BREAK Rare']),'holo'));
-  if (setId === 'xy5-5') return { ...base, note:base.note+' Double Crisis: 3 commons, 2 uncommons, reverse and guaranteed holo/full art; FA 1/9 rough estimate.',
+  if (setId === 'xy5-5') return { ...base, note:'English seven-card booster: three commons, two uncommons, one reverse and one holo or full art. Pull rates use published estimates.',
     slots:[{id:'common',count:3,unique:true,outcomes:[branch(1,select(['Common']),'normal')]},
       {id:'reverse',count:1,outcomes:reverse},{id:'rare',count:1,outcomes:rare},
       {id:'uncommon',count:2,unique:true,outcomes:[branch(1,select(['Uncommon']),'normal')]}] };
-  if (setId === 'xy9-5') return { ...base, note:base.note+' Generations: 8 core + 2 RC. Common/Energy share a sheet; RC premium sheet is 72 uncommon/28 ultra positions.',
+  if (setId === 'xy9-5') return { ...base, note:'English ten-card booster: eight Generations cards and two Radiant Collection cards. Pull rates use published estimates; Radiant foil is pending.',
     slots:[{id:'common',count:4,unique:true,outcomes:[branch(1,select(['Common','Energy']),'normal')]},
       {id:'reverse',count:1,outcomes:reverse},
       {id:'radiant-premium',count:1,outcomes:[branch(.72,rc.filter(c => c.rarity === 'Uncommon'),'holo'),branch(.28,rc.filter(c => ['Holo Rare EX','Ultra Rare'].includes(c.rarity)),'holo')]},
       {id:'rare',count:1,outcomes:rare},
       {id:'radiant-common',count:1,outcomes:[branch(1,rc.filter(c => c.rarity === 'Common'),'normal')]},
       {id:'uncommon',count:2,unique:true,outcomes:[branch(1,select(['Uncommon']),'normal')]}] };
-  return { ...base, note:base.note+(rates.break ? ' BREAK replaces reverse.' : '')+(setId === 'xy12' ? ' Five nonfoil secrets are on the observed 121-position uncommon sheet; three consecutive positions retain its legal secret pairs.' : ''),
+  return { ...base, note:base.note+(rates.break ? ' BREAK can replace the reverse holo.' : ''),
     slots:[{id:'common',count:5,unique:true,outcomes:[branch(1,select(['Common','Energy']),'normal')]},
       {id:'reverse',count:1,outcomes:reverse},{id:'rare',count:1,outcomes:rare},
       {id:'uncommon',count:3,...(setId === 'xy12' ? {sequence:evolutionsUncommonSheet} : {unique:true}),
