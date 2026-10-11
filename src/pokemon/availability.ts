@@ -14,6 +14,10 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (setId === WIZARDS_PROMO_ID) return { ready: false, label: `Browse ${wizardsPromoCards.length} promos`,
     detail: 'Choose an individual promo card. These cards were distributed outside booster packs.' };
   const nonBoosters: Record<string, { label: string; detail: string }> = {
+    xy0: { label: 'Browse Kalos Starter Set', detail: 'Theme-deck collection; no Kalos Starter Set booster pack.' },
+    xybsp: { label: 'Browse XY promos', detail: 'Exact promotional printings distributed outside random boosters.' },
+    xyalt: { label: 'Browse XY special printings', detail: 'Alternate sealed-product printings; no standalone alternate-printings booster.' },
+    'xy9-5r': { label: 'Browse Radiant Collection', detail: 'Two Radiant Collection cards are included in each Generations booster; no separate English booster.' },
     swshbsp: { label: 'Browse promos', detail: 'Black Star promotional printings are distributed outside random boosters.' },
     swshalt: { label: 'Browse alternate printings', detail: 'Alternate product printings have no standalone random booster.' },
     'swsh7-5r': { label: 'Browse Classic Collection', detail: 'Classic Collection cards appear in Celebrations boosters; no separate English booster.' },
@@ -32,6 +36,8 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (nonBoosters[setId]) return { ready: false, ...nonBoosters[setId] };
   if (!recipeFor(setId)) return { ready: false, label: 'Browse only · recipe not validated',
     detail: 'Opening unavailable: this set has no validated pack recipe.' };
+  if (recipeFor(setId)?.era === 'xy') return { ready: true, label: 'Opening available · sourced collation estimates',
+    detail: 'Exact XY printing pools. Unsupported foil finishes retain clean fronts and remain selectable.' };
   if (setId === '2024sv') return { ready: true, label: 'Opening available · confetti finish pending',
     detail: '15 exact English M24EN prints. Seven holo fronts retain photographed confetti; animated foil treatment is pending.' };
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return {ready:true,label:'Opening available · measured pull rates',

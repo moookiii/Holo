@@ -11,12 +11,14 @@ import { tcglSmSurfaces } from './data/sm-tcgl.generated.ts';
 import { svTcglCard, svTcglCards, svTcglCollectorNumber, svTcglFront, svTcgdexNonfoilSource, svNonfoilImageProvider } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
 import { isPrismStar, prismStarMaps } from './PrismStarSurfaces.ts';
+import { xyDefinition, xyProfile } from './XySurfaces.ts';
 
 const surfaces = new Map([...tcglSvSurfaces, ...tcglMegaSurfaces, ...tcglMepSurfaces, ...tcglSwshSurfaces, ...tcglSmSurfaces].map(surface => [`${surface.cardId}:${surface.variant}`, surface]));
 const smSurfaces = new Map(tcglSmSurfaces.map(s => [`${s.cardId}:${s.variant}`, s]));
 const swshLimitations = new Map(tcglSwshSurfaces.map(s => [`${s.cardId}:${s.variant}`, s.limitations]));
 export function svTcglProfile(id: string, variant: PrintVariant): string {
   const card = svTcglCard(id);
+  if (card.seriesId === 'xy') return xyProfile(id, variant);
   if (!card.variants.includes(variant)) throw new Error(`Invalid TCGL printing: ${id}:${variant}`);
   if (variant === 'normal') return 'print-only';
   const surface = surfaces.get(`${id}:${variant}`);
@@ -25,6 +27,7 @@ export function svTcglProfile(id: string, variant: PrintVariant): string {
   return megaRarityProfile(card.rarity) ?? canonicalProfileId(surface.profile);
 }
 export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinition {
+  if (svTcglCard(id).seriesId === 'xy') return xyDefinition(id, variant);
   const card = svTcglCard(id), profile = svTcglProfile(id, variant), surface = surfaces.get(`${id}:${variant}`);
   const front = svTcglFront(id, variant);
   const fallbackSource = svTcgdexNonfoilSource(id);
