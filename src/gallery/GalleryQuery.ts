@@ -1,4 +1,5 @@
 import type { CardDefinition } from '../card/CardDefinition';
+import { gallerySearchText } from './GallerySearchText.ts';
 import { tcglSvSets } from '../pokemon/data/sv-tcgl.generated.ts';
 import { tcglMegaSets } from '../pokemon/data/mega-tcgl.generated.ts';
 import { tcglMepSets } from '../pokemon/data/mep-tcgl.generated.ts';
@@ -230,8 +231,8 @@ export function matchesFacet(card: CardDefinition, facet: typeof facets[number],
 }
 
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
-  const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return galleryMasterCards(cards.map(completePokemonMetadata)).filter(card => (!card.pickerHidden || card.galleryVisible) && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
+  const words = gallerySearchText(query.search).trim().split(/\s+/).filter(Boolean);
+  return galleryMasterCards(cards.map(completePokemonMetadata)).filter(card => (!card.pickerHidden || card.galleryVisible) && words.every(word => gallerySearchText(`${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`).includes(word))
     && facets.every(facet => !query[facet.key] || matchesFacet(card, facet, query[facet.key]!))).sort(compareGalleryCards);
 }
 
@@ -246,12 +247,12 @@ export class GalleryQueryIndex {
     if (this.snapshot.length === this.source.length && this.source.every((card, index) => card === this.snapshot[index])) return;
     this.snapshot = [...this.source];
     this.indexed = galleryMasterCards(this.source.map(completePokemonMetadata)).filter(card => !card.pickerHidden || card.galleryVisible)
-      .sort(compareGalleryCards).map(card => ({ card, text: `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase() }));
+      .sort(compareGalleryCards).map(card => ({ card, text: gallerySearchText(`${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`) }));
   }
   cards() { this.refresh(); return this.indexed.map(row => row.card); }
   filter(query: GalleryQuery) {
     this.refresh();
-    const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
+    const words = gallerySearchText(query.search).trim().split(/\s+/).filter(Boolean);
     const selected = facets.filter(facet => query[facet.key]);
     return this.indexed.filter(row => words.every(word => row.text.includes(word))
       && selected.every(facet => matchesFacet(row.card, facet, query[facet.key]!))).map(row => row.card);

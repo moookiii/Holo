@@ -20,6 +20,7 @@ import { profiles } from '../materials/profiles';
 import { pokemonFinishLabel, pokemonFinishTags } from '../pokemon/finishes.ts';
 import type { CardFactory } from '../card/CardFactory';
 import { FavoritesBinder } from '../binder/FavoritesBinder';
+import { PokemonSpriteSelector } from './PokemonSpriteSelector';
 
 interface Entry { token: number; ready: boolean; uploading?: boolean; error?: string; preview?: CardPreview; pitch: number; yaw: number; }
 const PREVIEW_CONCURRENCY = 4;
@@ -30,6 +31,7 @@ export class Gallery {
   private count = document.createElement('p');
   private status = document.createElement('p');
   private search = document.createElement('input');
+  private spriteSelector: PokemonSpriteSelector;
   private filters = new Map<string, HTMLSelectElement>();
   private setJump = document.createElement('select');
   private favorites = browserGalleryFavorites();
@@ -84,7 +86,13 @@ export class Gallery {
     header.append(actions);
     const filters = document.createElement('div'); filters.className = 'gallery-filters';
     this.search.type = 'search'; this.search.placeholder = 'Search cards'; this.search.setAttribute('aria-label', 'Search gallery cards');
-    this.search.oninput = () => { this.query.search = this.search.value; this.applyFilters(); }; filters.append(this.search);
+    this.search.oninput = () => { this.query.search = this.search.value; this.applyFilters(); };
+    this.spriteSelector = new PokemonSpriteSelector(this.root, name => {
+      this.search.value = '';
+      this.search.value = name;
+      this.search.dispatchEvent(new Event('input', { bubbles: true }));
+    });
+    filters.append(this.spriteSelector.button, this.search);
     for (const facet of facets) {
       const label = document.createElement('label');
       const caption = document.createElement('span'); caption.textContent = facet.label; label.append(caption);
@@ -176,6 +184,7 @@ export class Gallery {
     this.applyFilters(false); this.search.focus({ preventScroll: true });
   }
   private openBinder() {
+    this.spriteSelector.close(false);
     if (this.loading) return;
     for (const slot of this.requests.keys()) this.cancelRequest(slot);
     this.cancelNearRequests(); this.options.hover?.();
@@ -209,6 +218,7 @@ export class Gallery {
     }
   }
   hide() {
+    this.spriteSelector.close(false);
     this.binder?.hide();
     if (this.active) {
       const { preset, azimuth, elevation, intensity, speed, filterAngle, playing } = this.options.lighting;
@@ -457,5 +467,5 @@ export class Gallery {
   presentationKey() { return JSON.stringify([this.query, this.assigned.map(item => item.id), this.viewport.scrollTop,
     this.viewport.clientWidth, this.viewport.clientHeight]); }
   likelyViewerCard() { return this.active && this.openingReady && !this.binder?.active ? this.firstVisibleCardId : undefined; }
-  dispose() { this.disposed = true; this.hide(); this.binder?.dispose(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }
+  dispose() { this.disposed = true; this.hide(); this.spriteSelector.dispose(); this.binder?.dispose(); this.abort.abort(); this.observer.disconnect(); this.graphics.dispose(); this.residency.clear(); this.entries.clear(); this.buttons.clear(); this.root.remove(); }
 }
