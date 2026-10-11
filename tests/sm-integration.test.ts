@@ -9,20 +9,20 @@ import { collatePokemon } from '../src/pokemon/collator.ts';
 import { tcglEtchedFinish } from '../src/materials/profiles/tcglEtchedFinish.ts';
 const pilot = process.env.SM_PILOT === '1';
 const cards = svTcglCards.filter(c => c.seriesId === 'sm');
-const expected = pilot ? 325 : 5003;
+const expected = pilot ? 325 : 5010;
 
 test('every exact source printing maps to one valid Holo printing without collapse', () => {
-  const index = JSON.parse(readFileSync('public/cards/pokemon/tcgl-sm/printing-index.json', 'utf8')) as {tcglCardId:string;tcglVariantId:string;cardId:string;variant:string}[];
+  const index = JSON.parse(readFileSync('public/cards/pokemon/tcgl-sm/printing-index.json', 'utf8')) as {tcglCardId:string|null;tcglVariantId:string|null;sourceIdentifier?:string;cardId:string;variant:string}[];
   assert.equal(index.length, expected);
-  assert.equal(new Set(index.map(p => p.tcglCardId)).size, expected);
+  assert.equal(new Set(index.map(p => p.tcglCardId ?? p.sourceIdentifier)).size, expected);
   assert.equal(new Set(index.map(p => `${p.cardId}:${p.variant}`)).size, expected);
   assert.equal(tcglSmSurfaces.length, expected);
   const source = JSON.parse(readFileSync('research/tcgl/sun-moon-series/dataset/manifest.json', 'utf8'));
   for (const p of index) {
-    const surface = tcglSmSurfaces.find(s => s.tcglCardId === p.tcglCardId)!;
+    const surface = tcglSmSurfaces.find(s => s.cardId === p.cardId && s.variant === p.variant)!;
     assert.ok(surface); assert.equal(surface.tcglVariantId, p.tcglVariantId);
     assert.ok(cards.find(c => c.id === p.cardId)?.variants.includes(p.variant as 'normal'));
-    if (!p.tcglCardId.startsWith('ec_')) assert.equal(source.find((s:{card_id:string}) => s.card_id === p.tcglCardId).long_form_id, p.tcglVariantId);
+    if (p.tcglCardId && !p.tcglCardId.startsWith('ec_')) assert.equal(source.find((s:{card_id:string}) => s.card_id === p.tcglCardId).long_form_id, p.tcglVariantId);
     for (const path of Object.values(surface.maps)) assert.ok(existsSync('public' + path), `${p.tcglCardId} ${path}`);
     const def = svTcglDefinition(p.cardId, p.variant as 'normal');
     assert.ok(existsSync('public' + def.front));
