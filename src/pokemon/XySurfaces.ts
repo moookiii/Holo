@@ -17,7 +17,7 @@ export function xyDefinition(id: string, variant: PrintVariant): CardDefinition 
       ...(deferred ? { treatmentStatus: 'deferred' as const } : {}) },
     layout: { artwork: [0,0,1,1], innerFrame: [0,0,1,1] },
     maps: surface.maps,
-    mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'absolute', embossMaskFromNormalAlpha: false },
+    mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'absolute' },
     source: { image: front, metadata: surface.evidence,
       notes: `Exact English TCGL printing ${surface.tcglVariantId}. Own original fronts, foil/etch references and hashes retained in ${surface.evidence}. ` +
         (deferred ? `${surface.deferredEffect} finish pending; clean front with print-only material. No simulated replacement foil.` :
