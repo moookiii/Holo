@@ -47,7 +47,7 @@ test('all expansions use chronological local catalogs and real wrapper variants'
     const set = svTcglSet(s.id);
     assert.equal(set.cardIds.length, s.cards.length);
     assert.equal(set.boosters.length > 0, smRecipes.some(r => r.setId === s.id));
-    for (const booster of set.boosters) assert.ok(existsSync('public' + booster.front));
+    for (const booster of set.boosters) assert.ok(existsSync('public' + booster.front?.split('?')[0]));
   }
   if (!pilot) {
     const vault = cards.filter(c => c.setId === 'sm11-5' && c.localId.startsWith('SV'));
