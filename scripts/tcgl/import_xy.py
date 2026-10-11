@@ -58,6 +58,7 @@ def treatment(m, row, variant):
     if effect in ('Rainbow','AngledPillars'): return 'pokemon-sheen', None
     if effect == 'CrackedIce': return 'pokemon-cracked-ice', None
     if effect == 'Tinsel': return 'pokemon-tinsel', None
+    if effect == 'Thatch': return 'pokemon-crosshatch', None
     if effect == 'Galaxy': return 'pokemon-galaxy-star', None
     if effect == 'Cosmos': return 'print-only', 'Cosmos registered motif placement'
     return 'print-only', 'XY promotional ' + effect
