@@ -13,6 +13,7 @@ import { BASE_SET_2_ID, baseSet2Card, baseSet2Set } from './BaseSet2Catalog.ts';
 import { FOSSIL_SET_ID, fossilCard, fossilSet } from './FossilCatalog.ts';
 import { LEGENDARY_COLLECTION_ID, legendaryCollectionCard, legendaryCollectionSet } from './LegendaryCollectionCatalog.ts';
 import TCGdex from '@tcgdex/sdk';
+import { tcgdexRarity } from './metadata.ts';
 import type { CatalogEntry, PokemonCard, PokemonSet, PrintVariant } from './types.ts';
 import { boundedMap, pause } from './requests.ts';
 import { localBoosterArt } from './boosterArt.ts';
@@ -66,7 +67,6 @@ const localSetLogo = (setId: string) => {
   const logo = setId === SOUTHERN_ISLANDS_ID ? 'si1-logo.png' : setId === 'neo4' ? 'neo4-logo.png' : setId === 'neo3' ? 'neo3-logo.png' : setId === 'neo2' ? 'neo2-logo.png' : setId === 'neo1' ? 'neo1-logo.png' : setId === 'sv05' ? 'sv05-logo.png' : setId === 'gym2' ? 'gym2-logo.png' : setId === 'lc' ? 'lc-logo.png' : undefined;
   return logo ? `${import.meta.env?.BASE_URL ?? '/'}packs/pokemon/${logo}` : undefined;
 };
-const titleCase = (value: string) => value.replace(/\b\w/g, c => c.toUpperCase());
 
 export class TcgdexAdapter {
   private cache = new Map<string, unknown>();
@@ -306,9 +306,10 @@ export class TcgdexAdapter {
       }
       if (!variants.length) throw new Error(`Print variants missing for ${id}.`);
       // Early WotC numbered holo-only rares share TCGdex's "Rare" label.
-      const rarity = set.era === 'base' && card.rarity === 'Rare' && variants.includes('holo') && !variants.includes('normal') ? 'Holo Rare' : titleCase(card.rarity);
+      const rarity = set.era === 'base' && card.rarity === 'Rare' && variants.includes('holo') && !variants.includes('normal') ? 'Holo Rare' : tcgdexRarity(card.rarity);
       return { id: card.id, localId: card.localId, name: card.name, setId: set.id, setName: set.name,
-        seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity, category: card.category, energyType: card.energyType, variants, foil, evolveFrom: card.evolveFrom,
+        seriesId: set.series.id, seriesName: set.series.name, era: set.era, rarity, category: card.category, energyType: card.energyType,
+        stage: card.stage, types: card.types, trainerType: card.trainerType, suffix: card.suffix, variants, foil, evolveFrom: card.evolveFrom,
         boosterIds: card.boosters?.map(b => b.id), front: card.image ? card.getImageURL('high', 'png') : undefined,
         thumbnail: card.image ? card.getImageURL('low', 'webp') : undefined };
     });

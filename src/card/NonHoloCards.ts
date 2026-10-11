@@ -1,5 +1,6 @@
 import type { CardDefinition, CardDimensions } from './CardDefinition';
 import { nonHoloExpansionCatalog } from './NonHoloExpansion.ts';
+import { completePokemonMetadata } from '../pokemon/metadata.ts';
 
 const standard: CardDimensions = { width: 6.3, height: 8.8, thickness: 0.032, cornerRadius: 0.3, bevel: 0.007 };
 const yugiohSize: CardDimensions = { width: 5.9, height: 8.6, thickness: 0.031, cornerRadius: 0.1, bevel: 0.006 };
@@ -57,7 +58,7 @@ const magic = [
   ['savannah-lions', 'Savannah Lions'], ['sol-ring', 'Sol Ring'], ['stasis', 'Stasis'], ['white-knight', 'White Knight'],
 ] as const;
 
-export const nonHoloCards: CardDefinition[] = [
+const archiveCards: CardDefinition[] = [
   ...pokemon.map(([slug, title, number], index) => ({
     id: `common-pokemon-${slug}`, title, franchise: 'Pokémon' as const,
     set: pokemonSetBySize[number.split('/')[1]], number, dimensions: standard,
@@ -87,6 +88,7 @@ export const nonHoloCards: CardDefinition[] = [
   })),
 ];
 
+export const nonHoloCards: CardDefinition[] = archiveCards.map(completePokemonMetadata);
 export const nonHoloCardIds = nonHoloCards.map(card => card.id);
 export const newNonHoloCards = nonHoloCards.filter(card => card.seed >= 6118);
 export const expandedNonHoloCards = nonHoloCards.filter(card => card.seed >= 7000);

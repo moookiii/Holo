@@ -14,6 +14,8 @@ export const basicEnergyCards: readonly PokemonCard[] = names.map((name, index) 
   seriesName: 'Scarlet & Violet',
   era: 'sv',
   rarity: 'Energy',
+  category: 'Energy',
+  energyType: 'Normal',
   variants: ['normal', 'holo'],
   foil: { holo: 'Cosmos Holo' },
   front: `/cards/pokemon/energy/${index + 1}.png`,

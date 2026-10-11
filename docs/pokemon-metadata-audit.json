@@ -1,0 +1,1685 @@
+{
+  "source": "https://api.tcgdex.net/v2/graphql",
+  "fetchedAt": "2026-10-11T03:03:47.389Z",
+  "snapshotSha256": "a496f13cd852a5f6c77f00319738c46a31fd00c2d4eef3225c12ebdfec16f559",
+  "sourceCardCount": 23736,
+  "tagged": 125,
+  "audited": 2059,
+  "correctedArchiveLabels": {
+    "common-pokemon-gloom": {
+      "title": "Exeggutor",
+      "number": "35/64",
+      "source": "https://images.pokemontcg.io/base2/35_hires.png"
+    },
+    "common-pokemon-lickitung": {
+      "title": "Fearow",
+      "number": "36/64",
+      "source": "https://images.pokemontcg.io/base2/36_hires.png"
+    },
+    "common-pokemon-marowak": {
+      "title": "Gloom",
+      "number": "37/64",
+      "source": "https://images.pokemontcg.io/base2/37_hires.png"
+    },
+    "common-pokemon-nidorina": {
+      "title": "Lickitung",
+      "number": "38/64",
+      "source": "https://images.pokemontcg.io/base2/38_hires.png"
+    },
+    "common-pokemon-parasect": {
+      "title": "Marowak",
+      "number": "39/64",
+      "source": "https://images.pokemontcg.io/base2/39_hires.png"
+    },
+    "common-pokemon-persian": {
+      "title": "Nidorina",
+      "number": "40/64",
+      "source": "https://images.pokemontcg.io/base2/40_hires.png"
+    },
+    "common-pokemon-primeape": {
+      "title": "Parasect",
+      "number": "41/64",
+      "source": "https://images.pokemontcg.io/base2/41_hires.png"
+    },
+    "common-pokemon-rapidash": {
+      "title": "Persian",
+      "number": "42/64",
+      "source": "https://images.pokemontcg.io/base2/42_hires.png"
+    },
+    "common-pokemon-rhydon": {
+      "title": "Primeape",
+      "number": "43/64",
+      "source": "https://images.pokemontcg.io/base2/43_hires.png"
+    },
+    "common-pokemon-seaking": {
+      "title": "Rapidash",
+      "number": "44/64",
+      "source": "https://images.pokemontcg.io/base2/44_hires.png"
+    },
+    "common-pokemon-tauros": {
+      "title": "Rhydon",
+      "number": "45/64",
+      "source": "https://images.pokemontcg.io/base2/45_hires.png"
+    },
+    "common-pokemon-weepinbell": {
+      "title": "Seaking",
+      "number": "46/64",
+      "source": "https://images.pokemontcg.io/base2/46_hires.png"
+    },
+    "common-pokemon-bellsprout": {
+      "title": "Tauros",
+      "number": "47/64",
+      "source": "https://images.pokemontcg.io/base2/47_hires.png"
+    },
+    "common-pokemon-cubone": {
+      "title": "Weepinbell",
+      "number": "48/64",
+      "source": "https://images.pokemontcg.io/base2/48_hires.png"
+    },
+    "common-pokemon-eevee": {
+      "title": "Bellsprout",
+      "number": "49/64",
+      "source": "https://images.pokemontcg.io/base2/49_hires.png"
+    },
+    "common-pokemon-exeggcute": {
+      "title": "Cubone",
+      "number": "50/64",
+      "source": "https://images.pokemontcg.io/base2/50_hires.png"
+    },
+    "common-pokemon-goldeen": {
+      "title": "Eevee",
+      "number": "51/64",
+      "source": "https://images.pokemontcg.io/base2/51_hires.png"
+    },
+    "common-pokemon-jigglypuff": {
+      "title": "Exeggcute",
+      "number": "52/64",
+      "source": "https://images.pokemontcg.io/base2/52_hires.png"
+    },
+    "common-pokemon-mankey": {
+      "title": "Goldeen",
+      "number": "53/64",
+      "source": "https://images.pokemontcg.io/base2/53_hires.png"
+    },
+    "common-pokemon-meowth": {
+      "title": "Jigglypuff",
+      "number": "54/64",
+      "source": "https://images.pokemontcg.io/base2/54_hires.png"
+    },
+    "common-pokemon-nidoran-f": {
+      "title": "Mankey",
+      "number": "55/64",
+      "source": "https://images.pokemontcg.io/base2/55_hires.png"
+    },
+    "common-pokemon-oddish": {
+      "title": "Meowth",
+      "number": "56/64",
+      "source": "https://images.pokemontcg.io/base2/56_hires.png"
+    },
+    "common-pokemon-rhyhorn": {
+      "title": "Oddish",
+      "number": "58/64",
+      "source": "https://images.pokemontcg.io/base2/58_hires.png"
+    },
+    "common-pokemon-spearow": {
+      "title": "Paras",
+      "number": "59/64",
+      "source": "https://images.pokemontcg.io/base2/59_hires.png"
+    },
+    "common-pokemon-venonat": {
+      "title": "Pikachu",
+      "number": "60/64",
+      "source": "https://images.pokemontcg.io/base2/60_hires.png"
+    },
+    "common-pokemon-geodude": {
+      "title": "Golbat",
+      "number": "34/62",
+      "source": "https://images.pokemontcg.io/base3/34_hires.png"
+    },
+    "common-pokemon-golbat": {
+      "title": "Golduck",
+      "number": "35/62",
+      "source": "https://images.pokemontcg.io/base3/35_hires.png"
+    },
+    "common-pokemon-golduck": {
+      "title": "Golem",
+      "number": "36/62",
+      "source": "https://images.pokemontcg.io/base3/36_hires.png"
+    },
+    "common-pokemon-grimer": {
+      "title": "Graveler",
+      "number": "37/62",
+      "source": "https://images.pokemontcg.io/base3/37_hires.png"
+    },
+    "common-pokemon-kabuto": {
+      "title": "Kingler",
+      "number": "38/62",
+      "source": "https://images.pokemontcg.io/base3/38_hires.png"
+    },
+    "common-pokemon-krabby": {
+      "title": "Magmar",
+      "number": "39/62",
+      "source": "https://images.pokemontcg.io/base3/39_hires.png"
+    },
+    "common-pokemon-omanyte": {
+      "title": "Omastar",
+      "number": "40/62",
+      "source": "https://images.pokemontcg.io/base3/40_hires.png"
+    }
+  },
+  "unresolved": [],
+  "exceptions": [
+    {
+      "id": "ancient-mew",
+      "title": "Ancient Mew",
+      "resolution": "Existing exact unnumbered promo catalog; no TCGdex identity fabricated."
+    }
+  ],
+  "variantDiscrepancies": [
+    {
+      "id": "umbreon-gx-sm1-154",
+      "tcgdexId": "sm1-154",
+      "authoredVariant": "holo",
+      "tcgdexVariants": [
+        "normal"
+      ],
+      "resolution": "Keep the exact authored printing; TCGdex variant flags do not replace printing-specific source evidence."
+    }
+  ],
+  "setCoverage": {
+    "swsh1": {
+      "name": "Sword & Shield",
+      "printings": 382,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "reverse": 166,
+        "foil:energy-reverse": 1,
+        "normal": 148,
+        "holo": 68,
+        "foil:sun-pillar": 37,
+        "foil:flat-silver": 165,
+        "foil:line": 17,
+        "foil:etched": 34,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh4": {
+      "name": "Vivid Voltage",
+      "printings": 348,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 83,
+        "foil:etched": 46,
+        "foil:rainbow": 1,
+        "normal": 123,
+        "reverse": 142,
+        "foil:flat-silver": 142,
+        "foil:line": 19,
+        "foil:sun-pillar": 37,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh10": {
+      "name": "Astral Radiance",
+      "printings": 346,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 110,
+        "foil:radiant": 4,
+        "foil:etched": 67,
+        "normal": 108,
+        "foil:sun-pillar": 58,
+        "reverse": 128,
+        "foil:flat-silver": 128,
+        "foil:line": 20,
+        "foil:gold-etched": 9
+      }
+    },
+    "swsh4-5": {
+      "name": "Shining Fates",
+      "printings": 242,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 157,
+        "foil:flat-silver": 47,
+        "normal": 39,
+        "reverse": 46,
+        "foil:line": 7,
+        "foil:sun-pillar": 137,
+        "foil:etched": 34,
+        "foil:gold-etched": 9
+      }
+    },
+    "swsh9": {
+      "name": "Brilliant Stars",
+      "printings": 311,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 73,
+        "foil:etched": 43,
+        "normal": 114,
+        "reverse": 124,
+        "foil:flat-silver": 124,
+        "foil:line": 10,
+        "foil:sun-pillar": 48,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh7-5": {
+      "name": "Celebrations",
+      "printings": 26,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 26,
+        "foil:flat-silver": 18,
+        "foil:sun-pillar": 7,
+        "foil:etched": 4,
+        "foil:gold-etched": 1
+      }
+    },
+    "swsh7-5r": {
+      "name": "Celebrations",
+      "printings": 26,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 26,
+        "foil:classic": 26
+      }
+    },
+    "swsh11a": {
+      "name": "Lost Origin",
+      "printings": 31,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 31,
+        "foil:etched": 20,
+        "foil:gold-etched": 3,
+        "foil:rainbow": 11,
+        "foil:sun-pillar": 17
+      }
+    },
+    "basep": {
+      "name": "Wizards Black Star Promos",
+      "printings": 54,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 10,
+        "foil:ancient-mew": 1,
+        "normal": 44,
+        "foil:gold-stamp": 4,
+        "foil:cosmos": 9
+      }
+    },
+    "base1": {
+      "name": "Base Set",
+      "printings": 34,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 18,
+        "holo": 16,
+        "foil:galaxy-star": 16
+      }
+    },
+    "base2": {
+      "name": "Jungle",
+      "printings": 91,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 75,
+        "holo": 16,
+        "foil:galaxy-star": 16
+      }
+    },
+    "base3": {
+      "name": "Fossil",
+      "printings": 69,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 54,
+        "foil:galaxy-star": 22,
+        "holo": 15
+      }
+    },
+    "sv01": {
+      "name": "Scarlet & Violet",
+      "printings": 511,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 232,
+        "reverse": 186,
+        "foil:flat-silver": 186,
+        "holo": 93,
+        "foil:mirage": 21,
+        "foil:sun-pillar": 52,
+        "foil:full-art": 20,
+        "foil:etched": 38,
+        "foil:gold-etched": 6
+      }
+    },
+    "ecard1": {
+      "name": "Expedition Base Set",
+      "printings": 324,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 32,
+        "foil:cosmos": 32,
+        "reverse": 159,
+        "foil:e-reader-reverse": 159,
+        "normal": 133
+      }
+    },
+    "ecard2": {
+      "name": "Aquapolis",
+      "printings": 337,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 151,
+        "reverse": 151,
+        "foil:e-reader-reverse": 151,
+        "holo": 35,
+        "foil:cosmos": 32
+      }
+    },
+    "base4": {
+      "name": "Base Set 2",
+      "printings": 130,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 20,
+        "foil:cosmos": 20,
+        "normal": 110
+      }
+    },
+    "base5": {
+      "name": "Team Rocket",
+      "printings": 83,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 18,
+        "foil:cosmos": 17,
+        "normal": 65
+      }
+    },
+    "gym1": {
+      "name": "Gym Heroes",
+      "printings": 132,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 19,
+        "foil:cosmos": 19,
+        "normal": 113
+      }
+    },
+    "gym2": {
+      "name": "Gym Challenge",
+      "printings": 132,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 20,
+        "foil:cosmos": 20,
+        "normal": 112
+      }
+    },
+    "neo1": {
+      "name": "Neo Genesis",
+      "printings": 111,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 19,
+        "foil:cosmos": 19,
+        "normal": 92
+      }
+    },
+    "neo2": {
+      "name": "Neo Discovery",
+      "printings": 75,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 17,
+        "foil:cosmos": 17,
+        "normal": 58
+      }
+    },
+    "neo3": {
+      "name": "Neo Revelation",
+      "printings": 66,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 16,
+        "foil:cosmos": 16,
+        "normal": 50
+      }
+    },
+    "neo4": {
+      "name": "Neo Destiny",
+      "printings": 113,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 24,
+        "foil:cosmos": 16,
+        "normal": 89
+      }
+    },
+    "lc": {
+      "name": "Legendary Collection",
+      "printings": 220,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 19,
+        "foil:galaxy-star": 19,
+        "reverse": 110,
+        "foil:fireworks-reverse": 110,
+        "normal": 91
+      }
+    },
+    "sp": {
+      "name": "Pokémon e-Card Sample Set",
+      "printings": 10,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 10
+      }
+    },
+    "si1": {
+      "name": "Southern Islands",
+      "printings": 18,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "reverse": 6,
+        "foil:cosmos": 6,
+        "normal": 12
+      }
+    },
+    "sm1": {
+      "name": "Sun & Moon",
+      "printings": 290,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 54,
+        "foil:etched": 27,
+        "normal": 110,
+        "reverse": 126,
+        "foil:sun-beam": 126,
+        "foil:sun-lava": 27,
+        "foil:sun-pillar": 8,
+        "foil:rainbow": 18,
+        "foil:gold-etched": 6
+      }
+    },
+    "sv02": {
+      "name": "Paldea Evolved",
+      "printings": 456,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 129,
+        "foil:cosmos": 1,
+        "normal": 151,
+        "reverse": 176,
+        "foil:flat-silver": 176,
+        "foil:mirage": 25,
+        "foil:full-art": 30,
+        "foil:etched": 53,
+        "foil:sun-pillar": 73,
+        "foil:gold-etched": 9
+      }
+    },
+    "ex6": {
+      "name": "FireRed & LeafGreen",
+      "printings": 1,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "reverse": 1,
+        "foil:energy-reverse": 1
+      }
+    },
+    "svalt": {
+      "name": "Scarlet & Violet Alternate Printings",
+      "printings": 237,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 15,
+        "holo": 222,
+        "foil:flat-silver": 9,
+        "foil:tinsel": 3,
+        "foil:sun-pillar": 45,
+        "foil:cosmos": 134,
+        "foil:full-art": 14,
+        "foil:etched": 13,
+        "foil:cracked-ice": 8,
+        "foil:mirage": 9
+      }
+    },
+    "svp": {
+      "name": "SVP Black Star Promos",
+      "printings": 223,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 22,
+        "holo": 201,
+        "foil:mirage": 39,
+        "foil:sun-pillar": 95,
+        "foil:cosmos": 51,
+        "foil:stamped": 3,
+        "foil:full-art": 13,
+        "foil:etched": 32
+      }
+    },
+    "sve": {
+      "name": "Scarlet & Violet Energy",
+      "printings": 56,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 24,
+        "reverse": 32,
+        "foil:cosmos": 16,
+        "foil:flat-silver": 8,
+        "foil:tinsel": 8
+      }
+    },
+    "sv03": {
+      "name": "Obsidian Flames",
+      "printings": 406,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 166,
+        "reverse": 176,
+        "foil:flat-silver": 176,
+        "holo": 64,
+        "foil:sun-pillar": 35,
+        "foil:mirage": 10,
+        "foil:full-art": 19,
+        "foil:etched": 27,
+        "foil:gold-etched": 3
+      }
+    },
+    "sv04": {
+      "name": "Paradox Rift",
+      "printings": 428,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 135,
+        "reverse": 162,
+        "foil:flat-silver": 162,
+        "holo": 131,
+        "foil:full-art": 34,
+        "foil:etched": 57,
+        "foil:mirage": 27,
+        "foil:sun-pillar": 70,
+        "foil:gold-etched": 7
+      }
+    },
+    "sv04.5": {
+      "name": "Paldean Fates",
+      "printings": 326,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 65,
+        "reverse": 81,
+        "foil:flat-silver": 81,
+        "holo": 180,
+        "foil:full-art": 17,
+        "foil:etched": 154,
+        "foil:sun-pillar": 147,
+        "foil:mirage": 16
+      }
+    },
+    "sv05": {
+      "name": "Temporal Forces",
+      "printings": 358,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 126,
+        "reverse": 140,
+        "foil:flat-silver": 140,
+        "holo": 92,
+        "foil:sun-pillar": 51,
+        "foil:mirage": 14,
+        "foil:full-art": 20,
+        "foil:etched": 36,
+        "foil:ace-spec": 7,
+        "foil:gold-etched": 6
+      }
+    },
+    "sv06": {
+      "name": "Twilight Masquerade",
+      "printings": 373,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 131,
+        "reverse": 147,
+        "foil:flat-silver": 147,
+        "holo": 95,
+        "foil:mirage": 16,
+        "foil:sun-pillar": 42,
+        "foil:full-art": 31,
+        "foil:etched": 45,
+        "foil:ace-spec": 6,
+        "foil:gold-etched": 6
+      }
+    },
+    "sv06.5": {
+      "name": "Shrouded Fable",
+      "printings": 154,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 48,
+        "reverse": 55,
+        "foil:flat-silver": 55,
+        "holo": 51,
+        "foil:mirage": 7,
+        "foil:sun-pillar": 29,
+        "foil:full-art": 12,
+        "foil:etched": 24,
+        "foil:ace-spec": 3
+      }
+    },
+    "sv07": {
+      "name": "Stellar Crown",
+      "printings": 300,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 110,
+        "holo": 65,
+        "foil:sun-pillar": 31,
+        "reverse": 125,
+        "foil:flat-silver": 125,
+        "foil:mirage": 15,
+        "foil:full-art": 16,
+        "foil:etched": 24,
+        "foil:ace-spec": 3,
+        "foil:gold-etched": 3
+      }
+    },
+    "sv08": {
+      "name": "Surging Sparks",
+      "printings": 417,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 149,
+        "reverse": 165,
+        "foil:flat-silver": 165,
+        "holo": 103,
+        "foil:sun-pillar": 46,
+        "foil:mirage": 16,
+        "foil:full-art": 33,
+        "foil:etched": 47,
+        "foil:ace-spec": 8,
+        "foil:gold-etched": 6
+      }
+    },
+    "sv09": {
+      "name": "Journey Together",
+      "printings": 333,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 127,
+        "reverse": 143,
+        "foil:flat-silver": 143,
+        "holo": 63,
+        "foil:mirage": 16,
+        "foil:sun-pillar": 38,
+        "foil:etched": 20,
+        "foil:full-art": 9,
+        "foil:gold-etched": 3
+      }
+    },
+    "sv10": {
+      "name": "Destined Rivals",
+      "printings": 409,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 147,
+        "reverse": 165,
+        "foil:flat-silver": 165,
+        "holo": 97,
+        "foil:sun-pillar": 62,
+        "foil:mirage": 18,
+        "foil:etched": 39,
+        "foil:full-art": 17,
+        "foil:gold-etched": 6
+      }
+    },
+    "sv10.5b": {
+      "name": "Black Bolt",
+      "printings": 403,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 70,
+        "reverse": 80,
+        "foil:flat-silver": 231,
+        "pokeball-reverse": 79,
+        "masterball-reverse": 72,
+        "holo": 102,
+        "foil:sun-pillar": 83,
+        "foil:tinsel": 10,
+        "foil:etched": 17,
+        "foil:full-art": 7,
+        "foil:rainbow": 2
+      }
+    },
+    "sv10.5w": {
+      "name": "White Flare",
+      "printings": 405,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 70,
+        "reverse": 80,
+        "foil:flat-silver": 232,
+        "pokeball-reverse": 80,
+        "masterball-reverse": 72,
+        "holo": 103,
+        "foil:sun-pillar": 84,
+        "foil:tinsel": 10,
+        "foil:etched": 17,
+        "foil:full-art": 7,
+        "foil:rainbow": 2
+      }
+    },
+    "me01": {
+      "name": "Mega Evolution",
+      "printings": 310,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 110,
+        "reverse": 122,
+        "foil:flat-silver": 122,
+        "holo": 78,
+        "foil:full-art": 30,
+        "foil:etched": 44,
+        "foil:mirage": 12,
+        "foil:sun-pillar": 34
+      }
+    },
+    "me02": {
+      "name": "Phantasmal Flames",
+      "printings": 214,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 74,
+        "reverse": 84,
+        "foil:flat-silver": 84,
+        "holo": 56,
+        "foil:mirage": 10,
+        "foil:full-art": 15,
+        "foil:etched": 29,
+        "foil:sun-pillar": 30
+      }
+    },
+    "me02.5": {
+      "name": "Ascended Heroes",
+      "printings": 613,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 153,
+        "reverse": 178,
+        "foil:flat-silver": 318,
+        "special-reverse": 140,
+        "holo": 142,
+        "foil:sun-pillar": 66,
+        "foil:mirage": 25,
+        "foil:full-art": 49,
+        "foil:etched": 64
+      }
+    },
+    "me03": {
+      "name": "Perfect Order",
+      "printings": 203,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 68,
+        "reverse": 79,
+        "foil:flat-silver": 79,
+        "holo": 56,
+        "foil:mirage": 11,
+        "foil:sun-pillar": 30,
+        "foil:full-art": 14,
+        "foil:etched": 29
+      }
+    },
+    "me04": {
+      "name": "Chaos Rising",
+      "printings": 198,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 64,
+        "reverse": 76,
+        "foil:flat-silver": 76,
+        "holo": 58,
+        "foil:sun-pillar": 30,
+        "foil:mirage": 12,
+        "foil:full-art": 15,
+        "foil:etched": 30
+      }
+    },
+    "me05": {
+      "name": "Pitch Black",
+      "printings": 194,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 63,
+        "reverse": 74,
+        "foil:flat-silver": 74,
+        "holo": 57,
+        "foil:sun-pillar": 29,
+        "foil:full-art": 16,
+        "foil:etched": 31,
+        "foil:mirage": 11
+      }
+    },
+    "mee": {
+      "name": "Mega Evolution Energy",
+      "printings": 24,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 8,
+        "reverse": 8,
+        "foil:flat-silver": 8,
+        "holo": 8,
+        "foil:rainbow": 8
+      }
+    },
+    "swshbsp": {
+      "name": "Sword & Shield Black Star Promos",
+      "printings": 301,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 2,
+        "holo": 299,
+        "foil:line": 54,
+        "foil:sun-pillar": 148,
+        "foil:etched": 62,
+        "foil:cosmos": 84,
+        "foil:flat-silver": 1,
+        "foil:gold-etched": 2,
+        "foil:radiant": 1,
+        "foil:rainbow": 3,
+        "foil:stamped": 1
+      }
+    },
+    "swshalt": {
+      "name": "Sword & Shield alternate/special printings",
+      "printings": 156,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 63,
+        "holo": 84,
+        "foil:cosmos": 64,
+        "foil:line": 5,
+        "reverse": 9,
+        "foil:flat-silver": 9,
+        "foil:cracked-ice": 9,
+        "foil:sun-pillar": 6,
+        "foil:etched": 2
+      }
+    },
+    "swsh2": {
+      "name": "Rebel Clash",
+      "printings": 360,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 133,
+        "reverse": 151,
+        "foil:flat-silver": 151,
+        "holo": 76,
+        "foil:sun-pillar": 41,
+        "foil:etched": 42,
+        "foil:line": 18,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh3": {
+      "name": "Darkness Ablaze",
+      "printings": 356,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 137,
+        "holo": 64,
+        "foil:sun-pillar": 34,
+        "foil:etched": 32,
+        "reverse": 155,
+        "foil:flat-silver": 155,
+        "foil:line": 18,
+        "foil:gold-etched": 5
+      }
+    },
+    "swsh3-5": {
+      "name": "Champion’s Path",
+      "printings": 134,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 44,
+        "holo": 36,
+        "foil:sun-pillar": 19,
+        "reverse": 54,
+        "foil:flat-silver": 54,
+        "foil:line": 10,
+        "foil:etched": 15,
+        "foil:gold-etched": 1
+      }
+    },
+    "swsh5": {
+      "name": "Battle Styles",
+      "printings": 306,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 107,
+        "reverse": 123,
+        "foil:flat-silver": 123,
+        "holo": 76,
+        "foil:sun-pillar": 40,
+        "foil:line": 16,
+        "foil:etched": 48,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh6": {
+      "name": "Chilling Reign",
+      "printings": 369,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 112,
+        "reverse": 136,
+        "foil:flat-silver": 136,
+        "holo": 121,
+        "foil:line": 24,
+        "foil:sun-pillar": 62,
+        "foil:etched": 82,
+        "foil:gold-etched": 12
+      }
+    },
+    "swsh7": {
+      "name": "Evolving Skies",
+      "printings": 369,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 112,
+        "reverse": 132,
+        "foil:flat-silver": 132,
+        "holo": 125,
+        "foil:line": 20,
+        "foil:sun-pillar": 71,
+        "foil:etched": 87,
+        "foil:gold-etched": 12
+      }
+    },
+    "swsh8": {
+      "name": "Fusion Strike",
+      "printings": 501,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 204,
+        "reverse": 217,
+        "foil:flat-silver": 217,
+        "holo": 80,
+        "foil:line": 13,
+        "foil:sun-pillar": 47,
+        "foil:etched": 48,
+        "foil:gold-etched": 5
+      }
+    },
+    "swsh10-5": {
+      "name": "Pokémon GO",
+      "printings": 145,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 42,
+        "reverse": 57,
+        "foil:flat-silver": 57,
+        "holo": 46,
+        "foil:line": 16,
+        "foil:radiant": 3,
+        "foil:sun-pillar": 17,
+        "foil:etched": 21,
+        "foil:gold-etched": 3
+      }
+    },
+    "swsh11": {
+      "name": "Lost Origin",
+      "printings": 366,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 127,
+        "reverse": 149,
+        "foil:flat-silver": 149,
+        "holo": 90,
+        "foil:line": 22,
+        "foil:sun-pillar": 44,
+        "foil:etched": 53,
+        "foil:radiant": 3,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh12": {
+      "name": "Silver Tempest",
+      "printings": 357,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 130,
+        "reverse": 142,
+        "foil:flat-silver": 142,
+        "holo": 85,
+        "foil:line": 14,
+        "foil:sun-pillar": 48,
+        "foil:etched": 53,
+        "foil:radiant": 3,
+        "foil:gold-etched": 6
+      }
+    },
+    "swsh12-5": {
+      "name": "Crown Zenith",
+      "printings": 272,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 93,
+        "reverse": 112,
+        "foil:flat-silver": 112,
+        "holo": 67,
+        "foil:sun-pillar": 43,
+        "foil:etched": 27,
+        "foil:line": 20,
+        "foil:radiant": 3,
+        "foil:gold-etched": 1
+      }
+    },
+    "smbsp": {
+      "name": "Sun & Moon Black Star Promos",
+      "printings": 248,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 14,
+        "holo": 234,
+        "foil:sun-lava": 111,
+        "foil:rainbow": 9,
+        "foil:cosmos": 84,
+        "foil:sun-pillar": 23,
+        "foil:etched": 29,
+        "foil:stamped": 3,
+        "foil:sun-beam": 4
+      }
+    },
+    "sm-energy": {
+      "name": "Sun & Moon Basic Energy",
+      "printings": 36,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 18,
+        "holo": 18,
+        "foil:sun-beam": 18
+      }
+    },
+    "smalt": {
+      "name": "Sun & Moon alternate and special printings",
+      "printings": 194,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 51,
+        "holo": 143,
+        "foil:angled-pillars": 3,
+        "foil:cosmos": 49,
+        "foil:sun-beam": 36,
+        "foil:cracked-ice": 29,
+        "foil:sun-lava": 17,
+        "foil:rainbow": 5,
+        "foil:etched": 8,
+        "foil:sun-pillar": 4,
+        "foil:gold-etched": 2
+      }
+    },
+    "sm2": {
+      "name": "Guardians Rising",
+      "printings": 287,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 103,
+        "reverse": 118,
+        "foil:sun-beam": 118,
+        "holo": 66,
+        "foil:sun-lava": 27,
+        "foil:sun-pillar": 12,
+        "foil:etched": 39,
+        "foil:rainbow": 27,
+        "foil:gold-etched": 9
+      }
+    },
+    "sm3": {
+      "name": "Burning Shadows",
+      "printings": 285,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 103,
+        "reverse": 116,
+        "foil:sun-beam": 116,
+        "holo": 66,
+        "foil:sun-lava": 25,
+        "foil:sun-pillar": 13,
+        "foil:etched": 41,
+        "foil:rainbow": 28,
+        "foil:gold-etched": 9
+      }
+    },
+    "sm3-5": {
+      "name": "Shining Legends",
+      "printings": 138,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 48,
+        "reverse": 60,
+        "foil:sun-beam": 60,
+        "holo": 30,
+        "foil:sun-lava": 16,
+        "foil:rainbow": 12,
+        "foil:etched": 14,
+        "foil:sun-pillar": 2
+      }
+    },
+    "sm4": {
+      "name": "Crimson Invasion",
+      "printings": 216,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 80,
+        "reverse": 92,
+        "foil:sun-beam": 92,
+        "holo": 44,
+        "foil:sun-lava": 20,
+        "foil:sun-pillar": 8,
+        "foil:etched": 24,
+        "foil:rainbow": 16,
+        "foil:gold-etched": 5
+      }
+    },
+    "sm5": {
+      "name": "Ultra Prism",
+      "printings": 298,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 112,
+        "reverse": 125,
+        "foil:sun-beam": 125,
+        "holo": 61,
+        "foil:sun-lava": 26,
+        "foil:sun-pillar": 9,
+        "foil:etched": 35,
+        "foil:rainbow": 26,
+        "foil:gold-etched": 8
+      }
+    },
+    "sm6": {
+      "name": "Forbidden Light",
+      "printings": 251,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 93,
+        "reverse": 105,
+        "foil:sun-beam": 105,
+        "holo": 53,
+        "foil:sun-lava": 25,
+        "foil:sun-pillar": 9,
+        "foil:etched": 28,
+        "foil:rainbow": 19,
+        "foil:gold-etched": 6
+      }
+    },
+    "sm7": {
+      "name": "Celestial Storm",
+      "printings": 320,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 119,
+        "reverse": 137,
+        "foil:sun-beam": 137,
+        "holo": 64,
+        "foil:sun-lava": 32,
+        "foil:sun-pillar": 9,
+        "foil:etched": 32,
+        "foil:rainbow": 23,
+        "foil:gold-etched": 6
+      }
+    },
+    "sm7-5": {
+      "name": "Dragon Majesty",
+      "printings": 134,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 46,
+        "reverse": 56,
+        "foil:sun-beam": 56,
+        "holo": 32,
+        "foil:sun-lava": 18,
+        "foil:sun-pillar": 4,
+        "foil:etched": 14,
+        "foil:rainbow": 10,
+        "foil:gold-etched": 4
+      }
+    },
+    "sm8": {
+      "name": "Lost Thunder",
+      "printings": 410,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 153,
+        "reverse": 174,
+        "foil:sun-beam": 174,
+        "holo": 83,
+        "foil:sun-lava": 41,
+        "foil:sun-pillar": 13,
+        "foil:etched": 42,
+        "foil:rainbow": 29,
+        "foil:gold-etched": 9
+      }
+    },
+    "sm9": {
+      "name": "Team Up",
+      "printings": 339,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 124,
+        "holo": 72,
+        "foil:sun-lava": 34,
+        "reverse": 143,
+        "foil:sun-beam": 143,
+        "foil:sun-pillar": 13,
+        "foil:etched": 38,
+        "foil:rainbow": 25,
+        "foil:gold-etched": 5
+      }
+    },
+    "sm10": {
+      "name": "Unbroken Bonds",
+      "printings": 410,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 154,
+        "holo": 80,
+        "foil:sun-lava": 36,
+        "reverse": 176,
+        "foil:sun-beam": 176,
+        "foil:sun-pillar": 18,
+        "foil:etched": 44,
+        "foil:rainbow": 26,
+        "foil:gold-etched": 6
+      }
+    },
+    "sm11": {
+      "name": "Unified Minds",
+      "printings": 454,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 175,
+        "holo": 83,
+        "foil:sun-lava": 38,
+        "reverse": 196,
+        "foil:sun-beam": 196,
+        "foil:sun-pillar": 17,
+        "foil:etched": 45,
+        "foil:rainbow": 28,
+        "foil:gold-etched": 9
+      }
+    },
+    "sm11-5": {
+      "name": "Hidden Fates (including Shiny Vault)",
+      "printings": 219,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 50,
+        "reverse": 56,
+        "foil:sun-beam": 56,
+        "holo": 113,
+        "foil:sun-lava": 15,
+        "foil:sun-pillar": 1,
+        "foil:etched": 53,
+        "foil:rainbow": 97,
+        "foil:gold-etched": 8
+      }
+    },
+    "sm12": {
+      "name": "Cosmic Eclipse",
+      "printings": 464,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 171,
+        "holo": 100,
+        "foil:sun-lava": 38,
+        "reverse": 193,
+        "foil:sun-beam": 193,
+        "foil:sun-pillar": 18,
+        "foil:etched": 50,
+        "foil:rainbow": 44,
+        "foil:gold-etched": 9
+      }
+    },
+    "mep": {
+      "name": "MEP Black Star Promos",
+      "printings": 100,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 100,
+        "foil:mirage": 20,
+        "foil:cosmos": 19,
+        "foil:sun-pillar": 39,
+        "foil:full-art": 20,
+        "foil:etched": 20,
+        "foil:stamped": 2
+      }
+    },
+    "swsh9a": {
+      "name": "Brilliant Stars Trainer Gallery",
+      "printings": 30,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 30,
+        "foil:rainbow": 12,
+        "foil:sun-pillar": 16,
+        "foil:etched": 18,
+        "foil:gold-etched": 2
+      }
+    },
+    "swsh10a": {
+      "name": "Astral Radiance Trainer Gallery",
+      "printings": 30,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 30,
+        "foil:rainbow": 12,
+        "foil:sun-pillar": 16,
+        "foil:etched": 18,
+        "foil:gold-etched": 2
+      }
+    },
+    "swsh12a": {
+      "name": "Silver Tempest Trainer Gallery",
+      "printings": 30,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 30,
+        "foil:rainbow": 11,
+        "foil:sun-pillar": 17,
+        "foil:etched": 19,
+        "foil:gold-etched": 2
+      }
+    },
+    "swsh12-5a": {
+      "name": "Crown Zenith Galarian Gallery",
+      "printings": 70,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 70,
+        "foil:rainbow": 34,
+        "foil:sun-pillar": 32,
+        "foil:etched": 36,
+        "foil:gold-etched": 4
+      }
+    },
+    "gum": {
+      "name": "Detective Pikachu",
+      "printings": 18,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 18,
+        "foil:sun-beam": 18
+      }
+    },
+    "sv03.5": {
+      "name": "151",
+      "printings": 360,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 128,
+        "reverse": 153,
+        "foil:flat-silver": 153,
+        "holo": 79,
+        "foil:sun-pillar": 44,
+        "foil:mirage": 25,
+        "foil:etched": 26,
+        "foil:full-art": 10,
+        "foil:gold-etched": 3
+      }
+    },
+    "sv08.5": {
+      "name": "Prismatic Evolutions",
+      "printings": 447,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 79,
+        "reverse": 100,
+        "pokeball-reverse": 100,
+        "masterball-reverse": 67,
+        "holo": 101,
+        "foil:ace-spec": 6,
+        "foil:etched": 49,
+        "foil:gold-etched": 5
+      }
+    },
+    "30th": {
+      "name": "30th Celebration",
+      "printings": 158,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 158,
+        "foil:rainbow": 68,
+        "foil:mirage": 18,
+        "foil:sun-pillar": 30,
+        "foil:pikachu": 30,
+        "foil:full-art": 12,
+        "foil:etched": 12
+      }
+    },
+    "30th-classic": {
+      "name": "30th Celebration · Classic Collection",
+      "printings": 30,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 30,
+        "foil:classic": 30,
+        "foil:etched": 29
+      }
+    },
+    "30th-rgb": {
+      "name": "30th Celebration · RGB Mew",
+      "printings": 3,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "holo": 3,
+        "foil:rgb": 3,
+        "foil:etched": 3
+      }
+    },
+    "2024sv": {
+      "name": "McDonald's Dragon Discovery",
+      "printings": 15,
+      "missingRarity": 0,
+      "missingCategory": 0,
+      "missingFinish": 0,
+      "finishes": {
+        "normal": 8,
+        "holo": 7,
+        "foil:confetti": 7
+      }
+    }
+  },
+  "policy": "Fill missing fields after exact set/number/name matching. Archive label corrections use the original image source identity; never match an image to a different card by its erroneous label. Preserve local variants, collation rarity and authored materials. Physical-copy foil placement and optical completion are independent."
+}

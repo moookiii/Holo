@@ -5,6 +5,8 @@ import { tcglMepSets } from '../pokemon/data/mep-tcgl.generated.ts';
 import { tcglSwshSets } from '../pokemon/data/swsh-tcgl.generated.ts';
 import { tcglSmSets } from '../pokemon/data/sm-tcgl.generated.ts';
 import { dragonDiscoverySet } from '../pokemon/DragonDiscoveryCatalog.ts';
+import { completePokemonMetadata } from '../pokemon/metadata.ts';
+import { pokemonFinishTags, pokemonPrintVariant } from '../pokemon/finishes.ts';
 
 const pokemonSetAliases: Readonly<Record<string, string>> = {
   'Base Set · First Edition': 'Base Set',
@@ -170,7 +172,7 @@ function printEdition(card: CardDefinition) {
 }
 
 function masterPriority(card: CardDefinition) {
-  if (card.maps && !card.pokemon) return 5; // Authored standalone surface.
+  if (card.maps && !card.id.startsWith('pokemon:')) return 5; // Authored master, including newly tagged standalone prints.
   if (gallerySetName(card) === 'Base Set' && card.id.startsWith('common-pokemon-')) return 4;
   if (card.pokemon) return 3; // Audited set printing over an archive copy.
   if (!card.id.startsWith('common-pokemon-')) return 2;
@@ -212,7 +214,7 @@ export const facets = [
   { key: 'game', label: 'Game', value: (c: CardDefinition) => c.franchise },
   { key: 'set', label: 'Set', value: gallerySetName },
   { key: 'rarity', label: 'Rarity', value: (c: CardDefinition) => c.magic?.rarity ?? c.pokemon?.rarity ?? (c.franchise === 'Yu-Gi-Oh!' ? c.set.match(/^[A-Z0-9]+-EN\d+ · (.+)$/)?.[1] : undefined) },
-  { key: 'finish', label: 'Finish', value: (c: CardDefinition) => c.pokemon?.variant ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.franchise === 'Pokémon' ? 'holo' : c.profile) },
+  { key: 'finish', label: 'Finish', value: (c: CardDefinition) => pokemonPrintVariant(c) ?? (c.construction ? 'Metal' : c.profile === 'print-only' ? 'Non-holo' : c.profile) },
   { key: 'category', label: 'Category', value: (c: CardDefinition) => c.magic?.typeLine ?? c.pokemon?.category },
 ] as const;
 export type GalleryQuery = { search: string } & Partial<Record<typeof facets[number]['key'], string>>;
@@ -220,6 +222,7 @@ export type GalleryQuery = { search: string } & Partial<Record<typeof facets[num
 export function matchesFacet(card: CardDefinition, facet: typeof facets[number], selected: string) {
   const value = facet.value(card);
   if (facet.key === 'finish' && card.profile === selected) return true;
+  if (facet.key === 'finish' && card.franchise === 'Pokémon' && pokemonFinishTags(card).includes(selected)) return true;
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'regular-holo') return value === 'holo';
   if (card.franchise === 'Pokémon' && facet.key === 'finish' && selected === 'holo')
     return value === 'holo' || value === 'reverse' || value === 'pokeball-reverse' || value === 'masterball-reverse' || value === 'special-reverse';
@@ -228,7 +231,7 @@ export function matchesFacet(card: CardDefinition, facet: typeof facets[number],
 
 export function filterCards(cards: readonly CardDefinition[], query: GalleryQuery) {
   const words = query.search.trim().toLocaleLowerCase().split(/\s+/).filter(Boolean);
-  return galleryMasterCards(cards).filter(card => (!card.pickerHidden || card.galleryVisible) && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
+  return galleryMasterCards(cards.map(completePokemonMetadata)).filter(card => (!card.pickerHidden || card.galleryVisible) && words.every(word => `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase().includes(word))
     && facets.every(facet => !query[facet.key] || matchesFacet(card, facet, query[facet.key]!))).sort(compareGalleryCards);
 }
 
@@ -242,7 +245,7 @@ export class GalleryQueryIndex {
   private refresh() {
     if (this.snapshot.length === this.source.length && this.source.every((card, index) => card === this.snapshot[index])) return;
     this.snapshot = [...this.source];
-    this.indexed = galleryMasterCards(this.source).filter(card => !card.pickerHidden || card.galleryVisible)
+    this.indexed = galleryMasterCards(this.source.map(completePokemonMetadata)).filter(card => !card.pickerHidden || card.galleryVisible)
       .sort(compareGalleryCards).map(card => ({ card, text: `${card.title} ${gallerySetName(card)} ${card.set} ${card.number}`.toLocaleLowerCase() }));
   }
   cards() { this.refresh(); return this.indexed.map(row => row.card); }
