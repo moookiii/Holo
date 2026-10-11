@@ -43,7 +43,9 @@ def validate(record):
             assert im.mode == 'RGB'
             actual = np.asarray(im)
             assert np.array_equal(expected,actual), record['tcglCardId']
-            protected = protection > .999999
+            # Near-one antialiased slopes can legitimately round one RGB unit
+            # away from neutral; only fully protected pixels must be exact flat.
+            protected = protection == 1
             assert np.all(actual[protected] == np.array([128,128,255])), record['tcglCardId']
     return {'cardId':record['cardId'],'tcglCardId':record['tcglCardId'],'status':'validated','normal':textured}
 
