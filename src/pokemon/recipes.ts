@@ -7,9 +7,13 @@ import { megaRecipes } from './MegaRecipes.ts';
 import { dragonDiscoveryRecipe } from './DragonDiscoveryRecipe.ts';
 import { swshRecipes } from './SwshRecipes.ts';
 import { smRecipes } from './SmRecipes.ts';
+import { xyRecipes } from './XyRecipes.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; fallbackVariant?: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
-export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; uniqueGroup?: string; pool?: 'set' | 'energy' | 'set-and-energy'; }
+export interface PackSlot { id: string; count: number; outcomes: readonly SlotOutcome[]; unique?: boolean; uniqueGroup?: string; pool?: 'set' | 'energy' | 'set-and-energy';
+  /** Observed cyclic source-sheet IDs. One finish outcome; sampled start, consecutive cards. */
+  sequence?: readonly string[];
+}
 export interface PokemonRecipe {
   id: string; version: string; setId: string; era: string; slots: readonly PackSlot[];
   boosterIds?: readonly string[]; sources: readonly string[]; note: string;
@@ -55,6 +59,7 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
     ] };
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
+  ...xyRecipes,
   ...smRecipes,
   ...swshRecipes,
   ...megaRecipes,

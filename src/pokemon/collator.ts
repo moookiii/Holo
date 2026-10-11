@@ -29,13 +29,15 @@ export function collatePokemon(setId: string, boosterId: string, seed: number, c
     const outcomes = slot.outcomes.map(o => ({ ...o, pool: slotPool.filter(c => o.rarities.includes(c.rarity) && (c.variants.includes(o.variant) || (o.fallbackVariant !== undefined && c.variants.includes(o.fallbackVariant))) && (!o.cardIds || o.cardIds.includes(c.id)) && (!o.excludedCardIds || !o.excludedCardIds.includes(c.id)) && (!o.categories || (c.category !== undefined && o.categories.includes(c.category))) && (!o.energyTypes || (c.energyType !== undefined && o.energyTypes.includes(c.energyType)))) }));
     // Never redistribute a missing rarity's odds or quietly bias an incomplete pool.
     for (const o of outcomes) if (o.pool.length < (slot.unique ? slot.count : 1)) throw new Error(`Incomplete ${slot.id} pool (${o.rarities.join('/')}). Retry metadata or choose another booster.`);
+    if (slot.sequence && (outcomes.length !== 1 || slot.unique || slot.sequence.length < slot.count || slot.sequence.some(id => !outcomes[0].pool.some(c => c.id === id)))) throw new Error(`Invalid observed sheet ${slot.id}`);
+    const sequenceStart = slot.sequence ? Math.floor(random() * slot.sequence.length) : 0;
     const used = slot.uniqueGroup ? uniqueGroups.get(slot.uniqueGroup) ?? new Set<string>() : new Set<string>();
     if (slot.uniqueGroup) uniqueGroups.set(slot.uniqueGroup, used);
     for (let i = 0; i < slot.count; i++) {
       let roll = random(); const selected = outcomes.find(o => (roll -= o.weight) < 0) ?? outcomes.at(-1)!;
       const available = selected.pool.filter(c => !slot.unique || !used.has(c.id));
       if (!available.length) throw new Error(`Exhausted ${slot.id} unique pool`);
-      const card = available[Math.floor(random() * available.length)]; used.add(card.id);
+      const card = slot.sequence ? selected.pool.find(c => c.id === slot.sequence![(sequenceStart + i) % slot.sequence!.length])! : available[Math.floor(random() * available.length)]; used.add(card.id);
       const snapshot = Object.freeze({ ...card, ...(edition ? { edition, front: card.editionFronts![edition], thumbnail: card.editionFronts![edition] } : {}), variants: Object.freeze([...card.variants]) as unknown as PokemonCard['variants'], boosterIds: card.boosterIds ? Object.freeze([...card.boosterIds]) as unknown as string[] : undefined, foil: Object.freeze({ ...card.foil }), ...(card.editionFronts ? { editionFronts: Object.freeze({ ...card.editionFronts }) } : {}) });
       pulls.push(Object.freeze({ card: snapshot, variant: card.variants.includes(selected.variant) ? selected.variant : selected.fallbackVariant!, slot: `${slot.id}:${i + 1}` }));
     }

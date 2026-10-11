@@ -9,6 +9,7 @@ import { pokemonCatalog } from './TcgdexAdapter';
 import { collatePokemon } from './collator';
 import { recipeFor } from './recipes';
 import { swshSupplementCards } from './SwshRecipes';
+import { xySupplementCards } from './XyRecipes';
 import type { PokemonRecipe } from './recipes';
 import { replaysForSet } from './SvPackReplays';
 import { packAvailability } from './availability';
@@ -393,7 +394,7 @@ export class PackBrowser {
         if (this.task.current(request)) this.status.textContent = `Loading card metadata · ${done} / ${total}`;
       });
       if (!this.task.current(request)) return; this.metadata = metadata;
-      const resolved = collatePokemon(set.id, booster.id, seed, [...metadata, ...swshSupplementCards(set.id)], replay ?? recipeFor(set.id));
+      const resolved = collatePokemon(set.id, booster.id, seed, [...metadata, ...swshSupplementCards(set.id), ...xySupplementCards(set.id)], replay ?? recipeFor(set.id));
       this.status.textContent = 'Preparing booster artwork…';
       const wrapper = await prepareWrapper(set, booster, request.signal);
       if (!this.task.current(request)) return;
