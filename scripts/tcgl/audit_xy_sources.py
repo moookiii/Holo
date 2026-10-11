@@ -2,15 +2,17 @@
 
 Run after fetch_xy_sources.py. Does not author images or modify Holo runtime.
 """
-from collections import Counter, defaultdict
+from collections import Counter
 from pathlib import Path
 import argparse
 import hashlib
 import inspect
 import json
 import re
+import sys
 from PIL import Image
 
+sys.dont_write_bytecode = True
 import fetch_xy_sources as acquisition
 
 ROOT = acquisition.ROOT
