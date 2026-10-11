@@ -8,7 +8,7 @@ import re
 import cv2
 import numpy as np
 from PIL import Image, ImageDraw
-from fetch_prixyatic_set import fetch
+from fetch_prismatic_set import fetch
 
 ROOT = Path(__file__).resolve().parents[2]
 RAW = ROOT / 'research/tcgl/xy-wrappers'
@@ -83,3 +83,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+
