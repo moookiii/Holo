@@ -56,12 +56,15 @@ def main():
         path = RAW / (sid + '.json')
         if not path.exists(): path.write_bytes(fetch('https://api.tcgdex.net/v2/en/sets/' + dex))
         data = json.loads(path.read_bytes())
-        if not data.get('logo'): return sid, None
+        fallback = {'sm3-5': 'sm35', 'sm7-5': 'sm75'}
+        url = (data['logo'] + '.png') if data.get('logo') else (
+            'https://images.pokemontcg.io/' + fallback[sid] + '/logo.png' if sid in fallback else None)
+        if not url: return sid, None
         raw_logo = RAW / (sid + '-logo.png')
-        if not raw_logo.exists(): raw_logo.write_bytes(fetch(data['logo'] + '.png'))
+        if not raw_logo.exists(): raw_logo.write_bytes(fetch(url))
         target = ROOT / ('public/packs/pokemon/' + sid + '-logo.png')
         with Image.open(raw_logo) as im: im.load(); im.save(target)
-        return sid, {'url': data['logo'] + '.png', 'sourceSha256': hashlib.sha256(raw_logo.read_bytes()).hexdigest(),
+        return sid, {'url': url, 'sourceSha256': hashlib.sha256(raw_logo.read_bytes()).hexdigest(),
                      'file': target.relative_to(ROOT).as_posix(), 'sha256': hashlib.sha256(target.read_bytes()).hexdigest()}
     with ThreadPoolExecutor(max_workers=6) as pool:
         logos = dict(pool.map(logo, list(NAMES)[:16]))
