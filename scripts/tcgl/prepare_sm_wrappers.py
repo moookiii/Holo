@@ -36,13 +36,13 @@ def main():
             path.write_bytes(fetch(url))
         image = Image.open(path).convert('RGBA')
         pixels = np.array(image)
-        # Only edge-connected presentation whites become transparent. Printed
-        # internal whites stay intact. No redraw, stretch, or source upscaling.
-        white = (pixels[..., :3].min(2) >= 238).astype('uint8')
-        n, labels, stats, _ = cv2.connectedComponentsWithStats(white, 8)
-        edge_ids = set(np.r_[labels[0], labels[-1], labels[:, 0], labels[:, -1]]) - {0}
-        exterior = np.isin(labels, list(edge_ids))
-        pixels[exterior, 3] = 0
+        # Preserve white printed artwork even where it touches the perimeter.
+        # An exterior flood fill would punch holes through silver/white graphics.
+        dark = (pixels[..., :3].min(2) < 238).astype('uint8')
+        contours, _ = cv2.findContours(dark, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        silhouette = np.zeros(dark.shape, dtype='uint8')
+        cv2.drawContours(silhouette, [cv2.convexHull(max(contours, key=cv2.contourArea))], -1, 255, cv2.FILLED)
+        pixels[..., 3] = silhouette
         foreground = pixels[..., 3] > 0
         ys, xs = np.where(foreground)
         bounds = (int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1)
@@ -57,7 +57,7 @@ def main():
             'sourceSha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'crop': list(bounds),
             'rotation': 0, 'dimensions': list(cropped.size), 'output': target.relative_to(ROOT).as_posix(),
             'sha256': hashlib.sha256(target.read_bytes()).hexdigest(),
-            'operations': 'Native crop and edge-connected exterior white removal; no resize or stretch.'}
+            'operations': 'Native crop and exterior silhouette alpha; interior print untouched, no resize or stretch.'}
     with ThreadPoolExecutor(max_workers=6) as pool:
         records = list(pool.map(prepare, files))
     (ROOT / 'public/packs/pokemon/sm-wrapper-sources.json').write_text(json.dumps(records, indent=2) + '\n', encoding='utf-8')
