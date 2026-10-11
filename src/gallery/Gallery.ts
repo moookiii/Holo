@@ -31,6 +31,7 @@ export class Gallery {
   private status = document.createElement('p');
   private search = document.createElement('input');
   private filters = new Map<string, HTMLSelectElement>();
+  private setJump = document.createElement('select');
   private favorites = browserGalleryFavorites();
   private favoritesOnly = false;
   private binder?: FavoritesBinder;
@@ -85,20 +86,23 @@ export class Gallery {
     this.search.oninput = () => { this.query.search = this.search.value; this.applyFilters(); }; filters.append(this.search);
     for (const facet of facets) {
       const label = document.createElement('label');
-      const caption = document.createElement('span'); caption.textContent = facet.key === 'set' ? 'Jump to set' : facet.label; label.append(caption);
-      const select = document.createElement('select'); select.setAttribute('aria-label', caption.textContent);
+      const caption = document.createElement('span'); caption.textContent = facet.label; label.append(caption);
+      const select = document.createElement('select'); select.setAttribute('aria-label', facet.label);
       select.onchange = () => {
-        if (facet.key === 'set') {
-          this.jumpToSet(select.value);
-          select.value = '';
-          return;
-        }
         if (select.value) this.query[facet.key] = select.value;
         else delete this.query[facet.key];
         this.refreshFacetOptions(); this.applyFilters();
       };
       this.filters.set(facet.key, select); label.append(select); filters.append(label);
     }
+    const jumpLabel = document.createElement('label');
+    const jumpCaption = document.createElement('span'); jumpCaption.textContent = 'Jump to set';
+    this.setJump.setAttribute('aria-label', 'Jump to set');
+    this.setJump.onchange = () => {
+      this.jumpToSet(this.setJump.value);
+      this.setJump.value = '';
+    };
+    jumpLabel.append(jumpCaption, this.setJump); filters.append(jumpLabel);
     const favoriteFilter = this.favoriteFilter;
     favoriteFilter.type = 'button'; favoriteFilter.className = 'gallery-favorites-filter';
     favoriteFilter.textContent = '★'; favoriteFilter.setAttribute('aria-label', 'Open Favorites binder');
@@ -189,9 +193,9 @@ export class Gallery {
     let cards: readonly CardDefinition[] = this.catalog.cards();
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
-      if (facet.key === 'set') continue;
       const values = [...new Set(cards.flatMap(card => facet.key === 'finish'
-        ? [facet.value(card), card.profile] : [facet.value(card)]).filter((v): v is string => !!v))].sort((a, b) => a.localeCompare(b));
+        ? [facet.value(card), card.profile] : [facet.value(card)]).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
+        ? compareGallerySetNames(a, b) : a.localeCompare(b));
       const selected = this.query[facet.key] ?? '';
       if (facet.key === 'finish' && values.includes('holo')) values.push('regular-holo');
       if (selected && !values.includes(selected)) delete this.query[facet.key];
@@ -221,7 +225,7 @@ export class Gallery {
     this.scrollPreparation.reset();
     this.filtered = this.favorites.filter(this.catalog.filter(this.query), this.favoritesOnly);
     const sets = [...new Set(this.filtered.map(gallerySetName))].sort(compareGallerySetNames);
-    this.filters.get('set')!.replaceChildren(new Option('Jump to set…', ''), ...sets.map(set => new Option(set, set)));
+    this.setJump.replaceChildren(new Option('Jump to set…', ''), ...sets.map(set => new Option(set, set)));
     this.count.textContent = `${this.filtered.length.toLocaleString()} cards`;
     this.status.textContent = this.filtered.length ? '' : 'No cards match. Try clearing a filter.';
     if (reset) this.viewport.scrollTop = 0;
