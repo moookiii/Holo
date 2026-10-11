@@ -61,6 +61,7 @@ export class Gallery {
   private dirty = true;
   private disposed = false;
   private lightingInitialized = false;
+  private initialPositionPending = true;
   private uploadBudget = new GalleryUploadBudget();
   private performance = new GalleryPerformance();
   private visibleExpected = 0;
@@ -244,6 +245,15 @@ export class Gallery {
     this.dirty = false;
     this.layout = galleryLayout(this.viewport.clientWidth, this.viewport.clientHeight, this.filtered.length, this.viewport.scrollTop);
     this.content.style.height = `${this.layout.total}px`;
+    if (this.initialPositionPending && this.viewport.clientWidth > 0 && this.viewport.clientHeight > 0 && this.filtered.length > 0) {
+      this.initialPositionPending = false;
+      const index = Math.floor(Math.random() * this.filtered.length);
+      const top = Math.min(Math.floor(index / this.layout.columns) * this.layout.row,
+        Math.max(0, this.layout.total - this.viewport.clientHeight));
+      this.viewport.scrollTop = top;
+      this.lastScroll = this.viewport.scrollTop;
+      this.layout = galleryLayout(this.viewport.clientWidth, this.viewport.clientHeight, this.filtered.length, this.viewport.scrollTop);
+    }
     const visible = this.filtered.slice(this.layout.start, this.layout.end);
     const scroll = this.viewport.scrollTop;
     if (scroll !== this.lastScroll) {
