@@ -17,11 +17,8 @@ SPECIAL = {'Double Crisis': 'xy5-5', 'Generations': 'xy9-5'}
 
 def main():
     RAW.mkdir(parents=True, exist_ok=True)
-    category = 'https://archives.bulbagarden.net/wiki/Category:English_XY_Series_packs'
-    index = ROOT / 'research/tcgl/xy-wrapper-index.html'
-    if not index.exists():
-        index.write_bytes(fetch(category))
-    files = sorted(set(html.unescape(n) for n in re.findall(r'title="File:([^\"]+)"', index.read_text(encoding='utf-8'))))
+    inventory = json.loads((ROOT / 'scripts/tcgl/xy-wrapper-inventory.json').read_bytes())
+    files = inventory['files']
     assert len(files) == 54
     def prepare(filename):
         label = filename.rsplit('.', 1)[0]
