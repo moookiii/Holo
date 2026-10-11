@@ -55,7 +55,8 @@ def main():
         if '[Exeggutor]' in name: name = 'Exeggutor'
         return ''.join(c for c in name.lower() if c.isalnum())
     by_name = {normalize(r['name']):r['card_id'].replace('_','-',1) for r in manifest
-               if r['set_id']=='xy12' and r['variant']==0}
+               if r['set_id']=='xy12' and r['variant']==0
+               and r['long_form_id'].split('_')[-3] in ('Uncommon','RareSecret')}
     sequence = [by_name[normalize(n)] for n in names]
     assert len(set(sequence)) == 33
     output = {'sourceFiles':source_files,'sets':rates,'evolutionsUncommonSheet':sequence,

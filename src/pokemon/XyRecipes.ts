@@ -23,7 +23,8 @@ function recipe(setId: keyof typeof xyRates): PokemonRecipe {
   const faSecret = secrets.filter(c => !exSecret.includes(c));
   add(rates.ex * (1-rates.exSecretFraction), select(['Holo Rare EX']), 'holo');
   add(rates.ex * rates.exSecretFraction, exSecret, 'holo');
-  add(rates.fullArt * (1-rates.fullArtSecretFraction), select(['Ultra Rare']), 'holo');
+  // TCGL labels Double Crisis's two full-art Team EXs RareHoloEX.
+  add(rates.fullArt * (1-rates.fullArtSecretFraction), select([setId === 'xy5-5' ? 'Holo Rare EX' : 'Ultra Rare']), 'holo');
   add(rates.fullArt * rates.fullArtSecretFraction, faSecret, 'holo');
   add(rates.holo, select(['Holo Rare']), 'holo');
   if (setId !== 'xy5-5') add(1-rates.holo-rates.ex-rates.fullArt, select(['Rare']), 'normal');
