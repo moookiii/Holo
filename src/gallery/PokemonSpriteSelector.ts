@@ -65,9 +65,20 @@ export class PokemonSpriteSelector {
       this.scroller.scrollTop = Math.max(0, next * SPRITE_ROW_HEIGHT - this.scroller.clientHeight / 2);
       this.render(); this.rows.get(next)?.focus({ preventScroll: true });
     }, { signal, capture: true });
-    this.observer = new ResizeObserver(() => { if (!this.panel.hidden) this.render(); }); this.observer.observe(this.scroller);
+    this.observer = new ResizeObserver(() => { if (!this.panel.hidden) { this.position(); this.render(); } }); this.observer.observe(this.scroller);
   }
-  open() { this.panel.hidden = false; this.button.setAttribute('aria-expanded', 'true'); this.render(); this.panel.querySelector<HTMLButtonElement>('button')?.focus(); }
+  private position() {
+    const toolbar = this.button.closest<HTMLElement>('.gallery-toolbar');
+    if (toolbar && this.panel.parentElement) {
+      this.panel.style.top = `${toolbar.getBoundingClientRect().bottom - this.panel.parentElement.getBoundingClientRect().top}px`;
+    }
+  }
+  open() {
+    this.position();
+    const toolbar = this.button.closest('.gallery-toolbar');
+    if (toolbar) this.observer.observe(toolbar);
+    this.panel.hidden = false; this.button.setAttribute('aria-expanded', 'true'); this.render(); this.panel.querySelector<HTMLButtonElement>('button')?.focus();
+  }
   close(focus = true) {
     this.panel.hidden = true; this.button.setAttribute('aria-expanded', 'false');
     cancelAnimationFrame(this.frame); this.frame = 0;

@@ -17,12 +17,21 @@ try {
   assert.equal(await toggle.textContent(), '');
   const panel = page.getByRole('dialog', { name: 'Choose a Pokémon' });
   const search = page.getByRole('searchbox', { name: 'Search gallery cards' });
+  const checkBounds = async () => {
+    await page.waitForTimeout(200);
+    assert.ok(await panel.evaluate(el => {
+      const rect = el.getBoundingClientRect(); const toolbar = document.querySelector('.gallery-toolbar').getBoundingClientRect();
+      return Math.abs(rect.top - toolbar.bottom) < 1 && Math.abs(rect.bottom - innerHeight) < 1;
+    }));
+  };
+  const rowLimit = () => panel.locator('.pokemon-selector-scroll').evaluate(el => Math.ceil(el.clientHeight / 76) + 5);
   await search.fill('old query');
   assert.equal(requests.length, 0);
   const start = Date.now(); await toggle.click(); await panel.waitFor(); const openMs = Date.now() - start;
-  assert.ok(await panel.locator('[data-pokemon-index]').count() <= 12);
+  await checkBounds();
+  assert.ok(await panel.locator('[data-pokemon-index]').count() <= await rowLimit());
   await page.waitForTimeout(400);
-  assert.ok(requests.length <= 12);
+  assert.ok(requests.length <= await rowLimit());
   const sprite = panel.getByRole('button', { name: 'Bulbasaur', exact: true }).locator('img');
   await sprite.evaluate(img => new Promise((resolve, reject) => {
     if (img.complete && img.naturalWidth) return resolve();
@@ -48,16 +57,17 @@ try {
   await toggle.click(); await page.keyboard.press('Escape'); assert.equal(await panel.isVisible(), false);
   await toggle.click(); await search.click(); assert.equal(await panel.isVisible(), false);
   await toggle.click(); await page.keyboard.press('End');
-  await page.waitForTimeout(100); assert.ok(await panel.locator('[data-pokemon-index]').count() <= 12);
+  await page.waitForTimeout(100); assert.ok(await panel.locator('[data-pokemon-index]').count() <= await rowLimit());
   for (const fraction of [0, .25, .5, .75, 1, .5, 0]) {
     await panel.locator('.pokemon-selector-scroll').evaluate((el, fraction) => { el.scrollTop = (el.scrollHeight - el.clientHeight) * fraction; }, fraction);
-    await page.waitForTimeout(40); assert.ok(await panel.locator('[data-pokemon-index]').count() <= 12);
+    await page.waitForTimeout(40); assert.ok(await panel.locator('[data-pokemon-index]').count() <= await rowLimit());
   }
   await panel.getByRole('button', { name: 'Close Pokémon selector' }).focus();
   await page.keyboard.press('Home'); await page.waitForTimeout(200);
   await mkdir('artifacts/gallery-sprite-selector', { recursive: true });
   await page.screenshot({ path: 'artifacts/gallery-sprite-selector/desktop.png' });
   await page.setViewportSize({ width: 390, height: 844 }); await page.waitForTimeout(200);
+  await checkBounds();
   assert.ok(await panel.evaluate(el => el.getBoundingClientRect().right <= innerWidth));
   await page.screenshot({ path: 'artifacts/gallery-sprite-selector/mobile.png' });
   // A failed GIF retains a selectable name and never retries on reopen.
