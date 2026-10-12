@@ -641,13 +641,13 @@
     "runtimeMapDecodingAndDimensions": "passed",
     "wrappersHashesDecodingAndTightAlphaBounds": "passed for all 54 designs",
     "xyTests": "4 XY checks and 3 favorites checks passed: all gallery/source identities, chronology, 4200 seeded packs and every branch",
-    "productionBuild": "passed; standard existing chunk-size warning",
+    "productionBuild": "passed; final TypeScript check passed; standard existing chunk-size warning",
     "liveReview": {
       "viewers": 10,
       "products": 14,
       "errors": [],
       "failure": null,
-      "startupXyTextureRequests": 0,
+      "startupXyTextureRequests": 27,
       "externalCardRequests": [],
       "galleryFavoritesBinder": "passed"
     }
@@ -659,6 +659,50 @@
     "Fourteen wrapper reverses lack verified acquired imagery. Existing pack back fallback remains; original English fronts are available for all 54 designs. Seller page acquisition returned HTTP 403; do not substitute another expansion back.",
     "Native foil masks establish UV/coverage, not physical grating direction, measured groove depth or exact-copy Cosmos motifs.",
     "The full suite is not green: 364 passed, 38 failed. Comparison against pre-XY revision identifies 37 shared failures and the new missing-XY-wrapper-reverse assertion. Full logs in artifacts/xy-integration."
+  ],
+  "wrapperReverseLookups": [
+    {
+      "setId": "xy2",
+      "page": "https://www.ebay.com/itm/298701987110",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/298701987110"
+    },
+    {
+      "setId": "xy3",
+      "page": "https://www.ebay.com/itm/206009347945",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/206009347945"
+    },
+    {
+      "setId": "xy4",
+      "page": "https://www.ebay.com/itm/265547742505",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/265547742505"
+    },
+    {
+      "setId": "xy4",
+      "page": "https://www.ebay.com/itm/157304061473",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/157304061473"
+    },
+    {
+      "setId": "xy5",
+      "page": "https://www.ebay.com/itm/206254433731",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/206254433731"
+    },
+    {
+      "setId": "xy7",
+      "page": "https://www.ebay.com/itm/127437640934",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/127437640934"
+    },
+    {
+      "setId": "xy7",
+      "page": "https://www.ebay.com/itm/317843563433",
+      "status": "lookup-failed",
+      "error": "403 Client Error: Forbidden for url: https://www.ebay.com/itm/317843563433"
+    }
   ],
   "shaderChanges": false,
   "existingMaterialFilesChanged": false
