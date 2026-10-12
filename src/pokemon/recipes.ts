@@ -7,6 +7,7 @@ import { megaRecipes } from './MegaRecipes.ts';
 import { dragonDiscoveryRecipe } from './DragonDiscoveryRecipe.ts';
 import { swshRecipes } from './SwshRecipes.ts';
 import { smRecipes } from './SmRecipes.ts';
+import { bwRecipes } from './BwRecipes.ts';
 import { xyRecipes } from './XyRecipes.ts';
 
 export interface SlotOutcome { weight: number; rarities: readonly string[]; variant: PrintVariant; fallbackVariant?: PrintVariant; cardIds?: readonly string[]; excludedCardIds?: readonly string[]; categories?: readonly string[]; energyTypes?: readonly string[]; }
@@ -59,6 +60,7 @@ function scarletViolet(setId: string, rates: [number, number, number, number, nu
     ] };
 }
 export const pokemonRecipes: readonly PokemonRecipe[] = [
+  ...bwRecipes,
   ...xyRecipes,
   ...smRecipes,
   ...swshRecipes,

@@ -20,7 +20,17 @@ export function bwDefinition(id: string, variant: PrintVariant): CardDefinition 
     maps: surface.maps,
     mapSettings: { normalScale: surface.textured ? 1 : 0, embossStrength: 0,
       roughnessMode: 'absolute', embossMaskFromNormalAlpha: false },
-    ...(surface.textured ? { profileOverrides: tcglEtchedFinish } : {}),
+    ...(surface.textured ? { profileOverrides: tcglEtchedFinish } : surface.profile === 'pokemon-sheen' ? {
+      // Existing diffraction and reflections, with smooth BW stock. No
+      // procedural engraving, facet variance or sparkle on early Full Arts.
+      profileOverrides: {
+        structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, patternRelief: 0,
+          facetTilt: 0, reflectionCoupling: 0, normalVariance: 0 },
+        glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+        diffraction: { facetCoupling: 0, followsAuthoredNormals: false },
+        mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'absolute', embossMaskFromNormalAlpha: false },
+      },
+    } : {}),
     source: { image: front, metadata: surface.evidence,
       notes: `Exact English TCGL printing ${surface.tcglVariantId ?? surface.tcglCardId}. Own original fronts, foil/etch references and hashes retained in ${surface.evidence}. ` +
         (deferred ? `${surface.deferredEffect} finish pending; clean front with print-only material. No simulated replacement foil.` :

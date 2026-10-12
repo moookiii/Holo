@@ -58,12 +58,12 @@ def treatment(m, row, variant):
     if m['assets']['etch']['status'] == 'extracted' and not untextured:
         return 'prismatic_sir_texture', None
     if rarity in ('RareHoloEX','RareUltra','RareSecret','Ace'):
-        return 'swsh-reverse-energy', None
+        return 'pokemon-sheen', None
     effect = m['foil_effect']
     if effect == 'Tinsel': return 'pokemon-tinsel', None
     if effect == 'CrackedIce': return 'pokemon-cracked-ice', None
     if effect == 'Thatch': return 'pokemon-crosshatch', None
-    if effect in ('Rainbow','AngledPillars'): return 'swsh-reverse-energy', None
+    if effect in ('Rainbow','AngledPillars'): return 'pokemon-sheen', None
     if effect == 'Stamped': return 'print-only', 'Stamped promotional foil physical response'
     return 'print-only', 'BW promotional ' + effect
 
@@ -205,7 +205,7 @@ def main():
                       'import type { TcglSvSurface } from "./sv-tcgl-surfaces.generated.ts";\n'
                       'export const tcglBwSets: readonly (TcglSvSetRecord & {seriesId:string;seriesName:string})[] = JSON.parse('+
                       json.dumps(json.dumps(ordered,ensure_ascii=False),ensure_ascii=False)+');\n'
-                      'export const tcglBwSurfaces: readonly (TcglSvSurface & {tcglCardId:string;tcglVariantId:string;treatmentStatus:string;deferredEffect:string|null;originalAssets:Record<string,string>})[] = JSON.parse('+
+                      'export const tcglBwSurfaces: readonly (TcglSvSurface & {tcglCardId:string;tcglVariantId:string|null;treatmentStatus:string;deferredEffect:string|null;originalAssets:Record<string,string>})[] = JSON.parse('+
                       json.dumps(json.dumps(surfaces,ensure_ascii=False),ensure_ascii=False)+');\n',encoding='utf-8')
     write(OUT/'printing-index.json',index)
     pending = defaultdict(list)
