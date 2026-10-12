@@ -29,7 +29,7 @@ export class ProductGrid {
     for (let index = start * columns; index < Math.min(this.items.length, end * columns); index++) {
       const item = this.items[index];
       const tile = button('', () => this.choose(item), 'vm-product'); tile.dataset.productId = item.id;
-      tile.setAttribute('aria-label', item.available ? `${item.name} · Opening available` : item.name);
+      tile.setAttribute('aria-label', item.name);
       tile.setAttribute('aria-pressed', String(item.id === this.selected));
       tile.onkeydown = event => {
         const delta = { ArrowDown: columns, ArrowUp: -columns, ArrowRight: 1, ArrowLeft: -1 }[event.key];
@@ -43,8 +43,8 @@ export class ProductGrid {
         Array.from(this.canvas.querySelectorAll<HTMLButtonElement>('button')).find(b => b.dataset.productId === this.items[target].id)?.focus({ preventScroll: true });
       };
       Object.assign(tile.style, { top: `${Math.floor(index / columns) * rowHeight}px`, left: `${index % columns * 100 / columns}%`, width: `${100 / columns}%` });
-      tile.append(artwork(item.artwork[0]), element('strong', '', item.name),
-        element('small', '', [item.year, item.available ? 'Opening available' : undefined].filter(Boolean).join(' · ')));
+      tile.append(artwork(item.artwork[0]), element('strong', '', item.name));
+      if (item.year) tile.append(element('small', '', item.year));
       tile.onpointermove = event => {
         if (event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         const rect = tile.getBoundingClientRect();
