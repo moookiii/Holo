@@ -11,7 +11,7 @@ const sha = (path: string) => createHash('sha256').update(readFileSync(path)).di
 test('BW Cosmos activates only reviewed exact-copy placement and preserves its clean master', () => {
   const cosmos = tcglBwSurfaces.filter(s => s.foilType === 'Cosmos');
   assert.equal(cosmos.length,48);
-  assert.equal(registry.length,25);
+  assert.equal(registry.length,28);
   for (const s of cosmos) {
     const r = registry.find((r: any) => r.tcglCardId === s.tcglCardId);
     const def = bwDefinition(s.cardId,s.variant as 'holo');

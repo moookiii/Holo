@@ -288,10 +288,15 @@
       "sha256": "f7d4c94d2d8ebea138a6f9875245493a08df9f33eede755f53ab8dad49c75971"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_87/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_87/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_87/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_87/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,57 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "file": "research/tcgl/bw-cosmos/bwbsp-87/psa8-field.jpg",
+      "pageUrl": "https://www.psacard.com/auctionprices/tcg-cards/2013-pokemon-black-white-promo/leafeon-holo/2122400",
+      "imageUrl": "https://d1w8cc2yygc27j.cloudfront.net/-458688339954850031/-6635469833922786013.jpg",
+      "sha256": "bddb8d611098049550bb1728919ffb0dae1e17f6b2f9e798bf509728bca2c7a8",
+      "dimensions": [
+        594,
+        1000
+      ],
+      "title": "bwbsp-87 exact English PSA physical foil field"
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_87/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "7de0f5c2a233d0f431358c6a469b610d650b901f8f61f90ffdd63b6d39f5a073",
+    "transform": {
+      "masterToReference": [
+        [
+          0.7731165641890143,
+          0.006282173498804864,
+          64.69068008948278
+        ],
+        [
+          -0.005131148292201699,
+          0.784897442256657,
+          269.6063252890535
+        ],
+        [
+          1.5068271498418589e-06,
+          -6.011363428648315e-07,
+          1.0
+        ]
+      ],
+      "inliers": 438,
+      "medianReprojectionError": 0.26638996601104736
+    },
+    "reviewNotes": "Exact English PSA physical-copy foil field measured against the clean TCGL front. All automated proposals rejected. Whole discs retained; printed botanical shapes, pale circles, yellow dotted chains and geometric facets excluded. Faint subpixel grain omitted; other copies have different positions. Native-resolution master comparison and full foil-window boundary review completed. No features transferred between copies.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "8572833768c7eed24f698882de2247c663775fd617873a57c70743ed58c30bb2",
+    "foilControls": "165aa62ee021d99868fda5c9dadd5a667bc4b2ac2f85d682bc93d9ba87946eed",
+    "motif": "7de0f5c2a233d0f431358c6a469b610d650b901f8f61f90ffdd63b6d39f5a073",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }
