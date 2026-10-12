@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_26/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_26/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_26/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_26/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "64350fa6305cbc87bc3946b9ab3537b824ff07e20df45771a26e7b41d07d6013",
     "protection": "022634e821d69774e18a397ca0f51d539438bf29819d197236ae9a3baa594a5f",
     "roughness": "c0770f4e05ea9d1505024fe2ccfbaf7d757da6619b08e121e8558281500cfdea",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "4b01db9fb969602462d2b6d1273920b497027ea2d33937911af01d39b37ec003"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79909,
+      "title": "Tsareena  (SM26 English Promo)",
+      "pageUrl": "https://pokumon.com/card/tsareena-sm26-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_26SM.jpg",
+      "dimensions": [
+        438,
+        612
+      ],
+      "description": "Guardians Rising Single Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        438,
+        612
+      ],
+      "file": "research/cosmos-missing/smbsp-26/79909.jpg",
+      "sha256": "c71d496354d44e56e9e312d7226049955095c62151d9e655fc796f524e77dad3"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.7263451162679254,
+          0.0013706798468859228,
+          -0.5865142239381913
+        ],
+        [
+          -0.0027101622721952758,
+          0.7394559692292113,
+          0.7982158123477382
+        ],
+        [
+          -7.670972858993068e-07,
+          -1.1336341599099874e-06,
+          1.0
+        ]
+      ],
+      "inliers": 365,
+      "medianReprojectionError": 0.37843313813209534,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared full abstract background to master. Nearly all automated circles are printed petals, highlights and curved color fields; retained only distinct isolated right-edge physical specks. Reference scan is weak, unresolved faint foil features omitted.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

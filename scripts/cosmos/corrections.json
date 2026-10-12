@@ -2485,5 +2485,943 @@
       }
     ],
     "notes": "Compared source to clean master around tail, wing, belly and all corners. Excluded printed motion ribbon and wing highlight; preserved sparse green-window dots and right-side pale disk."
+  },
+  "smbsp-6": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "removeIds": [
+      26,
+      32,
+      44,
+      45,
+      46,
+      54,
+      55,
+      103,
+      105,
+      108,
+      109,
+      113,
+      114,
+      117
+    ],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          96,
+          134
+        ],
+        "radius": 19,
+        "brightness": 0.8
+      },
+      {
+        "center": [
+          436,
+          175
+        ],
+        "radius": 18,
+        "brightness": 0.85
+      },
+      {
+        "center": [
+          528,
+          330
+        ],
+        "radius": 16,
+        "brightness": 0.85
+      },
+      {
+        "center": [
+          497,
+          316
+        ],
+        "radius": 10,
+        "brightness": 0.7
+      }
+    ],
+    "notes": "Compared whole sky and ground to clean master. Restored complete disks behind tail/ear and right edge; suppressed internal satellites. Removed pebble/debris edges and measured visible foil dots separately."
+  },
+  "smbsp-7": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "removeIds": [
+      18,
+      24,
+      31,
+      32,
+      33,
+      34,
+      37,
+      38,
+      39,
+      49,
+      50,
+      74,
+      76,
+      102,
+      113
+    ],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          281,
+          132
+        ],
+        "radius": 10,
+        "brightness": 0.8
+      },
+      {
+        "center": [
+          370,
+          145
+        ],
+        "radius": 10,
+        "brightness": 0.8
+      },
+      {
+        "center": [
+          518,
+          190
+        ],
+        "radius": 17,
+        "brightness": 0.8
+      },
+      {
+        "center": [
+          357,
+          325
+        ],
+        "radius": 6,
+        "brightness": 0.8
+      }
+    ],
+    "notes": "Reviewed entire sky, wing gaps and grass against clean master. Completed three large sky/wing disks and lower pale ring as filled whole feature; excluded grass, small airborne dirt and printed contours."
+  },
+  "smbsp-8": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "removeIds": [
+      1,
+      6,
+      13,
+      22,
+      27,
+      37,
+      44,
+      58,
+      78,
+      90,
+      93,
+      94,
+      97,
+      99,
+      113,
+      116,
+      122,
+      125,
+      126,
+      128,
+      138
+    ],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          401,
+          148
+        ],
+        "radius": 14,
+        "brightness": 0.65
+      },
+      {
+        "center": [
+          144,
+          303
+        ],
+        "radius": 12,
+        "brightness": 0.75
+      }
+    ],
+    "notes": "Whole foil window compared with master: trees, light rays and airborne leaves excluded. Restored missed blue disk above right ear and complete orange left-bottom disk. Large yellow right sphere preserved as one filled feature."
+  },
+  "smbsp-9": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "removeIds": [],
+    "excludePolygons": [
+      [
+        [
+          30,
+          220
+        ],
+        [
+          190,
+          220
+        ],
+        [
+          220,
+          295
+        ],
+        [
+          240,
+          425
+        ],
+        [
+          30,
+          425
+        ]
+      ],
+      [
+        [
+          420,
+          270
+        ],
+        [
+          570,
+          250
+        ],
+        [
+          570,
+          425
+        ],
+        [
+          420,
+          425
+        ]
+      ],
+      [
+        [
+          400,
+          85
+        ],
+        [
+          570,
+          85
+        ],
+        [
+          570,
+          154
+        ],
+        [
+          400,
+          154
+        ]
+      ]
+    ],
+    "add": [
+      {
+        "center": [
+          320,
+          83
+        ],
+        "radius": 15,
+        "brightness": 0.75
+      }
+    ],
+    "notes": "Compared whole foil to clean master. Large upper-right lens flare and lower flower centers are printed; excluded these and dense foliage. Restored clipped blue disk above subject; retained separate sky dots and a sparse lower gap.",
+    "keepIds": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      23,
+      24,
+      27,
+      28,
+      32,
+      36,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      62,
+      63,
+      64,
+      65,
+      66,
+      75,
+      104,
+      111,
+      112,
+      114,
+      115,
+      116,
+      117,
+      118
+    ]
+  },
+  "smbsp-15": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      36,
+      61,
+      67,
+      71,
+      77,
+      79
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          62,
+          200
+        ],
+        "radius": 13,
+        "brightness": 0.75
+      }
+    ],
+    "notes": "Compared entire small background gaps to clean master. Removed rocky lava, printed energy and hexagonal glints; sparse left-edge Cosmos disk completed as one filled disk."
+  },
+  "smbsp-22": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      0,
+      1,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      21,
+      22,
+      25,
+      26,
+      28,
+      29,
+      31,
+      34,
+      35,
+      36,
+      37,
+      38,
+      40,
+      42,
+      45,
+      46,
+      47,
+      48,
+      50,
+      52,
+      54,
+      56,
+      57,
+      58,
+      59,
+      61,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      70,
+      71,
+      72,
+      74,
+      75,
+      79,
+      80,
+      82,
+      84,
+      85,
+      86,
+      87,
+      89,
+      95,
+      97,
+      101,
+      106,
+      108,
+      111,
+      117,
+      121,
+      122,
+      124,
+      130,
+      133,
+      134,
+      136,
+      139,
+      141,
+      142,
+      144,
+      146,
+      149,
+      154,
+      157,
+      158,
+      161,
+      163,
+      164,
+      166,
+      167,
+      170,
+      171,
+      173
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [],
+    "notes": "Entire green/yellow window compared to printed master. Retained distinct green and gold spheres; excluded printed white energy bands, leaf fragments and fine glints. Large lower gold sphere remains a single disk."
+  },
+  "smbsp-23": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      1,
+      4,
+      8,
+      10,
+      11,
+      12,
+      13,
+      15,
+      16,
+      18,
+      19,
+      20,
+      21,
+      22,
+      27,
+      29,
+      31,
+      34,
+      36,
+      39,
+      40,
+      43,
+      48,
+      49,
+      50,
+      56,
+      60,
+      76,
+      78,
+      79,
+      81,
+      82,
+      85,
+      87,
+      94,
+      95,
+      99,
+      100,
+      101,
+      109,
+      111,
+      119,
+      123,
+      124,
+      126,
+      139,
+      145,
+      148,
+      149,
+      152,
+      155,
+      157,
+      159,
+      160,
+      164,
+      165,
+      174,
+      176,
+      182,
+      183,
+      186,
+      187,
+      188,
+      193,
+      196,
+      197,
+      208,
+      209,
+      212,
+      218,
+      224,
+      227,
+      228,
+      231,
+      233,
+      234,
+      235,
+      239,
+      240,
+      241,
+      243,
+      244
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          355,
+          354
+        ],
+        "radius": 20,
+        "brightness": 0.8
+      }
+    ],
+    "notes": "Compared entire orange foil with clean master. Printed white spiral rays and tiny sharp energy fragments excluded; isolated orange/yellow spheres retained, including clipped left disk and complete large disk behind legs."
+  },
+  "smbsp-24": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      19,
+      20,
+      21,
+      22,
+      24,
+      29,
+      30,
+      31,
+      32,
+      34,
+      35,
+      37,
+      39,
+      40,
+      47,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      64,
+      65,
+      66,
+      68,
+      69,
+      70,
+      73,
+      74,
+      76,
+      82,
+      83,
+      84,
+      86,
+      87,
+      89,
+      90,
+      91,
+      92,
+      93,
+      99,
+      101,
+      106,
+      108,
+      110,
+      112,
+      113,
+      117,
+      119,
+      122,
+      124,
+      128,
+      129,
+      134,
+      137,
+      138,
+      139,
+      140,
+      141,
+      143,
+      147,
+      148,
+      150,
+      151,
+      156,
+      158,
+      159,
+      161,
+      165,
+      167,
+      172,
+      175,
+      181,
+      182,
+      183,
+      187,
+      190,
+      194,
+      197,
+      198,
+      203,
+      204,
+      207,
+      210,
+      211,
+      214,
+      215
+    ],
+    "removeIds": [
+      161,
+      194,
+      211
+    ],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          100,
+          109
+        ],
+        "radius": 20,
+        "brightness": 0.8
+      },
+      {
+        "center": [
+          467,
+          260
+        ],
+        "radius": 11,
+        "brightness": 0.8
+      }
+    ],
+    "notes": "Reviewed entire blue foil, flipper gaps and all edges against clean master. Printed white waves/rays and speckled spray excluded. Restored entire upper yellow-blue disk; measured isolated background Cosmos spheres and specks retained."
+  },
+  "smbsp-25": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      7,
+      8,
+      9,
+      11,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      25,
+      27,
+      29,
+      30,
+      33,
+      35,
+      37,
+      41,
+      46,
+      47,
+      50,
+      52,
+      65,
+      66,
+      67,
+      68,
+      71,
+      87,
+      94,
+      96,
+      142,
+      172,
+      176,
+      182,
+      188,
+      192,
+      198,
+      202,
+      206,
+      208,
+      211
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          144,
+          151
+        ],
+        "radius": 11,
+        "brightness": 0.6
+      },
+      {
+        "center": [
+          224,
+          376
+        ],
+        "radius": 22,
+        "brightness": 0.7
+      }
+    ],
+    "notes": "Compared whole window with clean master. Dense flower/foliage false detections excluded. Retained isolated sky/forest disks and restored faint upper-left purple disk and large lower green disk as single features."
+  },
+  "smbsp-26": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      21,
+      27,
+      33
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          67,
+          264
+        ],
+        "radius": 6,
+        "brightness": 0.55
+      }
+    ],
+    "notes": "Compared full abstract background to master. Nearly all automated circles are printed petals, highlights and curved color fields; retained only distinct isolated right-edge physical specks. Reference scan is weak, unresolved faint foil features omitted."
+  },
+  "smbsp-27": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      0,
+      1,
+      2,
+      3,
+      5,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      23,
+      24,
+      26,
+      27,
+      28,
+      31,
+      32,
+      36,
+      38,
+      40,
+      43,
+      48,
+      50,
+      53,
+      54,
+      55,
+      56,
+      58,
+      60,
+      61,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      73,
+      74,
+      75,
+      76,
+      77,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      87,
+      91,
+      93,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [
+      {
+        "center": [
+          520,
+          185
+        ],
+        "radius": 17,
+        "brightness": 0.6
+      },
+      {
+        "center": [
+          470,
+          301
+        ],
+        "radius": 11,
+        "brightness": 0.8
+      }
+    ],
+    "notes": "Reviewed all clouds, soil and shell gaps against clean master. Removed printed cloud/stone corners; kept isolated physical foil spheres and completed large blue upper-right and pale lower-right disks."
+  },
+  "smbsp-28": {
+    "reviewed": true,
+    "sourceAlignmentReviewed": true,
+    "keepIds": [
+      0,
+      1,
+      2,
+      4,
+      5,
+      7,
+      8,
+      9,
+      10,
+      11,
+      13,
+      14,
+      16,
+      18,
+      19,
+      22,
+      23,
+      24,
+      26,
+      27,
+      29,
+      31,
+      32,
+      33,
+      34,
+      35,
+      39,
+      44,
+      45,
+      50,
+      53,
+      54,
+      57,
+      58,
+      59,
+      61,
+      63,
+      64,
+      65,
+      66,
+      67,
+      70,
+      71,
+      73,
+      74,
+      75,
+      76,
+      78,
+      80,
+      81,
+      82,
+      85,
+      86,
+      87,
+      89,
+      91,
+      95,
+      99,
+      101,
+      107,
+      110,
+      111,
+      112,
+      114,
+      115,
+      116,
+      118,
+      120,
+      121,
+      123,
+      124,
+      125,
+      128,
+      129,
+      131,
+      133,
+      135,
+      137,
+      139,
+      140,
+      141,
+      142
+    ],
+    "removeIds": [],
+    "excludePolygons": [],
+    "add": [],
+    "notes": "Whole background compared with clean master. White lightning streaks, printed spark points and subject edges excluded. Actual isolated disks retained, largest orange upper-left disk filled intact; small interiors/satellites suppressed."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_22/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_22/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_22/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_22/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "89268967087d0c96f04b7f81ff4007322c56cfbc884a6a7732b9f0b31290cb68",
     "protection": "ab4c621e12728295781cfdb510623e269d0c6580e4cf8b998cef7d371c10d9d9",
     "roughness": "1b65d07f5903782c3973862efedeeca3ee17e008bd975a53c20fe5da179e4bcb",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "bbcfdc6d7e00c8d9fb0fdb8806d0beaf74671ac38a9a3dabf23aaf97e5d2606c"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79905,
+      "title": "Rowlet  (SM22 English Promo)",
+      "pageUrl": "https://pokumon.com/card/rowlet-sm22-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_22SM.jpg",
+      "dimensions": [
+        600,
+        837
+      ],
+      "description": "Spring 2017 Collector Chest\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        600,
+        837
+      ],
+      "file": "research/cosmos-missing/smbsp-22/79905.jpg",
+      "sha256": "d582c73a329ec28ee9bda19aef8825955114a7e37ac1aeff06fbca402fd6ffff"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.0034803868099789,
+          -0.0007888949938071821,
+          -0.8392716871479726
+        ],
+        [
+          0.0031651869187051544,
+          1.0155120810795313,
+          0.035612341349181946
+        ],
+        [
+          2.3479532662910925e-06,
+          9.542115201292305e-07,
+          1.0
+        ]
+      ],
+      "inliers": 302,
+      "medianReprojectionError": 0.385941743850708,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Entire green/yellow window compared to printed master. Retained distinct green and gold spheres; excluded printed white energy bands, leaf fragments and fine glints. Large lower gold sphere remains a single disk.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

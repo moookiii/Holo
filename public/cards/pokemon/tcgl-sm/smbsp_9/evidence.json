@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_9/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_9/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_9/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_9/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "0fb370040f962a4288b8ef476f07b400813accbe834bb98d6b030e2e0ed0f96f",
     "protection": "eb31d205a0c73fb7a7e1214486759c175dc11d57e3f60681a356fce04e214430",
     "roughness": "0b3a327b1689017e0ad33b2f3398151fe5ec8a275de0adbb6112dac9cde73767",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "e1852988790f151321c264cf4d3ec0c1a11cfb86fab5a79341b70b0767ab1e20"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79884,
+      "title": "Togedemaru  (SM09 English Promo)",
+      "pageUrl": "https://pokumon.com/card/togedemaru-sm09-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_09SM.jpg",
+      "dimensions": [
+        600,
+        831
+      ],
+      "description": "Sun & Moon Three Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        600,
+        831
+      ],
+      "file": "research/cosmos-missing/smbsp-9/79884.jpg",
+      "sha256": "e72d049a7eedf31ad1cdec39bb00a4935e29829616ea08445914eb525f361171"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.9938165441009986,
+          0.0003980563713167399,
+          2.1974856833669913
+        ],
+        [
+          0.0020494332567513817,
+          1.0066304874940215,
+          -2.068392388944282
+        ],
+        [
+          2.6387025203878484e-06,
+          2.02994532171262e-06,
+          1.0
+        ]
+      ],
+      "inliers": 632,
+      "medianReprojectionError": 0.3836590647697449,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared whole foil to clean master. Large upper-right lens flare and lower flower centers are printed; excluded these and dense foliage. Restored clipped blue disk above subject; retained separate sky dots and a sparse lower gap.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_25/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_25/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_25/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_25/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "013a1b7930df5550e03649b16cd3457171028d39259c7b1ee37723d2fcf9ecea",
     "protection": "73ce4eccc4badeb3caf1d32969df54e3f0b999923a9bd511414d66fb362981a4",
     "roughness": "cc1b68ab492f0302a497ea63b9bfb24d312cf9d3c18a4ccb0c3142b2a04e586d",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "c31e955a3d56e4e1f65e8ee5fc41fe66668d413892a7646be75dde8439fb4b39"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79908,
+      "title": "Lurantis  (SM25 English Promo)",
+      "pageUrl": "https://pokumon.com/card/lurantis-sm25-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_25SM.jpg",
+      "dimensions": [
+        348,
+        500
+      ],
+      "description": "Guardians Rising Single Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        348,
+        500
+      ],
+      "file": "research/cosmos-missing/smbsp-25/79908.jpg",
+      "sha256": "5ec9f22a4097c7077ffe52dfdf5a8b1e81e7c0fb17d1f302788a9897aaed1397"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5757216081879251,
+          -0.0013185931670301758,
+          -0.3787329625759528
+        ],
+        [
+          0.0013476293004295026,
+          0.6066941434468542,
+          -0.9956494220593728
+        ],
+        [
+          1.3573866938107944e-06,
+          4.0054837989394557e-07,
+          1.0
+        ]
+      ],
+      "inliers": 222,
+      "medianReprojectionError": 0.3514503240585327,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared whole window with clean master. Dense flower/foliage false detections excluded. Retained isolated sky/forest disks and restored faint upper-left purple disk and large lower green disk as single features.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

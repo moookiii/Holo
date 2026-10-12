@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_23/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_23/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_23/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_23/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "720d39ca0c7d52f4d0bf58247656513ac597a0a555a0ef54f62f2e55df6d2a04",
     "protection": "9b83f0367da8aeaf628cb7a76260081f5162a98ac3700c96b3d8e34e74030e77",
     "roughness": "5923f261a50a56cc6b9e1748ffc7a9dbad4454ae64a61ff4e3359a66833a7e40",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "54d6807922312f2c92c9a51949c7a42d3768b2e6dc1d6f5e7502509e4483c18f"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79906,
+      "title": "Litten  (SM23 English Promo)",
+      "pageUrl": "https://pokumon.com/card/litten-sm23-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_23SM.jpg",
+      "dimensions": [
+        600,
+        838
+      ],
+      "description": "Spring 2017 Collector Chest\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        600,
+        838
+      ],
+      "file": "research/cosmos-missing/smbsp-23/79906.jpg",
+      "sha256": "bb14e81c43da0619044c004b7c2aca0586aabd89bef7101be379ca4b678354e5"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.9974539391165315,
+          0.00011519432371745687,
+          3.9495641605594316
+        ],
+        [
+          -0.0004470773872322412,
+          1.01858339994196,
+          3.2643506745662907
+        ],
+        [
+          -2.1592921952954264e-06,
+          4.595312673362942e-06,
+          1.0
+        ]
+      ],
+      "inliers": 235,
+      "medianReprojectionError": 0.4843040406703949,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared entire orange foil with clean master. Printed white spiral rays and tiny sharp energy fragments excluded; isolated orange/yellow spheres retained, including clipped left disk and complete large disk behind legs.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_6/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_6/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_6/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_6/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "3808e462e34d5530416ab461db9cacbc43e19958bef2e5a3434cc93d68fa1d3d",
     "protection": "027858ee1b30fc7f81591dd6cb6b3aae7d3e980c8b00b7f867e98835d062b5da",
     "roughness": "abe9cd8c24f0ca8044b11f543db928a4b933d00df796c6b126b9a3c61a894585",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "f42c216f80dd9a1343f51b75728c58d822575be60d0faa434470c2821e260b27"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79880,
+      "title": "Rockruff  (SM06 English Promo)",
+      "pageUrl": "https://pokumon.com/card/rockruff-sm06-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_06SM.jpg",
+      "dimensions": [
+        600,
+        833
+      ],
+      "description": "Sun & Moon Single Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        600,
+        833
+      ],
+      "file": "research/cosmos-missing/smbsp-6/79880.jpg",
+      "sha256": "74a1397b012ccd80821f3cd7c8b3d67e1d1d04234d9c465f2efb05fb6ae309dc"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.0009687286859337,
+          -0.00031099403266979296,
+          0.05114255353913714
+        ],
+        [
+          0.0019306312472709562,
+          1.01420431147277,
+          -3.1844988477171525
+        ],
+        [
+          1.6268615967624398e-06,
+          1.8856525947641963e-06,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 308,
+      "medianReprojectionError": 0.42900213599205017,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared whole sky and ground to clean master. Restored complete disks behind tail/ear and right edge; suppressed internal satellites. Removed pebble/debris edges and measured visible foil dots separately.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

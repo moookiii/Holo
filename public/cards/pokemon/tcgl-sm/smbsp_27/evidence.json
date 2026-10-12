@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_27/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_27/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_27/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_27/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "49161eee2181b624bb8fedb39f8cf9633892368148dda57e119afaf6a855f538",
     "protection": "6a6dc4e22585d5aa1d9924e98c1989e073ff79cdbba8e55a6dd8db2425346f54",
     "roughness": "c5ebdc3da9c380cfa52cc5cf840f4c22613bcc538a8cf721f76948f079264aa6",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "7c29f045cb538f468956f056f4ed9d7e0d39511bf84f94fed85644fef51dc324"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79910,
+      "title": "Turtonator  (SM27 English Promo)",
+      "pageUrl": "https://pokumon.com/card/turtonator-sm27-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_27SM.jpg",
+      "dimensions": [
+        438,
+        612
+      ],
+      "description": "Guardians Rising Three Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        438,
+        612
+      ],
+      "file": "research/cosmos-missing/smbsp-27/79910.jpg",
+      "sha256": "f445f6bda4ddc6d621605fad74af82cd476aa44bf28682f927aed7dd0afdac03"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.7304856851471824,
+          -0.0021325376763479736,
+          1.3938530983575523
+        ],
+        [
+          0.0015705075552694544,
+          0.7414549809216756,
+          -1.9829447146898727
+        ],
+        [
+          8.962206936530292e-07,
+          -5.170326050833444e-07,
+          1.0
+        ]
+      ],
+      "inliers": 266,
+      "medianReprojectionError": 0.38269323110580444,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed all clouds, soil and shell gaps against clean master. Removed printed cloud/stone corners; kept isolated physical foil spheres and completed large blue upper-right and pale lower-right disks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

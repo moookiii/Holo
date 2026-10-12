@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_24/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_24/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_24/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_24/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "3dc00fe4d10324021c53e627d4469ce76bde76bc494dd841af278d1cc9763fd2",
     "protection": "d9f079b6fd8bde517e7938308ecade898c35a8a868127904516498a0f1a1d267",
     "roughness": "b480456fe68002e1f57378d3a7ddb4da8f9f3ebf812d4198b6cf775011e0f5ab",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "5a1c5eedd370b25f390e03a6043a048b5006a54c15fb0c74b88330fa3970401c"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79907,
+      "title": "Popplio  (SM24 English Promo)",
+      "pageUrl": "https://pokumon.com/card/popplio-sm24-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_24SM.jpg",
+      "dimensions": [
+        600,
+        829
+      ],
+      "description": "Spring 2017 Collector Chest\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        600,
+        829
+      ],
+      "file": "research/cosmos-missing/smbsp-24/79907.jpg",
+      "sha256": "6745932ee92ddf0b4136228339f9c40ac14d37eac56ed5dc91b3d1cdef1cac3c"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.9881036540453968,
+          0.001631078257165834,
+          -3.4643057754001676
+        ],
+        [
+          -0.000418971192252514,
+          1.000943730416769,
+          1.0735377354765894
+        ],
+        [
+          -5.079494120081721e-07,
+          6.016439924679937e-08,
+          1.0
+        ]
+      ],
+      "inliers": 275,
+      "medianReprojectionError": 0.4626001715660095,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed entire blue foil, flipper gaps and all edges against clean master. Printed white waves/rays and speckled spray excluded. Restored entire upper yellow-blue disk; measured isolated background Cosmos spheres and specks retained.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

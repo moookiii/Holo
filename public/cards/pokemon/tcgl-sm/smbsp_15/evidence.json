@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_15/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_15/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_15/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_15/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "e47c96dcfaaccf9b17aa8824c2eea8e8db565ddb38c15ba89fb5bc633748f5b9",
     "protection": "560f67431b78ca702eb67ebbcf918791807fa73f2c928ba2b6957b8b15341c70",
     "roughness": "74bd03671c2d7947ce3e6f8923ee87ad41fcd03f61ace14d217fbf888deda5c5",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "e1a039ce40329e091a765691badc89a60f481117abab59dcd3f07b17fef08186"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79894,
+      "title": "Zygarde  (SM15 English Promo)",
+      "pageUrl": "https://pokumon.com/card/zygarde-sm15-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_15SM.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Zygarde Complete Forme Pin Collection\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smbsp-15/79894.jpg",
+      "sha256": "e7ba2d6c1fefbdc2fb5182a2177774e5bb093225abe90446a178f35257b01f39"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5366276084593313,
+          0.0005967790518220438,
+          -0.35879117901396695
+        ],
+        [
+          -0.0010911192086538036,
+          0.546181900393751,
+          1.0717429573232389
+        ],
+        [
+          -6.622582446382937e-07,
+          -1.4305284301515664e-07,
+          1.0
+        ]
+      ],
+      "inliers": 245,
+      "medianReprojectionError": 0.23632028698921204,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared entire small background gaps to clean master. Removed rocky lava, printed energy and hexagonal glints; sparse left-edge Cosmos disk completed as one filled disk.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

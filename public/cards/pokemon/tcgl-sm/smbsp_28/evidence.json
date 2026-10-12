@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_28/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_28/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_28/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_28/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "02d847cadf45c8d53f9a36c9ba7096662278b5127c6aa3fa520452535126840f",
     "protection": "a8c42d277626fdab5e41879f424fbf6351ce9d93973ca7ab4cd5c124090d9bdf",
     "roughness": "651700adfbc6d1e35b469769462f475e1d089f8ee7a30e0f93babfb0eb9b9866",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "af38f9b73aaac4b0255bcf0898ae1dce6471dc656df79555a77930bbb8ad3501"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79911,
+      "title": "Vikavolt  (SM28 English Promo)",
+      "pageUrl": "https://pokumon.com/card/vikavolt-sm28-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_28SM.jpg",
+      "dimensions": [
+        742,
+        1049
+      ],
+      "description": "Guardians Rising Three Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        742,
+        1049
+      ],
+      "file": "research/cosmos-missing/smbsp-28/79911.jpg",
+      "sha256": "09b48ba721d765f090349d03c597dc863f8e185515d0b00371b45e2304e2d2cd"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.2425905898870353,
+          -0.0030164081437922285,
+          -1.0764061985377857
+        ],
+        [
+          0.00703518254492257,
+          1.2722757085496539,
+          -7.242890273855135
+        ],
+        [
+          -9.256625722441816e-07,
+          -2.4660253847197305e-07,
+          1.0
+        ]
+      ],
+      "inliers": 689,
+      "medianReprojectionError": 0.5907074213027954,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole background compared with clean master. White lightning streaks, printed spark points and subject edges excluded. Actual isolated disks retained, largest orange upper-left disk filled intact; small interiors/satellites suppressed.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

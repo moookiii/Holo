@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_8/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_8/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_8/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_8/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "68e16eb7d8ea68a8bca6ce37b6f99911392b0e0596f968016580ab02aed34d23",
     "protection": "3121b4082d0f763c631c0cace1e5c29fa76f4473bee1ec557e481e74b8efd6b5",
     "roughness": "ec270f01185c918edfd85c98c30bd5375d76b943e2cb40f5b4765df9ab638eb8",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "56e7df34ea6b02554e97935301c494db713adf46242c6fdf740caca2d4d2a92f"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79883,
+      "title": "Litten  (SM08 English Promo)",
+      "pageUrl": "https://pokumon.com/card/litten-sm08-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_08SM.jpg",
+      "dimensions": [
+        600,
+        837
+      ],
+      "description": "Sun & Moon Three Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        600,
+        837
+      ],
+      "file": "research/cosmos-missing/smbsp-8/79883.jpg",
+      "sha256": "defe1b31c02483a04448ad636ca64f3a022fd83a9f003e71b1d0949d4f7454de"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.9996918720057731,
+          0.005068168015889188,
+          1.2692580455021147
+        ],
+        [
+          -0.00413292406412389,
+          1.0139417558990382,
+          0.26831100429528837
+        ],
+        [
+          -4.017903819155533e-08,
+          4.846921643400226e-06,
+          1.0
+        ]
+      ],
+      "inliers": 272,
+      "medianReprojectionError": 0.46545344591140747,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole foil window compared with master: trees, light rays and airborne leaves excluded. Restored missed blue disk above right ear and complete orange left-bottom disk. Large yellow right sphere preserved as one filled feature.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }
