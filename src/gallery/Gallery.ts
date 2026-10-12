@@ -213,8 +213,8 @@ export class Gallery {
         ...cards.flatMap(card => facet.key === 'finish'
           ? card.franchise === 'Pokémon' && !card.construction ? pokemonFinishTags(card) : [facet.value(card), card.profile]
           : [facet.value(card)]),
-        // Keep every registered shader selectable, including profiles outside the current facets.
-        ...(facet.key === 'finish' ? profiles.map(profile => profile.id) : []),
+        // The unfiltered gallery exposes all shaders; a selected game uses its own finishes.
+        ...(facet.key === 'finish' && !this.query.game ? profiles.map(profile => profile.id) : []),
       ].filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
         ? compareGallerySetNames(a, b) : a.localeCompare(b));
       const selected = this.query[facet.key] ?? '';
