@@ -1,7 +1,7 @@
 .pokemon-browser.vending-active { width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; padding: 0; border: 0; border-radius: 0; background: #090b0e; overflow: auto; color: #eeeae2; }
 .pokemon-browser.vending-active::backdrop { background: #090b0e; backdrop-filter: none; }
 .vending-active > :not(.vending-machine) { display: none !important; }
-.vending-machine { min-height: 100%; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 20%, #23272b 0%, #101215 45%, #090b0e 80%); padding: 18px 0; box-sizing: border-box; }
+.vending-machine { min-height: 100%; display: grid; place-items: center; background: radial-gradient(ellipse at 50% 20%, #23272b 0%, #101215 45%, #090b0e 80%); padding: 18px; box-sizing: border-box; }
 .vending-machine *, .vending-machine *::before, .vending-machine *::after { box-sizing: border-box; }
 .vending-machine [hidden] { display: none !important; }
 .vm-housing { width: 100%; height: min(1040px, calc(100dvh - 36px)); min-height: 580px; display: flex; flex-direction: column; padding: 0 25px; border-radius: 34px 34px 22px 22px; border: 1px solid #44474b; background: linear-gradient(90deg, #151719, #303235 1px, #1c1e21 9px, #17191c 24px, #17191c calc(100% - 24px), #24272a calc(100% - 9px), #101214); box-shadow: 0 30px 70px #0008, inset 0 1px #ffffff12, inset 1px 0 #ffffff0c; }
@@ -73,7 +73,7 @@
 .vm-dispense { width: 100%; margin-top: 12px; border: 1px solid #d0bc90; border-radius: 5px; background: #c9b68c; color: #1a1917; padding: 14px 10px; font: inherit; font-size: 10px; letter-spacing: .12em; font-weight: 600; cursor: pointer; }
 .vm-dispense:hover:enabled { background: #decca5; }
 @media (max-width: 600px) {
-  .vending-machine { padding: 7px 0; }
+  .vending-machine { padding: 7px; }
   .vm-housing { padding: 0 9px; border-radius: 22px; height: calc(100dvh - 14px); min-height: 520px; }
   .vm-cap { font-size: 6px; height: 28px; flex-basis: 28px; }
   .vm-base { height: 42px; flex-basis: 42px; gap: 6px; font-size: 6px; }

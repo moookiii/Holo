@@ -19,7 +19,7 @@ export class ProductGrid {
     this.items = items; this.selected = selected; this.range = ''; this.root.scrollTop = 0; this.render();
   }
   private render() {
-    const columns = this.root.clientWidth < 470 ? 2 : 3, rowHeight = 260;
+    const columns = Math.max(2, Math.floor((this.root.clientWidth - 30) / 200)), rowHeight = 260;
     const start = Math.max(0, Math.floor(this.root.scrollTop / rowHeight) - 1);
     const end = Math.min(Math.ceil(this.items.length / columns), Math.ceil((this.root.scrollTop + this.root.clientHeight) / rowHeight) + 1);
     const key = `${start}:${end}:${columns}`; if (key === this.range) return; this.range = key;
