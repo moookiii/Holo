@@ -2,11 +2,12 @@ import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglBwSurfaces } from './data/bw-tcgl.generated.ts';
 import { svTcglCard, svTcglCollectorNumber, svTcglFront } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
+import { completedCosmosSurface } from './CompletedCosmosSurfaces.ts';
 import { tcglEtchedFinish } from '../materials/profiles/tcglEtchedFinish.ts';
 import { bwRadiantSurface } from './BwRadiantSurfaces.ts';
 import { bwGoldFullArtFinish } from '../materials/profiles/bwGoldFullArt.ts';
 
-const surfaces = new Map(tcglBwSurfaces.map(bwRadiantSurface).map(s => [`${s.cardId}:${s.variant}`, s]));
+const surfaces = new Map(tcglBwSurfaces.map(bwRadiantSurface).map(completedCosmosSurface).map(s => [`${s.cardId}:${s.variant}`, s]));
 export function bwDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = svTcglCard(id), surface = surfaces.get(`${id}:${variant}`);
   if (!surface || !card.variants.includes(variant)) throw new Error(`Missing exact BW printing ${id}:${variant}`);

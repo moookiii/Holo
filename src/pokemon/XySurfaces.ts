@@ -2,10 +2,11 @@ import { DIMENSIONS, type CardDefinition } from '../card/CardDefinition.ts';
 import { tcglXySurfaces } from './data/xy-tcgl.generated.ts';
 import { svTcglCard, svTcglCollectorNumber, svTcglFront } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
+import { completedCosmosSurface } from './CompletedCosmosSurfaces.ts';
 import { steamSiegeSurface } from './SteamSiegeSurfaces.ts';
 
 import { generationsSurface } from './GenerationsSurfaces.ts';
-const surfaces = new Map(tcglXySurfaces.map(steamSiegeSurface).map(generationsSurface).map(s => [`${s.cardId}:${s.variant}`, s]));
+const surfaces = new Map(tcglXySurfaces.map(steamSiegeSurface).map(generationsSurface).map(completedCosmosSurface).map(s => [`${s.cardId}:${s.variant}`, s]));
 export function xyDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = svTcglCard(id), surface = surfaces.get(`${id}:${variant}`);
   if (!surface || !card.variants.includes(variant)) throw new Error(`Missing exact XY printing ${id}:${variant}`);
