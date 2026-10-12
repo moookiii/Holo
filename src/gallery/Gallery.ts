@@ -209,9 +209,13 @@ export class Gallery {
     let cards: readonly CardDefinition[] = this.catalog.cards();
     for (const facet of facets) {
       const select = this.filters.get(facet.key)!;
-      const values = [...new Set(cards.flatMap(card => facet.key === 'finish'
-        ? card.franchise === 'Pokémon' && !card.construction ? pokemonFinishTags(card) : [facet.value(card), card.profile]
-        : [facet.value(card)]).filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
+      const values = [...new Set([
+        ...cards.flatMap(card => facet.key === 'finish'
+          ? card.franchise === 'Pokémon' && !card.construction ? pokemonFinishTags(card) : [facet.value(card), card.profile]
+          : [facet.value(card)]),
+        // Keep every registered shader selectable, including profiles outside the current facets.
+        ...(facet.key === 'finish' ? profiles.map(profile => profile.id) : []),
+      ].filter((v): v is string => !!v))].sort((a, b) => facet.key === 'set'
         ? compareGallerySetNames(a, b) : a.localeCompare(b));
       const selected = this.query[facet.key] ?? '';
       if (facet.key === 'finish' && values.includes('holo')) values.push('regular-holo');
