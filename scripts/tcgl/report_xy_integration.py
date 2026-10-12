@@ -38,6 +38,10 @@ def main():
    hashes[kind]=s['sha256']
   for kind,path in e['maps'].items():
    with Image.open(ROOT/('public'+path)) as im: im.load(); assert im.size==((1,1) if kind=='roughness' else (733,1024))
+  if 'cosmosPlacement' in e:
+   placement=e['cosmosPlacement']; path=ROOT/('public'+placement['emptyMotifPng'])
+   assert not placement['active'] and not placement['motifs'] and digest(path)==placement['sha256']
+   with Image.open(path) as im: im.load(); assert im.size==(1200,1650) and im.getextrema()==(0,0)
   return p,e,hashes
  records=list(ThreadPoolExecutor(6).map(validate,index))
  sets={}
@@ -65,7 +69,7 @@ def main():
     'originalPngDecodingAndDimensions':'passed','runtimeMapDecodingAndDimensions':'passed',
     'wrappersHashesDecodingAndTightAlphaBounds':'passed for all 54 designs',
     'xyTests':'4 XY checks and 3 favorites checks passed: all gallery/source identities, chronology, 4200 seeded packs and every branch',
-    'productionBuild':'passed; standard existing chunk-size warning',
+    'productionBuild':'passed; final TypeScript check passed; standard existing chunk-size warning',
     'liveReview':{'viewers':len(live['results']['viewers']),'products':len(live['results']['packs']),
       'errors':live['errors'],'failure':live['results'].get('failure'),
       'startupXyTextureRequests':live['results'].get('startupXYRequests'),
@@ -77,6 +81,7 @@ def main():
    'Fourteen wrapper reverses lack verified acquired imagery. Existing pack back fallback remains; original English fronts are available for all 54 designs. Seller page acquisition returned HTTP 403; do not substitute another expansion back.',
    'Native foil masks establish UV/coverage, not physical grating direction, measured groove depth or exact-copy Cosmos motifs.',
    'The full suite is not green: 364 passed, 38 failed. Comparison against pre-XY revision identifies 37 shared failures and the new missing-XY-wrapper-reverse assertion. Full logs in artifacts/xy-integration.'],
+  'wrapperReverseLookups':load(ROOT/'research/tcgl/xy-wrappers/backs/candidates.json'),
   'shaderChanges':False,'existingMaterialFilesChanged':False}
  (ROOT/'docs/xy-integration.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n',encoding='utf8')
  names={r['set_id']:r['set_name'] for r in source if 'set_name' in r}
