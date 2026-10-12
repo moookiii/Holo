@@ -24,6 +24,7 @@ export function svTcglProfile(id: string, variant: PrintVariant): string {
   const surface = surfaces.get(`${id}:${variant}`);
   if (!surface) throw new Error(`Missing exact TCGL surface: ${id}:${variant}`);
   if (isPrismStar(id, variant)) return 'pokemon-sm-prism-star';
+  if (card.seriesId === 'me' && variant === 'reverse' && !surface.textured) return 'mega-standard-reverse';
   return megaRarityProfile(card.rarity) ?? canonicalProfileId(surface.profile);
 }
 export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinition {
