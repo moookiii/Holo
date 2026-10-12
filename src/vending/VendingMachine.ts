@@ -14,7 +14,6 @@ export class VendingMachine {
   private filters = element('div', 'vm-filters');
   private search = element('input', 'vm-search');
   private era = element('select');
-  private availability = element('select');
   private count = element('span', 'vm-count');
   private content = element('div', 'vm-content');
   private attract = element('button', 'vm-attract');
@@ -44,12 +43,7 @@ export class VendingMachine {
     this.search.type = 'search'; this.search.placeholder = 'Search sets'; this.search.setAttribute('aria-label', 'Search sets in selected era');
     this.search.oninput = () => this.filter();
     this.era.setAttribute('aria-label', 'Series or era'); this.era.onchange = () => void this.loadProducts();
-    this.availability.setAttribute('aria-label', 'Pack availability');
-    for (const [value, label] of [['all', 'All availability'], ['openable', 'Openable'], ['browse', 'Browse only']]) {
-      const option = element('option', '', label); option.value = value; this.availability.append(option);
-    }
-    this.availability.onchange = () => this.filter();
-    this.filters.append(this.search, this.era, this.availability);
+    this.filters.append(this.search, this.era);
     const title = element('div', 'vm-catalog-title'); title.append(element('h1', '', 'Select a pack'), this.count);
     this.content.append(this.grid.root);
     this.attract.type = 'button'; this.attract.setAttribute('aria-label', 'Explore the pack collection');
@@ -98,7 +92,7 @@ export class VendingMachine {
   private async changeGame(game: VendingGame) {
     if (this.busy) return;
     this.request.abort(); this.request = new AbortController(); const { signal } = this.request;
-    this.game = game; this.search.value = ''; this.availability.value = 'all'; this.closeSheet(false);
+    this.game = game; this.search.value = ''; this.closeSheet(false);
     this.products = []; this.grid.set([]); this.era.replaceChildren(); this.status.textContent = 'Loading series…'; this.retry.hidden = true;
     this.navigation.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.game === game.id)));
     try {
@@ -124,7 +118,7 @@ export class VendingMachine {
   private filter(wake = true) {
     if (this.busy) return;
     if (wake) this.wake(); this.closeSheet(false);
-    const products = filterProducts(this.products, this.search.value, this.availability.value);
+    const products = filterProducts(this.products, this.search.value);
     this.grid.set(products); this.count.textContent = `${products.length} ${products.length === 1 ? 'set' : 'sets'}`;
   }
   private async select(product: VendingProduct) {

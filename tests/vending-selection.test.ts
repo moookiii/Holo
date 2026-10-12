@@ -14,10 +14,12 @@ test('Browse-only entries cannot invoke opening even with an accidental selectio
   assert.throws(() => selectArtwork({ ...product, available: false }, 'a'), /browse only/);
   assert.throws(() => selectArtwork({ ...product, artwork: [] }, 'random'), /browse only/);
 });
-test('Search composes with availability without mutating source metadata', () => {
-  const catalog = [product, { ...product, id: 'other', name: 'Other Set', available: false }];
-  assert.deepEqual(filterProducts(catalog, '  EXAMPLE ', 'openable'), [product]);
-  assert.equal(filterProducts(catalog, '', 'browse')[0].id, 'other');
-  assert.equal(filterProducts(catalog, 'example', 'browse').length, 0);
-  assert.equal(catalog.length, 2);
+test('Pack search excludes unavailable entries and missing wrappers without mutating the catalog', () => {
+  const catalog = [product,
+    ...['Energy cards', 'Promos', 'Starter Deck'].map(name => ({ ...product, id: name, name, available: false })),
+    { ...product, id: 'missing-art', artwork: [] }];
+  assert.deepEqual(filterProducts(catalog, ''), [product]);
+  assert.deepEqual(filterProducts(catalog, '  EXAMPLE '), [product]);
+  assert.deepEqual(filterProducts(catalog, 'promos'), []);
+  assert.equal(catalog.length, 5);
 });

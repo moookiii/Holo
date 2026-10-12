@@ -19,7 +19,7 @@
 .vm-games { display: flex; flex: 0 0 auto; border-bottom: 1px solid #ffffff0e; padding: 0 26px; gap: 28px; background: #14161a; }
 .vm-games button { font: inherit; font-size: 12px; background: transparent; color: #969797; border: 0; border-bottom: 2px solid transparent; padding: 14px 0; cursor: pointer; }
 .vm-games button[aria-pressed=true] { color: #e4d4ae; border-bottom-color: #b3a079; }
-.vm-filters { display: grid; grid-template-columns: 1.15fr 1fr 1fr; gap: 8px; padding: 17px 24px 6px; }
+.vm-filters { display: grid; grid-template-columns: 1.15fr 1fr; gap: 8px; padding: 17px 24px 6px; }
 .vm-filters input, .vm-filters select { min-width: 0; width: 100%; color: #babcbf; background: #191c21; border: 1px solid #ffffff12; border-radius: 6px; padding: 10px; font: inherit; font-size: 11px; color-scheme: dark; }
 .vm-filters input::placeholder { color: #878b91; }
 .vm-catalog-title { display: flex; justify-content: space-between; align-items: center; padding: 12px 26px 14px; }

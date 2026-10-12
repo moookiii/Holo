@@ -20,7 +20,7 @@ const pokemon: VendingGame = {
   async products(era, signal) {
     const eras = era ? [{ id: era, name: era }] : await this.eras(signal);
     const groups = await boundedMap(eras, 3, signal, async entry =>
-      (await pokemonCatalog.sets(entry.id, signal)).filter(set => set.id !== 'swsh7-5r').map(set => ({ id: set.id, name: set.name, era: entry.id,
+      (await pokemonCatalog.sets(entry.id, signal)).filter(set => pokemonAvailable(set.id) && !!localBoosterArt(set.id)?.length).map(set => ({ id: set.id, name: set.name, era: entry.id,
         available: pokemonAvailable(set.id), artwork: localBoosterArt(set.id) ?? [] })));
     return [...new Map(groups.flat().map(p => [p.id, p])).values()];
   },
@@ -40,7 +40,7 @@ const ygo: VendingGame = {
   },
   async products(era, signal) {
     const { sets } = await yugioh.sets(signal);
-    return sets.filter(s => !era || s.era === era).sort((a, b) => (a.releaseDate ?? '9999').localeCompare(b.releaseDate ?? '9999'))
+    return sets.filter(s => (!era || s.era === era) && implementationFor(s.id)?.status === 'implemented').sort((a, b) => (a.releaseDate ?? '9999').localeCompare(b.releaseDate ?? '9999'))
       .map(set => {
         const implementation = implementationFor(set.id);
         return { id: set.id, name: set.name, era: set.era, year: set.releaseDate?.slice(0, 4), size: set.cardCount,
@@ -61,7 +61,7 @@ const magic: VendingGame = {
   id: 'magic', name: 'Magic',
   async eras() { return [...new Map(magicSets.map(s => [s.series.id, s.series])).values()]; },
   async products(era) {
-    return magicSets.filter(s => !era || s.series.id === era).map(set => {
+    return magicSets.filter(s => (!era || s.series.id === era) && magicProducts.some(p => s.productIds.includes(p.id))).map(set => {
       const products = magicProducts.filter(p => set.productIds.includes(p.id));
       return { id: set.id, name: set.name, era: set.series.name, year: set.releaseDate.slice(0, 4), size: set.cards.length,
         packSize: products[0]?.packSize, available: products.length > 0, note: products[0]?.note,
