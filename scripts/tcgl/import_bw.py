@@ -41,6 +41,13 @@ def rarity_of(m):
     return m['long_form_id'].split('_')[-3] if m['long_form_id'] else 'Promo'
 
 
+def print_variant(m):
+    if m['foil_effect'] == 'NonFoil': return 'normal'
+    if m['set_id'] != 'bw11r' and (m['variant'] == 1 or m.get('foil_mask') == 'Reverse'):
+        return 'reverse'
+    return 'holo'
+
+
 def treatment(m, row, variant):
     rarity = rarity_of(m)
     sid, cid = m['set_id'], m['card_id']
@@ -51,6 +58,7 @@ def treatment(m, row, variant):
     if m['foil_effect'] == 'Cosmos': return 'print-only', 'Cosmos registered motif placement'
     if 'Etched' in (m['long_form_id'] or '') and m['assets']['etch']['status'] != 'extracted':
         return 'print-only', 'Exact physical etch unavailable in TCGL material references'
+    if m['foil_effect'] == 'Thatch': return 'pokemon-crosshatch', None
     if variant == 'reverse': return 'swsh-reverse-energy', None
     # BW1–BW3 Full Arts and BW4–BW6 shiny secrets carry client etch
     # silhouettes but lack the later physical full-card line engraving.
@@ -114,7 +122,7 @@ def main():
             material_trees[(checkpoint['sha256'], material['name'])] = material['tree']
     def prepare(m):
         cid = m['card_id']; row = records[cid]['row']; dest = OUT / cid; dest.mkdir(exist_ok=True)
-        variant = 'normal' if m['foil_effect'] == 'NonFoil' else 'reverse' if m['variant'] == 1 else 'holo'
+        variant = print_variant(m)
         base = cid.removesuffix('_ph') if m['set_id'] not in ('bwalt','bwbsp') else cid
         appid = base.replace('_', '-', 1)
         sources, originals = {}, {}

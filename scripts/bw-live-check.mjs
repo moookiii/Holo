@@ -43,7 +43,7 @@ try {
   await page.getByRole('button',{name:'Close Favorites binder',exact:true}).click();
   await page.evaluate(() => window.__holo.gallery.close('pokemon:bw1-1:reverse'));
   results.galleryFavoritesBinder = 'passed';
-  const ids = ['pokemon:bw1-1:reverse','pokemon:bw1-5:holo','pokemon:bw2-97:holo','pokemon:bw3-1:reverse','pokemon:bw6-89:reverse','pokemon:bw8-13:reverse','pokemon:bw4-98:holo','pokemon:bw7-149:holo','pokemon:bw9-122:holo','pokemon:bw7-137:holo','pokemon:bw11r-24:holo','pokemon:bw11-114:holo','pokemon:bwalt-22:holo','pokemon:bwalt-34:holo','pokemon:bwbsp-6:holo'];
+  const ids = ['pokemon:bw1-1:reverse','pokemon:bw1-5:holo','pokemon:bw2-97:holo','pokemon:bw3-1:reverse','pokemon:bw6-89:reverse','pokemon:bw8-13:reverse','pokemon:bw4-98:holo','pokemon:bw7-149:holo','pokemon:bw9-122:holo','pokemon:bw7-137:holo','pokemon:bw11r-24:holo','pokemon:bw11-114:holo','pokemon:bwalt-22:reverse','pokemon:bwalt-34:reverse','pokemon:bwbsp-6:holo'];
   for (const id of [...ids, 'pokemon:sv08.5-155:holo', 'pokemon:sv08.5-156:holo']) {
     await page.evaluate(async id => await window.__holo.gallery.close(id), id);
     for (const [name, light, yaw, pitch] of [
