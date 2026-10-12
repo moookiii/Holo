@@ -20,7 +20,7 @@ export interface VendingGame {
 
 export function filterProducts(products: readonly VendingProduct[], search: string) {
   const query = search.trim().toLocaleLowerCase();
-  return products.filter(p => p.available && p.artwork.length > 0 && p.name.toLocaleLowerCase().includes(query));
+  return products.filter(p => p.name.toLocaleLowerCase().includes(query));
 }
 
 /** Resolve Random only on dispense, and only among the actual product's wrappers. */
