@@ -237,6 +237,23 @@ def rasterize(motifs):
 def review_images(c, photo, motifs, label='proposals'):
     folder=REVIEW/c['cardId'];folder.mkdir(parents=True,exist_ok=True)
     mask=rasterize(motifs)
+    # Save the complete UV domain as well as the artwork zoom. The latter is
+    # useful for choosing features, but cannot reveal border/crop mistakes.
+    full=(1200,1650)
+    full_mask=np.asarray(mask)
+    master=np.asarray(Image.open(ROOT/c['master']).convert('RGB').resize(full))
+    foil=np.asarray(Image.open(ROOT/c['foil']).convert('L').resize(full))
+    protection=np.asarray(Image.open(ROOT/c['protection']).convert('L').resize(full))
+    boundary=master.copy()
+    for plate,color in ((foil,(0,210,255)),(protection,(255,205,0)),(full_mask,(255,20,170))):
+        contours,_=cv2.findContours((plate>80).astype(np.uint8),cv2.RETR_LIST,cv2.CHAIN_APPROX_SIMPLE)
+        cv2.drawContours(boundary,contours,-1,color,2)
+    Image.fromarray(boundary).save(folder/(label+'-master-boundaries-full.png'))
+    photo_full=np.asarray(Image.fromarray(photo).resize(full)).copy()
+    contours,_=cv2.findContours((full_mask>80).astype(np.uint8),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    cv2.drawContours(photo_full,contours,-1,(255,20,170),2)
+    Image.fromarray(photo_full).save(folder/(label+'-reference-overlay-full.png'))
+    mask.save(folder/(label+'-motifs-full.png'))
     preview=photo.copy(); contours,_=cv2.findContours((np.asarray(mask.resize(COORDS))>80).astype(np.uint8),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     cv2.drawContours(preview,contours,-1,(255,20,170),1)
     zoom=Image.fromarray(preview).resize((1200,1650)).crop((70,170,1140,855))
@@ -255,6 +272,48 @@ def review_images(c, photo, motifs, label='proposals'):
     pair.paste(marker.crop((70,170,1140,855)),(1070,25))
     ImageDraw.Draw(pair).text((8,5),c['cardId']+' '+c['name']+' | reference and '+label+' boundaries',fill='white')
     pair.save(folder/(label+'-compare.png'))
+
+
+def review_tiles(c, photo, motifs, label='proposals'):
+    """Native-coordinate foil-window tiles for checking the small-dot field."""
+    folder=REVIEW/c['cardId']/'tiles';folder.mkdir(parents=True,exist_ok=True)
+    master=Image.open(ROOT/c['master']).convert('RGB').resize(COORDS)
+    foil=np.asarray(Image.open(ROOT/c['foil']).convert('L').resize(COORDS))
+    ys,xs=np.nonzero(foil>20)
+    if not len(xs): return
+    x0,x1=max(0,int(xs.min())-3),min(600,int(xs.max())+4)
+    y0,y1=max(0,int(ys.min())-3),min(825,int(ys.max())+4)
+    for top in range(y0,y1,155):
+        for left in range(x0,x1,160):
+            right,bottom=min(left+160,x1),min(top+155,y1)
+            box=(left,top,right,bottom)
+            size=((right-left)*4,(bottom-top)*4)
+            reference=Image.fromarray(photo).crop(box).resize(size)
+            printed=master.crop(box).resize(size)
+            marked=reference.copy();draw=ImageDraw.Draw(marked)
+            for d in motifs:
+                if 'center' not in d: continue
+                x,y=d['center']
+                if not (left<=x<right and top<=y<bottom): continue
+                rx,ry=d.get('radii',[d['radius'],d['radius']])
+                px,py=(x-left)*4,(y-top)*4
+                draw.ellipse((px-rx*4,py-ry*4,px+rx*4,py+ry*4),outline='#ff00b0',width=2)
+                draw.text((px+4,py+4),str(d.get('id','+')),fill='white',stroke_width=2,stroke_fill='black')
+            panel=Image.new('RGB',(size[0]*3,size[1]+24),'#111820')
+            for i,im in enumerate((reference,marked,printed)):panel.paste(im,(i*size[0],24))
+            ImageDraw.Draw(panel).text((4,4),f"{c['cardId']} {label} x={left}:{right} y={top}:{bottom} | reference / motifs / clean master",fill='white')
+            panel.save(folder/f'{label}-{top:03d}-{left:03d}.png')
+
+
+def tiles(ids=None):
+    records=json.loads((DATA/'proposals.json').read_text(encoding='utf8'))
+    corrections=json.loads((DATA/'corrections.json').read_text(encoding='utf8'))
+    for c in records:
+        if ids and c['cardId'] not in ids: continue
+        photo=np.asarray(Image.open(ROOT/c['registeredReference']).convert('RGB'))
+        correction=corrections.get(c['cardId'])
+        motifs=corrected(c,correction) if correction else c['motifs']
+        review_tiles(c,photo,motifs,'draft' if correction else 'proposals')
 
 
 def proposals(ids=None):
@@ -365,8 +424,9 @@ def finalize(ids=None, publish=False):
 
 
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose', 'draft', 'publish']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose', 'draft', 'publish', 'tiles']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
     if args.action == 'inventory': write(DATA / 'inventory.json', inventory())
     elif args.action == 'sources': sources()
     elif args.action=='propose': proposals(args.ids)
+    elif args.action=='tiles': tiles(args.ids)
     else: finalize(args.ids,args.action=='publish')
