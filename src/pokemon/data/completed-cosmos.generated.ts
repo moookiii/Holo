@@ -433,6 +433,306 @@ export const completedCosmos = [
     "evidence": "/cards/pokemon/cosmos-completed/xybsp_58/evidence.json"
   },
   {
+    "cardId": "xybsp-64",
+    "variant": "holo",
+    "tcglVariantId": "Rayquaza_xybsp_64_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_64/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_64/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_64/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_64/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_64/evidence.json"
+  },
+  {
+    "cardId": "xybsp-65",
+    "variant": "holo",
+    "tcglVariantId": "Latios_xybsp_65_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_65/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_65/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_65/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_65/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_65/evidence.json"
+  },
+  {
+    "cardId": "xybsp-67",
+    "variant": "holo",
+    "tcglVariantId": "Jirachi_xybsp_67_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_67/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_67/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_67/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_67/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_67/evidence.json"
+  },
+  {
+    "cardId": "xybsp-88",
+    "variant": "holo",
+    "tcglVariantId": "Chespin_xybsp_88_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_88/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_88/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_88/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_88/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_88/evidence.json"
+  },
+  {
+    "cardId": "xybsp-89",
+    "variant": "holo",
+    "tcglVariantId": "Pikachu_xybsp_89_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_89/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_89/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_89/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_89/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_89/evidence.json"
+  },
+  {
+    "cardId": "xybsp-90",
+    "variant": "holo",
+    "tcglVariantId": "Hoopa_xybsp_90_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_90/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_90/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_90/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_90/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_90/evidence.json"
+  },
+  {
+    "cardId": "xybsp-92",
+    "variant": "holo",
+    "tcglVariantId": "Sableye_xybsp_92_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_92/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_92/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_92/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_92/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_92/evidence.json"
+  },
+  {
+    "cardId": "xybsp-93",
+    "variant": "holo",
+    "tcglVariantId": "Celebi_xybsp_93_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_93/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_93/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_93/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_93/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_93/evidence.json"
+  },
+  {
+    "cardId": "xybsp-95",
+    "variant": "holo",
+    "tcglVariantId": "Pikachu_xybsp_95_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_95/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_95/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_95/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_95/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_95/evidence.json"
+  },
+  {
+    "cardId": "xybsp-96",
+    "variant": "holo",
+    "tcglVariantId": "Umbreon_xybsp_96_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_96/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_96/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_96/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_96/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_96/evidence.json"
+  },
+  {
+    "cardId": "xybsp-100",
+    "variant": "holo",
+    "tcglVariantId": "Mewtwo_xybsp_100_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_100/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_100/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_100/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_100/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_100/evidence.json"
+  },
+  {
+    "cardId": "xybsp-101",
+    "variant": "holo",
+    "tcglVariantId": "Mewtwo_xybsp_101_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_101/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_101/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_101/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_101/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_101/evidence.json"
+  },
+  {
+    "cardId": "xybsp-131",
+    "variant": "holo",
+    "tcglVariantId": "Pansear_xybsp_131_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_131/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_131/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_131/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_131/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_131/evidence.json"
+  },
+  {
+    "cardId": "xybsp-137",
+    "variant": "holo",
+    "tcglVariantId": "Vivillon_xybsp_137_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_137/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_137/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_137/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_137/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_137/evidence.json"
+  },
+  {
+    "cardId": "xybsp-139",
+    "variant": "holo",
+    "tcglVariantId": "Floette_xybsp_139_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_139/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_139/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_139/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_139/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_139/evidence.json"
+  },
+  {
+    "cardId": "xybsp-140",
+    "variant": "holo",
+    "tcglVariantId": "Lucario_xybsp_140_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_140/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_140/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_140/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_140/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_140/evidence.json"
+  },
+  {
+    "cardId": "xybsp-141",
+    "variant": "holo",
+    "tcglVariantId": "Rayquaza_xybsp_141_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_141/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_141/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_141/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_141/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_141/evidence.json"
+  },
+  {
+    "cardId": "xybsp-142",
+    "variant": "holo",
+    "tcglVariantId": "Azelf_xybsp_142_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_142/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_142/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_142/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_142/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_142/evidence.json"
+  },
+  {
+    "cardId": "xybsp-143",
+    "variant": "holo",
+    "tcglVariantId": "Magikarp_xybsp_143_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_143/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_143/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_143/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_143/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_143/evidence.json"
+  },
+  {
+    "cardId": "xybsp-152",
+    "variant": "holo",
+    "tcglVariantId": "Zygarde_xybsp_152_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_152/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_152/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_152/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_152/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_152/evidence.json"
+  },
+  {
+    "cardId": "xybsp-160",
+    "variant": "holo",
+    "tcglVariantId": "BlackKyurem_xybsp_160_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_160/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_160/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_160/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_160/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_160/evidence.json"
+  },
+  {
+    "cardId": "xybsp-161",
+    "variant": "holo",
+    "tcglVariantId": "Braixen_xybsp_161_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_161/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_161/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_161/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_161/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_161/evidence.json"
+  },
+  {
+    "cardId": "xybsp-163",
+    "variant": "holo",
+    "tcglVariantId": "Weezing_xybsp_163_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_163/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_163/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_163/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_163/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_163/evidence.json"
+  },
+  {
+    "cardId": "xybsp-164",
+    "variant": "holo",
+    "tcglVariantId": "Volcanion_xybsp_164_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_164/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_164/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_164/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_164/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_164/evidence.json"
+  },
+  {
+    "cardId": "xybsp-165",
+    "variant": "holo",
+    "tcglVariantId": "Magearna_xybsp_165_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_165/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_165/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_165/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_165/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_165/evidence.json"
+  },
+  {
     "cardId": "xybsp-178",
     "variant": "holo",
     "tcglVariantId": "Absol_xybsp_178_std_Rare_Cosmos_Holo",
@@ -455,5 +755,125 @@ export const completedCosmos = [
       "protection": "/cards/pokemon/cosmos-completed/xybsp_179/protection.png"
     },
     "evidence": "/cards/pokemon/cosmos-completed/xybsp_179/evidence.json"
+  },
+  {
+    "cardId": "xybsp-184",
+    "variant": "holo",
+    "tcglVariantId": "Giratina_xybsp_184_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_184/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_184/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_184/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_184/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_184/evidence.json"
+  },
+  {
+    "cardId": "xybsp-188",
+    "variant": "holo",
+    "tcglVariantId": "Shaymin_xybsp_188_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_188/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_188/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_188/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_188/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_188/evidence.json"
+  },
+  {
+    "cardId": "xybsp-190",
+    "variant": "holo",
+    "tcglVariantId": "Manaphy_xybsp_190_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_190/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_190/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_190/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_190/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_190/evidence.json"
+  },
+  {
+    "cardId": "xybsp-191",
+    "variant": "holo",
+    "tcglVariantId": "Keldeo_xybsp_191_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_191/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_191/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_191/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_191/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_191/evidence.json"
+  },
+  {
+    "cardId": "xybsp-192",
+    "variant": "holo",
+    "tcglVariantId": "Mew_xybsp_192_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_192/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_192/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_192/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_192/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_192/evidence.json"
+  },
+  {
+    "cardId": "xybsp-193",
+    "variant": "holo",
+    "tcglVariantId": "Meloetta_xybsp_193_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_193/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_193/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_193/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_193/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_193/evidence.json"
+  },
+  {
+    "cardId": "xybsp-194",
+    "variant": "holo",
+    "tcglVariantId": "Darkrai_xybsp_194_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_194/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_194/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_194/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_194/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_194/evidence.json"
+  },
+  {
+    "cardId": "xybsp-195",
+    "variant": "holo",
+    "tcglVariantId": "Jirachi_xybsp_195_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_195/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_195/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_195/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_195/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_195/evidence.json"
+  },
+  {
+    "cardId": "xybsp-196",
+    "variant": "holo",
+    "tcglVariantId": "Genesect_xybsp_196_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_196/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_196/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_196/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_196/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_196/evidence.json"
+  },
+  {
+    "cardId": "xybsp-197",
+    "variant": "holo",
+    "tcglVariantId": "Arceus_xybsp_197_std_Rare_Cosmos_Holo",
+    "maps": {
+      "foil": "/cards/pokemon/cosmos-completed/xybsp_197/foil.png",
+      "foilControls": "/cards/pokemon/cosmos-completed/xybsp_197/foil-controls.png",
+      "motif": "/cards/pokemon/cosmos-completed/xybsp_197/cosmos.png",
+      "protection": "/cards/pokemon/cosmos-completed/xybsp_197/protection.png"
+    },
+    "evidence": "/cards/pokemon/cosmos-completed/xybsp_197/evidence.json"
   }
 ] as const;

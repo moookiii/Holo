@@ -1,13 +1,14 @@
 import { completedCosmos } from './data/completed-cosmos.generated.ts';
 import type { tcglXySurfaces } from './data/xy-tcgl.generated.ts';
+import type { tcglBwSurfaces } from './data/bw-tcgl.generated.ts';
 
-type Surface = typeof tcglXySurfaces[number];
+type Surface = typeof tcglXySurfaces[number] | typeof tcglBwSurfaces[number];
 const registry = new Map<string, typeof completedCosmos[number]>(
   completedCosmos.map(record => [`${record.cardId}:${record.variant}`, record]),
 );
 
 /** Activate reviewed geometry only for the exact deferred source printing. */
-export function completedCosmosSurface(source: Surface): Surface {
+export function completedCosmosSurface<T extends Surface>(source: T): T {
   const record = registry.get(`${source.cardId}:${source.variant}`);
   if (!record || source.treatmentStatus !== 'deferred') return source;
   if (source.tcglVariantId !== record.tcglVariantId || source.foilType !== 'Cosmos'
