@@ -288,10 +288,14 @@
       "sha256": "f41e76281f07af7988187a03cbedae6499936f68b247c909d2aa24edaeb86fc9"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Stamped promotional foil physical response",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_95/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_95/foil-controls.png",
+    "roughness": "/cards/pokemon/tcgl-bw/shared/smooth-roughness.png"
+  },
+  "profile": "bw-stamped",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +312,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Exact TCGL stamp geometry. Smooth rainbow response follows the original Rainbow material. Physical angular intensity remains uncalibrated against an angled exact-card capture.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -337,5 +341,31 @@
     "activeEtch": "No authored normal response",
     "evidence": "docs/bw-finish-research.md",
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
+  },
+  "stampReview": {
+    "sourceVariant": "ChampionsFestival_bwbsp_95_op_Rare_Stamped_Stamped",
+    "sourceDimensions": [
+      1024,
+      1024
+    ],
+    "outputDimensions": [
+      733,
+      1024
+    ],
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "verticalFlip": false,
+    "method": "Own continuous whiteplate, bilinear full-card registration; no threshold or morphology. No normal or height map.",
+    "hashes": {
+      "foil": "61754e0776c2c4c39e5a6debfedc38ec11974bef127564498e356272fc604277",
+      "foilControls": "5704ae46e9536ab028a7835c3b0a148c5c4dacbb1dcc19ea2f80fe2cecc23a6a",
+      "roughness": "1383455c1b1ecf45db34c71bc9a3a547f4ed5a48581fdd3b10e0dcb6046851ff"
+    },
+    "review": "artifacts/bw-stamps",
+    "physicalAngularCalibration": "pending"
   }
 }

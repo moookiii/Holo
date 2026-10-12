@@ -14,6 +14,7 @@ import { bwBallReverseProfiles } from './bwBallReverse';
 import { svpCosmos } from './svpCosmos';
 import { yugiohProfiles } from './yugioh';
 import { magicProfiles } from './magic';
+import { bwStamped } from './bwStamped';
 import { printOnly, firstMovieGold } from './print';
 import { mintedGold } from './metal';
 import { signalForestEtched } from './signalForest';
@@ -28,6 +29,7 @@ const goldEtched = { ...prismaticProfiles.find(p => p.id === 'prismatic_gold')!,
 export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, illustrationRareOriginal, luminousLines, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold]
   .filter(p => canonicalProfileId(p.id) === p.id);
 profiles.push(goldEtched);
+profiles.push(bwStamped);
 profiles.push(...bwBallReverseProfiles, ...blackWhiteRareProfiles);
 profiles.push(svpCosmos);
 profiles.push(...celebrationSpecialtyProfiles);

@@ -72,7 +72,7 @@ def treatment(m, row, variant):
     if effect == 'CrackedIce': return 'pokemon-cracked-ice', None
     if effect == 'Thatch': return 'pokemon-crosshatch', None
     if effect in ('Rainbow','AngledPillars'): return 'pokemon-sheen', None
-    if effect == 'Stamped': return 'print-only', 'Stamped promotional foil physical response'
+    if effect == 'Stamped' and cid in ('bwbsp_28', 'bwbsp_50', 'bwbsp_95'): return 'bw-stamped', None
     return 'print-only', 'BW promotional ' + effect
 
 
