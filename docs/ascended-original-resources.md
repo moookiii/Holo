@@ -31,6 +31,8 @@ client **1.43.0**, build **20260923_0452**, and production content origin
 version/path override. Its installed implementation derives the original
 [GameSettings endpoint](https://cdn.studio-prod.pokemon.com/rainier/GameSettings/1.43.0/GameSettings.json).
 That document supplies the Windows content base.
+The original serialized configuration objects and their hashes are recorded in
+[`ascended-original-installed-config.json`](ascended-original-installed-config.json).
 
 The local game configuration is in
 `C:/Users/jpall/AppData/LocalLow/pokemon/Pokemon TCG Live/config-cache/`.
@@ -130,6 +132,9 @@ exact manifest-to-texture references and unchanged Holo fronts/runtime maps.
 After recovering the originals, the verifier compares decoded pixels with the
 previously preserved exports. The per-printing results are in
 [`ascended-original-evidence.json`](ascended-original-evidence.json).
+All 178 ordinary reverse textures match the previous decoded RGB exports;
+none of the 140 special reverse textures match their previous exports.
+All 954 existing Holo front/runtime-map hash checks passed.
 This supersedes the earlier claim that authentic special geometry could not
 be recovered: the original client contains it. The prior export-only audit
 remains historical evidence of duplicate processed outputs.
