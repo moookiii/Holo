@@ -6,6 +6,13 @@ import { GalleryQueryIndex } from '../src/gallery/GalleryQuery.ts';
 import type { CardDefinition } from '../src/card/CardDefinition.ts';
 
 const sprites = JSON.parse(readFileSync(new URL('../src/gallery/showdown-sprites.generated.json', import.meta.url), 'utf8')) as { number: number; name: string; sprite: string | null }[];
+test('official artwork resolves the missing animated forms', () => {
+  const art = JSON.parse(readFileSync(new URL('../src/gallery/pokemon-artwork.generated.json', import.meta.url), 'utf8'));
+  assert.equal(art['Venusaur-Gmax'], 10195);
+  assert.equal(art['Blastoise-Gmax'], 10197);
+  assert.equal(art['Pikachu-World'], 10160);
+  assert.ok(sprites.every(p => Number.isInteger(art[p.name]) && art[p.name] > 0));
+});
 test('catalog covers National Dex, correct special filenames and forms', () => {
   const lookup = (name: string) => sprites.find(p => p.name === name)?.sprite;
   assert.equal(lookup('Nidoran♀'), 'nidoranf'); assert.equal(lookup('Nidoran♂'), 'nidoranm');

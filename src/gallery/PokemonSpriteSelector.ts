@@ -1,4 +1,5 @@
 import catalog from './showdown-sprites.generated.json';
+import artwork from './pokemon-artwork.generated.json';
 
 export const pokemonSprites = catalog;
 export const SPRITE_ROW_HEIGHT = 76;
@@ -95,7 +96,17 @@ export class PokemonSpriteSelector {
       row.className = 'pokemon-selector-row'; row.dataset.pokemonIndex = String(index);
       row.style.top = `${index * SPRITE_ROW_HEIGHT}px`; row.setAttribute('aria-label', pokemon.name);
       const art = document.createElement('span'); art.className = 'pokemon-selector-art';
-      const fallback = () => { art.textContent = 'No animation'; art.classList.add('is-unavailable'); art.setAttribute('aria-label', 'Animation unavailable'); };
+      const fallback = () => {
+        const image = document.createElement('img'); image.alt = ''; image.loading = 'lazy'; image.decoding = 'async';
+        const base = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/`;
+        const id = (artwork as Record<string, number>)[pokemon.name] ?? pokemon.number;
+        image.onerror = () => {
+          if (image.src !== `${base}${pokemon.number}.png`) image.src = `${base}${pokemon.number}.png`;
+          else { image.onerror = null; art.textContent = 'Art unavailable'; }
+        };
+        image.src = `${base}${id}.png`;
+        art.setAttribute('aria-label', 'Official Pokémon artwork'); art.replaceChildren(image);
+      };
       if (pokemon.sprite && !this.failed.has(pokemon.sprite)) {
         const image = document.createElement('img'); image.alt = ''; image.loading = 'lazy'; image.decoding = 'async';
         image.onerror = () => { this.failed.add(pokemon.sprite!); fallback(); };

@@ -55,7 +55,6 @@ body.gallery-mode #ui { visibility: hidden; }
 .gallery .pokemon-selector-row:hover, .gallery .pokemon-selector-row:focus-visible { background: #c8ad7310; color: #ead7ad; outline: 1px solid #806b43; outline-offset: -1px; }
 .pokemon-selector-art { width: 80px; height: 68px; flex: none; display: grid; place-items: center; color: #75684e; }
 .pokemon-selector-art img { max-width: 80px; max-height: 68px; width: auto; height: auto; object-fit: contain; }
-.pokemon-selector-art.is-unavailable { font-size: 10px; text-align: center; }
 .pokemon-selector-row > span:nth-child(2) { flex: 1; }
 .pokemon-selector-row small { color: #807765; font-size: 10px; font-variant-numeric: tabular-nums; }
 .pokemon-selector-toggle:focus-visible, .pokemon-selector-heading button:focus-visible { outline: 2px solid #c8ad73; outline-offset: 2px; }

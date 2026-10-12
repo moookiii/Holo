@@ -50,6 +50,12 @@ try {
     await toggle.click();
     const index = catalog.findIndex(p => p.name === name);
     await panel.locator('.pokemon-selector-scroll').evaluate((el, i) => { el.scrollTop = i * 76; }, index);
+    if (!catalog[index].sprite) {
+      await panel.getByRole('button', { name, exact: true }).getByLabel('Official Pokémon artwork').locator('img').evaluate(img => new Promise((resolve, reject) => {
+        if (img.complete && img.naturalWidth) return resolve();
+        img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', reject, { once: true });
+      }));
+    }
     await panel.getByRole('button', { name, exact: true }).click();
     assert.equal(await search.inputValue(), name); assert.equal(await game.inputValue(), 'Yu-Gi-Oh!');
     assert.equal(await page.evaluate(() => window.__holo.gallery.stats().filtered), 0);
@@ -75,7 +81,10 @@ try {
   await page.keyboard.press('Escape'); await toggle.click();
   await panel.locator('.pokemon-selector-scroll').evaluate(el => { el.scrollTop = 0; });
   await page.waitForTimeout(300);
-  await panel.getByRole('button', { name: 'Bulbasaur', exact: true }).getByLabel('Animation unavailable').waitFor();
+  await panel.getByRole('button', { name: 'Bulbasaur', exact: true }).getByLabel('Official Pokémon artwork').locator('img').evaluate(img => new Promise((resolve, reject) => {
+    if (img.complete && img.naturalWidth) return resolve();
+    img.addEventListener('load', resolve, { once: true }); img.addEventListener('error', reject, { once: true });
+  }));
   await panel.getByRole('button', { name: 'Bulbasaur', exact: true }).click();
   assert.equal(await search.inputValue(), 'Bulbasaur');
   assert.deepEqual(errors, []);

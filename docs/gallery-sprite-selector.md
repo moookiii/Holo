@@ -7,7 +7,7 @@ The committed catalog is generated offline by `node scripts/generate-showdown-sp
 - https://play.pokemonshowdown.com/data/pokedex.json
 - https://play.pokemonshowdown.com/sprites/ani/
 
-It covers all 1,025 National Pokédex numbers and 1,621 species/forms/visual variants. Filenames are matched against actual directory entries rather than guessed at runtime. Cosmetic aliases are deduplicated. Currently 51 entries lack animated GIFs, including Venusaur-Gmax, Blastoise-Gmax and Pikachu-World; they remain selectable with “No animation”. Network failures use the same fallback and are remembered for the selector's lifetime.
+It covers all 1,025 National Pokédex numbers and 1,621 species/forms/visual variants. Filenames are matched against actual directory entries rather than guessed at runtime. Cosmetic aliases are deduplicated. Currently 51 entries lack animated GIFs, including Venusaur-Gmax, Blastoise-Gmax and Pikachu-World; they display PokéAPI official artwork. Failed GIFs also switch to official artwork. `node scripts/generate-pokemon-artwork.mjs` builds the offline artwork-ID mapping from PokéAPI, verifying absent-animation artwork and using base-species art when matching form art is unavailable. Pikachu-World maps to PokéAPI's `pikachu-world-cap` (10160); Venusaur-Gmax and Blastoise-Gmax use 10195 and 10197. Images remain lazy-loaded and browser-cached, with no runtime PokéAPI metadata requests.
 
 The selector starts directly below the Gallery toolbar and extends to the screen bottom. Its heading stays fixed while the list fills the remaining height. Toolbar wrapping and viewport resizing update its position automatically.
 
