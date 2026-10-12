@@ -16,6 +16,12 @@ the lobe width rather than becoming pixel glitter. Finite area lights broaden
 the response. There are no isolated glints, particles, generated height maps,
 generated normal assets, or etched grooves.
 
+The slick-film refinement uses optical GGX alpha 0.12–0.17 (0.145 when
+unresolved), slope amplitude 0.10, substrate roughness 0.25, and laminate
+amount 0.11 at roughness 0.18. The narrower lobe concentrates the moving
+reflection while the fine texture remains visible around it. Grain scale,
+spectral strength and total optical gain are retained.
+
 The original printing's TCGL front, foil, and protection PNGs are unchanged.
 No mask was added or regenerated. Existing composition applies the new response
 only where that printing allows foil; artwork and printed glyphs stay protected.

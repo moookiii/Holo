@@ -27,13 +27,15 @@ export function megaReverseReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const p = uv().mul(vec2(u.aspect, 1)).mul(380);
   const visible = exp(p.fwidth().dot(p.fwidth()).mul(-.35));
   const a = grain(p, 137).toVar(), b = grain(p.mul(1.71).add(13.4), 293).toVar();
-  const slope = vec2(a, b).sub(.5).mul(.18, visible);
+  const slope = vec2(a, b).sub(.5).mul(.10, visible);
   const facet = normal.add(tangent.mul(slope.x)).add(bitangent.mul(slope.y)).normalize();
   const momentum = light.add(view), half = momentum.normalize();
   const lightVariance = footprint
     ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
-  const alpha = mix(float(.25), a.mul(.10).add(.20), visible);
-  const alpha2 = alpha.pow2().add(lightVariance.mul(2), visible.oneMinus().mul(.006));
+  // Fine texture sits beneath a slick film: keep its continuous reflection
+  // tight instead of spreading every grain into a broad, chalky wash.
+  const alpha = mix(float(.145), a.mul(.05).add(.12), visible);
+  const alpha2 = alpha.pow2().add(lightVariance.mul(2), visible.oneMinus().mul(.002));
   const nh2 = facet.dot(half).max(0).pow2();
   const distribution = alpha2.div(nh2.mul(alpha2.sub(1)).add(1).pow2().mul(Math.PI));
   const nl = normal.dot(light).max(0), nv = normal.dot(view).max(0);
@@ -41,7 +43,7 @@ export function megaReverseReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   const visibility = float(1).div(nl.mul(k.oneMinus()).add(k)
     .mul(nv.mul(k.oneMinus()).add(k), 4).max(.001));
   const fresnel = half.dot(view).max(0).oneMinus().pow(5).mul(.92).add(.08);
-  const silver = distribution.mul(visibility, fresnel, mix(float(1), b.mul(.4).add(.8), visible));
+  const silver = distribution.mul(visibility, fresnel, mix(float(1), b.mul(.28).add(.86), visible));
   // One sheet grating with a small optical spread: grain does not become
   // independent rainbow dots. The same reflection carries the colored lobe.
   const sheet = tangent.mul(cos(u.angle)).add(bitangent.mul(sin(u.angle)));
