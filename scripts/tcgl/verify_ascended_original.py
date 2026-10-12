@@ -20,6 +20,15 @@ REFERENCES = {'poke-ball': 1, 'friend-ball': 8, 'love-ball': 11,
 ENERGY = {'G': 'grass', 'R': 'fire', 'W': 'water', 'L': 'lightning',
           'P': 'psychic', 'F': 'fighting', 'D': 'darkness', 'M': 'metal',
           'N': 'dragon', 'C': 'colorless'}
+FILE_HASHES = {}
+
+
+def file_sha(path):
+    stat = path.stat()
+    key = (str(path.resolve()), stat.st_size, stat.st_mtime_ns)
+    if key not in FILE_HASHES:
+        FILE_HASHES[key] = sha(path.read_bytes())
+    return FILE_HASHES[key]
 
 
 def load(path):
@@ -47,19 +56,19 @@ def main():
     old = {p['tcglCardId']: p for p in old_audit['printings']}
     comparisons, classifications = [], []
     runtime_checks = 0
-    for p in printings:
+    for printing_index, p in enumerate(printings, 1):
         assert p['materialManifest']['tree']['_w'] == p['resources']['whiteplate']['name']
         assert p['resources']['whiteplate']['dimensions'] == [512, 512]
         assert p['resources']['whiteplate']['mode'] == 'RGBA'
         assert p['materialManifest']['tree']['_s'] == 'TPCi/Cards3D/HoloFoil/FlatSilver'
         assert all(p['resources'][kind] is None for kind in ('etch', 'coldFoil', 'castAndCure'))
         for t in (v for v in p['resources'].values() if v):
-            assert sha((HOLO / t['png']).read_bytes()) == t['pngSha256']
+            assert file_sha(HOLO / t['png']) == t['pngSha256']
             im = Image.open(HOLO / t['png'])
             assert sha(im.tobytes()) == t['pixelSha256']
             assert sha(im.convert('RGBA').tobytes()) == t['rgbaSha256']
-            assert sha((HOLO / t['serialized']).read_bytes()) == t['serializedSha256']
-            assert sha((HOLO / t['bundle']['file']).read_bytes()) == t['bundle']['sha256']
+            assert file_sha(HOLO / t['serialized']) == t['serializedSha256']
+            assert file_sha(HOLO / t['bundle']['file']) == t['bundle']['sha256']
         if p['variantSuffix']:
             assert p['variantSuffix'] == '2' and p['differsFromOrdinaryReverse']
             signature = symbol_signature(p['resources']['whiteplate'])
@@ -89,16 +98,18 @@ def main():
             'sameDecodedRGBA': native.size == legacy.size and native.convert('RGBA').tobytes() == legacy.convert('RGBA').tobytes()})
         number = p['collectorNumber'].split('/')[0]
         front = HOLO / f'public/cards/pokemon/tcgl-me/me02.5/{number}.png'
-        assert sha(front.read_bytes()) == old[p['tcglCardId']]['frontSha256']
+        assert file_sha(front) == old[p['tcglCardId']]['frontSha256']
         runtime_checks += 1
         for key, url in old[p['tcglCardId']]['runtimeMaps'].items():
-            assert sha((HOLO / 'public' / url.lstrip('/')).read_bytes()) == old[p['tcglCardId']]['runtimeMapHashes'][key]
+            assert file_sha(HOLO / 'public' / url.lstrip('/')) == old[p['tcglCardId']]['runtimeMapHashes'][key]
             runtime_checks += 1
+        if printing_index % 50 == 0:
+            print('Verified', printing_index, '/', len(printings), flush=True)
 
     # One original texture is reused byte-for-byte by the two Special Energies.
     # Keep both native reference/pathID/bundle identities, store its PNG once.
     canonical = {}
-    duplicates = []
+    duplicates = {entry['texture']: entry for entry in manifest.get('deduplication', [])}
     for p in printings:
         t = p['resources']['whiteplate']
         key = t['rgbaSha256']
@@ -112,7 +123,7 @@ def main():
             t['png'] = canonical[key]['png']
             t['pngSha256'] = canonical[key]['pngSha256']
             t['sharesPNGWithTexture'] = canonical[key]['name']
-            duplicates.append({'texture': t['name'], 'sharesWith': canonical[key]['name']})
+            duplicates[t['name']] = {'texture': t['name'], 'sharesWith': canonical[key]['name']}
         else:
             canonical[key] = t
     # Normal holo whiteplates were incidental objects in the same raw bundle.
@@ -140,7 +151,7 @@ def main():
         'uniqueReverseWhiteplatePNGs': len(canonical), 'patternFamilies': dict(sorted(families.items()))})
     manifest['sourceExtractionVerified'] = True
     manifest['patternAssignmentsVerified'] = True
-    manifest['deduplication'] = duplicates
+    manifest['deduplication'] = list(duplicates.values())
     write(ASSETS / 'manifest.json', manifest)
     write(ROOT / 'manifest.json', manifest)
 
