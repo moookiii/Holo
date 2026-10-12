@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_143",
+  "tcglVariantId": "CresseliaEX_bw7_143_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_143/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_143/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_143",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "27afcf82842628123b512d4c4c530ad6a4df7e465fff4b66a9e96303e2aff130",
+  "frontSha256": "d93a2bdf768e24d5126bf1ea4489550f514fb006e9550d84868adc39de0f8275",
+  "foilSha256": "b8cd961ba25a08aa57d9acfbf187154b5cff951377e619e1629b841f95fcf19e",
+  "normalSha256": "d8f339a2249f20265b165f598feb40cf25b427c6bb20df9d11f0e6542605c44b",
+  "protectionSha256": "1b537a2451c9ad24f5320538897f0cc9e74e043b61bdb199b939e186c80787a0",
+  "bodySha256": "9c835bb317bbc07cb5c37d3ff02274704133b2b8c6ef68bcdb0044ad8d0df742",
+  "roughnessSha256": "d3e4cc6329ab70c60f4990a17449c43c3d6479d8d58bde2657b07dd64fbfbcab",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

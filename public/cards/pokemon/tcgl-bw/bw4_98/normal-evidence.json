@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw4_98",
+  "tcglVariantId": "MewtwoEX_bw4_98_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw4_98/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw4_98/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw4_en_098",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "d0b63102de7d4a69f748812930d53b1f5bd71390671d5998d0d626d8bb78aceb",
+  "frontSha256": "665d81686f99bacde5c168101904837c2a4729ebb835cc0f5221b5c2fe6ee9c0",
+  "foilSha256": "6004f379be21611e937fdb54664f5ff449c7609be6b4c6ebd6066937367414df",
+  "normalSha256": "76507c8fcab3db2c290382cb92307add0449865fd59d079700730ac9d9c1ebb4",
+  "protectionSha256": "de7e3775c6c878fe8c8ba4a965c8e70124e9815d7297efbc5bdfdbd496ac20c6",
+  "bodySha256": "f56cc787df024eff549a405b7cfc539b1b4f29407a8bc3a9068f025a6446bc2b",
+  "roughnessSha256": "6eaae6eb3430bea7189a6f0eaa6310aba8d17bfb378cfa60cf6385a75145c275",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

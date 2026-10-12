@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_145",
+  "tcglVariantId": "BlackKyuremEX_bw7_145_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_145/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_145/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_145",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "3363c0ef1664161caa1f6655ece374cf1d627272ce81228bc066b7c6f315454e",
+  "frontSha256": "a2204ba9ff73cd5fd29b11de417621fb18f2d679dfb230a5de23bd7e94754746",
+  "foilSha256": "dbc3ad023cb8c258ebfbc4434b5f0bab1e420d4646136f39e9c3647e24d2b812",
+  "normalSha256": "58a8ad9ab5e188284dc6717dd22825c3232dff371a4dd092b25571a5106c7d82",
+  "protectionSha256": "871995996217195a795e86828e0d3081e5ed280ad5854e18e122b55e7d262b73",
+  "bodySha256": "c6966309ee1d8e646bf6875b1635ead4c62ee638e5de5b3bb56cd6f8c7ba431d",
+  "roughnessSha256": "184a28650f6d1141aba700624d22945b88ae8dc28cd56042031d27b205a75a98",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw6_124",
+  "tcglVariantId": "GiratinaEX_bw6_124_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw6_124/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw6_124/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw6_en_124",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "1f1c56ab11d8a9ea402ad9fcedd2ad224fdaf6d873e118ef444dbf38b4a060ff",
+  "frontSha256": "1c0ff438787cd7d5d938aa9f7de21790a85dc495226f38d12b118293f247fa36",
+  "foilSha256": "6905451058cf43eb507b288ed0238d005217df2706fce1e789b3bc4c3e1972c8",
+  "normalSha256": "98bd206bb4701d322460de4cb6319ed5596629288f6ad9a0f01534147f0df5f1",
+  "protectionSha256": "3fc2c4f457c262cc1f235563dad78869948c6c7f8321324c1b81423a37227535",
+  "bodySha256": "55faa27aac884ab72d3b0c524287554afeba7872262bdd0151077655e39fc31d",
+  "roughnessSha256": "2510bce9776b60b88a39f3a6d39f95373fcb451c4723438f9bf95c9b007bcfba",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

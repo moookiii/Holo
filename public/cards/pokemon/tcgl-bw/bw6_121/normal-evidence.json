@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw6_121",
+  "tcglVariantId": "TerrakionEX_bw6_121_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw6_121/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw6_121/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw6_en_121",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "bf0e8b513e608ef89893c6528d539d8585d8cc95a0025d5e55e5037c384e16f3",
+  "frontSha256": "f73ef1cc5d18f5aa797200117b04e0547bc924760152053a73f2f968bd4bc636",
+  "foilSha256": "72cb0d95cf7ecc1a1ed8e3862ba57d4ca9efbb66b3bf005456c96243731176ce",
+  "normalSha256": "031b5de9b448695ff074ef90e7e4a658c9181c442084eb72e5725526c08e0483",
+  "protectionSha256": "172a142cd9d36ea5d434a798ef3702fd1fe0438de3f981a4610120f922a6729e",
+  "bodySha256": "5ebf366b539da06f550deed1576ee6da68eeda766cab935752aaff21dfc9e823",
+  "roughnessSha256": "ca7aa73ddaba6834471c88cf8c13ae1aa494f2c1c411b72c9c1d2e5db99dcdbe",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

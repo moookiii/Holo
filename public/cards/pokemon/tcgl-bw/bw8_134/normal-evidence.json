@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw8_134",
+  "tcglVariantId": "LugiaEX_bw8_134_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw8_134/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw8_134/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw8_en_134",
+  "sourceDimensions": [
+    512,
+    512
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "2c21535af79b7b6d4e7652d1bf049f35fdaa75d32a15bcd2b045f8e3769fa645",
+  "frontSha256": "f0a90df9f455e54b0a64e02018458fe67b0820d84a7ed7bda11bfffa7c58382c",
+  "foilSha256": "c0dabebe0faaaa51d002f679726da51846d212b08f91d4fe11ac69439f5aeed8",
+  "normalSha256": "6c76f085c3ce36b07349cdbae3982b2f3793e750c40c38d577c331b47922d156",
+  "protectionSha256": "9d4383c081850b10909b89256dae7349de3f5ddd568a81b163f4a7e43ae1f8ab",
+  "bodySha256": "d482ebb6924faecbfcd86dd08a07d1458ae5f0cd5b144ef1a901b2f129aa91bf",
+  "roughnessSha256": "7cc9a2dc5577d926e74d3da2a32757d12ecb35ee8cc48ec1aa12f8f03c4c6f3c",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

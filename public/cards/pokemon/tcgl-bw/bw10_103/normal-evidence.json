@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw10_103",
+  "tcglVariantId": "Virizion_bw10_103_std_RareSecret_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw10_103/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw10_103/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw10_en_103",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "f3ed48e5167875dc75bbe625f215cda3e66d075a8a7dfd9513489fe66a2cb94f",
+  "frontSha256": "493a85075e7805e58d98fd9bd57e070a7879612aecdf91344d9db1fd54497c19",
+  "foilSha256": "dc6e844353877178c81f5864ff13dd75ee307a7ffafc3f5d9af7e5a9f731f52c",
+  "normalSha256": "6f2fa41c369bcfe05ec4653e2daff037079fc2516bc05b2da3d8eedc939ab525",
+  "protectionSha256": "9453ba9e06dd3ee081fd38bad00aaac8808369f3245d4d37806d0b6b137c75df",
+  "bodySha256": "f9ee18a7da5692030f07ecf17e67255a3f1fbb584e1241a6c284cffeb241241f",
+  "roughnessSha256": "0411c7bf0ec19f5d4776c218ef398cf2c05a43936d68e1187be237526ee5398d",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

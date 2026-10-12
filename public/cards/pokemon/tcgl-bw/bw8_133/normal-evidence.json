@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw8_133",
+  "tcglVariantId": "CobalionEX_bw8_133_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw8_133/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw8_133/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw8_en_133",
+  "sourceDimensions": [
+    512,
+    512
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "46efa277879f405b1280dab17f0ee95a1b835d99864157dbfb4d246a396e4904",
+  "frontSha256": "620a1d33f350264b9e2cdd1a5d070a1c1202c045cb600a355c3ef2aa9d86537d",
+  "foilSha256": "437623f11eb56ef0b53b6debfedbaff574f7a3e3c19feb54ce35bf1578bc361e",
+  "normalSha256": "dc28f44abcca38d0cbb49ed895e20aeafa82d2d9364baa6cc1f9c0fc5fcd37a5",
+  "protectionSha256": "8268d338ca11c96bc0bf10cb890472d0e15aa0ec7fd5c7bf57d66b52087c3537",
+  "bodySha256": "ea78c5c91ab8af35d2dd46143a9db91c21bdfadceaa31497b7cc680236e0821c",
+  "roughnessSha256": "dee0f5ba8121cc5a2885fe8a5083e5db6e2dee4b9d548f31e8255bedb7d0a9e3",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

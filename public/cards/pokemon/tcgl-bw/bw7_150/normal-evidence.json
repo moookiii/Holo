@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_150",
+  "tcglVariantId": "Golurk_bw7_150_std_RareSecret_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_150/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_150/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_150",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "ba8e73aa1a44dff90aa198cb72a6125846edf88787f709ee76995a4fd6b03294",
+  "frontSha256": "139b16b15ea70ac5e262bdf40a40128fbc397ed0b811599d90ec67f331e1b996",
+  "foilSha256": "55cb16d1b02a360f9fdd5f914f49da925a0df4dafce42d9ca90ce52151fba3e6",
+  "normalSha256": "ba3ec4e1ca85a3488051c861ee78120b93b9efed722014df8d7023a5e6b179b3",
+  "protectionSha256": "6e4ad5743c311d406162355e893141378171903b45f4494c3c68f38846c001ce",
+  "bodySha256": "362d9526e8d5bbe25c51d2e04827c8a6aa80852f752e6e384aead00f9b85a508",
+  "roughnessSha256": "4c043733f683b86dc010b85a7ae0240f5afa77707ef032f656ccc9edb8d09cec",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_152",
+  "tcglVariantId": "Altaria_bw7_152_std_RareSecret_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_152/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_152/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_152",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "ac0807f27867e5d746f74b75c8c4c539bd83d274bf2109ab438b2d508e794048",
+  "frontSha256": "7f04994936a6a63e1c58170ce49874b2985d20a8ac5e85d4c36230a727da388f",
+  "foilSha256": "0f294c341d78d217ec49f276cd4aae4d83d0846c0f0adbe9164db68969927dfe",
+  "normalSha256": "53b3b9007371550f5087591de9e3e7626c17593aa3eabad245c50d61dd06e3dc",
+  "protectionSha256": "58c442cd8d1d7c5315f99e2892ba0e199bc75cab5317668739eb386f81b23479",
+  "bodySha256": "0bcb5bddc29751a43e2b3258271ac3474fa2dcbb80b3b9fe1fc3e5231e5e7fd7",
+  "roughnessSha256": "1cbaf97e427227c56939bd234625cbcf81b8c26234874baf64ef911d12a4a2e3",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

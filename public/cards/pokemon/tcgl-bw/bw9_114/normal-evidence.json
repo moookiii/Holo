@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw9_114",
+  "tcglVariantId": "TornadusEX_bw9_114_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw9_114/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw9_114/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw9_en_114",
+  "sourceDimensions": [
+    512,
+    512
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "edad53baa7fe63b5882c1ed3887b79d40864eb6ed094b2e428e668bf783d1897",
+  "frontSha256": "ce411e32c7430a1bc139cffc84c97c0e635629be95bdfcde2cc7cb1fe18a8704",
+  "foilSha256": "00dcd64608f84f7baf45f63b6dbf795c528f6096529c25258f63622aea8b380c",
+  "normalSha256": "fc8d3858b4c295e056f4f1d931ee55218fd49d78b0aaaf3d18aece7bc91a3ebe",
+  "protectionSha256": "2cb91a4d985880d43f681b06e3c78db632b6b7e37c396eadf7fa402875ea585f",
+  "bodySha256": "a41b5dc49cfbee62e302b7e4167dccf2f57aa03f4df1361907aa6df3fd194ffb",
+  "roughnessSha256": "17b5a31d1b7d3421fa548d918130b67b0ed8458a4b389762694be0d29b9f3de5",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

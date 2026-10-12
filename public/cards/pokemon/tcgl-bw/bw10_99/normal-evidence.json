@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw10_99",
+  "tcglVariantId": "DialgaEX_bw10_99_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw10_99/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw10_99/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw10_en_099",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "3b08aceda6908ac33cef164e48cf635cf535c30dc0d4a8783d8fbba1e2d55d03",
+  "frontSha256": "75e7fffb60e5a058edd67234f9220f67fa16742aab45b03c4b81da0b3709269e",
+  "foilSha256": "d39f2fb9ab16b224b903aa9554cfa68425cac6d84e3dbd20206d81b5ec3a5d68",
+  "normalSha256": "b29ff5a2a3e393b35c708efb35223696ebe990f7460183a6de3f1f15cda5f570",
+  "protectionSha256": "e32f067d037aac3a1022f87fbd9b4a66023b1b2343509a880bae4f737a97ebf8",
+  "bodySha256": "176a4b452159c691d7c4c614d658d157525fa627e7d3953103fa58ee7e33e9fb",
+  "roughnessSha256": "8deffd5936f5e43e17f9c8cab941d63f58340d42d62e77b83aee96d8ec48cd7b",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

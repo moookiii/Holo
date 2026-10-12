@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_147",
+  "tcglVariantId": "Bianca_bw7_147_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_147/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_147/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_147",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "a1ea5ee394fd5d86046a65d638fda716d41cae9b2127217a49ae04869ff4734c",
+  "frontSha256": "3d0501f009dbd7fbc3500fe1c4e04973236d43679add27edb2ce7f87fa12efd0",
+  "foilSha256": "370c7a528ef6642b21252d11744dfd187d7c80b0342912cf809007f63be6c4b0",
+  "normalSha256": "7db599db7131750bf939d6c0adbc99eda90b17f974b48c694ab6db58a9ad1f8e",
+  "protectionSha256": "9756a68d4ba10525df5f3067a50e4b065f24d400dda7a7620f41cde73d9a8be4",
+  "bodySha256": "449780a35aaec0586ca67e845186e1c214b104723dcd70d5462123cadd8a6f67",
+  "roughnessSha256": "8b8f06dc1697ccd52bca6adfd1cc7b29f0ff1294344684913ea40f8fed15b029",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

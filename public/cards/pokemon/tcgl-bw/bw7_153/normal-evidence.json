@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_153",
+  "tcglVariantId": "RockyHelmet_bw7_153_std_RareSecret_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_153/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_153/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_153",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "d3c5a157ad6ea553111d8cb97dbd7adaa1d4f36e64f9294c9c71d325b0e97d5f",
+  "frontSha256": "c3806281b1432f80586c638d0a3aae594f34f0b3c0791a6883811dd7468e2868",
+  "foilSha256": "3338b5868609f3af3c7c9f683076733530b53d78979af030ba7365d3092e71ce",
+  "normalSha256": "638a8d40b77d3b9827185f2acda3f7402fbed344003bd37f2e4f699795a8c1b9",
+  "protectionSha256": "e62a7095c97f4ce7c36c889df547f41a6482ddd57da2f8f22ed2696fcc794096",
+  "bodySha256": "e06a164406d1fefea11ee6efff6e374996c29672de105c61a58e91d3d9f9892b",
+  "roughnessSha256": "3c6109e53af3f6c200485fd68ddffa2d11ff087e3c7c5cdd9374cd7aa587cf7d",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

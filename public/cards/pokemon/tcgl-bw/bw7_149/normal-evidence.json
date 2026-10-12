@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_149",
+  "tcglVariantId": "Skyla_bw7_149_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_149/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_149/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_149",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "7bfc45180a0076e4929e8c0fd599fd14bbac24a99178541909f928b9894a49e3",
+  "frontSha256": "7d53617a90f4c3ddf8eb233a2d29c4471d4b34c4b99c4d63dfed3fde0b57550e",
+  "foilSha256": "7468c47ac4473b8debf79442d2cd0f80c4f5006cf18358e1220ea87118376c09",
+  "normalSha256": "698ba4c46d828f0dcff3c95b27ca6ec66062283c20074dd8073c7416743c308b",
+  "protectionSha256": "36510cc2f7ec96e0e49675f9a44b4335f544c1092276552abfc4fa186b8398ea",
+  "bodySha256": "9fdf0cbdaa3bf6304939031c3d26e2810935601d4c6ddf7d2d45575fb52abb38",
+  "roughnessSha256": "81d0a68f230d3caa3b5be3bce7f707a4034e5a5bf4b3230786fe64aa426df2dd",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

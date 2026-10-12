@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw9_117",
+  "tcglVariantId": "Empoleon_bw9_117_std_RareSecret_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw9_117/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw9_117/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw9_en_117",
+  "sourceDimensions": [
+    512,
+    512
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "9b6b0a5bd881c718bf9e546b7f0e82923d357063bfa57e6f14602993667b006e",
+  "frontSha256": "338e38cb43e6d24d60de23e05298dad2b8d718f3a5415fa545dc68ac01fdd649",
+  "foilSha256": "4b2981a8db89b1da2de395de2067bd428dfc18c7c79e270a2da376a5043ea4ae",
+  "normalSha256": "2bf33d2430665051969f499c43784715ea0348792b3e190147731eac24561754",
+  "protectionSha256": "1a72729d8a2e27e5ded1258d9f6a175b027cbc307f288b2f537768dbf8ede8b7",
+  "bodySha256": "9950dfedd12ec1d035267aa740a896086b7406c16bb0ef39dc90b2535a1f7846",
+  "roughnessSha256": "aa16a023d574083aabe8d3895e6eda78ec13104287d8cae985ea4086ad0c6353",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

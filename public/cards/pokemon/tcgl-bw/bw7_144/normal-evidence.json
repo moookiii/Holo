@@ -1,0 +1,40 @@
+{
+  "tcglCardId": "bw7_144",
+  "tcglVariantId": "LandorusEX_bw7_144_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-bw/bw7_144/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-bw/bw7_144/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw7_en_144",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "eaa05e58c9cab5bc414d7fa9e0feb5a67f76866d9bedac6f906e9d40bc3f449d",
+  "frontSha256": "3e0baf027345863729fde7757aa21f02b0987d11923635eeceaf94f866c95c59",
+  "foilSha256": "acd8d74d6ac0bcd6b75475dc7c7ccdf97029f399cfc099794d29d6eabe7b4c66",
+  "normalSha256": "a49496a5da98df5d145502801e50c7bb8d015c59c5ae870817eae0fbffb7182a",
+  "protectionSha256": "4b705ddcfcdbbd58348f8ebc40ba23bbea27cf7ed27cac7b954ea95e6245942b",
+  "bodySha256": "535155b18b58deb9ead619f8fb5517a9c7c42db92267f5dd7843da7d575abe33",
+  "roughnessSha256": "14878179087ffda9ae1fa2c5445c6643b07c8a315e1861ec1456ddd40c21796c",
+  "roughness": "(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary",
+  "secondaryRegion": "No verified separately masked microdiamond region; zero coverage",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}
