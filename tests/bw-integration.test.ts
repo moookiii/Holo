@@ -36,13 +36,27 @@ test('all exact BW printings and preserved orphan fronts remain distinct in gall
   }
 });
 
-test('RC and entirely gold cards stay eligible with original fronts and zero fabricated optics', () => {
+test('RC uses glitter/overcoat while gold cards use their exact English etches and restrained reference response', () => {
   const rc = tcglBwSets.find(s => s.id === 'bw11r')!;
   assert.deepEqual(rc.cards.map(c => c.localId), Array.from({ length:25 }, (_,i) => `RC${i+1}`));
-  for (const s of tcglBwSurfaces.filter(s => s.cardId.startsWith('bw11r-') || ['bw11-114','bw11-115'].includes(s.cardId))) {
+  for (const s of tcglBwSurfaces.filter(s => s.cardId.startsWith('bw11r-'))) {
     const def = svTcglDefinition(s.cardId,s.variant as PrintVariant);
-    assert.equal(def.profile,'print-only'); assert.equal(s.treatmentStatus,'deferred');
-    assert.deepEqual(def.maps,{});
+    assert.equal(def.profile,s.foilType === 'NonFoil' ? 'bw-radiant-overcoat' : 'bw-radiant-glitter');
+    assert.equal(def.pokemon!.treatmentStatus,undefined);
+    assert.equal(def.mapSettings!.normalScale,0);
+    assert.ok(def.maps!.foil?.endsWith('.png'));
+  }
+  for (const id of ['bw11-114','bw11-115']) {
+    const s=tcglBwSurfaces.find(s => s.cardId===id)!;
+    const def=svTcglDefinition(id,'holo');
+    assert.equal(s.treatmentStatus,'existing-material');
+    assert.equal(s.deferredEffect,null);
+    assert.equal(s.textured,true);
+    assert.deepEqual(def.profileOverrides!.diffraction!.tint,[1,.68,.18]);
+    assert.equal(def.profileOverrides!.diffraction!.strength,.48);
+    assert.equal(def.profileOverrides!.surface!.metalness,.50);
+    assert.equal(def.profileOverrides!.glints!.strength,0);
+    assert.equal(def.mapSettings!.embossStrength,0);
   }
   for (const s of tcglBwSurfaces.filter(s => s.textured)) {
     const def = svTcglDefinition(s.cardId,s.variant as PrintVariant);

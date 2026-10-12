@@ -52,10 +52,15 @@ def treatment(m, row, variant):
     rarity = rarity_of(m)
     sid, cid = m['set_id'], m['card_id']
     if sid == 'bw11r': return 'print-only', 'Legendary Treasures Radiant Collection glitter and overcoat'
-    if cid in ('bw11_114','bw11_115'): return 'print-only', 'Legendary Treasures entirely gold Full Art'
+    if cid in ('bw11_114','bw11_115'): return 'prismatic_sir_texture', None
     if variant == 'normal': return 'print-only', None
     if m.get('identityStatus'): return 'print-only', 'TCGL printing identity and physical finish unresolved'
-    if m['foil_effect'] == 'Cosmos': return 'print-only', 'Cosmos registered motif placement'
+    if m['foil_effect'] == 'Cosmos':
+        registry=ROOT/'scripts/tcgl/bw-cosmos/registration.json'
+        reviewed=json.loads(registry.read_bytes()) if registry.exists() else []
+        if any(c['tcglCardId']==cid and c['reviewStatus']=='reviewed-visible-features' for c in reviewed):
+            return 'pokemon-base-set-2-cosmos', None
+        return 'print-only', 'Cosmos registered motif placement'
     if 'Etched' in (m['long_form_id'] or '') and m['assets']['etch']['status'] != 'extracted':
         return 'print-only', 'Exact physical etch unavailable in TCGL material references'
     if m['foil_effect'] == 'Thatch': return 'pokemon-crosshatch', None
@@ -158,11 +163,18 @@ def main():
             if profile == 'prismatic_sir_texture':
                 normal = dest / 'normal.png'
                 if not normal.exists():
-                    from bw_etch_normal import convert
-                    convert(m)
+                    if cid in ('bw11_114','bw11_115'):
+                        from author_bw_finishes import gold
+                        gold()
+                    else:
+                        from bw_etch_normal import convert
+                        convert(m)
                 maps['normal'] = '/' + normal.relative_to(ROOT / 'public').as_posix()
                 maps['protection'] = '/' + (dest / 'protection.png').relative_to(ROOT / 'public').as_posix()
                 maps['roughness'] = '/' + (dest / 'roughness.png').relative_to(ROOT / 'public').as_posix()
+            if profile == 'pokemon-base-set-2-cosmos':
+                maps['motif'] = '/' + (dest/'cosmos.png').relative_to(ROOT/'public').as_posix()
+                maps['protection'] = '/' + (dest/'protection.png').relative_to(ROOT/'public').as_posix()
         number = m['printed_collector_number']; denominator = str(row.get('EN Expansion Denominator') or '')
         if m['set_id'] == 'bw11r':
             number = 'RC' + number.removeprefix('RC'); denominator = 'RC' + denominator.removeprefix('RC')
@@ -203,6 +215,13 @@ def main():
                 'emptyMotifPng':'/' + empty.relative_to(ROOT/'public').as_posix(),
                 'sha256':sha(empty), 'active':False,
                 'reason':'Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs.'}
+        if profile == 'pokemon-base-set-2-cosmos':
+            record=next(c for c in json.loads((ROOT/'scripts/tcgl/bw-cosmos/registration.json').read_bytes()) if c['tcglCardId']==cid)
+            evidence['cosmosPlacement'] = {
+                'status':record['reviewStatus'],'active':True,'registration':'scripts/tcgl/bw-cosmos/registration.json',
+                'reference':record['source'],'coordinateDimensions':record['coordinateDimensions'],
+                'outputDimensions':[1200,1650],'sha256':record['motifSha256'],
+                'transform':record['registration'],'reviewNotes':record['reviewNotes'],'limitations':record['limitations']}
         write(dest / 'evidence.json', evidence)
         surface = {'cardId':appid,'variant':variant,'profile':profile,'textured':bool('normal' in maps),'maps':maps,
                    'evidence':'/' + (dest/'evidence.json').relative_to(ROOT/'public').as_posix(),

@@ -345,10 +345,16 @@
       "sha256": "4ecee4bff499ff568df84b24a42b5faf403b99af02a2fb696c50cb2df53c0073"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Legendary Treasures entirely gold Full Art",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bw11_115/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bw11_115/foil-controls.png",
+    "normal": "/cards/pokemon/tcgl-bw/bw11_115/normal.png",
+    "protection": "/cards/pokemon/tcgl-bw/bw11_115/protection.png",
+    "roughness": "/cards/pokemon/tcgl-bw/bw11_115/roughness.png"
+  },
+  "profile": "prismatic_sir_texture",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -363,9 +369,9 @@
     "verticalFlip": false,
     "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
   },
-  "normalGeneration": false,
+  "normalGeneration": true,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Exact English TCGL SolidColor etch, own glyph protection and whiteplate body weighting; restrained Sylveon/Espeon single normal response with gold absorption. Japanese reference guides appearance, no copied line geometry.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -394,5 +400,45 @@
     "activeEtch": "No authored normal response",
     "evidence": "docs/bw-finish-research.md",
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
+  },
+  "normalSource": {
+    "conversionSchema": "holo-bw-gold-normal-v1",
+    "tcglCardId": "bw11_115",
+    "tcglVariantId": "Zekrom_bw11_115_std_RareSecret_SolidColor_Etched",
+    "source": "/cards/pokemon/tcgl-bw/bw11_115/original-etch.png",
+    "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw11_en_115",
+    "pairedFront": "/cards/pokemon/tcgl-bw/bw11_115/original-front.png",
+    "sourceDimensions": [
+      1024,
+      1024
+    ],
+    "outputDimensions": [
+      1800,
+      2475
+    ],
+    "sourceSha256": "4ecee4bff499ff568df84b24a42b5faf403b99af02a2fb696c50cb2df53c0073",
+    "frontSha256": "d57a10df3dc4189a1f3649c4d94a1e18d5369f585d74340f9d036044ae9869a3",
+    "foilSha256": "e4791dc381aea393c1307cef8afdc9113500eb5b1f120960fcc49af456c08b5f",
+    "normalSha256": "fdd3e555bbedad85227ebe0ed99d71af6c0d25f0acab07ef4d15b0937d706933",
+    "protectionSha256": "0d9c33fc47ba6a3fcc7350ea02b3d12fc5102cc93b47b992b62b7daac8387be3",
+    "bodySha256": "3f0813b276ca66b60133b9e8b4a5b5f61ddfb5ddecea8dc9fff29990fe5dd310",
+    "roughnessSha256": "4dbaecb19e1cba862e335296878d34608ca3c9289c2c2eecbf656b3b1076f41d",
+    "uvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "verticalFlip": false,
+    "polarity": "inverted luminance; white strokes recess",
+    "registrationReview": "Own English front, etch and whiteplate inspected at full-card UV. Title, type symbols, wing/body outlines, attack text and border align; native Unity bleed removed consistently.",
+    "operations": "Mean RGB, invert, bilinear 1800x2475 height/alpha; Scharr CV_32F scale 1/32; (-dx,+drow,+1) gain 1.03; protection after differentiation; normalize; alpha flat blend; rounded opaque RGB PNG.",
+    "protection": "Individual dark/colored printed glyphs across the otherwise uniform gold front; no rectangular row selections or artwork-derived height.",
+    "body": "Own TCGL whiteplate continuous subject attenuation, normalized over its 18 percent modulation; no front brightness roughness.",
+    "secondaryRegion": "No separately verified microdiamond region; zero coverage",
+    "embossStrength": 0,
+    "runtimeGeneration": false,
+    "physicalReference": "User supplied Japanese EX Battle Boost #94/#95 photo. Finish comparison only; English geometry and print remain exact TCGL.",
+    "limitations": "Polarity follows registered white-stroke recess convention; photos cannot measure physical groove depth. Japanese and English stock differ; exact English angular calibration remains approximate."
   }
 }

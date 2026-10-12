@@ -1,0 +1,40 @@
+{
+  "conversionSchema": "holo-bw-gold-normal-v1",
+  "tcglCardId": "bw11_114",
+  "tcglVariantId": "Reshiram_bw11_114_std_RareSecret_SolidColor_Etched",
+  "source": "/cards/pokemon/tcgl-bw/bw11_114/original-etch.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/bw11_en_114",
+  "pairedFront": "/cards/pokemon/tcgl-bw/bw11_114/original-front.png",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "8d9d0c4f57ddd36ee29e5f6ac847b7377dbcef3cd28f61999363b5dffb1a8418",
+  "frontSha256": "7a7b31bd7cfc942a43e52ac0386c199cad71268983c35af251ae1dd8b661dc13",
+  "foilSha256": "69dd5451c9ea87bce074d33c2ab50e95f7b791f3ab2fdeda70f0c1f9cb8fbc65",
+  "normalSha256": "d64fb1bfaeaa18e35cb250e27e073a93f436cb6cada0ba79dd52a11dea5fe94d",
+  "protectionSha256": "d005d5d408ee22226ede4f8399da7ef9bda38a387fa6e5d08d3995d088b76987",
+  "bodySha256": "b1a71628f6f22085fceeefa388936a6bab3223bc5421e78711041968808a9ee9",
+  "roughnessSha256": "fe1afd153a442a7aba09ac29baa1c09c9603835e2069bc17189870d928e34656",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "verticalFlip": false,
+  "polarity": "inverted luminance; white strokes recess",
+  "registrationReview": "Own English front, etch and whiteplate inspected at full-card UV. Title, type symbols, wing/body outlines, attack text and border align; native Unity bleed removed consistently.",
+  "operations": "Mean RGB, invert, bilinear 1800x2475 height/alpha; Scharr CV_32F scale 1/32; (-dx,+drow,+1) gain 1.03; protection after differentiation; normalize; alpha flat blend; rounded opaque RGB PNG.",
+  "protection": "Individual dark/colored printed glyphs across the otherwise uniform gold front; no rectangular row selections or artwork-derived height.",
+  "body": "Own TCGL whiteplate continuous subject attenuation, normalized over its 18 percent modulation; no front brightness roughness.",
+  "secondaryRegion": "No separately verified microdiamond region; zero coverage",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "physicalReference": "User supplied Japanese EX Battle Boost #94/#95 photo. Finish comparison only; English geometry and print remain exact TCGL.",
+  "limitations": "Polarity follows registered white-stroke recess convention; photos cannot measure physical groove depth. Japanese and English stock differ; exact English angular calibration remains approximate."
+}

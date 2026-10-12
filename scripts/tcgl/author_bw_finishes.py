@@ -109,9 +109,11 @@ def reviews(c, photo, motifs, label):
     ImageDraw.Draw(pair).text((8,5),c['cardId']+' '+c['name']+' physical reference / boundaries',fill='white')
     pair.save(folder/(label+'-compare.png'))
 
-def proposals():
-    result=[]
+def proposals(ids=None):
+    saved=DATA/'proposals.json'
+    result=[c for c in read(saved) if ids and c['cardId'] not in ids] if saved.exists() else []
     for c in read(DATA/'sources.json'):
+        if ids and c['cardId'] not in ids: continue
         choices=[]
         for candidate in c['candidates']:
             aligned=cosmos.register(c,candidate)
@@ -131,7 +133,7 @@ def proposals():
         record=dict(c,source=selected,registration=transform,coordinateDimensions=list(COORDS),
             registeredReference=target.relative_to(ROOT).as_posix(),motifs=motifs,reviewStatus='candidate-only',
             preservedHashes={'master':cosmos.sha(ROOT/c['master']), 'originalFoil':cosmos.sha(ROOT/('public'+e['sources']['foil']['publicOriginal']))})
-        result.append(record); print(c['cardId'],len(motifs),'proposals',flush=True)
+        result.append(record);write(saved,result); print(c['cardId'],len(motifs),'proposals',flush=True)
     write(DATA/'proposals.json',result)
 
 def publish():
@@ -206,5 +208,6 @@ def gold():
         print(cid,'exact normal',flush=True)
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('action',choices=['sources','propose','publish','gold']);a=ap.parse_args()
-    {'sources':sources,'propose':proposals,'publish':publish,'gold':gold}[a.action]()
+    ap=argparse.ArgumentParser();ap.add_argument('action',choices=['sources','propose','publish','gold']);ap.add_argument('--ids',nargs='+');a=ap.parse_args()
+    if a.action=='propose': proposals(a.ids)
+    else: {'sources':sources,'publish':publish,'gold':gold}[a.action]()
