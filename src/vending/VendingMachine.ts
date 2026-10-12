@@ -98,7 +98,7 @@ export class VendingMachine {
     try {
       const eras = await game.eras(signal); signal.throwIfAborted();
       for (const era of [{ id: '', name: 'All eras' }, ...eras]) { const option = element('option', '', era.name); option.value = era.id; this.era.append(option); }
-      this.era.value = eras.find(e => e.id === 'base')?.id ?? eras[0]?.id ?? '';
+      this.era.value = '';
       await this.loadProducts();
     } catch (error) { if (!signal.aborted) this.fail(error, () => void this.changeGame(game)); }
   }
