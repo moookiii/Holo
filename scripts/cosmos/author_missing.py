@@ -161,7 +161,130 @@ def register(c, candidate):
         medianReprojectionError=float(np.median(error[accepted.ravel() == 1])))
 
 
+def propose(photo, master, allowed, physical_master=False):
+    """Contrast proposes geometry; the operator must review every whole window."""
+    intensity = photo.max(2).astype(np.float32) / 255
+    signal = np.maximum(0, intensity - gaussian_filter(intensity, 6))
+    if not physical_master:
+        printed = master.max(2).astype(np.float32) / 255
+        # Only the exact clean printing rejects print details. No donor geometry.
+        detail = np.maximum(0, printed - gaussian_filter(printed, 6))
+        signal = np.maximum(0, signal - detail * .9)
+    # Below ~1.5 source pixels a JPEG speck has no measurable outer perimeter.
+    # Keep those unresolved instead of fabricating hundreds of tiny disks.
+    scales = np.geomspace(1.65, 18, 30)
+    cube = np.stack([-gaussian_laplace(signal, s) * s * s for s in scales], 2)
+    peaks = (cube == maximum_filter(cube, size=3)) & (cube > .038)
+    peaks &= allowed[..., None]
+    ys, xs, ss = np.nonzero(peaks)
+    clearance = cv2.distanceTransform(allowed.astype(np.uint8), cv2.DIST_L2, 5)
+    result = []
+    derivatives = {}
+    for i in np.argsort(cube[ys, xs, ss])[::-1]:
+        x, y, sigma = int(xs[i]), int(ys[i]), float(scales[ss[i]])
+        radius = sigma * 2 ** .5
+        if clearance[y, x] < max(2, radius * .55):
+            continue
+        if any(np.hypot(x-d['center'][0], y-d['center'][1]) < max(radius, d['radius']) * 1.05 for d in result):
+            continue
+        if sigma not in derivatives:
+            derivatives[sigma] = [gaussian_filter(intensity, sigma, order=o) for o in [(0, 2), (2, 0), (1, 1)]]
+        xx, yy, xy = [v[y, x] for v in derivatives[sigma]]
+        eig = np.linalg.eigvalsh([[xx, xy], [xy, yy]])
+        if eig[1] >= 0 or eig[1] / eig[0] < .22:
+            continue
+        x0, x1 = max(0, int(x-radius*2.2-2)), min(600, int(x+radius*2.2+3))
+        y0, y1 = max(0, int(y-radius*2.2-2)), min(825, int(y+radius*2.2+3))
+        gy, gx = np.mgrid[y0:y1, x0:x1]; distance = np.hypot(gx-x, gy-y)
+        roi = photo[y0:y1, x0:x1].astype(float)
+        ring = (distance > radius*1.6) & (distance < radius*2.1)
+        if not ring.any():
+            continue
+        ground = np.median(roi[ring], axis=0)
+        delta = np.max(roi-ground, axis=2)
+        peak = float(np.max(delta[distance < max(1, radius*.5)]))
+        fill = ((distance < radius*1.25) & (delta > max(12, peak*.3))).sum() / (np.pi*radius**2)
+        if peak < 27 or fill < .42:
+            continue
+        result.append(dict(center=[x, y], radius=round(radius, 2), brightness=round(float(intensity[y, x]), 3)))
+    result.sort(key=lambda d: (d['center'][1], d['center'][0]))
+    for i, d in enumerate(result): d['id'] = i
+    return result
+
+
+def rasterize(motifs):
+    # Continuous filled disks. Shape contours/paths are explicitly reviewed.
+    mask = np.zeros((1650, 1200), np.float32)
+    for d in motifs:
+        gain = .5 + .5 * d.get('brightness', 1)
+        if 'outline' in d or 'points' in d:
+            im = Image.new('L', (2400, 3300)); draw = ImageDraw.Draw(im)
+            if 'outline' in d: draw.polygon([(round(x*4), round(y*4)) for x,y in d['outline']], fill=255)
+            else: draw.line([(round(x*4), round(y*4)) for x,y in d['points']], fill=255, width=max(1, round(d['width']*4)), joint='curve')
+            np.maximum(mask, np.asarray(im.resize((1200,1650),Image.Resampling.LANCZOS))/255*gain, out=mask)
+            continue
+        x, y = d['center']; rx, ry = d.get('radii', [d['radius'], d['radius']]); r = max(rx,ry)
+        l,t = max(0,int((x-r-1)*2)),max(0,int((y-r-1)*2))
+        right,bottom = min(1200,int((x+r+1)*2+1)),min(1650,int((y+r+1)*2+1))
+        gy,gx = np.mgrid[t:bottom,l:right]; dx,dy=(gx+.5)/2-x,(gy+.5)/2-y
+        a=np.deg2rad(d.get('angle',0));u,v=dx*np.cos(a)+dy*np.sin(a),-dx*np.sin(a)+dy*np.cos(a)
+        shape=np.clip((1-np.hypot(u/rx,v/ry))*min(rx,ry)*2+.5,0,1)*gain
+        np.maximum(mask[t:bottom,l:right],shape,out=mask[t:bottom,l:right])
+    return Image.fromarray(np.rint(mask*255).astype(np.uint8))
+
+
+def review_images(c, photo, motifs, label='proposals'):
+    folder=REVIEW/c['cardId'];folder.mkdir(parents=True,exist_ok=True)
+    mask=rasterize(motifs)
+    preview=photo.copy(); contours,_=cv2.findContours((np.asarray(mask.resize(COORDS))>80).astype(np.uint8),cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
+    cv2.drawContours(preview,contours,-1,(255,20,170),1)
+    zoom=Image.fromarray(preview).resize((1200,1650)).crop((70,170,1140,855))
+    zoom.save(folder/(label+'-overlay.png'))
+    Image.fromarray(photo).resize((1200,1650)).crop((70,170,1140,855)).save(folder/'reference-zoom.png')
+    mask.crop((70,170,1140,855)).save(folder/(label+'-motifs.png'))
+    marker=Image.fromarray(photo).resize((1200,1650));draw=ImageDraw.Draw(marker)
+    for d in motifs:
+        if 'center' not in d: continue
+        x,y=d['center'];r=d['radius']
+        draw.ellipse(((x-r)*2,(y-r)*2,(x+r)*2,(y+r)*2),outline='#ff00b0',width=1)
+        draw.text((x*2+2,y*2+2),str(d.get('id','+')),fill='white',stroke_width=1,stroke_fill='black')
+    marker.crop((70,170,1140,855)).save(folder/(label+'-numbered.png'))
+
+
+def proposals(ids=None):
+    sources=json.loads((DATA/'sources.json').read_text(encoding='utf8'))
+    saved_path=DATA/'proposals.json'
+    saved={r['cardId']:r for r in json.loads(saved_path.read_text(encoding='utf8'))} if saved_path.exists() else {}
+    for c in sources:
+        cid=c['cardId']
+        if ids and cid not in ids: continue
+        master=np.asarray(Image.open(ROOT/c['master']).convert('RGB').resize(COORDS))
+        folder=REF/cid;folder.mkdir(parents=True,exist_ok=True)
+        if 'reference' in c:
+            photo=master; transform=dict(method='identity; original full-card physical scan',masterToReference=np.eye(3).tolist())
+            selected=dict(file=c['reference'],pageUrl=c['sourceUrl'],imageUrl=c['sourceUrl'],sha256=sha(ROOT/c['reference']))
+        else:
+            choices=[]
+            for candidate in c.get('candidates',[]):
+                result=register(c,candidate)
+                if result: choices.append((result[1]['inliers'],candidate,result))
+            if not choices:
+                print(cid,'NO REGISTERED SOURCE',flush=True);continue
+            _,selected,(photo,transform)=max(choices,key=lambda t:t[0])
+            transform['method']='SIFT print anchors; RANSAC projective registration to exact clean full-card master'
+        Image.fromarray(photo).save(folder/'registered.png')
+        foil=np.asarray(Image.open(ROOT/c['foil']).convert('L').resize(COORDS));protection=np.asarray(Image.open(ROOT/c['protection']).convert('L').resize(COORDS))
+        allowed=(foil>20)&(protection<180)
+        motifs=propose(photo,master,allowed,'reference' in c)
+        review_images(c,photo,motifs)
+        saved[cid]=dict(c,source=selected,registration=transform,coordinateDimensions=list(COORDS),
+            registeredReference=(folder/'registered.png').relative_to(ROOT).as_posix(),motifs=motifs,reviewStatus='candidate-only')
+        print(cid,len(motifs),'features',flush=True)
+        write(saved_path,list(saved.values()))
+
+
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources']); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
     if args.action == 'inventory': write(DATA / 'inventory.json', inventory())
-    else: sources()
+    elif args.action == 'sources': sources()
+    else: proposals(args.ids)
