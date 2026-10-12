@@ -79,7 +79,13 @@ class GalleryLightingModel extends PhysicalLightingModel {
   override directRectArea(data: LightingModelDirectRectAreaInput, builder: NodeBuilder) {
     super.directRectArea({ ...data, lightColor: (data.lightColor as Node<'vec3'>).mul(this.backing()) }, builder);
     const width = data.halfWidth as Node<'vec3'>, height = data.halfHeight as Node<'vec3'>;
-    const center = (data.lightPosition as Node<'vec3'>).sub(positionView);
+    // BREAK thumbnails share a horizontal optical viewing axis. A wide
+    // perspective gallery otherwise cancels L+V near the left columns, moving
+    // their fan grating below every visible wavelength. Keep vertical light
+    // placement and the actual card tangent frame (including hover tilt).
+    const opticalPosition = this.layers[0].pokemonBreak
+      ? vec3(0, positionView.y, positionView.z) : positionView;
+    const center = (data.lightPosition as Node<'vec3'>).sub(opticalPosition);
     const distance = center.length().max(.001), direction = center.div(distance);
     const solidAngle = width.cross(height).normalize().dot(direction).max(0).mul(width.length(), height.length(), 4).div(distance.pow2());
     this.diffract({ lightDirection: direction, lightColor: (data.lightColor as Node<'vec3'>).mul(solidAngle), reflectedLight: data.reflectedLight },
@@ -94,7 +100,8 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
       if (layer.pokemonBreak) {
-        const reflected = breakFoilReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
+        const view = vec3(0, positionView.y.negate(), positionView.z.negate()).normalize();
+        const reflected = breakFoilReflection(light, view, tangentView, bitangent, geometric, {
           aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
           secondary: diffraction.w, angle: axis.x, crossWidth: axis.y, neutralGain: float(1), spectralGain: float(1),
         }, r.field, r.detail, footprint);
