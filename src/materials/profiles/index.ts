@@ -23,6 +23,7 @@ import { megaRarityProfiles } from './megaRarity';
 import { swshProfiles } from './swsh';
 import { prismStar } from './prismStar';
 import { generationsProfiles } from './generations';
+import { bwRadiantProfiles } from './bwRadiant';
 import { pokemonBreak } from './break';
 import { megaReverse } from './megaReverse';
 const goldEtched = { ...prismaticProfiles.find(p => p.id === 'prismatic_gold')!, id: 'gold-etched', name: 'Gold Etched' };
@@ -37,6 +38,7 @@ profiles.push(...megaRarityProfiles);
 profiles.push(...swshProfiles);
 profiles.push(prismStar);
 profiles.push(...generationsProfiles);
+profiles.push(...bwRadiantProfiles);
 profiles.push(pokemonBreak);
 profiles.push(megaReverse);
 export function getProfile(id: string) {
