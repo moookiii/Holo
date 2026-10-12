@@ -16,7 +16,10 @@ def main():
   sid, item = pair; url='https://www.ebay.com/itm/'+item
   cache=RAW/(item+'.html')
   if not cache.exists():
-   response=requests.get(url,timeout=30); response.raise_for_status(); cache.write_text(response.text,encoding='utf8')
+   try:
+    response=requests.get(url,timeout=30); response.raise_for_status(); cache.write_text(response.text,encoding='utf8')
+   except requests.RequestException as error:
+    return [{'setId':sid,'page':url,'status':'lookup-failed','error':str(error)}]
   urls=list(dict.fromkeys(re.findall(r'https://i\.ebayimg\.com/images/g/[^\s"<>]+',cache.read_text(encoding='utf8'))))
   urls=list(dict.fromkeys(re.sub(r'/s-l\d+\.[a-z]+.*','/s-l1600.jpg',u) for u in urls))[:16]
   result=[]
@@ -32,9 +35,11 @@ def main():
   return result
  records=[r for group in ThreadPoolExecutor(6).map(page,[(s,i) for s,ids in PAGES.items() for i in ids]) for r in group]
  (RAW/'candidates.json').write_text(json.dumps(records,indent=2))
- sheet=Image.new('RGB',(1600,((len(records)+7)//8)*290),'#333')
+ decoded=[r for r in records if 'file' in r]
+ if not decoded:return
+ sheet=Image.new('RGB',(1600,((len(decoded)+7)//8)*290),'#333')
  draw=ImageDraw.Draw(sheet)
- for i,r in enumerate(records):
+ for i,r in enumerate(decoded):
   im=Image.open(ROOT/r['file']); im.thumbnail((190,255)); x=i%8*200;y=i//8*290
   sheet.paste(im,(x+(200-im.width)//2,y+25));draw.text((x+2,y+2),str(i)+' '+r['setId'],fill='white')
  sheet.save(RAW/'review.jpg')
