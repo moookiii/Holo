@@ -3,6 +3,7 @@ import { uniform } from 'three/tsl';
 import type { FoilLayer } from './HolographicProfile';
 
 export class OpticalUniforms {
+  pokemonBreak = false;
   illustrationRare = false;
   softIllustration = false;
   doubleRare = false;
@@ -53,6 +54,7 @@ export class OpticalUniforms {
   apply(p: FoilLayer | undefined) {
     this.enabled.value = p && p.enabled !== false ? 1 : 0;
     if (!p) return;
+    this.pokemonBreak = p.opticalModel === 'pokemon-break';
     this.softIllustration = p.opticalModel === 'sv-illustration-soft';
     this.illustrationRare = p.opticalModel === 'sv151-illustration' || this.softIllustration;
     this.doubleRare = p.opticalModel === 'sv-double-rare';

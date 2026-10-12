@@ -8,6 +8,7 @@ import { masterPrism, type HolographicProfile } from './HolographicProfile';
 import { OpticalUniforms } from './OpticalUniforms';
 import { secretRareReflection } from './layers/SecretRareLayer';
 import { spectrum } from './layers/DiffractionLayer';
+import { breakFoilReflection } from './layers/BreakFoilLayer';
 import { pixelVariance, normalPixelVariance, normalMipVariance } from './layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from './layers/IllustrationRareLayer';
 import { celebrationFoilReflection } from './layers/CelebrationFoilLayer';
@@ -93,6 +94,13 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const filterGain = filterAuthored ? u.normalFiltering.max(1) : u.normalFiltering;
       const mipVariance = filterAuthored ? region.normalMipVariance! : float(0);
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
+      if (u.pokemonBreak) {
+        const n = normalViewGeometry as unknown as Node<'vec3'>;
+        const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
+        const reflected = breakFoilReflection(light, positionViewDirection, tangentView, b, n, u, region.field, region.details, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern, region.coverage, data.lightColor as Node<'vec3'>));
+        return;
+      }
       if (u.ultraRare || u.specialIllustration || u.blackWhiteRare) {
         const geometry = normalViewGeometry as unknown as Node<'vec3'>;
         const bitangent = geometry.cross(tangentView).mul(tangentGeometry.w).normalize();
@@ -641,7 +649,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // Omit only mathematically inactive branches. Live profile/Lab edits that
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
-      [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
+      [u.pokemonBreak, u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
           u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.spectralGrain, u.secretCuts, u.illustrationRare, u.softIllustration, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
