@@ -32,6 +32,7 @@ export class CardMotion {
   private resetting = false;
   private resetElapsed = 0;
   private resetStart = new Quaternion();
+  private defaultOrientation = DEFAULT_ORIENTATION.clone();
   readonly flipDuration = 0.58;
 
   constructor(_mode: InteractionMode = 'combined') {
@@ -43,6 +44,12 @@ export class CardMotion {
     // Legacy debug callers may still request Tilt or Rotate. Both now resolve to
     // the unified interaction: pointer position tilts and dragging rotates.
     this.mode = 'combined';
+  }
+  setDefaultRoll(roll: number) {
+    this.delta.setFromAxisAngle(Z_AXIS, roll);
+    if (this.defaultOrientation.angleTo(this.delta) < 1e-8) return;
+    this.defaultOrientation.copy(this.delta);
+    this.setPose(0, 0, roll);
   }
   requestFlip() {
     this.halt(); this.flipPending = Math.min(8, this.flipPending + 1);
@@ -88,7 +95,7 @@ export class CardMotion {
     if (this.resetting) {
       this.resetElapsed += dt;
       const t = Math.min(1, this.resetElapsed / 0.65);
-      this.manual.slerpQuaternions(this.resetStart, DEFAULT_ORIENTATION, smootherstep(t));
+      this.manual.slerpQuaternions(this.resetStart, this.defaultOrientation, smootherstep(t));
       this.orientation.copy(this.manual);
       if (t === 1) this.resetting = false;
       return;

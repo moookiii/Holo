@@ -7,6 +7,32 @@ import { hoverFromCardCenter, projectAroundCardCenter } from '../src/input/Hover
 const closeOrientation = (a: Quaternion, b: Quaternion, epsilon = 1e-6) => assert.ok(a.angleTo(b) < epsilon, `orientation differs by ${a.angleTo(b)} radians`);
 const advance = (motion: CardMotion, seconds: number, hz = 120) => { for (let i = 0; i < Math.round(seconds * hz); i++) motion.update(1 / hz); };
 
+test('sideways viewer cards open and reset clockwise, then return upright for ordinary cards', () => {
+  const motion = new CardMotion();
+  const clockwise = new Quaternion().setFromAxisAngle(Z_AXIS, -Math.PI / 2);
+  motion.setDefaultRoll(-Math.PI / 2);
+  closeOrientation(motion.orientation, clockwise);
+  assert.ok(new Vector3(0, 1, 0).applyQuaternion(motion.orientation).x > .999, 'top edge moves right');
+  motion.setPose(.7, -.3, .4); motion.requestFlip(); advance(motion, .8);
+  motion.reset(); advance(motion, .8);
+  closeOrientation(motion.orientation, clockwise);
+  advance(motion, 1); closeOrientation(motion.orientation, clockwise);
+  motion.requestFlip(); advance(motion, .8);
+  closeOrientation(motion.orientation, clockwise.clone().multiply(new Quaternion().setFromAxisAngle(Y_AXIS, Math.PI)));
+  motion.setDefaultRoll(0);
+  closeOrientation(motion.orientation, new Quaternion());
+  motion.reset(); advance(motion, .8);
+  closeOrientation(motion.orientation, new Quaternion());
+});
+
+test('selecting another card with the same default roll preserves the inspection pose', () => {
+  const motion = new CardMotion(); motion.setDefaultRoll(-Math.PI / 2);
+  motion.setPose(.6, -.2, -.9);
+  const pose = motion.orientation.clone();
+  motion.setDefaultRoll(-Math.PI / 2);
+  closeOrientation(motion.orientation, pose);
+});
+
 test('combined interaction starts face-on and resets a tilted, rotated or flipped card to the front', () => {
   {
     const motion = new CardMotion();

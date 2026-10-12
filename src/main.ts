@@ -6,6 +6,7 @@ import { StudioLighting } from './lighting/StudioLighting';
 import { SpotlightPointer } from './lighting/SpotlightPointer';
 import { cards as builtInCards, type CardDefinition } from './card/CardDefinition';
 import { CardFactory } from './card/CardFactory';
+import { viewerCardRoll } from './card/CardOrientation';
 import type { CardInstance } from './card/CardInstance';
 import { CardMotion, smootherstep, type InteractionMode } from './input/Motion';
 import { PointerController } from './input/PointerController';
@@ -67,6 +68,7 @@ async function start() {
   startupMark('environmentReady');
   const initialMode: InteractionMode = 'combined';
   const motion = new CardMotion(initialMode);
+  motion.setDefaultRoll(viewerCardRoll(initialCard));
   motion.hoverTiltScale = 1.2;
   const resetPositionStart = new Vector3();
   let resetPositionElapsed = -1;
@@ -214,7 +216,8 @@ async function start() {
     factory.setBackgroundPaused(false);
     ++loadGeneration; ++profileGeneration;
     releaseViewer(); activeCard = instance; definition = instance.definition; card = instance.mesh; scene.add(card);
-    motion.setPose(-.10, .025); motion.zoom = motion.targetZoom = 1;
+    motion.setDefaultRoll(viewerCardRoll(definition));
+    motion.setPose(-.10, .025, viewerCardRoll(definition)); motion.zoom = motion.targetZoom = 1;
     activeProfile = definition.profile; requestedCardId = definition.id; ui?.selectCard(definition.id); ui?.selectProfile(activeProfile);
     pointer.setEnabled(true); viewerUI.inert = false; document.body.classList.remove('pack-mode');
     packSeed = crypto.getRandomValues(new Uint32Array(1))[0];
@@ -381,6 +384,7 @@ async function start() {
     if (activeCard !== candidate) releaseViewer(); else viewerLease?.release();
     viewerLease = lease; lease = undefined;
     activeCard = candidate; definition = next; card = candidate.mesh;
+    motion.setDefaultRoll(viewerCardRoll(next));
     if (previousPosition) card.position.copy(previousPosition);
     card.quaternion.copy(motion.orientation); scene.add(card);
     card.visible = true;
