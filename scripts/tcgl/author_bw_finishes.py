@@ -96,16 +96,26 @@ def reviews(c, photo, motifs, label):
     folder=REVIEW/c['cardId'];folder.mkdir(parents=True,exist_ok=True)
     mask=cosmos.rasterize(motifs)
     overlay=Image.fromarray(photo).resize((1200,1650));draw=ImageDraw.Draw(overlay)
+    master=Image.open(ROOT/c['master']).convert('RGB').resize((1200,1650))
+    master_draw=ImageDraw.Draw(master)
     for d in motifs:
         if 'center' in d:
             x,y=d['center'];rx,ry=d.get('radii',[d['radius'],d['radius']])
-            draw.ellipse(((x-rx)*2,(y-ry)*2,(x+rx)*2,(y+ry)*2),outline='#ff00b0',width=2)
+            bounds=((x-rx)*2,(y-ry)*2,(x+rx)*2,(y+ry)*2)
+            draw.ellipse(bounds,outline='#ff00b0',width=2)
+            master_draw.ellipse(bounds,outline='#ff00b0',width=2)
             draw.text((x*2+3,y*2+3),str(d.get('id','+')),fill='white',stroke_width=1,stroke_fill='black')
         elif 'outline' in d:
             points=[(x*2,y*2) for x,y in d['outline']]
             draw.line(points+[points[0]],fill='#ff00b0',width=2)
-        elif 'points' in d: draw.line([(x*2,y*2) for x,y in d['points']],fill='#ff00b0',width=2)
-    overlay.save(folder/(label+'-full.png'));mask.save(folder/(label+'-motifs.png'))
+            master_draw.line(points+[points[0]],fill='#ff00b0',width=2)
+        elif 'points' in d:
+            points=[(x*2,y*2) for x,y in d['points']]
+            draw.line(points,fill='#ff00b0',width=2)
+            master_draw.line(points,fill='#ff00b0',width=2)
+    overlay.save(folder/(label+'-full.png'))
+    master.save(folder/(label+'-master.png'))
+    mask.save(folder/(label+'-motifs.png'))
     pair=Image.new('RGB',(2160,760),'#111820')
     pair.paste(Image.fromarray(photo).resize((1200,1650)).crop((60,140,1140,870)),(0,30))
     pair.paste(overlay.crop((60,140,1140,870)),(1080,30))
@@ -140,9 +150,12 @@ def proposals(ids=None):
         result.append(record);write(saved,result); print(c['cardId'],len(motifs),'proposals',flush=True)
     write(DATA/'proposals.json',result)
 
-def publish(publish=True):
-    corrections=read(DATA/'corrections.json');records=[]
+def publish(publish=True, ids=None):
+    corrections=read(DATA/'corrections.json')
+    existing=read(DATA/'registration.json') if publish and (DATA/'registration.json').exists() else []
+    by_id={c['cardId']:c for c in existing}
     for c in read(DATA/'proposals.json'):
+        if ids and c['cardId'] not in ids: continue
         correction=corrections.get(c['cardId'])
         if not correction or publish and not correction.get('reviewed'): continue
         assert correction['sourceAlignmentReviewed']
@@ -156,15 +169,15 @@ def publish(publish=True):
         record=dict(c,motifs=motifs,reviewStatus='reviewed-visible-features',outputDimensions=[1200,1650],
             motifSha256=cosmos.sha(target),reviewNotes=correction['notes'],
             limitations='Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth.')
-        records.append(record)
-    if publish: write(DATA/'registration.json',records)
-    print(len(records),'reviewed registrations' if publish else 'draft only; no active changes')
+        by_id[c['cardId']]=record
+    if publish: write(DATA/'registration.json',list(by_id.values()))
+    print(len(by_id),'reviewed registrations' if publish else 'draft only; no active changes')
 
-def activate():
+def activate(ids=None):
     """Update reviewed BW records only; never regenerate the shared catalog."""
     from prepare_swsh_proofs import registered
     registry=read(DATA/'registration.json')
-    by_id={c['tcglCardId']:c for c in registry}
+    by_id={c['tcglCardId']:c for c in registry if not ids or c['cardId'] in ids}
     generated=ROOT/'src/pokemon/data/bw-tcgl.generated.ts'
     lines=generated.read_text(encoding='utf8').splitlines()
     for i,line in enumerate(lines):
@@ -263,5 +276,7 @@ def gold():
 if __name__=='__main__':
     ap=argparse.ArgumentParser();ap.add_argument('action',choices=['sources','propose','draft','publish','activate','gold']);ap.add_argument('--ids',nargs='+');a=ap.parse_args()
     if a.action=='propose': proposals(a.ids)
-    elif a.action=='draft': publish(False)
-    else: {'sources':sources,'publish':publish,'activate':activate,'gold':gold}[a.action]()
+    elif a.action=='draft': publish(False,a.ids)
+    elif a.action=='publish': publish(True,a.ids)
+    elif a.action=='activate': activate(a.ids)
+    else: {'sources':sources,'gold':gold}[a.action]()
