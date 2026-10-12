@@ -148,3 +148,7 @@ Gold grain density follow-up: two independently seeded, half-cell-offset grain
 populations now double the optical dot count while retaining scale 260, the same
 per-dot radius, strength and spectral response. Only spectralGrain opts into the
 second population; viewer and gallery use the shared function.
+
+Further density adjustment: a third independently seeded population increases
+the gold dot count to 3x the original (50% more than the two-population version).
+Dot size and per-dot spectral response remain unchanged.

@@ -21,10 +21,12 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
   if (settings.microdiamond) return microdiamondGlints(lightDirection, settings, seed);
   const first = grainGlints(lightDirection, settings, seed);
   if (!settings.spectralGrain) return first;
-  // Two interleaved populations double gold grain count without shrinking
+  // Three interleaved populations triple gold grain count without shrinking
   // their footprints or changing the existing per-grain spectral response.
   const secondSeed = typeof seed === 'number' ? seed + 193.7 : seed.add(193.7);
-  return first.add(grainGlints(lightDirection, settings, secondSeed, .5));
+  const thirdSeed = typeof seed === 'number' ? seed + 389.3 : seed.add(389.3);
+  return first.add(grainGlints(lightDirection, settings, secondSeed, .5))
+    .add(grainGlints(lightDirection, settings, thirdSeed, .25));
 }
 
 function grainGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>, offset = 0) {
