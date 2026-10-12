@@ -25,7 +25,12 @@ remains approximate; source geometry establishes placement, not measured optics.
 Validation: TypeScript and the targeted exact-identity/source-hash test pass.
 Source plates and full-card front/plate overlays were inspected; both motifs
 meet at the printed diagonal divider and the artwork remains excluded.
-Review images are under `artifacts/steam-siege/`. Live review attempts encountered
-development reload and local-server startup/navigation failures; a completed
-multi-angle GPU review is not claimed. Re-run `scripts/steam-siege-live-check.mjs`
-against a ready server using `HOLO_URL` to save five lighting/pose captures per card.
+Review images are under `artifacts/steam-siege/`. The completed live run on an
+isolated server captured all five cards at front, tilt, grazing, dark, and moving
+light settings (25 captures). The report records zero runtime or local asset
+errors. Full-resolution grazing frames for all five cards and Shiftry's tilt
+frame were visually inspected: both type motifs follow the printed divider,
+the artwork stays excluded, and text remains legible. Strong highlights can
+reduce motif contrast; this reuses the existing reverse optics without changing
+them. Earlier development reload/startup failures were superseded by this run.
+Re-run `scripts/steam-siege-live-check.mjs` with `HOLO_URL` against a ready server.
