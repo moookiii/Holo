@@ -121,3 +121,25 @@ other objects. They cannot establish physical groove depth or measured spectral
 parameters. The preserved TCGL etch is lower resolution than the photographed
 microstructure, so this is a calibrated real-time approximation, not a measured
 reconstruction of one physical card.
+
+
+## Holographic grain correction (2026-10-11)
+
+Gold Etched now uses scale 260 instead of 1050 (about four times the dot
+ diameter), sharpness 100 and strength 2.4. An explicit spectralGrain option
+replaces the near-white grain response with wavelength bands driven by each
+fixed grain's orientation and the light/view directions. Unresolved grains
+converge to an averaged response. Viewer and gallery share the implementation;
+gallery batching distinguishes spectral grains from existing white metal grains.
+Other finishes do not opt in. All TCGL fronts, normals and masks remain unchanged;
+no source transformation, new relief, or asset replacement occurred.
+
+WebGPU review captures: artifacts/gold-spectral-grains-detail/ (eight poses
+under Studio, Strip, Soft and Low key). Front and tilted close views show larger
+colored grains, with strong gold reflection still able to dominate at some
+angles. The supplied crop does not identify a printing or provide controlled
+illumination; precise physical matching remains uncertain. Reviewed on Luxurious
+Cape 265/182, the existing Gold Etched calibration card.
+Focused spectral-grain and gallery-preview tests pass. The existing gold-etched
+suite cannot load because megaRarity.ts imports ./prismatic without an extension
+under Node's native TypeScript test runner.

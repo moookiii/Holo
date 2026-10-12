@@ -1,4 +1,4 @@
-export interface GalleryOpticalLayer { enabled: boolean; secret: boolean; glints: boolean; iridescence: boolean; illustrationRare?: boolean; doubleRare?: boolean; sunPillar?: boolean; radiant?: boolean; celebrationPikachu?: boolean; celebrationClassic?: boolean; ballReverse?: boolean; blackWhiteRare?: boolean; ultraRare?: boolean; specialIllustration?: boolean; normalFiltering?: boolean; metallicGrain?: boolean; packedEtch?: boolean; }
+export interface GalleryOpticalLayer { enabled: boolean; secret: boolean; glints: boolean; iridescence: boolean; illustrationRare?: boolean; doubleRare?: boolean; sunPillar?: boolean; radiant?: boolean; celebrationPikachu?: boolean; celebrationClassic?: boolean; ballReverse?: boolean; blackWhiteRare?: boolean; ultraRare?: boolean; specialIllustration?: boolean; normalFiltering?: boolean; metallicGrain?: boolean; spectralGrain?: boolean; packedEtch?: boolean; }
 
 /** Select shader mechanisms from the same packed controls used for rendering.
  * Cards in a batch still retain their individual masks and optical values. */
@@ -11,7 +11,8 @@ export function galleryOpticalLayers(parameters: Float32Array): GalleryOpticalLa
       ...(parameters[(29 + index * 2) * 4 + 3] === -4 ? { radiant: true } : {}),
       ...(parameters[(29 + index * 2) * 4 + 3] === -2 ? { celebrationPikachu: true } : {}),
       ...(parameters[(29 + index * 2) * 4 + 3] === -3 ? { celebrationClassic: true } : {}), ...(index === 0 && parameters[34 * 4 + 3] === 1 ? { illustrationRare: true } : {}),
-      ...(parameters[(29 + index * 2) * 4 + 3] === -1 ? { metallicGrain: true } : {}),
+      ...([-1, -5].includes(parameters[(29 + index * 2) * 4 + 3]) ? { metallicGrain: true } : {}),
+      ...(parameters[(29 + index * 2) * 4 + 3] === -5 ? { spectralGrain: true } : {}),
       ...(!secret && parameters[34 * 4 + 3] === 0 && parameters[(37 + index) * 4 + 2] > 0 ? { normalFiltering: true } : {}),
       ...(index === 0 && parameters[34 * 4 + 3] === 7 ? { sunPillar: true } : {}),
       ...(index === 0 && parameters[34 * 4 + 3] === 2 ? { doubleRare: true } : {}),
@@ -52,6 +53,7 @@ export function galleryBatchKey(layers: GalleryOpticalLayer[]) {
   return layers.map(layer => !layer.enabled ? '-' : layer.radiant ? 'ra' : layer.celebrationPikachu ? 'cp' : layer.celebrationClassic ? 'cc' : layer.blackWhiteRare ? 'w' : layer.ballReverse ? 'b' : layer.specialIllustration ? 'p' : layer.ultraRare ? 'u' : layer.sunPillar ? 'h' : layer.doubleRare ? 'd' : layer.illustrationRare ? 'a' : layer.secret ? 's' : layer.glints ? 'g' : 'f').join('')
     + (layers.some(layer => layer.iridescence) ? ':i' : '')
     + (layers.some(layer => layer.enabled && layer.normalFiltering) ? ':filtered-' + layers.map(layer => +(layer.enabled && !!layer.normalFiltering)).join('') : '')
+    + (layers.some(layer => layer.enabled && layer.spectralGrain) ? ':spectral-' + layers.map(layer => +(layer.enabled && !!layer.spectralGrain)).join('') : '')
     + (layers[0].enabled && layers[0].packedEtch ? ':etch' : '')
     + (layers.some(layer => layer.enabled && layer.metallicGrain) ? ':grain-' + layers.map(layer => +(layer.enabled && !!layer.metallicGrain)).join('') : '');
 }

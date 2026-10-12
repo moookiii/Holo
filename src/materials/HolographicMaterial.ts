@@ -231,7 +231,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
       const sparkle = u.glintStrength.value !== 0
-        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints, microdiamond: u.microdiamondGlints, metallicGrain: u.metallicGrain, filterMetallicGrain: u.normalFiltering.value > 0 }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
+        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints, microdiamond: u.microdiamondGlints, metallicGrain: u.metallicGrain, spectralGrain: u.spectralGrain, filterMetallicGrain: u.normalFiltering.value > 0 }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
@@ -642,7 +642,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.spectralGrain, u.secretCuts, u.illustrationRare, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
           u.etchedInkSheen.value !== 0, u.normalFiltering.value > 0, u.inkSpecular.value > 0].map(Number).join('')).join('/')

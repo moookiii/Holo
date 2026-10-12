@@ -42,6 +42,7 @@ export interface FoilLayer {
     /** Short square microcuts with independent, fixed facet inclinations. */
     microdiamond?: boolean;
     /** Dense, neutral rounded metallic grains; optical response without relief. */
+    spectralGrain?: boolean;
     metallicGrain?: boolean; };
   surface: { metalness: number; roughness: number; laminate: number; laminateRoughness: number; anisotropy?: number; foilReflectance?: number;
     /** Pattern amplitude modulates roughness independently of its color response. */

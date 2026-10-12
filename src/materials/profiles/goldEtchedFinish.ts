@@ -9,9 +9,9 @@ export const goldEtchedFinish: CardProfileOverrides = {
   ...tcglEtchedFinish,
   diffraction: { ...tcglEtchedFinish.diffraction, bandwidth: .032, strength: 1.05,
     secondaryOrder: .045, crossWidth: .30, normalFiltering: 1 },
-  // Dense metal grains seen on the border and raised trim. These are fixed
+  // Resolved holographic grains seen on the border and raised trim. These are fixed
   // optical microfacets, clipped by exact foil coverage; no generated relief.
-  glints: { density: 1, scale: 1050, sharpness: 180, strength: 3.2, spread: .32, metallicGrain: true },
+  glints: { density: 1, scale: 260, sharpness: 100, strength: 2.4, spread: .32, metallicGrain: true, spectralGrain: true },
   surface: { ...tcglEtchedFinish.surface, metalness: .65, substrateReflection: .30,
     foilReflectance: .015, inkTransmission: 1, etchedInkSheen: .65, coverageRoughness: .12, inkSpecular: 1 },
 };

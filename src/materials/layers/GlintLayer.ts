@@ -1,5 +1,6 @@
 import type { Node } from 'three/webgpu';
 import { uniform, uv, vec2, vec3, smoothstep, mix, float, tangentView, bitangentView, normalView, positionViewDirection } from 'three/tsl';
+import { spectrum } from './DiffractionLayer';
 import { stableHash } from './PatternLayer';
 
 export interface GlintUniforms {
@@ -12,6 +13,7 @@ export interface GlintUniforms {
   ordered?: Node<'float'>;
   microdiamond?: boolean;
   metallicGrain?: boolean;
+  spectralGrain?: boolean;
   filterMetallicGrain?: boolean;
 }
 
@@ -38,7 +40,16 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
     .add((bitangentView as unknown as Node<'vec3'>).mul(r2.sub(0.5).mul(settings.spread.mul(2)))).normalize();
   const half = lightDirection.add(positionViewDirection).normalize();
   const angular = normal.dot(half).max(0).pow(settings.sharpness);
-  const color = settings.metallicGrain ? vec3(1, .99, .98) : vec3(1, .97, .91);
+  // Each fixed grain has its own grating orientation and pitch. Its spectral
+  // flash moves with light/view; it is not a static rainbow painted on the die.
+  const angle = r3.mul(Math.PI * 2);
+  const grating = tangentView.mul(angle.cos())
+    .add((bitangentView as unknown as Node<'vec3'>).mul(angle.sin()));
+  const path = float(.40).add(r2.mul(.26))
+    .add(lightDirection.add(positionViewDirection).dot(grating).mul(.32));
+  const color = settings.spectralGrain
+    ? spectrum(path, float(.025), float(0)).mul(2.4)
+    : settings.metallicGrain ? vec3(1, .99, .98) : vec3(1, .97, .91);
   if (settings.metallicGrain && settings.filterMetallicGrain) {
     // Dense rounded grains integrate to an aggregate lobe once a pixel covers
     // multiple grains. Fading only the stochastic residual avoids crawling
@@ -47,7 +58,10 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
     const averageArea = float(.29);
     const broadening = settings.sharpness.mul(settings.spread.pow2()).add(1);
     const aggregate = normalView.dot(half).max(0).pow(settings.sharpness.div(broadening)).div(broadening);
-    return color.mul(mix(aggregate.mul(averageArea), spot.mul(integratedArea, occupied, angular), resolved), settings.strength);
+    // Unresolved grains integrate to a neutral ensemble, not aliased hue specks.
+    const averageColor = settings.spectralGrain ? vec3(.42, .40, .30) : color;
+    return mix(averageColor.mul(aggregate, averageArea),
+      color.mul(spot, integratedArea, occupied, angular), resolved).mul(settings.strength);
   }
   return color.mul(spot, integratedArea, occupied, angular, settings.strength);
 }
