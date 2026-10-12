@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_234/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_234/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_234/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_234/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,54 @@
     "foil": "d9db6482fc5979c4ba627637210a2bf55ce242bf065cbbb21b633e7a2062a7ac",
     "protection": "2054701724935c580a3c2d94992ab49fc61453a9818d33708aa6e5eb8e712267",
     "roughness": "640a428660a7f94f75b3040a0fb28f070984ac8f7f7ad1e62e8ff0d68d253023",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "a5345f4dadf67932e82bcb5f5b677a9312d422e869ace6f356894045ffb8992d"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "file": "research/cosmos-missing/smbsp-234/psa9-130809725-large.jpg",
+      "pageUrl": "https://www.psacard.com/cert/130809725/psa",
+      "imageUrl": "https://d1htnxwo4o0jhw.cloudfront.net/cert/189310865/large/dAtdXt81-0-wq8NfMrrK2g.jpg",
+      "title": "Pikachu SM234 PSA 9 certification 130809725, exact English Cosmos promo",
+      "dimensions": [
+        1140,
+        1880
+      ],
+      "sha256": "69051f3837c3b92a143c2ec288d528247fb6c7437b5447af3be32ab74c804f73"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.4779277792445957,
+          -0.0069176497453104615,
+          124.68616029977983
+        ],
+        [
+          0.009991131935075332,
+          1.4969838843541188,
+          498.3106808205612
+        ],
+        [
+          1.7335358561119943e-06,
+          1.207892697185211e-06,
+          1.0
+        ]
+      ],
+      "inliers": 415,
+      "medianReprojectionError": 0.5762695074081421,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Exact English SM234 Pikachu Cosmos, PSA 9 cert 130809725, 1140x1880 source. Replaced inadequate 322x450 stock reference. Reviewed whole source against clean TCGL master, complete boundaries and 4x native-coordinate tiles. Largest white disc behind the right leaf is 45 pixels across and stays one filled feature; both clipped top-edge discs and the faint lower-right blue disc were restored manually. Printed sunlight, foliage, leaf highlights and yellow grass sparkles excluded. Small circular source candidates explicitly reviewed; unresolved subpixel grain omitted. SIFT registration uses 415 print-anchor inliers with 0.576-pixel median error. Original coverage, protection, roughness and front remain unchanged. Other physical copies differ; this scan does not establish angular calibration.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }
