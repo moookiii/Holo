@@ -73,6 +73,8 @@ def main():
     shared = OUT / 'shared'; shared.mkdir(parents=True, exist_ok=True)
     empty_motif = shared / 'empty-cosmos-motif.png'
     if not empty_motif.exists(): Image.new('L', (1200, 1650), 0).save(empty_motif)
+    cosmos_path = ROOT / 'scripts/cosmos/registration.json'
+    authored_cosmos = {c['cardId']: c for c in json.loads(cosmos_path.read_bytes())} if cosmos_path.exists() else {}
 
     def prepare(m):
         r = by_id[m['card_id']]; row = r['row']; cid = m['card_id']; is_energy = m['set_id'] == 'ec'
@@ -121,7 +123,11 @@ def main():
                     Image.fromarray(normal_pixels(registered(raw['etch'], (733, 1024)), p)).save(normal)
                 maps['normal'] = '/' + normal.relative_to(ROOT / 'public').as_posix()
             if m['foil_effect'] == 'Cosmos':
-                maps['motif'] = '/' + empty_motif.relative_to(ROOT / 'public').as_posix()
+                placement = authored_cosmos.get(appid)
+                motif = ROOT / placement['destination'] if placement else empty_motif
+                if placement and digest(motif) != placement['motifSha256']:
+                    raise ValueError('Authored Cosmos motif hash mismatch: ' + appid)
+                maps['motif'] = '/' + motif.relative_to(ROOT / 'public').as_posix()
         # 'body' is authoring evidence, not an extra runtime GPU texture.
         body_path = maps.pop('body', None)
         evidence = {'tcglCardId': cid, 'tcglVariantId': m['long_form_id'], 'exportEntry': m,
@@ -136,7 +142,14 @@ def main():
                 'embossStrength': 0, 'runtimeGeneration': False},
             'outputHashes': {k: digest(ROOT / ('public' + p)) for k, p in maps.items()},
             'physicalReview': 'TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.'}
-        if m['foil_effect'] == 'Cosmos': evidence['cosmosPlacement'] = {'status': 'pending', 'reason': 'Exact-copy spot placement unavailable; empty motif, no random dots.'}
+        if m['foil_effect'] == 'Cosmos':
+            placement = authored_cosmos.get(appid)
+            evidence['cosmosPlacement'] = ({'status': placement['reviewStatus'],
+                'registration': 'scripts/cosmos/registration.json', 'reference': placement['source'],
+                'coordinateDimensions': placement['coordinateDimensions'], 'outputDimensions': placement['outputDimensions'],
+                'transform': placement['registration'], 'reviewNotes': placement['reviewNotes'],
+                'limitations': placement['limitations']} if placement else
+                {'status': 'pending', 'reason': 'Exact-copy spot placement unavailable; empty motif, no random dots.'})
         write(dest / 'evidence.json', evidence)
         number = m['printed_collector_number']; denominator = str(row.get('EN Expansion Denominator') or '')
         if number.startswith('SV') and denominator and not denominator.startswith('SV'): denominator = 'SV' + denominator
