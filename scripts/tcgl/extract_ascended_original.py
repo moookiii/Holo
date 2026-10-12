@@ -144,7 +144,8 @@ def texture(obj, path, bundle):
         serialized.write_bytes(obj.get_raw_data())
     return {'name': t.m_Name, 'pathID': obj.path_id, 'serializedFile': obj.assets_file.name,
             'dimensions': list(im.size), 'mode': im.mode, 'unityFormat': int(t.m_TextureFormat),
-            'mipCount': t.m_MipCount, 'textureSettings': t.m_TextureSettings.__dict__,
+            'mipCount': t.m_MipCount, 'textureSettings': {
+                key: getattr(t.m_TextureSettings, key) for key in t.m_TextureSettings.__slots__},
             'png': relative(path), 'pngSha256': sha(path.read_bytes()), 'pixelSha256': sha(im.tobytes()),
             'rgbaSha256': sha(im.convert('RGBA').tobytes()),
             'serialized': relative(serialized), 'serializedSha256': sha(serialized.read_bytes()),
