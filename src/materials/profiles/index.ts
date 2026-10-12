@@ -1,3 +1,4 @@
+import { luminousLines } from './luminousLines';
 import { sapphireBlue } from './sapphireBlue';
 import { emeraldGel } from './emeraldGel';
 import { phantomCorridor } from './phantomCorridor';
@@ -21,7 +22,7 @@ import { megaRarityProfiles } from './megaRarity';
 import { swshProfiles } from './swsh';
 import { prismStar } from './prismStar';
 const goldEtched = { ...prismaticProfiles.find(p => p.id === 'prismatic_gold')!, id: 'gold-etched', name: 'Gold Etched' };
-export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold]
+export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, luminousLines, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold]
   .filter(p => canonicalProfileId(p.id) === p.id);
 profiles.push(goldEtched);
 profiles.push(...bwBallReverseProfiles, ...blackWhiteRareProfiles);

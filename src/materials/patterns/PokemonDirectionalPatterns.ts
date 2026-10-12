@@ -1,6 +1,6 @@
 import { encodeGratingAxis } from './Orientation.ts';
 
-export type PokemonDirectionalKind = 'e-reader' | 'sheen' | 'water-web' | 'sm-prism-star' | 'vertical-line' | 'mirage';
+export type PokemonDirectionalKind = 'e-reader' | 'sheen' | 'water-web' | 'sm-prism-star' | 'pokemon-line' | 'vertical-line' | 'mirage';
 const TAU = Math.PI * 2;
 const clamp = (n: number) => Math.max(0, Math.min(1, n));
 const smooth = (a: number, b: number, x: number) => { const t = clamp((x - a) / (b - a)); return t * t * (3 - 2 * t); };
@@ -72,6 +72,21 @@ export function generatePokemonDirectionalField(kind: PokemonDirectionalKind, se
       spacing = .94 + .085 * Math.sin(flow * 14 + x * 3);
       amplitude = .68 + (micro - .5) * .055;
       grain = .50 + micro * .15;
+    } else if (kind === 'pokemon-line') {
+      // Fine rulings share a column-wise optical inclination. The old field's
+      // Y sweep produced horizontal washes; photographs show vertical bands.
+      const coordinate = x * scale;
+      const column = Math.floor(coordinate), across = coordinate - column;
+      const phase = random(column, 0, seed + 719);
+      const aa = scale / height * .55;
+      const cut = 1 - smooth(.19 - aa, .19 + aa, Math.abs(across - .5));
+      const sweep = x * TAU * 4.4 + sheetPhase;
+      angle = 0;
+      nx = .24 * Math.sin(sweep) + (phase - .5) * .025;
+      ny = .008 * Math.sin(y * 8 + sheetPhase);
+      spacing = 1 + (phase - .5) * .025;
+      amplitude = .045 + cut * (.68 + phase * .16);
+      grain = .42 + cut * .20;
     } else if (kind === 'vertical-line') {
       // Long unequal vertical cuts, optically segmented down their length.
       // The grating runs vertically too, giving longitudinal spectral travel.

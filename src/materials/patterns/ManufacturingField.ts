@@ -26,7 +26,7 @@ function smoothNoise(x: number, y: number, seed: number) {
 }
 
 /** Encodes manufacturing geometry only. Neither texture contains spectral colors or lighting. */
-export function generateField(spec: PatternSpec, height = ['ancient-mew', 'symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'sm-prism-star', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024, starImage?: StarImage): FieldData {
+export function generateField(spec: PatternSpec, height = ['ancient-mew', 'symbol-foil', 'legendary-fireworks', 'e-reader', 'cracked-ice', 'sequin', 'confetti', 'speckle', 'sheen', 'water-web', 'sm-prism-star', 'pokemon-line', 'vertical-line', 'mirage', 'fireworks', 'crosshatch', 'ace-spec', 'diamond', 'fresnel', 'cathedral', 'lattice', 'chrome', 'ultimate', 'varnish', 'galaxy-star', 'base-set-star', 'tinsel', 'satin', 'collector', 'collector-prismatic', 'platinum-secret', 'quarter-century', 'mtg-halo', 'mtg-surge', 'mtg-fracture'].includes(spec.kind) ? 2048 : 1024, starImage?: StarImage): FieldData {
   if (spec.kind === 'ancient-mew') return generateAncientMew(spec, height, starImage);
   if (spec.kind === 'base-set-2-cosmos') return generateBaseSet2Cosmos(spec, height, starImage);
   if (spec.kind === 'symbol-foil') {
@@ -34,7 +34,7 @@ export function generateField(spec: PatternSpec, height = ['ancient-mew', 'symbo
     return generateMotifField(spec.seed, spec.aspect, spec.scale, height, spec.motif);
   }
   if (spec.kind === 'cracked-ice' || spec.kind === 'sequin' || spec.kind === 'confetti' || spec.kind === 'speckle') return generatePokemonFacetField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
-  if (spec.kind === 'e-reader' || spec.kind === 'sheen' || spec.kind === 'water-web' || spec.kind === 'sm-prism-star' || spec.kind === 'vertical-line' || spec.kind === 'mirage') return generatePokemonDirectionalField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
+  if (spec.kind === 'e-reader' || spec.kind === 'sheen' || spec.kind === 'water-web' || spec.kind === 'sm-prism-star' || spec.kind === 'pokemon-line' || spec.kind === 'vertical-line' || spec.kind === 'mirage') return generatePokemonDirectionalField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
   if (spec.kind === 'legendary-fireworks' || spec.kind === 'fireworks' || spec.kind === 'crosshatch' || spec.kind === 'ace-spec') return generatePokemonField(spec.kind, spec.seed, spec.aspect, spec.scale, height);
   const width = Math.round(height * spec.aspect);
   const direction = new Uint8Array(width * height * 4), relief = new Uint8Array(width * height * 4);

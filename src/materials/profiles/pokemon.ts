@@ -89,12 +89,12 @@ export const pokemonProfiles: HolographicProfile[] = [{
   glints: { density: .003, scale: 720, sharpness: 300, strength: .55, spread: .22 },
   surface: { metalness: .78, roughness: .28, laminate: .22, laminateRoughness: .30, foilReflectance: .09, sheen: 0 },
 }, {
-  id: 'pokemon-vertical-line', name: 'Line', family: 'Pokémon', status: 'reference-pending',
-  description: 'Sword & Shield-style unequal fine vertical cuts with top-to-bottom optical selection. Individual columns retain silver highlights while shared spectral bands change with tilt.',
-  diffraction: { period: 1.18, bandwidth: .037, strength: 1.9, secondaryOrder: .10, direction: 0, crossWidth: .44, facetCoupling: 1 },
-  structure: { field: 'vertical-line', scale: 310, engraving: .10, relief: 0, facetTilt: .95, normalVariance: .40 },
-  glints: { density: .009, scale: 700, sharpness: 340, strength: 1.1, spread: .20 },
-  surface: { metalness: .84, roughness: .25, laminate: .18, laminateRoughness: .32, foilReflectance: .21, sheen: .44 },
+  id: 'pokemon-vertical-line', name: 'Line', family: 'Pokémon', status: 'development',
+  description: 'Fine vertical foil rulings beneath print, selected in narrow coherent rainbow columns with dark intervals. Calibrated against the supplied Diancie and modern Line photos; coverage remains card-authored.',
+  diffraction: { period: 1.18, bandwidth: .052, strength: 1.25, secondaryOrder: .035, direction: 0, crossWidth: .30, facetCoupling: 1 },
+  structure: { field: 'pokemon-line', scale: 400, engraving: 0, relief: 0, patternRelief: 0, facetTilt: 1, reflectionCoupling: .12, normalVariance: 0 },
+  glints: { density: 0, scale: 700, sharpness: 340, strength: 0, spread: .20 },
+  surface: { metalness: .78, roughness: .29, laminate: .075, laminateRoughness: .32, foilReflectance: .045, sheen: 0 },
 }, {
   id: 'pokemon-mirage', name: 'Mirage', family: 'Pokémon', status: 'reference-pending', extendedCoverage: true,
   description: 'Scarlet & Violet-style polished horizontal reflective bands and fine horizontal grain. The matched card supplies a separate silver-border mask; rules and opaque artwork stay printed.',
