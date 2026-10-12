@@ -9,6 +9,7 @@ import { galleryLightingControls } from '../gallery/GalleryLighting';
 import { BinderScene } from './BinderScene';
 import { BINDER_FINISH_STORAGE, type BinderFinish } from './BinderFinish';
 import { BINDER, BinderNavigation, binderCount, spreadFaces, spreadIndices, faceHeight } from './BinderLayout';
+import { createBinderPreview, prepareBinderFront } from './BinderCardPreview';
 
 interface Options {
   scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting;
@@ -179,7 +180,8 @@ export class FavoritesBinder {
       for (let slot = 0; slot < BINDER.perPage; slot++) {
         const key = `${face}:${slot}`, card = this.cachedCards.get(key);
         if (!card) continue;
-        this.cachedCards.delete(key); page.attach(slot, card); this.loaded.add(key);
+        this.cachedCards.delete(key); page.attach(slot, card);
+        if (!card.mesh.userData.binderPreview) this.loaded.add(key);
       }
     }
     this.trimCachedCards();
@@ -206,7 +208,8 @@ export class FavoritesBinder {
   private trimCachedCards() {
     // Share the existing 72-card residency ceiling with the active window.
     // Empty pages do not evict prepared cards needed on the return journey.
-    while (this.loaded.size + this.cachedCards.size > BINDER.perSpread * 3) {
+    const activeCards = [...this.physical.pages.values()].reduce((count, page) => count + page.cards.size, 0);
+    while (activeCards + this.cachedCards.size > BINDER.perSpread * 3) {
       const key = this.cachedCards.keys().next().value;
       if (key === undefined) break;
       this.cachedCards.get(key)!.dispose(); this.cachedCards.delete(key);
@@ -223,6 +226,18 @@ export class FavoritesBinder {
       const request = new AbortController(), domain = this.factory; this.request = request;
       const indices = this.windowSpreads().flatMap(s => this.indices(s));
       const job = (async () => {
+        // Start only the visible printed fronts during shell compilation.
+        // Full-quality preparation must not compete with first appearance.
+        const fronts = new Map<number, Promise<ImageBitmap | undefined>>();
+        const visibleIndices = this.indices();
+        const prepareFronts = (offset: number) => {
+          for (const index of visibleIndices.slice(offset, offset + 6)) {
+            const page = this.physical.pages.get(this.face(index));
+            if (fronts.has(index) || page?.cards.has(index % 12)) continue;
+            fronts.set(index, prepareBinderFront(this.cards[index], request.signal).catch(() => undefined));
+          }
+        };
+        prepareFronts(0);
         // Fetch/decode the next few full-quality cards while the GPU prepares
         // this one. Keep the window bounded and in visible-spread order.
         const preparations = new Map<number, Promise<{ value?: PreparedCardCpu; error?: unknown; failed?: true }>>();
@@ -236,22 +251,49 @@ export class FavoritesBinder {
             ));
           }
         };
-        prepareAhead(0);
-        if (!this.shellReady) {
-          // A cold ordinary render compiles the sleeve/cover shaders
-          // synchronously, blocking image-decode completions for seconds.
-          // Compile after the open request, alongside CPU card preparation.
-          // Capture every resident page so the first turn is prepared too.
-          const visibility = [...this.physical.pages.values()].map(page => [page, page.group.visible] as const);
-          for (const [page] of visibility) page.group.visible = true;
-          this.physical.group.visible = true;
-          const shell = domain.compile(this.physical.group);
-          this.physical.group.visible = false;
-          for (const [page, visible] of visibility) page.group.visible = visible;
-          await shell;
-          if (request.signal.aborted || !this.active) return;
-          this.shellReady = true; this.physical.group.visible = true;
+        try {
+          if (!this.shellReady) {
+            // A cold ordinary render compiles the sleeve/cover shaders
+            // synchronously, blocking image-decode completions for seconds.
+            // Compile after the open request, alongside lightweight front decoding.
+            // Capture every resident page so the first turn is prepared too.
+            const visibility = [...this.physical.pages.values()].map(page => [page, page.group.visible] as const);
+            for (const [page] of visibility) page.group.visible = true;
+            this.physical.group.visible = true;
+            const shell = domain.compile(this.physical.group);
+            this.physical.group.visible = false;
+            for (const [page, visible] of visibility) page.group.visible = visible;
+            await shell;
+            if (request.signal.aborted || !this.active) return;
+            this.shellReady = true; this.physical.group.visible = true;
+          }
+          for (const [offset, index] of visibleIndices.entries()) {
+            if (request.signal.aborted || !this.active) return;
+            prepareFronts(offset);
+            const bitmap = await fronts.get(index);
+            fronts.delete(index);
+            prepareFronts(offset + 1);
+            if (!bitmap) continue;
+            if (request.signal.aborted || !this.active) { bitmap.close(); return; }
+            const instance = createBinderPreview(this.cards[index], bitmap);
+            try {
+              await this.waitForMotion(request.signal);
+              request.signal.throwIfAborted();
+              await domain.uploadCardResources([instance], true);
+              await domain.compile(instance.mesh);
+              request.signal.throwIfAborted();
+              const page = this.physical.pages.get(this.face(index));
+              if (page) { page.attach(index % 12, instance); this.trimCachedCards(); } else instance.dispose();
+              await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
+            } catch (error) {
+              instance.dispose(); if (request.signal.aborted) return;
+              console.warn(`Binder preview ${this.cards[index].id} could not load`, error);
+            }
+          }
+        } finally {
+          for (const front of fronts.values()) void front.then(bitmap => bitmap?.close());
         }
+        prepareAhead(0);
         for (const [offset, index] of indices.entries()) {
           if (request.signal.aborted || !this.active) return;
           prepareAhead(offset);
@@ -382,13 +424,13 @@ export class FavoritesBinder {
   }
   stats() {
     const faces = new Set(spreadFaces(this.navigation.spread));
-    const ready = this.indices().filter(index => this.loaded.has(`${this.face(index)}:${index % 12}`)).length;
+    const ready = this.indices().filter(index => this.physical.pages.get(this.face(index))?.cards.has(index % 12)).length;
     return { binder: true, binderIndex: this.navigation.binder, binders: binderCount(this.cards.length), capacityPerBinder: 480,
       physicalSheets: 20, leftStack: this.navigation.spread, rightStack: 20 - this.navigation.spread,
       spread: this.navigation.spread, spreads: 21, turning: !!this.navigation.turn, dragging: !!this.navigation.turn?.dragging,
       turnProgress: this.navigation.turn?.progress ?? 0, preparing: this.pending, active: this.active, filtered: this.cards.length,
-      visible: ready, visibleExpected: this.indices().length, visibleFailed: [...this.failed].filter(key => faces.has(Number(key.split(':')[0]))).length,
-      residentCards: this.loaded.size + this.cachedCards.size, cachedCards: this.cachedCards.size, residentPages: this.physical.pages.size, pending: Number(!!this.job),
+      visible: ready, fullQualityReady: this.indices().filter(index => this.loaded.has(`${this.face(index)}:${index % 12}`)).length, visibleExpected: this.indices().length, visibleFailed: [...this.failed].filter(key => faces.has(Number(key.split(':')[0]))).length,
+      residentCards: [...this.physical.pages.values()].reduce((count, page) => count + page.cards.size, this.cachedCards.size), cachedCards: this.cachedCards.size, residentPages: this.physical.pages.size, pending: Number(!!this.job),
       neighborsReady: this.windowSpreads().every(s => this.indices(s).every(i => this.loaded.has(`${this.face(i)}:${i % 12}`))),
       residentGpuBytes: this.factory?.retainedBytes(), domCards: this.buttons.size, factory: this.factory?.stats() };
   }
