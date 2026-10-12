@@ -25,6 +25,20 @@ try {
   await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
   results.startupXYRequests = requests.filter(u => u.includes('/tcgl-xy/')).length;
+  await page.evaluate(() => window.__holo.gallery.open());
+  await page.getByLabel('Set', {exact:true}).selectOption('XY Base Set');
+  await page.getByLabel('Search gallery cards').fill('Weedle');
+  await page.getByLabel('Finish', {exact:true}).selectOption('reverse');
+  await page.waitForTimeout(1200);
+  const weedle = page.locator('[data-card-index]').filter({hasText:'Weedle'}).first();
+  await weedle.click({modifiers:['Shift']});
+  await page.getByRole('button',{name:'Open Favorites binder',exact:true}).click();
+  await page.waitForTimeout(1800);
+  assert.equal(await page.locator('.binder-card[data-card-id="pokemon:xy1-3:reverse"]').count(), 1);
+  await page.screenshot({path:`${out}/xy-favorite-binder.png`});
+  await page.getByRole('button',{name:'Close Favorites binder',exact:true}).click();
+  await page.evaluate(() => window.__holo.gallery.close('pokemon:xy1-3:reverse'));
+  results.galleryFavoritesBinder = 'passed';
   const ids = ['pokemon:xy1-3:reverse','pokemon:xy1-41:holo','pokemon:xy5-2:reverse','pokemon:xy5-5-1:reverse','pokemon:xy12-35:reverse','pokemon:xy8-107:holo','pokemon:xy9-5r-3:normal','pokemon:xyalt-22:holo'];
   for (const id of [...ids, 'pokemon:sv08.5-155:holo', 'pokemon:sv08.5-156:holo']) {
     await page.evaluate(async id => await window.__holo.gallery.close(id), id);
