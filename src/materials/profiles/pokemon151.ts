@@ -48,8 +48,8 @@ pokemon151Profiles.push({ ...reference('prismatic_sir_texture'),
 });
 
 // #166–181 are smooth Illustration Rares, not the etched ex/SIR printings.
-pokemon151Profiles.push({
-  id: 'pokemon151_illustration_holo', name: '151 · Illustration Rare', family: 'Pokémon', status: 'development',
+export const illustrationRareOriginal: HolographicProfile = {
+  id: 'illustration-rare-original', name: 'Illustration Rare · Original', family: 'Original', status: 'development',
   opticalModel: 'sv151-illustration',
   description: 'Continuous directional foil beneath printed ink; shared viewer/gallery spectral reflection with independently masked silver border.',
   mapSettings: { normalScale: 0, embossStrength: 0 },
@@ -58,5 +58,18 @@ pokemon151Profiles.push({
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
   surface: { metalness: .48, roughness: .30, laminate: .075, laminateRoughness: .27, foilReflectance: .025,
     inkTransmission: .72, inkDensity: 1, substrateReflection: .35, sheen: 0 },
+  metallicInk: { metalness: .82, roughness: .32 },
+};
+
+pokemon151Profiles.push({
+  id: 'pokemon151_illustration_holo', name: '151 · Illustration Rare', family: 'Pokémon', status: 'development',
+  opticalModel: 'sv151-illustration',
+  description: 'Soft, restrained full-spectrum directional foil with reduced ink tint and independently masked silver border.',
+  mapSettings: { normalScale: 0, embossStrength: 0 },
+  diffraction: { period: 1.18, bandwidth: .032, strength: .85, secondaryOrder: .015, direction: Math.PI / 4, crossWidth: .46, facetCoupling: 0 },
+  structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, facetTilt: 0, patternRelief: 0, reflectionCoupling: 0, normalVariance: 0 },
+  glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
+  surface: { metalness: .48, roughness: .34, laminate: .045, laminateRoughness: .32, foilReflectance: .025,
+    inkTransmission: .30, inkDensity: 1, substrateReflection: .22, sheen: 0 },
   metallicInk: { metalness: .82, roughness: .32 },
 });
