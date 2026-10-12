@@ -308,5 +308,34 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass."
+  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "originalMaterial": {
+    "m_GameObject": {
+      "m_FileID": 0,
+      "m_PathID": 0
+    },
+    "m_Enabled": 1,
+    "m_Script": {
+      "m_FileID": 0,
+      "m_PathID": -1105419751536209591
+    },
+    "m_Name": "MaterialManifest",
+    "_v": 0,
+    "_m": {
+      "m_FileID": 0,
+      "m_PathID": 0
+    },
+    "_c": "bwbsp_en_028",
+    "_e": "",
+    "_w": "bwbsp_foil_en_028",
+    "_s": "Cards/Foil/HoloFoil_Rainbow_Amplify_J",
+    "_p": "Assets/Cards/FullCard/BWBSP/EN/028/bwbsp_en_028_rb_h_std.mat",
+    "_f": "HoloFoil_Rainbow_Amplify_J",
+    "_options": 0
+  },
+  "physicalFinishReview": {
+    "activeEtch": "No authored normal response",
+    "evidence": "docs/bw-finish-research.md",
+    "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
+  }
 }

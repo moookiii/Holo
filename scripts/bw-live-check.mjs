@@ -19,7 +19,7 @@ const errors = [], requests = [], results = { viewers: [], packs: [] };
 page.on('pageerror', e => errors.push(e.message));
 page.on('request', r => requests.push(r.url()));
 page.on('response', r => { if (r.status() >= 400 && r.url().includes('127.0.0.1')) errors.push(`${r.status()} ${r.url()}`); });
-await page.route('https://api.tcgdex.net/v2/en/series', r => r.fulfill({ json: [{ id: 'bw', name: 'BW' }] }));
+await page.route('https://api.tcgdex.net/v2/en/series', r => r.fulfill({ json: [{ id: 'bw', name: 'Black & White' }] }));
 const products = [['bw1','Black & White'],['bw2','Emerging Powers'],['bw3','Noble Victories'],['bw4','Next Destinies'],['bw5','Dark Explorers'],['bw6','Dragons Exalted'],['bw6-5','Dragon Vault'],['bw7','Boundaries Crossed'],['bw8','Plasma Storm'],['bw9','Plasma Freeze'],['bw10','Plasma Blast'],['bw11','Legendary Treasures']];
 try {
   await page.goto(process.env.HOLO_URL ?? 'http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
