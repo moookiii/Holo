@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_86/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_86/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_86/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_86/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "37c92a4661046f9148fec18023447f872db3bdff10485a5e9587f01ca59fed29",
     "protection": "fb4ed30c5fc6d6386ff25d8e005f6289be9c733455cca0dfcf066a501691e44f",
     "roughness": "e2c4ab2b7724408a530f9490b1f0fb0a0d5f3a7379603d7b7ec087021bd677c2",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "e521ee849cab7cf2ecd9f42f55fc42cdd8db441983c3bf04cee80c608b64a3b9"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51148,
+      "title": "Regigigas  (84a/111 Forbidden Light Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/regigigas-84a-111-forbidden-light-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S793Special-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Yellow A Alternate art Forbidden Light Three Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-86/51148.jpg",
+      "sha256": "3175260e5ec24757afd0344c2959859683757d4ecfaca0363b446b9a6244d0a7"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5344954502632463,
+          -5.984793577546485e-05,
+          2.5300989130378717
+        ],
+        [
+          -0.00023270887960062498,
+          0.542180292486107,
+          0.9968596662329262
+        ],
+        [
+          1.749771839498882e-07,
+          -2.3759615662880563e-06,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 252,
+      "medianReprojectionError": 0.2695334553718567,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed every narrow background gap. Explosive white/blue rays and energy flashes are print; rejected them as dots. Kept round purple/cyan background foil independently.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

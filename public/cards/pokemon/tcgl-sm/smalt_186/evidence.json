@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_186/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_186/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_186/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_186/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "abc5b5a3f0a9e58b28f7f7b04ebcd95bca20f69684701bfff6785b869224e775",
     "protection": "228931d8667a1967dbbb3665e7c779fd189437c58f48fbe1b94cc71bf9543473",
     "roughness": "6b8159e9fccd0ada279b4951eebd9227d0b401b93c54046c9eab39275d266bbe",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "332c4998864affd791d3f26fb28d9a5ca8437e903286f290218edd2071adf1c7"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51346,
+      "title": "Cosmos Holofoil  Silvally  (184/236 Sword & Shield Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-silvally-184-236-sword-shield-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S917Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        325,
+        450
+      ],
+      "description": "Cosmos Holo Sword & Shield Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        325,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-186/51346.jpg",
+      "sha256": "8a852025533bf0cff0505e0686efc23c6591066b3afcdf9f997fd98a65f798a1"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5392143674717811,
+          0.00012769012023910672,
+          -0.6266189244624799
+        ],
+        [
+          -0.00020570996805780665,
+          0.542329999644027,
+          0.845238702978437
+        ],
+        [
+          -1.0129489321289738e-06,
+          -1.7398229834491865e-06,
+          1.0
+        ]
+      ],
+      "inliers": 311,
+      "medianReprojectionError": 0.2380642294883728,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole window reviewed against printed attack rays, body silhouette and floor. Ray/floor candidates omitted. Restored the yellow lower-left circle as a full feature including its dim inner phase; kept independent sky disks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_22/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_22/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_22/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_22/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "f364ec076ff8156b447be52ba960d3b78d44273a59a503ca04746023d80a8ffa",
     "protection": "7840d4a860d736f2a256ac061cd612038251dee9eade908ea5fe16b1b932ae87",
     "roughness": "54b7033112f157beeb70d8eb6dbf013575596fa415c0bf2a2c8385e2db7e7a0c",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "48bf916afd11c75286137391eaf7fa03cf84be388a4c5eb694cb12d19521dd06"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50982,
+      "title": "Cosmos Holofoil Alolan Dugtrio  (87/149 Burning Shadows Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-alolan-dugtrio-87-149-burning-shadows-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S713Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        356,
+        500
+      ],
+      "description": "Cosmos Holo Burning Shadows Alolan Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        356,
+        500
+      ],
+      "file": "research/cosmos-missing/smalt-22/50982.jpg",
+      "sha256": "73fb13b5ff14d2c67e2bbff44cdb6167f30e0016d8d3e42564134cd47bf49ffa"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.595390544344074,
+          -0.0010303841274371197,
+          1.5905980719645685
+        ],
+        [
+          0.007009713512964043,
+          0.6012667591263003,
+          -0.8847544442063702
+        ],
+        [
+          2.396755535181688e-05,
+          -7.927925865280777e-06,
+          1.0
+        ]
+      ],
+      "inliers": 349,
+      "medianReprojectionError": 0.49714112281799316,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed dark upper/corner foil and both sides of the hair silhouette. Removed large floor/rock-light false circles and foreground print; retained visible background disks and faint brown circle behind the upper head.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

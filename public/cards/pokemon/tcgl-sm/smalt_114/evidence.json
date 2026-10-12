@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_114/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_114/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_114/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_114/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "c35b553ee8b18ca099f663289a97e346c9f27df0e822366ec56e7e1a5eb2990e",
     "protection": "e64f0097fe8f45076dc02330cb19601b9702d15e115333664e561f5af640a7ea",
     "roughness": "d37bccd5bec1074281e18c2caab6ee020ee5ef4b3edf2c61526d31980838136e",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "1211423b9fec11268ae3cab72ced4ed54c4866cdb01f9ac46f4e5c09f3a5c53c"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51232,
+      "title": "Cosmos Holofoil  Wailord  (40/168 Unbroken Bonds Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-wailord-40-168-unbroken-bonds-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S839Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Cosmos Holo Unbroken Bonds Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-114/51232.jpg",
+      "sha256": "85a995ca529c8f40b76dc6f28d645f54904bbc3175f68def5e2ffcb6a0cd6f6c"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5368020361505562,
+          -0.0009278210825644516,
+          -0.6152271390648811
+        ],
+        [
+          0.00010721693174590662,
+          0.5452851936051284,
+          -0.9546102015721463
+        ],
+        [
+          -4.5809939193703853e-07,
+          -2.77724083021599e-08,
+          1.0
+        ]
+      ],
+      "inliers": 243,
+      "medianReprojectionError": 0.2742310166358948,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared whole water scene with the exact clean front. Printed bubbles, waves and coral are distinct from newly visible Cosmos disks. Rejected coral/body-edge candidates and completed faint upper-right and right-mid disks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

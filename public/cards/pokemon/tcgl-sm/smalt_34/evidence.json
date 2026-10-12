@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_34/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_34/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_34/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_34/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "6414afefe2da8644ee21db19f5bd30243fde87c598e645c8bc7e823715f63c5b",
     "protection": "3355df2a7c99ea3ada4e5d2fb91ea6e2f9e6d28589ccb3fcea6cbb0e9b051c73",
     "roughness": "41652becdf9d68e9f08ed2268b2cae6aaeb5359996961c4a5842c5ee157aa33e",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "6538da45cfc3ea8151b217bd1975e0f5ba1746baeb9e7d2556592f0820fb44ac"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51048,
+      "title": "Garbodor  (51a/145 Forbidden Light Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/garbodor-51a-145-forbidden-light-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S735Special-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Yellow A Alternate art Forbidden Light Three Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-34/51048.jpg",
+      "sha256": "67bab2e5cdd7669b1a25ee7f69f422f666dbcb066fd629913a9d8402908b935c"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5352351269273034,
+          0.000137079530942083,
+          0.8211209902081483
+        ],
+        [
+          -0.0008975724174611532,
+          0.543115566592108,
+          1.4322090664228184
+        ],
+        [
+          1.4593479802050702e-06,
+          -1.0529605492731208e-06,
+          1.0
+        ]
+      ],
+      "inliers": 202,
+      "medianReprojectionError": 0.28553900122642517,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed factory pipes and each narrow foil island. Rejected foreground waste/pipe and rail hits. Completed faint pale upper-left foil circle; retained independent pale background dots, including the clipped upper-right spots.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

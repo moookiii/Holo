@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_190/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_190/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_190/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_190/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "c94a6cbdbe89b4ce91a91a1b576f2b84864ce05917ccbe5cbc928a413c99cd17",
     "protection": "60684302e14b617f272573ae2140aa39ec1c7d8a0e9db6c4a1efbeadfde4e1bb",
     "roughness": "e0f22f223f1b56dbc0c7c26511a6ccf168f8f8ecdd7e3ddbaa6c9bc747a0cfaa",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "a9faa5309d5aaf186440508521ecae72e1359509aa3215973fc7867488b49792"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51329,
+      "title": "Cosmos Holofoil  Golisopod  (51/236 Sword & Shield Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-golisopod-51-236-sword-shield-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S906Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Cosmos Holo Sword & Shield Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-190/51329.jpg",
+      "sha256": "72e649ffc74dfe24baa375f729976c4db9d0d1060c4d661753a426eec533e388"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5359420702882108,
+          -0.0017640995806917149,
+          -1.2299641485422754
+        ],
+        [
+          0.0003658598088674975,
+          0.5421064149310492,
+          -0.009578409933460097
+        ],
+        [
+          -2.830909640890993e-06,
+          -1.752201942628752e-06,
+          1.0
+        ]
+      ],
+      "inliers": 310,
+      "medianReprojectionError": 0.28400298953056335,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed narrow background around every plate/limb. Wave foam and armored print excluded; kept sparse golden/pale Cosmos spheres and distinct small background dots.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

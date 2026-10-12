@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_134/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_134/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_134/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_134/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "0bee95da273b36285c048eabc8b10bfde16bd0340db4d88ff336a16911883dd7",
     "protection": "d829ceffa3b91d92ac2ffe715271570835c8705a8df8b09c6a45d2622c6b9581",
     "roughness": "905dd1420281ccca470f855dfc6e832d9df8bb5f7730b05618cae76e476eed05",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "6b6988b7262882257859f4395c934edaa91aad918fa42332886234f3977c577e"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51271,
+      "title": "Cosmos Holofoil  Umbreon  (120/214 Unified Minds Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-umbreon-120-214-unified-minds-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S866Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        399,
+        558
+      ],
+      "description": "Cosmos Holo Unified Minds Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        399,
+        558
+      ],
+      "file": "research/cosmos-missing/smalt-134/51271.jpg",
+      "sha256": "42a301977fd3dd462b57239d2219b308a0e5e3208f72aaee922ad3c9bd8b5f5b"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.6642001347856414,
+          7.082476937708268e-06,
+          -0.6039106791750711
+        ],
+        [
+          -0.00010175269244648531,
+          0.6748617254958285,
+          -0.2620466406964625
+        ],
+        [
+          -5.664099054677473e-07,
+          -5.719158644073524e-07,
+          1.0
+        ]
+      ],
+      "inliers": 534,
+      "medianReprojectionError": 0.14937874674797058,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed all forest foil, the ear gaps and lower leg gap. Rejected foliage/glare clusters. Restored the reddish upper swirl as its observed open curved path, and the green upper burst as a traced pointed shape; colored disks remain whole.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

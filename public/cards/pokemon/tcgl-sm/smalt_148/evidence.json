@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_148/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_148/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_148/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_148/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "3f637cc60318f3885871cb5b43a7a72e55814d05e4a91255611a899cfaf92e15",
     "protection": "3fc71c52e0c8bffa70e93d16b8595de2665fbd93c70c47130523b808f1708b62",
     "roughness": "5e3f00d98b63d85c14ad6bc31b587b69536c42b295e326c7a1ef30d640b28f5b",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "e32ec0c8dc0047fddd69feb5af17c40d4524ee447eb572529be923dd482a6a8d"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51309,
+      "title": "Cosmos Holofoil  Squirtle  (33/214 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-squirtle-33-214-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S891Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Cosmos Holo Blastoise-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-148/51309.jpg",
+      "sha256": "2597de2bf779feaf4c87e6c37505796ec54d779ed6308b096d83edd1e5cb225f"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5376955670176494,
+          0.00043733169269632966,
+          -0.4355439784096431
+        ],
+        [
+          -0.0006211996969215605,
+          0.5461132681301497,
+          -3.3555146860844367
+        ],
+        [
+          1.3624693007572886e-06,
+          1.8490873359518227e-06,
+          1.0
+        ]
+      ],
+      "inliers": 174,
+      "medianReprojectionError": 0.2985260784626007,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole water window reviewed. Printed foam and body-edge candidates were removed. Restored the large upper-right pink sphere as one filled disk, replacing its streak/fragment highlights; retained isolated upper background foil.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

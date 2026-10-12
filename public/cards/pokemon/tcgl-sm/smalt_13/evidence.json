@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_13/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_13/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_13/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_13/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "4add15744708b6616e3dd1f9799a03b1b6d43d2508998465219ff91e818cdd3e",
     "protection": "a3e503bc657856172c9776d4c907107e0c8a222576fd8de1e61f44b8645779d3",
     "roughness": "6e1c60f0096cdbe9f84f59c311457f76253b8c67b69df0af990df499c534df15",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "f3327d514d0a6d762c9e54d7c9378220b3437001227fe36a58bb8cb52b3a4838"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50969,
+      "title": "Cosmos Holofoil  Popplio  (39/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-popplio-39-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S703Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        324,
+        450
+      ],
+      "description": "Cosmos Holo Primarina-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        324,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-13/50969.jpg",
+      "sha256": "88d097e3be993bdd3ae9551c031d4db82456d5003673b643e08e17be98cdd023"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5391537542588455,
+          -0.001610162346356668,
+          -0.5509377008717539
+        ],
+        [
+          0.00011901878134801151,
+          0.5441399597157938,
+          -2.0146831750958683
+        ],
+        [
+          -2.442125145293029e-06,
+          -1.0245903274872496e-06,
+          1.0
+        ]
+      ],
+      "inliers": 154,
+      "medianReprojectionError": 0.2857549488544464,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed whole window against exact print, including flipper gaps and narrow foil beside feet. Omitted foreground rocks and foam candidates; large clipped upper disk and left lower turquoise disk remain single filled features.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

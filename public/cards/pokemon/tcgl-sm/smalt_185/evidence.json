@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_185/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_185/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_185/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_185/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "f0510174592b3fbbb856f77e249d72282408117966128554f456ec6e730f5a02",
     "protection": "35dfeaf7ac33747172a00fecc710ada6bbdbcc7a8defc79d3ca7a0e01b74b257",
     "roughness": "1d6fb9ac824a9a2ff92754224162830f39c7f9e843b4fcb1b09563c8deece5a0",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "4a32b319d32d456a4a93b1239e28602c7e550384a80be5334e0dca83f1021e38"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51267,
+      "title": "Cosmos Holofoil  Giratina  (97/214 Giratina Mini-album Blister Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-giratina-97-214-giratina-mini-album-blister-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S863Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Cosmos Holo Giratina Mini Album Blister exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-185/51267.jpg",
+      "sha256": "2ceef5d55882e057bd2956031740c665bd854cdc2b8beee07b16a0902b0f7d94"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5370064319321823,
+          0.0009247571635985044,
+          0.24177695632161406
+        ],
+        [
+          -0.003073557544910996,
+          0.544557052993638,
+          -0.6246300187827751
+        ],
+        [
+          -4.637723088335673e-06,
+          2.1808998380896547e-07,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 307,
+      "medianReprojectionError": 0.29751187562942505,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole multicolored vortex reviewed. Rocks, spikes and vortex rays were rejected. Retained only isolated round physical foil, completing the lower-right yellow disk; upper pale disk preserved intact.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_59/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_59/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_59/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_59/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "831b81e3790cf10bea643c9ce8d549394c05d05a5f2e663030be5cf41cf53a4d",
     "protection": "0220462691b87173510c185969ed76fe76916bfb4fe999499e3e32fdaf5cdb16",
     "roughness": "a9ff3c3a331b97e5095634f63f834f4265d1293ec2f5134dfad87d7d640293e5",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "ecd66ad5149720d20d4cc4cf22036f9cbae4d0e9d69c0acb14fb3af58c45eaa8"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51096,
+      "title": "Cosmos Holofoil  Gyarados  (33/147 Team Up Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-gyarados-33-147-team-up-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S760Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        387,
+        539
+      ],
+      "description": "Cosmos Holo Team Up Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        387,
+        539
+      ],
+      "file": "research/cosmos-missing/smalt-59/51096.jpg",
+      "sha256": "518f918b874166c420119679de34a48e413b7e9f1ab2a6dabc07882da6bb4375"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.6425568601663696,
+          0.0004899942610129471,
+          0.7732345354439085
+        ],
+        [
+          -0.0016054907611407134,
+          0.653004597364101,
+          1.3041458946662008
+        ],
+        [
+          -9.581626655780991e-07,
+          -7.494674975410736e-08,
+          1.0
+        ]
+      ],
+      "inliers": 364,
+      "medianReprojectionError": 0.30320286750793457,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed all dark background gaps around Gyarados and the moving-water artwork. Removed body-edge/foam-grain clusters; kept the large purple right disk intact and completed the partially clipped pale lower-left disk.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

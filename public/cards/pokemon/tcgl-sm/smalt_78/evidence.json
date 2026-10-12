@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_78/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_78/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_78/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_78/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "92eeebc83229ab9f2eaff296372b07de806fd144110523a5f2fe423471b533ca",
     "protection": "63eab5dfaac70630b4b2d7ad5769fc915a4f602b7c9f7f28fe9369b8988df775",
     "roughness": "f4cc538c137a733dc0afb3165d65ed6da0569ad15de76779263d277c0eac98d4",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "93d309c918177cc86af91621bbee32a4fba4ea1a42e680f3ba0e26fdbb5daa7b"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51134,
+      "title": "Cosmos Holofoil  Regirock  (53/111 Celestial Storm Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-regirock-53-111-celestial-storm-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S784Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        316,
+        437
+      ],
+      "description": "Cosmos Holo Celestial Storm Two Pack Blister exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        316,
+        437
+      ],
+      "file": "research/cosmos-missing/smalt-78/51134.jpg",
+      "sha256": "c933c2513256654b3eb0efee953743615c978558c778f653e8f1c8dba4b8abef"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5241393866480991,
+          -0.00026313643996570734,
+          0.5778805308487333
+        ],
+        [
+          -0.000469521199950808,
+          0.5272110471190774,
+          0.9351158729091388
+        ],
+        [
+          -3.4854101003475917e-06,
+          1.5762141981229167e-07,
+          1.0
+        ]
+      ],
+      "inliers": 306,
+      "medianReprojectionError": 0.33863866329193115,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed rock print and dark background, including the lower rail and hand gaps. Completed the brown/orange oval behind the right leg and lower pink dot, replacing fragment candidates. Rock holes and illuminated stone faces are print.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_83/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_83/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_83/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_83/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "438c2796fd4d5b8b77c22c868bf96a2b3cd4dc5e3691151b9acf8131525984de",
     "protection": "28d4bd093c1268e3fa4bad0fb8c8bd92af8b149f3f7913901aabc6d4a9abc267",
     "roughness": "ce749f2e3c0e74f5c1b970915dfe7bb3ebd2d70e9bc1d14f6224c4dcafb37282",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "7c13db1a62762865fa70263504a2a78e6a62664bbc817fc61691dc5e82641693"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51139,
+      "title": "Cosmos Holofoil  Registeel  (68/111 Celestial Storm Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-registeel-68-111-celestial-storm-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S788Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        324,
+        450
+      ],
+      "description": "Cosmos Holo Celestial Storm Two Pack Blister exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        324,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-83/51139.jpg",
+      "sha256": "75fc2ad17f81243f0429ac6db327689c7799fff4662f014cb1db419f706a2134"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5389056824129218,
+          -0.0017243677886981349,
+          0.06968086233358917
+        ],
+        [
+          0.0007950113054798591,
+          0.5441395219962504,
+          -0.7557325672712635
+        ],
+        [
+          -5.158754296136949e-07,
+          -1.5407652244133415e-06,
+          1.0
+        ]
+      ],
+      "inliers": 361,
+      "medianReprojectionError": 0.25703856348991394,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed human figure, metallic subject and rail individually against the reference. Kept physical background spheres, including clipped edge spots; removed human/rail/floor candidates and retained independent bottom-ring foil disks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

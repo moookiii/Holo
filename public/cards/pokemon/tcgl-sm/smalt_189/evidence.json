@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_189/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_189/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_189/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_189/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "35ea918a4c2acbcd2de40900e04f44a2efeb5ac26a8082e1f040dcdfd43e0cf2",
     "protection": "521ca6d2de0efcefcc65fe4bbf0fab1a32ac1f5660838608df9501033ff53aa9",
     "roughness": "eada4d55d3d945eb8a03b9d529574cfe74958c94cfdd6363fbdb804b5d90a7f9",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "cfa66dba1b0f089946190df32614105e4b500c9b8a29dcdcb1b7d04df2781011"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51316,
+      "title": "Cosmos Holofoil  Melmetal  (129/214 Cosmic Eclipse Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-melmetal-129-214-cosmic-eclipse-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S897Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Cosmos Holo Cosmic Eclipse Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-189/51316.jpg",
+      "sha256": "8216a758368289ff523f73f4488b6f430483871d5584fbf61e41db60a8e6950b"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5350716068415166,
+          -0.0014128567634588806,
+          0.17412302515167416
+        ],
+        [
+          -0.000325195913602754,
+          0.5436558448618984,
+          0.7069620192408933
+        ],
+        [
+          -2.9660209732318742e-06,
+          7.396502243496939e-07,
+          1.0
+        ]
+      ],
+      "inliers": 339,
+      "medianReprojectionError": 0.304797887802124,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Selected the exact unstamped Cosmos printing, not the store-stamped version. Whole window reviewed; retained sparse round background foil and removed ground/foliage print hits. No secondary/etched response added.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

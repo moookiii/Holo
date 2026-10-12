@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_24/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_24/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_24/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_24/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "aac85074cadbce9ac5b297b85c1c82cb86e20ed3a5597c1f69a868e0ea43fafd",
     "protection": "a700cc8f06ff522b6d53055c69d8a41b7b58e7d13c7cc6c2160b920b413add7a",
     "roughness": "1e766cd9d5488f6413405336a8f67916f7b97f49384b2b50df78701538c4e23a",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "eeff4be15128594b1911216fcb50ac6313106405c6e014a9254372ee5785bbe6"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50985,
+      "title": "Cosmos Holofoil  Eevee  (101/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-eevee-101-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S716Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Cosmos Holo Espeon-GX/Umbreon-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-24/50985.jpg",
+      "sha256": "e61e7206edb45d65f3c74e43e1071dc312c8e543f28226710ae7b593f3cfa342"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5358734525265121,
+          -0.0003868339217793403,
+          0.32575954061276885
+        ],
+        [
+          5.338007306417547e-05,
+          0.5428825435072603,
+          -0.9751354457985508
+        ],
+        [
+          2.2698174047447318e-07,
+          -1.1998166173295561e-06,
+          1.0
+        ]
+      ],
+      "inliers": 318,
+      "medianReprojectionError": 0.2307947874069214,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole-window Eevee reference review: purple/blue disks are physical foil, while white pointed stars and grass are printed artwork. Completed the three large upper disks and the lower-right moon-like circle as single features, removed crown-edge fragments, and omitted grass/grain candidates.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

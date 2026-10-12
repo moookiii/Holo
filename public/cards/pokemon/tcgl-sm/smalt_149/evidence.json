@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_149/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_149/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_149/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_149/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "c8f1044e68142415c16f81670c587845bda72d985002593fa8b2259ddb2a0e3e",
     "protection": "7c70ba96718a7bbd843d99501c167a0ef66ff7ca1a212969e2449c8f50f101ac",
     "roughness": "a6988c2942569705637dd730d3904f6b323b444c40c34aaac491267e959f3938",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "20d0ea67c676c540b1740733b566576b4a035a086c98b79e06690bea78dd7976"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51310,
+      "title": "Cosmos Holofoil  Wartortle  (34/214 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-wartortle-34-214-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S892Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Cosmos Holo Blastoise-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-149/51310.jpg",
+      "sha256": "9f5b92a57c3669bf285bd91ad480645e8d4178ee52d8836e503551940d9452f0"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5361638394942981,
+          -0.0016840498567761634,
+          1.2296803442926911
+        ],
+        [
+          -0.0006199721945922035,
+          0.5442522957924001,
+          -0.4963866894074727
+        ],
+        [
+          -3.3939839945334336e-06,
+          4.364093707401785e-07,
+          1.0
+        ]
+      ],
+      "inliers": 235,
+      "medianReprojectionError": 0.3292028307914734,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole window reviewed across each wave, curl and limb gap. Printed wave froth and tail/body edge fragments removed; the two prominent left cyan disks remain intact and isolated upper/right foil circles are retained.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

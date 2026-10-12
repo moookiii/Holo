@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_112/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_112/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_112/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_112/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "2ae1c99c0a5de5710e4200429189994d73f56f45117d67e1fabf46413361c985",
     "protection": "a29509630bc86cc7be123cbe99163d993c2904e75729831b1b1b1b48d48a6f08",
     "roughness": "bd09939e3c1e169671da9dab45594a460faeb401df710b378abab2d2df6d9b03",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "fe70f33d9b323f3dcc84116024e60e614e7873fda847e0829fc07b032b7f0bb0"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51226,
+      "title": "Sceptile  (10a/168 Unbroken Bonds Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/sceptile-10a-168-unbroken-bonds-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S836Special-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Yellow A Alternate art Unbroken Bonds Three Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-112/51226.jpg",
+      "sha256": "a433d86e37f20bca43b8c7e8e800399a73f4e7603db6109a9b0f7a5c6b0591fc"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5361520123998599,
+          -8.660733028207805e-08,
+          -0.5864404771207898
+        ],
+        [
+          -0.0013960734268887685,
+          0.5464118288845017,
+          -1.3371720653455037
+        ],
+        [
+          -2.652689695415006e-06,
+          6.252485808743176e-07,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 299,
+      "medianReprojectionError": 0.30328333377838135,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared whole physical scan with unchanged clean front: orange leaves are printed, pale/yellow circles are foil. Rejected all large leaf-shaped false disks and most vegetation texture; retained isolated pale spheres and explicitly measurable small foil.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

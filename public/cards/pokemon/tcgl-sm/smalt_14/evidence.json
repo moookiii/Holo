@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_14/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_14/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_14/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_14/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "d462c9f6c807f4348e8bb77f1ec0430c4c53704cf20611bac27ea4fc76fcd873",
     "protection": "3888650f1aca1b91a95f02c61eb644847243b5b67549f6134df8743a72c2f553",
     "roughness": "665a0526a6b36e1375b1121bd22bc3b87e0cecd30f5c69c559ae6dbe56ab735a",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "1606b65e5807ffbcf0a9ad4e4462b1913253fd5ece69af77f4cc5cfd144db615"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50970,
+      "title": "Cosmos Holofoil  Brionne  (40/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-brionne-40-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S704Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Cosmos Holo Primarina-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-14/50970.jpg",
+      "sha256": "873999912a25d524a75b275c7690ec1517f13ec84dd05a6f39e0e1880af161c3"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5355198802320265,
+          -0.0003974039789831549,
+          -0.567076387112077
+        ],
+        [
+          -0.0013310820963292117,
+          0.5435573419569253,
+          -0.5456972293571576
+        ],
+        [
+          -1.5135522091790075e-06,
+          -1.621653511541416e-06,
+          1.0
+        ]
+      ],
+      "inliers": 204,
+      "medianReprojectionError": 0.31461232900619507,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed every gap around the printed bubble crown, tail and wave edge. Printed bubbles and wave rings are distinct from foil spots; rejected contour fragments and retained the isolated large blue disk above the crown.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_18/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_18/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_18/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_18/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "4aae713d767cc7533fad1924a92041fc5dfebb4ec1ecaf90baace96c573d442a",
     "protection": "cadeb97d5835311419f3b4b50464d3510b3ce694192483cddc37f6b29eae1b3b",
     "roughness": "080e056440a53c0f6d5c9eee72306b7b820215708288b62a1033b3467e46643a",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "0973580b64c081351327ebe9fd5d1cd04a13ea12c76c73e68baa8b151a7866c0"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50977,
+      "title": "Cosmos Holofoil Alolan Muk  (58/149 Burning Shadows Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-alolan-muk-58-149-burning-shadows-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S708Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Cosmos Holo Burning Shadows Alolan Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-18/50977.jpg",
+      "sha256": "57a96174d1491807fd80bd4fdabfc13d266be053d9f0f085513b87b8d48fcb3b"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5362023036597684,
+          0.00017512018397036237,
+          0.22943698486211203
+        ],
+        [
+          0.0006150363745749922,
+          0.5438053965629025,
+          0.48412139687722455
+        ],
+        [
+          1.7399777730639347e-06,
+          -4.072951368749434e-07,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 286,
+      "medianReprojectionError": 0.34779220819473267,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed narrow background islands around the mouth, arm and upper evolution inset. Removed floor/rail and printed branch-edge hits; restored the pale left disk and clipped right orange feature.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

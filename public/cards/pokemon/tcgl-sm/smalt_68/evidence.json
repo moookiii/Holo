@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_68/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_68/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_68/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_68/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "2164fca830ff092e557b6d45d8fc655f902fb438bec17cf48958ecf0fed3e294",
     "protection": "489859a9d60fc6cc76d98ffde995f24dbadaadae2ecbffe6cea72b89dd1455ff",
     "roughness": "b0d4b5e798b1e4be467199bf80f241cd0bb1d1fd944f3a16cd7f259d68c9fda0",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "a91733cb229ce72e7b7947b8a80755194e817e27baab848ae88202a78ad3b80a"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51112,
+      "title": "Kirlia  (92a/147 Ultra Prism Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/kirlia-92a-147-ultra-prism-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S770Special-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Yellow A Alternate art Ultra Prism Single Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-68/51112.jpg",
+      "sha256": "4d92941ae1c6fe04d56fa0775116da54096f72974bada687d69e3daa9104f6ab"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.536615583897957,
+          -8.713178547695539e-05,
+          -0.2144456646984027
+        ],
+        [
+          0.0021430837099517893,
+          0.5436549221279705,
+          1.925809012380984
+        ],
+        [
+          9.134709924714839e-06,
+          -3.2793550925286435e-06,
+          1.0
+        ]
+      ],
+      "inliers": 155,
+      "medianReprojectionError": 0.43275392055511475,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed sky, fern edges and foreground fabric/leaf gaps. Foliage and fabric were excluded; completed large faint sky and clipped lower-corner foil disks, retaining the green partially occluded lower-right sphere.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

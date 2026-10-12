@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_32/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_32/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_32/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_32/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "05a30c1f56fb3dd36b7f572e2b4dad6ceed1f4d112c425a066e4755dd7cc4516",
     "protection": "629b4928495373a4c97c80d0cd14fa0145f59bbc94ea239c5e89841599815378",
     "roughness": "527ca2aed8261f3d25bb068497fa8d1ffd6641cf4015d4de4eac15fb472dbdbe",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "396d6604569dc77a9c7dceabe0001cc77a82e7146cf5e1164013e5be388c2b8f"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51046,
+      "title": "Cosmos Holofoil Alolan Golem  (42/145 Burning Shadows Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-alolan-golem-42-145-burning-shadows-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S733Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        351,
+        489
+      ],
+      "description": "Cosmos Holo Burning Shadows Alolan Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        351,
+        489
+      ],
+      "file": "research/cosmos-missing/smalt-32/51046.jpg",
+      "sha256": "06effdb24d12f5921fb5ba6b0c91013c43975a3e5b995fcd9a65028808f22075"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5855771876013209,
+          -0.0024136664795274816,
+          0.04935284602023444
+        ],
+        [
+          0.003218462972523977,
+          0.5884770024391682,
+          -3.4260484516003156
+        ],
+        [
+          -7.206131062058877e-07,
+          -9.939702306376479e-06,
+          1.0
+        ]
+      ],
+      "inliers": 320,
+      "medianReprojectionError": 0.3802751898765564,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed left and right dark foil islands, printed lightning and floating stones. Removed stone/bolt and lower foot-edge hits; retained the observed isolated purple upper-right circle and separate blue small foil dots.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

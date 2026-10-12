@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_194/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_194/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_194/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_194/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "53194888bcf38380c5629dc41a831e7b482f3d2574b6e1ef5a72a1d08d0719d7",
     "protection": "5517e3f85bf868165d8ed42e532dc2df30b46d3ddd79ab626f72f103034cf4e0",
     "roughness": "0ef6bebc5832ebf4c8cd91cf6ae05056871e0076f40ab3c0b40477dc6e35abb1",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "f1ea142ecf87cb9e226470711d43c76b60335d46f8f1f2c7053b67d733dad0e6"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51274,
+      "title": "Cosmos Holofoil  Blissey  (153/214 Strong Bond Tins Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-blissey-153-214-strong-bond-tins-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S869Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Cosmos Holo Strong Bond Tins exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-194/51274.jpg",
+      "sha256": "100c76520014216f4cd586a20a442fe98899c72bcdcc380d51ec18658cb12291"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5337361461562985,
+          -0.0014223625315215181,
+          -1.0766612215920264
+        ],
+        [
+          -0.001380174310335681,
+          0.5417937893734978,
+          0.1699264005939826
+        ],
+        [
+          -4.669034328388968e-06,
+          -1.3375424095316026e-06,
+          1.0
+        ]
+      ],
+      "inliers": 310,
+      "medianReprojectionError": 0.28762054443359375,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared every background area with clean master. Large transparent bubbles, crescents, stars and patterned lower-right bokeh are printed and excluded. Kept separate blue/purple Cosmos disks and measurable isolated foil specks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

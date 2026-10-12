@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_25/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_25/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_25/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_25/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "b8ed0f9d1b8b96605d9a33e50856931578c7fc9c56478bc08d9402fe49712e9d",
     "protection": "028093ccee1630eaa051e05a322cd478b9f67370c1af0c3c8f5314108078a156",
     "roughness": "c8b177b81efddb7e41d906e7b4eddebfb2bf5c6e89feddf345c23b4d6f1e84e1",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "c4c91929ec8e1556e3604dd3f7cfd7a75ef1014efbb7ecffcae46ccc6c350651"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50987,
+      "title": "Eevee  (101a/149 Pikachu & Eevee Poké Ball Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/eevee-101a-149-pikachu-eevee-poke-ball-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S717Special-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Yellow A Alternate art Pikachu & Eevee Poké Ball Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-25/50987.jpg",
+      "sha256": "8da790f1d12ad9266dd539fe1382b7f54999961918e3cf6d9a66d25a26544cdd"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5361106346209811,
+          -0.0025091272254260453,
+          0.9782402928528989
+        ],
+        [
+          0.0008864258841852688,
+          0.5440871502552339,
+          -3.272813204881145
+        ],
+        [
+          -3.1099471113611414e-06,
+          -1.5998299966285049e-06,
+          1.0
+        ]
+      ],
+      "inliers": 321,
+      "medianReprojectionError": 0.26330411434173584,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared entire window to printed master again: orange/yellow floating flowers and lower-left flower cluster are printed, removed all four false manual additions. Retained measured blue/pale sky disks and isolated foil specks; dense flowers omitted.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

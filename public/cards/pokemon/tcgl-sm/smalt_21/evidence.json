@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_21/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_21/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_21/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_21/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "89e28b351a0e1bd2413099f726f603ec8d04e46e036d886011988911d750eaf8",
     "protection": "403d8a827f801342a263db8ed5cc5fcb1ac8b58441ed35148da9341e3bd7fa9b",
     "roughness": "c6295734abd27cfc9dc54e10bd715dfc4e4e6b64292f46144efe373b5900ecde",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "5a3d9c33a6cd08328304484d7efd30eeb65c589aaba5e6d25f2581fe8789ffb6"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50981,
+      "title": "Cosmos Holofoil  Sharpedo  (82/149 Guardians Rising Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-sharpedo-82-149-guardians-rising-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S712Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Cosmos Holo Guardians Rising Single Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-21/50981.jpg",
+      "sha256": "3fd358bca6ea914349bfbf29b2a4e24801dfab7780003315d1df576272e5ae3b"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5368840480631117,
+          0.00031381312599124643,
+          -2.5024680579074783
+        ],
+        [
+          -0.0019272814750089368,
+          0.5462326104712062,
+          -1.0158652424798598
+        ],
+        [
+          -3.6222082133777897e-06,
+          1.2201196049178503e-06,
+          1.0
+        ]
+      ],
+      "inliers": 340,
+      "medianReprojectionError": 0.3020758032798767,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed entire submerged background and gaps around fins/teeth. Removed mouth/foam and foreground seaweed candidates, preserving the print. Restored partly occluded blue spheres behind the nose and fin as complete disks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

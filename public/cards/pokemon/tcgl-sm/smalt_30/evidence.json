@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_30/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_30/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_30/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_30/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "83802a362860be3a7643d624eadad292c20ab1b689aaf572e0ac422adc5976f9",
     "protection": "8ca878db7f4bd07ce85ac29093c0334f4b0f06a31fd8fa5ad7d540429b00d0d0",
     "roughness": "500c9823614f88b3a3b23a7a19a3b2442d500db698fef1d82465a65969fb46f1",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "7a8bb00ff4031ac4fb53fa44e0182dff858f6f8adf951c49609c4826f8bc1f2c"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51042,
+      "title": "Alolan Sandshrew  (19a/145 Ultra Prism Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/alolan-sandshrew-19a-145-ultra-prism-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S730Special-Print.jpg",
+      "dimensions": [
+        323,
+        450
+      ],
+      "description": "Yellow A Alternate art Ultra Prism Single Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        323,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-30/51042.jpg",
+      "sha256": "ec3f1e5945f5e31ef37c5b0e78203d35bd2bdcd0574c70a868f151606350a88f"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5356905045233697,
+          0.00037897508981040286,
+          -1.259309775807314
+        ],
+        [
+          -0.0020653916397351552,
+          0.544477152467083,
+          -1.5171784441141074
+        ],
+        [
+          -3.0548362958429104e-06,
+          -8.082618186468148e-07,
+          1.0
+        ]
+      ],
+      "inliers": 236,
+      "medianReprojectionError": 0.3285095691680908,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed the complete snowy illustration and narrow tail gap. Removed smaller printed Sandshrew, fir branches and snowy ground hits. Completed the partially clipped left pale circle and large blue circle behind the tail; snowflake/paint dots remain print.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

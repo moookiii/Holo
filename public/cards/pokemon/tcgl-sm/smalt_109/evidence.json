@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_109/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_109/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_109/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_109/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,55 @@
     "foil": "549e4f142d8428cef85a1260f3076ae2bb5b60fa0d2ec7d6c9354e6b5ea6afc7",
     "protection": "6400274839b7cb3df0576c5e65e4bd8f5d9496de6244d3dd82637aba4679469c",
     "roughness": "9df04d232d94c3f29b48fadefa23e450e73c7f989dc4afe22ef582848fa432be",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "362b72e09d03e9f7a4803c5eadad57c9432f4caecc3296199e8041756f67700f"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": "ebay-227334903808",
+      "title": "Pokemon Tcg Altaria - 40a/70 Cosmos Promo Alternate Art",
+      "pageUrl": "https://www.ebay.com/itm/227334903808",
+      "imageUrl": "https://i.ebayimg.com/images/g/-20AAeSwMc9p~Wzu/s-l1200.jpg",
+      "file": "research/cosmos-missing/smalt-109/ebay.jpg",
+      "dimensions": [
+        900,
+        1200
+      ],
+      "sha256": "349667bb7b0f31fc981686d6fc6bfd5f8dba81573e48e14f44d6355405888992"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.1553791830050104,
+          0.010425612258885303,
+          71.93156478783492
+        ],
+        [
+          -7.590338925352288e-05,
+          1.1824696682642044,
+          115.01196329768555
+        ],
+        [
+          3.5530687362325783e-06,
+          1.3731605022440387e-05,
+          1.0
+        ]
+      ],
+      "inliers": 470,
+      "medianReprojectionError": 0.7622761726379395,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Exact English photo registered to the master and reviewed over the full window. Energy/flame and cloud-print highlights rejected. Kept isolated cyan/pale physical foil disks and measurable small dark-background dots; right-bottom large white disk remains one continuous feature.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

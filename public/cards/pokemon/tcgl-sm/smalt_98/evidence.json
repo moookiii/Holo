@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_98/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_98/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_98/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_98/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "61da7bd448b8d3d491be4833c2f25e46cf94cc49928c4ba8a39acdbf979a2cb3",
     "protection": "74e6de98005b14184580af3e3fb252190bcdbc4b2ea295e1bae79ab5b77c7e3c",
     "roughness": "d4139f72a2401ff2f6b1226616abba03364b39b365a884e54ddb24f5aea4f964",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "3a0249bfbc7f280a483404eb3e00c89286b6ce5a19cb62ab29d8064ed5ea8d25"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51202,
+      "title": "Alolan Exeggutor  (2a/131 Lost Thunder Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/alolan-exeggutor-2a-131-lost-thunder-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S818Special-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Yellow A Alternate art Lost Thunder Three Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-98/51202.jpg",
+      "sha256": "6b40908d8a5dd4d1cefbf4108fad0f950b44426eb1485d8771b9c8bbc41a028d"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5351773114765094,
+          -0.0010090440172431884,
+          0.5623552094654312
+        ],
+        [
+          5.4680713388235385e-05,
+          0.5438003876867417,
+          0.6876611731749506
+        ],
+        [
+          -1.9263770212931856e-08,
+          -1.4167951010895065e-07,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 255,
+      "medianReprojectionError": 0.22670873999595642,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Final comparison to clean master removed false neck highlight addition. Retained measured isolated cyan/pale background disks, excluding hair, limb, leaf and neck print.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

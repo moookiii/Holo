@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_20/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_20/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_20/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_20/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,55 @@
     "foil": "af8e30adb9f966b028b593a0f1d9770c7233241f3591e75c837e1499f36d89a2",
     "protection": "369e1e0f686efd6e371c3d7483ec0bf0dacf020a325c7a8fa0324a6e34e8164f",
     "roughness": "7a124fcc2750e0837e737bcf9f416d3bb9635e83e46ddd59ba00dfb5c174e92e",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "97104c7e26f11dc8653437b2b01935439409ae80b4c6f258c52d2f48c154d095"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50980,
+      "title": "Cosmos Holofoil Alolan Persian  (79/149 Guardians Rising Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-alolan-persian-79-149-guardians-rising-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S711Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        324,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-20/50980.jpg",
+      "sha256": "eb9014c5f7aa22e696c0604cee1026ed4aee1d99e3aec2d753ec555f3a7910d9"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5383103552143238,
+          0.0007694859796166642,
+          -0.35255116757876065
+        ],
+        [
+          -0.00239852315883015,
+          0.5429375089144778,
+          1.639525674209112
+        ],
+        [
+          -3.885479851722573e-06,
+          -2.812515118235186e-07,
+          1.0
+        ]
+      ],
+      "inliers": 258,
+      "medianReprojectionError": 0.2698915898799896,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed all sky foil and narrow tail/body gaps. Foreground grass/flowers are print, not dot placement. Completed large left turquoise and faint central pale circles; leaf-shaped sky details were not promoted to dots.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_193/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_193/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_193/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_193/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "83a11dd436a4652f365b298c6b24f14273bb8bce3a273c267f85365e286f5feb",
     "protection": "2aa5dad16984b4a7e37d65850191cbe51064260d776e25a4893fc7e767d8661a",
     "roughness": "13e53b1cc46c64ccf7dbba8764431b4324566c543f9563a3a4d55afd59ae55ee",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "74487a5fc8ea766562e4f6e8e2ff05827196a39272192a6b40a5badf22f14f35"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51273,
+      "title": "Cosmos Holofoil  Gardevoir  (141/214 Strong Bond Tins Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-gardevoir-141-214-strong-bond-tins-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S868Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Cosmos Holo Strong Bond Tins exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-193/51273.jpg",
+      "sha256": "0776a9a96c375cc01715261e7810c61880f7d63695f90b42567808e17e5718a7"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5357821111425506,
+          0.00012469315901070653,
+          -1.0254595967431293
+        ],
+        [
+          -9.76567630547532e-05,
+          0.543363103484543,
+          1.4098961567178636
+        ],
+        [
+          2.3346173252283306e-06,
+          -3.190480557209558e-07,
+          1.0
+        ]
+      ],
+      "inliers": 241,
+      "medianReprojectionError": 0.32196077704429626,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared entire foil window to clean master. Removed printed beam/ribbon glints, individual rubble and skirt highlights. Restored large pale pink disk behind upper-left ribbon.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

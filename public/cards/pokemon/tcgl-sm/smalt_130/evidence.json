@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_130/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_130/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_130/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_130/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "3e3c251376b3c3703495d8dd4bbc04ab71ec5d3ed9f47becdd5277d0d57a4491",
     "protection": "50b16d271343e0fbea0b3f201cb6d1fd3020092c9436a9f53c54ef7bc12ba407",
     "roughness": "11fc1bbaa728027d8e270438f5c40da5520ec2129908d9e06e55aeb5285ffa95",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "a5c0643cf13798b86f65fe7a17b776c8d5e13ee31b17220060d0de6aa1eda00a"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51264,
+      "title": "Cosmos Holofoil  Espeon  (89/214 Unified Minds Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-espeon-89-214-unified-minds-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S862Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        400,
+        559
+      ],
+      "description": "Cosmos Holo Unified Minds Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        400,
+        559
+      ],
+      "file": "research/cosmos-missing/smalt-130/51264.jpg",
+      "sha256": "6864422617b7089ca6d9c18c9c71ad84d45b32f3c38c2b013cb1dcd525816994"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.6674114798393403,
+          3.323959383679112e-05,
+          0.16272537920385702
+        ],
+        [
+          8.125459035495981e-05,
+          0.6780392531618966,
+          -0.2515178511019291
+        ],
+        [
+          -9.936509481846933e-08,
+          -7.316509676978004e-07,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 387,
+      "medianReprojectionError": 0.203607976436615,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Final comparison to clean master removed printed lower green ring. Two physical pointed starbursts traced as observed outlines; measured background disks retained; foliage/glare fragments excluded.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

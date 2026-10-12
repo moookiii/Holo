@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_54/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_54/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_54/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_54/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "422f8c2fb96b4f751deee701bf45e07438cc38d0ea168596f38f88b6e1860a17",
     "protection": "a24a709963032390c2adfbdd007d3f721d0ee143103e143bd3579948ab767617",
     "roughness": "0cd8bafe10454b375267ed5354242e3dfa30775bdcd6c61d7983a4a945849aeb",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "b985c6d80d875443ffc39383792e81de67981ea0e4a2b65ddd063549744915be"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51086,
+      "title": "Charmander  (18a/147 Sidekick Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/charmander-18a-147-sidekick-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S755Special-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Yellow A Alternate art Charmander Sidekick Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-54/51086.jpg",
+      "sha256": "3d95bc24e5618b981ca142e13d507966cd82730c5bffd2330b1ad8a53396d3ca"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.534932925974724,
+          0.0005416307491299128,
+          -1.768281556682438
+        ],
+        [
+          -0.001195042921660668,
+          0.5437347178880657,
+          1.6054446617749718
+        ],
+        [
+          -1.3459192055358805e-06,
+          -1.645988637681511e-06,
+          1.0
+        ]
+      ],
+      "inliers": 142,
+      "medianReprojectionError": 0.28317707777023315,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed sky/background against clean Charmander print. Flame/sparks, grass, rocks and foot-edge hits were rejected; retained independently visible foil dots in the sky and sparse dark background.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

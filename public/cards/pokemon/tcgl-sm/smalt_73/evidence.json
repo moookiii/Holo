@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_73/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_73/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_73/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_73/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "cb2cdbc80788692df2dec7760bd13b9540229e03a54461d7b77b5283c141cd79",
     "protection": "8e7fe92aec4ecc159f6c3b8aa70b611a12bace75290ca5c7ff2380b9edc66d8a",
     "roughness": "3a4b3ecac9691974426ea1990d5359ae17c5fa78f3fa459fd70d2fe45b449f57",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "9ef9204afdbb726a1a4ae7094c1700f58d9adbebe5bc674e1fe365599b82b9a8"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51129,
+      "title": "Cosmos Holofoil  Regice  (28/111 Celestial Storm Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-regice-28-111-celestial-storm-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S780Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        400,
+        557
+      ],
+      "description": "Cosmos Holo Celestial Storm Two Pack Blister exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        400,
+        557
+      ],
+      "file": "research/cosmos-missing/smalt-73/51129.jpg",
+      "sha256": "244e202718e8bfffeee8bdd7a23b0805605d8e5596bb9b73e036e7db65b1bf57"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.667962163656685,
+          0.000544191467865228,
+          -1.659382574315761
+        ],
+        [
+          -0.0034821356583644466,
+          0.6784612162192158,
+          -0.40515514649335654
+        ],
+        [
+          -6.3461232520408644e-06,
+          1.4044974534812323e-06,
+          1.0
+        ]
+      ],
+      "inliers": 337,
+      "medianReprojectionError": 0.3934444189071655,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole icy-cave window reviewed. Ice/ray print does not define dots. Kept measurable round isolated foil and restored the large upper-left cyan spot; distant defocused ice highlights remain unregistered.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

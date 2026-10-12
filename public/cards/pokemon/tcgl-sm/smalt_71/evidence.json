@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_71/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_71/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_71/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_71/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "55a536d04c34b4bbad311120a046495109a2291410d605fad716e30b18bb43aa",
     "protection": "67a8e7c44093c8c130f73ee5782ed77811228dd2b8bdf1670ca3a56cf4e2436e",
     "roughness": "dcad44a4c39a82c525a06b5c2589ebe6f4bc9a6cb22b2a3b2ef4cb13219fc50e",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "6ae19708ce3364c029ad9cc55384ee53c960f71fb65a500dff6bf9aa253c77c6"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51115,
+      "title": "Porygon-Z  (105a/147 Ultra Prism Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/porygon-z-105a-147-ultra-prism-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S773Special-Print.jpg",
+      "dimensions": [
+        324,
+        450
+      ],
+      "description": "Yellow A Alternate art Ultra Prism Three Pack Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        324,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-71/51115.jpg",
+      "sha256": "ead886f10ff13f3e299171ca9d92bafc9d1c722a3e012616e2f200c504b46446"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.53716852311267,
+          -0.00038449224906590007,
+          -0.6910899728282057
+        ],
+        [
+          -0.0006331434374189257,
+          0.5453939081145995,
+          -0.8101243872779484
+        ],
+        [
+          -1.5451351841058183e-06,
+          -8.457954916194747e-07,
+          1.0
+        ]
+      ],
+      "inliers": 365,
+      "medianReprojectionError": 0.20805737376213074,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed foil through the digital background and all gaps around appendages. Rejected circuit/ray details and tail-edge artifacts; retained isolated round foil features, including left and right white disks.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

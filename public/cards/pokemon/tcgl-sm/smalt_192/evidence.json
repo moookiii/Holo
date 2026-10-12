@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_192/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_192/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_192/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_192/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "b0e1168d4d8c2b0fae531b9cbef1e53865150e39d39032c835c8052c9c83e0c5",
     "protection": "c2a06dd557fcaf859cf4bd94fab91857fad49029bae6b944fa5ad60c401e5449",
     "roughness": "b768dd723053aa73fd8539fc7bc9f3b132acbf0c545826b0dfb59e683a150e3b",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "b72ee12d7000dfff532f8253412fcd8848680ea7ec58b06612ce8f8e0b62ae60"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51237,
+      "title": "Cosmos Holofoil  Salamence  (106/168 Dragon Tins Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-salamence-106-168-dragon-tins-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S843Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Cosmos Holo Dragon Tins exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-192/51237.jpg",
+      "sha256": "ed27ce8e522b09bc433ae45f7a9975ae08ed54def0e8447f315a22677d54bc66"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5350511620108463,
+          0.00027059620462740265,
+          -0.5907936902193114
+        ],
+        [
+          -0.0006067253238489127,
+          0.5438121795281802,
+          1.5814834376634817
+        ],
+        [
+          -6.191580131617596e-08,
+          9.389740537540086e-07,
+          1.0
+        ]
+      ],
+      "inliers": 295,
+      "medianReprojectionError": 0.24592649936676025,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Compared entire sky/rock window to clean master. Excluded printed cloud contours and merged two faint large blue disks in wing gap and lower-right sky.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

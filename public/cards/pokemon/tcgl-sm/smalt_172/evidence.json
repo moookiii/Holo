@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_172/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_172/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_172/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_172/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "eaa92b8221d502ee6a95aa32e504b227ec071b458c125518e512f4f8a90546c9",
     "protection": "a36d85ce0a71a78a1489d93bc9e0c0691f34a2f5a344a8a7fbbd9c573e60487e",
     "roughness": "990b110e85ff54661862559e0cfa02924c84342593967c319e41723091e6d808",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "474a2e1b1661e59a4a8cfc9e7cb3dca4a24ba15bb559a27489a0f485369cee9c"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 79914,
+      "title": "Tapu Koko  (SM30a English Promo)",
+      "pageUrl": "https://pokumon.com/card/tapu-koko-sm30a-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_30aSM.jpg",
+      "dimensions": [
+        320,
+        450
+      ],
+      "description": "Celestial Storm Three Pack Blisters\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        320,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-172/79914.jpg",
+      "sha256": "d8c7ed1761645cee6b58da4cfd8d2b65a3635705b5c3863bdc0d446da8e0cd9b"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5346811320366214,
+          0.0003110381915349603,
+          0.4713773839985468
+        ],
+        [
+          0.0013244518711461113,
+          0.5444540977023293,
+          -0.013311670228725316
+        ],
+        [
+          7.155788807066394e-06,
+          -2.246794493617309e-06,
+          1.0
+        ]
+      ],
+      "inliers": 236,
+      "medianReprojectionError": 0.31355589628219604,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole background and limb/evolution/text edges reviewed. Printed lightning and shield/tail edges rejected. Completed broad top brown disk, lower cyan sphere and clipped purple lower spot; no glint fragments inside these large features.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

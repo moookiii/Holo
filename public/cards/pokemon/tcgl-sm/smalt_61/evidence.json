@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_61/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_61/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_61/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_61/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "a3f0e701677fc85c48996da45a76da52fe9d245a9891732c8d49d79fe17094c0",
     "protection": "9d9e814bcdc323e9c0b6930fe0197d11738057a51a7aef03a1087436f84f895b",
     "roughness": "9beb2a3f87fd533f970876d720cc068b63fb41c0ca33e81d2fab2e50b0553805",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "a38d0059dcdf1e6d526b285550c7534b12e5e0b89dfdddb695e65f9251174e87"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 51102,
+      "title": "Cosmos Holofoil  Raichu  (41/147 Team Up Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-raichu-41-147-team-up-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S762Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Cosmos Holo Team Up Stage 1 Blisters exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-61/51102.jpg",
+      "sha256": "280071f1c03fab9814b13a067718fd98f33c5b8444fdee02bc1fb6d6ff883dd0"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5342804167817695,
+          -0.001425165515791523,
+          0.016062258692791768
+        ],
+        [
+          0.0003447829364724222,
+          0.5429694132931111,
+          -1.656251372093888
+        ],
+        [
+          -1.7242625431751134e-06,
+          -9.090014510156628e-07,
+          1.0
+        ]
+      ],
+      "inliers": 258,
+      "medianReprojectionError": 0.2017061412334442,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed full window, Raichu/Sprite print edges, rain and the small left subject. Retained isolated foil disks and faint small dots; removed wave, rain streak and body contour artifacts. Large yellow disk behind the hand remains a single complete feature.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }
