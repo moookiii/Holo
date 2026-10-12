@@ -49,6 +49,14 @@ def convert(entry):
     protected = cv2.resize(np.clip((0.22 - foil_gray) / 0.14, 0, 1), SIZE,
                            interpolation=cv2.INTER_LINEAR)
     Image.fromarray(np.rint(protected * 255).astype(np.uint8), 'L').save(target / 'protection.png')
+    # The exact TCGL whiteplate contains card-specific subject modulation.
+    # Retain that continuous material weighting, excluding protected ink; no
+    # brightness from the printed front is used to author roughness.
+    body = cv2.resize(1.0 - foil_gray, SIZE, interpolation=cv2.INTER_LINEAR) * (1.0 - protected)
+    secondary = np.zeros_like(body)  # No distinct secondary region is verified.
+    roughness = (0.30 + 0.105 * body) * (1.0 - secondary) + 0.27 * secondary
+    Image.fromarray(np.rint(body * 255).astype(np.uint8), 'L').save(target / 'body.png')
+    Image.fromarray(np.rint(roughness * 255).astype(np.uint8), 'L').save(target / 'roughness.png')
 
     dx = cv2.Scharr(height, cv2.CV_32F, 1, 0, scale=1 / 32)
     drow = cv2.Scharr(height, cv2.CV_32F, 0, 1, scale=1 / 32)
@@ -69,6 +77,9 @@ def convert(entry):
         'frontSha256': digest(front), 'foilSha256': digest(foil),
         'normalSha256': digest(normal_path),
         'protectionSha256': digest(target / 'protection.png'),
+        'bodySha256': digest(target / 'body.png'), 'roughnessSha256': digest(target / 'roughness.png'),
+        'roughness': '(0.30 + 0.105 * own TCGL material subject weighting) * (1-secondary) + 0.27 * secondary',
+        'secondaryRegion': 'No verified separately masked microdiamond region; zero coverage',
         'uvBox': [145 / 1024, 0, 878 / 1024, 1],
         'polarity': 'inverted luminance; white strokes recess', 'verticalFlip': False,
         'operations': 'Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.',
@@ -80,8 +91,11 @@ def convert(entry):
 
 
 def main():
+    cv2.setNumThreads(1)
+    from import_bw import treatment
     entries = [entry for entry in json.loads(SOURCE.read_text(encoding='utf-8'))
-               if entry['assets']['etch']['status'] == 'extracted']
+               if entry['assets']['etch']['status'] == 'extracted'
+               and treatment(entry, {}, 'holo')[0] == 'prismatic_sir_texture']
     with ThreadPoolExecutor(max_workers=4) as pool:
         list(pool.map(convert, entries))
 

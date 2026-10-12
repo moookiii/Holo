@@ -143,6 +143,7 @@ def main():
                     convert(m)
                 maps['normal'] = '/' + normal.relative_to(ROOT / 'public').as_posix()
                 maps['protection'] = '/' + (dest / 'protection.png').relative_to(ROOT / 'public').as_posix()
+                maps['roughness'] = '/' + (dest / 'roughness.png').relative_to(ROOT / 'public').as_posix()
         number = m['printed_collector_number']; denominator = str(row.get('EN Expansion Denominator') or '')
         if m['set_id'] == 'bw11r':
             number = 'RC' + number.removeprefix('RC'); denominator = 'RC' + denominator.removeprefix('RC')
