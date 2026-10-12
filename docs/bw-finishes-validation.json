@@ -2,9 +2,9 @@
   "status": "validated-assets-and-partial-cosmos-placement",
   "scope": "Own BW Cosmos registrations and two Legendary Treasures gold Full Arts. Unrelated dirty workspace assets excluded.",
   "cosmos": {
-    "reviewedVariants": 28,
-    "pendingVariants": 20,
-    "reviewedFeatures": 547,
+    "reviewedVariants": 29,
+    "pendingVariants": 19,
+    "reviewedFeatures": 606,
     "completionLimit": "Visible selected-copy features only; faint and obscured features remain unresolved.",
     "remainingList": "docs/bw-cosmos-review.json"
   },
@@ -22,7 +22,7 @@
     "goldProtectedNormalsFlat": "passed",
     "goldNormalsUnitLength": "passed within RGB8 quantization",
     "goldRoughnessFromBody": "passed",
-    "liveCards": 33,
+    "liveCards": 34,
     "capturedLightPoseControlsPerCard": 9,
     "liveErrors": [],
     "captureDirectory": "artifacts/bw-finishes/live",
@@ -1105,6 +1105,45 @@
         },
         "motif": {
           "sha256": "f850dd2a6e3490ae4755a09ec7072ab028f6c4aa218c1f2114eb6b4735a749c8",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_93",
+      "tcglVariantId": "Umbreon_bwbsp_93_std_Rare_Cosmos_Holo",
+      "features": 59,
+      "assets": {
+        "foil": {
+          "sha256": "1308557ad264d25a74bbb37ec28e51bc621059c2a0c73d3c2850b8f691a487e5",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "964b12855db9e1112207114fe77c40256ace3a1580b7d9a601972812eac65543",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "f9ba566c0d3aa83523930acd64b7135e47f5475e55c8fe9deba8ea590dc5cd9a",
           "dimensions": [
             1200,
             1650

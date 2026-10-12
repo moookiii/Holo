@@ -288,10 +288,15 @@
       "sha256": "20308771fb97b209c22cdc623666a8e94c90f56ec47807170aa9362391fb34a8"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_93/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_93/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_93/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_93/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,57 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "file": "research/tcgl/bw-cosmos/bwbsp-93/psa7-field.jpg",
+      "pageUrl": "https://www.ebay.com/itm/277722238280",
+      "imageUrl": "https://i.ebayimg.com/images/g/bs8AAeSw0r1pjmh9/s-l1200.jpg",
+      "sha256": "de751983a13d96f2017d63deb58076fea97d82f07c5161ad99a6ca94a3005a8f",
+      "dimensions": [
+        717,
+        1200
+      ],
+      "title": "Umbreon BW93 PSA 7 130126221 visible physical-copy foil field"
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_93/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "f9ba566c0d3aa83523930acd64b7135e47f5475e55c8fe9deba8ea590dc5cd9a",
+    "transform": {
+      "masterToReference": [
+        [
+          0.9263934549222048,
+          0.003694292946806802,
+          78.69838250071962
+        ],
+        [
+          -0.003624382949064858,
+          0.9420798308823808,
+          329.7270531199791
+        ],
+        [
+          -3.3984653478267045e-07,
+          1.729379917264376e-06,
+          1.0
+        ]
+      ],
+      "inliers": 515,
+      "medianReprojectionError": 0.3051241338253021
+    },
+    "reviewNotes": "Umbreon BW93 PSA 7 130126221. Native physical-copy field reviewed against clean TCGL master; printed stars, crescents and round ornamentation excluded. Individual outer circles retained whole; four measured noncircular perimeters remain explicit contours, including clipped edge feature. All automatic candidates rejected. Faint and occluded features remain unresolved. Whole-window boundary overlay and clean master reviewed at native resolution.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "1308557ad264d25a74bbb37ec28e51bc621059c2a0c73d3c2850b8f691a487e5",
+    "foilControls": "964b12855db9e1112207114fe77c40256ace3a1580b7d9a601972812eac65543",
+    "motif": "f9ba566c0d3aa83523930acd64b7135e47f5475e55c8fe9deba8ea590dc5cd9a",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }
