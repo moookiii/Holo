@@ -22,11 +22,11 @@ function recipe(setId: string): PokemonRecipe {
     requiredCardIds: [...own, ...rc].map(c => c.id),
     sources: ['https://www.elitefourum.com/t/the-english-pokemon-card-rarity-guide/39762',
       'https://bulbapedia.bulbagarden.net/wiki/Booster_pack_(TCG)'],
-    note: 'English retail collation. Original opening-study estimates, not official odds. Independent rarity slots and uniform category pools; no factory box guarantees or error boxes.' };
+    note: 'English retail packs · odds follow historical opening studies and are estimates, not manufacturer guarantees.' };
   if (setId === 'bw6-5') return { ...base,
     sources: [...base.sources, 'https://www.elitefourum.com/t/the-english-pokemon-card-rarity-guide/39762/107',
       'https://cdn.pidgi.net/images/5/57/Dragon_Vault_sell_sheet_EN.pdf'],
-    note: 'Five original holofoil cards, including Kyurem 21/20, sampled consecutively from the observed 121-position sheet. Sheet start is unknown; no reverse, Energy, code card or product promo in the five-card pool.',
+    note: 'Five holofoil cards per booster, with a chance of Kyurem 21/20. Collation follows an observed printing sheet; exact manufacturer odds are unknown.',
     slots: [{ id: 'holo-sheet', count: 5, sequence: dragonVaultSheet, outcomes: [branch(1, own, 'holo')] }] };
   const rates = bwRates[setId as keyof typeof bwRates];
   const rare: SlotOutcome[] = [];
@@ -48,7 +48,7 @@ function recipe(setId: string): PokemonRecipe {
     // RC uncommons are exact TCGL holo printings even when the source finish
     // enum says Reverse. Physical specialty glitter remains print-only.
     return { ...base, sources: [...base.sources, rates.source],
-      note: base.note + ' Ten cards: four commons, reverse/holo, RC premium, rare/EX/gold, RC common, two uncommons. Reverse/holo split 50/50. RC premium 70% uncommon / 30% ultra. All RC and gold remain drawable with their original fronts.',
+      note: 'Ten cards: four commons, two uncommons, a reverse or holo, a rare or better, and two Radiant Collection cards. Historical opening-study odds are estimates. RC glitter and entirely gold finishes are pending.',
       slots: [{ id: 'common', count: 4, unique: true, outcomes: [branch(1, select(['Common']), 'normal')] },
         { id: 'reverse-or-holo', count: 1, outcomes: reverse },
         { id: 'radiant-premium', count: 1, outcomes: [branch(.7, rcUncommon, 'holo'), branch(.3, rcUltra, 'holo')] },
@@ -71,7 +71,9 @@ function recipe(setId: string): PokemonRecipe {
     add(rare, rareWeight, select(['Rare']), 'normal');
   }
   return { ...base, sources: [...base.sources, rates.source],
-    note: base.note + ' Ten cards: five commons, one reverse/ACE SPEC, one rare or better, three uncommons. BW Base common slot uses its observed sheet including Basic Energy. Eight BW Base reverse Energy textures are unavailable in TCGL; no substitute is drawn.',
+    note: 'Ten cards: five commons, three uncommons, one reverse' + (rates.ace ? ' or ACE SPEC' : '') +
+      ', and one rare or better. Odds follow historical opening studies and are estimates.' +
+      (setId === 'bw1' ? ' Basic Energy may appear among the commons; reverse Energy printings are unavailable.' : ''),
     slots: [{ id: 'common', count: 5, ...(setId === 'bw1' ? { sequence: bwCommonSheet } : { unique: true }),
       outcomes: [branch(1, select(['Common', 'Energy']), 'normal')] },
       { id: 'reverse-or-ace-spec', count: 1, outcomes: reverse }, { id: 'rare', count: 1, outcomes: rare },
