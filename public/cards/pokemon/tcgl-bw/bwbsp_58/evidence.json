@@ -288,10 +288,15 @@
       "sha256": "e8818b51c1270873f8d52030b801dba0b0a17f39661e968622da0b1cda7408aa"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_58/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_58/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_58/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_58/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79560,
+      "title": "Black Kyurem  (BW58 English Promo)",
+      "pageUrl": "https://pokumon.com/card/black-kyurem-bw58-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_58BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-58/79560.jpg",
+      "sha256": "435f8749f2bce7b8e6f979bf6c1a02c44508c9362ce35522f991056c287a5fc0",
+      "dimensions": [
+        348,
+        500
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_58/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "0fdce4559a108738b3abdc3b64c0bcea97e6f270cb00bd4e2a9d7f67c41ccdc9",
+    "transform": {
+      "masterToReference": [
+        [
+          0.5787996607129451,
+          -0.0005756332797009175,
+          0.7954610957552389
+        ],
+        [
+          0.0017865442098911968,
+          0.6054894457015475,
+          -0.4819462594721173
+        ],
+        [
+          4.370090635146198e-07,
+          -2.1771794738157593e-06,
+          1.0
+        ]
+      ],
+      "inliers": 349,
+      "medianReprojectionError": 0.28044313192367554
+    },
+    "reviewNotes": "Selected foil diamonds checked against the already sparkling printed scene. Most bright shards and glows are printed and rejected. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "4021355ab37da9263dc2f347640816ca6095e132fab89f323e0b4bc8e06f4b88",
+    "foilControls": "1fe1b8272b94f78c5e065c56d1fa921f037ae815bceb2878facd8ac0fff73b1c",
+    "motif": "0fdce4559a108738b3abdc3b64c0bcea97e6f270cb00bd4e2a9d7f67c41ccdc9",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

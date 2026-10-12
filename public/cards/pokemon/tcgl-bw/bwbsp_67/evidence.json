@@ -288,10 +288,15 @@
       "sha256": "af75b22d38329f99c8220bbef5b2616b15352acd181da9dddf78dcfea74a41c5"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_67/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_67/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_67/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_67/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79570,
+      "title": "Ampharos  (BW67 English Promo)",
+      "pageUrl": "https://pokumon.com/card/ampharos-bw67-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_67BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-67/79570.jpg",
+      "sha256": "bb9d8608928255161d053b5baca0e92828ecaad19c002d2d4556cd046ab671e9",
+      "dimensions": [
+        400,
+        558
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_67/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "609642f6affbeb93ab6775cfc6be496aba40f3b4e6326cb8938280219eac2994",
+    "transform": {
+      "masterToReference": [
+        [
+          0.6660190890365166,
+          -0.0019778193259066463,
+          -0.4228846319245831
+        ],
+        [
+          0.0021716959836535505,
+          0.6740732042263412,
+          2.4415560025469754
+        ],
+        [
+          -1.207177074655255e-07,
+          -6.917063119417712e-07,
+          1.0
+        ]
+      ],
+      "inliers": 450,
+      "medianReprojectionError": 0.244349405169487
+    },
+    "reviewNotes": "Round physical spots in foliage and upper-right sky retained; printed electricity streaks and circular glow around tail excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "1e6ba025afbb76b08cfefe563b4c74910d6771ea38cb979025b9dbb155ae172d",
+    "foilControls": "d741f224c06a4e7953f5bfbf05123f7231f9e7533c127dbdb624e6a05b4e1ac2",
+    "motif": "609642f6affbeb93ab6775cfc6be496aba40f3b4e6326cb8938280219eac2994",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

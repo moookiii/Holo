@@ -288,10 +288,15 @@
       "sha256": "16e4862ffd2f8939fcc0bedeeee956018bd0454837cbf2b288e9ff7bb987609b"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_80/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_80/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_80/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_80/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79584,
+      "title": "Druddigon  (BW80 English Promo)",
+      "pageUrl": "https://pokumon.com/card/druddigon-bw80-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_80BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-80/79584.jpg",
+      "sha256": "cfbb295647a96940297ef404efa2eda3e02a5d0c5534116d2ffca87b5e07ed32",
+      "dimensions": [
+        1146,
+        1600
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_80/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "1bdd80139b30f68635fd58be0764425df41a4a49a004e73cdfca149281c57ba6",
+    "transform": {
+      "masterToReference": [
+        [
+          1.877428303994195,
+          -0.021842707373728558,
+          17.569711102973987
+        ],
+        [
+          0.0030675052277279644,
+          1.87858456421057,
+          19.127150726155232
+        ],
+        [
+          -3.4814220582881843e-06,
+          -2.232269864699568e-05,
+          1.0
+        ]
+      ],
+      "inliers": 476,
+      "medianReprojectionError": 0.6916166543960571
+    },
+    "reviewNotes": "Copper foil flecks visible in dark background. Lightning paths and ice fragments are printed and excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "a13823eda9d74ae860325aa2469dc1bbd3a847a31bda5f43d9f073d5a1c47c43",
+    "foilControls": "41ea23ef7e19823285b3dc4e5b9f46ff04a2b9461583fe3d03a53a861f2b3df3",
+    "motif": "1bdd80139b30f68635fd58be0764425df41a4a49a004e73cdfca149281c57ba6",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

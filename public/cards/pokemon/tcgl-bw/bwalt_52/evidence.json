@@ -288,10 +288,15 @@
       "sha256": "00b4d4a47819a7e8a5a48cbbfe7f250747ba5200d49d3a8c745a0f22365e2f2a"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwalt_52/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwalt_52/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwalt_52/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwalt_52/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": "ebay-126528855166",
+      "title": "2012 Dragon Vault Salamence 8/20 Cosmos Holo Blister Exclusive",
+      "pageUrl": "https://www.ebay.com/itm/126528855166",
+      "imageUrl": "https://i.ebayimg.com/thumbs/images/g/OuwAAOSwu05ma73~/s-l500.jpg",
+      "file": "research/tcgl/bw-cosmos/bwalt-52/126528855166.jpg",
+      "sha256": "a65544c982352d693ed2892d7b2d6db28ebaeafca77c63047d1e9c6f129b5b10",
+      "dimensions": [
+        390,
+        500
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwalt_52/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "465e15bb650b2ed7f761b50857e8866c7de851bf6acd5cbf452751b32237e647",
+    "transform": {
+      "masterToReference": [
+        [
+          0.5765565610388855,
+          0.0035380852502175123,
+          14.6749526976783
+        ],
+        [
+          -0.0026728658734140993,
+          0.5864468585896455,
+          4.220274112263527
+        ],
+        [
+          1.564728473044581e-06,
+          2.3007683744104373e-06,
+          1.0
+        ]
+      ],
+      "inliers": 370,
+      "medianReprojectionError": 0.26867812871932983
+    },
+    "reviewNotes": "Large right-hand disc and partially occluded disc above tail measured as whole shapes. Printed top-left diffuse light excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "70c2dd141ad24d510742c5071fa42b044782df23873e83318ea5b116fcfa82c3",
+    "foilControls": "84067f983e4cb824482e59ffff33dd7b5dec2b92f4edda839908d9d85364603d",
+    "motif": "465e15bb650b2ed7f761b50857e8866c7de851bf6acd5cbf452751b32237e647",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

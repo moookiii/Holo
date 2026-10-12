@@ -24,7 +24,7 @@ try {
   const selected=process.env.GOLD_ONLY ? [] : cosmos;
   for(const id of ['pokemon:bw11-114:holo','pokemon:bw11-115:holo',...selected,'pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo','pokemon:base2-1:holo']) {
     // Reference IDs vary by the legacy catalog; select Base Set 2 by profile.
-    const actual=id==='pokemon:base2-1:holo' ? await page.evaluate(()=>window.__holo.cards.find(c=>c.profile==='pokemon-base-set-2-cosmos'&&c.pokemon?.seriesId!=='bw')?.id) : id;
+    const actual=id==='pokemon:base2-1:holo' ? await page.evaluate(()=>window.__holo.cards.find(c=>c.profile==='pokemon-base-set-2-cosmos'&&c.set==='Base Set 2')?.id) : id;
     if(!actual)continue;
     await page.evaluate(async id=>{await window.__holo.gallery.close(id);window.__holo.hideUI();window.__holo.lighting.playing=false;},actual);
     const state=await page.evaluate(()=>{const h=window.__holo,m=h.material();return {card:h.stats().card,normal:m.surfaceControls.normalScale.value,emboss:m.surfaceControls.embossStrength.value,glints:m.optics.glintStrength.value};});

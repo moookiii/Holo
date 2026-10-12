@@ -101,6 +101,9 @@ def reviews(c, photo, motifs, label):
             x,y=d['center'];rx,ry=d.get('radii',[d['radius'],d['radius']])
             draw.ellipse(((x-rx)*2,(y-ry)*2,(x+rx)*2,(y+ry)*2),outline='#ff00b0',width=2)
             draw.text((x*2+3,y*2+3),str(d.get('id','+')),fill='white',stroke_width=1,stroke_fill='black')
+        elif 'outline' in d:
+            points=[(x*2,y*2) for x,y in d['outline']]
+            draw.line(points+[points[0]],fill='#ff00b0',width=2)
         elif 'points' in d: draw.line([(x*2,y*2) for x,y in d['points']],fill='#ff00b0',width=2)
     overlay.save(folder/(label+'-full.png'));mask.save(folder/(label+'-motifs.png'))
     pair=Image.new('RGB',(2160,760),'#111820')
@@ -112,10 +115,11 @@ def reviews(c, photo, motifs, label):
 def proposals(ids=None):
     saved=DATA/'proposals.json'
     result=[c for c in read(saved) if ids and c['cardId'] not in ids] if saved.exists() else []
+    extras=read(DATA/'extra-references.json') if (DATA/'extra-references.json').exists() else {}
     for c in read(DATA/'sources.json'):
         if ids and c['cardId'] not in ids: continue
         choices=[]
-        for candidate in c['candidates']:
+        for candidate in ([extras[c['cardId']]] if c['cardId'] in extras else c['candidates']):
             aligned=cosmos.register(c,candidate)
             if aligned: choices.append((aligned[1]['inliers'],candidate,aligned))
         if not choices:
@@ -136,23 +140,72 @@ def proposals(ids=None):
         result.append(record);write(saved,result); print(c['cardId'],len(motifs),'proposals',flush=True)
     write(DATA/'proposals.json',result)
 
-def publish():
+def publish(publish=True):
     corrections=read(DATA/'corrections.json');records=[]
     for c in read(DATA/'proposals.json'):
         correction=corrections.get(c['cardId'])
-        if not correction or not correction.get('reviewed'): continue
+        if not correction or publish and not correction.get('reviewed'): continue
         assert correction['sourceAlignmentReviewed']
         motifs=cosmos.corrected(c,correction)
         assert motifs,c['cardId']
         assert cosmos.sha(ROOT/c['master'])==c['preservedHashes']['master']
-        target=ROOT/c['destination'];cosmos.rasterize(motifs).save(target,optimize=True)
-        reviews(c,np.asarray(Image.open(ROOT/c['registeredReference']).convert('RGB')),motifs,'final')
+        target=ROOT/c['destination']
+        reviews(c,np.asarray(Image.open(ROOT/c['registeredReference']).convert('RGB')),motifs,'final' if publish else 'draft')
+        if not publish: continue
+        cosmos.rasterize(motifs).save(target,optimize=True)
         record=dict(c,motifs=motifs,reviewStatus='reviewed-visible-features',outputDimensions=[1200,1650],
             motifSha256=cosmos.sha(target),reviewNotes=correction['notes'],
             limitations='Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth.')
         records.append(record)
-    write(DATA/'registration.json',records)
-    print(len(records),'reviewed registrations')
+    if publish: write(DATA/'registration.json',records)
+    print(len(records),'reviewed registrations' if publish else 'draft only; no active changes')
+
+def activate():
+    """Update reviewed BW records only; never regenerate the shared catalog."""
+    from prepare_swsh_proofs import registered
+    registry=read(DATA/'registration.json')
+    by_id={c['tcglCardId']:c for c in registry}
+    generated=ROOT/'src/pokemon/data/bw-tcgl.generated.ts'
+    lines=generated.read_text(encoding='utf8').splitlines()
+    for i,line in enumerate(lines):
+        if 'tcglBwSurfaces' not in line or 'JSON.parse(' not in line: continue
+        surfaces=json.loads(json.loads(line.split('JSON.parse(',1)[1].removesuffix(');')))
+        for s in surfaces:
+            c=by_id.get(s['tcglCardId'])
+            if not c: continue
+            folder=OUT/s['tcglCardId'];e=read(folder/'evidence.json')
+            assert s['tcglVariantId']==c['tcglVariantId']
+            assert c['reviewStatus']=='reviewed-visible-features'
+            assert cosmos.sha(ROOT/c['master'])==c['preservedHashes']['master']
+            plate=registered(Image.open(folder/'original-foil.png'),(733,1024))
+            plate.save(folder/'foil-controls.png')
+            # The TCGL plate already combines the foil window and opaque print.
+            # Retain it exactly as coverage; a separate zero protection map
+            # avoids multiplying its continuous subject attenuation twice.
+            plate.convert('L').save(folder/'foil.png')
+            Image.new('L',(733,1024),0).save(folder/'protection.png')
+            base='/cards/pokemon/tcgl-bw/'+s['tcglCardId']+'/'
+            maps={k:base+v for k,v in dict(foil='foil.png',foilControls='foil-controls.png',
+                motif='cosmos.png',protection='protection.png').items()}
+            s.update(profile='pokemon-base-set-2-cosmos',maps=maps,textured=False,
+                treatmentStatus='existing-material',deferredEffect=None)
+            e.update(profile=s['profile'],maps=maps,treatmentStatus=s['treatmentStatus'],deferredEffect=None)
+            e['cosmosPlacement']=dict(status=c['reviewStatus'],active=True,
+                registration='scripts/tcgl/bw-cosmos/registration.json',reference=c['source'],
+                coordinateDimensions=c['coordinateDimensions'],outputDimensions=[1200,1650],
+                sha256=c['motifSha256'],transform=c['registration'],reviewNotes=c['reviewNotes'],
+                limitations=c['limitations'])
+            e['limitations']='Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.'
+            e['outputHashes']={k:cosmos.sha(ROOT/('public'+v)) for k,v in maps.items()}
+            write(folder/'evidence.json',e)
+        lines[i]=line.split('JSON.parse(',1)[0]+'JSON.parse('+json.dumps(json.dumps(surfaces,ensure_ascii=False),ensure_ascii=False)+');'
+    generated.write_text('\n'.join(lines)+'\n',encoding='utf8')
+    pending=ROOT/'docs/bw-pending-finishes.json';families=read(pending)
+    family='Cosmos registered motif placement'
+    families[family]=[c for c in families.get(family,[]) if c['tcglCardId'] not in by_id]
+    if not families[family]: families.pop(family)
+    write(pending,families)
+    print(len(registry),'reviewed Cosmos variants activated')
 
 def gold():
     """The exact English line fields reconstruct the otherwise flat gold fronts.
@@ -208,6 +261,7 @@ def gold():
         print(cid,'exact normal',flush=True)
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser();ap.add_argument('action',choices=['sources','propose','publish','gold']);ap.add_argument('--ids',nargs='+');a=ap.parse_args()
+    ap=argparse.ArgumentParser();ap.add_argument('action',choices=['sources','propose','draft','publish','activate','gold']);ap.add_argument('--ids',nargs='+');a=ap.parse_args()
     if a.action=='propose': proposals(a.ids)
-    else: {'sources':sources,'publish':publish,'gold':gold}[a.action]()
+    elif a.action=='draft': publish(False)
+    else: {'sources':sources,'publish':publish,'activate':activate,'gold':gold}[a.action]()

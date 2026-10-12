@@ -288,10 +288,15 @@
       "sha256": "b765834481d1f8206260d6394395b2f662ccc70231ea715277161d0f84138d6e"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwalt_38/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwalt_38/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwalt_38/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwalt_38/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 40026,
+      "title": "Cosmos Holo  Raichu  (40/99 Boundaries Crossed Blisters Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holo-raichu-40-99-boundaries-crossed-blisters-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/08/EN_S415Cosmos-HoloSpecial-Print.jpg",
+      "file": "research/tcgl/bw-cosmos/bwalt-38/40026.jpg",
+      "sha256": "41718d7fb7d4cc85eeb02eedcd85036879aef92b70dcb10ee17ec9398e5f7b26",
+      "dimensions": [
+        319,
+        450
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwalt_38/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "2f7a7ec044368ffff3251b704e7c4190fa349612572699b8a0949abd45afe4c6",
+    "transform": {
+      "masterToReference": [
+        [
+          0.5344870258218583,
+          0.0010651711317962835,
+          1.6243400639369083
+        ],
+        [
+          -0.000691664504548824,
+          0.5428449489869561,
+          1.169256170824885
+        ],
+        [
+          1.4923642183122633e-06,
+          -1.6317232490752527e-06,
+          1.0
+        ]
+      ],
+      "inliers": 227,
+      "medianReprojectionError": 0.22835834324359894
+    },
+    "reviewNotes": "Sky and paving flecks retained; trainer, balloons and printed cloud boundaries rejected. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "72eb637c37708ba0568d78c3cbd253da5f0e1a61a5506ad592a6e87d9af8cf2c",
+    "foilControls": "3e00e8402499081f0d7e0feb711b3309d26307b9b0747584ba001d5be293cfa4",
+    "motif": "2f7a7ec044368ffff3251b704e7c4190fa349612572699b8a0949abd45afe4c6",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

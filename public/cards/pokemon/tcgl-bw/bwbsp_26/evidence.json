@@ -288,10 +288,15 @@
       "sha256": "08182faa8aa8190d26cc22e7baccc2a3cdbb8c5aec6340489a809ab431a87971"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_26/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_26/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_26/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_26/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79500,
+      "title": "Axew  (BW26 English Promo)",
+      "pageUrl": "https://pokumon.com/card/axew-bw26-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_26BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-26/79500.jpg",
+      "sha256": "9de585e9497affe1a1d4872fba562c9c167e8a53c08d0a56fe8e78381c5d8390",
+      "dimensions": [
+        400,
+        558
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_26/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "7279fe6f17b96289d228c3f06f309e7f9a55d0df8f7faaf7bdd91360486db870",
+    "transform": {
+      "masterToReference": [
+        [
+          0.662063945744173,
+          0.0005929100199761362,
+          2.937793361876243
+        ],
+        [
+          7.774449836197378e-05,
+          0.6719758612600617,
+          3.571989170731988
+        ],
+        [
+          7.25274011503469e-07,
+          -1.2545141810356515e-06,
+          1.0
+        ]
+      ],
+      "inliers": 244,
+      "medianReprojectionError": 0.2569747567176819
+    },
+    "reviewNotes": "Only discrete copper features in the dark cupboard retained; grapes, fruit glows and wood grain excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "3f173566a563564c3ec5190dd4c31c8718af8e1a26624a06c035a3833fb31176",
+    "foilControls": "1da01798fbdf4891c0d4102a5058dd47fc1a54ece91f32c9fb49fc064f2cb38f",
+    "motif": "7279fe6f17b96289d228c3f06f309e7f9a55d0df8f7faaf7bdd91360486db870",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

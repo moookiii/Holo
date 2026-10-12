@@ -288,10 +288,15 @@
       "sha256": "193788cb179f1a5901f8e6b613e9e35aa55f02e4861ab7a66a2c002485c261ca"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_8/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_8/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_8/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_8/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79480,
+      "title": "Oshawott  (BW08 English Promo)",
+      "pageUrl": "https://pokumon.com/card/oshawott-bw08-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_08BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-8/79480.jpg",
+      "sha256": "90e3717c9dec094e751c495aa74bf062798d0dc385edc6421d57036e87ec08c4",
+      "dimensions": [
+        400,
+        558
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_8/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "88f33dda4b1ec482b6961cbd94bf497bccf8b0e6cccf23f89e568bdf982e1aa1",
+    "transform": {
+      "masterToReference": [
+        [
+          0.6655542056471687,
+          -0.0033627480918836236,
+          2.2426831543405292
+        ],
+        [
+          0.004496472645199021,
+          0.6772988625141565,
+          -1.2692652982160733
+        ],
+        [
+          2.8533982479132287e-06,
+          8.168420430562555e-07,
+          1.0
+        ]
+      ],
+      "inliers": 319,
+      "medianReprojectionError": 0.3345540761947632
+    },
+    "reviewNotes": "Teal filled disc lower left retained once. White water strokes, otter edges and printed background waves excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "d40098f636d6208a0cf2b614f59abe83b40d8823d7493b5527cd451daec0c7e7",
+    "foilControls": "1539b978f09728bff2258cba5780e6fb4a697a74cea7ba7d93bc17d30759ca70",
+    "motif": "88f33dda4b1ec482b6961cbd94bf497bccf8b0e6cccf23f89e568bdf982e1aa1",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

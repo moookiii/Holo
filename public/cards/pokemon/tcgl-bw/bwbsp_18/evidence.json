@@ -288,10 +288,15 @@
       "sha256": "a19d1ac3a50fe39630262e98caa9ee5811954f4e51a4094881c637e6c72090c5"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_18/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_18/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_18/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_18/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79491,
+      "title": "Darumaka  (BW18 English Promo)",
+      "pageUrl": "https://pokumon.com/card/darumaka-bw18-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_18BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-18/79491.jpg",
+      "sha256": "ca4e8d56a07efa7ba94a8c2c0ce8d44a8f052ed3afe3c945f732535022e9e2b8",
+      "dimensions": [
+        400,
+        552
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_18/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "64040087bf30a4af49823e410cc7fbff056121861ca544ddf5e5e27728a9496a",
+    "transform": {
+      "masterToReference": [
+        [
+          0.6690027193200555,
+          -0.004253494046632898,
+          0.8401058320146901
+        ],
+        [
+          0.0028173267335004945,
+          0.6668284649928471,
+          0.8119656395785523
+        ],
+        [
+          -1.7775020366009038e-07,
+          -2.1675938721600867e-06,
+          1.0
+        ]
+      ],
+      "inliers": 241,
+      "medianReprojectionError": 0.2615625262260437
+    },
+    "reviewNotes": "Right-side copper stars and diamonds are distinct from fruit and wood. Large brown bottom-right panel and orange hanging cloth are printed and excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "04ab53031be142ba10aeb4fd511c5c94ee15779dfcdeb419b0886e92d4ab1fe8",
+    "foilControls": "07ca756d76d72796739ded5fb84df9acfe760ddb457a133964b4b75e2590cb1f",
+    "motif": "64040087bf30a4af49823e410cc7fbff056121861ca544ddf5e5e27728a9496a",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

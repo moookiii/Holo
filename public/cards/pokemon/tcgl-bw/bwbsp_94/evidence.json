@@ -288,10 +288,15 @@
       "sha256": "29d760d60ea8149c729c9fe8625300f2aa0c71959f9139f6a1db14135ed1aa77"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_94/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_94/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_94/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_94/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79600,
+      "title": "Eevee  (BW94 English Promo)",
+      "pageUrl": "https://pokumon.com/card/eevee-bw94-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_94BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-94/79600.jpg",
+      "sha256": "7bcbe2268c4846d0314f05a2625e478786529f811eb074508495b5ba106863b5",
+      "dimensions": [
+        740,
+        1035
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_94/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "278a4764d63a3eef32abc61562fdd4b3f1e2b003163547470fa397579d2e9db9",
+    "transform": {
+      "masterToReference": [
+        [
+          1.2422523707521016,
+          0.00013809991100753865,
+          0.9965938179604765
+        ],
+        [
+          0.0011038354500226232,
+          1.2598461420202784,
+          0.44135841896232386
+        ],
+        [
+          -1.8635810942666816e-07,
+          7.374207722220351e-06,
+          1.0
+        ]
+      ],
+      "inliers": 583,
+      "medianReprojectionError": 0.5437760353088379
+    },
+    "reviewNotes": "White physical discs/flecks registered over the printed oval pattern. Printed colorful ovals and Eevee eye highlights excluded. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "dadfdd4aff216fba12b25e07643d4e3f14f923f10202e653b6db1cda6b22f88d",
+    "foilControls": "b4b4ae60c0a4a32d556b756d65d657e4287fd4b29a14c0e0f809588a93ab487f",
+    "motif": "278a4764d63a3eef32abc61562fdd4b3f1e2b003163547470fa397579d2e9db9",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

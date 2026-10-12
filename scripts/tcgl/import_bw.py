@@ -175,6 +175,10 @@ def main():
             if profile == 'pokemon-base-set-2-cosmos':
                 maps['motif'] = '/' + (dest/'cosmos.png').relative_to(ROOT/'public').as_posix()
                 maps['protection'] = '/' + (dest/'protection.png').relative_to(ROOT/'public').as_posix()
+                # Preserve the unchanged Base Set 2 material roughness.
+                maps.pop('roughness',None)
+                if not (dest/'protection.png').exists():
+                    Image.new('L',(733,1024),0).save(dest/'protection.png')
         number = m['printed_collector_number']; denominator = str(row.get('EN Expansion Denominator') or '')
         if m['set_id'] == 'bw11r':
             number = 'RC' + number.removeprefix('RC'); denominator = 'RC' + denominator.removeprefix('RC')

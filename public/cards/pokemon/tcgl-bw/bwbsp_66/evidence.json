@@ -288,10 +288,15 @@
       "sha256": "2954c08f4b41c3630fcec52cfa21ed541f42c6637002b4831d0596c0a9113899"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_66/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_66/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_66/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_66/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,58 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "postId": 79569,
+      "title": "Ninetales  (BW66 English Promo)",
+      "pageUrl": "https://pokumon.com/card/ninetales-bw66-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/05/EN_66BW.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-66/79569.jpg",
+      "sha256": "ab78a0d80a2893e80c53bae26eb6bf4e7c8edcb72f31927e36ffe1741c1f7dfb",
+      "dimensions": [
+        752,
+        1055
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_66/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "898e6ae18aa1413fc2030e7babe185bb2010b53e35ed183319a852156d247b8b",
+    "transform": {
+      "masterToReference": [
+        [
+          1.2489419182972363,
+          0.005382834031208056,
+          -2.9711490529917444
+        ],
+        [
+          0.0006902357877807547,
+          1.2747720444738795,
+          5.741311479443292
+        ],
+        [
+          -1.4959060953625501e-06,
+          1.392873589521846e-06,
+          1.0
+        ]
+      ],
+      "inliers": 635,
+      "medianReprojectionError": 0.4953615367412567
+    },
+    "reviewNotes": "Large pale disc in lower-left pool retained whole. All flame glows, tails and printed water strokes rejected. Full foil window compared with the exact clean master. Explicit measured features only; ambiguous artwork, printed bokeh and unresolved grain omitted. Large features remain single filled regions. Placement belongs to this photographed copy.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "aeb3633cf5767a91a646071331d8fce97eb6dc45d8dd4fe495651971bbfdd4ba",
+    "foilControls": "ddd546035a9ca283611a196f3b70947e0283765d1670ae026cfa5a1d1d7b5652",
+    "motif": "898e6ae18aa1413fc2030e7babe185bb2010b53e35ed183319a852156d247b8b",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }
