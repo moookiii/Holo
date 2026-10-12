@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_9/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_9/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_9/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_9/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "5433eb88016155c6f165830227fc7f673ea3b35565d0825fe3f1e3a9d0cf8a5e",
     "protection": "08a2942071acf1ed513b3f1e185197700934ad8c96048b6ec927eb7fc97d7dc5",
     "roughness": "a9328c9b8da6c1763be3dbf5b1af5eb1aa471fa083b455d2320c73bce5b62200",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "de539bcb7f48816e8f8b67614fa8bc8877a7788442959da8aa8c1a793cc16b5b"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50963,
+      "title": "Cosmos Holofoil  Torracat  (25/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-torracat-25-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S700Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        319,
+        450
+      ],
+      "description": "Cosmos Holo Incineroar-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        319,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-9/50963.jpg",
+      "sha256": "effae0e95d968e7cd20f6e168888b7363fadbea4a303d3a1580f9296e28f8104"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5329625754377427,
+          -0.0007703463249494885,
+          -0.9928684792608297
+        ],
+        [
+          0.002683023465168685,
+          0.5414267563044151,
+          -0.9347841831428022
+        ],
+        [
+          9.13110865145369e-06,
+          -3.7044898643704375e-06,
+          1.0
+        ]
+      ],
+      "inliers": 210,
+      "medianReprojectionError": 0.3835375905036926,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole window reviewed around every limb, evolution inset and the lower rail. The upper-left pale circle, faint upper-right circle and large lower yellow disk are each single features; their internal glints are replaced by filled geometry. Rock/ray print and subject edges excluded during proposal comparison.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_2/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_2/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_2/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_2/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "578498818d53094e478a793e882c4fdeb29989f7166368299f1961be86577b0f",
     "protection": "49a5ba0d5040e513aa709ef2e04e544808b03652bc1af732fed0e74db78e9182",
     "roughness": "479508fc0f064766b4c1a735e72df25d490ff5964aec7f455997928f6a78d952",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "8ae2be684a91004d9f58fdb1bb4b659071112432c1dde6f222c127867ba247b7"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50951,
+      "title": "Cosmos Holofoil  Rowlet  (9/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-rowlet-9-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S694Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        321,
+        450
+      ],
+      "description": "Cosmos Holo Decidueye-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        321,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-2/50951.jpg",
+      "sha256": "a6612ee287c551d8bd5071cecafc1afd802ca0cd4307683602ce1796fd8823f1"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5343093105985007,
+          -0.0011094839899274333,
+          0.4833886627290075
+        ],
+        [
+          -0.0004191326437150043,
+          0.5418587350209314,
+          2.151169406833691
+        ],
+        [
+          -1.36043169623753e-06,
+          -5.823358853095577e-07,
+          0.9999999999999999
+        ]
+      ],
+      "inliers": 138,
+      "medianReprojectionError": 0.242617666721344,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole reference/window review: retained visible background spots; excluded toe and foreground leaf-edge candidates. Completed the large upper pale oval and left green and partly occluded orange disks as single filled features; no satellites inside those features. Fine unresolved JPEG specks omitted.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

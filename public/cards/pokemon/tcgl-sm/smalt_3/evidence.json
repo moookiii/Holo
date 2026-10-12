@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_3/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_3/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_3/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_3/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "2dfbce03cee1cd5336471d901b30dfa1d6b000d858df1d423fa789c3acb32d62",
     "protection": "fb4fd8147c017dbbb51d0f3ee7385f7ff24bc7aa75f1c8e0c5d6b61cf79c767a",
     "roughness": "f00e17cf1e0e0a9aa7bac843165eaeabc88b6f9a2abaa6f6f926b6f6cf34c048",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "3ac0f6df98e94372c104f140ab704fbb77ba762b33df5b7b45d23d0e9074b8b2"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50952,
+      "title": "Cosmos Holofoil  Dartrix  (10/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-dartrix-10-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S695Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        318,
+        450
+      ],
+      "description": "Cosmos Holo Decidueye-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        318,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-3/50952.jpg",
+      "sha256": "87430fe7db5d1ebd3ad70440fdb4e1fb95fecca499efbec006cd6210d68bf7fe"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5330634309798382,
+          -0.0007550353999396629,
+          0.20300441488320642
+        ],
+        [
+          0.0015510068267602494,
+          0.5431379851769005,
+          1.178267264927181
+        ],
+        [
+          5.566771253894698e-06,
+          -1.7237178178292904e-06,
+          1.0
+        ]
+      ],
+      "inliers": 249,
+      "medianReprojectionError": 0.3090064823627472,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Reviewed all background gaps between wings and printed leaves. Rejected leaf/vein candidates. Completed clipped left oval and green disks to the right of the body and behind the lower-right leaf; protection remains composed separately.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }

@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smalt_8/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smalt_8/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smalt_8/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smalt_8/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "c1d4922e00d32d2c3ee6ab0ce1929fa00ec17b365419a0f4dc3e522d09c50285",
     "protection": "35004fa707578f21b37b10629ab35844f486572546cf8f5962468c6517263222",
     "roughness": "cc67422fcb24f44c70be509616355153e815e52621257762ae02e570c393a958",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "a038bd4e0d950ea8dc83754c5c383765bc0b01088fa806b11eee8a51583fdadd"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 50962,
+      "title": "Cosmos Holofoil  Litten  (24/149 GX Premium Collection Special Print)",
+      "pageUrl": "https://pokumon.com/card/cosmos-holofoil-litten-24-149-gx-premium-collection-special-print/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2022/01/EN_S699Cosmos-HolofoilSpecial-Print.jpg",
+      "dimensions": [
+        322,
+        450
+      ],
+      "description": "Cosmos Holo Incineroar-GX Premium Collection exclusive\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        322,
+        450
+      ],
+      "file": "research/cosmos-missing/smalt-8/50962.jpg",
+      "sha256": "f3f22874f97c84887e65b378d26f76d87e6a6afc676d68e4a2debda4c986748e"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          0.5357549248632796,
+          0.000879052231427667,
+          0.9953272325387039
+        ],
+        [
+          -0.0013591015335090283,
+          0.54359801766017,
+          -1.1917275679630461
+        ],
+        [
+          6.029373545952243e-07,
+          -9.510076433868623e-08,
+          1.0
+        ]
+      ],
+      "inliers": 165,
+      "medianReprojectionError": 0.26437485218048096,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Whole foil window reviewed, including upper edge and gaps below tail/legs. The stone wall and ledge are print, so their lighting patches and grain were excluded; retained independently visible small foil dots and the isolated large right disk. Restored the partially clipped upper pale-blue dot.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }
