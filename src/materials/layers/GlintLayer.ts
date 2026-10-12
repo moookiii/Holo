@@ -19,9 +19,18 @@ export interface GlintUniforms {
 
 export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>) {
   if (settings.microdiamond) return microdiamondGlints(lightDirection, settings, seed);
+  const first = grainGlints(lightDirection, settings, seed);
+  if (!settings.spectralGrain) return first;
+  // Two interleaved populations double gold grain count without shrinking
+  // their footprints or changing the existing per-grain spectral response.
+  const secondSeed = typeof seed === 'number' ? seed + 193.7 : seed.add(193.7);
+  return first.add(grainGlints(lightDirection, settings, secondSeed, .5));
+}
+
+function grainGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>, offset = 0) {
   const ordered = settings.ordered ?? float(0);
   const point = uv().mul(vec2(settings.aspect ?? float(.716), 1));
-  const lattice = mix(point, vec2(point.x.add(point.y), point.y.sub(point.x)), ordered).mul(settings.scale);
+  const lattice = mix(point, vec2(point.x.add(point.y), point.y.sub(point.x)), ordered).mul(settings.scale).add(offset);
   const cell = lattice.floor();
   const offsetSeed = (offset: number) => typeof seed === 'number' ? uniform(seed + offset) : seed.add(offset);
   const r1 = stableHash(cell, offsetSeed(0)), r2 = stableHash(cell, offsetSeed(17.3)), r3 = stableHash(cell, offsetSeed(76.1));

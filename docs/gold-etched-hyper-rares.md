@@ -143,3 +143,8 @@ Cape 265/182, the existing Gold Etched calibration card.
 Focused spectral-grain and gallery-preview tests pass. The existing gold-etched
 suite cannot load because megaRarity.ts imports ./prismatic without an extension
 under Node's native TypeScript test runner.
+
+Gold grain density follow-up: two independently seeded, half-cell-offset grain
+populations now double the optical dot count while retaining scale 260, the same
+per-dot radius, strength and spectral response. Only spectralGrain opts into the
+second population; viewer and gallery use the shared function.
