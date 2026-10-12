@@ -92,7 +92,7 @@ export class PackOpeningController {
       cardTextureCacheMisses: 0, postCompileUploadMs: 0, textureUploads: 0, textureUploadCpuMs: 0, mipmapCalls: 0, mipmapCpuMs: 0,
       audioMs: 0, sceneConstructionMs: 0, preparedCards: 0 };
     const lookupStarted = performance.now();
-    const contents = presentPackContents(definition, deps.preparedContents ?? resolvePackContents(definition, seed));
+    const contents = presentPackContents(definition, deps.preparedContents ?? resolvePackContents(definition, seed, deps.definitions));
     const definitions = contents.map(entry => { const card = deps.definitions.find(c => c.id === entry.cardId); if (!card) throw new Error(`Unknown pack card: ${entry.cardId}`); return card; });
     metrics.usedCpuPreparation = definitions.every(card => deps.prepared?.has(card.id));
     metrics.preparedCards = definitions.filter(card => deps.prepared?.has(card.id)).length;

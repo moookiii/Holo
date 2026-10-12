@@ -12,7 +12,7 @@ export function packIdentity(definition: PackDefinition, seed: number, contents 
 }
 export async function prepareExactPack(definition: PackDefinition, seed: number, definitions: readonly CardDefinition[], signal: AbortSignal,
   prepare: (card: CardDefinition, signal: AbortSignal) => Promise<PreparedCardCpu>, progress: (done: number, total: number) => void = () => {}): Promise<PreparedPack> {
-  const contents = resolvePackContents(definition, seed);
+  const contents = resolvePackContents(definition, seed, definitions);
   const selected = contents.map(entry => {
     const card = definitions.find(c => c.id === entry.cardId);
     if (!card) throw new Error(`Unavailable card: ${entry.cardId}`); return card;

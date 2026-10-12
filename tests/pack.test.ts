@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { PackOpeningState } from '../src/pack/PackOpeningState.ts';
-import { archivePack02, archivePack03, getPack, packRegistry, resolvePackContents, showcasePack, testPack } from '../src/pack/PackDefinition.ts';
+import { getPack, packRegistry, resolvePackContents, showcasePack, testPack } from '../src/pack/PackDefinition.ts';
 import { Spring } from '../src/pack/PackMath.ts';
 import { newNonHoloCards, nonHoloCardIds, nonHoloCards } from '../src/card/NonHoloCards.ts';
 
@@ -15,10 +15,8 @@ test('pack state machine rejects skipping physical stages and permits repeated c
 
 test('the registry resolves distinct showcase and test packs', () => {
   assert.equal(getPack('archive-01'), showcasePack);
-  assert.equal(getPack('archive-02'), archivePack02);
-  assert.equal(getPack('archive-03'), archivePack03);
   assert.equal(getPack('test-pack'), testPack);
-  assert.equal(packRegistry.length, 4);
+  assert.equal(packRegistry.length, 2);
   assert.notEqual(testPack.cardCount, showcasePack.cardCount);
   assert.notDeepEqual(testPack.contents, showcasePack.contents);
   assert.throws(() => getPack('missing-pack'), /Unknown pack/);
@@ -37,13 +35,14 @@ test('pack contents are deterministic, bounded and do not mutate the authored de
   assert.notDeepEqual(resolvePackContents(showcasePack, 42), resolvePackContents(showcasePack, 43));
   assert.equal(JSON.stringify(showcasePack), copy);
   const contents = resolvePackContents(showcasePack, 1);
-  assert.equal(contents.length, 5);
-  assert.equal(new Set(contents.slice(0, 4).map(card => card.cardId)).size, 4);
-  assert.ok(contents.slice(0, 4).every(card => nonHoloCardIds.includes(card.cardId)));
-  assert.ok(!nonHoloCardIds.includes(contents[4].cardId));
-  assert.equal(contents[4].reveal, 'studio-sweep');
+  assert.equal(contents.length, 15);
+  assert.equal(new Set(contents.map(card => card.cardId)).size, 15);
+  assert.equal(contents[14].reveal, 'studio-sweep');
+  const pool = Array.from({ length: 20 }, (_, i) => ({ ...nonHoloCards[0], id: `gallery-${i}` }));
+  assert.ok(resolvePackContents(showcasePack, 1, pool).every(card => card.cardId.startsWith('gallery-')));
+  assert.throws(() => resolvePackContents(showcasePack, 1, pool.slice(0, 14)));
   assert.throws(() => resolvePackContents({ ...showcasePack, cardCount: 0 }, 1));
-  assert.throws(() => resolvePackContents({ ...showcasePack, cardCount: 6 }, 1));
+  assert.throws(() => resolvePackContents({ ...showcasePack, cardCount: 16 }, 1));
 });
 
 test('pack springs converge without overshoot and preserve travel across frame rates', () => {

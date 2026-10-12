@@ -1,3 +1,4 @@
+import { cards as galleryCards, type CardDefinition } from '../card/CardDefinition.ts';
 import { nonHoloCardIds } from '../card/NonHoloCards.ts';
 import { holoBulkCardIds } from '../card/HoloBulkCards.ts';
 import { yugiohTopCardIds } from '../card/YugiohTopCards.ts';
@@ -19,6 +20,7 @@ export interface PackDefinition {
   seed: number;
   contents: PackCard[];
   order: 'fixed' | 'seeded';
+  galleryPool?: boolean;
   collation?: { commonSlots: number; commonPool: string[]; holoPool: string[] };
   wrapper: { front: string; back: string; ink: string; backInk?: string; width: number; height: number; depth: number; printedSeals?: boolean; exteriorFinish?: 'satin-print' };
 }
@@ -31,45 +33,9 @@ export const holographicCardIds = [
   'effect-veiler-ra01', 'dark-magician-girl', 'ip-masquerena', 'blue-eyes',
   'angel-of-serenity', 'black-lotus',
 ];
-const archiveCollation = { commonSlots: 4, commonPool: nonHoloCardIds, holoPool: holographicCardIds };
-
 export const showcasePack: PackDefinition = {
-  id: 'archive-01', name: 'Archive / 01', category: 'Studio selection', cardCount: 5, seed: 1741,
-  order: 'seeded', collation: archiveCollation,
-  contents: [
-    { cardId: 'tyranitar-paldea-evolved', rarity: 'standard' },
-    { cardId: 'squirtle-frlg-reverse', rarity: 'foil' },
-    { cardId: 'blue-eyes', rarity: 'foil' },
-    { cardId: 'lugia-neo-genesis', rarity: 'foil' },
-    { cardId: 'dark-magician-girl', rarity: 'signature', reveal: 'studio-sweep' },
-  ],
-  wrapper: archiveWrapper,
-};
-
-export const archivePack02: PackDefinition = {
-  id: 'archive-02', name: 'Archive / 02', category: 'Studio selection', cardCount: 5, seed: 2819,
-  order: 'seeded', collation: archiveCollation,
-  contents: [
-    { cardId: 'charizard-base-set', rarity: 'foil' },
-    { cardId: 'eevee-legendary-reverse', rarity: 'standard' },
-    { cardId: 'angel-of-serenity', rarity: 'foil' },
-    { cardId: 'ip-masquerena', rarity: 'foil' },
-    { cardId: 'effect-veiler-ra01', rarity: 'signature', reveal: 'studio-sweep' },
-  ],
-  wrapper: archiveWrapper,
-};
-
-export const archivePack03: PackDefinition = {
-  id: 'archive-03', name: 'Archive / 03', category: 'Studio selection', cardCount: 5, seed: 3947,
-  order: 'seeded', collation: archiveCollation,
-  contents: [
-    { cardId: 'black-lotus', rarity: 'signature' },
-    { cardId: 'charizard-expedition-reverse', rarity: 'standard' },
-    { cardId: 'nocturne', rarity: 'foil' },
-    { cardId: 'blue-eyes', rarity: 'foil' },
-    { cardId: 'dark-magician-girl', rarity: 'signature', reveal: 'studio-sweep' },
-  ],
-  wrapper: archiveWrapper,
+  id: 'archive-01', name: 'Archive', category: 'Studio selection', cardCount: 15, seed: 1741,
+  order: 'seeded', galleryPool: true, contents: [], wrapper: archiveWrapper,
 };
 
 /** Small deterministic fixture for interaction and visual regression checks. */
@@ -86,7 +52,7 @@ export const testPack: PackDefinition = {
   wrapper: archiveWrapper,
 };
 
-export const packRegistry = [showcasePack, archivePack02, archivePack03, testPack] as const;
+export const packRegistry = [showcasePack, testPack] as const;
 export function getPack(id: string) {
   const pack = packRegistry.find(candidate => candidate.id === id);
   if (!pack) throw new Error(`Unknown pack: ${id}`);
@@ -95,8 +61,18 @@ export function getPack(id: string) {
 export function randomSequence(seed: number) {
   return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let n = Math.imul(seed ^ seed >>> 15, 1 | seed); n ^= n + Math.imul(n ^ n >>> 7, 61 | n); return ((n ^ n >>> 14) >>> 0) / 4294967296; };
 }
-export function resolvePackContents(pack: PackDefinition, seed: number) {
+export function resolvePackContents(pack: PackDefinition, seed: number, definitions: readonly CardDefinition[] = galleryCards) {
   if (!Number.isInteger(pack.cardCount) || pack.cardCount < 1 || pack.cardCount > 15) throw new Error('A pack needs 1–15 defined cards.');
+  if (pack.galleryPool) {
+    const available = [...new Map(definitions.map(card => [card.id, card])).values()];
+    if (available.length < pack.cardCount) throw new Error('Not enough gallery cards for this pack.');
+    const random = randomSequence(seed);
+    return Array.from({ length: pack.cardCount }, (_, slot): PackCard => {
+      const card = available.splice(Math.floor(random() * available.length), 1)[0];
+      return { cardId: card.id, rarity: slot === pack.cardCount - 1 ? 'signature' : 'standard',
+        ...(slot === pack.cardCount - 1 ? { reveal: 'studio-sweep' as const } : {}) };
+    });
+  }
   if (pack.collation) {
     const { commonSlots, commonPool, holoPool } = pack.collation;
     if (commonSlots !== pack.cardCount - 1 || commonPool.length < commonSlots || holoPool.length < 1) throw new Error('Invalid random pack collation.');
