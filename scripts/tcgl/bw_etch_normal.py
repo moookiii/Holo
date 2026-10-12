@@ -31,7 +31,9 @@ def convert(entry):
     cid = entry['card_id']
     target = OUT / cid
     if (target / 'normal.png').exists() and (target / 'normal-evidence.json').exists():
-        return
+        prior = json.loads((target / 'normal-evidence.json').read_bytes())
+        if prior.get('conversionSchema') == 'holo-bw-authored-normal-v2':
+            return
     original = target / 'original-etch.png'
     front = target / 'original-front.png'
     foil = target / 'original-foil.png'
@@ -48,7 +50,12 @@ def convert(entry):
     foil_gray = np.asarray(foil_card.convert('L'), dtype=np.float32) / 255.0
     protected = cv2.resize(np.clip((0.22 - foil_gray) / 0.14, 0, 1), SIZE,
                            interpolation=cv2.INTER_LINEAR)
-    Image.fromarray(np.rint(protected * 255).astype(np.uint8), 'L').save(target / 'protection.png')
+    encoded_protection = np.rint(protected * 255).astype(np.uint8)
+    Image.fromarray(encoded_protection, 'L').save(target / 'protection.png')
+    # Differentiate the original continuous field, then use precisely the
+    # authored PNG protection. Pixels encoded as fully protected stay flat;
+    # do not leave residual sub-byte slopes from pre-encoding float coverage.
+    protected = encoded_protection.astype(np.float32) / 255.0
     # The exact TCGL whiteplate contains card-specific subject modulation.
     # Retain that continuous material weighting, excluding protected ink; no
     # brightness from the printed front is used to author roughness.
@@ -68,6 +75,7 @@ def convert(entry):
     normal_path = target / 'normal.png'
     Image.fromarray(np.rint(np.clip(normal * .5 + .5, 0, 1) * 255).astype(np.uint8), 'RGB').save(normal_path)
     evidence = {
+        'conversionSchema': 'holo-bw-authored-normal-v2',
         'tcglCardId': cid, 'tcglVariantId': entry['long_form_id'],
         'source': str(original.relative_to(ROOT)).replace('\\', '/'),
         'pairedFront': str(front.relative_to(ROOT)).replace('\\', '/'),
