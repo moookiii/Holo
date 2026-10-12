@@ -5,6 +5,7 @@ import { tcglMegaSets } from '../pokemon/data/mega-tcgl.generated.ts';
 import { tcglMepSets } from '../pokemon/data/mep-tcgl.generated.ts';
 import { tcglSwshSets } from '../pokemon/data/swsh-tcgl.generated.ts';
 import { tcglSmSets } from '../pokemon/data/sm-tcgl.generated.ts';
+import { tcglBwSets } from '../pokemon/data/bw-tcgl.generated.ts';
 import { tcglXySets } from '../pokemon/data/xy-tcgl.generated.ts';
 import { dragonDiscoverySet } from '../pokemon/DragonDiscoveryCatalog.ts';
 import { completePokemonMetadata } from '../pokemon/metadata.ts';
@@ -70,6 +71,7 @@ const pokemonSetReleaseDates = new Map<string, string>([
   ...tcglMepSets.map(set => [set.name, set.releaseDate] as [string, string]),
   ...tcglSwshSets.map(set => [set.name, set.releaseDate] as [string, string]),
   ...tcglSmSets.map(set => [set.name, set.releaseDate] as [string, string]),
+  ...tcglBwSets.map(set => [set.name, set.releaseDate] as [string, string]),
   ...tcglXySets.map(set => [set.name, set.releaseDate] as [string, string]),
 ]);
 
@@ -169,7 +171,7 @@ function pokemonPrintKey(card: CardDefinition) {
     : card.profile === 'print-only' ? 'normal' : 'holo');
   // XY promos/alternate printings can share a printed collector number while
   // retaining different exact TCGL identities and material bindings.
-  if (card.pokemon?.seriesId === 'xy') return `tcgl-xy|${card.pokemon.id}|${variant}`;
+  if (card.pokemon?.seriesId === 'xy' || card.pokemon?.seriesId === 'bw') return `tcgl-${card.pokemon.seriesId}|${card.pokemon.id}|${variant}`;
   return `${gallerySetName(card)}|${number}|${variant}`;
 }
 

@@ -3,6 +3,7 @@ import { tcglMegaSets } from './data/mega-tcgl.generated.ts';
 import { tcglMepSets } from './data/mep-tcgl.generated.ts';
 import { tcglSwshSets } from './data/swsh-tcgl.generated.ts';
 import { tcglSmSets } from './data/sm-tcgl.generated.ts';
+import { tcglBwSets } from './data/bw-tcgl.generated.ts';
 import { tcglXySets } from './data/xy-tcgl.generated.ts';
 import { svpTcgdexNonfoil } from './data/svp-tcgdex-nonfoil.generated.ts';
 import type { PokemonCard, PokemonSet } from './types.ts';
@@ -11,7 +12,7 @@ import { swshSetLogo } from './SwshSetLogos.ts';
 import { smLogos } from './data/sm-logos.generated.ts';
 import { xySetLogo } from './XySetLogos.ts';
 
-const catalogSets = [...tcglSvSets, ...tcglMegaSets, ...tcglMepSets, ...tcglSwshSets, ...tcglSmSets, ...tcglXySets].map(set => set.id === 'svp'
+const catalogSets = [...tcglSvSets, ...tcglMegaSets, ...tcglMepSets, ...tcglSwshSets, ...tcglSmSets, ...tcglXySets, ...tcglBwSets].map(set => set.id === 'svp'
   ? { ...set, cards: [...set.cards, ...svpTcgdexNonfoil].sort((a, b) => Number(a.localId) - Number(b.localId)) }
   : set);
 const records = new Map(catalogSets.map(set => [set.id, set]));

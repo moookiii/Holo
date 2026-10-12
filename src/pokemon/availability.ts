@@ -14,6 +14,9 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (setId === WIZARDS_PROMO_ID) return { ready: false, label: `Browse ${wizardsPromoCards.length} promos`,
     detail: 'Choose an individual promo card. These cards were distributed outside booster packs.' };
   const nonBoosters: Record<string, { label: string; detail: string }> = {
+    bwbsp: { label: 'Browse BW promos', detail: 'Promotional printings distributed outside retail boosters.' },
+    bwalt: { label: 'Browse BW special printings', detail: 'Special product printings have no standalone random booster.' },
+    bw11r: { label: 'Browse BW Radiant Collection', detail: 'Two RC cards are included in Legendary Treasures boosters; no separate RC booster.' },
     xy0: { label: 'Browse Kalos Starter Set', detail: 'Theme-deck collection; no Kalos Starter Set booster pack.' },
     xybsp: { label: 'Browse XY promos', detail: 'Exact promotional printings distributed outside random boosters.' },
     xyalt: { label: 'Browse XY special printings', detail: 'Alternate sealed-product printings; no standalone alternate-printings booster.' },

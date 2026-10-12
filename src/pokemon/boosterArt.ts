@@ -2,6 +2,7 @@ import { editionLabel, type PokemonBooster } from './types.ts';
 import { wotcWrappers } from './WotcProducts.ts';
 import { swshWrappers } from './data/swsh-wrappers.generated.ts';
 import { smWrappers } from './data/sm-wrappers.generated.ts';
+import { bwWrappers } from './data/bw-wrappers.generated.ts';
 import { xyWrappers } from './data/xy-wrappers.generated.ts';
 import { packBacks } from './packBacks.ts';
 
@@ -35,6 +36,7 @@ export function localBoosterArt(setId: string): PokemonBooster[] | undefined {
   const back = packBacks[setId] ? { back: `${base}${packBacks[setId]}` } : {};
   if (swshWrappers[setId]) return swshWrappers[setId].map(art => ({ ...art, ...back }));
   if (smWrappers[setId]) return smWrappers[setId].map(art => ({ ...art, ...back }));
+  if (bwWrappers[setId]) return bwWrappers[setId].map(art => ({ ...art, ...back }));
   if (xyWrappers[setId]) return xyWrappers[setId].map(art => ({ ...art, ...back }));
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return designs[setId].map((design,index) => ({ id: design,
     name: `English booster · ${design.split('-').map(word=>word[0].toUpperCase()+word.slice(1)).join(' ')}`, front: `${base}${setId}-pack-${index}.png`,

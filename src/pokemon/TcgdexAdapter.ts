@@ -89,7 +89,7 @@ export class TcgdexAdapter {
   sets(seriesId: string, signal: AbortSignal): Promise<CatalogEntry[]> {
     return this.read(`series:${seriesId}`, signal, async () => {
       if (seriesId === 'lc') return [{ id: LEGENDARY_COLLECTION_ID, name: legendaryCollectionSet.name, logo: legendaryCollectionSet.logo }];
-      if (seriesId === 'swsh' || seriesId === 'sm' || seriesId === 'xy') return svTcglSets.filter(s => s.series.id === seriesId)
+      if (seriesId === 'swsh' || seriesId === 'sm' || seriesId === 'xy' || seriesId === 'bw') return svTcglSets.filter(s => s.series.id === seriesId)
         .sort((a,b) => a.releaseDate.localeCompare(b.releaseDate) || a.id.localeCompare(b.id))
         .map(s => ({ id:s.id, name:s.name, logo:s.logo }));
       if (seriesId === 'swsh') {
