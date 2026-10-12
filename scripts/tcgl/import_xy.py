@@ -126,6 +126,14 @@ def main():
                     'normalGeneration':False, 'shaderChanges':False,
                     'limitations': 'Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.' if pending else
                                    'Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.'}
+        if pending == 'Cosmos registered motif placement':
+            empty = dest / 'cosmos-placement-pending.png'
+            if not empty.exists(): Image.new('L', (1200,1650), 0).save(empty)
+            evidence['cosmosPlacement'] = {
+                'status':'pending', 'coordinateDimensions':[733,1024], 'motifs':[],
+                'emptyMotifPng':'/' + empty.relative_to(ROOT/'public').as_posix(),
+                'sha256':sha(empty), 'active':False,
+                'reason':'Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs.'}
         write(dest / 'evidence.json', evidence)
         surface = {'cardId':appid,'variant':variant,'profile':profile,'textured':False,'maps':maps,
                    'evidence':'/' + (dest/'evidence.json').relative_to(ROOT/'public').as_posix(),
