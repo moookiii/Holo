@@ -108,7 +108,7 @@ export class VendingMachine {
     this.closeSheet(false); this.products = []; this.grid.set([]); this.status.textContent = 'Loading sets…'; this.retry.hidden = true;
     this.grid.root.classList.add('vm-loading');
     try {
-      const products = await game.products(this.era.value, signal); signal.throwIfAborted(); this.products = products;
+      const products = await game.products(this.era.value, signal); signal.throwIfAborted(); this.products = products.filter(product => product.available);
       this.filter(false); this.status.textContent = 'Choose a pack to view its artwork and details.';
       const featured = this.products.find(p => p.artwork.some(a => a.front));
       if (featured) this.attract.querySelector('.vm-attract-art')?.replaceChildren(artwork(featured.artwork[0]));
