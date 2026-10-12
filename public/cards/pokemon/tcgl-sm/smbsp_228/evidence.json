@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_228/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_228/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_228/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_228/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "8569e0c855a54871092ac8dca0f260cc9ad73ff3124935fa321183ee84cc6b43",
     "protection": "5844b2b41e9376297c2ecd7a3125b0769e4d30f5495e19ee4b3562617503e4d4",
     "roughness": "8f2156c0102c79f28a9ba362aefb79c8f67efc835475d6fc7e12274fff8051da",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "931bfab36673a354fe6dcc883d343fe8a0c425a50797f248f691d9cbf13b024e"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 80183,
+      "title": "Armored Mewtwo  (SM228 English Promo)",
+      "pageUrl": "https://pokumon.com/card/armored-mewtwo-sm228-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_228SM.jpg",
+      "dimensions": [
+        740,
+        1037
+      ],
+      "description": "Fall 2019 Collector Chest\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        740,
+        1037
+      ],
+      "file": "research/cosmos-missing/smbsp-228/80183.jpg",
+      "sha256": "4a526031a5eae052af965f77428fec5ee59379006ee470c0ac492425179940e7"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.246979221791103,
+          0.002158057572190917,
+          0.9860408070489939
+        ],
+        [
+          0.0053980930790755695,
+          1.2653920642334984,
+          -2.6637231309163902
+        ],
+        [
+          1.0511487771570757e-05,
+          1.497349978910359e-06,
+          1.0
+        ]
+      ],
+      "inliers": 530,
+      "medianReprojectionError": 0.6539871692657471,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Exact Armored Mewtwo SM228 English Fall 2019 Collector Chest physical scan. Reviewed full 740x1037 source, complete clean TCGL master and full-card coordinate grid, including title, attack symbols, rules, feet, bottom text and border. Explicitly selected measurable discs and traced three angular perimeters; fine stepped microfeatures remain unresolved. Replaced large dark, clipped and partially occluded discs with their complete outer boundaries. Original TCGL print protection determines occlusion; no rectangular text threshold or brightness-derived foil. SIFT registration reviewed against printing anchors. Output is continuous filled geometry in 600x825 UV coordinates, no flip, offset or artwork crop. Printed master, foil, protection and roughness remain unchanged; no relief or shader changes. Flat scan does not establish angular calibration, and exact faint microfeature recovery remains uncertain.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }
