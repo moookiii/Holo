@@ -11,4 +11,7 @@ const regular: HolographicProfile = {
   surface: { metalness: .68, roughness: .30, laminate: .055, laminateRoughness: .3, foilReflectance: .045, inkTransmission: .92, coverageRoughness: .08, sheen: 0 },
   mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'profile', embossMaskFromNormalAlpha: false },
 };
-export const generationsProfiles: HolographicProfile[] = [regular];
+export const generationsProfiles: HolographicProfile[] = [regular, {
+  ...regular, id: 'generations-rc-holo', name: 'Generations RC · Decorative silver holo',
+  surface: { ...regular.surface, metalness: .72, roughness: .32, foilReflectance: .055 },
+}];
