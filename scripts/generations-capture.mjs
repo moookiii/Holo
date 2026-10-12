@@ -18,13 +18,13 @@ else if (!existsSync(chromium.executablePath())) {
 const browser = await chromium.launch(opts);
 const page = await browser.newPage({ viewport: { width: 1440, height: 1100 }, deviceScaleFactor: 1 });
 // A review must retain one shader revision even if another workspace task edits files.
-await page.routeWebSocket('**/*', socket => socket.close());
+await page.routeWebSocket('**/*', () => {});
 const errors = [], warnings = [];
 page.on('pageerror', error => errors.push(error.stack));
 page.on('console', message => { if (message.type() === 'error') errors.push(message.text()); else if (message.type() === 'warning') warnings.push(message.text()); });
 const query = process.env.CAPTURE_QUERY || '';
 try {
-  await page.goto(`http://127.0.0.1:5173/${query}`, { waitUntil: 'networkidle' });
+  await page.goto(`http://127.0.0.1:5173/${query}`, { waitUntil: 'domcontentloaded', timeout: 90000 });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
   if (process.env.CAPTURE_CARD) await page.evaluate(id => window.__holo.gallery.close(id), process.env.CAPTURE_CARD);
   if (process.env.CAPTURE_PROFILE) await page.evaluate(id => window.__holo.setProfile(id), process.env.CAPTURE_PROFILE);
