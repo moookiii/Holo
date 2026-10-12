@@ -34,10 +34,10 @@ try {
   await weedle.click({modifiers:['Shift']});
   await page.getByRole('button',{name:'Open Favorites binder',exact:true}).click();
   await page.waitForFunction(() => {
-    const binder = window.__holo.gallery.stats()?.binder;
-    return binder?.active && binder.visible === 1 && binder.visibleFailed === 0 && !binder.preparing;
+    const binder = window.__holo.gallery.stats();
+    return binder?.binder && binder.active && binder.visible === 1 && binder.visibleFailed === 0 && !binder.preparing;
   }, null, {timeout:90000});
-  results.binder = await page.evaluate(() => window.__holo.gallery.stats().binder);
+  results.binder = await page.evaluate(() => window.__holo.gallery.stats());
   assert.equal(await page.locator('.binder-card[data-card-id="pokemon:xy1-3:reverse"]').count(), 1);
   await page.screenshot({path:`${out}/xy-favorite-binder.png`});
   await page.getByRole('button',{name:'Close Favorites binder',exact:true}).click();
