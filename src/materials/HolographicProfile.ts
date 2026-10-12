@@ -43,6 +43,8 @@ export interface FoilLayer {
     microdiamond?: boolean;
     /** Dense, neutral rounded metallic grains; optical response without relief. */
     spectralGrain?: boolean;
+    /** BW RC foil chips: sparse irregular flakes with a shared spectral sweep. */
+    foilFlakes?: boolean;
     metallicGrain?: boolean; };
   surface: { metalness: number; roughness: number; laminate: number; laminateRoughness: number; anisotropy?: number; foilReflectance?: number;
     /** Pattern amplitude modulates roughness independently of its color response. */

@@ -34,19 +34,31 @@ for these common overcoats.
 
 ## Material response
 
-`bw-radiant-glitter` uses the existing filtered spectral metallic-grain response
-at scale 680 for fine shimmer. A separate mask multiplies the own whiteplate by
-`smoothstep(.545, .610, full-card row UV)` to introduce larger rounded particles
-at scale 155 around the lower card. Its 15 masks cannot add coverage outside
-the source plate. Grain inclinations stay fixed in card space; moving light and
-card rotation select flashes. No time-dependent grain positions are used.
+`bw-radiant-glitter` uses a dedicated optical flake branch calibrated against the
+user's angled Pikachu RC7 photo (`IMG_6664.jpg`). Unlike the fine rounded grain
+response used by gold cards, this branch produces sparse, filled, irregular
+convex chips with fixed positions, size variation and facet inclinations. The
+primary population spans the own whiteplate at scale 58; the separately masked
+lower population uses scale 49. The lower coating population ramps through
+`smoothstep(.545, .610, full-card row UV)`. The coating flakes span the full
+card above the print, with dark ink absorbing reflections per fragment.
+Decorative substrate coverage still uses the exact original PNG plate.
+
+Neighboring chips share a grating direction with small pitch variation, so the
+local light/view geometry sweeps violet, cyan, green and gold across the card.
+The chip response is optical only: no normal or height generation. Pixel
+footprint filtering integrates unresolved chips to a weak neutral lobe. Sheet
+diffraction, substrate metal and clearcoat intensity are reduced to retain the
+printed artwork between flashes. The viewer and gallery use the same flake
+function and separate shader specialization; gold grain and common overcoat
+responses remain unchanged. All source fronts and PNG boundaries are unchanged.
 
 The common `bw-radiant-overcoat` has subtle angular stars and no granular glints.
 Both treatments have a smooth clear coat, with a dedicated physical stock
 profile that disables paper grain normals. Roughness comes from the material,
 independent of front brightness. Normal scale, height emboss, engraving,
 pattern relief, facet tilt and normal variance are zero. No normal/height PNG
-is generated or registered. No new shared shader kernel was required.
+is generated or registered. Only the explicitly enabled BW foil-flake branch uses the new response.
 
 Maps use the existing on-demand CPU preparation, GPU realization and cache
 pipeline. Adding this subset does not preload its textures or detect image
@@ -85,3 +97,28 @@ cards. The final review inventory is `docs/bw-radiant-review.json`.
 The common coating layout and glitter population remain optical approximations.
 Photographs do not establish measured surface depth, factory particle density
 or identical angular calibration for every physical copy.
+
+## Pikachu photo adjustment
+
+The supplied photo establishes visible chip size, sparse coverage through the
+artwork, a denser lower field and neighboring spectral hues. It does not supply
+an exact-copy particle registration or measured optical constants. The existing
+per-card TCGL plates still control the decorative substrate and its print
+protection; coating flakes use dark-ink absorption separately. No maps or
+fronts were regenerated for this shader change. Flake diameters were increased
+by approximately 35% after the initial preview, as requested.
+
+`node scripts/bw-glitter-review.mjs` captures Pikachu, Mew EX and the common
+Snivy coating, plus the Pikachu gallery preview. Repeatable captures are saved under `artifacts/bw-glitter/after`, including
+front, tilted, grazing, low-key, strong specular and three moving-light positions.
+The flakes are fixed in card space; their reflections change with the light.
+
+Validation for the photo adjustment: TypeScript and seven targeted tests passed.
+The Vite production bundle passed with the existing large-chunk warning (asset
+copying skipped for the isolated review build). The current shader was realized
+in the renderer with primary/secondary scales 58/49, zero normal scale and zero
+emboss. Pikachu's eight lighting/pose captures, Mew EX and Snivy comparison
+captures, and the Pikachu gallery preview completed with zero page errors.
+Unrelated profiles, source fronts and authored PNG masks were not modified by
+this change. Exact physical-copy particle positions and angular calibration
+remain approximate.

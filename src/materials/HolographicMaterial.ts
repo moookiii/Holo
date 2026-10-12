@@ -249,7 +249,7 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const halfVariance = footprint ? footprint[0].dot(footprint[0]).add(footprint[1].dot(footprint[1])).div(24) : float(0);
       const glintBroadening = halfVariance.mul(u.sharpness).add(1);
       const sparkle = u.glintStrength.value !== 0
-        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints, microdiamond: u.microdiamondGlints, metallicGrain: u.metallicGrain, spectralGrain: u.spectralGrain, filterMetallicGrain: u.normalFiltering.value > 0 }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
+        ? glints(light, { density: u.density, scale: u.glintScale, sharpness: u.sharpness.div(glintBroadening), strength: u.glintStrength.div(glintBroadening), spread: u.spread, aspect: u.aspect, ordered: u.orderedGlints, microdiamond: u.microdiamondGlints, metallicGrain: u.metallicGrain, spectralGrain: u.spectralGrain, foilFlakes: u.foilFlakes, filterMetallicGrain: u.normalFiltering.value > 0 }, region.seed).mul(this.sparkleCoverage, region.pattern) : vec3(0);
       // Smooth foil already has the physical metal reflection. The additional
       // neutral lobe belongs to manufactured cuts; applying it to a plain sheet
       // doubled its reflection and washed out the artwork near the key light.
@@ -267,7 +267,16 @@ class HolographicLightingModel extends PhysicalLightingModel {
       // Partially inked gold trim still exposes metal (Cape's broad bands,
       // Super Rod's reel). Do not threshold it away with a white-only mask.
       const grainCoverage = u.metallicGrain && u.normalFiltering.value > 0 ? region.coverage.smoothstep(.12, .80) : float(1);
-      const conventional = spectral.mul(u.spectralGain, u.spectralTint).add(sparkle.mul(grid, u.sparkleGain, grainCoverage)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
+      const conventional = spectral.mul(u.spectralGain, u.spectralTint).add(u.foilFlakes ? vec3(0) : sparkle.mul(grid, u.sparkleGain, grainCoverage)).add(silver.mul(u.neutralGain)).add(vec3(1, .985, .96).mul(pearlSheen, u.neutralGain)).mul(incident, visible, printFilter).toVar();
+      if (u.foilFlakes) {
+        // RC glitter is in the continuous coating, above the decorative plate.
+        // Dark ink absorbs it per fragment; this is not a brightness height map.
+        const ink = region.inkTransmission!;
+        const absorption = ink.r.max(ink.g).max(ink.b).sub(.06).div(.94).smoothstep(.08, .32);
+        const coating = regionIndex === 0 ? float(1) : uv().y.oneMinus().smoothstep(.545, .610);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(sparkle.mul(u.sparkleGain,
+          incident, visible, absorption, coating, data.lightColor as Node<'vec3'>));
+      }
       // Only direct illumination can reveal metallic printed die walls. The
       // authored normals select the ridges; no color/noise-derived relief or
       // ambient term is introduced. Integrate the source's angular footprint.
@@ -660,7 +669,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.pokemonBreak, u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
-          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.spectralGrain, u.secretCuts, u.illustrationRare, u.softIllustration, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration, u.megaReverse,
+          u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.spectralGrain, u.foilFlakes, u.secretCuts, u.illustrationRare, u.softIllustration, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration, u.megaReverse,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,
           u.etchedInkSheen.value !== 0, u.normalFiltering.value > 0, u.inkSpecular.value > 0].map(Number).join('')).join('/')

@@ -14,10 +14,12 @@ export interface GlintUniforms {
   microdiamond?: boolean;
   metallicGrain?: boolean;
   spectralGrain?: boolean;
+  foilFlakes?: boolean;
   filterMetallicGrain?: boolean;
 }
 
 export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>) {
+  if (settings.foilFlakes) return foilFlakeGlints(lightDirection, settings, seed);
   if (settings.microdiamond) return microdiamondGlints(lightDirection, settings, seed);
   const first = grainGlints(lightDirection, settings, seed);
   if (!settings.spectralGrain) return first;
@@ -27,6 +29,40 @@ export function glints(lightDirection: Node<'vec3'>, settings: GlintUniforms, se
   const thirdSeed = typeof seed === 'number' ? seed + 389.3 : seed.add(389.3);
   return first.add(grainGlints(lightDirection, settings, secondSeed, .5))
     .add(grainGlints(lightDirection, settings, thirdSeed, .25));
+}
+
+/** BW foil chips keep fixed, filled silhouettes; light selects their flashes. */
+function foilFlakeGlints(light: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>) {
+  const p = uv().mul(vec2(settings.aspect ?? float(.716), 1)).mul(settings.scale);
+  const cell = p.floor();
+  const hash = (offset: number) => stableHash(cell, typeof seed === 'number' ? uniform(seed + offset) : seed.add(offset));
+  const r = hash(0), s = hash(17.3), size = hash(76.1), tiltX = hash(113), tiltY = hash(157);
+  const local = p.fract().sub(vec2(r, s).mul(.18).add(.41));
+  const angle = hash(193).mul(Math.PI * 2);
+  const x = local.x.mul(angle.cos()).add(local.y.mul(angle.sin()));
+  const y = local.y.mul(angle.cos()).sub(local.x.mul(angle.sin()));
+  // Unequal clipped corners and a size hierarchy, without holes or soft blobs.
+  const edge = x.abs().mul(size.mul(.65).add(.85)).max(y.abs())
+    .max(x.add(y).abs().mul(.72)).max(x.sub(y).abs().mul(.66));
+  const radius = size.pow(1.7).mul(.16).add(.14);
+  const pixel = p.fwidth().length().mul(.45).max(.012);
+  const shape = smoothstep(radius.sub(pixel), radius.add(pixel), edge).oneMinus();
+  const occupied = float(hash(239).lessThan(settings.density));
+  const normal = normalView.add(tangentView.mul(tiltX.sub(.5).mul(settings.spread, 2)))
+    .add((bitangentView as unknown as Node<'vec3'>).mul(tiltY.sub(.5).mul(settings.spread, 2))).normalize();
+  const momentum = light.add(positionViewDirection), half = momentum.normalize();
+  const angular = normal.dot(half).max(0).pow(settings.sharpness);
+  // Nearby chips share a spectral sweep, with small pitch variation instead
+  // of independent random rainbow colors. Positions never animate.
+  const grating = tangentView.mul(.887).add((bitangentView as unknown as Node<'vec3'>).mul(-.462));
+  const path = momentum.dot(grating).mul(.42).add(.535).add(hash(281).sub(.5).mul(.035));
+  const color = spectrum(path, float(.014), float(0)).mul(2).add(vec3(.002));
+  const resolved = p.fwidth().x.max(p.fwidth().y).smoothstep(.65, 1.5).oneMinus();
+  // Unresolved chips converge to a weak neutral ensemble, avoiding hue crawl.
+  const broadening = settings.sharpness.mul(settings.spread.pow2()).add(1);
+  const aggregate = normalView.dot(half).max(0).pow(settings.sharpness.div(broadening))
+    .div(broadening).mul(settings.density, .11);
+  return mix(vec3(.32).mul(aggregate), color.mul(shape, occupied, angular), resolved).mul(settings.strength);
 }
 
 function grainGlints(lightDirection: Node<'vec3'>, settings: GlintUniforms, seed: number | Node<'float'>, offset = 0) {

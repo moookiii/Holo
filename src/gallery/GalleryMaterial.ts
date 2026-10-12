@@ -191,9 +191,15 @@ class GalleryLightingModel extends PhysicalLightingModel {
       // Absent foil layers have zeroed glint parameters. Keep pow(0, 0)
       // out of their angular response: NaN survives a later zero mask.
       const sparkle = layer.glints ? (layer.metallicGrain ? glints : microdiamondGlints)(light, { density: r.glint.x, scale: r.glint.y.max(1), sharpness: r.glint.z.max(1).div(broadening),
-        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001), metallicGrain: !!layer.metallicGrain, spectralGrain: !!layer.spectralGrain, filterMetallicGrain: !!layer.normalFiltering }, r.glintSurface.z)
-        .mul(r.sparkle, r.field.a, layer.metallicGrain ? r.mask.smoothstep(.12, .80) : float(1)) : vec3(0);
-      let contribution = spectral.add(silver).add(sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
+        strength: r.glint.w.div(broadening), spread: r.glintSurface.x, aspect: r.glintSurface.y.max(.001), metallicGrain: !!layer.metallicGrain, spectralGrain: !!layer.spectralGrain, foilFlakes: !!layer.foilFlakes, filterMetallicGrain: !!layer.normalFiltering }, r.glintSurface.z)
+        .mul(r.sparkle, r.field.a, layer.metallicGrain && !layer.foilFlakes ? r.mask.smoothstep(.12, .80) : float(1)) : vec3(0);
+      let contribution = spectral.add(silver).add(layer.foilFlakes ? vec3(0) : sparkle).add(vec3(1, .985, .96).mul(sheen)).mul(incident, visible, ink);
+      if (layer.foilFlakes) {
+        const absorption = r.ink.r.max(r.ink.g).max(r.ink.b).sub(.06).div(.94).smoothstep(.08, .32);
+        const coating = index === 0 ? float(1) : uv().y.oneMinus().smoothstep(.545, .610);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(sparkle.mul(incident, visible,
+          absorption, coating, data.lightColor as Node<'vec3'>));
+      }
       if (layer.normalFiltering) {
         // Same authored ridge response and pixel integration as the viewer.
         const ridgeWidth = halfVariance.add(normalVariance.mul(r.secret.z)).mul(150).add(1);
