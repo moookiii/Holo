@@ -3,7 +3,10 @@ from pathlib import Path
 from collections import Counter
 from concurrent.futures import ThreadPoolExecutor
 import hashlib, json
+import sys
+sys.dont_write_bytecode = True
 from PIL import Image
+from fetch_xy_sources import NAMES
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'public/cards/pokemon/tcgl-xy'
 REASONS = {
@@ -40,7 +43,7 @@ def main():
  sets={}
  for sid,counts in audit['sets'].items():
   own=[(p,e,h) for p,e,h in records if p['setId']==sid]
-  sets[sid]={**counts,'sourceFronts':len(own),
+  sets[sid]={'name':NAMES[sid],**counts,'sourceFronts':len(own),
    'sourceFoilMaps':sum('foil' in h for p,e,h in own),'sourceEtchMaps':sum('etch' in h for p,e,h in own),
    'supportedFoilVariants':sum(e['profile']!='print-only' for p,e,h in own),
    'pendingVariants':sum(bool(e['deferredEffect']) for p,e,h in own),
@@ -61,12 +64,13 @@ def main():
   'validation':{'sourceIdentityAndOriginalHashes':'passed for all 3416 variants',
     'originalPngDecodingAndDimensions':'passed','runtimeMapDecodingAndDimensions':'passed',
     'wrappersHashesDecodingAndTightAlphaBounds':'passed for all 54 designs',
-    'xyTests':'3 passed: all identities, 18 collections, 4200 seeded packs and all branches',
+    'xyTests':'4 XY checks and 3 favorites checks passed: all gallery/source identities, chronology, 4200 seeded packs and every branch',
     'productionBuild':'passed; standard existing chunk-size warning',
     'liveReview':{'viewers':len(live['results']['viewers']),'products':len(live['results']['packs']),
       'errors':live['errors'],'failure':live['results'].get('failure'),
       'startupXyTextureRequests':live['results'].get('startupXYRequests'),
-      'externalCardRequests':live['results'].get('externalCardRequests')} if live else None},
+      'externalCardRequests':live['results'].get('externalCardRequests'),
+      'galleryFavoritesBinder':live['results'].get('galleryFavoritesBinder')} if live else None},
   'limitations':['McDonald\'s: zero acquired TCGL printings after raw/archived index and bundle audit; no invented collection.',
    'Pack rates are published primary-observer estimates, not official probabilities. Uniform within rarity categories except the observed Evolutions uncommon sheet; factory/box correlations are not simulated.',
    'All 148 exact etches retained byte-exact; no XY normals generated because XY finish/region compatibility is not established.',
@@ -81,7 +85,7 @@ def main():
   '', '| Collection | Cards | Variants | Active foil | Native nonfoil | Pending | Boosters / designs |',
   '|---|---:|---:|---:|---:|---:|---|']
  for sid,s in sets.items():
-  lines.append(f"| {sid} | {s['cards']} | {s['variants']} | {s['supportedFoilVariants']} | {s['nativeNonfoilVariants']} | {s['pendingVariants']} | {str(s['boosterCardCount'])+' cards / '+str(s['wrapperDesigns']) if s['wrapperDesigns'] else 'browse only'} |")
+  lines.append(f"| {s['name']} ({sid}) | {s['cards']} | {s['variants']} | {s['supportedFoilVariants']} | {s['nativeNonfoilVariants']} | {s['pendingVariants']} | {str(s['boosterCardCount'])+' cards / '+str(s['wrapperDesigns']) if s['wrapperDesigns'] else 'browse only'} |")
  lines+=['','Existing profiles: '+', '.join(f'{k}: {v}' for k,v in audit['profiles'].items())+'.',
   '', '## Finish handoff', '', 'Pending finishes show their clean source front and remain selectable and pullable. Source assets are present; shader/physical-evidence gaps must not be called missing textures. The full exact-printing list and original-map paths are in [xy-pending-finishes.json](xy-pending-finishes.json).', '']
  for family,f in families.items():
