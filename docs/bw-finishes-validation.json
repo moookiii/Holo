@@ -1,0 +1,1086 @@
+{
+  "status": "validated-assets-and-partial-cosmos-placement",
+  "scope": "Own BW Cosmos registrations and two Legendary Treasures gold Full Arts. Unrelated dirty workspace assets excluded.",
+  "cosmos": {
+    "reviewedVariants": 25,
+    "pendingVariants": 23,
+    "reviewedFeatures": 377,
+    "completionLimit": "Visible selected-copy features only; faint and obscured features remain unresolved.",
+    "remainingList": "docs/bw-cosmos-review.json"
+  },
+  "gold": {
+    "variants": 2,
+    "method": "Exact own TCGL geometry; offline Scharr gain 1.03; opaque OpenGL tangent normals; Espeon/Sylveon response with gold diffraction absorption.",
+    "uncertainty": "English angular calibration approximate; Japanese reference has different print and stock."
+  },
+  "validation": {
+    "targetedTests": "6 passed, 0 failed: bw-cosmos, bw-integration, bw-ball-reverse",
+    "typescript": "npx tsc --noEmit passed",
+    "sourceAndOutputHashes": "passed",
+    "exactCosmosWhiteplateChannels": "passed",
+    "pendingMotifsEmpty": "passed",
+    "goldProtectedNormalsFlat": "passed",
+    "goldNormalsUnitLength": "passed within RGB8 quantization",
+    "goldRoughnessFromBody": "passed",
+    "liveCards": 30,
+    "capturedLightPoseControlsPerCard": 9,
+    "liveErrors": [],
+    "captureDirectory": "artifacts/bw-finishes/live",
+    "boundaryDirectory": "artifacts/bw-finishes/cosmos"
+  },
+  "cards": [
+    {
+      "tcglCardId": "bwalt_38",
+      "tcglVariantId": "Raichu_bw4_40_alt_Uncommon_Cosmos_Holo",
+      "features": 21,
+      "assets": {
+        "foil": {
+          "sha256": "72eb637c37708ba0568d78c3cbd253da5f0e1a61a5506ad592a6e87d9af8cf2c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "3e00e8402499081f0d7e0feb711b3309d26307b9b0747584ba001d5be293cfa4",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "2f7a7ec044368ffff3251b704e7c4190fa349612572699b8a0949abd45afe4c6",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwalt_127",
+      "tcglVariantId": "Riolu_bwbsp_33_alt_Rare_Cosmos_Holo",
+      "features": 17,
+      "assets": {
+        "foil": {
+          "sha256": "ddd9c9fff6e23cf4d357ae897cadeea17ea804034f965a5bc8d698508e8bf9e9",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "6b81993222488e2c6f49485a6df6a3e91f7ae0ea870f223d6876af050644f664",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "b769338ff6a8c8f7916f600b9232ffd2132c61fdf26ecfe6b943d9c5e8d4215d",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_7",
+      "tcglVariantId": "Tepig_bwbsp_7_std_Rare_Cosmos_Holo",
+      "features": 25,
+      "assets": {
+        "foil": {
+          "sha256": "b96aabb10b05a19cd1c2c1bb485b879c4a46f9e4c56cf5863847a2db70ca60e8",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "ace5f5866c9319d64245e7d28c0e6172d4b9ddf38a788636c88a3c5264b30d8c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "59c64a0468dbccaeca8ec329eff095b58b6b40865202aebf4e739ccd7c592f91",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_8",
+      "tcglVariantId": "Oshawott_bwbsp_8_std_Rare_Cosmos_Holo",
+      "features": 18,
+      "assets": {
+        "foil": {
+          "sha256": "d40098f636d6208a0cf2b614f59abe83b40d8823d7493b5527cd451daec0c7e7",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "1539b978f09728bff2258cba5780e6fb4a697a74cea7ba7d93bc17d30759ca70",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "88f33dda4b1ec482b6961cbd94bf497bccf8b0e6cccf23f89e568bdf982e1aa1",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_10",
+      "tcglVariantId": "Axew_bwbsp_10_std_Rare_Cosmos_Holo",
+      "features": 10,
+      "assets": {
+        "foil": {
+          "sha256": "184d22268a66c6801bf3ff4e1d8839f9d3447b01514eec31724c2a3d5959ec67",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "050a3121232b04cbc2ca50b4f9b6d2c9667f0876047b8d0f155762ecf8156df4",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "d52c2c047770dd6fbed6cdbd670a9ecba07a178011e2ed546454781e0ca239ae",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_12",
+      "tcglVariantId": "Zorua_bwbsp_12_std_Rare_Cosmos_Holo",
+      "features": 3,
+      "assets": {
+        "foil": {
+          "sha256": "b3e4ff236487a9b2ac39ce436417a1ce533433819bb0856be3281922f2a300fb",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "507ab60f0f2e7d335433380b092940b96bbb67c9780aa4738748468f7b74c941",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "1e6c9993a47465eb5342dc11430aae4381f7637e8302c6d0ab138256dc9b1a0b",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_18",
+      "tcglVariantId": "Darumaka_bwbsp_18_std_Rare_Cosmos_Holo",
+      "features": 16,
+      "assets": {
+        "foil": {
+          "sha256": "04ab53031be142ba10aeb4fd511c5c94ee15779dfcdeb419b0886e92d4ab1fe8",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "07ca756d76d72796739ded5fb84df9acfe760ddb457a133964b4b75e2590cb1f",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "64040087bf30a4af49823e410cc7fbff056121861ca544ddf5e5e27728a9496a",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_26",
+      "tcglVariantId": "Axew_bwbsp_26_std_Rare_Cosmos_Holo",
+      "features": 8,
+      "assets": {
+        "foil": {
+          "sha256": "3f173566a563564c3ec5190dd4c31c8718af8e1a26624a06c035a3833fb31176",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "1da01798fbdf4891c0d4102a5058dd47fc1a54ece91f32c9fb49fc064f2cb38f",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "7279fe6f17b96289d228c3f06f309e7f9a55d0df8f7faaf7bdd91360486db870",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_34",
+      "tcglVariantId": "Luxio_bwbsp_34_std_Rare_Cosmos_Holo",
+      "features": 15,
+      "assets": {
+        "foil": {
+          "sha256": "9f6d813a08d12b81f0efc5d67dfbaa22bb738a8291b99977843c709bd0971f5c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "0d3ad85d4daa86bd4d57792171255d40ed6432f03e3ea1ffaddf1eed84da5e6b",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "c52ffa2212c32ca38cbec4229e257b51b5d4433eff5d7162bc42f8a1f3bc819b",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_56",
+      "tcglVariantId": "Empoleon_bwbsp_56_std_Rare_Cosmos_Holo",
+      "features": 14,
+      "assets": {
+        "foil": {
+          "sha256": "8e5989b2eba1573f5d3f812044b6dedaa3607fbca383d488ba5de2b81e228cdf",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "66634d59eb84bf86ba4ec5e006cf5316ef244c946dd0968048213a8e33d3999d",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "b414d23ac9bcbf37f58453ad17d5ea9dd44e8a4fe2d4b001be81ad382693580c",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_57",
+      "tcglVariantId": "Haxorus_bwbsp_57_std_Rare_Cosmos_Holo",
+      "features": 12,
+      "assets": {
+        "foil": {
+          "sha256": "26cbce533b7fdc8bb5f55b8593825dac8a9f365a2a63892991f8ba5cdf1a8e80",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "b7b218cf33743cc158b2443d94662996e21d9514d96354a2d376918f4a74c9d0",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "6fac0290283e4e4555fc93acdecfd057a6b3881cf6e53b08a783bbd26f2818ac",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_58",
+      "tcglVariantId": "BlackKyurem_bwbsp_58_std_Rare_Cosmos_Holo",
+      "features": 6,
+      "assets": {
+        "foil": {
+          "sha256": "4021355ab37da9263dc2f347640816ca6095e132fab89f323e0b4bc8e06f4b88",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "1fe1b8272b94f78c5e065c56d1fa921f037ae815bceb2878facd8ac0fff73b1c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "0fdce4559a108738b3abdc3b64c0bcea97e6f270cb00bd4e2a9d7f67c41ccdc9",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_59",
+      "tcglVariantId": "WhiteKyurem_bwbsp_59_std_Rare_Cosmos_Holo",
+      "features": 7,
+      "assets": {
+        "foil": {
+          "sha256": "f78925924868f25adb3cc48bf91b654b67ae43737742c5f9bf07dfb584817eff",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "878fba573b2ea2ab86414efe6cee2bc400dc85aa7711cb8e91ff23b7598dbdd7",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "f5fbaca92cfd9d938a479c8c9d15379c507656fa4314acb89435a9716420d55a",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_64",
+      "tcglVariantId": "Drifblim_bwbsp_64_std_Rare_Cosmos_Holo",
+      "features": 23,
+      "assets": {
+        "foil": {
+          "sha256": "770e6d71eee541e34fca349c647b3f68a01fca0e6fa1d5e39333fc2abd1a8cfa",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "04ab6329e86a529534da6b1a8fdc6ecc4aa121a594992fc9fbdb377fe785bd9a",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "bf0f03ade35cc6bc73a49e22e14171813bb209fae9285193e012189724c061bc",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_66",
+      "tcglVariantId": "Ninetales_bwbsp_66_std_Rare_Cosmos_Holo",
+      "features": 10,
+      "assets": {
+        "foil": {
+          "sha256": "aeb3633cf5767a91a646071331d8fce97eb6dc45d8dd4fe495651971bbfdd4ba",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "ddd546035a9ca283611a196f3b70947e0283765d1670ae026cfa5a1d1d7b5652",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "898e6ae18aa1413fc2030e7babe185bb2010b53e35ed183319a852156d247b8b",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_67",
+      "tcglVariantId": "Ampharos_bwbsp_67_std_Rare_Cosmos_Holo",
+      "features": 13,
+      "assets": {
+        "foil": {
+          "sha256": "1e6ba025afbb76b08cfefe563b4c74910d6771ea38cb979025b9dbb155ae172d",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "d741f224c06a4e7953f5bfbf05123f7231f9e7533c127dbdb624e6a05b4e1ac2",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "609642f6affbeb93ab6775cfc6be496aba40f3b4e6326cb8938280219eac2994",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_80",
+      "tcglVariantId": "Druddigon_bwbsp_80_std_Rare_Cosmos_Holo",
+      "features": 13,
+      "assets": {
+        "foil": {
+          "sha256": "a13823eda9d74ae860325aa2469dc1bbd3a847a31bda5f43d9f073d5a1c47c43",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "41ea23ef7e19823285b3dc4e5b9f46ff04a2b9461583fe3d03a53a861f2b3df3",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "1bdd80139b30f68635fd58be0764425df41a4a49a004e73cdfca149281c57ba6",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_90",
+      "tcglVariantId": "Glaceon_bwbsp_90_std_Rare_Cosmos_Holo",
+      "features": 23,
+      "assets": {
+        "foil": {
+          "sha256": "d69bf498a1d5ed57c8a4d8430eb0a7272f343479ccc04f20084aac578f62cabb",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "c9e384cc680518426fd82479ee7dcff2dcc03dd670e86c3e04509b39b81a97e3",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "ffbe9358743a339789bded347ffa841c3f762707d878657d16d6cbf835251be8",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_92",
+      "tcglVariantId": "Espeon_bwbsp_92_std_Rare_Cosmos_Holo",
+      "features": 9,
+      "assets": {
+        "foil": {
+          "sha256": "b1929c99eb3258c501368b0dc101b09d7308bea24ae89ea24dcbf7f551034bfb",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "33fcc88d2f05bbe9aa3a33b0ae569e4d4dea4b560e7a19162df7b99766aaf970",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "ec50f6cd1a79cd649c0f297f4b917812249d75e19db21cc97f1979aa711857bb",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_94",
+      "tcglVariantId": "Eevee_bwbsp_94_std_Rare_Cosmos_Holo",
+      "features": 23,
+      "assets": {
+        "foil": {
+          "sha256": "dadfdd4aff216fba12b25e07643d4e3f14f923f10202e653b6db1cda6b22f88d",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "b4b4ae60c0a4a32d556b756d65d657e4287fd4b29a14c0e0f809588a93ab487f",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "278a4764d63a3eef32abc61562fdd4b3f1e2b003163547470fa397579d2e9db9",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_97",
+      "tcglVariantId": "Eevee_bwbsp_97_std_Rare_Cosmos_Holo",
+      "features": 14,
+      "assets": {
+        "foil": {
+          "sha256": "40d861ccedc1270cf38aab268e2973c31fb4027ba141ece1c74b18227746e55b",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "0b02265d5d8e66d9dc503b27cfd489095ce86022d28de8813250341c9e9bc88c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "e6552f7264e947fa49c068939ad3571acc3ee7bfae7ba5cb663b2a2f1590be15",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_98",
+      "tcglVariantId": "Mew_bwbsp_98_std_Rare_Cosmos_Holo",
+      "features": 6,
+      "assets": {
+        "foil": {
+          "sha256": "51bed7917b530ae5d811335a0688d0a0f8c6f684b742ff6264f8c1366c5fcc1d",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "af1f2ac0dea21c04ac6e94a1df1ac35e68c2c68a86bb4b5c71363562ec22d175",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "1423b5da66925a4ff3047e87b660ba0a374cbd4d586df9ffe86c53a908393eac",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwalt_52",
+      "tcglVariantId": "Salamence_bw6-5_8_alt_Uncommon_Cosmos_Holo",
+      "features": 26,
+      "assets": {
+        "foil": {
+          "sha256": "70c2dd141ad24d510742c5071fa42b044782df23873e83318ea5b116fcfa82c3",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "84067f983e4cb824482e59ffff33dd7b5dec2b92f4edda839908d9d85364603d",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "465e15bb650b2ed7f761b50857e8866c7de851bf6acd5cbf452751b32237e647",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_76",
+      "tcglVariantId": "Electrode_bwbsp_76_std_Rare_Cosmos_Holo",
+      "features": 14,
+      "assets": {
+        "foil": {
+          "sha256": "c217d32fa1979a954d32faa94c7989917ea3771bab27e4cc087da46cd388a8a8",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "434f85489415437c3c1810ea2e3899efc904c99d0d531050b3885fd54a30a5a4",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "41fbae60d93fc89aa1155b5116a24627440e4dbb338eeab83965a5885355cb4f",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_88",
+      "tcglVariantId": "Flareon_bwbsp_88_std_Rare_Cosmos_Holo",
+      "features": 31,
+      "assets": {
+        "foil": {
+          "sha256": "149a435cf81e123c7cd627231c6108728aef141ee4182d1e739a693a737d9125",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "b23f18585ba76e1ebc3923dcdcac091bc77eae7638e768ecdd49b24dc2b06eeb",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "bd53cb411fc997bf5286f1671e8a86d4cf33608e9252c2eea6f88a1010d960aa",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bw11_114",
+      "tcglVariantId": "Reshiram_bw11_114_std_RareSecret_SolidColor_Etched",
+      "protectedFlatNormalPixels": 120841,
+      "assets": {
+        "normal": {
+          "sha256": "d64fb1bfaeaa18e35cb250e27e073a93f436cb6cada0ba79dd52a11dea5fe94d",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "RGB"
+        },
+        "protection": {
+          "sha256": "d005d5d408ee22226ede4f8399da7ef9bda38a387fa6e5d08d3995d088b76987",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "L"
+        },
+        "body": {
+          "sha256": "b1a71628f6f22085fceeefa388936a6bab3223bc5421e78711041968808a9ee9",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "L"
+        },
+        "roughness": {
+          "sha256": "fe1afd153a442a7aba09ac29baa1c09c9603835e2069bc17189870d928e34656",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bw11_115",
+      "tcglVariantId": "Zekrom_bw11_115_std_RareSecret_SolidColor_Etched",
+      "protectedFlatNormalPixels": 91809,
+      "assets": {
+        "normal": {
+          "sha256": "fdd3e555bbedad85227ebe0ed99d71af6c0d25f0acab07ef4d15b0937d706933",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "RGB"
+        },
+        "protection": {
+          "sha256": "0d9c33fc47ba6a3fcc7350ea02b3d12fc5102cc93b47b992b62b7daac8387be3",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "L"
+        },
+        "body": {
+          "sha256": "3f0813b276ca66b60133b9e8b4a5b5f61ddfb5ddecea8dc9fff29990fe5dd310",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "L"
+        },
+        "roughness": {
+          "sha256": "4dbaecb19e1cba862e335296878d34608ca3c9289c2c2eecbf656b3b1076f41d",
+          "dimensions": [
+            1800,
+            2475
+          ],
+          "mode": "L"
+        }
+      }
+    }
+  ]
+}

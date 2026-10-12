@@ -288,10 +288,15 @@
       "sha256": "49fef8ec0e4397a8bce51c3b76c9ce9c252730e40e299d125fefb08fc2b13379"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_88/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_88/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_88/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_88/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,57 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "title": "Flareon BW88 Sylveon Collection Cosmos Holo, PSA 8 143180070 — visible foil field",
+      "pageUrl": "https://www.ebay.com/p/24043367299",
+      "imageUrl": "https://i.ebayimg.com/images/g/kr8AAeSwvSpp5tfP/s-l1200.jpg",
+      "file": "research/tcgl/bw-cosmos/bwbsp-88/psa8.jpg",
+      "sha256": "d452ccc79a1069109d668b0e4a7aa4f16c4bc5bafec08ff792d8314e59a3d78b",
+      "dimensions": [
+        716,
+        1200
+      ]
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_88/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "bd53cb411fc997bf5286f1671e8a86d4cf33608e9252c2eea6f88a1010d960aa",
+    "transform": {
+      "masterToReference": [
+        [
+          0.9274975910166464,
+          0.0027829430488701032,
+          80.93307578086905
+        ],
+        [
+          -0.0023827720701054636,
+          0.9421963682101705,
+          325.28647468704327
+        ],
+        [
+          7.455853579551297e-08,
+          1.6031757085372323e-06,
+          1.0
+        ]
+      ],
+      "inliers": 515,
+      "medianReprojectionError": 0.2977716028690338
+    },
+    "reviewNotes": "Replacement source is English BW88 PSA 8 certification 143180070, showing the foil field across the window. Whole clean front compared at registered high zoom. Printed botanical circles, petals, baskets, eye and subject shading excluded. Thirty discs and one beveled feature measured manually. Largest pink lower-right disc and two-tone disc below foot remain individual complete filled features; internal highlights are not satellites. Faint subpixel grain and obscured features remain unresolved. Rejected earlier photograph is retained in rejected-references.json and never supplies geometry.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "149a435cf81e123c7cd627231c6108728aef141ee4182d1e739a693a737d9125",
+    "foilControls": "b23f18585ba76e1ebc3923dcdcac091bc77eae7638e768ecdd49b24dc2b06eeb",
+    "motif": "bd53cb411fc997bf5286f1671e8a86d4cf33608e9252c2eea6f88a1010d960aa",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

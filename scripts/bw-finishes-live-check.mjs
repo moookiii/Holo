@@ -20,7 +20,7 @@ try {
   page.on('response',r=>{if(r.status()>=400&&r.url().includes('127.0.0.1'))errors.push(`${r.status()} ${r.url()}`);});
   await page.goto('http://127.0.0.1:5173/?benchmark-cold-viewer',{waitUntil:'domcontentloaded',timeout:120000});
   await page.waitForFunction(()=>window.__holo?.ready,null,{timeout:120000});
-  await page.waitForFunction(()=>window.__holo.gallery.stats()?.visible>0,null,{timeout:120000});
+  await page.waitForFunction(()=>window.__holo?.gallery?.stats()?.visible>0,null,{timeout:120000});
   const cosmos=await page.evaluate(()=>window.__holo.cards.filter(c=>c.pokemon?.seriesId==='bw'&&c.profile==='pokemon-base-set-2-cosmos').map(c=>c.id));
   const selected=process.env.GOLD_ONLY ? [] : process.env.CARD_IDS ? cosmos.filter(id=>process.env.CARD_IDS.split(',').includes(id)) : cosmos;
   for(const id of ['pokemon:bw11-114:holo','pokemon:bw11-115:holo',...selected,'pokemon:sv08.5-155:holo','pokemon:sv08.5-156:holo','pokemon:base2-1:holo']) {
