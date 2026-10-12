@@ -25,6 +25,7 @@ REF = ROOT / 'research/cosmos-missing'
 REVIEW = ROOT / 'artifacts/cosmos-missing'
 SM = ROOT / 'src/pokemon/data/sm-tcgl.generated.ts'
 COORDS = (600, 825)
+cv2.setNumThreads(1)
 
 
 def read_exports():
@@ -164,15 +165,15 @@ def register(c, candidate):
 def propose(photo, master, allowed, physical_master=False):
     """Contrast proposes geometry; the operator must review every whole window."""
     intensity = photo.max(2).astype(np.float32) / 255
-    signal = np.maximum(0, intensity - gaussian_filter(intensity, 6))
+    signal = np.maximum(0, intensity - gaussian_filter(intensity, 24))
     if not physical_master:
         printed = master.max(2).astype(np.float32) / 255
         # Only the exact clean printing rejects print details. No donor geometry.
-        detail = np.maximum(0, printed - gaussian_filter(printed, 6))
+        detail = np.maximum(0, printed - gaussian_filter(printed, 24))
         signal = np.maximum(0, signal - detail * .9)
     # Below ~1.5 source pixels a JPEG speck has no measurable outer perimeter.
     # Keep those unresolved instead of fabricating hundreds of tiny disks.
-    scales = np.geomspace(1.65, 18, 30)
+    scales = np.geomspace(1.65, 24, 30)
     cube = np.stack([-gaussian_laplace(signal, s) * s * s for s in scales], 2)
     peaks = (cube == maximum_filter(cube, size=3)) & (cube > .038)
     peaks &= allowed[..., None]
@@ -249,15 +250,19 @@ def review_images(c, photo, motifs, label='proposals'):
         draw.ellipse(((x-r)*2,(y-r)*2,(x+r)*2,(y+r)*2),outline='#ff00b0',width=1)
         draw.text((x*2+2,y*2+2),str(d.get('id','+')),fill='white',stroke_width=1,stroke_fill='black')
     marker.crop((70,170,1140,855)).save(folder/(label+'-numbered.png'))
+    pair=Image.new('RGB',(2140,710),'#121821')
+    pair.paste(Image.fromarray(photo).resize((1200,1650)).crop((70,170,1140,855)),(0,25))
+    pair.paste(marker.crop((70,170,1140,855)),(1070,25))
+    ImageDraw.Draw(pair).text((8,5),c['cardId']+' '+c['name']+' | reference and '+label+' boundaries',fill='white')
+    pair.save(folder/(label+'-compare.png'))
 
 
 def proposals(ids=None):
     sources=json.loads((DATA/'sources.json').read_text(encoding='utf8'))
     saved_path=DATA/'proposals.json'
     saved={r['cardId']:r for r in json.loads(saved_path.read_text(encoding='utf8'))} if saved_path.exists() else {}
-    for c in sources:
+    def process(c):
         cid=c['cardId']
-        if ids and cid not in ids: continue
         master=np.asarray(Image.open(ROOT/c['master']).convert('RGB').resize(COORDS))
         folder=REF/cid;folder.mkdir(parents=True,exist_ok=True)
         if 'reference' in c:
@@ -269,7 +274,7 @@ def proposals(ids=None):
                 result=register(c,candidate)
                 if result: choices.append((result[1]['inliers'],candidate,result))
             if not choices:
-                print(cid,'NO REGISTERED SOURCE',flush=True);continue
+                print(cid,'NO REGISTERED SOURCE',flush=True);return None
             _,selected,(photo,transform)=max(choices,key=lambda t:t[0])
             transform['method']='SIFT print anchors; RANSAC projective registration to exact clean full-card master'
         Image.fromarray(photo).save(folder/'registered.png')
@@ -277,14 +282,91 @@ def proposals(ids=None):
         allowed=(foil>20)&(protection<180)
         motifs=propose(photo,master,allowed,'reference' in c)
         review_images(c,photo,motifs)
-        saved[cid]=dict(c,source=selected,registration=transform,coordinateDimensions=list(COORDS),
+        result=dict(c,source=selected,registration=transform,coordinateDimensions=list(COORDS),
             registeredReference=(folder/'registered.png').relative_to(ROOT).as_posix(),motifs=motifs,reviewStatus='candidate-only')
         print(cid,len(motifs),'features',flush=True)
-        write(saved_path,list(saved.values()))
+        return result
+    chosen=[c for c in sources if not ids or c['cardId'] in ids]
+    with ThreadPoolExecutor(max_workers=4) as pool:
+        for result in pool.map(process, chosen):
+            if result:
+                saved[result['cardId']]=result
+                write(saved_path,list(saved.values()))
+
+
+def corrected(c, correction):
+    motifs = c['motifs']
+    if 'keepIds' in correction:
+        motifs = [d for d in motifs if d['id'] in correction['keepIds']]
+    motifs = [d for d in motifs if d['id'] not in correction.get('removeIds', [])
+        and not any(cv2.pointPolygonTest(np.array(p,np.float32),tuple(map(float,d['center'])),False)>=0
+                    for p in correction.get('excludePolygons', []))]
+    additions = correction.get('add', [])
+    def inside(d, a):
+        if 'outline' in a:
+            return cv2.pointPolygonTest(np.array(a['outline'],np.float32),tuple(map(float,d['center'])),False)>=0
+        if 'center' not in a: return False
+        rx,ry=a.get('radii',[a['radius'],a['radius']]);dx,dy=np.subtract(d['center'],a['center'])
+        angle=np.deg2rad(a.get('angle',0));u,v=dx*np.cos(angle)+dy*np.sin(angle),-dx*np.sin(angle)+dy*np.cos(angle)
+        return np.hypot(u/rx,v/ry)<1.08
+    motifs=[d for d in motifs if not any(inside(d,a) for a in additions)]+additions
+    # Explicit large-feature additions replace their fragment candidates.
+    distinct=[]
+    for d in sorted(motifs,key=lambda d:-d.get('radius',0)):
+        if 'center' in d and any(d.get('radius',0)<a.get('radius',0)*.6 and inside(d,a) for a in distinct): continue
+        distinct.append(d)
+    return distinct
+
+
+def finalize(ids=None, publish=False):
+    proposals=json.loads((DATA/'proposals.json').read_text(encoding='utf8'))
+    corrections=json.loads((DATA/'corrections.json').read_text(encoding='utf8'))
+    dest=DATA/'registration.json'
+    saved={c['cardId']:c for c in json.loads(dest.read_text(encoding='utf8'))} if dest.exists() else {}
+    for c in proposals:
+        cid=c['cardId']
+        if ids and cid not in ids: continue
+        correction=corrections.get(cid)
+        if not correction: continue
+        if publish:
+            assert correction.get('reviewed') and correction.get('sourceAlignmentReviewed'), cid
+        motifs=corrected(c,correction)
+        photo=np.asarray(Image.open(ROOT/c['registeredReference']).convert('RGB'))
+        review_images(c,photo,motifs,'final' if publish else 'draft')
+        if not publish: continue
+        assert motifs, 'No measurable physical features: '+cid
+        for k,h in c['preservedHashes'].items(): assert sha(ROOT/c[k])==h,(cid,k)
+        target=ROOT/c['destination'];rasterize(motifs).save(target,optimize=True)
+        record=dict(c,motifs=motifs,reviewStatus='reviewed-visible-features',reviewNotes=correction['notes'],
+            outputDimensions=[1200,1650],motifSha256=sha(target),
+            limitations='Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth.')
+        saved[cid]=record
+        if 'evidence' in c:
+            path=ROOT/c['evidence'];e=json.loads(path.read_text(encoding='utf8'))
+            e['maps']['motif']='/'+c['destination'].removeprefix('public/')
+            e.setdefault('outputHashes',{})['motif']=record['motifSha256']
+            e['cosmosPlacement']=dict(status='reviewed-visible-features',registration='scripts/cosmos/registration.json',
+                reference=record['source'],coordinateDimensions=list(COORDS),outputDimensions=[1200,1650],
+                transform=record['registration'],reviewNotes=correction['notes'],limitations=record['limitations'])
+            write(path,e)
+        print(cid,len(motifs),'published',flush=True)
+    if publish:
+        write(dest,list(saved.values()))
+        lines=SM.read_text(encoding='utf8').splitlines()
+        for i,line in enumerate(lines):
+            if 'tcglSmSurfaces' not in line or 'JSON.parse(' not in line: continue
+            surfaces=json.loads(json.loads(line.split('JSON.parse(',1)[1].removesuffix(');')))
+            for s in surfaces:
+                c=saved.get(s['cardId'])
+                if c and s['profile']=='pokemon-base-set-2-cosmos':
+                    s['maps']['motif']='/'+c['destination'].removeprefix('public/')
+            lines[i]=line.split('JSON.parse(',1)[0]+'JSON.parse('+json.dumps(json.dumps(surfaces,ensure_ascii=False),ensure_ascii=False)+');'
+        SM.write_text('\n'.join(lines)+'\n',encoding='utf8')
 
 
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose', 'draft', 'publish']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
     if args.action == 'inventory': write(DATA / 'inventory.json', inventory())
     elif args.action == 'sources': sources()
-    else: proposals(args.ids)
+    elif args.action=='propose': proposals(args.ids)
+    else: finalize(args.ids,args.action=='publish')
