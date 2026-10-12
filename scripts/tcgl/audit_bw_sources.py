@@ -241,14 +241,15 @@ def audit():
     report['additionalMaps'] = ['cold_foil', 'cast_and_cure']
     report['allNativeTextures'] = {'validated': len(all_textures),
                                   'printingReferenced': len(used_textures),
-                                  'supplementary': len(supplementary), 'unindexedFinishManifests': 0,
+                                  'supplementary': len(supplementary), 'orphanBundleTextures': len(orphan_textures),
+                                  'unindexedFinishManifests': 0,
                                   'manifest': 'research/tcgl/bw-series/evidence/all-native-textures-audit.json'}
     for sid in report['sets']:
         report['sets'][sid]['supplementaryOriginalTextures'] = sum(
             any(n.startswith(sid + '_en_') for n in t['bundleNames']) for t in supplementary)
     report['materialWorkLater'] = {
         'foilTypes': dict(Counter(r['foil_effect'] for r in inventory)),
-        'note': 'Retain TCGL shader IDs, masks and etches for EX/Mega EX, BREAK, Ancient Trait, '
+        'note': 'Retain TCGL shader IDs, masks and etches for Pokemon-EX, '
                 'ACE SPEC, Team Plasma, Radiant Collection, shiny, Full Art/gold and promotional finishes. No shaders implemented.'}
     compact_printings = []
     for printing in read(ROOT / 'sources.json')['printings']:
@@ -288,7 +289,7 @@ def audit():
               'Counts are exact printing/finish associations; shared original textures are not collapsed into fewer variants. '
               'Card definition counts group printed set, collector number and name within each source collection.', '',
               'All 11 main expansions and Dragon Vault are included; Legendary Treasures Radiant Collection, Black Star Promos and alternate/special '
-              'printings are separate source tables. McDonaldâ€™s collections were not found in the accessible English '
+              'printings are separate source tables. McDonald collections collections were not found in the accessible English '
               'TCGL export index, raw database index, installed BW rows or official bundle names. Exact negative '
               'lookups and source hashes are in `evidence/series-lookup-audit.json`. This limitation is explicit; '
               'no external artwork or synthetic replacement is used.', '',
@@ -307,7 +308,7 @@ def audit():
               'Raw source collection: `research/tcgl/bw-series/sources.json`. Per-set manifests: '
               '`research/tcgl/bw-series/dataset/cards/<set>/sources.json`. Exact printing evidence: '
               '`research/tcgl/<TCGL-cardID>/source.json`. The complete committed report and printing index are '
-              '`docs/bw-tcgl-sources.json`. Large raw assets follow Holoâ€™s ignored research convention.', '',
+              '`docs/bw-tcgl-sources.json`. Large raw assets follow the established Holo ignored research convention.', '',
               'Original Unity bundles retain compressed pixels and all mip levels. Serialized texture objects, '
               'native lossless decoded PNGs, dimensions, channel modes, SHA-256 file/pixel hashes and source asset '
               'IDs are preserved. Each finish is assigned through its own exact bundle/material reference. '
@@ -319,11 +320,24 @@ def audit():
               'Original white-plate foil (_w), etch (_e), cold-foil (_cf) and cast-and-cure (_cc) are tracked separately. '
               'Empty exact material references establish absence. Missing manifests, failed downloads and decode failures '
               'remain errors. All bundle textures, including textures used by other finishes, remain preserved.', '',
-              'Dedicated later material review: Rainbow, AngledPillars, Cosmos, Squares, Thatch, CrackedIce, '
-              'FlatSilver, Galabw, Tinsel, Stamped and SolidColor. Exact TCGL shader IDs are listed per set in the JSON '
+              'Dedicated later material review: Rainbow, AngledPillars, Cosmos, Thatch, CrackedIce, '
+              'Tinsel, Stamped and SolidColor. Exact TCGL shader IDs are listed per set in the JSON '
               'report; no physical foil response is inferred from scan brightness.', '',
               'Acquisition only. No gallery, material, shader, normal, derived mask or pack changes. Existing assets '
               'and unrelated sets are unchanged.']
+    lines += ['', 'Additional preserved promo sources: BW29, BW30 and BW31 each contain an original '
+              'front and foil map with an exact material manifest. BW77 and BW78 each contain an original '
+              'front but no material manifest; their foil/etch availability remains unknown. All five lack '
+              'a long-form printing ID in the accessible installed and archived tables. The five fronts '
+              'and three foil maps are validated separately and excluded from identified-printing counts.', '',
+              'The complete committed asset index is `docs/bw-tcgl-assets.json`: exact variant metadata, '
+              'asset URLs, native dimensions, file/pixel/serialized hashes, references, absent-map reasons '
+              'and preserved supplementary textures. No downloads or decode failures remain.', '',
+              'Alignment validation covers all identified map associations through original material '
+              'references and the unchanged native coordinate convention. Original Unity texture padding '
+              'and native dimensions are retained. No artwork crop or UV correction was applied. A '
+              'representative original front/foil/etch review is saved in `evidence/native-review.png`; '
+              'this sample is not a claim of visual inspection of every pixel.']
     text = '\n'.join(lines) + '\n'
     (HOLO / 'docs/bw-tcgl-sources.md').write_text(text, encoding='utf-8')
     (ROOT / 'dataset/COVERAGE.md').write_text(text, encoding='utf-8')
