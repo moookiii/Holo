@@ -233,7 +233,7 @@
     "foil": "/cards/pokemon/tcgl-sm/smbsp_243/foil.png",
     "protection": "/cards/pokemon/tcgl-sm/smbsp_243/protection.png",
     "roughness": "/cards/pokemon/tcgl-sm/smbsp_243/roughness.png",
-    "motif": "/cards/pokemon/tcgl-sm/shared/empty-cosmos-motif.png"
+    "motif": "/cards/pokemon/tcgl-sm/smbsp_243/cosmos.png"
   },
   "bodyMask": null,
   "profile": "pokemon-base-set-2-cosmos",
@@ -270,11 +270,60 @@
     "foil": "4a57229990e343b1e9c0fc29536c0b04fb58b8d60c43e9450dae5a426b12aedf",
     "protection": "9b98979824632bdc7891da89059d80edc3f8803f313d8ea743af022f97d337b9",
     "roughness": "387d7eff5d4d0dd09199b41de795f2fdc124b45829861ca2eb4ec2a2b0d14c18",
-    "motif": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70"
+    "motif": "8ef907db7a4a23cc6bb867195d2b4829f5abcbb034c2cca1a558dff4d3548cf0"
   },
   "physicalReview": "TCGL supplies exact geometry, not measured groove depth. Individual physical depth and microdiamond-region evidence are not established; no secondary foil regions invented.",
   "cosmosPlacement": {
-    "status": "pending",
-    "reason": "Exact-copy spot placement unavailable; empty motif, no random dots."
+    "status": "reviewed-visible-features",
+    "registration": "scripts/cosmos/registration.json",
+    "reference": {
+      "postId": 80205,
+      "title": "Regigigas  (SM243 English Promo)",
+      "pageUrl": "https://pokumon.com/card/regigigas-sm243-english-promo/",
+      "imageUrl": "https://cdn6966.templcdn.com/wp-content/uploads/2021/06/EN_243SM.jpg",
+      "dimensions": [
+        1080,
+        1510
+      ],
+      "description": "TAG TEAM Powers Collection\n \nFind on eBay\nFind on TCGPlayer\nBulbapedia\n",
+      "decodedDimensions": [
+        1080,
+        1510
+      ],
+      "file": "research/cosmos-missing/smbsp-243/80205.jpg",
+      "sha256": "3ea6d10884d87310a3bc686420b5344c7806db5883ea51ce45e26b0f03dafe71"
+    },
+    "coordinateDimensions": [
+      600,
+      825
+    ],
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "transform": {
+      "masterToReference": [
+        [
+          1.8010376960303125,
+          -0.004250653135476026,
+          5.985184555360564
+        ],
+        [
+          0.0009306098345957665,
+          1.8285589512991192,
+          -1.8897422191442141
+        ],
+        [
+          -1.6158421622681729e-06,
+          2.9042675937537763e-06,
+          1.0
+        ]
+      ],
+      "inliers": 366,
+      "medianReprojectionError": 0.9139646291732788,
+      "method": "SIFT print anchors; RANSAC projective registration to exact clean full-card master"
+    },
+    "reviewNotes": "Exact Regigigas SM243 TAG TEAM Powers Collection physical scan, 1080x1510. Reviewed full physical source, paired clean TCGL master, numbered boundaries and native-coordinate foil tiles. SIFT print-anchor registration reviewed at frame, subject and rules. Explicitly retain independently visible round features, including the 35.6-pixel-diameter upper-left disc and smaller lower-right discs. Enlarge and recenter the clipped left-edge disc; reject duplicate fragments and printed snow, rock facets, foliage and mist. Fine unresolved grain and ambiguous tiny sparkles omitted. Original front, TCGL foil, protection and roughness retained byte-for-byte. No relief or changed Cosmos optics. Flat scanning does not calibrate angular response or physical depth; this is visible placement on the selected copy.",
+    "limitations": "Matches visible features on the selected physical copy; unresolved subpixel scan grain is omitted. Other copies have different sheet positions. Flat scans do not calibrate physical optical depth."
   }
 }
