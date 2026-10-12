@@ -73,6 +73,34 @@ def metadata():
             'limitation': 'No English McDonald collection identity is supplied by these TCGL sources. '
                           'This does not prove absence from every historic client. No replacement acquired.'},
     }
+    inventory = read(ROOT / 'dataset/inventory.json')
+    promo_numbers = {int(r['collector_number']) for r in inventory if r['set_id'] == 'bwbsp'}
+    archived = read(ROOT / 'evidence/archived-inventory-audit.json')
+    gaps = []
+    for number in sorted(set(range(1, max(promo_numbers) + 1)) - promo_numbers):
+        bundle = f'bwbsp_en_{number:03d}'
+        matches = sorted({n for n in assets if n.lower() == bundle})
+        gaps.append({'collectorNumber': f'BW{number:02d}', 'bundleQuery': bundle,
+                     'installedTableMatches': [], 'processedExportMatches': [],
+                     'archivedEnglishTablesChecked': archived['archivedEnglishTables'],
+                     'officialBundleMatches': matches,
+                     'status': 'original_bundle_preserved_without_variant_identity' if matches else 'not_found_in_accessible_tcgl_sources',
+                     'limitation': 'Numeric gap in BW01–BW101; no long-form printing identity invented.'})
+    evidence['promoNumberGaps'] = gaps
+    upstream = Path.home() / 'TCGL-SWSH-extraction'
+    local_sources = {}
+    for name in ['evidence/file-inventory.json', 'dataset/bundle-index.json']:
+        path = upstream / name
+        target = ROOT / 'evidence/local-archives' / Path(name).name
+        write(target, read(path))
+        local_sources[name] = {'source': str(path), 'sha256': sha(path),
+                               'preservedFile': target.relative_to(ROOT).as_posix()}
+    bundles = read(upstream / 'dataset/bundle-index.json')
+    evidence['localArchiveScan'] = {
+        'sources': local_sources, 'inspectedUnitySources': len(bundles),
+        'bwBundles': [b for b in bundles if any(n.startswith('bw') for n in b.get('bundle_names', []))],
+        'note': 'Preserved installation/cache scan inspected Unity bundles even in hashed cache paths. '
+                'No BW bundles were present. New verified downloads are reused on resume.'}
     write(ROOT / 'evidence/series-lookup-audit.json', evidence)
     print('Preserved raw/processed inventory lookup evidence.', flush=True)
 
@@ -204,6 +232,27 @@ def audit():
         'foilTypes': dict(Counter(r['foil_effect'] for r in inventory)),
         'note': 'Retain TCGL shader IDs, masks and etches for EX/Mega EX, BREAK, Ancient Trait, '
                 'ACE SPEC, Team Plasma, Radiant Collection, shiny, Full Art/gold and promotional finishes. No shaders implemented.'}
+    compact_printings = []
+    for printing in read(ROOT / 'sources.json')['printings']:
+        compact = {k: printing[k] for k in ['setId', 'name', 'collectorNumber', 'sourceCardNumber',
+                   'tcglCardId', 'tcglVariantId', 'variant', 'variantSuffix', 'rarity', 'foil',
+                   'materialManifest', 'materialManifestRequested', 'materialManifestSelection']}
+        compact['assets'] = {}
+        for kind, asset in printing['sources'].items():
+            texture = asset.get('texture') or {}
+            compact['assets'][kind] = {k: asset.get(k) for k in ['status', 'reason', 'url', 'file',
+                'dimensions', 'sha256', 'reference', 'field', 'bundle_sha256']}
+            compact['assets'][kind]['originalTexture'] = {k: texture.get(k) for k in
+                ['name', 'path_id', 'format_name', 'mode', 'decoded_pixel_sha256',
+                 'serialized', 'serialized_sha256', 'orientation']}
+        compact_printings.append(compact)
+    write(HOLO / 'docs/bw-tcgl-assets.json', {
+        'schema': 'holo-tcgl-original-asset-index-v1', 'root': ROOT.relative_to(HOLO).as_posix(),
+        'status': report['status'], 'printings': compact_printings,
+        'absenceEvidence': 'Empty exact original MaterialManifest texture reference',
+        'lookupEvidence': report['lookupEvidence'], 'supplementaryTextures': supplementary,
+        'orphanBundles': read(ROOT / 'supplementary/orphan-bundles.json')})
+    report['assetIndex'] = 'docs/bw-tcgl-assets.json'
     write(HOLO / 'docs/bw-tcgl-sources.json', report)
     write(ROOT / 'dataset/acquisition-report.json', report)
     lines = ['# English BW original TCGL acquisition', '',
