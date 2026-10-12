@@ -39,7 +39,7 @@ function recipe(setId: keyof typeof xyRates): PokemonRecipe {
     slots:[{id:'common',count:3,unique:true,outcomes:[branch(1,select(['Common']),'normal')]},
       {id:'reverse',count:1,outcomes:reverse},{id:'rare',count:1,outcomes:rare},
       {id:'uncommon',count:2,unique:true,outcomes:[branch(1,select(['Uncommon']),'normal')]}] };
-  if (setId === 'xy9-5') return { ...base, note:'English ten-card booster: eight Generations cards and two Radiant Collection cards. Pull rates use published estimates; Radiant foil is pending.',
+  if (setId === 'xy9-5') return { ...base, note:'English ten-card booster: eight Generations cards and two Radiant Collection cards. Pull rates use published estimates; Radiant Collection uses its exact silver plates and nonfoil printings.',
     slots:[{id:'common',count:4,unique:true,outcomes:[branch(1,select(['Common','Energy']),'normal')]},
       {id:'reverse',count:1,outcomes:reverse},
       {id:'radiant-premium',count:1,outcomes:[branch(.72,rc.filter(c => c.rarity === 'Uncommon'),'holo'),branch(.28,rc.filter(c => ['Holo Rare EX','Ultra Rare'].includes(c.rarity)),'holo')]},

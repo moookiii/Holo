@@ -1,0 +1,31 @@
+{
+  "backend": "WebGPUBackend",
+  "viewerPrintings": 7,
+  "galleryPrintingsVisited": 35,
+  "tiltFrames": 25,
+  "fixedCardLightOrbitFrames": 32,
+  "staticPoseRepeatable": true,
+  "performance": [
+    {
+      "profile": "pokemon-break",
+      "median": 5.5999999940395355,
+      "p95": 6.9000000059604645,
+      "textureStart": 55,
+      "textureEnd": 55
+    },
+    {
+      "profile": "pokemon-sheen",
+      "median": 5.5999999940395355,
+      "p95": 8.200000017881393,
+      "textureStart": 57,
+      "textureEnd": 57
+    }
+  ],
+  "galleryLighting": [
+    "Studio",
+    "Moving light",
+    "Low key"
+  ],
+  "browserErrors": [],
+  "limits": "Frame timings are an indicative desktop run, not a GPU benchmark. Camera/emitter calibration and microscopic grating geometry remain unknown. Requested rainbow strength is intentionally increased."
+}

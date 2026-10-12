@@ -15,6 +15,8 @@ export function xyDefinition(id: string, variant: PrintVariant): CardDefinition 
     dimensions: DIMENSIONS.standard, front, back: '/cards/pokemon/back.jpg',
     ...(id.startsWith('xy9-5r-') ? { physicalProfile: 'generations-rc' as const } : {}),
     profile: surface.profile, seed: 2014000, galleryVisible: variant === 'normal',
+    ...(surface.profile === 'pokemon-break' ? { stockSurface: { strength: 0, depth: 0 },
+      substrate: { color: [.62, .65, .68] as [number, number, number], printRetention: .06 } } : {}),
     pokemon: { ...card, front, thumbnail: front, variant, materialProfile: surface.profile,
       ...(deferred ? { treatmentStatus: 'deferred' as const } : {}) },
     layout: { artwork: [0,0,1,1], innerFrame: [0,0,1,1] },
@@ -23,6 +25,7 @@ export function xyDefinition(id: string, variant: PrintVariant): CardDefinition 
     source: { image: front, metadata: surface.evidence,
       notes: `Exact English TCGL printing ${surface.tcglVariantId}. Own original fronts, foil/etch references and hashes retained in ${surface.evidence}. ` +
         (deferred ? `${surface.deferredEffect} finish pending; clean front with print-only material. No simulated replacement foil.` :
+          surface.profile === 'pokemon-break' ? 'Video-calibrated square optical domains on exact TCGL coverage; printed gold metal remains separate. No etch or surface relief. See docs/pokemon-break.md.' :
           'Existing compatible material with exact source coverage and motif values. No generated relief or replacement texture.') },
   };
 }

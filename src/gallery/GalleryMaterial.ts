@@ -285,7 +285,7 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     this.normalNode = ultraRare ? normalMap(texture(ultraRare.normal, uv()).rgb)
       : layers[0].packedEtch ? normalMap(authoredNormal) : normalMap(vec3(authoredNormal.rg.add(cutSlope.mul(.5)), authoredNormal.b));
     this.metalnessNode = blend(float(.015), 3, 'x').max(metal.mul(card.x));
-    if (layers[0].normalFiltering) this.specularColorNode = mix(vec3(1), basePrint, this.regions[0].secret.w);
+    if (layers[0].normalFiltering || layers[0].pokemonBreak) this.specularColorNode = mix(vec3(1), basePrint, this.regions[0].secret.w);
     const variance = layers[0].packedEtch ? float(0) : activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.detail.rg.fwidth().length().mul(r.parameters[6].x, r.mask)), float(0)).min(.16);
     const patternRoughness = activeRegions.reduce<Node<'float'>>((value, r) => value.add(r.field.a.mul(r.parameters[6].y, r.mask)), float(0));
     this.roughnessNode = (ultraRare ? texture(ultraRare.roughness, uv()).r : normal.a).add(variance).add(patternRoughness).clamp(.045, 1);

@@ -23,11 +23,14 @@ def prepare(number):
             plate.save(target/'foil.png')
         outputs['foil'] = {'path': f'/cards/pokemon/generations-rc/{number}/foil.png',
                            'sha256': sha(target/'foil.png'), 'dimensions': [733,1024]}
+    profile = 'print-only' if not outputs else 'generations-rc-full-art' if number >= 28 else 'generations-rc-ex' if number in (6,21) else 'generations-rc-holo'
     evidence = {'tcglCardId': evidence['tcglCardId'], 'tcglVariantId': evidence['tcglVariantId'],
+                'printing': evidence['printing'], 'profile': profile,
+                'treatmentStatus': 'existing-material', 'deferredEffect': None,
                 'sources': evidence['sources'], 'registration': evidence['registration'],
                 'outputs': outputs, 'normalGeneration': False,
                 'method': 'Same full-card Unity UV box as the clean front; bilinear registered continuous whiteplate, grayscale PNG. No threshold, invented motifs, front-derived coverage or relief.',
-                'physicalReview': 'Supplied three photographs. Smooth silver interpretation; precise angular reflectance remains an approximation.'}
+                'physicalReview': 'Supplied photographs establish the eight reference cards. Remaining cards reuse the reviewed family with their own exact whiteplates; individual dynamic physical calibration remains approximate. See docs/generations-rc.md.'}
     (target/'evidence.json').write_text(json.dumps(evidence,indent=2)+'\n',encoding='utf-8')
     print(number, evidence['tcglVariantId'], 'foil' if outputs else 'nonfoil')
 

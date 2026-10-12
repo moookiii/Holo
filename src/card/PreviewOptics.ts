@@ -22,7 +22,7 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
     // integration even when the profile omits an explicit filtering setting.
     const direction = [paths.direction, paths.secondaryDirection, paths.stampDirection][index];
     const authored = !!paths.normal && !!(d.followsAuthoredNormals || direction);
-    if (authored || d.normalFiltering || f.etchedInkSheen)
+    if (authored || d.normalFiltering || f.etchedInkSheen || layer.opticalModel === 'pokemon-break')
       set(37 + index, [0, f.etchedInkSheen ?? 0, authored ? Math.max(1, d.normalFiltering ?? 0) : d.normalFiltering ?? 0, f.inkSpecular ?? 0]);
     if (s.field === 'secret') set(37 + index, [s.scale, s.cutAngle ?? Math.PI / 4, s.cutWidth ?? .26, s.facetTilt ?? 0]);
     const disabled = new Set(layer.disabledMechanisms), enabled = layer.enabled !== false && profile.id !== 'print-only';

@@ -75,8 +75,9 @@ def main():
             'sourceDimensions': {kind: list(Image.open(dest / f'original-{kind}.png').size) for kind in ['front', 'foil']},
             'registration': evidence['registration'], 'etch': 'Exact manifest: not applicable; no normal/height generated.',
             'goldCoverage': 'Smooth yellow/gold chroma within inverse original whiteplate; no brightness-derived relief.',
-            'pattern': 'break-squares: 16.4 cells/card height, 45 degrees, four fixed optical domains; flat laminate.',
-            'reference': 'Nidoking BREAK 46/108 supplied 6.766667-second video; see docs/pokemon-break.md',
+            'pattern': 'break-squares: 16.4 card-aligned square tiles/card height, fixed chirped fan grating, light-selected rotating rainbow sectors; flat laminate.',
+            'substrateFinish': {'colorLinearRgb': [.62, .65, .68], 'printRetention': .06, 'substrateDarkening': 0, 'substrateReflection': .85, 'metalness': .98},
+            'reference': 'Nidoking BREAK 46/108 supplied 6.766667-second video and Noivern BREAK correction clip (7.2 seconds); stronger rainbow requested by user; see docs/pokemon-break.md',
             'outputs': {key: {'path': path, 'sha256': sha(ROOT / 'public' / path.lstrip('/')), 'dimensions': [733, 1024]} for key, path in maps.items()},
         }
         (dest / 'break-evidence.json').write_text(json.dumps(finish, indent=2) + '\n')

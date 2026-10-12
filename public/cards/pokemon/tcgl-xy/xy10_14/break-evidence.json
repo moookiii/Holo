@@ -31,8 +31,8 @@
   },
   "etch": "Exact manifest: not applicable; no normal/height generated.",
   "goldCoverage": "Smooth yellow/gold chroma within inverse original whiteplate; no brightness-derived relief.",
-  "pattern": "break-squares: 16.4 cells/card height, 45 degrees, four fixed optical domains; flat laminate.",
-  "reference": "Nidoking BREAK 46/108 supplied 6.766667-second video; see docs/pokemon-break.md",
+  "pattern": "break-squares: 16.4 card-aligned square tiles/card height, fixed chirped fan grating, light-selected rotating rainbow sectors; flat laminate.",
+  "reference": "Nidoking BREAK 46/108 supplied 6.766667-second video and Noivern BREAK correction clip (7.2 seconds); stronger rainbow requested by user; see docs/pokemon-break.md",
   "outputs": {
     "foil": {
       "path": "/cards/pokemon/tcgl-xy/xy10_14/break-foil.png",
@@ -66,5 +66,16 @@
         1024
       ]
     }
+  },
+  "substrateFinish": {
+    "colorLinearRgb": [
+      0.62,
+      0.65,
+      0.68
+    ],
+    "printRetention": 0.06,
+    "substrateDarkening": 0,
+    "substrateReflection": 0.85,
+    "metalness": 0.98
   }
 }
