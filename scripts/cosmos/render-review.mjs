@@ -15,7 +15,7 @@ if (!existsSync(executablePath)) {
 const registry = JSON.parse(readFileSync('scripts/cosmos/registration.json', 'utf8'));
 const requested = process.env.COSMOS_IDS?.split(',');
 const targets = registry.filter(c => !requested || requested.includes(c.cardId))
-  .map(c => ({ key: c.cardId, id: `pokemon:${c.cardId}:holo` }));
+  .map(c => ({ key: c.cardId, id: `pokemon:${c.cardId}:holo${c.edition === 'first-edition' ? ':first-edition' : ''}` }));
 targets.push({ key: 'base-set-2-reference', id: 'pokemon:base4-1:holo' },
   { key: 'entei-reference', id: 'pokemon:basep-34:holo' });
 const out = join(process.cwd(), 'artifacts/cosmos-missing/live');
