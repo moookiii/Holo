@@ -14,4 +14,7 @@ const regular: HolographicProfile = {
 export const generationsProfiles: HolographicProfile[] = [regular, {
   ...regular, id: 'generations-rc-holo', name: 'Generations RC · Decorative silver holo',
   surface: { ...regular.surface, metalness: .72, roughness: .32, foilReflectance: .055 },
+}, {
+  ...regular, id: 'generations-rc-full-art', name: 'Generations RC · Full Art silver',
+  surface: { ...regular.surface, metalness: .76, roughness: .27, foilReflectance: .065, laminate: .045, inkTransmission: .88 },
 }];
