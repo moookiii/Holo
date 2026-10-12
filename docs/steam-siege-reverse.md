@@ -21,3 +21,11 @@ import, clearing the pending label. Acquisition-era generated pending lists
 remain historical; the runtime override is authoritative and survives reimport.
 No unrelated card or material profile changes. Physical angular calibration
 remains approximate; source geometry establishes placement, not measured optics.
+
+Validation: TypeScript and the targeted exact-identity/source-hash test pass.
+Source plates and full-card front/plate overlays were inspected; both motifs
+meet at the printed diagonal divider and the artwork remains excluded.
+Review images are under `artifacts/steam-siege/`. Live review attempts encountered
+development reload and local-server startup/navigation failures; a completed
+multi-angle GPU review is not claimed. Re-run `scripts/steam-siege-live-check.mjs`
+against a ready server using `HOLO_URL` to save five lighting/pose captures per card.

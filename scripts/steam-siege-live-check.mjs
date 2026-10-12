@@ -21,6 +21,8 @@ page.on('response', r => { if (r.status() >= 400 && r.url().includes('127.0.0.1'
 try {
   await page.goto(process.env.HOLO_URL || 'http://127.0.0.1:5173/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 120000 });
+  await page.evaluate(() => window.__holo.gallery.open());
+  await page.waitForFunction(() => window.__holo?.gallery.stats()?.active, null, { timeout: 120000 });
   for (const n of [11,15,42,64,77]) {
     const id = `pokemon:xy11-${n}:reverse`;
     await page.evaluate(async id => await window.__holo.gallery.close(id), id);
