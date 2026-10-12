@@ -167,6 +167,9 @@ function pokemonPrintKey(card: CardDefinition) {
   const number = /^\d+$/.test(localId) ? String(Number(localId)) : localId;
   const variant = card.pokemon?.variant ?? (/reverse/i.test(`${card.set} ${card.number}`) ? 'reverse'
     : card.profile === 'print-only' ? 'normal' : 'holo');
+  // XY promos/alternate printings can share a printed collector number while
+  // retaining different exact TCGL identities and material bindings.
+  if (card.pokemon?.seriesId === 'xy') return `tcgl-xy|${card.pokemon.id}|${variant}`;
   return `${gallerySetName(card)}|${number}|${variant}`;
 }
 

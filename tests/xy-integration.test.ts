@@ -7,7 +7,19 @@ import { svTcglDefinition } from '../src/pokemon/SvTcglSurfaces.ts';
 import { xyRecipes } from '../src/pokemon/XyRecipes.ts';
 import { collatePokemon } from '../src/pokemon/collator.ts';
 import type { PrintVariant } from '../src/pokemon/types.ts';
+import { GalleryQueryIndex, compareGallerySetNames } from '../src/gallery/GalleryQuery.ts';
+import { GalleryFavorites } from '../src/gallery/GalleryFavorites.ts';
 const cards = svTcglCards.filter(c => c.seriesId === 'xy');
+
+test('gallery preserves every XY printing and favorites retain exact variant IDs', () => {
+  const defs = tcglXySurfaces.map(s => svTcglDefinition(s.cardId, s.variant as PrintVariant));
+  const gallery = new GalleryQueryIndex(defs);
+  assert.equal(gallery.filter({search:''}).length, 3416);
+  assert.deepEqual(tcglXySets.map(s => s.name).sort(compareGallerySetNames), tcglXySets.map(s => s.name));
+  const favorites = new GalleryFavorites();
+  favorites.toggle('pokemon:xy1-3:reverse');
+  assert.deepEqual(favorites.filter(gallery.filter({search:'Weedle',set:'XY Base Set',finish:'reverse'}),true).map(c => c.id), ['pokemon:xy1-3:reverse']);
+});
 
 test('all 3416 exact XY source variants remain selectable with their own assets', () => {
   const index = JSON.parse(readFileSync('public/cards/pokemon/tcgl-xy/printing-index.json', 'utf8'));
