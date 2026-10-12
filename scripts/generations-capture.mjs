@@ -26,7 +26,15 @@ const query = process.env.CAPTURE_QUERY || '';
 try {
   await page.goto(`http://127.0.0.1:5173/${query}`, { waitUntil: 'domcontentloaded', timeout: 90000 });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
-  if (process.env.CAPTURE_CARD) await page.evaluate(id => window.__holo.gallery.close(id), process.env.CAPTURE_CARD);
+  if (process.env.CAPTURE_CARD) {
+    for (let attempt = 0; attempt < 3; attempt++) {
+      await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
+      await page.evaluate(id => window.__holo.gallery.close(id), process.env.CAPTURE_CARD);
+      if (await page.evaluate(id => window.__holo?.stats().card === id && window.__holo.stats().triangles > 1, process.env.CAPTURE_CARD)) break;
+      await page.waitForTimeout(1000);
+    }
+    await page.waitForFunction(id => window.__holo?.stats().card === id && window.__holo.stats().triangles > 1, process.env.CAPTURE_CARD, { timeout: 90000 });
+  }
   if (process.env.CAPTURE_PROFILE) await page.evaluate(id => window.__holo.setProfile(id), process.env.CAPTURE_PROFILE);
   if (process.env.CAPTURE_ZOOM) await page.evaluate(value => window.__holo.zoom(value), Number(process.env.CAPTURE_ZOOM));
   if (process.env.CAPTURE_LIGHT) await page.evaluate(value => window.__holo.lighting.setPreset(value), process.env.CAPTURE_LIGHT);
