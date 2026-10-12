@@ -1,6 +1,7 @@
 {
   "sets": {
     "xybsp": {
+      "name": "XY Black Star Promos",
       "cards": 211,
       "variants": 211,
       "sourceFronts": 211,
@@ -13,6 +14,7 @@
       "boosterCardCount": null
     },
     "xy0": {
+      "name": "Kalos Starter Set",
       "cards": 39,
       "variants": 39,
       "sourceFronts": 39,
@@ -25,6 +27,7 @@
       "boosterCardCount": null
     },
     "xyalt": {
+      "name": "XY alternate and special printings",
       "cards": 200,
       "variants": 200,
       "sourceFronts": 200,
@@ -37,6 +40,7 @@
       "boosterCardCount": null
     },
     "xy1": {
+      "name": "XY Base Set",
       "cards": 146,
       "variants": 269,
       "sourceFronts": 269,
@@ -49,6 +53,7 @@
       "boosterCardCount": 10
     },
     "xy2": {
+      "name": "Flashfire",
       "cards": 109,
       "variants": 200,
       "sourceFronts": 200,
@@ -61,6 +66,7 @@
       "boosterCardCount": 10
     },
     "xy3": {
+      "name": "Furious Fists",
       "cards": 113,
       "variants": 210,
       "sourceFronts": 210,
@@ -73,6 +79,7 @@
       "boosterCardCount": 10
     },
     "xy4": {
+      "name": "Phantom Forces",
       "cards": 122,
       "variants": 224,
       "sourceFronts": 224,
@@ -85,6 +92,7 @@
       "boosterCardCount": 10
     },
     "xy5": {
+      "name": "Primal Clash",
       "cards": 164,
       "variants": 296,
       "sourceFronts": 296,
@@ -97,6 +105,7 @@
       "boosterCardCount": 10
     },
     "xy5-5": {
+      "name": "Double Crisis",
       "cards": 34,
       "variants": 66,
       "sourceFronts": 66,
@@ -109,6 +118,7 @@
       "boosterCardCount": 7
     },
     "xy6": {
+      "name": "Roaring Skies",
       "cards": 110,
       "variants": 196,
       "sourceFronts": 196,
@@ -121,6 +131,7 @@
       "boosterCardCount": 10
     },
     "xy7": {
+      "name": "Ancient Origins",
       "cards": 100,
       "variants": 172,
       "sourceFronts": 172,
@@ -133,6 +144,7 @@
       "boosterCardCount": 10
     },
     "xy8": {
+      "name": "BREAKthrough",
       "cards": 164,
       "variants": 302,
       "sourceFronts": 302,
@@ -145,6 +157,7 @@
       "boosterCardCount": 10
     },
     "xy9": {
+      "name": "BREAKpoint",
       "cards": 123,
       "variants": 220,
       "sourceFronts": 220,
@@ -157,6 +170,7 @@
       "boosterCardCount": 10
     },
     "xy9-5": {
+      "name": "Generations",
       "cards": 83,
       "variants": 152,
       "sourceFronts": 152,
@@ -169,6 +183,7 @@
       "boosterCardCount": 10
     },
     "xy9-5r": {
+      "name": "Generations Radiant Collection",
       "cards": 32,
       "variants": 32,
       "sourceFronts": 32,
@@ -181,6 +196,7 @@
       "boosterCardCount": null
     },
     "xy10": {
+      "name": "Fates Collide",
       "cards": 125,
       "variants": 222,
       "sourceFronts": 222,
@@ -193,6 +209,7 @@
       "boosterCardCount": 10
     },
     "xy11": {
+      "name": "Steam Siege",
       "cards": 116,
       "variants": 209,
       "sourceFronts": 209,
@@ -205,6 +222,7 @@
       "boosterCardCount": 10
     },
     "xy12": {
+      "name": "Evolutions",
       "cards": 113,
       "variants": 196,
       "sourceFronts": 196,
@@ -622,7 +640,7 @@
     "originalPngDecodingAndDimensions": "passed",
     "runtimeMapDecodingAndDimensions": "passed",
     "wrappersHashesDecodingAndTightAlphaBounds": "passed for all 54 designs",
-    "xyTests": "3 passed: all identities, 18 collections, 4200 seeded packs and all branches",
+    "xyTests": "4 XY checks and 3 favorites checks passed: all gallery/source identities, chronology, 4200 seeded packs and every branch",
     "productionBuild": "passed; standard existing chunk-size warning",
     "liveReview": {
       "viewers": 10,
@@ -630,7 +648,8 @@
       "errors": [],
       "failure": null,
       "startupXyTextureRequests": 0,
-      "externalCardRequests": []
+      "externalCardRequests": [],
+      "galleryFavoritesBinder": "passed"
     }
   },
   "limitations": [

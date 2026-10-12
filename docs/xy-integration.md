@@ -4,24 +4,24 @@ All 3,416 acquired English TCGL finish records are registered across 18 chronolo
 
 | Collection | Cards | Variants | Active foil | Native nonfoil | Pending | Boosters / designs |
 |---|---:|---:|---:|---:|---:|---|
-| xybsp | 211 | 211 | 53 | 10 | 148 | browse only |
-| xy0 | 39 | 39 | 0 | 39 | 0 | browse only |
-| xyalt | 200 | 200 | 100 | 51 | 49 | browse only |
-| xy1 | 146 | 269 | 139 | 116 | 14 | 10 cards / 4 |
-| xy2 | 109 | 200 | 99 | 83 | 18 | 10 cards / 4 |
-| xy3 | 113 | 210 | 106 | 88 | 16 | 10 cards / 4 |
-| xy4 | 122 | 224 | 116 | 90 | 18 | 10 cards / 4 |
-| xy5 | 164 | 296 | 150 | 114 | 32 | 10 cards / 4 |
-| xy5-5 | 34 | 66 | 38 | 26 | 2 | 7 cards / 2 |
-| xy6 | 110 | 196 | 96 | 76 | 24 | 10 cards / 4 |
-| xy7 | 100 | 172 | 80 | 64 | 28 | 10 cards / 4 |
-| xy8 | 164 | 302 | 154 | 122 | 26 | 10 cards / 4 |
-| xy9 | 123 | 220 | 104 | 90 | 26 | 10 cards / 4 |
-| xy9-5 | 83 | 152 | 74 | 64 | 14 | 10 cards / 4 |
-| xy9-5r | 32 | 32 | 0 | 0 | 32 | browse only |
-| xy10 | 125 | 222 | 102 | 92 | 28 | 10 cards / 4 |
-| xy11 | 116 | 209 | 97 | 84 | 28 | 10 cards / 4 |
-| xy12 | 113 | 196 | 83 | 75 | 38 | 10 cards / 4 |
+| XY Black Star Promos (xybsp) | 211 | 211 | 53 | 10 | 148 | browse only |
+| Kalos Starter Set (xy0) | 39 | 39 | 0 | 39 | 0 | browse only |
+| XY alternate and special printings (xyalt) | 200 | 200 | 100 | 51 | 49 | browse only |
+| XY Base Set (xy1) | 146 | 269 | 139 | 116 | 14 | 10 cards / 4 |
+| Flashfire (xy2) | 109 | 200 | 99 | 83 | 18 | 10 cards / 4 |
+| Furious Fists (xy3) | 113 | 210 | 106 | 88 | 16 | 10 cards / 4 |
+| Phantom Forces (xy4) | 122 | 224 | 116 | 90 | 18 | 10 cards / 4 |
+| Primal Clash (xy5) | 164 | 296 | 150 | 114 | 32 | 10 cards / 4 |
+| Double Crisis (xy5-5) | 34 | 66 | 38 | 26 | 2 | 7 cards / 2 |
+| Roaring Skies (xy6) | 110 | 196 | 96 | 76 | 24 | 10 cards / 4 |
+| Ancient Origins (xy7) | 100 | 172 | 80 | 64 | 28 | 10 cards / 4 |
+| BREAKthrough (xy8) | 164 | 302 | 154 | 122 | 26 | 10 cards / 4 |
+| BREAKpoint (xy9) | 123 | 220 | 104 | 90 | 26 | 10 cards / 4 |
+| Generations (xy9-5) | 83 | 152 | 74 | 64 | 14 | 10 cards / 4 |
+| Generations Radiant Collection (xy9-5r) | 32 | 32 | 0 | 0 | 32 | browse only |
+| Fates Collide (xy10) | 125 | 222 | 102 | 92 | 28 | 10 cards / 4 |
+| Steam Siege (xy11) | 116 | 209 | 97 | 84 | 28 | 10 cards / 4 |
+| Evolutions (xy12) | 113 | 196 | 83 | 75 | 38 | 10 cards / 4 |
 
 Existing profiles: print-only: 1825, swsh-reverse-energy: 1307, pokemon-sheen: 223, pokemon-tinsel: 6, pokemon-crosshatch: 31, pokemon-cracked-ice: 24.
 
