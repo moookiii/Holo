@@ -288,10 +288,15 @@
       "sha256": "edc00d55f78535bda812c943695a9384eb9766c1360d751aebddbd2291cf3d73"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Gold Pokemon BREAK",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-xy/xybsp_181/break-foil.png",
+    "foilControls": "/cards/pokemon/tcgl-xy/xybsp_181/break-foil-controls.png",
+    "metallic": "/cards/pokemon/tcgl-xy/xybsp_181/break-metallic.png",
+    "roughness": "/cards/pokemon/tcgl-xy/xybsp_181/break-roughness.png"
+  },
+  "profile": "pokemon-break",
+  "treatmentStatus": "calibrated-video",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -307,6 +312,7 @@
     "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
   },
   "normalGeneration": false,
-  "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass."
+  "shaderChanges": true,
+  "limitations": "Nidoking video calibrates shared optics. Other printings lack matching physical video; source whiteplate boundaries are authoritative. Gold chroma coverage is an approximation, not measured ink composition.",
+  "breakFinishEvidence": "/cards/pokemon/tcgl-xy/xybsp_181/break-evidence.json"
 }

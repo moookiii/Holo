@@ -1,13 +1,13 @@
 import type { Node } from 'three/webgpu';
 import { vec3, exp } from 'three/tsl';
 import { spectrum } from './DiffractionLayer';
-import type { OpticalUniforms } from '../OpticalUniforms';
+import type { IllustrationRareOptics } from './IllustrationRareLayer';
 
 /** Domain orientation selects reflection without changing the print normal.
  * Fixed domains exchange brightness with L+V, including finite light size. */
 export function breakFoilReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   tangent: Node<'vec3'>, bitangent: Node<'vec3'>, normal: Node<'vec3'>,
-  u: OpticalUniforms, weights: Node<'vec4'>, details: Node<'vec4'>,
+  u: IllustrationRareOptics & { neutralGain: Node<'float'>; spectralGain: Node<'float'> }, weights: Node<'vec4'>, details: Node<'vec4'>,
   footprint?: [Node<'vec3'>, Node<'vec3'>]) {
   const momentum = light.add(view);
   const x = momentum.dot(tangent), y = momentum.dot(bitangent);

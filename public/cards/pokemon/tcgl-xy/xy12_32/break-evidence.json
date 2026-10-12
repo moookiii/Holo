@@ -1,0 +1,70 @@
+{
+  "tcglCardId": "xy12_32",
+  "tcglVariantId": "StarmieBREAK_xy12_32_std_BreakRare_Squares_Holo",
+  "sourceHashes": {
+    "front": "c3755eb1f3a29900a5c966ddf8462f7a27e657d12d08bd3455e3ef93d23faa9e",
+    "foil": "89ea101cbeba17f3f04467446133bbfe5c055185dc5c0ff0d72a327f09c95d0b"
+  },
+  "sourceDimensions": {
+    "front": [
+      1024,
+      1024
+    ],
+    "foil": [
+      512,
+      512
+    ]
+  },
+  "registration": {
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "dimensions": [
+      733,
+      1024
+    ],
+    "verticalFlip": false,
+    "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
+  },
+  "etch": "Exact manifest: not applicable; no normal/height generated.",
+  "goldCoverage": "Smooth yellow/gold chroma within inverse original whiteplate; no brightness-derived relief.",
+  "pattern": "break-squares: 16.4 cells/card height, 45 degrees, four fixed optical domains; flat laminate.",
+  "reference": "Nidoking BREAK 46/108 supplied 6.766667-second video; see docs/pokemon-break.md",
+  "outputs": {
+    "foil": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_32/break-foil.png",
+      "sha256": "0398f8092e8a5f3087dbf7230aa79b4d018ad017ccbb9015467ee2538526f352",
+      "dimensions": [
+        733,
+        1024
+      ]
+    },
+    "foilControls": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_32/break-foil-controls.png",
+      "sha256": "eb60fa19a2ff20a68c3f0b4909bb42913bd884fac22ea4f647f640707d886601",
+      "dimensions": [
+        733,
+        1024
+      ]
+    },
+    "metallic": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_32/break-metallic.png",
+      "sha256": "94b1f39c9a0ae6811ea201fbd541656979b2a657122c4f44c86650a1bd2f9ec8",
+      "dimensions": [
+        733,
+        1024
+      ]
+    },
+    "roughness": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_32/break-roughness.png",
+      "sha256": "341e88ee98532d45ed811e2eefa6188c9d83d7087db7dc1c3e33efb5acf9a2d7",
+      "dimensions": [
+        733,
+        1024
+      ]
+    }
+  }
+}

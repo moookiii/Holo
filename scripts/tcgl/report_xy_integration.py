@@ -37,7 +37,7 @@ def main():
    with Image.open(path) as im: im.load(); assert list(im.size)==[m['assets'][kind]['texture']['width'],m['assets'][kind]['texture']['height']]
    hashes[kind]=s['sha256']
   for kind,path in e['maps'].items():
-   with Image.open(ROOT/('public'+path)) as im: im.load(); assert im.size==((1,1) if kind=='roughness' else (733,1024))
+   with Image.open(ROOT/('public'+path)) as im: im.load(); assert im.size==((1,1) if kind=='roughness' and e['profile']!='pokemon-break' else (733,1024))
   if 'cosmosPlacement' in e:
    placement=e['cosmosPlacement']; path=ROOT/('public'+placement['emptyMotifPng'])
    assert not placement['active'] and not placement['motifs'] and digest(path)==placement['sha256']

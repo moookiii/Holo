@@ -180,4 +180,7 @@ def main():
     print('Registered',len(index),'exact XY finishes.',flush=True)
 
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()
+    from prepare_break import main as prepare_break
+    prepare_break()

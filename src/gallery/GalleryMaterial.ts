@@ -5,6 +5,7 @@ import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNo
 import { Fn, exp, float, instanceIndex, ivec2, mix, normalMap, normalView, normalViewGeometry, positionView, positionViewDirection, bitangentView, tangentView, texture, textureLoad, uv, varying, vec2, vec3, vec4 } from 'three/tsl';
 import { secretRareReflection } from '../materials/layers/SecretRareLayer';
 import { spectrum } from '../materials/layers/DiffractionLayer';
+import { breakFoilReflection } from '../materials/layers/BreakFoilLayer';
 import { pixelVariance, normalPixelVariance, normalMipVariance } from '../materials/layers/AuthoredNormalFiltering';
 import { illustrationRareReflection } from '../materials/layers/IllustrationRareLayer';
 import { celebrationFoilReflection } from '../materials/layers/CelebrationFoilLayer';
@@ -92,6 +93,14 @@ class GalleryLightingModel extends PhysicalLightingModel {
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
       const geometric = normalViewGeometry as unknown as Node<'vec3'>;
       const bitangent = geometric.cross(tangentView).normalize();
+      if (layer.pokemonBreak) {
+        const reflected = breakFoilReflection(light, positionViewDirection, tangentView, bitangent, geometric, {
+          aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
+          secondary: diffraction.w, angle: axis.x, crossWidth: axis.y, neutralGain: float(1), spectralGain: float(1),
+        }, r.field, r.detail, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, data.lightColor as Node<'vec3'>));
+        continue;
+      }
       if (layer.ultraRare || layer.specialIllustration || layer.blackWhiteRare) {
         const optics = {
             aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z, secondary: diffraction.w,
