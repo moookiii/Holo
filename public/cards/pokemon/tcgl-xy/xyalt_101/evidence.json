@@ -288,10 +288,14 @@
       "sha256": "96a33f7c03f3b1a22b0772face08d4e1431fd63c019f14422018d091d50cb06d"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-xy/xyalt_101/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-xy/xyalt_101/foil-controls.png",
+    "roughness": "/cards/pokemon/tcgl-xy/shared/smooth-roughness.png"
+  },
+  "profile": "pokemon-sheen",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,17 +312,14 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
-  "cosmosPlacement": {
-    "status": "pending",
-    "coordinateDimensions": [
-      733,
-      1024
-    ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-xy/xyalt_101/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+  "limitations": "Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.",
+  "physicalFinishCorrection": {
+    "finish": "Sheen Holofoil",
+    "tcglFinish": "Cosmos",
+    "scope": "Exact 2014 Collector Chest preview printing only",
+    "sources": [
+      "https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788",
+      "https://pokumon.com/card/mirror-holofoil-torchic-25-160-collector-chest-special-print/"
+    ]
   }
 }

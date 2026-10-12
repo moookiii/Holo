@@ -30,6 +30,14 @@ RARITIES = {'RareHolo': 'Holo Rare', 'RareHoloEX': 'Holo Rare EX',
             'BreakRare': 'BREAK Rare', 'CommonBasicEnergy': 'Energy'}
 
 
+# Physical Collector Chest preview printings are Sheen, despite TCGL Cosmos metadata.
+COLLECTOR_CHEST_SHEEN = {
+    'xyalt_100': 'https://pokumon.com/card/mirror-holofoil-treecko-6-160-collector-chest-special-print/',
+    'xyalt_101': 'https://pokumon.com/card/mirror-holofoil-torchic-25-160-collector-chest-special-print/',
+    'xyalt_102': 'https://pokumon.com/card/mirror-holofoil-mudkip-33-160-collector-chest-special-print/',
+}
+
+
 def sha(path): return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
@@ -43,6 +51,9 @@ def treatment(m, row, variant):
     if m['set_id'] == 'xy9-5r': return 'print-only', 'Generations Radiant Collection'
     if variant == 'normal': return 'print-only', None
     if rarity == 'BreakRare': return 'print-only', 'Gold Pokemon BREAK'
+    if m['card_id'] in COLLECTOR_CHEST_SHEEN:
+        assert m['set_id'] == 'xyalt' and m['foil_effect'] == 'Cosmos'
+        return 'pokemon-sheen', None
     if m['assets']['etch']['status'] == 'extracted':
         family = 'XY gold and specialized Primal/Mega' if rarity == 'RareSecret' or 'Primal' in m['name'] else 'XY textured Full Art EX/Mega/Trainer'
         return 'print-only', family
@@ -90,6 +101,7 @@ def main():
         front = shared / ('front-' + key + '.png')
         if not front.exists(): registered(originals['front'], (733,1024)).convert('RGB').save(front)
         profile, pending = treatment(m, row, variant)
+        physical_effect = 'Sheen' if cid in COLLECTOR_CHEST_SHEEN else m['foil_effect']
         maps = {}
         if profile != 'print-only':
             assert 'foil' in originals, cid
@@ -113,7 +125,7 @@ def main():
                 'collectorNumber': number + ('/' + denominator if denominator else ''),
                 'category': {1:'Pokemon',2:'Trainer',3:'Energy'}[row['category']],
                 'front': front.relative_to(OUT).as_posix(), 'variants':[variant],
-                'variantFronts': {variant: front.relative_to(OUT).as_posix()}, 'foil': {variant:m['foil_effect']}}
+                'variantFronts': {variant: front.relative_to(OUT).as_posix()}, 'foil': {variant:physical_effect}}
         if types: card['types'] = types
         if row['category'] == 3: card['energyType'] = 'Basic' if rarity == 'CommonBasicEnergy' else 'Special'
         if row.get('EN Evolves From'): card['evolveFrom'] = row['EN Evolves From']
@@ -126,6 +138,14 @@ def main():
                     'normalGeneration':False, 'shaderChanges':False,
                     'limitations': 'Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.' if pending else
                                    'Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.'}
+        if cid in COLLECTOR_CHEST_SHEEN:
+            evidence['physicalFinishCorrection'] = {
+                'finish':'Sheen Holofoil', 'tcglFinish':m['foil_effect'],
+                'scope':'Exact 2014 Collector Chest preview printing only',
+                'sources':[
+                    'https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788',
+                    COLLECTOR_CHEST_SHEEN[cid],
+                ]}
         if pending == 'Cosmos registered motif placement':
             empty = dest / 'cosmos-placement-pending.png'
             if not empty.exists(): Image.new('L', (1200,1650), 0).save(empty)
@@ -137,7 +157,7 @@ def main():
         write(dest / 'evidence.json', evidence)
         surface = {'cardId':appid,'variant':variant,'profile':profile,'textured':False,'maps':maps,
                    'evidence':'/' + (dest/'evidence.json').relative_to(ROOT/'public').as_posix(),
-                   'foilType':m['foil_effect'],'tcglCardId':cid,'tcglVariantId':m['long_form_id'],
+                   'foilType':physical_effect,'tcglCardId':cid,'tcglVariantId':m['long_form_id'],
                    'treatmentStatus':evidence['treatmentStatus'],'deferredEffect':pending,
                    'originalAssets':{k:s['publicOriginal'] for k,s in sources.items()}}
         return m['set_id'], card, surface
