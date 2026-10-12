@@ -102,6 +102,11 @@ def main():
     records.update({r['card_id']: {'row': r['row']} for r in manifest if r.get('identityStatus')})
     OUT.mkdir(parents=True, exist_ok=True)
     shared = OUT / 'shared'; shared.mkdir(exist_ok=True)
+    material_trees = {}
+    for path in (SOURCE / 'dataset/checkpoints').glob('*.json'):
+        checkpoint = json.loads(path.read_bytes())
+        for material in checkpoint['manifests']:
+            material_trees[(checkpoint['sha256'], material['name'])] = material['tree']
     def prepare(m):
         cid = m['card_id']; row = records[cid]['row']; dest = OUT / cid; dest.mkdir(exist_ok=True)
         variant = 'normal' if m['foil_effect'] == 'NonFoil' else 'reverse' if m['variant'] == 1 else 'holo'
@@ -166,6 +171,12 @@ def main():
                     'normalGeneration':bool('normal' in maps), 'shaderChanges':False,
                     'limitations': 'Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.' if pending else
                                    'Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.'}
+        material = material_trees.get((m['assets']['front'].get('bundle_sha256'), m.get('material_manifest')))
+        evidence['originalMaterial'] = material
+        evidence['physicalFinishReview'] = {
+            'activeEtch': 'Detailed later TCGL line engraving; early silhouette-only layers excluded.' if 'normal' in maps else 'No authored normal response',
+            'evidence': 'docs/bw-finish-research.md',
+            'remainingUncertainty': 'Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy.'}
         if 'normal' in maps:
             evidence['normalSource'] = json.loads((dest / 'normal-evidence.json').read_text(encoding='utf-8'))
         if pending == 'Cosmos registered motif placement':
@@ -214,6 +225,10 @@ def main():
             pending[surface['deferredEffect']].append({'name':m['name'],'setId':m['set_id'],
                 'number':m['printed_collector_number'],'tcglCardId':m['card_id'],'tcglVariantId':m.get('verifiedLongFormId',m['long_form_id']),
                 'sourceEvidence':surface['evidence'],'originalAssets':surface['originalAssets']})
+            original = json.loads((OUT / m['card_id'] / 'evidence.json').read_bytes()).get('originalMaterial') or {}
+            pending[surface['deferredEffect']][-1].update({
+                'originalMaterialPath': original.get('_p'), 'originalShader': original.get('_s'),
+                'materialReferences': {k: original.get(k) for k in ['_c','_w','_e','_cf','_cc']}})
     write(ROOT/'docs/bw-pending-finishes.json',dict(pending))
     write(OUT/'import-audit.json',{'printings':len(index),'sets':{s['id']:{'cards':len(s['cards']),
             'variants':sum(len(c['variants']) for c in s['cards'])} for s in ordered},
