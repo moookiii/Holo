@@ -21,8 +21,15 @@ const pokemon: VendingGame = {
   async products(era, signal) {
     const eras = era ? [{ id: era, name: era }] : await this.eras(signal);
     const groups = await boundedMap(eras, 3, signal, async entry =>
-      (await pokemonCatalog.sets(entry.id, signal)).filter(isPokemonPackSet).map(set => ({ id: set.id, name: set.name, era: entry.id,
-        available: pokemonAvailable(set.id), artwork: localBoosterArt(set.id) ?? [] })));
+      boundedMap((await pokemonCatalog.sets(entry.id, signal)).filter(isPokemonPackSet), 3, signal, async set => {
+        let artwork = localBoosterArt(set.id) ?? [];
+        if (!artwork.some(art => art.front)) {
+          try { artwork = (await pokemonCatalog.set(set.id, signal)).boosters; }
+          catch { signal.throwIfAborted(); /* One unavailable catalog entry must not hide the other packs. */ }
+        }
+        return { id: set.id, name: set.name, era: entry.id,
+          available: pokemonAvailable(set.id), artwork: artwork.filter(art => art.front) };
+      }));
     return [...new Map(groups.flat().map(p => [p.id, p])).values()];
   },
   async detail(product, signal) {

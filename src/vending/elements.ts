@@ -18,11 +18,12 @@ export function thumbnail(artwork?: VendingArtwork) {
 }
 export function artwork(art: VendingArtwork | undefined, highQuality = false) {
   const frame = element('span', 'vm-art');
-  const url = highQuality ? art?.front : thumbnail(art);
+  const preview = highQuality ? undefined : thumbnail(art);
+  const url = preview ?? art?.front;
   if (!url) { frame.classList.add('vm-art-missing'); frame.append(element('span', '', 'Artwork unavailable')); return frame; }
   const img = element('img'); img.alt = ''; img.decoding = 'async'; img.loading = 'lazy'; img.src = url;
   img.onerror = () => { img.remove(); frame.classList.add('vm-art-missing'); frame.textContent = 'Artwork unavailable'; };
-  if (highQuality && art?.frontBounds) {
+  if (!preview && art?.frontBounds) {
     const [left, top, right, bottom] = art.frontBounds;
     frame.classList.add('vm-art-crop');
     Object.assign(img.style, { width: `${100 / (right - left)}%`, height: `${100 / (bottom - top)}%`,
