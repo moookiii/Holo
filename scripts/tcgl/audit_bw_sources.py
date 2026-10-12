@@ -199,9 +199,27 @@ def audit():
                                   'role': 'original supplementary texture; no finish material reference',
                                   'validationStatus': 'validated'})
     assert not unindexed_materials, 'Bundle contains finish manifests absent from printing inventory'
+    orphan_textures = []
+    for orphan in read(ROOT / 'supplementary/orphan-bundles.json'):
+        assert sha(ROOT / orphan['rawBundle']) == orphan['sha256']
+        bundle = read(ROOT / 'dataset/checkpoints' / (orphan['sha256'] + '.json'))
+        assert bundle['status'] == 'ok' and not bundle['errors']
+        for texture in bundle['textures']:
+            path = ROOT / texture['png']
+            with Image.open(path) as image:
+                image.load()
+                assert image.format == 'PNG'
+                assert image.size == (texture['width'], texture['height']) and image.mode == texture['mode']
+                assert hashlib.sha256(image.tobytes()).hexdigest() == texture['decoded_pixel_sha256']
+            assert sha(path) == texture['png_sha256']
+            assert sha(ROOT / texture['serialized']) == texture['serialized_sha256']
+            all_textures.append(texture['png'])
+            orphan_textures.append({'bundleName': orphan['bundleName'], 'texture': texture,
+                                    'status': 'validated', 'tcglVariantId': None})
     write(ROOT / 'evidence/all-native-textures-audit.json', {
         'decodedTextures': len(all_textures), 'printingReferencedTextures': len(used_textures),
-        'supplementaryTextures': supplementary, 'unindexedFinishManifests': unindexed_materials,
+        'supplementaryTextures': supplementary, 'orphanTextures': orphan_textures,
+        'unindexedFinishManifests': unindexed_materials,
         'status': 'validated'})
     archived = read(ROOT / 'evidence/archived-inventory-audit.json')
     assert not archived['missingFromInstalledInventory']

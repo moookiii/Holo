@@ -252,8 +252,27 @@ def audit_source_inventory(workers=8):
                     asset['sha256'] = t['png_sha256']
                     asset['url'] = source['url']
                 assets.append(asset)
+        # Some historical promo bundles contain a named original front but no
+        # MaterialManifest. Preserve it without inventing a finish association,
+        # and do not interpret the missing manifest as proof of absent maps.
+        if not decoded['manifests']:
+            for t in decoded['textures']:
+                if t['name'].lower() != name:
+                    continue
+                target = evidence_directory / 'front.png'
+                if not target.exists():
+                    os.link(ROOT / t['png'], target)
+                assets.append({'kind': 'front', 'status': 'extracted', 'texture': t,
+                               'reference': t['name'], 'manifest': None,
+                               'associationEvidence': 'Exact official bundle and Texture2D name; no material manifest',
+                               'file': target.relative_to(ROOT).as_posix(),
+                               'dimensions': [t['width'], t['height']],
+                               'sha256': t['png_sha256'], 'url': source['url']})
         results.append({'bundleName': name, 'source': source, 'sha256': sha(path),
                         'rawBundle': decoded['raw_bundle'], 'assets': assets,
+                        'originalTextures': decoded['textures'],
+                        'originalMaterialManifests': decoded['manifests'],
+                        'mapAvailability': 'unknown_without_material_manifest' if not decoded['manifests'] else 'exact_material_references',
                         'textureDecodeStatus': decoded['status'],
                         'tcglVariantId': None,
                         'identityStatus': 'unresolved: no entry in installed or archived English TCGL card tables',
