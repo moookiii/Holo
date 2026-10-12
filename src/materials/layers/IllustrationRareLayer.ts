@@ -19,15 +19,25 @@ export function illustrationRareReflection(light: Node<'vec3'>, view: Node<'vec3
   const p = uv().sub(.5).mul(vec2(u.aspect.negate(), 1));
   const axis = vec2(cos(u.angle), sin(u.angle));
   const across = p.dot(axis), along = p.dot(vec2(axis.y.negate(), axis.x));
-  // Unequal, gently distorted optical domains in a continuous sheet. The
-  // inclinations only redirect diffraction; the laminate remains physically flat.
-  // Broad optical domains keep gallery thumbnails from reading as repeated neon ribbons.
-  // The original graph remains available for the archived preset and Ultra Rare.
-  const phase = across.mul(soft ? 7 : 17).add(sin(along.mul(5).add(.6)).mul(.27));
-  const inclination = sin(phase).mul(soft ? .13 : .17).add(sin(across.mul(7).sub(along.mul(2)).add(1.3)).mul(soft ? .025 : .065));
-  const angle = u.angle.add(sin(along.mul(6).add(across.mul(3))).mul(soft ? .012 : .035));
+  // The original optical sheet is retained verbatim for the archived preset
+  // and Ultra Rare. IR uses a two-axis rolled sheet: each diagonal domain has
+  // a slightly different slant and transverse curvature. Changing light/view
+  // selects different parts of those rolls, rather than translating a stripe.
+  const phase = soft
+    ? across.mul(12).add(sin(along.mul(4).add(.6)).mul(.8))
+    : across.mul(17).add(sin(along.mul(5).add(.6)).mul(.27));
+  const inclination = soft
+    ? sin(phase).mul(.15).add(sin(across.mul(5).sub(along.mul(3)).add(1.3)).mul(.035))
+    : sin(phase).mul(.17).add(sin(across.mul(7).sub(along.mul(2)).add(1.3)).mul(.065));
+  const angle = u.angle.add(soft
+    ? sin(across.mul(6).add(along.mul(4))).mul(.20)
+    : sin(along.mul(6).add(across.mul(3))).mul(.035));
   const sheetAxis = tangent.mul(cos(angle).negate()).add(bitangent.mul(sin(angle)));
-  const n = normal.add(sheetAxis.mul(inclination)).normalize();
+  const transverse = normal.cross(sheetAxis).normalize();
+  // Optical curvature only; this does not perturb the ink/laminate normal.
+  // Quadrature slopes make the response roll around each diagonal domain.
+  const roll = soft ? cos(phase).mul(.11).add(sin(along.mul(5)).mul(.04)) : float(0);
+  const n = normal.add(sheetAxis.mul(inclination)).add(transverse.mul(roll)).normalize();
   const grating = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();
   const groove = n.cross(grating).normalize();
   const momentum = light.add(view);
