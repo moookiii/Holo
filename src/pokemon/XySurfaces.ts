@@ -3,7 +3,8 @@ import { tcglXySurfaces } from './data/xy-tcgl.generated.ts';
 import { svTcglCard, svTcglCollectorNumber, svTcglFront } from './SvTcglCatalog.ts';
 import { printVariantLabel, type PrintVariant } from './types.ts';
 
-const surfaces = new Map(tcglXySurfaces.map(s => [`${s.cardId}:${s.variant}`, s]));
+import { generationsSurface } from './GenerationsSurfaces.ts';
+const surfaces = new Map(tcglXySurfaces.map(generationsSurface).map(s => [`${s.cardId}:${s.variant}`, s]));
 export function xyDefinition(id: string, variant: PrintVariant): CardDefinition {
   const card = svTcglCard(id), surface = surfaces.get(`${id}:${variant}`);
   if (!surface || !card.variants.includes(variant)) throw new Error(`Missing exact XY printing ${id}:${variant}`);
@@ -17,7 +18,7 @@ export function xyDefinition(id: string, variant: PrintVariant): CardDefinition 
       ...(deferred ? { treatmentStatus: 'deferred' as const } : {}) },
     layout: { artwork: [0,0,1,1], innerFrame: [0,0,1,1] },
     maps: surface.maps,
-    mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: 'absolute' },
+    mapSettings: { normalScale: 0, embossStrength: 0, roughnessMode: id.startsWith('xy9-5r-') ? 'profile' : 'absolute' },
     source: { image: front, metadata: surface.evidence,
       notes: `Exact English TCGL printing ${surface.tcglVariantId}. Own original fronts, foil/etch references and hashes retained in ${surface.evidence}. ` +
         (deferred ? `${surface.deferredEffect} finish pending; clean front with print-only material. No simulated replacement foil.` :
