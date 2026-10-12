@@ -289,7 +289,7 @@ def audit():
               'Counts are exact printing/finish associations; shared original textures are not collapsed into fewer variants. '
               'Card definition counts group printed set, collector number and name within each source collection.', '',
               'All 11 main expansions and Dragon Vault are included; Legendary Treasures Radiant Collection, Black Star Promos and alternate/special '
-              'printings are separate source tables. McDonald collections collections were not found in the accessible English '
+              'printings are separate source tables. McDonald collections were not found in the accessible English '
               'TCGL export index, raw database index, installed BW rows or official bundle names. Exact negative '
               'lookups and source hashes are in `evidence/series-lookup-audit.json`. This limitation is explicit; '
               'no external artwork or synthetic replacement is used.', '',
