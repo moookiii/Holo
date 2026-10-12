@@ -13,7 +13,7 @@ export interface IllustrationRareOptics {
  */
 export function illustrationRareReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   tangent: Node<'vec3'>, bitangent: Node<'vec3'>, normal: Node<'vec3'>,
-  u: IllustrationRareOptics, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
+  u: IllustrationRareOptics, footprint?: [Node<'vec3'>, Node<'vec3'>], soft = false) {
   // Mirror the optical sheet and its tangent axis together so the diagonal
   // foil travels in the physical print's horizontal direction.
   const p = uv().sub(.5).mul(vec2(u.aspect.negate(), 1));
@@ -21,9 +21,11 @@ export function illustrationRareReflection(light: Node<'vec3'>, view: Node<'vec3
   const across = p.dot(axis), along = p.dot(vec2(axis.y.negate(), axis.x));
   // Unequal, gently distorted optical domains in a continuous sheet. The
   // inclinations only redirect diffraction; the laminate remains physically flat.
-  const phase = across.mul(17).add(sin(along.mul(5).add(.6)).mul(.27));
-  const inclination = sin(phase).mul(.17).add(sin(across.mul(7).sub(along.mul(2)).add(1.3)).mul(.065));
-  const angle = u.angle.add(sin(along.mul(6).add(across.mul(3))).mul(.035));
+  // Broad optical domains keep gallery thumbnails from reading as repeated neon ribbons.
+  // The original graph remains available for the archived preset and Ultra Rare.
+  const phase = across.mul(soft ? 7 : 17).add(sin(along.mul(5).add(.6)).mul(.27));
+  const inclination = sin(phase).mul(soft ? .13 : .17).add(sin(across.mul(7).sub(along.mul(2)).add(1.3)).mul(soft ? .025 : .065));
+  const angle = u.angle.add(sin(along.mul(6).add(across.mul(3))).mul(soft ? .012 : .035));
   const sheetAxis = tangent.mul(cos(angle).negate()).add(bitangent.mul(sin(angle)));
   const n = normal.add(sheetAxis.mul(inclination)).normalize();
   const grating = sheetAxis.sub(n.mul(sheetAxis.dot(n))).normalize();

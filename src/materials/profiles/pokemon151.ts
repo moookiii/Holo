@@ -63,13 +63,13 @@ export const illustrationRareOriginal: HolographicProfile = {
 
 pokemon151Profiles.push({
   id: 'pokemon151_illustration_holo', name: '151 · Illustration Rare', family: 'Pokémon', status: 'development',
-  opticalModel: 'sv151-illustration',
+  opticalModel: 'sv-illustration-soft',
   description: 'Soft, restrained full-spectrum directional foil with reduced ink tint and independently masked silver border.',
   mapSettings: { normalScale: 0, embossStrength: 0 },
-  diffraction: { period: 1.18, bandwidth: .032, strength: .85, secondaryOrder: .015, direction: Math.PI / 4, crossWidth: .46, facetCoupling: 0 },
+  diffraction: { period: 1.18, bandwidth: .038, strength: .60, secondaryOrder: .015, direction: Math.PI / 4, crossWidth: .40, facetCoupling: 0 },
   structure: { field: 'plain', scale: 1, engraving: 0, relief: 0, facetTilt: 0, patternRelief: 0, reflectionCoupling: 0, normalVariance: 0 },
   glints: { density: 0, scale: 1, sharpness: 1, strength: 0, spread: 0 },
   surface: { metalness: .48, roughness: .34, laminate: .045, laminateRoughness: .32, foilReflectance: .025,
-    inkTransmission: .30, inkDensity: 1, substrateReflection: .22, sheen: 0 },
+    inkTransmission: .55, inkDensity: 1, substrateReflection: .22, sheen: 0 },
   metallicInk: { metalness: .82, roughness: .32 },
 });

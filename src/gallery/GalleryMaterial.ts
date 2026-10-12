@@ -136,7 +136,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
         };
         const reflected = layer.doubleRare || layer.sunPillar
           ? doubleRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, optics, layer.doubleRare ? r.field : undefined, footprint)
-          : illustrationRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, optics, footprint);
+          : illustrationRareReflection(light, positionViewDirection, tangentView, bitangent, geometric, optics, footprint, layer.softIllustration);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask, r.field.a,
           mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
         continue;
