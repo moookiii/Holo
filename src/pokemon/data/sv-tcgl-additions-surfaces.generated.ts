@@ -4214,7 +4214,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06.5-058",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06.5/tcgl/058-holo-foil.png",
@@ -4240,7 +4240,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06.5-060",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06.5/tcgl/060-holo-foil.png",
@@ -4266,7 +4266,7 @@ export const tcglSvAdditionalSurfaces: readonly TcglSvSurface[] = [
   {
     "cardId": "sv06.5-062",
     "variant": "holo",
-    "profile": "prismatic_sir_texture",
+    "profile": "pokemon-ace-spec",
     "textured": true,
     "maps": {
       "foil": "/cards/pokemon/tcgl-sv/sv06.5/tcgl/062-holo-foil.png",

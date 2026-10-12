@@ -56,7 +56,7 @@ test('missing SV products retain every exact printing and its own front/maps', (
           assert.ok(path.endsWith('.png'), path);
           assert.ok(existsSync(publicFile(path)), path);
         }
-        if (surface.textured) {
+        if (surface.textured && surface.foilType !== 'ACE_FOIL') {
           assert.equal(definition.profile, 'prismatic_sir_texture');
           assert.equal(definition.mapSettings?.normalScale, 1);
           assert.equal(definition.mapSettings?.embossStrength, 0);

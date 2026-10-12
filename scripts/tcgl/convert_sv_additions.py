@@ -12,13 +12,13 @@ from apply_bw_ball_masks import apply as apply_ball_mask
 
 def profile(p):
     foil=p['foil']['type']; rarity=p['rarity']; variant=p['variant']
+    if foil=='ACE_FOIL': return 'pokemon-ace-spec'
     if 'etch' in p['sources']: return 'prismatic_sir_texture'
     if variant=='pokeball-reverse': return 'prismatic_pokeball_reverse'
     if variant=='masterball-reverse': return 'prismatic_masterball_reverse'
     if foil=='COSMOS': return 'svp-cosmos'
     if foil=='TINSEL': return 'pokemon-tinsel'
     if foil=='CRACKED_ICE': return 'pokemon-cracked-ice'
-    if foil=='ACE_FOIL': return 'pokemon-ace-spec'
     if foil=='STAMPED': return 'pokemon-first-movie-gold'
     if foil=='FLAT_SILVER': return 'sv_tcgl_standard_reverse'
     if foil=='SV_HOLO': return 'sv_tcgl_regular_holo'
