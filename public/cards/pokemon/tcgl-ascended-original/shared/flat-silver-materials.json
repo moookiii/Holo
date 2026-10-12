@@ -6290,7 +6290,10 @@
         "data[3]": 3307037090
       },
       "m_AssetLocalIdentifierInFile": 4800000
-    }
+    },
+    "serialized": "research/tcgl/ascended-original/shared/FlatSilver.shader.serialized",
+    "serializedSha256": "138aea2af2e1f092d6103083d7aff678f57509a94f5ca72c8fe781f2c30c7018",
+    "inspectionExport": "research/tcgl/ascended-original/shared/FlatSilver.shader-inspection.txt"
   },
   "runtimeDefaults": {
     "_OverallBrightness": 1,
@@ -6310,5 +6313,371 @@
       0
     ]
   },
-  "runtimeDefaultSource": "Installed CardMaterialProperties.Default(); Card3DGraphicLoader supplies scene light direction and edge-shading setting."
+  "runtimeDefaultSource": "Installed CardMaterialProperties.Default(); Card3DGraphicLoader supplies scene light direction and edge-shading setting.",
+  "selectedMaterialName": "MAT_Cards3D_FlatSilver",
+  "selectedMaterialSource": "MaterialManager.TEMP_CorrectBadMaterialNames(FlatSilver) -> CardMatNameSanitizer.SanitizeMaterials -> shadersbundle.LoadAssetAsync<Material>",
+  "selectedMaterial": {
+    "pathID": -531136333890820313,
+    "tree": {
+      "m_Name": "MAT_Cards3D_FlatSilver",
+      "m_Shader": {
+        "m_FileID": 0,
+        "m_PathID": -1112012897073573365
+      },
+      "m_ValidKeywords": [],
+      "m_InvalidKeywords": [
+        "_CARDLIGHTING_ON_ON",
+        "_FOILANIMATION_ON",
+        "_TILTANIMATION_ON"
+      ],
+      "m_LightmapFlags": 0,
+      "m_EnableInstancingVariants": false,
+      "m_DoubleSidedGI": false,
+      "m_CustomRenderQueue": -1,
+      "stringTagMap": [],
+      "disabledShaderPasses": [],
+      "m_SavedProperties": {
+        "m_TexEnvs": [
+          [
+            "_CCGlitterTex",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 3005254535463623911
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_CCPatternTex",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_CCSpectrumPatternTex",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 2415755855480949220
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_CardColorDiffuse",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_CardEtch",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_CardWhitePlateMask",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_Tex_Shine",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": -8810649641778426101
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_Tex_Spectrum",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": -8554494427370465017
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ],
+          [
+            "_texcoord",
+            {
+              "m_Texture": {
+                "m_FileID": 0,
+                "m_PathID": 0
+              },
+              "m_Scale": {
+                "x": 1.0,
+                "y": 1.0
+              },
+              "m_Offset": {
+                "x": 0.0,
+                "y": 0.0
+              }
+            }
+          ]
+        ],
+        "m_Ints": [],
+        "m_Floats": [
+          [
+            "_AnimationSpeed",
+            1.0
+          ],
+          [
+            "_CardLighting",
+            1.0
+          ],
+          [
+            "_CardLighting1",
+            1.0
+          ],
+          [
+            "_CardLighting_On",
+            1.0
+          ],
+          [
+            "_CubemapFoilIntensity",
+            0.07999999821186066
+          ],
+          [
+            "_CubemapNonFoilIntensity",
+            0.009999999776482582
+          ],
+          [
+            "_Float7",
+            1.0
+          ],
+          [
+            "_FoilAnimation",
+            1.0
+          ],
+          [
+            "_FoilAnimationReduced",
+            0.0
+          ],
+          [
+            "_FoilAnimationSpeed",
+            1.0
+          ],
+          [
+            "_FoilOn",
+            1.0
+          ],
+          [
+            "_Keyword0",
+            0.0
+          ],
+          [
+            "_NormalMask",
+            1.0
+          ],
+          [
+            "_NormalMask1",
+            1.0
+          ],
+          [
+            "_NormalMask_On",
+            1.0
+          ],
+          [
+            "_OverallBrightness",
+            1.0
+          ],
+          [
+            "_OverallBrightness1",
+            1.0
+          ],
+          [
+            "_ShadowDarknessLimit",
+            0.75
+          ],
+          [
+            "_ShadowDarknessLimit1",
+            1.0
+          ],
+          [
+            "_StencilComp",
+            8.0
+          ],
+          [
+            "_StencilRef",
+            0.0
+          ],
+          [
+            "_TiltAnimation",
+            1.0
+          ],
+          [
+            "_Tilt_Animation",
+            1.0
+          ],
+          [
+            "_UseCC",
+            1.0
+          ],
+          [
+            "_UseCCFoil",
+            0.0
+          ],
+          [
+            "_UseVertexNomal_On",
+            1.0
+          ],
+          [
+            "_UseVertexNormal",
+            1.0
+          ],
+          [
+            "_UseVertexNormal1",
+            1.0
+          ],
+          [
+            "__dirty",
+            0.0
+          ],
+          [
+            "_degree2",
+            2.25
+          ],
+          [
+            "_degree3",
+            0.0
+          ]
+        ],
+        "m_Colors": [
+          [
+            "_FlatSilverColor",
+            {
+              "r": 0.3679245114326477,
+              "g": 0.3679245114326477,
+              "b": 0.3679245114326477,
+              "a": 0.0
+            }
+          ],
+          [
+            "_LightDirection",
+            {
+              "r": 0.0,
+              "g": 1.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_LightDirection1",
+            {
+              "r": 0.0,
+              "g": 1.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_anchorlol",
+            {
+              "r": 2.0,
+              "g": 2.0,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ],
+          [
+            "_anchorlol1",
+            {
+              "r": 1.5,
+              "g": 1.5,
+              "b": 0.0,
+              "a": 0.0
+            }
+          ]
+        ]
+      },
+      "m_BuildTextureStacks": []
+    }
+  },
+  "activePatternTexture": "Per-card _CardWhitePlateMask set from exact MaterialManifest_ph/_ph2._w",
+  "activeSharedTextures": [
+    "T_Holofoil_Mask_Bar_Wide_Single",
+    "FX_T_Spectrum_FlatSilver"
+  ],
+  "inactiveCCTextures": [
+    "FX_T_Spectrum_SVHolo2",
+    "FX_T_SVUltra_Glitter"
+  ],
+  "castAndCureActiveForASCReverses": false
 }
