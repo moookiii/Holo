@@ -27,7 +27,9 @@ test('Pack search retains future openings even without wrappers or a validated r
 test('Pokémon pack identity excludes non-pack products but retains unfinished expansions', () => {
   for (const [id, name] of [['sve', 'Scarlet & Violet Energy'], ['basep', 'Wizards Black Star Promos'],
     ['xy0', 'Kalos Starter Set'], ['mfb', 'My First Battle'], ['sp', 'Sample Set'],
-    ['swsh9a', 'Brilliant Stars'], ['xy9-5r', 'Generations'], ['unknown', 'Theme Deck']]) {
+    ['swsh9a', 'Brilliant Stars'], ['xy9-5r', 'Generations'], ['unknown', 'Theme Deck'],
+    ['smalt', 'Sun & Moon alternate and special printings'], ['smalt', 'Sun & Moon'],
+    ['unknown-alt', 'Sun & Moon alternate and special printings'], ['unknown-special', 'Special printings']]) {
     assert.equal(isPokemonPackSet({ id, name }), false, name);
   }
   for (const [id, name] of [['sv08.5', 'Prismatic Evolutions'], ['ecard3', 'Skyridge'],
