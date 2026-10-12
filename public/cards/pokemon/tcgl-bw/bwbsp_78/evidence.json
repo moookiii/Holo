@@ -55,16 +55,20 @@
         "bundle_sha256": "4dfdfd315f5325f8ccb533f3f675411ca9f92a0bc5e40cf83cdfed4280a322eb"
       },
       "foil": {
-        "status": "not_applicable"
+        "status": "unknown_source_reference",
+        "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
       },
       "etch": {
-        "status": "not_applicable"
+        "status": "unknown_source_reference",
+        "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
       },
       "cold_foil": {
-        "status": "not_applicable"
+        "status": "unknown_source_reference",
+        "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
       },
       "cast_and_cure": {
-        "status": "not_applicable"
+        "status": "unknown_source_reference",
+        "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
       }
     },
     "row": {
@@ -154,5 +158,23 @@
     "activeEtch": "No authored normal response",
     "evidence": "docs/bw-finish-research.md",
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
+  },
+  "unresolvedOriginalMaps": {
+    "foil": {
+      "status": "unknown_source_reference",
+      "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
+    },
+    "etch": {
+      "status": "unknown_source_reference",
+      "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
+    },
+    "cold_foil": {
+      "status": "unknown_source_reference",
+      "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
+    },
+    "cast_and_cure": {
+      "status": "unknown_source_reference",
+      "reason": "Source bundle has no MaterialManifest; map availability cannot be established"
+    }
   }
 }

@@ -76,7 +76,11 @@ def orphan_records():
         # Names/numbers read from original preserved fronts; no finish ID inferred.
         name = {'bwbsp_29':'Victory Cup','bwbsp_30':'Victory Cup','bwbsp_31':'Victory Cup',
                 'bwbsp_77':'Pikachu','bwbsp_78':'Raichu'}[cid]
-        assets = {k: {'status':'not_applicable'} for k in ['front','foil','etch','cold_foil','cast_and_cure']}
+        has_manifest = bool(original['originalMaterialManifests'])
+        assets = {k: {'status':'not_applicable' if has_manifest else 'unknown_source_reference',
+                      'reason':'Exact material manifest has empty texture reference' if has_manifest else
+                               'Source bundle has no MaterialManifest; map availability cannot be established'}
+                  for k in ['front','foil','etch','cold_foil','cast_and_cure']}
         for asset in original['assets']:
             if asset['status'] == 'extracted': assets[asset['kind']] = {**asset,'bundle_source':original['source'],'bundle_sha256':original['sha256']}
         for texture in original['originalTextures']:
@@ -89,7 +93,8 @@ def orphan_records():
                         'verifiedLongFormId':None,'set_id':'bwbsp','name':name,'variant':0,'foil_effect':'Unknown',
                         'variant_suffix':'','printed_collector_number':'BW'+number,'collector_number':number,
                         'assets':assets,'row':row,'identityStatus':original['identityStatus'],
-                        'material_manifest':None,'bundle_name':original['bundleName'],
+                        'material_manifest':original['originalMaterialManifests'][0]['name'] if has_manifest else None,
+                        'bundle_name':original['bundleName'],
                         'originalMaterialManifests':original['originalMaterialManifests']})
     return records
 
@@ -115,6 +120,7 @@ def main():
         sources, originals = {}, {}
         for kind, asset in m['assets'].items():
             if asset['status'] == 'not_applicable': continue
+            if m.get('identityStatus') and asset['status'] == 'unknown_source_reference': continue
             assert asset['status'] == 'extracted', cid + ':' + kind
             path = SOURCE / asset['file']; assert sha(path) == asset['texture']['png_sha256']
             target = dest / ('original-' + kind + '.png')
@@ -173,6 +179,8 @@ def main():
                                    'Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.'}
         material = material_trees.get((m['assets']['front'].get('bundle_sha256'), m.get('material_manifest')))
         evidence['originalMaterial'] = material
+        evidence['unresolvedOriginalMaps'] = {kind: asset for kind,asset in m['assets'].items()
+                                              if asset['status'] == 'unknown_source_reference'}
         evidence['physicalFinishReview'] = {
             'activeEtch': 'Detailed later TCGL line engraving; early silhouette-only layers excluded.' if 'normal' in maps else 'No authored normal response',
             'evidence': 'docs/bw-finish-research.md',
