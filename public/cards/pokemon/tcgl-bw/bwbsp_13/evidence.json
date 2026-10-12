@@ -288,10 +288,15 @@
       "sha256": "9b3e9ae13df06c9e008f87176e1d82830f6a88388ef829eacc94b6a4f562c346"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_13/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_13/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_13/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_13/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,57 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "file": "research/tcgl/bw-cosmos/bwbsp-13/sales4-field.jpg",
+      "pageUrl": "https://www.ebay.com/itm/306924423599?nordt=true&orig_cvip=true&rt=nc",
+      "imageUrl": "https://i.ebayimg.com/images/g/dAwAAeSwPIZp~MJZ/s-l1600.jpg",
+      "sha256": "297e6bb627c29d90d6c76683bcc30d33bc0d5f838b020b55e877c6cb7aacc7a2",
+      "dimensions": [
+        955,
+        1600
+      ],
+      "title": "bwbsp-13 exact physical Cosmos foil field"
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_13/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "776a7c96b4c327c5b6c87f4fdd6c93bf2f23a3fd3c5ec08637e2fe6f85286b2e",
+    "transform": {
+      "masterToReference": [
+        [
+          1.2356821536772518,
+          -0.00315154670893544,
+          104.39849307980506
+        ],
+        [
+          0.002358845970616964,
+          1.2491987551580637,
+          436.1207997649376
+        ],
+        [
+          2.309752033448329e-06,
+          -6.4042403410384385e-06,
+          1.0
+        ]
+      ],
+      "inliers": 351,
+      "medianReprojectionError": 0.3890974223613739
+    },
+    "reviewNotes": "Minccino BW13 PSA 9 106336832 PROMO-COSMOS-HOLO. Own visible physical copy field registered against clean TCGL front. Printed flower centers and colored bubbles excluded. Eight observed stepped cross outlines preserve one contiguous feature each; measured satellites are outside their perimeters. Positions are manual, not RNG. Faint subpixel and unlit features omitted; pixel-scale contour precision limited by photograph. Three large perimeters traced individually; one overlapping internal candidate explicitly removed. Native-resolution motif, clean-front and full foil-window boundary overlays reviewed.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "45849c80ce81ef50e8a6b95c287a35aab11ef318668bc522383e869437ed936e",
+    "foilControls": "a972bbe12a55e5da8bdf6ad430dee90207762a70aecf191006d3ac404ce4a030",
+    "motif": "776a7c96b4c327c5b6c87f4fdd6c93bf2f23a3fd3c5ec08637e2fe6f85286b2e",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

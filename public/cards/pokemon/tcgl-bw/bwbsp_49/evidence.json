@@ -288,10 +288,15 @@
       "sha256": "f7de3201fcf16ed821dcc49ce3c6d256d8cfae9bccebe1a500199b4c69fb9262"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "Cosmos registered motif placement",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-bw/bwbsp_49/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-bw/bwbsp_49/foil-controls.png",
+    "motif": "/cards/pokemon/tcgl-bw/bwbsp_49/cosmos.png",
+    "protection": "/cards/pokemon/tcgl-bw/bwbsp_49/protection.png"
+  },
+  "profile": "pokemon-base-set-2-cosmos",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,7 +313,7 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.",
+  "limitations": "Visible physical-copy features registered; unresolved faint features omitted. Exact TCGL whiteplate retains original foil/opaque-print boundaries.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -339,15 +344,57 @@
     "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
   },
   "cosmosPlacement": {
-    "status": "pending",
+    "status": "reviewed-visible-features",
+    "active": true,
+    "registration": "scripts/tcgl/bw-cosmos/registration.json",
+    "reference": {
+      "file": "research/tcgl/bw-cosmos/bwbsp-49/sales4-field.jpg",
+      "pageUrl": "https://www.ebay.com/itm/327371290820?nordt=true&orig_cvip=true&rt=nc",
+      "imageUrl": "https://i.ebayimg.com/images/g/mXgAAeSwEhhqtCQ-/s-l1600.jpg",
+      "sha256": "c3fa5d5bd2c161755fd4a23f6ee6a2ff5447d263af9b9c3f090a0cfaf564a8d9",
+      "dimensions": [
+        1194,
+        1594
+      ],
+      "title": "bwbsp-49 exact physical Cosmos foil field"
+    },
     "coordinateDimensions": [
-      733,
-      1024
+      600,
+      825
     ],
-    "motifs": [],
-    "emptyMotifPng": "/cards/pokemon/tcgl-bw/bwbsp_49/cosmos-placement-pending.png",
-    "sha256": "4e247c37551e744a015d8bff039eb0b1f33fad9f3a4fbd7e36ac64e012c9bd70",
-    "active": false,
-    "reason": "Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs."
+    "outputDimensions": [
+      1200,
+      1650
+    ],
+    "sha256": "5bff8313cd2f890febbfbd1282301113ce0da83673a3efac6d133e479b009de0",
+    "transform": {
+      "masterToReference": [
+        [
+          1.5440553651032825,
+          -0.025415115206043754,
+          121.0333102536683
+        ],
+        [
+          0.025341443972526505,
+          1.5240155507367787,
+          147.80958173929048
+        ],
+        [
+          2.3486257617333704e-05,
+          -3.531157908357414e-05,
+          1.0
+        ]
+      ],
+      "inliers": 413,
+      "medianReprojectionError": 1.1912922859191895
+    },
+    "reviewNotes": "Lilligant BW49 selected raw pixel Cosmos copy. Whole field inspected against clean TCGL front. One large green disc remains one filled disc, including its pixelated internal reflections. Measured small square features retain individual explicit perimeters. Printed flower centers, grass, leaf boundaries and grain excluded. No satellites inside the large disc. Faint or ambiguous pixels omitted; another photo/copy was not merged. Native-resolution motif, clean-front and full foil-window boundary overlays reviewed.",
+    "limitations": "Registered visible features of selected physical copy. Faint subpixel features remain unresolved; other copies have different sheet placement. Scan does not measure optical depth."
+  },
+  "outputHashes": {
+    "foil": "0833637cd64c51a5d89132bf236143f0f12d4159a123d131d1c06acb49c65efd",
+    "foilControls": "d5461b89a92cac706ae89bf41d437b33e4049974fdefa9e8b620d67a01f5bf56",
+    "motif": "5bff8313cd2f890febbfbd1282301113ce0da83673a3efac6d133e479b009de0",
+    "protection": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c"
   }
 }

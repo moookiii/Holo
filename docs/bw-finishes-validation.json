@@ -2,9 +2,9 @@
   "status": "validated-assets-and-partial-cosmos-placement",
   "scope": "Own BW Cosmos registrations and two Legendary Treasures gold Full Arts. Unrelated dirty workspace assets excluded.",
   "cosmos": {
-    "reviewedVariants": 29,
-    "pendingVariants": 19,
-    "reviewedFeatures": 606,
+    "reviewedVariants": 31,
+    "pendingVariants": 17,
+    "reviewedFeatures": 755,
     "completionLimit": "Visible selected-copy features only; faint and obscured features remain unresolved.",
     "remainingList": "docs/bw-cosmos-review.json"
   },
@@ -22,7 +22,7 @@
     "goldProtectedNormalsFlat": "passed",
     "goldNormalsUnitLength": "passed within RGB8 quantization",
     "goldRoughnessFromBody": "passed",
-    "liveCards": 34,
+    "liveCards": 36,
     "capturedLightPoseControlsPerCard": 9,
     "liveErrors": [],
     "captureDirectory": "artifacts/bw-finishes/live",
@@ -1144,6 +1144,84 @@
         },
         "motif": {
           "sha256": "f9ba566c0d3aa83523930acd64b7135e47f5475e55c8fe9deba8ea590dc5cd9a",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_13",
+      "tcglVariantId": "Minccino_bwbsp_13_std_Rare_Cosmos_Holo",
+      "features": 66,
+      "assets": {
+        "foil": {
+          "sha256": "45849c80ce81ef50e8a6b95c287a35aab11ef318668bc522383e869437ed936e",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "a972bbe12a55e5da8bdf6ad430dee90207762a70aecf191006d3ac404ce4a030",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "776a7c96b4c327c5b6c87f4fdd6c93bf2f23a3fd3c5ec08637e2fe6f85286b2e",
+          "dimensions": [
+            1200,
+            1650
+          ],
+          "mode": "L"
+        },
+        "protection": {
+          "sha256": "da2c2d03c915d373c5e1b0ebaeda7a221a3c969f9d5034e6f74918058b23961c",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        }
+      }
+    },
+    {
+      "tcglCardId": "bwbsp_49",
+      "tcglVariantId": "Lilligant_bwbsp_49_std_Rare_Cosmos_Holo",
+      "features": 83,
+      "assets": {
+        "foil": {
+          "sha256": "0833637cd64c51a5d89132bf236143f0f12d4159a123d131d1c06acb49c65efd",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "L"
+        },
+        "foilControls": {
+          "sha256": "d5461b89a92cac706ae89bf41d437b33e4049974fdefa9e8b620d67a01f5bf56",
+          "dimensions": [
+            733,
+            1024
+          ],
+          "mode": "RGBA"
+        },
+        "motif": {
+          "sha256": "5bff8313cd2f890febbfbd1282301113ce0da83673a3efac6d133e479b009de0",
           "dimensions": [
             1200,
             1650
