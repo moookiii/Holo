@@ -1,5 +1,12 @@
 # Ascended Heroes reverse-holo source audit
 
+**October 12, 2026 update:** all 140 authentic special reverse whiteplates have
+now been recovered directly from TCGL's original Unity bundles. See
+[the original-client investigation](ascended-original-resources.md) and
+[verified source evidence](ascended-original-evidence.json). The audit below
+records the earlier processed-export discrepancy; it is not a finding that
+TCGL lacks these resources. Active rendering remains unchanged.
+
 The requested rendering correction is **not complete**. The current TCGL export
 and all 636 reverse foil files were fetched again on October 10, 2026 (Pacific
 time). All 140 special-reverse PNGs **and** their original packed textures still
