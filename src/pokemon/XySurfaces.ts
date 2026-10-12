@@ -13,6 +13,7 @@ export function xyDefinition(id: string, variant: PrintVariant): CardDefinition 
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
     number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}${deferred ? ' · ' + surface.deferredEffect + ' finish pending' : ''}`,
     dimensions: DIMENSIONS.standard, front, back: '/cards/pokemon/back.jpg',
+    ...(id.startsWith('xy9-5r-') ? { physicalProfile: 'generations-rc' as const } : {}),
     profile: surface.profile, seed: 2014000, galleryVisible: variant === 'normal',
     pokemon: { ...card, front, thumbnail: front, variant, materialProfile: surface.profile,
       ...(deferred ? { treatmentStatus: 'deferred' as const } : {}) },

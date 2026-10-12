@@ -42,6 +42,12 @@ export const physicalCardProfiles = {
     back: { clearcoat: .13, clearcoatRoughness: .48 },
     edge: { ...legacy.edge, color: [.53, .52, .46], fiberStrength: .019, layerVariation: .03, coreColor: [.12, .16, .20] },
   },
+  'generations-rc': { ...legacy, id: 'generations-rc', legacyCoating: false, recessedName: false,
+    grainStrength: 0, microreliefDepth: 0, roughness: .49, roughnessVariance: 0,
+    coatingStrength: .045, coatingRoughness: .34, microNormalStrength: 0,
+    back: { clearcoat: .3, clearcoatRoughness: .34 },
+    edge: { ...legacy.edge, color: [.54, .52, .46], fiberStrength: .023, layerVariation: .035 },
+  },
   'generic-print': { ...legacy, id: 'generic-print', grainStrength: 0, recessedName: false,
     back: { clearcoat: .34, clearcoatRoughness: .42 } },
 } satisfies Record<string, PhysicalCardProfile>;
