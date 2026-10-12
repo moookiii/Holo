@@ -74,15 +74,17 @@ def orphan_records():
         cid = 'bwbsp_' + str(int(original['bundleName'].rsplit('_',1)[-1]))
         front = next(a for a in original['assets'] if a['kind'] == 'front')
         # Names/numbers read from original preserved fronts; no finish ID inferred.
-        name = {'bwbsp_29':'Chandelure','bwbsp_30':'Excadrill','bwbsp_31':'Landorus',
-                'bwbsp_77':'White Kyurem','bwbsp_78':'Black Kyurem'}[cid]
+        name = {'bwbsp_29':'Victory Cup','bwbsp_30':'Victory Cup','bwbsp_31':'Victory Cup',
+                'bwbsp_77':'Pikachu','bwbsp_78':'Raichu'}[cid]
         assets = {k: {'status':'not_applicable'} for k in ['front','foil','etch','cold_foil','cast_and_cure']}
         for asset in original['assets']:
             if asset['status'] == 'extracted': assets[asset['kind']] = {**asset,'bundle_source':original['source'],'bundle_sha256':original['sha256']}
         for texture in original['originalTextures']:
             if texture['name'] == original['bundleName']: assets['front'] = {**front,'bundle_source':original['source'],'bundle_sha256':original['sha256']}
         number = cid.split('_')[-1]
-        row = {'EN Type':'','EN Expansion Denominator':'','category':1,'EN Evolves From':''}
+        row = {'EN Type':'L' if cid in ('bwbsp_77','bwbsp_78') else '',
+               'EN Expansion Denominator':'','category':2 if int(number)<32 else 1,
+               'EN Evolves From':'Pikachu' if cid=='bwbsp_78' else ''}
         records.append({'card_id':cid,'long_form_id':None,
                         'verifiedLongFormId':None,'set_id':'bwbsp','name':name,'variant':0,'foil_effect':'Unknown',
                         'variant_suffix':'','printed_collector_number':'BW'+number,'collector_number':number,
