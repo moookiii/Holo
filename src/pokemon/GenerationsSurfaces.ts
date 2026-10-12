@@ -2,7 +2,7 @@ import type { tcglXySurfaces } from './data/xy-tcgl.generated.ts';
 
 type Surface = typeof tcglXySurfaces[number];
 // Add reference cards only after inspecting their own source plates, in review order.
-export const generationsReviewOrder = [6, 5, 28, 29, 30, 31] as const;
+export const generationsReviewOrder = [6, 5, 28, 29, 30, 31, 32] as const;
 const authored = new Set<number>(generationsReviewOrder);
 export function generationsSurface(source: Surface): Surface {
   if (!source.cardId.startsWith('xy9-5r-')) return source;
