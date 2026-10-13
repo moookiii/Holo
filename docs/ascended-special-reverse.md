@@ -1,0 +1,9 @@
+# Ascended Heroes special reverse correction
+
+The 140 special reverse printings use the same `megaReverse` profile as ordinary Mega Evolution reverse holos. The separate profile ID retains existing card selection and pack identities, while inheriting the standard material settings directly. The recovered native FlatSilver shader previously introduced an autonomous time-based shine; this finish no longer selects that shader or its spectrum/shine resources.
+
+Each printing retains its own recovered Ball or Team Rocket whiteplate. Run `python scripts/tcgl/register_ascended_special.py` to produce the registered 600x825 foil and opaque protection PNGs. Sources remain unchanged at 512x512. The full-card domain is x=[145,878]/1024, y=[0,1], with bilinear registration and no vertical flip. Coverage and protection use the standard reverse conversion, not artwork brightness. No relief is generated. Source identities, transformations and output hashes are in `ascended-special-maps.json`.
+
+Validation: nine targeted tests passed across ascended-special, ascended-reverse-audit and mega-reverse, using the repository test loader. The live renderer checked eight cards covering all six pattern families at front, tilt and grazing angles; the gallery retained all 140 variants and a real Entei special reverse pack opened successfully. No browser or shader errors were recorded. Fixed Studio lighting and pose captures 1.8 seconds apart were byte-identical. Review captures and report: `artifacts/ascended-integration/live/`. This verifies material parity and absence of autonomous shine, not physical foil calibration.
+
+The full TypeScript check encountered pre-existing type errors in the uncommitted Cosmos integration (`CompletedCosmosSurfaces` / `SourceCosmosSurfaces`). Unrelated edits, clean fronts, ordinary reverse maps and recovered native source assets are preserved.

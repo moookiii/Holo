@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { chromium } from 'playwright';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { mkdir, readdir, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
@@ -27,7 +27,7 @@ page.on('console', message => {
 try {
   // Freeze the asset revision for this immutable capture run. Concurrent
   // unrelated asset authoring must not repeatedly scan the whole dev tree.
-  await page.route('**/__holo-cache-revision', route => route.fulfill({ contentType: 'text/plain', body: 'ascended-native-live-v1' }));
+  await page.route('**/__holo-cache-revision', route => route.fulfill({ contentType: 'text/plain', body: 'ascended-standard-reverse-v2' }));
   await page.goto(process.env.HOLO_URL || 'http://127.0.0.1:5176/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 180000 });
   await page.waitForFunction(() => window.__holo.gallery.stats()?.active, null, { timeout: 180000 });
@@ -40,14 +40,14 @@ try {
     const definition = await page.evaluate(id => {
       const h = window.__holo, c = h.cards.find(c => c.id === id), material = h.material();
       return { id, profile: c.profile, number: c.number, maps: c.maps,
-        native: material.optics.tcglFlatSilver, fragment: !!material.fragmentNode,
-        whiteplate: [material.foilControlsTextureNode.value.image.width, material.foilControlsTextureNode.value.image.height],
+        native: material.optics.tcglFlatSilver, reverse: material.optics.megaReverse, fragment: !!material.fragmentNode,
         stats: h.stats() };
     }, id);
     assert.equal(definition.profile, 'ascended-special-reverse');
-    assert.equal(definition.native, true);
-    assert.equal(definition.fragment, true);
-    assert.deepEqual(definition.whiteplate, [512, 512]);
+    assert.equal(definition.native, false);
+    assert.equal(definition.reverse, true);
+    assert.equal(definition.fragment, false);
+    assert.match(definition.maps.foil, /registered\/me02\.5-\d{3}-foil\.png$/);
     await page.evaluate(() => { window.__holo.hideUI(); window.__holo.zoom(.85); });
     for (const [name, yaw, pitch] of [['front', 0, 0], ['tilt', 24, -12], ['grazing', -48, 18]]) {
       await page.evaluate(([yaw, pitch]) => { window.__holo.lighting.setPreset('Studio'); window.__holo.pose(yaw, pitch, 0); }, [yaw, pitch]);
@@ -60,9 +60,10 @@ try {
       await page.screenshot({ path: `${out}/25-animation-a.png` });
       await page.waitForTimeout(1800);
       await page.screenshot({ path: `${out}/25-animation-b.png` });
+      assert.deepEqual(readFileSync(`${out}/25-animation-a.png`), readFileSync(`${out}/25-animation-b.png`), 'Fixed light and pose must not animate');
     }
     cards.push(definition);
-    console.log('Verified native viewer', number);
+    console.log('Verified standard reverse viewer', number);
   }
   await page.evaluate(() => window.__holo.gallery.open());
   await page.waitForFunction(() => window.__holo.gallery.stats()?.active, null, { timeout: 120000 });
@@ -114,8 +115,8 @@ try {
   await page.screenshot({ path: `${out}/pack-summary.png` });
   console.log('Verified real Entei special reverse pack', report.pack.seed);
   report.nativeRequests = [...requests].filter(path => path.includes('tcgl-ascended-original'));
-  assert.equal(report.nativeRequests.filter(path => path.endsWith('T_Holofoil_Mask_Bar_Wide_Single.png')).length, 1);
-  assert.equal(report.nativeRequests.filter(path => path.endsWith('FX_T_Spectrum_FlatSilver.png')).length, 1);
+  assert.equal(report.nativeRequests.filter(path => path.endsWith('T_Holofoil_Mask_Bar_Wide_Single.png')).length, 0);
+  assert.equal(report.nativeRequests.filter(path => path.endsWith('FX_T_Spectrum_FlatSilver.png')).length, 0);
   assert.deepEqual(errors, []);
 } finally {
   await writeFile(`${out}/report.json`, JSON.stringify(report, null, 2));

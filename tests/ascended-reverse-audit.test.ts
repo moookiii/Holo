@@ -54,9 +54,9 @@ test('Energy/plain reverses retain their maps; special reverses replace only the
     assert.equal(digest('public' + definition.front), row.frontSha256);
     if (row.variant === 'special-reverse') {
       assert.equal(definition.profile, 'ascended-special-reverse');
-      assert.match(definition.maps?.foilControls ?? '', /tcgl-ascended-original\/whiteplates\/me2-5_wp_ph2_en_\d{3}\.png$/);
-      assert.equal(definition.maps?.foil, undefined);
-      assert.equal(definition.maps?.protection, undefined);
+      assert.match(definition.maps?.foil ?? '', /tcgl-ascended-original\/registered\/me02\.5-\d{3}-foil\.png$/);
+      assert.match(definition.maps?.protection ?? '', /-protection\.png$/);
+      assert.equal(definition.maps?.foilControls, undefined);
     } else assert.deepEqual(definition.maps, row.runtimeMaps);
     for (const [key, url] of Object.entries(row.runtimeMaps)) {
       assert.equal(digest('public' + url), row.runtimeMapHashes[key]);
