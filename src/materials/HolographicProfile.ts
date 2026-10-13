@@ -5,7 +5,7 @@ import type { CardMapPaths } from '../card/CardDefinition';
 /** One optical material, independent of which printed region receives it. */
 export interface FoilLayer {
   /** Shared smooth-sheet optical kernel; independent of presentation tier. */
-  opticalModel?: 'mega-reverse' | 'pokemon-break' | 'swsh-radiant' | 'sv151-illustration' | 'sv-illustration-soft' | 'sv-double-rare' | 'sv-sun-pillar' | 'celebration-pikachu' | 'celebration-classic' | 'sv151-ultra' | 'sv151-sir' | 'sv-ball-reverse' | 'sv-black-white-rare';
+  opticalModel?: 'tcgl-flat-silver' | 'mega-reverse' | 'pokemon-break' | 'swsh-radiant' | 'sv151-illustration' | 'sv-illustration-soft' | 'sv-double-rare' | 'sv-sun-pillar' | 'celebration-pikachu' | 'celebration-classic' | 'sv151-ultra' | 'sv151-sir' | 'sv-ball-reverse' | 'sv-black-white-rare';
   /** Authoring switches; omitted values preserve the calibrated material exactly. */
   enabled?: boolean;
   disabledMechanisms?: Array<'diffraction' | 'sparkle' | 'relief' | 'varnish' | 'laminate' | 'reflection' | 'film' | 'image'>;

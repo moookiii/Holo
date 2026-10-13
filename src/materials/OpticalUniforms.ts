@@ -3,6 +3,7 @@ import { uniform } from 'three/tsl';
 import type { FoilLayer } from './HolographicProfile';
 
 export class OpticalUniforms {
+  tcglFlatSilver = false;
   megaReverse = false;
   pokemonBreak = false;
   illustrationRare = false;
@@ -56,6 +57,7 @@ export class OpticalUniforms {
   apply(p: FoilLayer | undefined) {
     this.enabled.value = p && p.enabled !== false ? 1 : 0;
     if (!p) return;
+    this.tcglFlatSilver = p.opticalModel === 'tcgl-flat-silver';
     this.megaReverse = p.opticalModel === 'mega-reverse';
     this.pokemonBreak = p.opticalModel === 'pokemon-break';
     this.softIllustration = p.opticalModel === 'sv-illustration-soft';

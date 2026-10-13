@@ -170,6 +170,7 @@ export class CardFactory {
           direction: source.direction ? imageTexture(source.direction, false) : undefined,
           secondaryDirection: source.secondaryDirection ? imageTexture(source.secondaryDirection, false) : undefined,
           stampDirection: source.stampDirection ? imageTexture(source.stampDirection, false) : undefined,
+          foilControls: source.foilControls ? imageTexture(source.foilControls, false) : undefined,
         };
         const fields = { primary: field(prepared.fields.primary), secondary: field(prepared.fields.secondary), stamp: field(prepared.fields.stamp) };
         materialStarted = performance.now();
@@ -180,7 +181,7 @@ export class CardFactory {
       let reverse: Material;
       if (prepared.backMaps && definition.backProfile) {
         const source = prepared.backMaps, packed = source.packed!;
-        const maps: CardMaterialMaps = { ...source, secondaryDirection: undefined, stampDirection: undefined, coverage: bytesTexture(packed.coverage,packed.width,packed.height), surface: bytesTexture(packed.surface,packed.width,packed.height), pattern: bytesTexture(packed.pattern,packed.width,packed.height), normal: source.normal ? imageTexture(source.normal, false) : this.assets.flatNormal, direction: source.direction ? imageTexture(source.direction,false) : undefined };
+        const maps: CardMaterialMaps = { ...source, foilControls: source.foilControls ? imageTexture(source.foilControls, false) : undefined, secondaryDirection: undefined, stampDirection: undefined, coverage: bytesTexture(packed.coverage,packed.width,packed.height), surface: bytesTexture(packed.surface,packed.width,packed.height), pattern: bytesTexture(packed.pattern,packed.width,packed.height), normal: source.normal ? imageTexture(source.normal, false) : this.assets.flatNormal, direction: source.direction ? imageTexture(source.direction,false) : undefined };
         const backProfile = getProfile(definition.backProfile);
         const foil = new HolographicMaterial(back,maps.coverage,maps.surface,definition.seed,backProfile,undefined,maps, undefined, false, physical);
         foil.setProfile(backProfile,{}); foil.setAspect(definition.dimensions.width/definition.dimensions.height,definition.dimensions.height);

@@ -1,4 +1,5 @@
 import { StockSurfaceLayer } from '../materials/layers/StockSurfaceLayer';
+import { tcglFlatSilverColor, tcglPackedUv, TCGL_CARD_UV, type FlatSilverTextures } from '../materials/layers/TcglFlatSilverLayer';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, type DataArrayTexture, type Texture, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
@@ -233,7 +234,7 @@ class GalleryLightingModel extends PhysicalLightingModel {
 
 export class GalleryMaterial extends MeshPhysicalNodeMaterial {
   private regions: Region[];
-  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[], doubleRareStars?: Texture, ultraRare?: UltraRareTextures, sirMicrograin?: Texture) {
+  constructor(arrays: DataArrayTexture[], parameterTexture: Texture, private layers: GalleryOpticalLayer[], doubleRareStars?: Texture, ultraRare?: UltraRareTextures, sirMicrograin?: Texture, flatSilver?: FlatSilverTextures) {
     super({ clearcoat: .2, clearcoatRoughness: .34, roughness: .48, metalness: .015, envMapIntensity: .65, alphaTest: .5 });
     this.name = 'Gallery shared optical material';
     if (layers.some(layer => layer.enabled && layer.doubleRare) && !doubleRareStars)
@@ -243,6 +244,14 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
     const layer = varying(instanceIndex), coord = vec2(uv().x, uv().y.oneMinus());
     const imageValues = arrays.map(array => texture(array, coord).depth(layer).toVar());
     const image = (index: number) => imageValues[index];
+    if (layers[0].tcglFlatSilver) {
+      if (!flatSilver) throw new Error('TCGL FlatSilver gallery requires the two original shared resources');
+      this.regions = [];
+      const center = texture(arrays[0], vec2((.5 - TCGL_CARD_UV.left) / TCGL_CARD_UV.width, .5)).depth(layer).g;
+      this.fragmentNode = vec4(tcglFlatSilverColor(image(0).rgb, center, image(3).rgb,
+        tcglPackedUv(uv()), flatSilver.shine, flatSilver.spectrum), 1);
+      return;
+    }
     const parameterValues = new Map<number, Node<'vec4'>>();
     const param = (column: number) => {
       if (!parameterValues.has(column)) parameterValues.set(column, textureLoad(parameterTexture, ivec2(column, layer.toInt())).toVar());

@@ -3,7 +3,8 @@ import { inspection } from '../lighting/inspection';
 import { MeshPhysicalNodeMaterial, PhysicalLightingModel, Texture, DataTexture, Vector3, Vector4, RGBAFormat, UnsignedByteType, type Node, type NodeBuilder } from 'three/webgpu';
 import type { LightingModelDirectInput, LightingModelDirectRectAreaInput } from 'three/src/nodes/core/LightingModel.js';
 import type { LightingContext } from 'three/src/nodes/lighting/LightingContextNode.js';
-import { texture, uniform, float, vec2, vec3, mix, exp, If, Fn, uv, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, tangentGeometry, bitangentView, normalMap } from 'three/tsl';
+import { texture, uniform, float, vec2, vec3, vec4, mix, exp, If, Fn, uv, normalView, normalViewGeometry, positionView, positionViewDirection, tangentView, tangentGeometry, bitangentView, normalMap } from 'three/tsl';
+import { tcglFlatSilverColor, tcglPackedUv, TCGL_CARD_UV } from './layers/TcglFlatSilverLayer';
 import { masterPrism, type HolographicProfile } from './HolographicProfile';
 import { OpticalUniforms } from './OpticalUniforms';
 import { secretRareReflection } from './layers/SecretRareLayer';
@@ -607,6 +608,15 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.stampFieldTextureNode.value = this.cardMaps?.stampDirection ?? maps.stamp?.direction ?? this.neutralField;
     this.stampReliefTextureNode.value = maps.stamp?.relief ?? this.neutralRelief;
     this.optics.apply(profile); this.secondaryOptics.apply(profile.secondary); this.stampOptics.apply(profile.stamp);
+    // Native TCGL FlatSilver is a color-composition shader, not a second
+    // diffraction/BRDF layer. Specialize only the 140 ASC ph2 printings.
+    this.fragmentNode = this.optics.tcglFlatSilver ? Fn(() => {
+      const packed = tcglPackedUv(uv());
+      const wp = texture(this.foilControlsTextureNode.value, packed).rgb;
+      const center = texture(this.printTextureNode.value, vec2((.5 - TCGL_CARD_UV.left) / TCGL_CARD_UV.width, .5)).g;
+      return vec4(tcglFlatSilverColor(this.printTextureNode.rgb, center, wp, packed,
+        this.fieldTextureNode.value, this.secondaryFieldTextureNode.value), 1);
+    })() : null;
     const layers = [profile, profile.secondary, profile.stamp];
     const axes = [this.cardMaps?.direction, this.cardMaps?.secondaryDirection, this.cardMaps?.stampDirection];
     this.regions?.forEach((region, i) => {
@@ -667,7 +677,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   private opticalFeatureKey() {
     // Omit only mathematically inactive branches. Live profile/Lab edits that
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
-    return [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
+    return `tcgl:${+this.optics.tcglFlatSilver}:` + [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
       [u.pokemonBreak, u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
           u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.spectralGrain, u.foilFlakes, u.secretCuts, u.illustrationRare, u.softIllustration, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration, u.megaReverse,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,

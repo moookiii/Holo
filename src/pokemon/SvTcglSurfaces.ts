@@ -13,6 +13,7 @@ import { printVariantLabel, type PrintVariant } from './types.ts';
 import { isPrismStar, prismStarMaps } from './PrismStarSurfaces.ts';
 import { bwDefinition, bwProfile } from './BwSurfaces.ts';
 import { xyDefinition, xyProfile } from './XySurfaces.ts';
+import { ascendedSpecialSurface, ascendedPatternLabels } from './AscendedSpecialSurfaces.ts';
 
 const surfaces = new Map([...tcglSvSurfaces, ...tcglMegaSurfaces, ...tcglMepSurfaces, ...tcglSwshSurfaces, ...tcglSmSurfaces].map(surface => [`${surface.cardId}:${surface.variant}`, surface]));
 const smSurfaces = new Map(tcglSmSurfaces.map(s => [`${s.cardId}:${s.variant}`, s]));
@@ -22,6 +23,7 @@ export function svTcglProfile(id: string, variant: PrintVariant): string {
   if (card.seriesId === 'bw') return bwProfile(id, variant);
   if (card.seriesId === 'xy') return xyProfile(id, variant);
   if (!card.variants.includes(variant)) throw new Error(`Invalid TCGL printing: ${id}:${variant}`);
+  if (ascendedSpecialSurface(id, variant)) return 'ascended-special-reverse';
   if (variant === 'normal') return 'print-only';
   const surface = surfaces.get(`${id}:${variant}`);
   if (!surface) throw new Error(`Missing exact TCGL surface: ${id}:${variant}`);
@@ -33,6 +35,7 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
   if (svTcglCard(id).seriesId === 'bw') return bwDefinition(id, variant);
   if (svTcglCard(id).seriesId === 'xy') return xyDefinition(id, variant);
   const card = svTcglCard(id), profile = svTcglProfile(id, variant), surface = surfaces.get(`${id}:${variant}`);
+  const special = ascendedSpecialSurface(id, variant);
   const front = svTcglFront(id, variant);
   const fallbackSource = svTcgdexNonfoilSource(id);
   const megaFinish = profile === 'mega-attack-rare' || profile === 'mega-hyper-rare';
@@ -43,21 +46,21 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
   const deferred = !prism && (swsh && swshLimitations.get(`${id}:${variant}`)?.length || smSurface?.treatmentStatus === 'deferred');
   return {
     id: `pokemon:${id}:${variant}`, title: card.name, franchise: 'Pokémon', set: card.setName,
-    number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${printVariantLabel(variant)}${!prism && smSurface?.deferredEffect ? ' · ' + smSurface.deferredEffect + ' finish pending' : ''}`,
+    number: `${svTcglCollectorNumber(id)} · ${card.rarity} · ${special ? ascendedPatternLabels[special.pattern] + ' reverse holo' : printVariantLabel(variant)}${!prism && smSurface?.deferredEffect ? ' · ' + smSurface.deferredEffect + ' finish pending' : ''}`,
     dimensions: DIMENSIONS.standard, front, back: '/cards/pokemon/back.jpg', profile, seed: 2023000,
     pickerHidden: !surface && !fallbackSource, galleryVisible: variant === 'normal', pokemon: { ...card, front, thumbnail: front, variant, materialProfile: profile,
       ...(deferred || !sm && !megaFinish && 'treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
     ...(prism ? { stockSurface: { strength: 0, depth: 0 } } : {}),
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
     ...(surface ? {
-      maps: { ...surface.maps, ...(prism ? prismStarMaps(id) : {}), ...(megaFinish ? { secondaryFoil: `/cards/pokemon/mega-optics/${id}-secondary.png` } : {}) },
+      maps: special ? { foilControls: special.whiteplate } : { ...surface.maps, ...(prism ? prismStarMaps(id) : {}), ...(megaFinish ? { secondaryFoil: `/cards/pokemon/mega-optics/${id}-secondary.png` } : {}) },
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: !prism && (sm || surface.textured && profile !== 'pokemon-ace-spec') ? 'absolute' : 'profile', ...(sm ? { embossMaskFromNormalAlpha: false } : {}) },
       ...(surface.textured && profile !== 'pokemon-ace-spec' && !megaFinish && !swsh ? { profileOverrides: sm ? tcglEtchedFinish : profile === 'gold-etched' ? goldEtchedFinish : tcglEtchedFinish } : {}),
     } : {}),
-    source: { image: front, metadata: fallbackSource ?? surface?.evidence ?? `${front.slice(0,front.lastIndexOf('/'))}/catalog.json`,
+    source: { image: front, metadata: special ? '/cards/pokemon/tcgl-ascended-original/manifest.json' : fallbackSource ?? surface?.evidence ?? `${front.slice(0,front.lastIndexOf('/'))}/catalog.json`,
       notes: prism ? 'Exact TCGL foil and opaque print protection, plus registered outer-border coverage. Shared Prism Star optical sheet; no etch exists in these exports. Research: docs/prism-star-finish-research.md; implementation: docs/prism-star-implementation.md.' : sm ? `Exact English TCGL source ${smSurface?.tcglVariantId ?? ('sourceIdentifier' in (smSurface ?? {}) ? (smSurface as {sourceIdentifier:string}).sourceIdentifier : 'see evidence')}. Original source hashes and offline full-card registration are recorded in ${surface?.evidence}.${smSurface?.deferredEffect ? ' ' + smSurface.deferredEffect + ' optical treatment is provisional and reserved for the next pass.' : ' Existing material; exact own etch with the Sylveon/Espeon authored-normal response where textured.'}` : fallbackSource ? `English nonfoil printing. Image provider: ${svNonfoilImageProvider(id)}; metadata: TCGdex. Source and original image hash recorded; print-only material.` :
         (profile === 'svp-cosmos' ? 'Exact TCGL front, foil and protection. User-approved shared promo Cosmos sheet; motif positions are not a physical-copy match.' : card.setId === 'mep' ? 'Exact MEP TCGL promo front and printing-specific maps. Etched cards use the offline Sylveon/Espeon response. Stamped optics retain the original front pending exact-print evidence; see docs/mep-promos.md.' : megaFinish ? 'Exact TCGL geometry and coverage with a dedicated photo-reviewed Mega rarity finish. Optical evidence and limitations: docs/mega-optics.md.' : 'treatmentStatus' in (surface ?? {}) ? 'Exact TCGL assets; temporary reference finish. Mega Attack Rare / Mega Hyper Rare physical optical development reserved for Astra High.' :
-          card.setId === 'me02.5' && variant === 'special-reverse' ? 'Exact TCGL ph2 printing retained. Published ph2 foil PNG duplicates its ordinary ph map; assigned special motif geometry is unavailable in this export. Source discrepancy recorded in research/tcgl/mega-series/me2-5/batch-validation.json.' :
+          special ? `Original TCGL ${special.tcglVariantId}. Native 512×512 ${ascendedPatternLabels[special.pattern]} whiteplate and shared FlatSilver shader resources; exact source hashes and assignments in docs/ascended-original-evidence.json.` :
           'Exact English TCGL retail printing. Foil coverage and optional offline etch normal use this printing’s own sources.') },
   };
 }

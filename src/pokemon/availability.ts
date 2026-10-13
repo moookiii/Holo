@@ -44,7 +44,7 @@ export function packAvailability(setId: string): { ready: boolean; label: string
   if (setId === '2024sv') return { ready: true, label: 'Opening available · confetti finish pending',
     detail: '15 exact English M24EN prints. Seven holo fronts retain photographed confetti; animated foil treatment is pending.' };
   if (['me01','me02','me02.5','me03','me04','me05'].includes(setId)) return {ready:true,label:'Opening available · measured pull rates',
-    detail:'Exact TCGL printings with dedicated Mega Attack Rare and Mega Hyper Rare finishes.' + (setId==='me02.5' ? ' TCGL special-reverse motif sources duplicate ordinary reverses; corrected motifs unavailable.' : '')};
+    detail:'Exact TCGL printings with dedicated Mega Attack Rare and Mega Hyper Rare finishes.' + (setId==='me02.5' ? ' All 140 assigned Ball and Team Rocket R reverses use original TCGL whiteplates and FlatSilver resources.' : '')};
   if (recipeFor(setId)?.era === 'sm') return { ready: true, label: 'Opening available · observed and estimated rates',
     detail: setId === 'gum' ? 'Four-card all-holo format.' : 'Reverse Holo and Prism Star effects are provisional; opening remains available.' };
   if (setId === '30th') return { ready: true, label: 'Opening available · estimated collation',

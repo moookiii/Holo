@@ -11,6 +11,7 @@ import { cachedCardAsset } from '../assets/CachedCardAssets';
 import { cardCacheRevision, persistentCards } from '../assets/PersistentCardCache';
 import { PreviewPixelCache } from './PreviewPixelCache';
 import { packPreviewEtch, PACKED_PREVIEW_ETCH, PREVIEW_ETCH_WIDTH, PREVIEW_ETCH_HEIGHT } from './PreviewEtchPacking';
+import { TCGL_CARD_UV } from '../materials/layers/TcglFlatSilverLayer';
 
 const previewReads = new PreviewReadQueue();
 export const previewPixels = new PreviewPixelCache();
@@ -85,6 +86,32 @@ export async function prepareCardPreview(card: CardDefinition, signal: AbortSign
   const profile = resolveCardProfile(card), paths = { ...resolveCoverageMaps(card), ...profile.maps };
   const settings = { ...card.mapSettings, ...profile.mapSettings };
   const parameters = previewOptics(card, profile);
+  if (profile.opticalModel === 'tcgl-flat-silver') {
+    if (!paths.foilControls) throw new Error('ASC special reverse requires its original whiteplate');
+    // Same unchanged 512px source as focus, registered to the clean front.
+    // Use existing atlas slots; no per-card extra sampler or GPU allocation.
+    const [front, raw] = await Promise.all([
+      read(card.front, PREVIEW_WIDTH, PREVIEW_HEIGHT), read(paths.foilControls, 512, 512),
+    ]);
+    const source = new OffscreenCanvas(512, 512), sc = source.getContext('2d')!;
+    sc.putImageData(new ImageData(new Uint8ClampedArray(raw), 512, 512), 0, 0);
+    const registered = new OffscreenCanvas(PREVIEW_FIELD_WIDTH, PREVIEW_FIELD_HEIGHT);
+    const rc = registered.getContext('2d', { willReadFrequently: true })!;
+    rc.drawImage(source, TCGL_CARD_UV.left * 512, 0, TCGL_CARD_UV.width * 512, 512,
+      0, 0, PREVIEW_FIELD_WIDTH, PREVIEW_FIELD_HEIGHT);
+    const wp = new Uint8Array(rc.getImageData(0, 0, PREVIEW_FIELD_WIDTH, PREVIEW_FIELD_HEIGHT).data);
+    const coverage = new Uint8Array(width * height * 4), normal = new Uint8Array(coverage.length);
+    for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+      const i = (y * width + x) * 4;
+      coverage[i] = wp[(Math.floor(y * PREVIEW_FIELD_HEIGHT / height) * PREVIEW_FIELD_WIDTH + Math.floor(x * PREVIEW_FIELD_WIDTH / width)) * 4];
+      normal.set([128, 128, 255, 255], i);
+    }
+    for (let y = 0; y < PREVIEW_HEIGHT; y++) for (let x = 0; x < PREVIEW_WIDTH; x++)
+      front[(y * PREVIEW_WIDTH + x) * 4 + 3] = wp[(Math.floor(y * PREVIEW_FIELD_HEIGHT / PREVIEW_HEIGHT) * PREVIEW_FIELD_WIDTH + Math.floor(x * PREVIEW_FIELD_WIDTH / PREVIEW_WIDTH)) * 4];
+    const empty = () => new Uint8Array(width * height * 4);
+    return { images: [front, coverage, normal, wp, empty(), empty(), new Uint8Array(wp.length), empty(), empty()],
+      parameters, dimensions: card.dimensions };
+  }
   // Plain authored etching has no manufactured primary detail. Reuse its
   // existing larger atlas slot; keep downloads, allocations and uploads fixed.
   const sharpEtch = !!profile.diffraction.followsAuthoredNormals && !profile.opticalModel && !!paths.normal

@@ -13,6 +13,7 @@ import { SharedPreparation } from './SharedPreparation';
 
 export interface CpuImage { bitmap: ImageBitmap; width: number; height: number; source?: string; }
 export interface PreparedMapsCpu {
+  foilControls?: CpuImage;
   proceduralFoil?: CardDefinition['proceduralFoil'];
   packed?: PackedMaps;
   normal?: CpuImage;
@@ -309,13 +310,14 @@ export class CardCpuPreparation {
     const anniversaryImage = anniversary ? await clone('/materials/ygo-25th.webp') : undefined;
     let packed: PackedMaps | undefined;
     if (Object.keys(packedInputs).length || anniversary || wholeFront) packed = await (this.maps ??= new CpuMapCache()).get(JSON.stringify([paths, aspect, anniversary, wholeFront]), aspect, packedInputs, anniversaryImage, wholeFront ? 255 : 0);
-    const [normal, direction, secondaryDirection, stampDirection] = await Promise.all([
+    const [normal, direction, secondaryDirection, stampDirection, foilControls] = await Promise.all([
       paths.normal ? this.assets.image(paths.normal, signal) : undefined,
       paths.direction ? this.assets.image(paths.direction, signal) : undefined,
       paths.secondaryDirection ? this.assets.image(paths.secondaryDirection, signal) : undefined,
       paths.stampDirection ? this.assets.image(paths.stampDirection, signal) : undefined,
+      profile.opticalModel === 'tcgl-flat-silver' && paths.foilControls ? this.assets.image(paths.foilControls, signal) : undefined,
     ]);
-    return { packed, proceduralFoil: card.proceduralFoil, normal, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
+    return { packed, foilControls, proceduralFoil: card.proceduralFoil, normal, direction, secondaryDirection, stampDirection, hasNormal: !!paths.normal, hasStamp: !!paths.stamp, hasExtendedFoil: !!paths.extendedFoil,
       layout: card.layout, roughnessMode: card.mapSettings?.roughnessMode ?? (paths.roughness ? 'absolute' : 'profile'),
       embossStrength: card.construction ? (paths.normal ? 0 : card.construction.frontReliefCm / .008) : card.mapSettings?.embossStrength ?? (paths.height ? .25 : undefined), normalScale: card.mapSettings?.normalScale ?? 1 };
   }

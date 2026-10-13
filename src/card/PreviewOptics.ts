@@ -57,5 +57,9 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   set(41, [physical.roughness, physical.roughnessVariance, physical.coatingStrength, physical.coatingRoughness]);
   set(42, [physical.microNormalStrength, card.dimensions.width, card.dimensions.height, physical.legacyCoating ? 1 : 0]);
   set(43, [(card.seed % 97) / 7, (card.seed % 71) / 11, physical.id === 'generic-print' ? 0 : 1, card.mapSettings?.roughnessMode === 'absolute' ? 1 : 0]);
+  if (profile.opticalModel === 'tcgl-flat-silver') {
+    parameters[34 * 4] = 1; // Native whiteplate presence in artwork alpha.
+    parameters[34 * 4 + 3] = 10;
+  }
   return parameters;
 }

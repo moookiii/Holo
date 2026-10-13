@@ -32,7 +32,7 @@ export const megaRecipes: readonly PokemonRecipe[] = Object.entries(rates)
       'https://folio.fyi/blog/are-gold-pokemon-cards-real',
       ...(setId === 'me02.5' ? ['https://www.pokebeach.com/2026/01/ascended-heroes-set-guide-full-set-list-god-packs-reverse-holos-product-lineup-and-more'] : [])],
     note: '10 expansion cards + 1 exact Basic Energy. Physical code insert excluded from game-card simulation. Measured pull-rate estimates; uniform within pools and independent replacements. Factory print-sheet correlations unknown.' +
-      (setId === 'me02.5' ? ' Energy/plain reverse first, assigned special reverse second (plain Trainers/Energy remain eligible). God-pack frequency unknown and excluded from random odds. TCGL ph2 motif discrepancies recorded in source evidence.' : ''),
+      (setId === 'me02.5' ? ' Energy/plain reverse first, assigned special reverse second (plain Trainers/Energy remain eligible). God-pack frequency unknown and excluded from random odds. Original TCGL ph2 Ball/R whiteplates retain their exact card assignments.' : ''),
     slots: [
       {id:'common',count:4,unique:true,outcomes:[hit(1,['Common'],'normal')]},
       {id:'uncommon',count:3,unique:true,outcomes:[hit(1,['Uncommon'],'normal')]},

@@ -1,4 +1,5 @@
 import { createGalleryCardGeometry, galleryGeometryDimensions } from './GalleryGeometry';
+import { TCGL_FLAT_SILVER_PATHS, type FlatSilverTextures } from '../materials/layers/TcglFlatSilverLayer';
 import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
 import { AssetManager } from '../assets/AssetManager';
 import { doubleRareProfile } from '../materials/profiles/doubleRare';
@@ -73,8 +74,12 @@ export class GalleryRenderer {
       ? await (this.opticalAssets ??= new AssetManager()).load(doubleRareProfile.maps!.direction!, false) : undefined;
     const micrograin = layers.some(layer => layer.enabled && layer.specialIllustration)
       ? await (this.opticalAssets ??= new AssetManager()).load(pokemon151SirMicrograin, false) : undefined;
+    const flatSilver: FlatSilverTextures | undefined = layers[0].tcglFlatSilver ? {
+      shine: await (this.opticalAssets ??= new AssetManager()).load(TCGL_FLAT_SILVER_PATHS.shine, false),
+      spectrum: await this.opticalAssets!.load(TCGL_FLAT_SILVER_PATHS.spectrum, false),
+    } : undefined;
     if (this.disposed) { this.opticalAssets?.dispose(); throw new Error('Gallery disposed'); }
-    for (const optical of [stars, micrograin]) if (optical && !this.opticalTextures.has(optical.uuid)) {
+    for (const optical of [stars, micrograin, flatSilver?.shine, flatSilver?.spectrum]) if (optical && !this.opticalTextures.has(optical.uuid)) {
       this.opticalTextures.add(optical.uuid);
       const image = optical.image as HTMLImageElement;
       let width = image.width, height = image.height;
@@ -100,7 +105,7 @@ export class GalleryRenderer {
           if (this.disposed) throw new Error('Gallery disposed');
         } catch (error) { assets.dispose(); throw error; }
       }
-      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars, exact, micrograin);
+      const material = new GalleryMaterial(this.arrays, this.parameterTexture, layers, stars, exact, micrograin, flatSilver);
       let geometry = this.geometries.get(geometryKey);
       const newGeometry = !geometry;
       if (!geometry) {
