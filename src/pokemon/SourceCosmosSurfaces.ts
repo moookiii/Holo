@@ -1,3 +1,4 @@
+import type { CardMapPaths } from '../card/CardDefinition.ts';
 import { sourceCosmos } from './data/source-cosmos.generated.ts';
 
 interface SourceSurface {
@@ -7,7 +8,7 @@ interface SourceSurface {
   foilType: string;
   textured: boolean;
   profile: string;
-  maps: Record<string, string>;
+  maps: CardMapPaths;
   evidence: string;
 }
 const registry = new Map(sourceCosmos.map(r => [`${r.cardId}:${r.variant}`, r]));
