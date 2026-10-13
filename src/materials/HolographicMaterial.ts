@@ -339,6 +339,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
   readonly normalTextureNode;
   readonly hologramTextureNode;
   readonly foilControlsTextureNode;
+  private tcglCenterGreen = uniform(0);
   readonly surfaceControls = {
     hasExtendedFoil: uniform(0), extendedCoverage: uniform(0),
     hasStamp: uniform(0), hasNormal: uniform(0), normalScale: uniform(1),
@@ -608,13 +609,13 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     this.stampFieldTextureNode.value = this.cardMaps?.stampDirection ?? maps.stamp?.direction ?? this.neutralField;
     this.stampReliefTextureNode.value = maps.stamp?.relief ?? this.neutralRelief;
     this.optics.apply(profile); this.secondaryOptics.apply(profile.secondary); this.stampOptics.apply(profile.stamp);
+    this.tcglCenterGreen.value = profile.mapSettings?.tcglCenterGreen ?? 0;
     // Native TCGL FlatSilver is a color-composition shader, not a second
     // diffraction/BRDF layer. Specialize only the 140 ASC ph2 printings.
     this.fragmentNode = this.optics.tcglFlatSilver ? Fn(() => {
       const packed = tcglPackedUv(uv());
       const wp = texture(this.foilControlsTextureNode.value, packed).rgb;
-      const center = texture(this.printTextureNode.value, vec2((.5 - TCGL_CARD_UV.left) / TCGL_CARD_UV.width, .5)).g;
-      return vec4(tcglFlatSilverColor(this.printTextureNode.rgb, center, wp, packed,
+      return vec4(tcglFlatSilverColor(this.printTextureNode.rgb, this.tcglCenterGreen, wp, packed,
         this.fieldTextureNode.value, this.secondaryFieldTextureNode.value, true), 1);
     })() : null;
     const layers = [profile, profile.secondary, profile.stamp];

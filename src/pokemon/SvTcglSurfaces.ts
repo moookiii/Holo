@@ -52,6 +52,7 @@ export function svTcglDefinition(id: string, variant: PrintVariant): CardDefinit
       ...(deferred || !sm && !megaFinish && 'treatmentStatus' in (surface ?? {}) ? { treatmentStatus: 'deferred' as const } : {}) },
     ...(prism ? { stockSurface: { strength: 0, depth: 0 } } : {}),
     layout: { artwork: [0, 0, 1, 1], innerFrame: [0, 0, 1, 1] },
+    ...(special ? { profileOverrides: { mapSettings: { tcglCenterGreen: special.centerGreen } } } : {}),
     ...(surface ? {
       maps: special ? { foilControls: special.whiteplate } : { ...surface.maps, ...(prism ? prismStarMaps(id) : {}), ...(megaFinish ? { secondaryFoil: `/cards/pokemon/mega-optics/${id}-secondary.png` } : {}) },
       mapSettings: { normalScale: surface.textured && profile !== 'pokemon-ace-spec' ? 1 : 0, embossStrength: 0, roughnessMode: !prism && (sm || surface.textured && profile !== 'pokemon-ace-spec') ? 'absolute' : 'profile', ...(sm ? { embossMaskFromNormalAlpha: false } : {}) },
