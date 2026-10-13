@@ -254,7 +254,7 @@ image.loading = 'lazy';
   const directional: LightPreset[] = ['Moving light', 'Skim'];
   const azimuth = slider('Light position', 'azimuth', -85, 85, 1, '°', directional);
   const elevation = slider('Light elevation', 'elevation', -30, 75, 1, '°', directional);
-  slider('Intensity', 'intensity', 0, 2, .1, '×');
+  slider('Intensity', 'intensity', .1, 2, .1, '×');
   slider('Sweep speed', 'speed', .1, 2, .1, '×', ['Moving light', 'Skim', 'Holo skim']);
   slider('Filter rotation', 'filterAngle', 0, 180, 1, '°', ['Polarizer']);
   const pause = document.createElement('button'); pause.className = 'light-pause';

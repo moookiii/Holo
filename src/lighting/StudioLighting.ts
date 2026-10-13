@@ -109,9 +109,11 @@ export class StudioLighting {
     if (p === 'Blacklight') { this.key.intensity = 90; this.strip.intensity = 2; this.fill.intensity = .08; this.scene.environmentIntensity = .08; this.back.intensity = .1; }
     if (p === 'Spotlight') { this.key.intensity = 0; this.strip.intensity = 0; this.fill.intensity = .12; this.scene.environmentIntensity = .12; }
     this.key.lookAt(0, 0, 0);
-    this.key.intensity *= this.intensity; this.strip.intensity *= this.intensity;
-    this.fill.intensity *= this.intensity; this.back.intensity *= this.intensity;
-    this.scene.environmentIntensity *= this.intensity; this.spot.intensity = p === 'Spotlight' ? 650 * this.intensity : 0;
+    // The lowest setting dims the existing rig without switching it off.
+    const intensity = Math.max(.1, this.intensity);
+    this.key.intensity *= intensity; this.strip.intensity *= intensity;
+    this.fill.intensity *= intensity; this.back.intensity *= intensity;
+    this.scene.environmentIntensity *= intensity; this.spot.intensity = p === 'Spotlight' ? 650 * intensity : 0;
     inspection.holoSweep.value = p === 'Holo skim' ? 1 : 0;
     inspection.sweepDirection.value.set(sweepMotion * .75, .12, .45).normalize();
     inspection.polarizer.value = p === 'Polarizer' ? .15 + .85 * Math.cos(this.filterAngle * Math.PI / 180) ** 2 : 1;
