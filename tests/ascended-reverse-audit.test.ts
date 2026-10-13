@@ -44,7 +44,7 @@ test('explicit per-card special assignments include all six designs and Groudon 
   assert.equal(audit.printings.find((r: any) => r.cardId === 'me02.5-108' && r.variant === 'special-reverse').expectedFinish.pattern, 'dusk-ball');
 });
 
-test('standard reverses retain own Energy types or plain Trainer/Energy foil, and all fronts/maps stay unchanged', () => {
+test('Energy/plain reverses retain their maps; special reverses replace only the known incorrect export mappings', () => {
   const energyTypes = new Set();
   for (const row of audit.printings) {
     const card = asc.cards.find(c => c.id === row.cardId)!;
@@ -52,7 +52,12 @@ test('standard reverses retain own Energy types or plain Trainer/Energy foil, an
     const surface = tcglMegaSurfaces.find(s => s.cardId === row.cardId && s.variant === row.variant)!;
     assert.equal(surface.tcglVariantId, row.tcglVariantId);
     assert.equal(digest('public' + definition.front), row.frontSha256);
-    assert.deepEqual(definition.maps, row.runtimeMaps);
+    if (row.variant === 'special-reverse') {
+      assert.equal(definition.profile, 'ascended-special-reverse');
+      assert.match(definition.maps?.foilControls ?? '', /tcgl-ascended-original\/whiteplates\/me2-5_wp_ph2_en_\d{3}\.png$/);
+      assert.equal(definition.maps?.foil, undefined);
+      assert.equal(definition.maps?.protection, undefined);
+    } else assert.deepEqual(definition.maps, row.runtimeMaps);
     for (const [key, url] of Object.entries(row.runtimeMaps)) {
       assert.equal(digest('public' + url), row.runtimeMapHashes[key]);
     }
