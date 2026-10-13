@@ -21,12 +21,17 @@ page.on('request', request => requests.add(new URL(request.url()).pathname));
 page.on('response', response => { if (response.status() >= 400 && response.url().includes('127.0.0.1')) errors.push(`${response.status()} ${response.url()}`); });
 page.on('console', message => { if (message.type() === 'error') console.log('CONSOLE', message.text().slice(0, 400)); });
 try {
+  // Freeze the asset revision for this immutable capture run. Concurrent
+  // unrelated asset authoring must not repeatedly scan the whole dev tree.
+  await page.route('**/__holo-cache-revision', route => route.fulfill({ contentType: 'text/plain', body: 'ascended-native-live-v1' }));
+  await page.routeWebSocket('**', socket => socket.close());
   await page.goto(process.env.HOLO_URL || 'http://127.0.0.1:5176/', { waitUntil: 'domcontentloaded', timeout: 120000 });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 180000 });
   console.log('Application ready');
   for (const number of [25, 1, 8, 11, 18, 108, 123, 140]) {
     const id = `pokemon:me02.5-${String(number).padStart(3, '0')}:special-reverse`;
-    await page.evaluate(id => window.__holo.setCard(id), id);
+    await page.evaluate(id => Promise.race([window.__holo.setCard(id),
+      new Promise((_, reject) => setTimeout(() => reject(new Error('Viewer preparation timed out: ' + id)), 120000))]), id);
     await page.waitForFunction(id => window.__holo.stats().card === id, id, { timeout: 120000 });
     const definition = await page.evaluate(id => {
       const h = window.__holo, c = h.cards.find(c => c.id === id), material = h.material();
