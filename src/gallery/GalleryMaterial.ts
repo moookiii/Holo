@@ -30,7 +30,7 @@ const gallerySpectrum = Fn(([path, bandwidth, secondary, variance]: Node<'float'
     { name: 'secondary', type: 'float' }, { name: 'variance', type: 'float' },
   ] });
 
-interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; normalVariance: Node<'float'>; }
+interface Region { secret: Node<'vec4'>; mask: Node<'float'>; field: Node<'vec4'>; sampleField: (coord: Node<'vec2'>, dx: Node<'vec2'>, dy: Node<'vec2'>) => Node<'vec4'>; detail: Node<'vec4'>; parameters: Node<'vec4'>[]; ink: Node<'vec3'>; glint: Node<'vec4'>; glintSurface: Node<'vec4'>; sparkle: Node<'float'>; normalVariance: Node<'float'>; }
 export interface UltraRareTextures { front: Texture; normal: Texture; roughness: Texture; foil: Texture; protection: Texture; }
 
 /** Uses the viewer's wavelength response and grating momentum under actual
@@ -90,9 +90,9 @@ class GalleryLightingModel extends PhysicalLightingModel {
     const distance = center.length().max(.001), direction = center.div(distance);
     const solidAngle = width.cross(height).normalize().dot(direction).max(0).mul(width.length(), height.length(), 4).div(distance.pow2());
     this.diffract({ lightDirection: direction, lightColor: (data.lightColor as Node<'vec3'>).mul(solidAngle), reflectedLight: data.reflectedLight },
-      [width.sub(direction.mul(width.dot(direction))).div(distance), height.sub(direction.mul(height.dot(direction))).div(distance)]);
+      [width.sub(direction.mul(width.dot(direction))).div(distance), height.sub(direction.mul(height.dot(direction))).div(distance)], data.lightPosition as Node<'vec3'>);
   }
-  private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
+  private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>], lightPosition?: Node<'vec3'>) {
     for (const [index, r] of this.regions.entries()) {
       const layer = this.layers[index];
       if (!layer.enabled) continue;
@@ -137,10 +137,14 @@ class GalleryLightingModel extends PhysicalLightingModel {
         continue;
       }
       if (layer.radiant || layer.celebrationPikachu || layer.celebrationClassic) {
-        const optics = { aspect: r.glintSurface.y, period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
+        const optics = { aspect: r.glintSurface.y, cardHeight: float(1), period: diffraction.x, bandwidth: diffraction.y, strength: diffraction.z,
           secondary: diffraction.w, angle: axis.x, crossWidth: axis.y };
+        const cardOffset = tangentView.mul(uv().x.sub(.5).mul(optics.aspect))
+          .add(bitangent.mul(uv().y.sub(.5)));
+        const centerLight = lightPosition ? mix(lightPosition.sub(positionView.sub(cardOffset)).normalize(),
+          inspection.sweepDirection, inspection.holoSweep).normalize() : light;
         const reflected = layer.radiant
-          ? radiantFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView, optics, r.field, footprint)
+          ? radiantFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView, optics, r.field, r.sampleField, footprint, centerLight)
           : celebrationFoilReflection(light, positionViewDirection, tangentView, bitangent, normalView, optics, r.field, !!layer.celebrationClassic, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(r.mask,
           mix(vec3(1), r.ink, surface.z), data.lightColor as Node<'vec3'>));
@@ -284,6 +288,8 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
       layers[index].enabled ? mask.mul(param(index * 8 + 7).w) : float(0));
     const authoredVariance = normalMipVariance(layers[0].packedEtch ? normal.rgb : authoredNormal).toVar();
     this.regions = weights.map((mask, index) => ({ mask, secret: param(37 + index),
+      sampleField: (sampleUv: Node<'vec2'>, dx: Node<'vec2'>, dy: Node<'vec2'>) =>
+        texture(arrays[3 + index], vec2(sampleUv.x, sampleUv.y.oneMinus())).depth(layer).grad(dx.mul(vec2(1, -1)), dy.mul(vec2(1, -1))),
       field: index === 0 && layers[0].packedEtch ? vec4(1, 128 / 255, 85 / 255, 1)
         : layers[index].specialIllustration && sirMicrograin ? texture(sirMicrograin, uv())
         : layers[index].doubleRare && doubleRareStars ? texture(doubleRareStars, uv()) : image(3 + index), detail: image(6 + index),

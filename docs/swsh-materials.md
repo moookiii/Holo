@@ -70,6 +70,42 @@ Proof `swsh-proof:amazing`: the same eight light/pose states and 13-frame motion
 
 ## Radiant Rare
 
+Fixed-grid rolling correction from the user's full-resolution Steelix photo:
+`research/swsh-materials/physical/steelix-user-reference.png`. The lower foil
+has large, regularly spaced crossed bands. Their positions now depend only on
+full-card UVs and physical aspect; light/view never enter the stock sampling
+coordinates. Original TCGL `_CrossTexture` peaks supply the band shapes, with
+the original half-unit period on both diagonal axes. Explicit continuous
+texture gradients avoid mip seams at the periodic joins in viewer and gallery.
+
+Each complete line receives a successive optical inclination (index step .65).
+A Gaussian angular response fades each stationary band off, on, then off
+(the user's "010" pattern); neighboring lines peak in sequence. Its variance
+floor is .04, with the emitter footprint added. There is no UV sliding or
+continuous translation of the lattice. At offsets -.65, 0, +.65 the isolated
+response is approximately .005, 1, .005. Crossings use a union rather than
+double brightness; both diagonal directions contribute their own spectral
+response. Band thresholds are .72/.98, neutral gain .65. Secondary backing
+reflection is reduced to .18 to keep the bands visible at specular angles.
+
+This corrects shared Radiant optics only. Clean fronts, foil/protection PNGs,
+normal assets, offline conversion and primary Espeon/Sylveon finish are unchanged.
+No relief assets are replaced, generated or rescaled. Steelix's exact source
+remains `swsh11_124`,
+`RadiantSteelix_swsh11_124_std_RadiantRare_RadiantHolo_Etched`; Jirachi's remains
+`swsh12_120`, `RadiantJirachi_swsh12_120_std_RadiantRare_RadiantHolo_Etched`.
+Preserved Unity sources are 1024x1024, registered to the existing 733x1024 front
+domain; active normals remain 1800x2475 with gain 1.03 and no added vertical flip.
+Per-card evidence and source hashes remain beside their maps. Other finish
+kernels and unrelated Cosmos edits are untouched.
+
+Review captures: `artifacts/swsh-materials/live/pokemon-swsh11-124-holo-*`
+and `pokemon-swsh12-120-holo-*`, eight lighting states and thirteen tilt frames
+per card. The exact angular width, fine spectral grain and physical depth remain
+provisional; a still photo establishes band appearance but cannot calibrate motion
+or microscopic depth. Relevant SWSH tests pass; TypeScript remains blocked by
+existing `CompletedCosmosSurfaces.ts` / `SvTcglSurfaces.ts` errors.
+
 Diamond-axis correction (2026-10-12): the offline stock's red coordinate is
 `x + row` and green is `row - x`. Because raster rows point down and the card UV
 bitangent points up, the matching optical axes are `tangent - bitangent` and

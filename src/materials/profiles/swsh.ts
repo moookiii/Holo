@@ -74,6 +74,8 @@ swshProfiles.push({
     opticalModel: 'swsh-radiant',
     diffraction: { ...swshEtched.diffraction, strength: .18, direction: Math.PI / 4, followsAuthoredNormals: false },
     structure: swshEtched.structure, glints: swshEtched.glints,
-    surface: { metalness: .65, roughness: .27, laminate: .06, laminateRoughness: .3, foilReflectance: .02, inkTransmission: .94 },
+    // Reserve the reflection for the fixed crossed bands; a full smooth
+    // backing lobe hid the 010 fades under a white wash at specular angles.
+    surface: { metalness: .65, roughness: .27, laminate: .06, laminateRoughness: .3, foilReflectance: .02, inkTransmission: .94, substrateReflection: .18 },
   },
 });

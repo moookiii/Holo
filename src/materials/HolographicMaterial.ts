@@ -37,7 +37,7 @@ interface OpticalRegion {
   coverage: Node<'float'>;
   optics: OpticalUniforms;
   seed: number;
-  field: Node<'vec4'>;
+  field: Node<'vec4'> & { sample(coord: Node<'vec2'>): Node<'vec4'> & { grad(dx: Node<'vec2'>, dy: Node<'vec2'>): Node<'vec4'> } };
   details: Node<'vec4'>;
   pattern: Node<'float'>;
   /** Artist-authored grating axes lie in the authored relief's tangent plane. */
@@ -87,9 +87,9 @@ class HolographicLightingModel extends PhysicalLightingModel {
     // spectral lobes avoids sparse multi-sample highlights and shader duplication.
     const angularWidth = width.sub(direction.mul(width.dot(direction))).div(distance);
     const angularHeight = height.sub(direction.mul(height.dot(direction))).div(distance);
-    this.diffract({ lightDirection: direction, lightColor: (data.lightColor as Node<'vec3'>).mul(solidAngle), reflectedLight: data.reflectedLight }, [angularWidth, angularHeight]);
+    this.diffract({ lightDirection: direction, lightColor: (data.lightColor as Node<'vec3'>).mul(solidAngle), reflectedLight: data.reflectedLight }, [angularWidth, angularHeight], data.lightPosition as Node<'vec3'>);
   }
-  private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>]) {
+  private diffract(data: Pick<LightingModelDirectInput, 'lightDirection' | 'lightColor' | 'reflectedLight'>, footprint?: [Node<'vec3'>, Node<'vec3'>], lightPosition?: Node<'vec3'>) {
     for (const [regionIndex, region] of this.regions.entries()) If(region.optics.enabled.greaterThan(0), () => {
       const u = region.optics;
       const filterAuthored = !!region.followsAuthoredSurface;
@@ -148,8 +148,13 @@ class HolographicLightingModel extends PhysicalLightingModel {
       if (u.radiant || u.celebrationPikachu || u.celebrationClassic) {
         const n = normalView as unknown as Node<'vec3'>;
         const b = (normalViewGeometry as unknown as Node<'vec3'>).cross(tangentView).mul(tangentGeometry.w).normalize();
+        const cardOffset = tangentView.mul(uv().x.sub(.5).mul(u.aspect, u.cardHeight))
+          .add(b.mul(uv().y.sub(.5).mul(u.cardHeight)));
+        const centerLight = lightPosition ? mix(lightPosition.sub(positionView.sub(cardOffset)).normalize(),
+          inspection.sweepDirection, inspection.holoSweep).normalize() : light;
         const reflected = u.radiant
-          ? radiantFoilReflection(light, positionViewDirection, tangentView, b, n, u, region.field, footprint)
+          ? radiantFoilReflection(light, positionViewDirection, tangentView, b, n, u, region.field,
+            (coord, dx, dy) => region.field.sample(coord).grad(dx, dy), footprint, centerLight)
           : celebrationFoilReflection(light, positionViewDirection, tangentView, b, n, u, region.field, u.celebrationClassic, footprint);
         (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(region.pattern,
           mix(vec3(1), region.inkTransmission!, u.inkTransmission), region.coverage, data.lightColor as Node<'vec3'>));
