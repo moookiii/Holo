@@ -32,41 +32,6 @@
   "etch": "Exact manifest: not applicable; no normal/height generated.",
   "goldCoverage": "Smooth yellow/gold chroma within inverse original whiteplate; no brightness-derived relief.",
   "pattern": "break-squares: 16.4 card-aligned square tiles/card height, fixed chirped fan grating, light-selected rotating rainbow sectors; flat laminate.",
-  "reference": "Nidoking BREAK 46/108 supplied 6.766667-second video and Noivern BREAK correction clip (7.2 seconds); stronger rainbow requested by user; see docs/pokemon-break.md",
-  "outputs": {
-    "foil": {
-      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-foil.png",
-      "sha256": "f4ab373a3c314eaaeee233a4ff63c0c63b50edd279b27300f995039951ea02d4",
-      "dimensions": [
-        733,
-        1024
-      ]
-    },
-    "foilControls": {
-      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-foil-controls.png",
-      "sha256": "9b91e47b93b279d38c6bea91a8eab1f50bdaa1b3aa5d87731bf29bd65ffc5170",
-      "dimensions": [
-        733,
-        1024
-      ]
-    },
-    "metallic": {
-      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-metallic.png",
-      "sha256": "bdbe0748855341f97e3f2a7354785de8fbc415de725e4f8ded30a09da2b06351",
-      "dimensions": [
-        733,
-        1024
-      ]
-    },
-    "roughness": {
-      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-roughness.png",
-      "sha256": "2d7a3dc605f5778cbaae1f1325aaaccbbde74812633aa54ed4c0416debf932a8",
-      "dimensions": [
-        733,
-        1024
-      ]
-    }
-  },
   "substrateFinish": {
     "colorLinearRgb": [
       0.62,
@@ -77,5 +42,40 @@
     "substrateDarkening": 0,
     "substrateReflection": 0.85,
     "metalness": 0.98
+  },
+  "reference": "Nidoking BREAK 46/108 supplied 6.766667-second video and Noivern BREAK correction clip (7.2 seconds); stronger rainbow requested by user; see docs/pokemon-break.md",
+  "outputs": {
+    "foil": {
+      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-foil.png",
+      "sha256": "41ec22af6c61be3e8224887ead5c77d8fd8572eef13e9dff040cbf71b3e13a27",
+      "dimensions": [
+        733,
+        1024
+      ]
+    },
+    "foilControls": {
+      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-foil-controls.png",
+      "sha256": "c46bf8357ac9ff5e5e3d78d7158dccd336da24ba66a6811281f0ba8cb6b01a91",
+      "dimensions": [
+        733,
+        1024
+      ]
+    },
+    "metallic": {
+      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-metallic.png",
+      "sha256": "947303f99bd1e8243e62338ef8d7e8796bd0796a6bf0d687836beef7846e8dcb",
+      "dimensions": [
+        733,
+        1024
+      ]
+    },
+    "roughness": {
+      "path": "/cards/pokemon/tcgl-xy/xybsp_136/break-roughness.png",
+      "sha256": "fdda9fb44f58b37576273fe7cd749500a806b119f0c9eace1b5e03976ab4ce28",
+      "dimensions": [
+        733,
+        1024
+      ]
+    }
   }
 }

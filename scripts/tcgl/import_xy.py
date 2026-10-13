@@ -1,7 +1,7 @@
-"""Register every acquired XY printing using exact TCGL art and existing optics.
+"""Register acquired XY printings with their exact TCGL art and existing optics.
 
-Unsupported optical families retain originals but use print-only, never a proxy
-foil. No shader edits or normals for deferred textured families are performed.
+The three new optical treatments and sources without enough placement evidence
+remain print-only. Etched normals are prepared offline by xy_etch_normal.py.
 """
 from collections import Counter, defaultdict
 from concurrent.futures import ThreadPoolExecutor
@@ -28,9 +28,8 @@ TYPES = dict(zip('GRWLPFDCMNY', ['Grass','Fire','Water','Lightning','Psychic','F
 RARITIES = {'RareHolo': 'Holo Rare', 'RareHoloEX': 'Holo Rare EX',
             'RareUltra': 'Ultra Rare', 'RareSecret': 'Secret Rare',
             'BreakRare': 'BREAK Rare', 'CommonBasicEnergy': 'Energy'}
-
-
-# Physical Collector Chest preview printings are Sheen, despite TCGL Cosmos metadata.
+# TCGL classifies these Collector Chest preview cards as Cosmos, but the
+# physical 6/160, 25/160 and 33/160 printings are Sheen Holofoil.
 COLLECTOR_CHEST_SHEEN = {
     'xyalt_100': 'https://pokumon.com/card/mirror-holofoil-treecko-6-160-collector-chest-special-print/',
     'xyalt_101': 'https://pokumon.com/card/mirror-holofoil-torchic-25-160-collector-chest-special-print/',
@@ -55,16 +54,19 @@ def treatment(m, row, variant):
         assert m['set_id'] == 'xyalt' and m['foil_effect'] == 'Cosmos'
         return 'pokemon-sheen', None
     if m['assets']['etch']['status'] == 'extracted':
-        family = 'XY gold and specialized Primal/Mega' if rarity == 'RareSecret' or 'Primal' in m['name'] else 'XY textured Full Art EX/Mega/Trainer'
-        return 'print-only', family
+        # The gold Trainer secrets use the existing gold finish. Secret EX and
+        # Primal cards retain the authored-normal silver/rainbow response.
+        return ('prismatic_gold' if rarity == 'RareSecret' and row['category'] == 2
+                else 'prismatic_sir_texture'), None
     if rarity in ('RareHoloEX','RareUltra','RareSecret'):
-        return 'print-only', 'XY regular EX and Mega EX'
+        return 'pokemon-sheen', None
     if variant == 'reverse':
         # TCGL supplies only the first-type motif on these five split cards.
         if m['set_id'] == 'xy11' and len(row['EN Type']) > 1:
             return 'print-only', 'Steam Siege dual-type reverse'
         return 'swsh-reverse-energy', None
-    if m['set_id'] == 'xy12': return 'print-only', 'Evolutions English starlight'
+    if m['set_id'] == 'xy12' and m['foil_effect'] == 'Galaxy':
+        return 'print-only', 'Evolutions English starlight'
     effect = m['foil_effect']
     if effect in ('Rainbow','AngledPillars'): return 'pokemon-sheen', None
     if effect == 'CrackedIce': return 'pokemon-cracked-ice', None
@@ -72,6 +74,7 @@ def treatment(m, row, variant):
     if effect == 'Thatch': return 'pokemon-crosshatch', None
     if effect == 'Galaxy': return 'pokemon-galaxy-star', None
     if effect == 'Cosmos': return 'print-only', 'Cosmos registered motif placement'
+    if effect == 'FlatSilver': return 'swsh-celebrations-silver', None
     return 'print-only', 'XY promotional ' + effect
 
 
@@ -116,6 +119,12 @@ def main():
             if not roughness.exists(): Image.new('L', (1,1), round(.30*255)).save(roughness)
             maps = {k: '/' + p.relative_to(ROOT / 'public').as_posix() for k,p in
                     [('foil',plate),('foilControls',controls),('roughness',roughness)]}
+            if 'etch' in originals:
+                normal = dest / 'normal.png'
+                if not normal.exists():
+                    raise FileNotFoundError(f'{cid}: run scripts/tcgl/xy_etch_normal.py first')
+                maps['normal'] = '/' + normal.relative_to(ROOT / 'public').as_posix()
+                maps['protection'] = '/' + (dest / 'protection.png').relative_to(ROOT / 'public').as_posix()
         number = m['printed_collector_number']; denominator = str(row.get('EN Expansion Denominator') or '')
         if m['set_id'] == 'xy9-5r':
             number = 'RC' + number.removeprefix('RC'); denominator = 'RC' + denominator.removeprefix('RC')
@@ -135,7 +144,7 @@ def main():
                     'treatmentStatus':'deferred' if pending else 'existing-material', 'deferredEffect':pending,
                     'registration':{'unityUvBox':[145/1024,0,878/1024,1], 'dimensions':[733,1024],
                                     'verticalFlip':False, 'method':'Established TCGL full-card bleed removal; same source UV box for own front and foil.'},
-                    'normalGeneration':False, 'shaderChanges':False,
+                    'normalGeneration':bool('normal' in maps), 'shaderChanges':False,
                     'limitations': 'Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass.' if pending else
                                    'Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.'}
         if cid in COLLECTOR_CHEST_SHEEN:
@@ -146,6 +155,8 @@ def main():
                     'https://www.elitefourum.com/t/updated-6-15-15-alternate-set-card-checklist-english/11788',
                     COLLECTOR_CHEST_SHEEN[cid],
                 ]}
+        if 'normal' in maps:
+            evidence['normalSource'] = json.loads((dest / 'normal-evidence.json').read_text(encoding='utf-8'))
         if pending == 'Cosmos registered motif placement':
             empty = dest / 'cosmos-placement-pending.png'
             if not empty.exists(): Image.new('L', (1200,1650), 0).save(empty)
@@ -155,7 +166,7 @@ def main():
                 'sha256':sha(empty), 'active':False,
                 'reason':'Exact-copy placement evidence unavailable. Empty PNG placeholder, no randomized dots or fabricated motifs.'}
         write(dest / 'evidence.json', evidence)
-        surface = {'cardId':appid,'variant':variant,'profile':profile,'textured':False,'maps':maps,
+        surface = {'cardId':appid,'variant':variant,'profile':profile,'textured':bool('normal' in maps),'maps':maps,
                    'evidence':'/' + (dest/'evidence.json').relative_to(ROOT/'public').as_posix(),
                    'foilType':physical_effect,'tcglCardId':cid,'tcglVariantId':m['long_form_id'],
                    'treatmentStatus':evidence['treatmentStatus'],'deferredEffect':pending,

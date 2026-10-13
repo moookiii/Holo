@@ -52,15 +52,19 @@ test('RC uses glitter/overcoat while gold cards use their exact English etches a
     assert.equal(s.treatmentStatus,'existing-material');
     assert.equal(s.deferredEffect,null);
     assert.equal(s.textured,true);
-    assert.deepEqual(def.profileOverrides!.diffraction!.tint,[1,.68,.18]);
-    assert.equal(def.profileOverrides!.diffraction!.strength,.48);
+    assert.deepEqual(def.profileOverrides!.diffraction!.tint,[.95,.76,.30]);
+    assert.equal(def.profileOverrides!.opticalModel,'pure-gold');
+    assert.ok(def.maps!.direction?.endsWith('/gold-direction.png'));
+    assert.equal(def.profile,'pure-gold');
+    assert.equal(def.profileOverrides!.diffraction!.strength,0);
+    assert.equal(def.profileOverrides!.surface!.inkSpecular,1);
     assert.equal(def.profileOverrides!.surface!.metalness,.50);
     assert.equal(def.profileOverrides!.glints!.strength,0);
     assert.equal(def.mapSettings!.embossStrength,0);
   }
   for (const s of tcglBwSurfaces.filter(s => s.textured)) {
     const def = svTcglDefinition(s.cardId,s.variant as PrintVariant);
-    assert.equal(def.profile,'prismatic_sir_texture'); assert.equal(def.mapSettings!.normalScale,1);
+    assert.equal(def.profile,['bw11-114','bw11-115'].includes(s.cardId) ? 'pure-gold' : 'prismatic_sir_texture'); assert.equal(def.mapSettings!.normalScale,1);
     assert.equal(def.profileOverrides!.diffraction!.followsAuthoredNormals,true);
     assert.equal(def.profileOverrides!.structure!.engraving,0);
     const ev = read('public'+s.evidence);

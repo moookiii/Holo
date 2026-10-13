@@ -14,9 +14,11 @@ import { isPrismStar, prismStarMaps } from './PrismStarSurfaces.ts';
 import { bwDefinition, bwProfile } from './BwSurfaces.ts';
 import { xyDefinition, xyProfile } from './XySurfaces.ts';
 import { ascendedSpecialSurface, ascendedPatternLabels } from './AscendedSpecialSurfaces.ts';
+import { sourceCosmosSurface } from './SourceCosmosSurfaces.ts';
 
-const surfaces = new Map([...tcglSvSurfaces, ...tcglMegaSurfaces, ...tcglMepSurfaces, ...tcglSwshSurfaces, ...tcglSmSurfaces].map(surface => [`${surface.cardId}:${surface.variant}`, surface]));
-const smSurfaces = new Map(tcglSmSurfaces.map(s => [`${s.cardId}:${s.variant}`, s]));
+const preparedSmSurfaces = tcglSmSurfaces.map(sourceCosmosSurface);
+const surfaces = new Map([...tcglSvSurfaces, ...tcglMegaSurfaces, ...tcglMepSurfaces, ...tcglSwshSurfaces, ...preparedSmSurfaces].map(surface => [`${surface.cardId}:${surface.variant}`, surface]));
+const smSurfaces = new Map(preparedSmSurfaces.map(s => [`${s.cardId}:${s.variant}`, s]));
 const swshLimitations = new Map(tcglSwshSurfaces.map(s => [`${s.cardId}:${s.variant}`, s.limitations]));
 export function svTcglProfile(id: string, variant: PrintVariant): string {
   const card = svTcglCard(id);

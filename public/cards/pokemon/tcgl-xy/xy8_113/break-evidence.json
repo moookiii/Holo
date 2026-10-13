@@ -32,11 +32,22 @@
   "etch": "Exact manifest: not applicable; no normal/height generated.",
   "goldCoverage": "Smooth yellow/gold chroma within inverse original whiteplate; no brightness-derived relief.",
   "pattern": "break-squares: 16.4 card-aligned square tiles/card height, fixed chirped fan grating, light-selected rotating rainbow sectors; flat laminate.",
+  "substrateFinish": {
+    "colorLinearRgb": [
+      0.62,
+      0.65,
+      0.68
+    ],
+    "printRetention": 0.06,
+    "substrateDarkening": 0,
+    "substrateReflection": 0.85,
+    "metalness": 0.98
+  },
   "reference": "Nidoking BREAK 46/108 supplied 6.766667-second video and Noivern BREAK correction clip (7.2 seconds); stronger rainbow requested by user; see docs/pokemon-break.md",
   "outputs": {
     "foil": {
       "path": "/cards/pokemon/tcgl-xy/xy8_113/break-foil.png",
-      "sha256": "989c6b775f37cf61f3e280f2ebe5c90dba96da9b2fdda2e7de191a95f9a0ff56",
+      "sha256": "9dfa7402a00c8df9194e06fe9f71b9aced1c91645e80e6cb027eb04cc2f2714a",
       "dimensions": [
         733,
         1024
@@ -44,7 +55,7 @@
     },
     "foilControls": {
       "path": "/cards/pokemon/tcgl-xy/xy8_113/break-foil-controls.png",
-      "sha256": "8568844bd2bfff19016a85ab2c20d8a26b8e7a5d327ba17f10075f27aec9c4e3",
+      "sha256": "2840674702cdfcf4d089455cbf639cde7a3ce8b1141138a59e4cd57fda3d9e0e",
       "dimensions": [
         733,
         1024
@@ -52,7 +63,7 @@
     },
     "metallic": {
       "path": "/cards/pokemon/tcgl-xy/xy8_113/break-metallic.png",
-      "sha256": "488a8d88384df06e168e0d7abdfc1316853e86fee982e150899b55c4fd25f9eb",
+      "sha256": "9147d8b11406b672f886bb8ee464b4cbf1bd48a725ec76ac8f18d8f9d437791f",
       "dimensions": [
         733,
         1024
@@ -66,16 +77,5 @@
         1024
       ]
     }
-  },
-  "substrateFinish": {
-    "colorLinearRgb": [
-      0.62,
-      0.65,
-      0.68
-    ],
-    "printRetention": 0.06,
-    "substrateDarkening": 0,
-    "substrateReflection": 0.85,
-    "metalness": 0.98
   }
 }

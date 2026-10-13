@@ -162,7 +162,8 @@ def register(c, candidate):
         medianReprojectionError=float(np.median(error[accepted.ravel() == 1])))
 
 
-def propose(photo, master, allowed, physical_master=False):
+def propose(photo, master, allowed, physical_master=False, *, min_sigma=1.65,
+            min_response=.038, min_peak=27, min_fill=.42):
     """Contrast proposes geometry; the operator must review every whole window."""
     intensity = photo.max(2).astype(np.float32) / 255
     signal = np.maximum(0, intensity - gaussian_filter(intensity, 24))
@@ -173,9 +174,9 @@ def propose(photo, master, allowed, physical_master=False):
         signal = np.maximum(0, signal - detail * .9)
     # Below ~1.5 source pixels a JPEG speck has no measurable outer perimeter.
     # Keep those unresolved instead of fabricating hundreds of tiny disks.
-    scales = np.geomspace(1.65, 24, 30)
+    scales = np.geomspace(min_sigma, 24, 36 if min_sigma < 1 else 30)
     cube = np.stack([-gaussian_laplace(signal, s) * s * s for s in scales], 2)
-    peaks = (cube == maximum_filter(cube, size=3)) & (cube > .038)
+    peaks = (cube == maximum_filter(cube, size=3)) & (cube > min_response)
     peaks &= allowed[..., None]
     ys, xs, ss = np.nonzero(peaks)
     clearance = cv2.distanceTransform(allowed.astype(np.uint8), cv2.DIST_L2, 5)
@@ -205,7 +206,7 @@ def propose(photo, master, allowed, physical_master=False):
         delta = np.max(roi-ground, axis=2)
         peak = float(np.max(delta[distance < max(1, radius*.5)]))
         fill = ((distance < radius*1.25) & (delta > max(12, peak*.3))).sum() / (np.pi*radius**2)
-        if peak < 27 or fill < .42:
+        if peak < min_peak or fill < min_fill:
             continue
         result.append(dict(center=[x, y], radius=round(radius, 2), brightness=round(float(intensity[y, x]), 3)))
     result.sort(key=lambda d: (d['center'][1], d['center'][0]))
@@ -353,6 +354,28 @@ def proposals(ids=None):
                 write(saved_path,list(saved.values()))
 
 
+def small_proposals(ids=None):
+    """Sensitive proposals for human small-feature review; never publishes maps."""
+    records=json.loads((DATA/'proposals.json').read_text(encoding='utf8'))
+    output=DATA/'small-proposals.json'
+    saved={c['cardId']:c for c in json.loads(output.read_text(encoding='utf8'))} if output.exists() else {}
+    for c in records:
+        if ids and c['cardId'] not in ids: continue
+        photo=np.asarray(Image.open(ROOT/c['registeredReference']).convert('RGB'))
+        master=np.asarray(Image.open(ROOT/c['master']).convert('RGB').resize(COORDS))
+        foil=np.asarray(Image.open(ROOT/c['foil']).convert('L').resize(COORDS))
+        protection=np.asarray(Image.open(ROOT/c['protection']).convert('L').resize(COORDS))
+        motifs=propose(photo,master,(foil>20)&(protection<180),min_sigma=.8,
+                       min_response=.012,min_peak=10,min_fill=.24)
+        saved[c['cardId']]=dict(cardId=c['cardId'],candidateOnly=True,
+            parameters=dict(minSigma=.8,minResponse=.012,minPeak=10,minFill=.24),
+            motifs=motifs)
+        review_tiles(c,photo,motifs,'small-proposals')
+        review_images(c,photo,motifs,'small-proposals')
+        write(output,list(saved.values()))
+        print(c['cardId'],len(motifs),'sensitive candidates; unreviewed',flush=True)
+
+
 def corrected(c, correction):
     motifs = c['motifs']
     if 'keepIds' in correction:
@@ -424,9 +447,10 @@ def finalize(ids=None, publish=False):
 
 
 if __name__ == '__main__':
-    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose', 'draft', 'publish', 'tiles']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
+    ap = argparse.ArgumentParser(); ap.add_argument('action', choices=['inventory', 'sources', 'propose', 'small-propose', 'draft', 'publish', 'tiles']); ap.add_argument('--ids',nargs='+'); args = ap.parse_args()
     if args.action == 'inventory': write(DATA / 'inventory.json', inventory())
     elif args.action == 'sources': sources()
     elif args.action=='propose': proposals(args.ids)
+    elif args.action=='small-propose': small_proposals(args.ids)
     elif args.action=='tiles': tiles(args.ids)
     else: finalize(args.ids,args.action=='publish')

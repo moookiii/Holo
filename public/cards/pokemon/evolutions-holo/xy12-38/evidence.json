@@ -1,0 +1,385 @@
+{
+  "cardId": "xy12-38",
+  "name": "Magneton",
+  "tcglCardId": "xy12_38",
+  "tcglVariantId": "Magneton_xy12_38_std_RareHolo_Galaxy_Holo",
+  "profile": "pokemon-evolutions-holo",
+  "coordinateDimensions": [
+    600,
+    825
+  ],
+  "outputDimensions": [
+    1200,
+    1650
+  ],
+  "registration": {
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "dimensions": [
+      733,
+      1024
+    ],
+    "verticalFlip": false,
+    "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
+  },
+  "maps": {
+    "foil": "/cards/pokemon/evolutions-holo/xy12-38/foil.png",
+    "foilControls": "/cards/pokemon/evolutions-holo/xy12-38/foil-controls.png",
+    "motif": "/cards/pokemon/evolutions-holo/xy12-38/dots.png",
+    "secondaryFoil": "/cards/pokemon/evolutions-holo/xy12-38/star-foil.png",
+    "secondaryMotif": "/cards/pokemon/evolutions-holo/xy12-38/stars.png"
+  },
+  "artworkCoverageBoundsPixels": [
+    134,
+    234,
+    1060,
+    872
+  ],
+  "sourceEvidence": "/cards/pokemon/tcgl-xy/xy12_38/evidence.json",
+  "window": {
+    "fullFrontBounds": [
+      67,
+      117,
+      530,
+      436
+    ],
+    "png": "/cards/pokemon/evolutions-holo/xy12-38/window.png",
+    "sha256": "c59155b7b903182b54d57a6a6676a08975bb3b622e705edd2c8b16d5cab47edd",
+    "review": "Inner artwork rails compared on all thirteen unchanged clean fronts; native subject/opaque exclusions preserved within the window."
+  },
+  "preservedSources": {
+    "front": {
+      "path": "public/cards/pokemon/tcgl-xy/shared/front-e134b289af1c89dc9fa31ee4.png",
+      "sha256": "0d889014993d32ed09f10b5f4db9a779095485c5b85331f9dc7a970ea04c6f31"
+    },
+    "originalFront": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_38/original-front.png",
+      "sha256": "d37ee4dec841f96a73f36cf37996c37a703613430ca5e034d7d0a73178200a05"
+    },
+    "originalFoil": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_38/original-foil.png",
+      "sha256": "496ec44268439dd79510eaae896b0acf4ced5f88137b61fe383dbb2b44319cd9"
+    }
+  },
+  "physicalReference": {
+    "cardId": "xy12-38",
+    "name": "Magneton",
+    "page": "https://www.ebay.com/itm/304465820652",
+    "url": "https://i.ebayimg.com/images/g/P6kAAOSwfnhiazXi/s-l1200.jpg",
+    "file": "research/evolutions/xy12-38/physical.jpg",
+    "dimensions": [
+      760,
+      1058
+    ],
+    "sha256": "990c974448c68986104147f8490051fd4fd94df26e87427b2d8d91727db90573",
+    "limitations": "One seller photo of the exact English printing; copy-specific placements, no measured angular response or unseen motif inference.",
+    "registration": {
+      "coordinateDimensions": [
+        600,
+        825
+      ],
+      "master": "public/cards/pokemon/tcgl-xy/shared/front-e134b289af1c89dc9fa31ee4.png",
+      "masterToPhoto": [
+        [
+          1.2379046590866045,
+          -0.00833828085125811,
+          8.0905884535026
+        ],
+        [
+          0.007142036703209497,
+          1.258934858922631,
+          5.2212750386408695
+        ],
+        [
+          -6.698050581640733e-07,
+          6.528080397426389e-08,
+          1.0
+        ]
+      ],
+      "inliers": 589,
+      "medianPhotoReprojectionError": 0.4542499780654907,
+      "method": "SIFT on printed title/rules; RANSAC projective registration, manually reviewed artwork alignment; no motif detection."
+    }
+  },
+  "placementMethod": "Hand-entered centers and outer radii from each projectively registered physical photograph. No RNG, blob proposals or repeated layout. Dots are complete filled disks; clipping belongs to the printing plate, not the motif.",
+  "dots": [
+    [
+      172,
+      201,
+      5
+    ],
+    [
+      148,
+      197,
+      3.5
+    ],
+    [
+      327,
+      344,
+      7
+    ],
+    [
+      313,
+      304,
+      3
+    ],
+    [
+      284,
+      298,
+      3
+    ],
+    [
+      239,
+      330,
+      5
+    ],
+    [
+      175,
+      335,
+      6
+    ],
+    [
+      182,
+      361,
+      6
+    ],
+    [
+      142,
+      374,
+      5
+    ],
+    [
+      125,
+      327,
+      3.5
+    ],
+    [
+      82,
+      343,
+      4
+    ],
+    [
+      506,
+      207,
+      3
+    ],
+    [
+      463,
+      244,
+      5
+    ],
+    [
+      456,
+      218,
+      3
+    ],
+    [
+      517,
+      298,
+      4
+    ],
+    [
+      504,
+      288,
+      3.5
+    ],
+    [
+      430,
+      334,
+      5
+    ],
+    [
+      391,
+      262,
+      4
+    ],
+    [
+      415,
+      198,
+      5
+    ],
+    [
+      153,
+      415,
+      3
+    ]
+  ],
+  "stars": [
+    [
+      167,
+      145,
+      9,
+      11,
+      4
+    ],
+    [
+      200,
+      137,
+      10,
+      10,
+      8
+    ],
+    [
+      443,
+      137,
+      10,
+      11,
+      4
+    ],
+    [
+      521,
+      145,
+      8,
+      10,
+      8
+    ],
+    [
+      484,
+      148,
+      9,
+      10,
+      8
+    ],
+    [
+      85,
+      265,
+      9,
+      14,
+      8
+    ],
+    [
+      110,
+      226,
+      11,
+      13,
+      8
+    ],
+    [
+      122,
+      278,
+      13,
+      18,
+      8
+    ],
+    [
+      109,
+      310,
+      8,
+      10,
+      4
+    ],
+    [
+      125,
+      366,
+      10,
+      12,
+      8
+    ],
+    [
+      144,
+      413,
+      7,
+      11,
+      4
+    ],
+    [
+      363,
+      423,
+      9,
+      10,
+      4
+    ],
+    [
+      460,
+      376,
+      11,
+      13,
+      4
+    ],
+    [
+      506,
+      344,
+      13,
+      20,
+      8
+    ],
+    [
+      487,
+      323,
+      9,
+      11,
+      8
+    ],
+    [
+      433,
+      367,
+      7,
+      11,
+      4
+    ],
+    [
+      524,
+      310,
+      7,
+      8,
+      4
+    ],
+    [
+      513,
+      239,
+      11,
+      14,
+      4
+    ],
+    [
+      431,
+      274,
+      12,
+      13,
+      8
+    ],
+    [
+      370,
+      226,
+      12,
+      14,
+      8
+    ],
+    [
+      228,
+      215,
+      7,
+      10,
+      4
+    ],
+    [
+      284,
+      142,
+      9,
+      13,
+      8
+    ]
+  ],
+  "uncertainty": "Vertical oval streaks are optical sheet highlights; they are not counted as extra circles.",
+  "starShape": {
+    "basis": "scripts/wotc/create-star-maps.py",
+    "armWidth": 0.12,
+    "diagonalReach": 0.66,
+    "coreRadius": 0.17,
+    "supersampling": 4
+  },
+  "hashes": {
+    "foil": "7409be136f9037c9fccf9871b63105740955d8582f53a2fab5ad9e95f8beab06",
+    "foilControls": "02c5693f5c53163e716e2c740e3829c9e04db6c77402557316947707d7b7bc7c",
+    "motif": "28887d4d42d214fe787a30e0b9a9873ba6ca870d6fcd6facf14a38727e7f657e",
+    "secondaryFoil": "c4c39a04693ccf680eabd6978e905a9cc7eb49ebec5bac041acc555d379cbb52",
+    "secondaryMotif": "933893fdc53487843293f7c5d7890c07f3fc40c6c74a1d6a13100f9ef71dda80"
+  },
+  "normalGeneration": false,
+  "existingOpticsChanged": false,
+  "referenceStatus": "single-photo; moving physical reference desired"
+}

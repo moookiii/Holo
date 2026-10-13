@@ -1,0 +1,336 @@
+{
+  "cardId": "xy12-11",
+  "name": "Charizard",
+  "tcglCardId": "xy12_11",
+  "tcglVariantId": "Charizard_xy12_11_std_RareHolo_Galaxy_Holo",
+  "profile": "pokemon-evolutions-holo",
+  "coordinateDimensions": [
+    600,
+    825
+  ],
+  "outputDimensions": [
+    1200,
+    1650
+  ],
+  "registration": {
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "dimensions": [
+      733,
+      1024
+    ],
+    "verticalFlip": false,
+    "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
+  },
+  "maps": {
+    "foil": "/cards/pokemon/evolutions-holo/xy12-11/foil.png",
+    "foilControls": "/cards/pokemon/evolutions-holo/xy12-11/foil-controls.png",
+    "motif": "/cards/pokemon/evolutions-holo/xy12-11/dots.png",
+    "secondaryFoil": "/cards/pokemon/evolutions-holo/xy12-11/star-foil.png",
+    "secondaryMotif": "/cards/pokemon/evolutions-holo/xy12-11/stars.png"
+  },
+  "artworkCoverageBoundsPixels": [
+    134,
+    234,
+    1060,
+    872
+  ],
+  "sourceEvidence": "/cards/pokemon/tcgl-xy/xy12_11/evidence.json",
+  "window": {
+    "fullFrontBounds": [
+      67,
+      117,
+      530,
+      436
+    ],
+    "png": "/cards/pokemon/evolutions-holo/xy12-11/window.png",
+    "sha256": "c59155b7b903182b54d57a6a6676a08975bb3b622e705edd2c8b16d5cab47edd",
+    "review": "Inner artwork rails compared on all thirteen unchanged clean fronts; native subject/opaque exclusions preserved within the window."
+  },
+  "preservedSources": {
+    "front": {
+      "path": "public/cards/pokemon/tcgl-xy/shared/front-9a34196d5c779995a09bce42.png",
+      "sha256": "67b06686ca15d4a328fcbb5ae5a87ddfbf49b3d3115eb2c211f60bfa7f95ecc9"
+    },
+    "originalFront": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_11/original-front.png",
+      "sha256": "0753af146120a937d1d6dbcc511793d526439b5b732fb877877682d68815892a"
+    },
+    "originalFoil": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_11/original-foil.png",
+      "sha256": "0fed5c6e465ecc68244b76370034c289a73e21bc59667394fb6e5e151c611767"
+    }
+  },
+  "physicalReference": {
+    "cardId": "xy12-11",
+    "name": "Charizard",
+    "page": "https://www.ebay.com/itm/267443280949",
+    "url": "https://i.ebayimg.com/images/g/YmoAAeSwtgxo9owa/s-l1200.jpg",
+    "file": "research/evolutions/xy12-11/physical.jpg",
+    "dimensions": [
+      1200,
+      1200
+    ],
+    "sha256": "070f58cbcaec37d7d7ee92103853dc78e89f0e110d55f55021dc21631d1ec3e1",
+    "limitations": "One seller photo of the exact English printing; copy-specific placements, no measured angular response or unseen motif inference.",
+    "registration": {
+      "coordinateDimensions": [
+        600,
+        825
+      ],
+      "master": "public/cards/pokemon/tcgl-xy/shared/front-9a34196d5c779995a09bce42.png",
+      "masterToPhoto": [
+        [
+          1.3197544111174497,
+          0.1366082831205381,
+          172.48236300681967
+        ],
+        [
+          -0.02137422921651554,
+          1.4717284559653532,
+          106.56034810236612
+        ],
+        [
+          -3.6615902690458285e-05,
+          0.00021288460135472114,
+          1.0
+        ]
+      ],
+      "inliers": 441,
+      "medianPhotoReprojectionError": 0.4862947463989258,
+      "method": "SIFT on printed title/rules; RANSAC projective registration, manually reviewed artwork alignment; no motif detection."
+    }
+  },
+  "placementMethod": "Hand-entered centers and outer radii from each projectively registered physical photograph. No RNG, blob proposals or repeated layout. Dots are complete filled disks; clipping belongs to the printing plate, not the motif.",
+  "dots": [
+    [
+      206,
+      140,
+      6.5
+    ],
+    [
+      256,
+      143,
+      4
+    ],
+    [
+      326,
+      170,
+      3
+    ],
+    [
+      370,
+      214,
+      5
+    ],
+    [
+      323,
+      190,
+      3
+    ],
+    [
+      510,
+      338,
+      4
+    ],
+    [
+      514,
+      386,
+      4
+    ],
+    [
+      483,
+      393,
+      3.5
+    ],
+    [
+      196,
+      408,
+      4
+    ],
+    [
+      119,
+      396,
+      3
+    ],
+    [
+      229,
+      402,
+      2.5
+    ],
+    [
+      241,
+      438,
+      3
+    ],
+    [
+      302,
+      175,
+      3
+    ]
+  ],
+  "stars": [
+    [
+      147,
+      138,
+      9,
+      10,
+      4
+    ],
+    [
+      325,
+      149,
+      10,
+      11,
+      8
+    ],
+    [
+      330,
+      178,
+      6,
+      7,
+      4
+    ],
+    [
+      359,
+      196,
+      8,
+      9,
+      8
+    ],
+    [
+      395,
+      224,
+      11,
+      10,
+      8
+    ],
+    [
+      462,
+      261,
+      8,
+      10,
+      8
+    ],
+    [
+      479,
+      268,
+      8,
+      8,
+      4
+    ],
+    [
+      535,
+      316,
+      8,
+      9,
+      8
+    ],
+    [
+      509,
+      316,
+      8,
+      10,
+      8
+    ],
+    [
+      483,
+      327,
+      7,
+      11,
+      4
+    ],
+    [
+      485,
+      344,
+      8,
+      8,
+      4
+    ],
+    [
+      499,
+      416,
+      7,
+      10,
+      4
+    ],
+    [
+      77,
+      387,
+      9,
+      11,
+      4
+    ],
+    [
+      131,
+      420,
+      7,
+      9,
+      8
+    ],
+    [
+      190,
+      437,
+      8,
+      9,
+      8
+    ],
+    [
+      283,
+      414,
+      6,
+      9,
+      4
+    ],
+    [
+      269,
+      433,
+      7,
+      10,
+      4
+    ],
+    [
+      220,
+      272,
+      7,
+      10,
+      4
+    ],
+    [
+      179,
+      383,
+      7,
+      8,
+      4
+    ],
+    [
+      265,
+      194,
+      6,
+      9,
+      4
+    ]
+  ],
+  "uncertainty": "Fire, wings and deep shadows hide motifs; only resolved shapes recorded.",
+  "starShape": {
+    "basis": "scripts/wotc/create-star-maps.py",
+    "armWidth": 0.12,
+    "diagonalReach": 0.66,
+    "coreRadius": 0.17,
+    "supersampling": 4
+  },
+  "hashes": {
+    "foil": "fd56044393d5665914d51bcfed6bca4202a8b6c3b6d3e491da5236cccd67590a",
+    "foilControls": "f9bb2dfb51dd1cc21565e7889a4077252cea93954a6a8109ed22fb4fcc934692",
+    "motif": "1c065efa42e3f8e8f5e02aca4d532e8bdc4b42e56d2eac01180d48caec974c08",
+    "secondaryFoil": "283f1da532a71dc10fcd0fc23d525c8dbd01bdf6faef8dda2361e5fa2ede24ac",
+    "secondaryMotif": "94831220e72085c336f7f31b71b1e2c38345dbd359a658e86f985dade5afb197"
+  },
+  "normalGeneration": false,
+  "existingOpticsChanged": false,
+  "referenceStatus": "single-photo; moving physical reference desired"
+}

@@ -20,6 +20,7 @@ import { ballReverseReflection } from './layers/BallReverseLayer';
 import { ultraRareReflection } from './layers/UltraRareLayer';
 import { specialIllustrationReflection } from './layers/SpecialIllustrationLayer';
 import { megaReverseReflection } from './layers/MegaReverseLayer';
+import { pureGoldReflection } from './layers/PureGoldLayer';
 import { radialStructure, gratingDirection } from './layers/PatternLayer';
 import { glints } from './layers/GlintLayer';
 import { crossedFacets } from './layers/CrossedFacetLayer';
@@ -96,6 +97,14 @@ class HolographicLightingModel extends PhysicalLightingModel {
       const filterGain = filterAuthored ? u.normalFiltering.max(1) : u.normalFiltering;
       const mipVariance = filterAuthored ? region.normalMipVariance! : float(0);
       const light = mix(data.lightDirection as Node<'vec3'>, inspection.sweepDirection, inspection.holoSweep).normalize();
+      if (u.pureGold) {
+        const n = normalViewGeometry as unknown as Node<'vec3'>;
+        const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
+        const reflected = pureGoldReflection(light, positionViewDirection, tangentView, b, n, region.field, u, footprint);
+        (data.reflectedLight.directSpecular as Node<'vec3'>).addAssign(reflected.mul(
+          region.pattern, region.coverage, data.lightColor as Node<'vec3'>));
+        return;
+      }
       if (u.megaReverse) {
         const n = normalViewGeometry as unknown as Node<'vec3'>;
         const b = n.cross(tangentView).mul(tangentGeometry.w).normalize();
@@ -679,7 +688,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
     // Omit only mathematically inactive branches. Live profile/Lab edits that
     // enable a mechanism invalidate the graph; active mechanisms keep all math.
     return `tcgl:${+this.optics.tcglFlatSilver}:` + [this.optics, this.secondaryOptics, this.stampOptics].map(u =>
-      [u.pokemonBreak, u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
+      [u.pureGold, u.pokemonBreak, u.facetCoupling.value > 0, u.gridStrength.value !== 0, u.imageHologram.value > 0,
           u.crossing.value > 0, u.glintStrength.value !== 0, u.microdiamondGlints, u.metallicGrain, u.spectralGrain, u.foilFlakes, u.secretCuts, u.illustrationRare, u.softIllustration, u.doubleRare, u.sunPillar, u.radiant, u.celebrationPikachu, u.celebrationClassic, u.ballReverse, u.blackWhiteRare, u.ultraRare, u.specialIllustration, u.megaReverse,
           u.fieldBlend.value === 0, u.fieldBlend.value === 1, u.engraving.value !== 0,
           u.patternedSilver.value !== 0, u.sheen.value !== 0, u.inkTransmission.value !== 0,

@@ -5,7 +5,7 @@ import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
 import { AssetManager } from '../assets/AssetManager';
 import { doubleRareProfile } from '../materials/profiles/doubleRare';
 import { pokemon151SirMicrograin } from '../materials/profiles/pokemon151SirSettings';
-import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, SRGBColorSpace, type PerspectiveCamera, type Scene } from 'three/webgpu';
+import { DataArrayTexture, DataTexture, FloatType, RGBAFormat, NearestFilter, DynamicDrawUsage, Group, InstancedMesh, LinearFilter, Object3D, SRGBColorSpace, type Matrix4, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { ULTRA_RARE_FULL_RES_GALLERY, PREVIEW_BYTES, PREVIEW_ARRAY_SIZES, type CardPreview } from '../card/CardPreviewPreparation';
 import { PREVIEW_PARAMETER_COLUMNS } from '../card/PreviewOptics';
@@ -20,14 +20,9 @@ interface GeometryBatch { face: ReturnType<typeof createGalleryCardGeometry>; ed
  * only mechanisms used by their cards, avoiding costly unused optical kernels.
  * Array layers update independently; scrolling never uploads the whole atlas. */
 export class GalleryRenderer {
-  readonly capacity = GALLERY_CAPACITY;
-  private arrays = PREVIEW_ARRAY_SIZES.map(([width, height]) => {
-    const texture = new DataArrayTexture(new Uint8Array(width * height * 4 * GALLERY_CAPACITY), width, height, GALLERY_CAPACITY);
-    texture.minFilter = texture.magFilter = LinearFilter; texture.generateMipmaps = false; texture.needsUpdate = true;
-    return texture;
-  });
+  private arrays: DataArrayTexture[];
   readonly mesh = new Group();
-  private parameterTexture = new DataTexture(new Float32Array(PREVIEW_PARAMETER_COLUMNS * 4 * GALLERY_CAPACITY), PREVIEW_PARAMETER_COLUMNS, GALLERY_CAPACITY, RGBAFormat, FloatType);
+  private parameterTexture: DataTexture;
   private geometries = new Map<string, GeometryBatch>();
   private edge = createEdgeMaterial(undefined, undefined, .032 / 8.8, 8.8);
   private batches = new Map<string, Batch>();
@@ -41,7 +36,13 @@ export class GalleryRenderer {
   private visible = new Set<number>();
   private drawn = new Set<InstancedMesh>();
   uploads = 0;
-  constructor(scene: Scene, private compile: (mesh: Object3D) => Promise<void>) {
+  constructor(scene: Scene, private compile: (mesh: Object3D) => Promise<void>, readonly capacity = GALLERY_CAPACITY) {
+    this.arrays = PREVIEW_ARRAY_SIZES.map(([width, height]) => {
+    const texture = new DataArrayTexture(new Uint8Array(width * height * 4 * this.capacity), width, height, this.capacity);
+    texture.minFilter = texture.magFilter = LinearFilter; texture.generateMipmaps = false; texture.needsUpdate = true;
+    return texture;
+  });
+    this.parameterTexture = new DataTexture(new Float32Array(PREVIEW_PARAMETER_COLUMNS * 4 * this.capacity), PREVIEW_PARAMETER_COLUMNS, this.capacity, RGBAFormat, FloatType);
     this.arrays[0].colorSpace = SRGBColorSpace;
     this.parameterTexture.minFilter = this.parameterTexture.magFilter = NearestFilter;
     this.parameterTexture.needsUpdate = true;
@@ -172,9 +173,13 @@ export class GalleryRenderer {
     const scale = 2 * camera.position.z * Math.tan(camera.fov * Math.PI / 360) / viewportHeight;
     this.transform.position.set((x - viewportWidth / 2) * scale, (viewportHeight / 2 - y) * scale, 0);
     this.transform.rotation.set(pitch, yaw, 0); this.transform.scale.set(width * scale, height * scale, height * scale); this.transform.updateMatrix();
+    this.placeMatrix(slot, this.transform.matrix);
+  }
+  /** Place an existing preview on a physical surface without screen projection. */
+  placeMatrix(slot: number, matrix: Matrix4) {
     const batch = this.slots.get(slot)!;
     for (const mesh of [batch.mesh, batch.edge]) {
-      mesh.setMatrixAt(slot, this.transform.matrix); mesh.count = Math.max(mesh.count, slot + 1);
+      mesh.setMatrixAt(slot, matrix); mesh.count = Math.max(mesh.count, slot + 1);
       mesh.visible = true; mesh.instanceMatrix.needsUpdate = true; this.drawn.add(mesh);
     }
     this.visible.add(slot);

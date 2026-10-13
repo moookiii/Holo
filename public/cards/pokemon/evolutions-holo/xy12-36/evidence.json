@@ -1,0 +1,480 @@
+{
+  "cardId": "xy12-36",
+  "name": "Raichu",
+  "tcglCardId": "xy12_36",
+  "tcglVariantId": "Raichu_xy12_36_std_RareHolo_Galaxy_Holo",
+  "profile": "pokemon-evolutions-holo",
+  "coordinateDimensions": [
+    600,
+    825
+  ],
+  "outputDimensions": [
+    1200,
+    1650
+  ],
+  "registration": {
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "dimensions": [
+      733,
+      1024
+    ],
+    "verticalFlip": false,
+    "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
+  },
+  "maps": {
+    "foil": "/cards/pokemon/evolutions-holo/xy12-36/foil.png",
+    "foilControls": "/cards/pokemon/evolutions-holo/xy12-36/foil-controls.png",
+    "motif": "/cards/pokemon/evolutions-holo/xy12-36/dots.png",
+    "secondaryFoil": "/cards/pokemon/evolutions-holo/xy12-36/star-foil.png",
+    "secondaryMotif": "/cards/pokemon/evolutions-holo/xy12-36/stars.png"
+  },
+  "artworkCoverageBoundsPixels": [
+    134,
+    234,
+    1060,
+    872
+  ],
+  "sourceEvidence": "/cards/pokemon/tcgl-xy/xy12_36/evidence.json",
+  "window": {
+    "fullFrontBounds": [
+      67,
+      117,
+      530,
+      436
+    ],
+    "png": "/cards/pokemon/evolutions-holo/xy12-36/window.png",
+    "sha256": "c59155b7b903182b54d57a6a6676a08975bb3b622e705edd2c8b16d5cab47edd",
+    "review": "Inner artwork rails compared on all thirteen unchanged clean fronts; native subject/opaque exclusions preserved within the window."
+  },
+  "preservedSources": {
+    "front": {
+      "path": "public/cards/pokemon/tcgl-xy/shared/front-5abdd5e6f1391f3b73e0a932.png",
+      "sha256": "82261802017e4ed1e5dd92f5af07b7c534af9e476189d01fb24c0c396b2d51bb"
+    },
+    "originalFront": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_36/original-front.png",
+      "sha256": "023e0f3e2f604f60123eb5e6da68cdd1a0b6064242e2b3d6f55fadba63855f06"
+    },
+    "originalFoil": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_36/original-foil.png",
+      "sha256": "575049539813a993675def7fa403c994d75bf50cf76f9460cb7e4c6bcfce81a3"
+    }
+  },
+  "physicalReference": {
+    "cardId": "xy12-36",
+    "name": "Raichu",
+    "page": "https://www.ebay.com/itm/197982818780",
+    "url": "https://i.ebayimg.com/images/g/ybEAAOSwQGdn0Zse/s-l1200.png",
+    "file": "research/evolutions/xy12-36/physical.jpg",
+    "dimensions": [
+      932,
+      1200
+    ],
+    "sha256": "8f9e522a3e3bbecf26d45f717d4b72a8f7843e5240970eeec82374003b047f9a",
+    "limitations": "One seller photo of the exact English printing; copy-specific placements, no measured angular response or unseen motif inference.",
+    "registration": {
+      "coordinateDimensions": [
+        600,
+        825
+      ],
+      "master": "public/cards/pokemon/tcgl-xy/shared/front-5abdd5e6f1391f3b73e0a932.png",
+      "masterToPhoto": [
+        [
+          1.307822372732745,
+          0.05612219276790929,
+          58.01590593503803
+        ],
+        [
+          -0.02252972313509815,
+          1.407748178236093,
+          75.75457813184805
+        ],
+        [
+          -4.5028085838942355e-05,
+          0.00011287050756106419,
+          1.0
+        ]
+      ],
+      "inliers": 374,
+      "medianPhotoReprojectionError": 1.1087456941604614,
+      "method": "SIFT on printed title/rules; RANSAC projective registration, manually reviewed artwork alignment; no motif detection."
+    }
+  },
+  "placementMethod": "Hand-entered centers and outer radii from each projectively registered physical photograph. No RNG, blob proposals or repeated layout. Dots are complete filled disks; clipping belongs to the printing plate, not the motif.",
+  "dots": [
+    [
+      251,
+      121,
+      3
+    ],
+    [
+      277,
+      142,
+      2.5
+    ],
+    [
+      348,
+      122,
+      4
+    ],
+    [
+      367,
+      144,
+      3
+    ],
+    [
+      400,
+      143,
+      3
+    ],
+    [
+      475,
+      124,
+      5
+    ],
+    [
+      484,
+      125,
+      4
+    ],
+    [
+      448,
+      205,
+      4.5
+    ],
+    [
+      458,
+      238,
+      4
+    ],
+    [
+      399,
+      253,
+      5
+    ],
+    [
+      409,
+      304,
+      4
+    ],
+    [
+      154,
+      407,
+      5
+    ],
+    [
+      191,
+      177,
+      3.5
+    ],
+    [
+      188,
+      220,
+      2.5
+    ],
+    [
+      510,
+      371,
+      4
+    ],
+    [
+      448,
+      365,
+      5
+    ],
+    [
+      507,
+      385,
+      3.5
+    ],
+    [
+      512,
+      431,
+      3
+    ]
+  ],
+  "stars": [
+    [
+      226,
+      144,
+      16,
+      16,
+      8
+    ],
+    [
+      471,
+      145,
+      19,
+      18,
+      8
+    ],
+    [
+      516,
+      137,
+      10,
+      13,
+      8
+    ],
+    [
+      318,
+      171,
+      14,
+      12,
+      8
+    ],
+    [
+      258,
+      136,
+      11,
+      13,
+      4
+    ],
+    [
+      332,
+      147,
+      10,
+      10,
+      4
+    ],
+    [
+      378,
+      144,
+      9,
+      11,
+      8
+    ],
+    [
+      422,
+      155,
+      10,
+      12,
+      8
+    ],
+    [
+      474,
+      205,
+      14,
+      22,
+      8
+    ],
+    [
+      498,
+      228,
+      10,
+      12,
+      8
+    ],
+    [
+      435,
+      221,
+      11,
+      12,
+      8
+    ],
+    [
+      483,
+      269,
+      10,
+      11,
+      4
+    ],
+    [
+      506,
+      280,
+      11,
+      12,
+      4
+    ],
+    [
+      216,
+      207,
+      9,
+      14,
+      8
+    ],
+    [
+      201,
+      255,
+      10,
+      12,
+      4
+    ],
+    [
+      225,
+      273,
+      11,
+      17,
+      8
+    ],
+    [
+      133,
+      211,
+      7,
+      10,
+      8
+    ],
+    [
+      152,
+      260,
+      8,
+      10,
+      8
+    ],
+    [
+      157,
+      221,
+      8,
+      10,
+      8
+    ],
+    [
+      196,
+      218,
+      10,
+      10,
+      8
+    ],
+    [
+      132,
+      307,
+      12,
+      11,
+      8
+    ],
+    [
+      177,
+      310,
+      15,
+      14,
+      8
+    ],
+    [
+      105,
+      306,
+      15,
+      17,
+      8
+    ],
+    [
+      99,
+      355,
+      12,
+      11,
+      8
+    ],
+    [
+      410,
+      335,
+      14,
+      12,
+      8
+    ],
+    [
+      400,
+      307,
+      14,
+      12,
+      8
+    ],
+    [
+      433,
+      323,
+      12,
+      12,
+      4
+    ],
+    [
+      450,
+      281,
+      12,
+      15,
+      8
+    ],
+    [
+      481,
+      346,
+      10,
+      12,
+      8
+    ],
+    [
+      509,
+      349,
+      12,
+      13,
+      8
+    ],
+    [
+      492,
+      402,
+      10,
+      13,
+      4
+    ],
+    [
+      302,
+      405,
+      17,
+      19,
+      8
+    ],
+    [
+      278,
+      367,
+      12,
+      12,
+      4
+    ],
+    [
+      346,
+      365,
+      11,
+      13,
+      8
+    ],
+    [
+      352,
+      410,
+      17,
+      19,
+      8
+    ],
+    [
+      101,
+      412,
+      12,
+      12,
+      8
+    ],
+    [
+      492,
+      429,
+      12,
+      14,
+      8
+    ]
+  ],
+  "uncertainty": "Pale upper-left bokeh is printed artwork. It is excluded from registration; references improved by choosing a copy with resolved foil across more of the window.",
+  "starShape": {
+    "basis": "scripts/wotc/create-star-maps.py",
+    "armWidth": 0.12,
+    "diagonalReach": 0.66,
+    "coreRadius": 0.17,
+    "supersampling": 4
+  },
+  "hashes": {
+    "foil": "b18e8b34dd116d12a2be4e7b4f6c499fc4ab0397c348643e211c0031ccbf2b74",
+    "foilControls": "54f18ee49134b88cd29cad98d474f275dcd8cec460676d23318837cedb0dec3b",
+    "motif": "68dc068ccf875dcc0fa2a1f550cde5b216f7254e70bd38d14cba559cc3f52429",
+    "secondaryFoil": "7c10d9ade2452af3ebf7c9db2c555c1ccbc8f417728116cd42b4406cbd1a5cb4",
+    "secondaryMotif": "11e4e9ebe01c7e1b32a445a0c698079a4eda37811aa5b140cd0599f6d1ca71ef"
+  },
+  "normalGeneration": false,
+  "existingOpticsChanged": false,
+  "referenceStatus": "single-photo; moving physical reference desired"
+}

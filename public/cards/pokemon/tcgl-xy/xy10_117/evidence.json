@@ -345,10 +345,16 @@
       "sha256": "3708dbbc8f6b602f011ca49d75fc3f73693de99049d953e5a9ae5b46b598baf7"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "XY textured Full Art EX/Mega/Trainer",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-xy/xy10_117/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-xy/xy10_117/foil-controls.png",
+    "roughness": "/cards/pokemon/tcgl-xy/shared/smooth-roughness.png",
+    "normal": "/cards/pokemon/tcgl-xy/xy10_117/normal.png",
+    "protection": "/cards/pokemon/tcgl-xy/xy10_117/protection.png"
+  },
+  "profile": "prismatic_sir_texture",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -363,7 +369,43 @@
     "verticalFlip": false,
     "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
   },
-  "normalGeneration": false,
+  "normalGeneration": true,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass."
+  "limitations": "Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries.",
+  "normalSource": {
+    "tcglCardId": "xy10_117",
+    "tcglVariantId": "AlakazamEX_xy10_117_std_RareUltra_Rainbow_Etched",
+    "source": "public/cards/pokemon/tcgl-xy/xy10_117/original-etch.png",
+    "pairedFront": "public/cards/pokemon/tcgl-xy/xy10_117/original-front.png",
+    "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/xy10_en_117",
+    "sourceDimensions": [
+      1024,
+      1024
+    ],
+    "cardUvDimensions": [
+      733,
+      1024
+    ],
+    "outputDimensions": [
+      1800,
+      2475
+    ],
+    "sourceSha256": "3708dbbc8f6b602f011ca49d75fc3f73693de99049d953e5a9ae5b46b598baf7",
+    "frontSha256": "e52f2c943af6321c52805e4b4fe902786a6f3df9a7550e6eae413b1ef143f410",
+    "foilSha256": "60cc8f73dbcbe2011b045f31218484938d54cce68af35cf9862ed58ceb4e3415",
+    "normalSha256": "de2973ac36b0be453c19fad1000a5d9db232e567d23ebad38cd6762854693cca",
+    "protectionSha256": "3c82b9495b66ae4074e13b1e4a87106b3ee2de78d5c17c776cf385d59b056d8f",
+    "uvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "polarity": "inverted luminance; white strokes recess",
+    "verticalFlip": false,
+    "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+    "embossStrength": 0,
+    "runtimeGeneration": false,
+    "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+  }
 }

@@ -120,7 +120,7 @@ export interface CardDefinition {
   /** Selects the authored primary mask before packing; other optical regions stay independent. */
   coverageMode?: 'artwork' | 'reverse';
   profileOverrides?: CardProfileOverrides;
-  mapSettings?: { roughnessMode?: 'profile' | 'absolute' | 'offset'; embossStrength?: number; normalScale?: number; };
+  mapSettings?: { roughnessMode?: 'profile' | 'absolute' | 'offset'; embossStrength?: number; normalScale?: number; embossMaskFromNormalAlpha?: boolean; };
   /** Local file imports are retained only for the current browser session. */
   imported?: boolean;
   /** Optional reconstruction of unprinted foil beneath a scan with baked highlights. Linear RGB. */

@@ -9,6 +9,8 @@ import { collatePokemon } from '../src/pokemon/collator.ts';
 import type { PrintVariant } from '../src/pokemon/types.ts';
 import { GalleryQueryIndex, compareGallerySetNames } from '../src/gallery/GalleryQuery.ts';
 import { GalleryFavorites } from '../src/gallery/GalleryFavorites.ts';
+import { evolutionsSurface } from '../src/pokemon/EvolutionsSurfaces.ts';
+import { generationsSurface } from '../src/pokemon/GenerationsSurfaces.ts';
 const cards = svTcglCards.filter(c => c.seriesId === 'xy');
 
 test('gallery preserves every XY printing and favorites retain exact variant IDs', () => {
@@ -26,7 +28,8 @@ test('all 3416 exact XY source variants remain selectable with their own assets'
   assert.equal(index.length, 3416);
   assert.equal(new Set(index.map((p: any) => p.tcglCardId)).size, 3416);
   assert.equal(new Set(tcglXySurfaces.map(s => `${s.cardId}:${s.variant}`)).size, 3416);
-  for (const s of tcglXySurfaces) {
+  for (const raw of tcglXySurfaces) {
+    const s = evolutionsSurface(generationsSurface(raw));
     const card = cards.find(c => c.id === s.cardId)!;
     assert.ok(card?.variants.includes(s.variant as PrintVariant));
     const def = svTcglDefinition(s.cardId, s.variant as PrintVariant);
@@ -41,7 +44,32 @@ test('all 3416 exact XY source variants remain selectable with their own assets'
       assert.equal(def.pokemon?.treatmentStatus, 'deferred');
       assert.deepEqual(def.maps, {});
       assert.match(def.number, /finish pending/);
-    } else if (s.variant !== 'normal') assert.ok(def.maps?.foilControls);
+    } else if (s.variant !== 'normal' && !s.cardId.startsWith('xy9-5r-')) assert.ok(def.maps?.foilControls);
+  }
+});
+
+test('XY supported finish families use exact printing maps and authored etch normals', () => {
+  const etched = tcglXySurfaces.filter(s => s.originalAssets.etch);
+  assert.equal(etched.length, 148);
+  for (const s of etched) {
+    const def = svTcglDefinition(s.cardId, s.variant as PrintVariant);
+    assert.ok(['prismatic_sir_texture', 'prismatic_gold'].includes(def.profile));
+    assert.ok(def.maps?.normal?.endsWith('/normal.png'));
+    assert.equal(def.mapSettings?.normalScale, 1);
+    assert.equal(def.mapSettings?.embossStrength, 0);
+    assert.equal(def.mapSettings?.embossMaskFromNormalAlpha, false);
+    assert.ok(existsSync('public' + def.maps!.normal!));
+  }
+  const ex = tcglXySurfaces.filter(s => s.variant === 'holo' && s.tcglVariantId.includes('_RareHoloEX_') && !s.originalAssets.etch && !s.tcglCardId.startsWith('xy9-5r_'));
+  assert.ok(ex.length > 100);
+  for (const s of ex) {
+    const def = svTcglDefinition(s.cardId, s.variant as PrintVariant);
+    assert.equal(def.profile, 'pokemon-sheen');
+    assert.ok(def.maps?.foilControls);
+  }
+  for (const s of tcglXySurfaces.filter(s => s.tcglCardId.startsWith('xy12_') && s.foilType === 'Galaxy')) {
+    assert.equal(s.profile, 'print-only');
+    assert.equal(s.treatmentStatus, 'deferred');
   }
 });
 

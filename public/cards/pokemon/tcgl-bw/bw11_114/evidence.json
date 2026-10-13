@@ -350,9 +350,10 @@
     "foilControls": "/cards/pokemon/tcgl-bw/bw11_114/foil-controls.png",
     "normal": "/cards/pokemon/tcgl-bw/bw11_114/normal.png",
     "protection": "/cards/pokemon/tcgl-bw/bw11_114/protection.png",
-    "roughness": "/cards/pokemon/tcgl-bw/bw11_114/roughness.png"
+    "roughness": "/cards/pokemon/tcgl-bw/bw11_114/roughness.png",
+    "direction": "/cards/pokemon/tcgl-bw/bw11_114/gold-direction.png"
   },
-  "profile": "prismatic_sir_texture",
+  "profile": "pure-gold",
   "treatmentStatus": "existing-material",
   "deferredEffect": null,
   "registration": {
@@ -371,7 +372,7 @@
   },
   "normalGeneration": true,
   "shaderChanges": false,
-  "limitations": "Exact English TCGL SolidColor etch, own glyph protection and whiteplate body weighting; restrained Sylveon/Espeon single normal response with gold absorption. Japanese reference guides appearance, no copied line geometry.",
+  "limitations": "Exact English TCGL SolidColor etch and print boundaries preserved unchanged. Pure-gold directional reflection requested by the user replaces spectral diffraction. Reflection axes inferred from own die; angular widths estimated from supplied Japanese photo, not measured physical BRDF or depth.",
   "originalMaterial": {
     "m_GameObject": {
       "m_FileID": 0,
@@ -397,9 +398,11 @@
     "_options": 0
   },
   "physicalFinishReview": {
-    "activeEtch": "No authored normal response",
-    "evidence": "docs/bw-finish-research.md",
-    "remainingUncertainty": "Original TCGL coverage is exact; physical intensity and angular comparison are reviewed on representative families, not every physical copy."
+    "activeEtch": "Existing exact English TCGL etch converted offline with Sylveon/Espeon Scharr gain 1.03; authored normal scale 1, emboss 0.",
+    "evidence": "docs/pure-gold.md",
+    "reference": "User supplied Japanese EX Battle Boost Reshiram 094/093 and Zekrom 095/093 photograph; finish only.",
+    "captures": "artifacts/pure-gold/webgpu and artifacts/pure-gold/webgl",
+    "remainingUncertainty": "Reference is Japanese stock in a slab under uncontrolled lighting. English angular intensity and absolute physical groove depth cannot be calibrated from that photograph."
   },
   "normalSource": {
     "conversionSchema": "holo-bw-gold-normal-v1",
@@ -440,5 +443,45 @@
     "runtimeGeneration": false,
     "physicalReference": "User supplied Japanese EX Battle Boost #94/#95 photo. Finish comparison only; English geometry and print remain exact TCGL.",
     "limitations": "Polarity follows registered white-stroke recess convention; photos cannot measure physical groove depth. Japanese and English stock differ; exact English angular calibration remains approximate."
-  }
+  },
+  "pureGoldFinish": {
+    "diffractionStrength": 0,
+    "iridescence": 0,
+    "glintStrength": 0,
+    "inkSpecular": 1,
+    "inkTransmission": 1,
+    "substrateReflection": 0.3,
+    "metalness": 0.5,
+    "laminate": 0.045,
+    "foilReflectance": 0.025,
+    "etchedInkSheen": 0.85,
+    "normalScale": 1,
+    "embossStrength": 0,
+    "roughness": "Existing own body weighting: 0.30 + 0.105 * body; no secondary region.",
+    "replaced": "Generic spectral/etched-ink optical lobe replaced by directional gold reflection. Existing height/normal and print maps unchanged.",
+    "preservedAssetHashes": {
+      "body.png": "b1a71628f6f22085fceeefa388936a6bab3223bc5421e78711041968808a9ee9",
+      "foil-controls.png": "6c0ca986f26538eddc3eedc28f3b1a23ad40fa43b638faf5ff33ae7de6a48b04",
+      "foil.png": "80af4f8e94c4f04ed015d88222edd326eef807b7cd1a80cedafd49eecebaac1b",
+      "normal.png": "d64fb1bfaeaa18e35cb250e27e073a93f436cb6cada0ba79dd52a11dea5fe94d",
+      "original-etch.png": "8d9d0c4f57ddd36ee29e5f6ac847b7377dbcef3cd28f61999363b5dffb1a8418",
+      "original-foil.png": "69dd5451c9ea87bce074d33c2ab50e95f7b791f3ab2fdeda70f0c1f9cb8fbc65",
+      "original-front.png": "7a7b31bd7cfc942a43e52ac0386c199cad71268983c35af251ae1dd8b661dc13",
+      "protection.png": "d005d5d408ee22226ede4f8399da7ef9bda38a387fa6e5d08d3995d088b76987",
+      "roughness.png": "fe1afd153a442a7aba09ac29baa1c09c9603835e2069bc17189870d928e34656"
+    },
+    "directionalReflectionWeight": 0.18,
+    "linearGoldReflectance": [
+      0.95,
+      0.76,
+      0.3
+    ],
+    "angularWidths": [
+      0.4,
+      0.075
+    ],
+    "opticalModel": "pure-gold",
+    "orientationEvidence": "/cards/pokemon/tcgl-bw/bw11_114/gold-direction-evidence.json"
+  },
+  "runtimeNormalGeneration": false
 }

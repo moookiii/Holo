@@ -288,10 +288,14 @@
       "sha256": "c891cebfb9667233dc742bf80f0c1b92f1571a98a80b2aa6a3c5a5bf646c1a82"
     }
   },
-  "maps": {},
-  "profile": "print-only",
-  "treatmentStatus": "deferred",
-  "deferredEffect": "XY regular EX and Mega EX",
+  "maps": {
+    "foil": "/cards/pokemon/tcgl-xy/xy10_83/foil.png",
+    "foilControls": "/cards/pokemon/tcgl-xy/xy10_83/foil-controls.png",
+    "roughness": "/cards/pokemon/tcgl-xy/shared/smooth-roughness.png"
+  },
+  "profile": "pokemon-sheen",
+  "treatmentStatus": "existing-material",
+  "deferredEffect": null,
   "registration": {
     "unityUvBox": [
       0.1416015625,
@@ -308,5 +312,5 @@
   },
   "normalGeneration": false,
   "shaderChanges": false,
-  "limitations": "Pending finishes use the original clean front without simulated foil. Original etch remains byte-exact for the next finish pass."
+  "limitations": "Existing optical family with this exact TCGL whiteplate, including its continuous printed motif and protection boundaries."
 }

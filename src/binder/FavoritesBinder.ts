@@ -1,15 +1,15 @@
 import './binder.css';
-import { Raycaster, Vector2, Vector3, type PerspectiveCamera, type Scene } from 'three/webgpu';
+import { Matrix4, Raycaster, Vector2, Vector3, type PerspectiveCamera, type Scene } from 'three/webgpu';
 import type { CardDefinition } from '../card/CardDefinition';
 import type { CardFactory } from '../card/CardFactory';
-import type { CardInstance } from '../card/CardInstance';
-import type { CardCpuPreparation, PreparedCardCpu } from '../card/CardCpuPreparation';
+import type { CardCpuPreparation } from '../card/CardCpuPreparation';
 import type { StudioLighting } from '../lighting/StudioLighting';
 import { galleryLightingControls } from '../gallery/GalleryLighting';
 import { BinderScene } from './BinderScene';
 import { BINDER_FINISH_STORAGE, type BinderFinish } from './BinderFinish';
 import { BINDER, BinderNavigation, binderCount, spreadFaces, spreadIndices, faceHeight } from './BinderLayout';
-import { createBinderPreview, prepareBinderFront } from './BinderCardPreview';
+import { GalleryRenderer } from '../gallery/GalleryRenderer';
+import { createBinderPreview } from './BinderCardPreview';
 
 interface Options {
   scene: Scene; camera: PerspectiveCamera; cpu: CardCpuPreparation; lighting: StudioLighting;
@@ -30,8 +30,9 @@ export class FavoritesBinder {
   private job?: Promise<void>;
   private cards: CardDefinition[] = [];
   private loaded = new Set<string>();
-  // Least recently visited first. Keep full GPU instances across page-pool reuse.
-  private cachedCards = new Map<string, CardInstance>();
+  private graphics?: GalleryRenderer;
+  private previewMatrix = new Matrix4();
+  private previewScale = new Vector3();
   private failed = new Set<string>();
   private pending = false;
   private opening = false;
@@ -151,14 +152,16 @@ export class FavoritesBinder {
     this.root.hidden = false; this.physical.group.visible = this.shellReady; this.status.textContent = '';
     this.savedCamera = { position: this.options.camera.position.clone(), far: this.options.camera.far };
     this.options.camera.far = 250; this.options.camera.updateProjectionMatrix();
-    this.factory ??= this.options.factory(); this.refreshLight(); this.reconcile(); this.queuePreparation(); this.stage.focus({ preventScroll: true });
+    this.factory ??= this.options.factory();
+    const domain = this.factory;
+    this.graphics ??= new GalleryRenderer(this.options.scene, mesh => domain.compile(mesh), BINDER.perSpread * 3);
+    this.refreshLight(); this.reconcile(); this.queuePreparation(); this.stage.focus({ preventScroll: true });
   }
   refresh(cards: CardDefinition[]) { void this.replaceCollection(cards); }
   private async replaceCollection(cards: CardDefinition[], binder?: number) {
     const revision = ++this.revision; this.pending = true; this.updateControls();
     await this.suspendPreparation();
     if (!this.active || revision !== this.revision) return;
-    this.clearCachedCards();
     this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); this.cards = cards;
     this.navigation.setCount(cards.length); if (binder !== undefined) this.navigation.selectBinder(binder);
     this.status.textContent = ''; this.pending = false; this.reconcile(); this.queuePreparation();
@@ -166,25 +169,10 @@ export class FavoritesBinder {
   async selectBinder(binder: number) { if (!this.busy()) await this.replaceCollection(this.cards, binder); }
   private reconcile() {
     const keep = new Set(this.windowSpreads().flatMap(spreadFaces));
-    for (const [face, page] of this.physical.pages) if (!keep.has(face)) {
-      for (const [slot, card] of page.cards) {
-        card.mesh.removeFromParent(); this.cachedCards.set(`${face}:${slot}`, card);
-      }
-      page.cards.clear();
-    }
     this.physical.retain(keep);
     for (const key of this.loaded) if (!keep.has(Number(key.split(':')[0]))) this.loaded.delete(key);
     for (const key of this.failed) if (!keep.has(Number(key.split(':')[0]))) this.failed.delete(key);
-    for (const face of keep) {
-      const page = this.physical.page(face);
-      for (let slot = 0; slot < BINDER.perPage; slot++) {
-        const key = `${face}:${slot}`, card = this.cachedCards.get(key);
-        if (!card) continue;
-        this.cachedCards.delete(key); page.attach(slot, card);
-        if (!card.mesh.userData.binderPreview) this.loaded.add(key);
-      }
-    }
-    this.trimCachedCards();
+    for (const face of keep) this.physical.page(face);
     const visible = new Set(spreadFaces(this.navigation.spread));
     for (const [index, page] of this.physical.pages) { page.group.visible = visible.has(index); page.pose(); }
     this.physical.stack(this.navigation.spread);
@@ -205,19 +193,6 @@ export class FavoritesBinder {
     this.selector.value = String(n.binder); this.selector.disabled = this.busy() || this.selector.options.length === 1;
     this.root.setAttribute('aria-busy', String(this.pending || this.opening));
   }
-  private trimCachedCards() {
-    // Share the existing 72-card residency ceiling with the active window.
-    // Empty pages do not evict prepared cards needed on the return journey.
-    const activeCards = [...this.physical.pages.values()].reduce((count, page) => count + page.cards.size, 0);
-    while (activeCards + this.cachedCards.size > BINDER.perSpread * 3) {
-      const key = this.cachedCards.keys().next().value;
-      if (key === undefined) break;
-      this.cachedCards.get(key)!.dispose(); this.cachedCards.delete(key);
-    }
-  }
-  private clearCachedCards() {
-    this.cachedCards.forEach(card => card.dispose()); this.cachedCards.clear();
-  }
   private queuePreparation() {
     const revision = ++this.revision; this.queuedRevision = revision; this.request?.abort();
     void (async () => {
@@ -226,101 +201,55 @@ export class FavoritesBinder {
       const request = new AbortController(), domain = this.factory; this.request = request;
       const indices = this.windowSpreads().flatMap(s => this.indices(s));
       const job = (async () => {
-        // Start only the visible printed fronts during shell compilation.
-        // Full-quality preparation must not compete with first appearance.
-        const fronts = new Map<number, Promise<ImageBitmap | undefined>>();
-        const visibleIndices = this.indices();
-        const prepareFronts = (offset: number) => {
-          for (const index of visibleIndices.slice(offset, offset + 6)) {
-            const page = this.physical.pages.get(this.face(index));
-            if (fronts.has(index) || page?.cards.has(index % 12)) continue;
-            fronts.set(index, prepareBinderFront(this.cards[index], request.signal).catch(() => undefined));
-          }
-        };
-        prepareFronts(0);
-        // Fetch/decode the next few full-quality cards while the GPU prepares
-        // this one. Keep the window bounded and in visible-spread order.
-        const preparations = new Map<number, Promise<{ value?: PreparedCardCpu; error?: unknown; failed?: true }>>();
-        const prepareAhead = (offset: number, count = 6) => {
-          if (request.signal.aborted || !this.active) return;
-          for (const index of indices.slice(offset, offset + count)) {
+        const graphics = this.graphics!;
+        // Same cached worker preparation as the gallery; never prepare viewer maps.
+        const preparations = new Map<number, ReturnType<CardCpuPreparation['preparePreview']>>();
+        const prepareAhead = (offset: number) => {
+          for (const index of indices.slice(offset, offset + 2)) {
             const key = `${this.face(index)}:${index % 12}`;
-            if (preparations.has(index) || this.loaded.has(key) || this.failed.has(key) || this.cards[index].construction) continue;
-            preparations.set(index, this.cpuReady(this.cards[index], request.signal).then(
-              value => ({ value }), error => ({ error, failed: true }),
-            ));
+            if (preparations.has(index) || this.loaded.has(key) || this.failed.has(key)) continue;
+            const promise = this.options.cpu.preparePreview(this.cards[index], request.signal);
+            void promise.catch(() => {});
+            preparations.set(index, promise);
           }
         };
-        try {
-          if (!this.shellReady) {
-            // A cold ordinary render compiles the sleeve/cover shaders
-            // synchronously, blocking image-decode completions for seconds.
-            // Compile after the open request, alongside lightweight front decoding.
-            // Capture every resident page so the first turn is prepared too.
-            const visibility = [...this.physical.pages.values()].map(page => [page, page.group.visible] as const);
-            for (const [page] of visibility) page.group.visible = true;
-            this.physical.group.visible = true;
-            const shell = domain.compile(this.physical.group);
-            this.physical.group.visible = false;
-            for (const [page, visible] of visibility) page.group.visible = visible;
-            await shell;
-            if (request.signal.aborted || !this.active) return;
-            this.shellReady = true; this.physical.group.visible = true;
-          }
-          for (const [offset, index] of visibleIndices.entries()) {
-            if (request.signal.aborted || !this.active) return;
-            prepareFronts(offset);
-            const bitmap = await fronts.get(index);
-            fronts.delete(index);
-            prepareFronts(offset + 1);
-            if (!bitmap) continue;
-            if (request.signal.aborted || !this.active) { bitmap.close(); return; }
-            const instance = createBinderPreview(this.cards[index], bitmap);
-            try {
-              await this.waitForMotion(request.signal);
-              request.signal.throwIfAborted();
-              await domain.uploadCardResources([instance], true);
-              await domain.compile(instance.mesh);
-              request.signal.throwIfAborted();
-              const page = this.physical.pages.get(this.face(index));
-              if (page) { page.attach(index % 12, instance); this.trimCachedCards(); } else instance.dispose();
-              await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
-            } catch (error) {
-              instance.dispose(); if (request.signal.aborted) return;
-              console.warn(`Binder preview ${this.cards[index].id} could not load`, error);
-            }
-          }
-        } finally {
-          for (const front of fronts.values()) void front.then(bitmap => bitmap?.close());
-        }
         prepareAhead(0);
+        if (!this.shellReady) {
+          // A cold ordinary render compiles the sleeve/cover shaders
+          // synchronously, blocking image-decode completions for seconds.
+          // Compile after the open request, alongside gallery preview preparation.
+          // Capture every resident page so the first turn is prepared too.
+          const visibility = [...this.physical.pages.values()].map(page => [page, page.group.visible] as const);
+          for (const [page] of visibility) page.group.visible = true;
+          this.physical.group.visible = true;
+          const shell = domain.compile(this.physical.group);
+          this.physical.group.visible = false;
+          for (const [page, visible] of visibility) page.group.visible = visible;
+          await shell;
+          if (request.signal.aborted || !this.active) return;
+          this.shellReady = true; this.physical.group.visible = true;
+        }
         for (const [offset, index] of indices.entries()) {
           if (request.signal.aborted || !this.active) return;
           prepareAhead(offset);
           const pageIndex = this.face(index), slot = index % 12, key = `${pageIndex}:${slot}`;
           if (this.loaded.has(key) || this.failed.has(key)) continue;
-          const card = this.cards[index]; let instance;
+          const card = this.cards[index];
           try {
-            const result = await preparations.get(index);
+            const preview = await preparations.get(index);
             preparations.delete(index);
             prepareAhead(offset + 1);
-            if (result?.failed) throw result.error;
-            const prepared = result?.value;
             await this.waitForMotion(request.signal);
-            if (request.signal.aborted) return;
-            instance = prepared ? await domain.realizeCardGpu(prepared, request.signal, false) : await domain.create(card, request.signal, false);
-            await domain.uploadCardResources([instance], true, () => !request.signal.aborted && this.motionActive());
-            await this.waitForMotion(request.signal);
-            if (request.signal.aborted) { instance.dispose(); return; }
-            await domain.compile(instance.mesh);
-            await this.waitForMotion(request.signal);
-            if (request.signal.aborted || !this.active) { instance.dispose(); return; }
+            if (request.signal.aborted || !preview) return;
+            const atlasSlot = index % graphics.capacity;
+            await graphics.upload(atlasSlot, preview);
+            if (request.signal.aborted || !this.active) return;
             const page = this.physical.pages.get(pageIndex);
-            if (!page) { instance.dispose(); continue; }
-            page.attach(slot, instance); this.loaded.add(key); this.trimCachedCards();
+            if (!page) continue;
+            page.attach(slot, createBinderPreview(card, atlasSlot)); this.loaded.add(key);
             await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
           } catch (error) {
-            instance?.dispose(); if (request.signal.aborted) return;
+            if (request.signal.aborted) return;
             this.failed.add(key); console.warn(`Binder card ${card.id} could not load`, error);
             this.status.textContent = `${card.title} could not load. Reopen Favorites to retry.`;
           }
@@ -333,23 +262,6 @@ export class FavoritesBinder {
   private motionActive() { return !!this.navigation.turn || !!this.drag?.moved; }
   private async waitForMotion(signal: AbortSignal) {
     while (!signal.aborted && this.active && this.motionActive()) await new Promise<void>(resolve => requestAnimationFrame(() => resolve()));
-  }
-  private async cpuReady(card: CardDefinition, signal: AbortSignal) {
-    let cancel!: () => void;
-    const aborted = new Promise<never>((_, reject) => { cancel = () => reject(signal.reason); signal.addEventListener('abort', cancel, { once: true }); });
-    try {
-      // A previous spread can leave a shared CPU promise completing its abort.
-      // Its cache entry is removed on rejection; retry with this live request
-      // instead of permanently marking the card as a failed page slot.
-      for (let attempt = 0; ; attempt++) {
-        signal.throwIfAborted();
-        try { return await Promise.race([this.options.cpu.prepare(card, signal), aborted]); }
-        catch (error) {
-          if (signal.aborted || attempt >= 1 || !(error instanceof DOMException) || error.name !== 'AbortError') throw error;
-        }
-      }
-    }
-    finally { signal.removeEventListener('abort', cancel); }
   }
   turn(direction: -1 | 1) { if (this.active && !this.busy() && this.navigation.begin(direction)) this.updateControls(); }
   private async inspect(id: string) {
@@ -373,8 +285,9 @@ export class FavoritesBinder {
     this.shellReady = false;
     this.restoreLighting(); this.active = false; this.root.hidden = true; this.physical.group.visible = false;
     this.request?.abort(); this.queuedRevision = -1; this.revision++; this.drag = undefined;
-    const domain = this.factory; this.factory = undefined;
-    const release = () => { this.clearCachedCards(); this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
+    const domain = this.factory, graphics = this.graphics; this.factory = undefined; this.graphics = undefined;
+    if (graphics) graphics.mesh.visible = false;
+    const release = () => { graphics?.dispose(); this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
     if (this.job) void this.job.finally(release); else release();
     this.navigation.turn = undefined;
     if (this.savedCamera) { this.options.camera.position.copy(this.savedCamera.position); this.options.camera.far = this.savedCamera.far; this.options.camera.updateProjectionMatrix(); this.savedCamera = undefined; }
@@ -408,6 +321,19 @@ export class FavoritesBinder {
       if (!this.navigation.turn) { this.reconcile(); this.queuePreparation(); }
     }
     this.physical.group.updateMatrixWorld(true);
+    const graphics = this.graphics;
+    if (graphics) {
+      graphics.hideAll();
+      for (const page of this.physical.pages.values()) if (page.group.visible) {
+        for (const card of page.cards.values()) {
+          const d = card.definition.dimensions;
+          this.previewScale.set(d.width, d.height, d.height);
+          this.previewMatrix.copy(card.mesh.matrixWorld).scale(this.previewScale);
+          graphics.placeMatrix(card.mesh.userData.previewSlot, this.previewMatrix);
+        }
+      }
+      graphics.mesh.visible = this.physical.group.visible && graphics.stats().visible > 0;
+    }
     if (!this.navigation.turn) {
       const stage = this.stage.getBoundingClientRect();
       for (const i of this.indices()) {
@@ -429,10 +355,10 @@ export class FavoritesBinder {
       physicalSheets: 20, leftStack: this.navigation.spread, rightStack: 20 - this.navigation.spread,
       spread: this.navigation.spread, spreads: 21, turning: !!this.navigation.turn, dragging: !!this.navigation.turn?.dragging,
       turnProgress: this.navigation.turn?.progress ?? 0, preparing: this.pending, active: this.active, filtered: this.cards.length,
-      visible: ready, fullQualityReady: this.indices().filter(index => this.loaded.has(`${this.face(index)}:${index % 12}`)).length, visibleExpected: this.indices().length, visibleFailed: [...this.failed].filter(key => faces.has(Number(key.split(':')[0]))).length,
-      residentCards: [...this.physical.pages.values()].reduce((count, page) => count + page.cards.size, this.cachedCards.size), cachedCards: this.cachedCards.size, residentPages: this.physical.pages.size, pending: Number(!!this.job),
+      visible: ready, fullQualityReady: 0, previewReady: ready, visibleExpected: this.indices().length, visibleFailed: [...this.failed].filter(key => faces.has(Number(key.split(':')[0]))).length,
+      residentCards: [...this.physical.pages.values()].reduce((count, page) => count + page.cards.size, 0), cachedCards: 0, residentPages: this.physical.pages.size, pending: Number(!!this.job),
       neighborsReady: this.windowSpreads().every(s => this.indices(s).every(i => this.loaded.has(`${this.face(i)}:${i % 12}`))),
-      residentGpuBytes: this.factory?.retainedBytes(), domCards: this.buttons.size, factory: this.factory?.stats() };
+      residentGpuBytes: (this.factory?.retainedBytes() ?? 0) + (this.graphics?.stats().gpuAllocatedBytes ?? 0), previewRenderer: this.graphics?.stats(), domCards: this.buttons.size, factory: this.factory?.stats() };
   }
   dispose() { this.hide(); this.abort.abort(); this.root.remove(); if (this.job) void this.job.finally(() => this.physical.dispose()); else this.physical.dispose(); }
 }

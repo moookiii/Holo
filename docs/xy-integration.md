@@ -4,26 +4,26 @@ All 3,416 acquired English TCGL finish records are registered across 18 chronolo
 
 | Collection | Cards | Variants | Active foil | Native nonfoil | Pending | Boosters / designs |
 |---|---:|---:|---:|---:|---:|---|
-| XY Black Star Promos (xybsp) | 211 | 211 | 53 | 10 | 148 | browse only |
+| XY Black Star Promos (xybsp) | 211 | 211 | 119 | 10 | 82 | browse only |
 | Kalos Starter Set (xy0) | 39 | 39 | 0 | 39 | 0 | browse only |
-| XY alternate and special printings (xyalt) | 200 | 200 | 100 | 51 | 49 | browse only |
-| XY Base Set (xy1) | 146 | 269 | 139 | 116 | 14 | 10 cards / 4 |
-| Flashfire (xy2) | 109 | 200 | 99 | 83 | 18 | 10 cards / 4 |
-| Furious Fists (xy3) | 113 | 210 | 106 | 88 | 16 | 10 cards / 4 |
-| Phantom Forces (xy4) | 122 | 224 | 116 | 90 | 18 | 10 cards / 4 |
-| Primal Clash (xy5) | 164 | 296 | 150 | 114 | 32 | 10 cards / 4 |
-| Double Crisis (xy5-5) | 34 | 66 | 38 | 26 | 2 | 7 cards / 2 |
-| Roaring Skies (xy6) | 110 | 196 | 96 | 76 | 24 | 10 cards / 4 |
-| Ancient Origins (xy7) | 100 | 172 | 80 | 64 | 28 | 10 cards / 4 |
-| BREAKthrough (xy8) | 164 | 302 | 154 | 122 | 26 | 10 cards / 4 |
-| BREAKpoint (xy9) | 123 | 220 | 104 | 90 | 26 | 10 cards / 4 |
-| Generations (xy9-5) | 83 | 152 | 74 | 64 | 14 | 10 cards / 4 |
+| XY alternate and special printings (xyalt) | 200 | 200 | 122 | 51 | 27 | browse only |
+| XY Base Set (xy1) | 146 | 269 | 153 | 116 | 0 | 10 cards / 4 |
+| Flashfire (xy2) | 109 | 200 | 117 | 83 | 0 | 10 cards / 4 |
+| Furious Fists (xy3) | 113 | 210 | 122 | 88 | 0 | 10 cards / 4 |
+| Phantom Forces (xy4) | 122 | 224 | 134 | 90 | 0 | 10 cards / 4 |
+| Primal Clash (xy5) | 164 | 296 | 182 | 114 | 0 | 10 cards / 4 |
+| Double Crisis (xy5-5) | 34 | 66 | 40 | 26 | 0 | 7 cards / 2 |
+| Roaring Skies (xy6) | 110 | 196 | 120 | 76 | 0 | 10 cards / 4 |
+| Ancient Origins (xy7) | 100 | 172 | 108 | 64 | 0 | 10 cards / 4 |
+| BREAKthrough (xy8) | 164 | 302 | 174 | 122 | 6 | 10 cards / 4 |
+| BREAKpoint (xy9) | 123 | 220 | 125 | 90 | 5 | 10 cards / 4 |
+| Generations (xy9-5) | 83 | 152 | 88 | 64 | 0 | 10 cards / 4 |
 | Generations Radiant Collection (xy9-5r) | 32 | 32 | 0 | 0 | 32 | browse only |
-| Fates Collide (xy10) | 125 | 222 | 102 | 92 | 28 | 10 cards / 4 |
-| Steam Siege (xy11) | 116 | 209 | 97 | 84 | 28 | 10 cards / 4 |
-| Evolutions (xy12) | 113 | 196 | 83 | 75 | 38 | 10 cards / 4 |
+| Fates Collide (xy10) | 125 | 222 | 125 | 92 | 5 | 10 cards / 4 |
+| Steam Siege (xy11) | 116 | 209 | 113 | 84 | 12 | 10 cards / 4 |
+| Evolutions (xy12) | 113 | 196 | 104 | 75 | 17 | 10 cards / 4 |
 
-Existing profiles: print-only: 1825, swsh-reverse-energy: 1307, pokemon-sheen: 223, pokemon-tinsel: 6, pokemon-crosshatch: 31, pokemon-cracked-ice: 24.
+Existing profiles: print-only: 1470, swsh-reverse-energy: 1307, pokemon-sheen: 430, prismatic_sir_texture: 140, prismatic_gold: 8, pokemon-tinsel: 6, pokemon-crosshatch: 31, pokemon-cracked-ice: 24.
 
 ## Finish handoff
 
@@ -37,30 +37,6 @@ Example: **Delphox BREAK**, xy10 #14. Exact variant: `DelphoxBREAK_xy10_14_std_B
 
 Original maps: [front](../public/cards/pokemon/tcgl-xy/xy10_14/original-front.png), [foil](../public/cards/pokemon/tcgl-xy/xy10_14/original-foil.png).
 
-### XY regular EX and Mega EX — 207 variants
-
-Mixed smooth EX foil, printed subject, silver/gold trim and Mega title regions. Generic whole-card Sheen does not establish those independently responding regions.
-
-Example: **Glaceon-EX**, xy10 #20. Exact variant: `GlaceonEX_xy10_20_std_RareHoloEX_Rainbow_Holo`.
-
-Original maps: [front](../public/cards/pokemon/tcgl-xy/xy10_20/original-front.png), [foil](../public/cards/pokemon/tcgl-xy/xy10_20/original-foil.png).
-
-### XY textured Full Art EX/Mega/Trainer — 128 variants
-
-Exact etch exists. Sylveon/Espeon conversion is available, but compatibility of that finish response with XY body/background/trim zones is not established. Review/calibrate before enabling; a new shader is a candidate, not proven necessary for every card.
-
-Example: **Glaceon-EX**, xy10 #116. Exact variant: `GlaceonEX_xy10_116_std_RareUltra_Rainbow_Etched`.
-
-Original maps: [front](../public/cards/pokemon/tcgl-xy/xy10_116/original-front.png), [foil](../public/cards/pokemon/tcgl-xy/xy10_116/original-foil.png), [etch](../public/cards/pokemon/tcgl-xy/xy10_116/original-etch.png).
-
-### XY gold and specialized Primal/Mega — 20 variants
-
-Exact etch exists; specialized gold/silver, Primal and multi-region response requires comparison with exact-print moving references. Generic gold/prismatic assignment is not justified by the etch alone.
-
-Example: **Alakazam-EX**, xy10 #125. Exact variant: `AlakazamEX_xy10_125_std_RareSecret_Rainbow_Etched`.
-
-Original maps: [front](../public/cards/pokemon/tcgl-xy/xy10_125/original-front.png), [foil](../public/cards/pokemon/tcgl-xy/xy10_125/original-foil.png), [etch](../public/cards/pokemon/tcgl-xy/xy10_125/original-etch.png).
-
 ### Steam Siege dual-type reverse — 5 variants
 
 Source-data limitation: the five TCGL masks inspected encode the first-type motif rather than the requested split. Preserve those exact masks; do not synthesize a second type. This is not solely missing shader support.
@@ -69,9 +45,9 @@ Example: **Shiftry**, xy11 #11. Exact variant: `Shiftry_xy11_11_ph_RareHolo_Rain
 
 Original maps: [front](../public/cards/pokemon/tcgl-xy/xy11_11_ph/original-front.png), [foil](../public/cards/pokemon/tcgl-xy/xy11_11_ph/original-foil.png).
 
-### Evolutions English starlight — 13 variants
+### Evolutions English standard holo hybrid — 13 variants implemented
 
-The generic early Galaxy-Star and original Base Set star fields are different optical sheets; their procedural stars must not replace the distinct English Evolutions pattern.
+The 13 standard holo rares now resolve through `EvolutionsSurfaces.ts` to the dedicated `pokemon-evolutions-holo` profile: existing registered Cosmos dots plus separately masked Base Set star optics, with sharper hand-authored stars. Exact fronts/whiteplates are preserved; no generic repeated field or Sheen substitute. See [card-by-card registration, validation and reference gaps](evolutions-holo.md). Acquisition-era generated pending records remain as source history; runtime overrides supply the authored finish.
 
 Example: **Charizard**, xy12 #11. Exact variant: `Charizard_xy12_11_std_RareHolo_Galaxy_Holo`.
 
@@ -111,7 +87,7 @@ Published pack model and source hashes: [xy-pack-collation.json](xy-pack-collati
 
 - McDonald's: zero acquired TCGL printings after raw/archived index and bundle audit; no invented collection.
 - Pack rates are published primary-observer estimates, not official probabilities. Uniform within rarity categories except the observed Evolutions uncommon sheet; factory/box correlations are not simulated.
-- All 148 exact etches retained byte-exact; no XY normals generated because XY finish/region compatibility is not established.
+- All 148 exact etches retained byte-exact; offline tangent normals use the Sylveon/Espeon Scharr method. Glyph protection comes from near-black TCGL foil-plate values and may also flatten dark artwork.
 - Fourteen wrapper reverses lack verified acquired imagery. Existing pack back fallback remains; original English fronts are available for all 54 designs. Seller page acquisition returned HTTP 403; do not substitute another expansion back.
 - Native foil masks establish UV/coverage, not physical grating direction, measured groove depth or exact-copy Cosmos motifs.
 - The full suite is not green: 364 passed, 38 failed. Comparison against pre-XY revision identifies 37 shared failures and the new missing-XY-wrapper-reverse assertion. Full logs in artifacts/xy-integration.

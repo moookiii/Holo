@@ -1,0 +1,20 @@
+{
+  "source": "public/cards/pokemon/tcgl-bw/bw11_115/original-etch.png",
+  "sourceSha256": "4ecee4bff499ff568df84b24a42b5faf403b99af02a2fb696c50cb2df53c0073",
+  "outputSha256": "d154737cecb94b1d059eff36f12d638f54fbfcb92e59f1c7293a127c5b3f2ca0",
+  "dimensions": [
+    1800,
+    2475
+  ],
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "verticalFlip": false,
+  "method": "Own exact etch Scharr dx,-drow; 4 native-pixel sigma Gaussian average of gradient SECOND MOMENTS only; RG encode unoriented principal axis as cos(2theta),sin(2theta); A encodes directional coherence and source alpha. Bilinear output resize. B is neutral spacing. Used for anisotropic reflection, not diffraction or relief.",
+  "normalChanged": false,
+  "runtimeGeneration": false,
+  "limitation": "Optical orientation inferred from own die. Physical angular width calibrated visually to supplied Japanese photograph, not measured."
+}

@@ -1,6 +1,18 @@
 /** Set-specific English foil-wrapper reverses, acquired and cropped offline.
  * Keep this separate from front generators so regenerating fronts retains backs. */
 export const packBacks: Readonly<Record<string, string>> = {
+  'bw1': 'bw1-back.png',
+  'bw2': 'bw2-back.png',
+  'bw3': 'bw3-back.png',
+  'bw4': 'bw4-back.png',
+  'bw5': 'bw5-back.png',
+  'bw6': 'bw6-back.png',
+  'bw6-5': 'bw6-5-back.png',
+  'bw7': 'bw7-back.png',
+  'bw8': 'bw8-back.png',
+  'bw9': 'bw9-back.png',
+  'bw10': 'bw10-back.png',
+  'bw11': 'bw11-back.png',
   'sm1': 'sm1-back.png',
   'sm2': 'sm2-back.png',
   'sm3': 'sm3-back.png',

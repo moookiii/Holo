@@ -1,0 +1,36 @@
+{
+  "tcglCardId": "xy2_100",
+  "tcglVariantId": "CharizardEX_xy2_100_std_RareUltra_Rainbow_Etched",
+  "source": "public/cards/pokemon/tcgl-xy/xy2_100/original-etch.png",
+  "pairedFront": "public/cards/pokemon/tcgl-xy/xy2_100/original-front.png",
+  "sourceUrl": "https://cdn.studio-prod.pokemon.com/rainier/Content/StandaloneWindows64/1.43.0/10101_0000/xy2_en_100",
+  "sourceDimensions": [
+    1024,
+    1024
+  ],
+  "cardUvDimensions": [
+    733,
+    1024
+  ],
+  "outputDimensions": [
+    1800,
+    2475
+  ],
+  "sourceSha256": "e8110fedb49da7fa94fa8b24352adfb658e0e9fef00c2b9e98e457b107a2b8e3",
+  "frontSha256": "fb48f2b94d3560cee22c761b84e9265b955b9768934e113c17d5dff7a5cbaaf6",
+  "foilSha256": "b572577412f642737d5caa3a7e199be3656dd14ccfa7648587d13a34cfcdff1f",
+  "normalSha256": "9f60a7b0629b8f0492b30fc28e550371684eb1c3f048fb2b6802590f4a572bf9",
+  "protectionSha256": "c6b33df9dcb7358283d0327e5feee8be57c23516c38a75bb99cf0a339806dcc8",
+  "uvBox": [
+    0.1416015625,
+    0,
+    0.857421875,
+    1
+  ],
+  "polarity": "inverted luminance; white strokes recess",
+  "verticalFlip": false,
+  "operations": "Mean RGB, invert, full-card bilinear resize, Scharr CV_32F scale 1/32, tangent slopes (-dx,+drow) with gain 1.03; apply TCGL foil glyph protection after derivatives; normalize; alpha blend flat normals; opaque RGB encoding.",
+  "embossStrength": 0,
+  "runtimeGeneration": false,
+  "limitations": "TCGL line geometry does not establish measured physical groove depth. Near-black foil-plate protection is source-derived and may include dark artwork."
+}

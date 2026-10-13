@@ -1,5 +1,5 @@
 import type { HolographicProfile } from '../HolographicProfile';
-import { prismaticProfiles } from './prismatic';
+import { prismaticProfiles } from './prismatic.ts';
 import { tcglEtchedFinish } from './tcglEtchedFinish.ts';
 import { goldEtchedFinish } from './goldEtchedFinish.ts';
 

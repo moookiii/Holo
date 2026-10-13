@@ -22,7 +22,7 @@ page.on('response', r => { if (r.status() >= 400 && r.url().includes('127.0.0.1'
 await page.route('https://api.tcgdex.net/v2/en/series', r => r.fulfill({ json: [{ id: 'xy', name: 'XY' }] }));
 const products = [['xy1','XY Base Set'],['xy2','Flashfire'],['xy3','Furious Fists'],['xy4','Phantom Forces'],['xy5','Primal Clash'],['xy5-5','Double Crisis'],['xy6','Roaring Skies'],['xy7','Ancient Origins'],['xy8','BREAKthrough'],['xy9','BREAKpoint'],['xy9-5','Generations'],['xy10','Fates Collide'],['xy11','Steam Siege'],['xy12','Evolutions']];
 try {
-  await page.goto('http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
+  await page.goto(process.env.HOLO_URL ?? 'http://127.0.0.1:5173/', { waitUntil: 'networkidle' });
   await page.waitForFunction(() => window.__holo?.ready, null, { timeout: 90000 });
   results.startupXYRequests = requests.filter(u => u.includes('/tcgl-xy/')).length;
   await page.evaluate(() => window.__holo.gallery.open());
@@ -43,7 +43,8 @@ try {
   await page.getByRole('button',{name:'Close Favorites binder',exact:true}).click();
   await page.evaluate(() => window.__holo.gallery.close('pokemon:xy1-3:reverse'));
   results.galleryFavoritesBinder = 'passed';
-  const ids = ['pokemon:xy1-3:reverse','pokemon:xy1-41:holo','pokemon:xy5-2:reverse','pokemon:xy5-5-1:reverse','pokemon:xy12-35:reverse','pokemon:xy8-107:holo','pokemon:xy9-5r-3:normal','pokemon:xyalt-22:holo'];
+  const ids = ['pokemon:xy1-3:reverse','pokemon:xy1-41:holo','pokemon:xy5-2:reverse','pokemon:xy5-5-1:reverse','pokemon:xy12-35:reverse','pokemon:xy8-107:holo','pokemon:xy9-5r-3:normal','pokemon:xyalt-22:holo',
+    'pokemon:xy10-20:holo','pokemon:xy10-116:holo','pokemon:xy5-161:holo','pokemon:xybsp-5:holo'];
   for (const id of [...ids, 'pokemon:sv08.5-155:holo', 'pokemon:sv08.5-156:holo']) {
     await page.evaluate(async id => await window.__holo.gallery.close(id), id);
     for (const [name, light, yaw, pitch] of [

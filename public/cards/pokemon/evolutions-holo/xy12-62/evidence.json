@@ -1,0 +1,478 @@
+{
+  "cardId": "xy12-62",
+  "name": "Hitmonchan",
+  "tcglCardId": "xy12_62",
+  "tcglVariantId": "Hitmonchan_xy12_62_std_RareHolo_Galaxy_Holo",
+  "profile": "pokemon-evolutions-holo",
+  "coordinateDimensions": [
+    600,
+    825
+  ],
+  "outputDimensions": [
+    1200,
+    1650
+  ],
+  "registration": {
+    "unityUvBox": [
+      0.1416015625,
+      0,
+      0.857421875,
+      1
+    ],
+    "dimensions": [
+      733,
+      1024
+    ],
+    "verticalFlip": false,
+    "method": "Established TCGL full-card bleed removal; same source UV box for own front and foil."
+  },
+  "maps": {
+    "foil": "/cards/pokemon/evolutions-holo/xy12-62/foil.png",
+    "foilControls": "/cards/pokemon/evolutions-holo/xy12-62/foil-controls.png",
+    "motif": "/cards/pokemon/evolutions-holo/xy12-62/dots.png",
+    "secondaryFoil": "/cards/pokemon/evolutions-holo/xy12-62/star-foil.png",
+    "secondaryMotif": "/cards/pokemon/evolutions-holo/xy12-62/stars.png"
+  },
+  "artworkCoverageBoundsPixels": [
+    134,
+    234,
+    1060,
+    872
+  ],
+  "sourceEvidence": "/cards/pokemon/tcgl-xy/xy12_62/evidence.json",
+  "window": {
+    "fullFrontBounds": [
+      67,
+      117,
+      530,
+      436
+    ],
+    "png": "/cards/pokemon/evolutions-holo/xy12-62/window.png",
+    "sha256": "c59155b7b903182b54d57a6a6676a08975bb3b622e705edd2c8b16d5cab47edd",
+    "review": "Inner artwork rails compared on all thirteen unchanged clean fronts; native subject/opaque exclusions preserved within the window."
+  },
+  "preservedSources": {
+    "front": {
+      "path": "public/cards/pokemon/tcgl-xy/shared/front-3b5fc870fc4affbbeffb43d3.png",
+      "sha256": "9c093951cd98056da4a29486859d6661947de7f42144ff0eb9158157626fbb6d"
+    },
+    "originalFront": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_62/original-front.png",
+      "sha256": "275bdc4a7ce333fb948c4755b674be868248ef3d66ff4ac021403c7f65e63256"
+    },
+    "originalFoil": {
+      "path": "/cards/pokemon/tcgl-xy/xy12_62/original-foil.png",
+      "sha256": "2a66d4d64400693793ee9d8d2001a4a74bb13f8c6ba36fa23b1e4b8dc06602c0"
+    }
+  },
+  "physicalReference": {
+    "cardId": "xy12-62",
+    "name": "Hitmonchan",
+    "page": "https://www.ebay.fr/itm/266376343970",
+    "url": "https://i.ebayimg.com/images/g/RVAAAOSwZIlk3dcs/s-l1200.jpg",
+    "file": "research/evolutions/xy12-62/physical.jpg",
+    "dimensions": [
+      899,
+      1200
+    ],
+    "sha256": "9db2560d30b57326abf33f911bdc2c8a63645d6b3c69f5ec63d2f223f4eef204",
+    "limitations": "One seller photo of the exact English printing; copy-specific placements, no measured angular response or unseen motif inference.",
+    "registration": {
+      "coordinateDimensions": [
+        600,
+        825
+      ],
+      "master": "public/cards/pokemon/tcgl-xy/shared/front-3b5fc870fc4affbbeffb43d3.png",
+      "masterToPhoto": [
+        [
+          1.119216415442127,
+          -0.062492867131761116,
+          142.2489578033165
+        ],
+        [
+          0.03339494552776346,
+          1.0449027023685187,
+          148.9749757733954
+        ],
+        [
+          3.6059091175735854e-05,
+          -0.000124820790638523,
+          1.0
+        ]
+      ],
+      "inliers": 354,
+      "medianPhotoReprojectionError": 0.8782917857170105,
+      "method": "SIFT on printed title/rules; RANSAC projective registration, manually reviewed artwork alignment; no motif detection."
+    }
+  },
+  "placementMethod": "Hand-entered centers and outer radii from each projectively registered physical photograph. No RNG, blob proposals or repeated layout. Dots are complete filled disks; clipping belongs to the printing plate, not the motif.",
+  "dots": [
+    [
+      117,
+      139,
+      5
+    ],
+    [
+      135,
+      185,
+      4
+    ],
+    [
+      153,
+      157,
+      2.5
+    ],
+    [
+      156,
+      190,
+      3
+    ],
+    [
+      156,
+      239,
+      4.5
+    ],
+    [
+      173,
+      169,
+      3.5
+    ],
+    [
+      211,
+      135,
+      4.5
+    ],
+    [
+      243,
+      208,
+      3
+    ],
+    [
+      389,
+      251,
+      5
+    ],
+    [
+      415,
+      240,
+      5
+    ],
+    [
+      437,
+      221,
+      4
+    ],
+    [
+      518,
+      228,
+      4
+    ],
+    [
+      528,
+      365,
+      5
+    ],
+    [
+      289,
+      393,
+      4.5
+    ],
+    [
+      235,
+      365,
+      4.5
+    ],
+    [
+      156,
+      384,
+      4.5
+    ],
+    [
+      94,
+      393,
+      5
+    ],
+    [
+      186,
+      433,
+      5
+    ],
+    [
+      369,
+      167,
+      3
+    ]
+  ],
+  "stars": [
+    [
+      97,
+      128,
+      10,
+      14,
+      8
+    ],
+    [
+      107,
+      141,
+      8,
+      11,
+      8
+    ],
+    [
+      173,
+      141,
+      14,
+      16,
+      8
+    ],
+    [
+      207,
+      127,
+      13,
+      16,
+      8
+    ],
+    [
+      173,
+      165,
+      9,
+      10,
+      8
+    ],
+    [
+      233,
+      155,
+      12,
+      14,
+      4
+    ],
+    [
+      255,
+      147,
+      9,
+      12,
+      8
+    ],
+    [
+      245,
+      168,
+      11,
+      14,
+      8
+    ],
+    [
+      147,
+      185,
+      11,
+      10,
+      4
+    ],
+    [
+      412,
+      132,
+      10,
+      12,
+      8
+    ],
+    [
+      385,
+      169,
+      12,
+      13,
+      8
+    ],
+    [
+      362,
+      153,
+      11,
+      13,
+      4
+    ],
+    [
+      453,
+      198,
+      15,
+      18,
+      8
+    ],
+    [
+      504,
+      186,
+      9,
+      11,
+      4
+    ],
+    [
+      411,
+      219,
+      10,
+      13,
+      4
+    ],
+    [
+      418,
+      185,
+      10,
+      14,
+      8
+    ],
+    [
+      342,
+      187,
+      9,
+      11,
+      4
+    ],
+    [
+      341,
+      166,
+      7,
+      10,
+      4
+    ],
+    [
+      108,
+      258,
+      17,
+      16,
+      8
+    ],
+    [
+      92,
+      212,
+      10,
+      12,
+      8
+    ],
+    [
+      141,
+      208,
+      12,
+      13,
+      8
+    ],
+    [
+      183,
+      226,
+      15,
+      15,
+      8
+    ],
+    [
+      200,
+      263,
+      9,
+      12,
+      8
+    ],
+    [
+      245,
+      275,
+      12,
+      13,
+      8
+    ],
+    [
+      230,
+      235,
+      12,
+      12,
+      8
+    ],
+    [
+      160,
+      259,
+      12,
+      14,
+      8
+    ],
+    [
+      93,
+      290,
+      12,
+      14,
+      8
+    ],
+    [
+      514,
+      285,
+      17,
+      18,
+      8
+    ],
+    [
+      227,
+      338,
+      13,
+      13,
+      8
+    ],
+    [
+      123,
+      341,
+      9,
+      12,
+      4
+    ],
+    [
+      154,
+      361,
+      10,
+      14,
+      4
+    ],
+    [
+      380,
+      363,
+      11,
+      12,
+      4
+    ],
+    [
+      212,
+      416,
+      16,
+      16,
+      8
+    ],
+    [
+      263,
+      414,
+      11,
+      13,
+      8
+    ],
+    [
+      133,
+      405,
+      10,
+      11,
+      4
+    ],
+    [
+      429,
+      419,
+      16,
+      16,
+      8
+    ]
+  ],
+  "uncertainty": "Dense photographed field contains additional dim flashes; entries intentionally omit ambiguous streaks rather than converting every highlight into a motif.",
+  "starShape": {
+    "basis": "scripts/wotc/create-star-maps.py",
+    "armWidth": 0.12,
+    "diagonalReach": 0.66,
+    "coreRadius": 0.17,
+    "supersampling": 4
+  },
+  "hashes": {
+    "foil": "343384277fd409b878eef26863b0ce20c2f1aae3222e59e7d8eeb969c611f7d7",
+    "foilControls": "d6f55149a7f6ec4203a8b3deee5602bb93c0da385ca3765a6abf4a4f9432e5f9",
+    "motif": "1b915546f3d9a81c472b010327b9acc9a81bd5393aee11bca585bd67b27b9157",
+    "secondaryFoil": "c1cb1ff9fbf65779395524a305d2a3fb256e48d81a20d0faac74c1a4962c4c56",
+    "secondaryMotif": "6864681de699e52342ddc92a63ae5ade90699a9bafe8bc887c2fda8f44fb928c"
+  },
+  "normalGeneration": false,
+  "existingOpticsChanged": false,
+  "referenceStatus": "single-photo; moving physical reference desired"
+}
