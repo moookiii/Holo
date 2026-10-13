@@ -21,9 +21,10 @@ test('ordinary ME reverses use dedicated optics while keeping their exact source
   }
 });
 
-test('ME reverse routing leaves normal, holo, special reverse and SV surfaces unchanged', () => {
+test('ME reverse routing preserves other finishes while ASC ph2 uses its recovered native finish', () => {
   for (const source of tcglMegaSurfaces.filter(s => ['me03-063', 'me01-001', 'me02.5-001'].includes(s.cardId) && s.variant !== 'reverse')) {
-    assert.equal(svTcglDefinition(source.cardId, source.variant).profile, source.profile);
+    assert.equal(svTcglDefinition(source.cardId, source.variant).profile,
+      source.cardId.startsWith('me02.5-') && source.variant === 'special-reverse' ? 'ascended-special-reverse' : source.profile);
   }
   assert.equal(pokemon151Definition('sv03.5-143', 'reverse').profile, 'pokemon151_standard_reverse');
 });
