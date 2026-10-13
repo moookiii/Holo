@@ -11,7 +11,7 @@ import { galleryOpticalLayers, galleryBatchKey } from '../src/gallery/GalleryBat
 import { collatePokemon } from '../src/pokemon/collator.ts';
 import { megaRecipes } from '../src/pokemon/MegaRecipes.ts';
 import { filterCards } from '../src/gallery/GalleryQuery.ts';
-import { TCGL_CARD_UV, TCGL_FLAT_SILVER_PATHS } from '../src/materials/layers/TcglFlatSilverLayer.ts';
+import { TCGL_CARD_UV, TCGL_FLAT_SILVER_PATHS } from '../src/materials/TcglFlatSilverResources.ts';
 
 const manifest = JSON.parse(readFileSync('public/cards/pokemon/tcgl-ascended-original/manifest.json', 'utf8'));
 const original = new Map(manifest.printings.filter((p: any) => p.variantSuffix === '2').map((p: any) => [p.cardId, p]));

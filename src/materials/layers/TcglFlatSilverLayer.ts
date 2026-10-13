@@ -1,16 +1,11 @@
 import type { Node, Texture } from 'three/webgpu';
 import { mix, normalWorld, positionViewDirection, normalViewGeometry, sRGBTransferEOTF, sin, texture, time, vec2, vec3 } from 'three/tsl';
 import { inspection } from '../../lighting/inspection';
+import { TCGL_CARD_UV } from '../TcglFlatSilverResources';
+export { TCGL_CARD_UV, TCGL_FLAT_SILVER_PATHS, type FlatSilverTextures } from '../TcglFlatSilverResources';
 
 /** Original TCGL square-card UV domain, verified against the paired diffuse.
  * The unchanged Holo front is the 733px domain beginning at x=145 in 1024. */
-export const TCGL_CARD_UV = { left: 145 / 1024, width: 733 / 1024 } as const;
-export const TCGL_FLAT_SILVER_PATHS = {
-  shine: '/cards/pokemon/tcgl-ascended-original/shared/T_Holofoil_Mask_Bar_Wide_Single.png',
-  spectrum: '/cards/pokemon/tcgl-ascended-original/shared/FX_T_Spectrum_FlatSilver.png',
-} as const;
-export interface FlatSilverTextures { shine: Texture; spectrum: Texture; }
-
 function overlay(base: Node<'vec3'>, blend: Node<'vec3'>) {
   return base.greaterThanEqual(.5).select(
     base.oneMinus().mul(blend.oneMinus(), -2).add(1), base.mul(blend, 2)).clamp(0, 1);

@@ -11,7 +11,7 @@ import { cachedCardAsset } from '../assets/CachedCardAssets';
 import { cardCacheRevision, persistentCards } from '../assets/PersistentCardCache';
 import { PreviewPixelCache } from './PreviewPixelCache';
 import { packPreviewEtch, PACKED_PREVIEW_ETCH, PREVIEW_ETCH_WIDTH, PREVIEW_ETCH_HEIGHT } from './PreviewEtchPacking';
-import { TCGL_CARD_UV } from '../materials/layers/TcglFlatSilverLayer';
+import { TCGL_CARD_UV } from '../materials/TcglFlatSilverResources';
 
 const previewReads = new PreviewReadQueue();
 export const previewPixels = new PreviewPixelCache();

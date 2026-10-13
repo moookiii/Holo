@@ -1,5 +1,5 @@
 import { createGalleryCardGeometry, galleryGeometryDimensions } from './GalleryGeometry';
-import { TCGL_FLAT_SILVER_PATHS, type FlatSilverTextures } from '../materials/layers/TcglFlatSilverLayer';
+import { TCGL_FLAT_SILVER_PATHS, type FlatSilverTextures } from '../materials/TcglFlatSilverResources';
 import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
 import { AssetManager } from '../assets/AssetManager';
 import { doubleRareProfile } from '../materials/profiles/doubleRare';

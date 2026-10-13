@@ -1,5 +1,5 @@
 import type { HolographicProfile } from '../HolographicProfile';
-import { TCGL_FLAT_SILVER_PATHS } from '../layers/TcglFlatSilverLayer';
+import { TCGL_FLAT_SILVER_PATHS } from '../TcglFlatSilverResources';
 
 /** Original TCGL FlatSilver program and resources, only for ASC ph2 printings. */
 export const ascendedSpecial: HolographicProfile = {
