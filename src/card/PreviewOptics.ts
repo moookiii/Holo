@@ -60,6 +60,7 @@ export function previewOptics(card: CardDefinition, profile: HolographicProfile)
   if (profile.opticalModel === 'tcgl-flat-silver') {
     parameters[34 * 4] = 1; // Native whiteplate presence in artwork alpha.
     parameters[34 * 4 + 3] = 10;
+    parameters[37 * 4] = profile.mapSettings?.tcglCenterGreen ?? 0;
   }
   return parameters;
 }

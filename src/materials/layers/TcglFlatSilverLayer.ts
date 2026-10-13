@@ -26,8 +26,8 @@ export function tcglFlatSilverColor(print: Node<'vec3'>, centerGreen: Node<'floa
   const phase = sin(centerGreen.mul(12.9898 + 78.233002)).mul(43758.550781).fract().mul(9).add(1);
   const tilt = (normalWorld as Node<'vec3'>).dot(vec3(1));
   const travel = time.mul(.05); // _FoilAnimation=1, _FoilAnimationReduced=0
-  const sampleSpectrum = (point: Node<'vec2'>) => texture(spectrumTexture, point.fract()).rgb;
-  const sampleShine = (point: Node<'vec2'>) => texture(shineTexture, point.fract()).rgb;
+  const sampleSpectrum = (point: Node<'vec2'>) => texture(spectrumTexture, point).rgb;
+  const sampleShine = (point: Node<'vec2'>) => texture(shineTexture, point).rgb;
   const first = sampleSpectrum(cardUv.mul(2).add(tilt, phase).add(vec2(travel.mul(-1.75), 0)));
   const second = sampleSpectrum(cardUv.add(phase).add(vec2(travel.mul(2.45), 0)));
   const spectrum = mix(second, first, .56);

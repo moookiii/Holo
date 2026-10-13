@@ -12,6 +12,7 @@ import { CardMapLoader } from '../assets/CardMapLoader';
 import { PrintFrontMaterial } from '../materials/PrintFrontMaterial';
 import { CardTextureCache } from './CardTextureCache';
 import { HolographicMaterial, type ProfileFields } from '../materials/HolographicMaterial';
+import { configureTcglFlatSilverSampling } from '../materials/TcglFlatSilverSampling';
 import type { FoilLayer, HolographicProfile } from '../materials/HolographicProfile';
 import { createEdgeMaterial, createPrintMaterial } from '../materials/CardSurfaceMaterial';
 import { PatternCache } from '../materials/patterns/PatternCache';
@@ -172,6 +173,7 @@ export class CardFactory {
           stampDirection: source.stampDirection ? imageTexture(source.stampDirection, false) : undefined,
           foilControls: source.foilControls ? imageTexture(source.foilControls, profile.opticalModel === 'tcgl-flat-silver') : undefined,
         };
+        if (profile.opticalModel === 'tcgl-flat-silver') configureTcglFlatSilverSampling(maps.foilControls, maps.direction, maps.secondaryDirection);
         const fields = { primary: field(prepared.fields.primary), secondary: field(prepared.fields.secondary), stamp: field(prepared.fields.stamp) };
         materialStarted = performance.now();
         const holo = new HolographicMaterial(front, maps.coverage, maps.surface, definition.seed, profile, definition.substrate, maps, definition.frontBorderColor, physical.recessedName, physical);

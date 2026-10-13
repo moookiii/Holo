@@ -4,6 +4,7 @@ import { AssetManager } from './AssetManager';
 import { resolveCoverageMaps } from './CardCoverage';
 import { PACKED_MAP_KEYS, type PackedMapKey, type PackedMaps } from './MapPacking';
 import { openingCache, openingStage } from '../rendering/CardOpeningTiming';
+import { configureTcglFlatSilverSampling } from '../materials/TcglFlatSilverSampling';
 
 export interface CardMaterialMaps {
   proceduralFoil?: CardDefinition['proceduralFoil'];
@@ -62,6 +63,7 @@ export class CardMapLoader {
       needsAnniversary ? this.assets.load('/materials/ygo-25th.webp', false) : Promise.resolve(undefined),
       load(paths.foilControls),
     ]);
+    if (card.profile === 'ascended-special-reverse') configureTcglFlatSilverSampling(foilControls, direction, secondaryDirection);
     let result: Pick<CardMaterialMaps, 'coverage' | 'surface' | 'pattern' | 'hologram'> = { coverage: coverage!, surface: surface!, pattern: this.assets.white };
     const packedInputs = PACKED_MAP_KEYS.some(name => !!paths[name]);
     // Plain print cards have no channels to combine. Reuse the shared 1 x 1

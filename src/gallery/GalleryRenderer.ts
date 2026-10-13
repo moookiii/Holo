@@ -1,5 +1,6 @@
 import { createGalleryCardGeometry, galleryGeometryDimensions } from './GalleryGeometry';
 import { TCGL_FLAT_SILVER_PATHS, type FlatSilverTextures } from '../materials/TcglFlatSilverResources';
+import { configureTcglFlatSilverSampling } from '../materials/TcglFlatSilverSampling';
 import { createEdgeMaterial } from '../materials/CardSurfaceMaterial';
 import { AssetManager } from '../assets/AssetManager';
 import { doubleRareProfile } from '../materials/profiles/doubleRare';
@@ -78,6 +79,7 @@ export class GalleryRenderer {
       shine: await (this.opticalAssets ??= new AssetManager()).load(TCGL_FLAT_SILVER_PATHS.shine, true),
       spectrum: await this.opticalAssets!.load(TCGL_FLAT_SILVER_PATHS.spectrum, true),
     } : undefined;
+    if (flatSilver) configureTcglFlatSilverSampling(flatSilver.shine, flatSilver.spectrum);
     if (this.disposed) { this.opticalAssets?.dispose(); throw new Error('Gallery disposed'); }
     for (const optical of [stars, micrograin, flatSilver?.shine, flatSilver?.spectrum]) if (optical && !this.opticalTextures.has(optical.uuid)) {
       this.opticalTextures.add(optical.uuid);

@@ -51,6 +51,8 @@ test('native resources and UV registration use one isolated shared gallery/focus
     const card = svTcglDefinition(row.cardId, 'special-reverse');
     const profile = resolveCardProfile(card);
     assert.equal(profile.opticalModel, 'tcgl-flat-silver');
+    assert.equal(profile.mapSettings?.tcglCenterGreen, row.centerGreen);
+    assert.ok(row.centerGreen >= 0 && row.centerGreen <= 1);
     assert.deepEqual(profile.maps, { direction: TCGL_FLAT_SILVER_PATHS.shine, secondaryDirection: TCGL_FLAT_SILVER_PATHS.spectrum });
     assert.equal(profile.secondary, undefined);
     assert.equal(profile.diffraction.strength, 0);
@@ -58,6 +60,7 @@ test('native resources and UV registration use one isolated shared gallery/focus
     assert.equal(profile.structure.relief, 0);
     const parameters = previewOptics(card, profile);
     assert.equal(parameters[34 * 4 + 3], 10);
+    assert.ok(Math.abs(parameters[37 * 4] - row.centerGreen) < 1e-7);
     const layers = galleryOpticalLayers(parameters);
     assert.equal(layers[0].tcglFlatSilver, true);
     batches.add(galleryBatchKey(layers));
