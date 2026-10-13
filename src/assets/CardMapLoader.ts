@@ -54,7 +54,8 @@ export class CardMapLoader {
     const wholeFront = card.imported
       && ![paths.coverage, paths.foil, paths.extendedFoil, paths.secondaryFoil, paths.metallic, paths.stamp, paths.hologram].some(Boolean);
     // Authored paths are required when present: an invalid mask must not silently change a printing.
-    const load = async (path: string | undefined, fallback?: Texture) => path ? this.assets.load(path, false) : fallback;
+    const load = async (path: string | undefined, fallback?: Texture) => path ? this.assets.load(path,
+      card.profile === 'ascended-special-reverse' && [paths.foilControls, paths.direction, paths.secondaryDirection].includes(path)) : fallback;
     const [coverage, surface, normal, direction, secondaryDirection, stampDirection, anniversary, foilControls] = await Promise.all([
       load(paths.coverage, wholeFront ? this.assets.fullFoil : this.assets.black), load(paths.surface, this.assets.neutralSurface), load(paths.normal, this.assets.flatNormal),
       load(paths.direction), load(paths.secondaryDirection), load(paths.stampDirection),

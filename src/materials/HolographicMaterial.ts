@@ -615,7 +615,7 @@ export class HolographicMaterial extends MeshPhysicalNodeMaterial {
       const wp = texture(this.foilControlsTextureNode.value, packed).rgb;
       const center = texture(this.printTextureNode.value, vec2((.5 - TCGL_CARD_UV.left) / TCGL_CARD_UV.width, .5)).g;
       return vec4(tcglFlatSilverColor(this.printTextureNode.rgb, center, wp, packed,
-        this.fieldTextureNode.value, this.secondaryFieldTextureNode.value), 1);
+        this.fieldTextureNode.value, this.secondaryFieldTextureNode.value, true), 1);
     })() : null;
     const layers = [profile, profile.secondary, profile.stamp];
     const axes = [this.cardMaps?.direction, this.cardMaps?.secondaryDirection, this.cardMaps?.stampDirection];

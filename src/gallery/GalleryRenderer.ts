@@ -75,8 +75,8 @@ export class GalleryRenderer {
     const micrograin = layers.some(layer => layer.enabled && layer.specialIllustration)
       ? await (this.opticalAssets ??= new AssetManager()).load(pokemon151SirMicrograin, false) : undefined;
     const flatSilver: FlatSilverTextures | undefined = layers[0].tcglFlatSilver ? {
-      shine: await (this.opticalAssets ??= new AssetManager()).load(TCGL_FLAT_SILVER_PATHS.shine, false),
-      spectrum: await this.opticalAssets!.load(TCGL_FLAT_SILVER_PATHS.spectrum, false),
+      shine: await (this.opticalAssets ??= new AssetManager()).load(TCGL_FLAT_SILVER_PATHS.shine, true),
+      spectrum: await this.opticalAssets!.load(TCGL_FLAT_SILVER_PATHS.spectrum, true),
     } : undefined;
     if (this.disposed) { this.opticalAssets?.dispose(); throw new Error('Gallery disposed'); }
     for (const optical of [stars, micrograin, flatSilver?.shine, flatSilver?.spectrum]) if (optical && !this.opticalTextures.has(optical.uuid)) {

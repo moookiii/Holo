@@ -167,10 +167,10 @@ export class CardFactory {
           pattern: packed ? bytesTexture(packed.pattern, packed.width, packed.height) : this.assets.white,
           hologram: packed?.hologram ? bytesTexture(packed.hologram, packed.width, packed.height) : undefined,
           normal: normal ?? this.assets.flatNormal,
-          direction: source.direction ? imageTexture(source.direction, false) : undefined,
-          secondaryDirection: source.secondaryDirection ? imageTexture(source.secondaryDirection, false) : undefined,
+          direction: source.direction ? imageTexture(source.direction, profile.opticalModel === 'tcgl-flat-silver') : undefined,
+          secondaryDirection: source.secondaryDirection ? imageTexture(source.secondaryDirection, profile.opticalModel === 'tcgl-flat-silver') : undefined,
           stampDirection: source.stampDirection ? imageTexture(source.stampDirection, false) : undefined,
-          foilControls: source.foilControls ? imageTexture(source.foilControls, false) : undefined,
+          foilControls: source.foilControls ? imageTexture(source.foilControls, profile.opticalModel === 'tcgl-flat-silver') : undefined,
         };
         const fields = { primary: field(prepared.fields.primary), secondary: field(prepared.fields.secondary), stamp: field(prepared.fields.stamp) };
         materialStarted = performance.now();
