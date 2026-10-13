@@ -26,6 +26,7 @@ import { generationsProfiles } from './generations';
 import { bwRadiantProfiles } from './bwRadiant';
 import { pokemonBreak } from './break';
 import { megaReverse } from './megaReverse';
+import { createModernCosmosProfiles } from './modernCosmos.ts';
 const goldEtched = { ...prismaticProfiles.find(p => p.id === 'prismatic_gold')!, id: 'gold-etched', name: 'Gold Etched' };
 export const profiles = [sapphireBlue, emeraldGel, ...originalProfiles, illustrationRareOriginal, luminousLines, phantomCorridor, signalForestEtched, ...pokemonProfiles, neoDestinyShining, ...prismaticProfiles, ...pokemon151Profiles, ...svTcglProfiles, ...yugiohProfiles, ...magicProfiles, printOnly, firstMovieGold, mintedGold]
   .filter(p => canonicalProfileId(p.id) === p.id);
@@ -41,6 +42,7 @@ profiles.push(...generationsProfiles);
 profiles.push(...bwRadiantProfiles);
 profiles.push(pokemonBreak);
 profiles.push(megaReverse);
+profiles.push(...createModernCosmosProfiles(profiles));
 export function getProfile(id: string) {
   const profile = profiles.find(p => p.id === canonicalProfileId(id));
   if (!profile) throw new Error(`Unknown foil profile: ${id}`);

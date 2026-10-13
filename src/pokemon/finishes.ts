@@ -37,6 +37,8 @@ const sourceFinishes: Readonly<Record<string, string>> = {
 const profileFinishes: Readonly<Record<string, string>> = {
   'pokemon-base-set-star': 'galaxy-star', 'pokemon-galaxy-star': 'galaxy-star',
   'pokemon-base-set-2-cosmos': 'cosmos', 'pokemon-cosmos': 'cosmos', 'pokemon-cosmos-hd': 'cosmos', 'svp-cosmos': 'cosmos',
+  'modern-pokemon-base-set-2-cosmos': 'cosmos', 'modern-pokemon-cosmos': 'cosmos',
+  'modern-pokemon-cosmos-hd': 'cosmos', 'modern-svp-cosmos': 'cosmos', 'modern-pokemon-evolutions-holo': 'cosmos',
   'pokemon-cracked-ice': 'cracked-ice', 'pokemon-tinsel': 'tinsel', 'pokemon-pixel': 'confetti',
   'pokemon-vertical-line': 'line', 'pokemon-water-web': 'water-web', 'pokemon-mirage': 'mirage',
   'pokemon-ace-spec': 'ace-spec', 'swsh-radiant': 'radiant', 'swsh-shiny-silver': 'flat-silver',
