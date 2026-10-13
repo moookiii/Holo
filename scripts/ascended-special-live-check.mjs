@@ -19,7 +19,11 @@ const errors = [], requests = new Set(), cards = [], report = { cards, errors };
 page.on('pageerror', error => { errors.push(error.message); console.log('PAGE ERROR', error.message); });
 page.on('request', request => requests.add(new URL(request.url()).pathname));
 page.on('response', response => { if (response.status() >= 400 && response.url().includes('127.0.0.1')) errors.push(`${response.status()} ${response.url()}`); });
-page.on('console', message => { if (message.type() === 'error') console.log('CONSOLE', message.text().slice(0, 400)); });
+page.on('console', message => {
+  if (message.type() !== 'error') return;
+  const value = message.text(); console.log('CONSOLE', value.slice(0, 400));
+  if (value.includes('THREE') || value.includes('WebGPU') || value.includes('shader')) errors.push(value);
+});
 try {
   // Freeze the asset revision for this immutable capture run. Concurrent
   // unrelated asset authoring must not repeatedly scan the whole dev tree.

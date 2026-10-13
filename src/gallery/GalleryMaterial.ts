@@ -248,8 +248,8 @@ export class GalleryMaterial extends MeshPhysicalNodeMaterial {
       if (!flatSilver) throw new Error('TCGL FlatSilver gallery requires the two original shared resources');
       this.regions = [];
       const center = texture(arrays[0], vec2((.5 - TCGL_CARD_UV.left) / TCGL_CARD_UV.width, .5)).depth(layer).g;
-      this.fragmentNode = vec4(tcglFlatSilverColor(image(0).rgb, center, image(3).rgb,
-        tcglPackedUv(uv()), flatSilver.shine, flatSilver.spectrum), 1);
+      this.fragmentNode = Fn(() => vec4(tcglFlatSilverColor(image(0).rgb, center, image(3).rgb,
+        tcglPackedUv(uv()), flatSilver.shine, flatSilver.spectrum), 1))();
       return;
     }
     const parameterValues = new Map<number, Node<'vec4'>>();
