@@ -11,7 +11,12 @@ export function radiantFoilReflection(light: Node<'vec3'>, view: Node<'vec3'>,
   tangent: Node<'vec3'>, bitangent: Node<'vec3'>, normal: Node<'vec3'>,
   u: IllustrationRareOptics, stock: Node<'vec4'>,
   footprint?: [Node<'vec3'>, Node<'vec3'>]) {
-  const a = tangent.add(bitangent).normalize(), b = tangent.sub(bitangent).normalize();
+  // The offline stock uses top-down raster coordinates: R = x + row,
+  // G = row - x. UV bitangent points up, so row = -bitangent.
+  // Match each lobe to its stock gradient; crossed axes shear the bands
+  // as light/view direction varies across the card.
+  const a = tangent.sub(bitangent).normalize();
+  const b = tangent.add(bitangent).negate().normalize();
   const momentum = light.add(view);
   const variance = (axis: Node<'vec3'>) => {
     const pixel = momentum.dot(axis).fwidth().pow2().div(12);

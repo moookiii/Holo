@@ -70,6 +70,20 @@ Proof `swsh-proof:amazing`: the same eight light/pose states and 13-frame motion
 
 ## Radiant Rare
 
+Diamond-axis correction (2026-10-12): the offline stock's red coordinate is
+`x + row` and green is `row - x`. Because raster rows point down and the card UV
+bitangent points up, the matching optical axes are `tangent - bitangent` and
+`-tangent - bitangent`. The previous pairing crossed these axes, shearing the
+visible bands as light/view direction varied across the card. Only the Radiant
+optical kernel changed; source PNGs, masks, etched normals and other finishes
+are unchanged. Steelix 124/196 and Jirachi 120/195 were captured in eight lighting/
+pose states plus 13 motion frames each with no browser errors, under
+`artifacts/swsh-materials/live/pokemon-swsh11-124-holo-*` and
+`pokemon-swsh12-120-holo-*`. Front views now show symmetric diamond crossings.
+Strong specular wash can still obscure bands; physical angular calibration
+remains provisional. `npm run build` is blocked by existing type errors in
+`CompletedCosmosSurfaces.ts` and `SvTcglSurfaces.ts`.
+
 Physical footage inspected: [TrainerDesignFly](https://www.youtube.com/shorts/1oKZNXT2X1A), [InfernosGames miscut sample](https://www.youtube.com/shorts/-vYSKhDbFG8), and [PokeMart92](https://www.youtube.com/shorts/SE8p0HA1e9M). The first clearly shows a broad silver/blue diamond response across the lower card changing under tilt; the miscut sample is useful for character texture but not alignment. The subject flashes independently of the printed scene.
 
 New work: `RadiantFoilLayer.ts`, a filtered two-axis neutral/spectral response driven by original TCGL `_CrossTexture` RG stock. The offline optical-stock rotation follows the visible diagonal pattern; it does not rotate or change the etched character. Viewer and gallery share this kernel. The exact TCGL plate separates lower foil from the character at the unfoiled rule strip; energy symbols stay excluded. Existing offline normal converter and etched material response are reused for the character.
