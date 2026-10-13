@@ -229,7 +229,7 @@ export class Gallery {
   }
   hide() {
     this.spriteSelector.close(false);
-    this.binder?.hide();
+    this.binder?.hide(this.favoritesOnly);
     if (this.active) {
       const { preset, azimuth, elevation, intensity, speed, filterAngle, playing } = this.options.lighting;
       this.savedLighting = { preset, azimuth, elevation, intensity, speed, filterAngle, playing };

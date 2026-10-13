@@ -41,7 +41,10 @@ Only the current spread and its immediate neighbors can hold expensive live card
 at most six faces / 72 cards, independent of the collection size. Serial preparation
 prioritizes the current spread, then neighbors. Departed faces dispose their cards.
 Inspection stops preparation before entering the full-quality viewer. Returning to
-Favorites restores the same binder and spread. Favorites storage and canonical IDs
+Favorites restores the same binder and spread, retaining the compiled shell,
+resident page instances and preview textures throughout inspection. Preparation
+resumes only for missing previews; loaded cards need no new uploads or compilation.
+Leaving Favorites for the gallery still releases binder resources. Favorites storage and canonical IDs
 continue to use the existing gallery implementation.
 
 ## Verification
@@ -57,6 +60,12 @@ full card viewer. Captures and results are written to `artifacts/favorites-binde
 The browser check uses the WebGL fallback by default; set BINDER_URL for another
 running backend. Screenshots support visual review, not a claim of measured physical
 material accuracy or a guarantee of frame rate on every GPU.
+
+`scripts/binder-return-check.mjs` opens a card from a populated noninitial spread
+twice, then returns through the viewer's gallery button. It checks identical
+resident pages and card instances, zero preview preparation/uploads/compilation
+on return, hidden binder meshes in the viewer, and resource release on leaving
+Favorites for the gallery.
 
 ## Motion scheduling
 

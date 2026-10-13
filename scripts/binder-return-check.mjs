@@ -9,64 +9,87 @@ try {
   const errors = [];
   page.on('pageerror', error => errors.push(String(error)));
   await page.routeWebSocket('**', socket => socket.close());
-  await page.goto(process.env.BINDER_URL || 'http://127.0.0.1:5173/?backend=webgpu');
-  await page.waitForFunction(() => window.__holo?.gallery.stats()?.active);
+  await page.goto(process.env.BINDER_URL || 'http://127.0.0.1:5173/?backend=webgpu&benchmark-cold-viewer=1');
+  await page.waitForFunction(() => window.__holo?.gallery.stats()?.active, null, { timeout: 120000 });
   await page.evaluate(() => {
     const gallery = window.__holo.gallery.instance();
-    gallery.favorites.ids = new Set(gallery.catalog.cards().slice(0, 12).map(card => card.id));
+    gallery.favorites.ids = new Set(gallery.catalog.cards().slice(0, 80).map(card => card.id));
+    gallery.options.lighting.playing = false;
     gallery.openBinder();
   });
-  await page.waitForFunction(() => {
-    const s = window.__holo.gallery.stats();
-    return s.binder && s.visible === 12 && !s.pending;
-  }, null, { timeout: 240000 });
+  async function waitForBinder() {
+    await page.waitForFunction(() => {
+      const s = window.__holo.gallery.stats();
+      return s.binder && s.visibleExpected > 0 && s.visible === s.visibleExpected && s.neighborsReady && !s.pending;
+    }, null, { timeout: 240000 });
+  }
+  await waitForBinder();
+  // A noninitial spread proves navigation survives the viewer round trip too.
+  await page.evaluate(() => window.__holo.gallery.instance().binder.turn(1));
+  await page.waitForFunction(() => window.__holo.gallery.stats().spread === 1 && !window.__holo.gallery.stats().turning);
+  await waitForBinder();
   const before = await page.evaluate(() => {
     const binder = window.__holo.gallery.instance().binder;
-    window.returnWork = { realizeCardGpu: 0, create: 0, uploadCardResources: 0, compile: 0 };
-    for (const key of Object.keys(window.returnWork)) {
-      const original = binder.factory[key];
-      binder.factory[key] = function (...args) {
-        window.returnWork[key]++;
+    window.retainedBinder = { factory: binder.factory, graphics: binder.graphics,
+      pages: [...binder.physical.pages.values()], work: { compile: 0, upload: 0, preparePreview: 0 } };
+    for (const [target, method] of [[binder.factory, 'compile'], [binder.graphics, 'upload'], [binder.options.cpu, 'preparePreview']]) {
+      const original = target[method];
+      target[method] = function (...args) {
+        window.retainedBinder.work[method]++;
         return original.apply(this, args);
       };
     }
-    return [...binder.physical.pages.get(0).cards.values()].map(card => card.mesh.uuid);
+    const snapshot = () => ({ spread: binder.navigation.spread, binderIndex: binder.navigation.binder,
+      uploads: binder.graphics.uploads, loaded: [...binder.loaded],
+      cards: [...binder.physical.pages.values()].flatMap(page => [...page.cards.values()].map(card => card.mesh.uuid)) });
+    window.binderSnapshot = snapshot;
+    return snapshot();
   });
-  const turns = [];
-  async function turn(direction, spread) {
+  console.log('Binder ready', JSON.stringify({ spread: before.spread, residentCards: before.cards.length }));
+  const returns = [];
+  for (let attempt = 0; attempt < 2; attempt++) {
+    // The stage owns pointer input; pocket buttons deliberately pass it through.
+    const bounds = await page.locator('.binder-card:visible').first().boundingBox();
+    assert.ok(bounds);
+    await page.mouse.click(bounds.x + bounds.width / 2, bounds.y + bounds.height / 2);
+    await page.waitForFunction(() => !window.__holo.gallery.stats().active, null, { timeout: 240000 });
+    const suspended = await page.evaluate(() => {
+      const binder = window.__holo.gallery.instance().binder, saved = window.retainedBinder;
+      return { factory: binder.factory === saved.factory, graphics: binder.graphics === saved.graphics,
+        hidden: !binder.active && !binder.physical.group.visible && !binder.graphics?.mesh.visible,
+        snapshot: window.binderSnapshot() };
+    });
+    assert.equal(suspended.factory, true);
+    assert.equal(suspended.graphics, true);
+    assert.equal(suspended.hidden, true);
+    assert.deepEqual(suspended.snapshot, before);
     const start = Date.now();
-    await page.evaluate(direction => window.__holo.gallery.instance().binder.turn(direction), direction);
-    await page.waitForFunction(spread => {
-      const s = window.__holo.gallery.stats();
-      return s.spread === spread && !s.turning && !s.pending;
-    }, spread, { timeout: 60000 });
-    const stats = await page.evaluate(() => window.__holo.gallery.stats());
-    assert.ok(stats.residentCards <= 72);
-    assert.ok(stats.residentPages <= 6);
-    turns.push({ spread, ms: Date.now() - start, visible: stats.visible, cached: stats.cachedCards });
+    await page.locator('#gallery-open').click();
+    await waitForBinder();
+    const after = await page.evaluate(() => {
+      const binder = window.__holo.gallery.instance().binder, saved = window.retainedBinder;
+      return { snapshot: window.binderSnapshot(), work: saved.work,
+        samePages: [...binder.physical.pages.values()].every((page, i) => page === saved.pages[i]) };
+    });
+    assert.deepEqual(after.snapshot, before, 'return must reuse every resident card and atlas layer');
+    assert.equal(after.samePages, true);
+    assert.deepEqual(after.work, { compile: 0, upload: 0, preparePreview: 0 });
+    returns.push({ ms: Date.now() - start, ...after });
+    console.log('Return reused binder', attempt + 1);
   }
-  for (let spread = 1; spread <= 5; spread++) await turn(1, spread);
-  assert.equal(await page.evaluate(() => window.__holo.gallery.stats().cachedCards), 12);
-  for (let spread = 4; spread >= 0; spread--) await turn(-1, spread);
-  const after = await page.evaluate(() => {
-    const binder = window.__holo.gallery.instance().binder;
-    return [...binder.physical.pages.get(0).cards.values()].map(card => card.mesh.uuid);
-  });
-  assert.deepEqual(after, before, 'return must reuse the original GPU card instances');
-  const work = await page.evaluate(() => window.returnWork);
-  assert.deepEqual(work, { realizeCardGpu: 0, create: 0, uploadCardResources: 0, compile: 0 });
-  assert.deepEqual(errors, []);
   await mkdir('artifacts/favorites-binder', { recursive: true });
-  const report = { turns, work, errors };
-  await writeFile('artifacts/favorites-binder/return-report.json', JSON.stringify(report, null, 2));
-  await page.screenshot({ path: 'artifacts/favorites-binder/return-first-page.png' });
-  await page.evaluate(async () => {
+  await page.screenshot({ path: 'artifacts/favorites-binder/return-from-viewer.png' });
+  await page.locator('.favorites-binder .binder-header button').filter({ hasText: '← Gallery' }).click();
+  await page.waitForFunction(() => !window.__holo.gallery.instance().binder.active);
+  const released = await page.evaluate(() => {
     const binder = window.__holo.gallery.instance().binder;
-    await binder.selectBinder(0);
-    binder.hide();
+    return !binder.factory && !binder.graphics && !binder.loaded.size && !binder.shellReady;
   });
-  assert.equal(await page.evaluate(() => window.__holo.gallery.instance().binder.cachedCards.size), 0);
-  console.log(JSON.stringify(report));
+  assert.equal(released, true, 'leaving Favorites must still release its GPU resources');
+  assert.deepEqual(errors, []);
+  const report = { before, returns, released, errors };
+  await writeFile('artifacts/favorites-binder/return-report.json', JSON.stringify(report, null, 2));
+  console.log('PASS viewer returns reuse pages and previews without preparation, uploads or compilation');
 } finally {
   await browser.close();
 }

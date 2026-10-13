@@ -281,14 +281,18 @@ export class FavoritesBinder {
     }
     key.lookAt(0, 0, 0); this.lightingBase = undefined;
   }
-  hide() {
-    this.shellReady = false;
+  hide(retainResources = false) {
     this.restoreLighting(); this.active = false; this.root.hidden = true; this.physical.group.visible = false;
     this.request?.abort(); this.queuedRevision = -1; this.revision++; this.drag = undefined;
-    const domain = this.factory, graphics = this.graphics; this.factory = undefined; this.graphics = undefined;
-    if (graphics) graphics.mesh.visible = false;
-    const release = () => { graphics?.dispose(); this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
-    if (this.job) void this.job.finally(release); else release();
+    if (this.graphics) this.graphics.mesh.visible = false;
+    // Card inspection only suspends the binder. Keep its compiled shell,
+    // resident pages and preview atlas ready for the return to this spread.
+    if (!retainResources) {
+      this.shellReady = false;
+      const domain = this.factory, graphics = this.graphics; this.factory = undefined; this.graphics = undefined;
+      const release = () => { graphics?.dispose(); this.physical.retain(new Set()); this.loaded.clear(); this.failed.clear(); domain?.dispose(); };
+      if (this.job) void this.job.finally(release); else release();
+    }
     this.navigation.turn = undefined;
     if (this.savedCamera) { this.options.camera.position.copy(this.savedCamera.position); this.options.camera.far = this.savedCamera.far; this.options.camera.updateProjectionMatrix(); this.savedCamera = undefined; }
   }
